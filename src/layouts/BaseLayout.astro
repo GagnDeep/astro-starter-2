@@ -1,0 +1,257 @@
+---
+import '../styles/main.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  publishedDate?: string;
+  lastReviewed?: string;
+}
+
+const {
+  title,
+  description = "Dr. Ameena Patel, MD, FACE — Board-Certified Endocrinologist in Austin, TX. Specialized care for thyroid disorders, diabetes, continuous glucose monitoring, PCOS, and bone health.",
+  image = "/og-image.png",
+  article = false,
+  publishedDate,
+  lastReviewed
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://doctorameena.com");
+
+const physicianJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Physician",
+      "@id": "https://doctorameena.com/#physician",
+      "name": "Dr. Ameena Patel, MD, FACE",
+      "url": "https://doctorameena.com",
+      "image": "https://doctorameena.com/dr-ameena-portrait.jpg",
+      "medicalSpecialty": ["Endocrinology", "DiabetesAndMetabolism"],
+      "telephone": "(512) 555-0199",
+      "email": "care@doctorameena.com",
+      "description": "Board-Certified Endocrinologist specializing in thyroid disease, diabetes management, continuous glucose monitoring, and hormonal balance in Austin, TX.",
+      "memberOf": [
+        { "@type": "Organization", "name": "Endocrine Society" },
+        { "@type": "Organization", "name": "American Thyroid Association" },
+        { "@type": "Organization", "name": "American Association of Clinical Endocrinologists" }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3801 N Lamar Blvd, Suite 300",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "postalCode": "78756",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "MedicalClinic",
+      "@id": "https://doctorameena.com/#clinic",
+      "name": "Dr. Ameena Patel - Austin Endocrinology & Diabetes",
+      "url": "https://doctorameena.com",
+      "telephone": "(512) 555-0199",
+      "logo": "https://doctorameena.com/siteicon.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3801 N Lamar Blvd, Suite 300",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "postalCode": "78756",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "30.3060",
+        "longitude": "-97.7478"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Friday"],
+          "opens": "08:00",
+          "closes": "13:00"
+        }
+      ],
+      "priceRange": "$$"
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/siteicon.png" />
+  <link rel="canonical" href={canonicalURL} />
+
+  <title>{title} | Dr. Ameena Patel, MD — Austin Endocrinology</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Dr. Ameena Patel, MD — Austin Endocrinology" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={new URL(image, Astro.site || canonicalURL)} />
+  <meta property="og:type" content={article ? "article" : "website"} />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(image, Astro.site || canonicalURL)} />
+
+  <!-- RSS Link -->
+  <link rel="alternate" type="application/rss+xml" title="Dr. Ameena Patel — Patient Education Feed" href="/rss.xml" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(physicianJsonLd)} />
+</head>
+<body class="bg-cream text-charcoal font-sans flex flex-col min-h-screen selection:bg-terracotta selection:text-cream">
+
+  <!-- Printable Header (Only Visible During Printing) -->
+  <div class="hidden print:block print-header">
+    <h1 class="text-xl font-bold font-serif">Dr. Ameena Patel, MD, FACE</h1>
+    <p class="text-sm">Board-Certified in Endocrinology, Diabetes & Metabolism</p>
+    <p class="text-xs">3801 N Lamar Blvd, Suite 300, Austin, TX 78756 | Phone: (512) 555-0199 | www.doctorameena.com</p>
+  </div>
+
+  <!-- Medical Disclaimer Notice Banner -->
+  <aside aria-label="Medical Disclaimer" class="bg-surface border-b border-border text-charcoal-muted text-xs py-1.5 px-4 text-center no-print">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-sage"></span>
+      <span><strong>Educational Notice:</strong> Information on this site is for educational purposes and does not replace direct medical advice from your physician.</span>
+    </div>
+  </aside>
+
+  <!-- Site Navigation -->
+  <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-border no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-terracotta text-cream flex items-center justify-center font-serif font-bold text-lg group-hover:bg-terracotta-hover transition-colors">
+          AP
+        </div>
+        <div>
+          <span class="block font-serif font-semibold text-lg text-charcoal leading-none group-hover:text-terracotta transition-colors">Dr. Ameena Patel, MD</span>
+          <span class="block text-xs text-charcoal-muted mt-1 font-sans">Austin Endocrinology & Diabetes</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+        <a href="/conditions/" class="text-charcoal hover:text-terracotta transition-colors">Conditions</a>
+        <a href="/procedures/" class="text-charcoal hover:text-terracotta transition-colors">Procedures</a>
+        <a href="/services/" class="text-charcoal hover:text-terracotta transition-colors">Services & Insurance</a>
+        <a href="/about/" class="text-charcoal hover:text-terracotta transition-colors">About Dr. Ameena</a>
+        <a href="/blog/" class="text-charcoal hover:text-terracotta transition-colors">Patient Education</a>
+        <a href="/contact/" class="text-charcoal hover:text-terracotta transition-colors">Contact</a>
+      </nav>
+
+      <!-- CTA Buttons -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="/book/" class="bg-terracotta text-cream font-medium px-4 py-2.5 rounded-lg text-sm hover:bg-terracotta-hover transition-colors shadow-sm">
+          Book Consult
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow">
+    <slot />
+  </main>
+
+  <!-- Persistent Mobile Booking Bar (Sticky Footer on Mobile) -->
+  <div id="booking-bar" class="sm:hidden fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-md border-t border-border p-3 z-50 flex items-center justify-between gap-2 shadow-lg no-print">
+    <div>
+      <span class="block text-xs font-semibold text-charcoal">Dr. Ameena Patel, MD</span>
+      <span class="block text-[10px] text-sage font-medium">Accepting New Patients in Austin</span>
+    </div>
+    <a href="/book/" class="bg-terracotta text-cream text-xs font-semibold px-4 py-2.5 rounded-lg hover:bg-terracotta-hover transition-colors">
+      Schedule Consult
+    </a>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="bg-charcoal text-cream mt-20 pt-16 pb-24 sm:pb-12 border-t border-charcoal-muted/30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+
+      <!-- Col 1: Bio & Credentials -->
+      <div class="space-y-4">
+        <h3 class="font-serif text-xl font-bold text-cream">Dr. Ameena Patel, MD, FACE</h3>
+        <p class="text-xs text-border leading-relaxed">
+          Board-Certified Specialist in Endocrinology, Diabetes & Metabolism. Dedicated to evidence-led, root-cause hormonal care in Austin, TX.
+        </p>
+        <div class="text-xs text-sage-light bg-sage-dark/40 border border-sage/30 rounded-md p-2.5 inline-block">
+          <span class="font-semibold block">In-Clinic Diagnostics</span>
+          <span>Ultrasound & FNA Biopsy Available Same Week</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation Links -->
+      <div>
+        <h4 class="font-serif text-sm font-semibold text-cream mb-3 uppercase tracking-wider">Clinical Library</h4>
+        <ul class="space-y-2 text-xs text-border">
+          <li><a href="/conditions/hypothyroidism-hashimotos/" class="hover:text-cream transition-colors">Hypothyroidism & Hashimoto's</a></li>
+          <li><a href="/conditions/type-2-diabetes/" class="hover:text-cream transition-colors">Type 2 Diabetes Care</a></li>
+          <li><a href="/conditions/type-1-diabetes-cgm/" class="hover:text-cream transition-colors">Type 1 Diabetes & CGM</a></li>
+          <li><a href="/conditions/thyroid-nodules-fna/" class="hover:text-cream transition-colors">Thyroid Nodules & FNA Biopsy</a></li>
+          <li><a href="/conditions/pcos-metabolic-health/" class="hover:text-cream transition-colors">PCOS & Insulin Resistance</a></li>
+          <li><a href="/conditions/osteoporosis-bone-health/" class="hover:text-cream transition-colors">Osteoporosis & Bone Density</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Direct Services -->
+      <div>
+        <h4 class="font-serif text-sm font-semibold text-cream mb-3 uppercase tracking-wider">Patient Resources</h4>
+        <ul class="space-y-2 text-xs text-border">
+          <li><a href="/services/" class="hover:text-cream transition-colors">Insurance & Pricing</a></li>
+          <li><a href="/book/" class="hover:text-cream transition-colors">Book a Consultation</a></li>
+          <li><a href="/about/" class="hover:text-cream transition-colors">About Dr. Ameena</a></li>
+          <li><a href="/blog/" class="hover:text-cream transition-colors">Patient Education Blog</a></li>
+          <li><a href="/contact/" class="hover:text-cream transition-colors">Clinic Directions & NAP</a></li>
+          <li><a href="/rss.xml" class="hover:text-cream transition-colors">RSS Education Feed</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact & Location NAP -->
+      <div class="space-y-3">
+        <h4 class="font-serif text-sm font-semibold text-cream uppercase tracking-wider">Austin Medical Office</h4>
+        <address class="not-italic text-xs text-border leading-relaxed">
+          <strong>Austin Medical Plaza</strong><br />
+          3801 N Lamar Blvd, Suite 300<br />
+          Austin, TX 78756<br />
+          <span class="block mt-2"><strong>Phone:</strong> (512) 555-0199</span>
+          <span><strong>Email:</strong> care@doctorameena.com</span>
+        </address>
+        <p class="text-[11px] text-border/80">
+          <strong>Hours:</strong> Mon–Thu 8am–5pm \| Fri 8am–1pm
+        </p>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-charcoal-muted/20 text-center text-xs text-border/70">
+      <p>© {new Date().getFullYear()} Dr. Ameena Patel, MD, FACE. All Rights Reserved. Designed for patient clarity & accessibility.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

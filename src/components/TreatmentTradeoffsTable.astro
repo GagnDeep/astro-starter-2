@@ -1,0 +1,46 @@
+---
+interface Tradeoff {
+  option: string;
+  pros: string;
+  cons: string;
+  clinicalNote: string;
+}
+
+interface Props {
+  tradeoffs: Tradeoff[];
+}
+
+const { tradeoffs } = Astro.props;
+---
+
+{tradeoffs && tradeoffs.length > 0 && (
+  <div class="my-8 overflow-x-auto rounded-xl border border-border shadow-sm">
+    <table class="w-full text-left border-collapse bg-cream">
+      <thead>
+        <tr class="bg-surface border-b border-border text-charcoal font-serif font-bold text-sm">
+          <th class="p-4 w-1/4">Treatment Option</th>
+          <th class="p-4 w-1/3">Clinical Advantages (Pros)</th>
+          <th class="p-4 w-1/3">Key Tradeoffs & Risks (Cons)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border text-xs text-charcoal">
+        {tradeoffs.map((item) => (
+          <tr class="hover:bg-surface/40 transition-colors">
+            <td class="p-4 font-semibold text-terracotta align-top font-serif text-sm">
+              {item.option}
+            </td>
+            <td class="p-4 align-top leading-relaxed">
+              <span class="block font-medium text-sage-dark mb-1">✓ {item.pros}</span>
+            </td>
+            <td class="p-4 align-top leading-relaxed">
+              <span class="block font-medium text-amber-900 mb-1">⚠ {item.cons}</span>
+              <span class="block text-[11px] text-charcoal-muted italic mt-2 border-t border-border/40 pt-1">
+                <strong>Dr. Ameena's Note:</strong> {item.clinicalNote}
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}

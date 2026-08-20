@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InsuranceChecker from '../components/InsuranceChecker';
+---
+
+<BaseLayout
+  title="Services & Insurance Coverage — Dr. Ameena Patel, MD"
+  description="Insurance plans accepted, self-pay transparent consultation rates, and detailed medical fee schedules for Dr. Ameena Patel in Austin, TX."
+>
+
+  <div class="py-12 bg-cream border-b border-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <div class="space-y-3">
+        <span class="text-xs font-bold text-terracotta uppercase tracking-wider">Financial Transparency</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal">
+          Services, Pricing & Insurance Coverage
+        </h1>
+        <p class="text-sm text-charcoal-muted leading-relaxed">
+          We believe high-quality endocrinological care should come with absolute financial clarity. Below is our full guide to insurance networks, self-pay rates, and in-office diagnostic fees.
+        </p>
+      </div>
+
+      <!-- Interactive Checker -->
+      <InsuranceChecker client:load />
+
+      <!-- In-Network Insurance Plans List -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl font-bold text-charcoal border-b border-border pb-2">
+          Accepted Insurance Networks
+        </h2>
+        <p class="text-xs text-charcoal-muted">
+          Dr. Ameena Patel is in-network with major PPO and POS health insurance plans in Texas. Standard copays, deductibles, and coinsurance apply:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium text-charcoal">
+          <div class="bg-surface p-4 rounded-lg border border-border">
+            <strong class="block text-terracotta font-serif text-sm mb-1">Blue Cross Blue Shield Texas</strong>
+            <p class="text-charcoal-muted">In-Network for Choice PPO, Preferred POS, and Federal Employee Plans (FEP).</p>
+          </div>
+          <div class="bg-surface p-4 rounded-lg border border-border">
+            <strong class="block text-terracotta font-serif text-sm mb-1">Aetna Healthcare</strong>
+            <p class="text-charcoal-muted">In-Network for Choice POS II, Open Access, and Managed Choice PPO.</p>
+          </div>
+          <div class="bg-surface p-4 rounded-lg border border-border">
+            <strong class="block text-terracotta font-serif text-sm mb-1">UnitedHealthcare</strong>
+            <p class="text-charcoal-muted">In-Network for Choice, Choice Plus, and PPO commercial plans.</p>
+          </div>
+          <div class="bg-surface p-4 rounded-lg border border-border">
+            <strong class="block text-terracotta font-serif text-sm mb-1">Medicare Part B</strong>
+            <p class="text-charcoal-muted">Traditional Medicare Part B accepted. We directly bill supplemental Medigap plans.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transparent Self-Pay Fee Schedule -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl font-bold text-charcoal border-b border-border pb-2">
+          Self-Pay Consultation Fee Schedule
+        </h2>
+        <p class="text-xs text-charcoal-muted">
+          For uninsured patients or those with high-deductible plans choosing cash pay, we offer transparent bundled consultation rates. An itemized medical super-bill is provided for out-of-network reimbursement claims upon request:
+        </p>
+
+        <div class="overflow-x-auto rounded-xl border border-border">
+          <table class="w-full text-left text-xs bg-cream">
+            <thead class="bg-surface font-serif font-bold text-charcoal text-sm">
+              <tr class="border-b border-border">
+                <th class="p-3">Clinical Service</th>
+                <th class="p-3">CPT Code</th>
+                <th class="p-3">Self-Pay Rate</th>
+                <th class="p-3">What is Included</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr>
+                <td class="p-3 font-semibold text-charcoal">Initial Comprehensive Consultation</td>
+                <td class="p-3 font-mono text-terracotta">99204 / 99205</td>
+                <td class="p-3 font-bold text-terracotta">$275</td>
+                <td class="p-3 text-charcoal-muted">45-minute face-to-face consult, full lab review, physical neck exam, treatment plan.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-semibold text-charcoal">Follow-Up Consultation</td>
+                <td class="p-3 font-mono text-terracotta">99213 / 99214</td>
+                <td class="p-3 font-bold text-terracotta">$150</td>
+                <td class="p-3 text-charcoal-muted">25-minute follow-up, lab titration, CGM report review, prescription refills.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-semibold text-charcoal">In-Office Diagnostic Thyroid Ultrasound</td>
+                <td class="p-3 font-mono text-terracotta">76536</td>
+                <td class="p-3 font-bold text-terracotta">$180</td>
+                <td class="p-3 text-charcoal-muted">High-resolution neck sonogram, TI-RADS scoring report, immediate image review.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-semibold text-charcoal">Ultrasound-Guided FNA Biopsy</td>
+                <td class="p-3 font-mono text-terracotta">10021 / 76942</td>
+                <td class="p-3 font-bold text-terracotta">$350</td>
+                <td class="p-3 text-charcoal-muted">Local anesthesia, needle aspiration, slide preparation (Pathology lab billed separately).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Referrals & Pre-Authorizations -->
+      <section class="bg-surface border border-border rounded-xl p-6 space-y-3">
+        <h3 class="font-serif font-bold text-lg text-charcoal">Do I Need a Physician Referral?</h3>
+        <p class="text-xs text-charcoal-muted leading-relaxed">
+          Most PPO insurance plans do <strong>not</strong> require a primary care doctor referral to see Dr. Ameena. However, if your insurance is an HMO plan, your primary care physician must issue an electronic referral before your consultation. Contact our clinic staff at <a href="tel:5125550199" class="text-terracotta underline font-semibold">(512) 555-0199</a> for assistance with referral tracking.
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+</BaseLayout>

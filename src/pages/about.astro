@@ -1,5 +1,90 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MedicalReviewBadge from '../components/MedicalReviewBadge.astro';
 ---
 
-<AboutPage />
+<BaseLayout
+  title="About Dr. Ameena Patel, MD, FACE — Austin Endocrinologist"
+  description="Learn about Dr. Ameena Patel, MD, FACE, board-certified endocrinologist in Austin, TX. Education, medical philosophy, board certifications, and clinical approach."
+>
+
+  <div class="py-12 bg-cream border-b border-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+      <div class="space-y-4">
+        <MedicalReviewBadge lastReviewed="2025-01-15" author="Dr. Ameena Patel, MD, FACE" />
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal">
+          About Dr. Ameena Patel, MD, FACE
+        </h1>
+        <p class="text-base text-terracotta font-serif font-medium">
+          Board-Certified Specialist in Endocrinology, Diabetes & Metabolism
+        </p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-xl p-6 flex flex-col sm:flex-row items-center gap-6">
+        <div class="w-24 h-24 rounded-full bg-terracotta text-cream flex items-center justify-center font-serif text-3xl font-bold flex-shrink-0">
+          AP
+        </div>
+        <div class="space-y-2 text-xs text-charcoal">
+          <p class="font-semibold text-sm">Austin Medical Plaza Office</p>
+          <p class="text-charcoal-muted">3801 N Lamar Blvd, Suite 300, Austin, TX 78756</p>
+          <p><strong>Specialties:</strong> Thyroid Disorders, Continuous Glucose Monitors (CGM), Type 1 & 2 Diabetes, PCOS, Osteoporosis, Parathyroid Health.</p>
+        </div>
+      </div>
+
+      <!-- Main Clinical Bio -->
+      <article class="prose max-w-none space-y-6">
+        <h2>Clinical Philosophy & Patient-Centered Care</h2>
+        <p>
+          Dr. Ameena Patel founded her independent subspecialty practice on a fundamental clinical belief: <strong>hormonal health cannot be distilled into a single "normal" lab number</strong>. Endocrinological disorders affect every tissue system in the human body—from cellular basal metabolic rate and cognitive performance to cardiovascular tone and bone architecture.
+        </p>
+        <p>
+          In an era where healthcare encounters are increasingly rushed and impersonal, Dr. Ameena provides unhurried, evidence-led subspecialty care. She takes the time to analyze complete hormone conversion pathways, review 14-day continuous glucose monitoring trend graphs, and perform in-office sonographic imaging right during your consultation.
+        </p>
+
+        <h2>Medical Education & Board Certifications</h2>
+        <ul class="space-y-2 text-sm text-charcoal">
+          <li><strong>Board Certification:</strong> Board Certified in Endocrinology, Diabetes & Metabolism — American Board of Internal Medicine (ABIM)</li>
+          <li><strong>Fellowship Training:</strong> Fellowship in Endocrinology, Diabetes & Metabolism <span class="text-xs text-charcoal-muted">[NEEDS CONFIRMATION: Institution, e.g. UT Southwestern / Baylor College of Medicine]</span></li>
+          <li><strong>Internal Medicine Residency:</strong> Residency in Internal Medicine <span class="text-xs text-charcoal-muted">[NEEDS CONFIRMATION: Hospital System]</span></li>
+          <li><strong>Doctor of Medicine (MD):</strong> Graduated with Medical Honors <span class="text-xs text-charcoal-muted">[NEEDS CONFIRMATION: Medical School]</span></li>
+          <li><strong>Professional Fellowships:</strong> Fellow of the American College of Endocrinology (FACE)</li>
+        </ul>
+
+        <h2>Professional Affiliations & Societies</h2>
+        <ul class="space-y-1 text-sm text-charcoal">
+          <li>Member, The Endocrine Society</li>
+          <li>Member, American Thyroid Association (ATA)</li>
+          <li>Member, American Association of Clinical Endocrinologists (AACE)</li>
+          <li>Member, American Diabetes Association (ADA)</li>
+        </ul>
+
+        <h2>Hospital Affiliations in Austin, TX</h2>
+        <p class="text-xs text-charcoal-muted">
+          <em>Note on Hospital Privileges:</em> Dr. Ameena maintains active medical staff privileges for inpatient subspecialty consultation at:
+        </p>
+        <ul class="space-y-1 text-xs text-charcoal-muted italic">
+          <li><span class="text-charcoal font-medium">[NEEDS CONFIRMATION]</span> St. David's Medical Center (Austin, TX)</li>
+          <li><span class="text-charcoal font-medium">[NEEDS CONFIRMATION]</span> Ascension Seton Medical Center Austin</li>
+        </ul>
+
+        <h2>Research & Medical Publications</h2>
+        <p>
+          Dr. Ameena has authored peer-reviewed articles on subclinical thyroid dysfunction, continuous glucose monitoring accuracy in adult Type 1 diabetes, and modern GLP-1 receptor agonist titration protocols. She frequently lectures for Central Texas medical societies on metabolic health and bone preservation strategies.
+        </p>
+      </article>
+
+      <div class="pt-8 border-t border-border flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h3 class="font-serif font-bold text-base text-charcoal">Ready to work with Dr. Ameena?</h3>
+          <p class="text-xs text-charcoal-muted">Schedule your comprehensive consultation at our Central Austin clinic.</p>
+        </div>
+        <a href="/book/" class="bg-terracotta text-cream font-medium px-6 py-3 rounded-lg text-sm hover:bg-terracotta-hover transition-colors">
+          Book Consultation Online
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>

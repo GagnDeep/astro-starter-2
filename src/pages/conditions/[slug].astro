@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MedicalReviewBadge from '../../components/MedicalReviewBadge.astro';
+import CitationsList from '../../components/CitationsList.astro';
+import UrgentCareNotice from '../../components/UrgentCareNotice.astro';
+import TreatmentTradeoffsTable from '../../components/TreatmentTradeoffsTable.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const conditions = await getCollection('conditions');
+  return conditions.map((entry) => ({
+    params: { slug: entry.id.replace(/\.(md|mdx)$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={`${entry.data.title} — Dr. Ameena Patel, MD`}
+  description={entry.data.summary}
+>
+
+  <article class="py-12 bg-cream border-b border-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+      <!-- Article Header -->
+      <header class="space-y-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-sage-dark bg-sage-light px-3 py-1 rounded-full">
+            {entry.data.category}
+          </span>
+          <MedicalReviewBadge lastReviewed={entry.data.lastReviewed} author={entry.data.author} />
+        </div>
+
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal leading-tight">
+          {entry.data.title}
+        </h1>
+
+        <p class="text-base sm:text-lg text-terracotta font-serif">
+          {entry.data.subtitle}
+        </p>
+
+        <p class="text-xs sm:text-sm text-charcoal-muted leading-relaxed bg-surface border border-border p-4 rounded-xl">
+          <strong>Clinical Summary:</strong> {entry.data.summary}
+        </p>
+      </header>
+
+      <!-- Symptoms & Diagnostic Panel Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+        <div class="bg-surface border border-border rounded-xl p-5 space-y-3">
+          <h3 class="font-serif font-bold text-base text-charcoal flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-terracotta"></span>
+            Common Symptoms Reported
+          </h3>
+          <ul class="list-disc list-inside space-y-1.5 text-xs text-charcoal leading-relaxed">
+            {entry.data.symptoms.map(item => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-surface border border-border rounded-xl p-5 space-y-3">
+          <h3 class="font-serif font-bold text-base text-charcoal flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-sage"></span>
+            Diagnostic Workup & Testing
+          </h3>
+          <ul class="list-disc list-inside space-y-1.5 text-xs text-charcoal leading-relaxed">
+            {entry.data.diagnosticTests.map(item => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main MDX Body -->
+      <div class="prose max-w-none">
+        <Content />
+      </div>
+
+      <!-- Treatment Tradeoffs Table -->
+      {entry.data.treatmentTradeoffs && entry.data.treatmentTradeoffs.length > 0 && (
+        <div class="mt-10">
+          <h2 class="font-serif text-2xl font-bold text-charcoal border-b border-border pb-2 mb-4">
+            Treatment Options & Clinical Tradeoffs
+          </h2>
+          <TreatmentTradeoffsTable tradeoffs={entry.data.treatmentTradeoffs} />
+        </div>
+      )}
+
+      <!-- Urgent Care Red Flags -->
+      <UrgentCareNotice redFlags={entry.data.urgentCareRedFlags} />
+
+      <!-- Citations List -->
+      <CitationsList citations={entry.data.citations} />
+
+      <!-- Consultation CTA -->
+      <div class="mt-12 p-8 bg-surface border border-border rounded-xl text-center space-y-4">
+        <h3 class="font-serif text-2xl font-bold text-charcoal">
+          Discuss Your Symptoms with Dr. Ameena
+        </h3>
+        <p class="text-xs text-charcoal-muted max-w-md mx-auto leading-relaxed">
+          Schedule your comprehensive evaluation at our Central Austin clinic. We accept major insurance plans and offer direct online booking.
+        </p>
+        <a href="/book/" class="inline-block bg-terracotta text-cream font-semibold px-6 py-3 rounded-lg text-xs hover:bg-terracotta-hover transition-colors shadow-sm">
+          Book Consultation Online
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+</BaseLayout>

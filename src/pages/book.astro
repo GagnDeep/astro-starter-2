@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Book a Consultation — Dr. Ameena Patel, MD"
+  description="Request an appointment with Dr. Ameena Patel, MD, FACE in Central Austin. Online consult scheduling, friction-reduction guidelines, and intake steps."
+>
+
+  <div class="py-12 bg-cream border-b border-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <div class="space-y-3">
+        <span class="text-xs font-bold text-terracotta uppercase tracking-wider">Schedule Your Visit</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal">
+          Book an Endocrine Consultation
+        </h1>
+        <p class="text-sm text-charcoal-muted leading-relaxed">
+          We welcome new adult patients seeking specialized care for thyroid disease, diabetes, continuous glucose monitors, PCOS, bone health, and complex hormonal evaluation in Central Texas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- Booking Form -->
+        <div class="lg:col-span-7 bg-surface border border-border rounded-xl p-6 shadow-sm space-y-4">
+          <h2 class="font-serif text-xl font-bold text-charcoal border-b border-border pb-2">
+            Consultation Request Form
+          </h2>
+          <p class="text-xs text-charcoal-muted">
+            Fill out the request below. Our scheduling coordinator will contact you within 1 business day to confirm your exact appointment window.
+          </p>
+
+          <form action="#" method="POST" class="space-y-4 text-xs font-sans">
+            <div>
+              <label for="full-name" class="block font-semibold text-charcoal mb-1">Full Legal Name *</label>
+              <input type="text" id="full-name" required placeholder="e.g. Jane Doe" class="w-full bg-cream border border-border rounded-lg p-2.5 text-charcoal focus:ring-2 focus:ring-terracotta focus:outline-none" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="phone" class="block font-semibold text-charcoal mb-1">Phone Number *</label>
+                <input type="tel" id="phone" required placeholder="(512) 000-0000" class="w-full bg-cream border border-border rounded-lg p-2.5 text-charcoal focus:ring-2 focus:ring-terracotta focus:outline-none" />
+              </div>
+              <div>
+                <label for="email" class="block font-semibold text-charcoal mb-1">Email Address *</label>
+                <input type="email" id="email" required placeholder="jane@example.com" class="w-full bg-cream border border-border rounded-lg p-2.5 text-charcoal focus:ring-2 focus:ring-terracotta focus:outline-none" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="specialty-area" class="block font-semibold text-charcoal mb-1">Primary Reason for Visit *</label>
+                <select id="specialty-area" required class="w-full bg-cream border border-border rounded-lg p-2.5 text-charcoal focus:ring-2 focus:ring-terracotta focus:outline-none">
+                  <option value="">-- Select Condition --</option>
+                  <option value="thyroid">Thyroid (Hashimoto's / Hypo / Hyper / Nodule)</option>
+                  <option value="diabetes-cgm">Diabetes & CGM Placement / Pump Tuning</option>
+                  <option value="pcos">PCOS & Metabolic Balance</option>
+                  <option value="osteoporosis">Osteoporosis & Bone Density</option>
+                  <option value="parathyroid">Parathyroid / High Calcium</option>
+                  <option value="other">Other Endocrine / Second Opinion</option>
+                </select>
+              </div>
+              <div>
+                <label for="insurance-provider" class="block font-semibold text-charcoal mb-1">Insurance Carrier</label>
+                <input type="text" id="insurance-provider" placeholder="e.g. BCBS Texas / Self-Pay" class="w-full bg-cream border border-border rounded-lg p-2.5 text-charcoal focus:ring-2 focus:ring-terracotta focus:outline-none" />
+              </div>
+            </div>
+
+            <div>
+              <label for="time-preference" class="block font-semibold text-charcoal mb-1">Preferred Appointment Window</label>
+              <select id="time-preference" class="w-full bg-cream border border-border rounded-lg p-2.5 text-charcoal focus:ring-2 focus:ring-terracotta focus:outline-none">
+                <option value="asap">First Available (Next 5-10 Days)</option>
+                <option value="morning">Mornings (Mon-Thu 8am - 12pm)</option>
+                <option value="afternoon">Afternoons (Mon-Thu 1pm - 5pm)</option>
+                <option value="friday">Friday Morning (8am - 1pm)</option>
+              </select>
+            </div>
+
+            <!-- HIPAA Notice -->
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-[11px] text-amber-900 leading-relaxed">
+              <strong>HIPAA Privacy Notice:</strong> For your privacy, do not include confidential medical history, social security numbers, or sensitive lab values in this initial contact form. Detailed medical history will be collected securely via our patient portal prior to your visit.
+            </div>
+
+            <button type="submit" class="w-full bg-terracotta text-cream font-semibold py-3 rounded-lg text-sm hover:bg-terracotta-hover transition-colors shadow-sm">
+              Submit Appointment Request
+            </button>
+          </form>
+        </div>
+
+        <!-- Appointment Preparation Guide -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-cream border border-border rounded-xl p-6 space-y-4">
+            <h3 class="font-serif font-bold text-lg text-charcoal">How to Prepare for Your Consult</h3>
+            <ul class="space-y-3 text-xs text-charcoal leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-terracotta font-mono">1.</span>
+                <span><strong>Gather Past Lab Records:</strong> Obtain copies of any blood tests, thyroid ultrasounds, or DEXA scans performed in the past 12 months.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-terracotta font-mono">2.</span>
+                <span><strong>Sync CGM / Pump Data:</strong> If using Dexcom, Freestyle Libre, or an insulin pump, sync data to the cloud 24 hours prior.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold text-terracotta font-mono">3.</span>
+                <span><strong>Medication List:</strong> Bring all current prescription bottles, supplements, and thyroid hormone medications.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-surface border border-border rounded-xl p-6 space-y-3 text-xs text-charcoal">
+            <h4 class="font-serif font-bold text-sm text-charcoal">Clinic Location & NAP</h4>
+            <p><strong>Austin Medical Plaza</strong></p>
+            <p class="text-charcoal-muted">3801 N Lamar Blvd, Suite 300, Austin, TX 78756</p>
+            <p><strong>Phone:</strong> (512) 555-0199</p>
+            <p><strong>Hours:</strong> Mon–Thu 8am–5pm | Fri 8am–1pm</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>

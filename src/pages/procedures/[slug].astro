@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MedicalReviewBadge from '../../components/MedicalReviewBadge.astro';
+import CitationsList from '../../components/CitationsList.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const procedures = await getCollection('procedures');
+  return procedures.map((entry) => ({
+    params: { slug: entry.id.replace(/\.(md|mdx)$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={`${entry.data.title} — In-Office Procedure Guide`}
+  description={entry.data.summary}
+>
+
+  <article class="py-12 bg-cream border-b border-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+      <!-- Article Header -->
+      <header class="space-y-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-terracotta bg-terracotta/10 px-3 py-1 rounded-full">
+            Procedure Duration: ~{entry.data.durationMinutes} Mins
+          </span>
+          <MedicalReviewBadge lastReviewed={entry.data.lastReviewed} author={entry.data.author} />
+        </div>
+
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal leading-tight">
+          {entry.data.title}
+        </h1>
+
+        <p class="text-base sm:text-lg text-terracotta font-serif">
+          {entry.data.subtitle}
+        </p>
+
+        <p class="text-xs sm:text-sm text-charcoal-muted leading-relaxed bg-surface border border-border p-4 rounded-xl">
+          <strong>Overview:</strong> {entry.data.summary}
+        </p>
+      </header>
+
+      <!-- Preparation & What to Expect Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+        <div class="bg-surface border border-border rounded-xl p-5 space-y-3">
+          <h3 class="font-serif font-bold text-base text-charcoal flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-terracotta"></span>
+            Pre-Appointment Preparation Steps
+          </h3>
+          <ul class="list-disc list-inside space-y-1.5 text-xs text-charcoal leading-relaxed">
+            {entry.data.preparationSteps.map(step => (
+              <li>{step}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-surface border border-border rounded-xl p-5 space-y-3">
+          <h3 class="font-serif font-bold text-base text-charcoal flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-sage"></span>
+            What Happens During the Procedure
+          </h3>
+          <ul class="list-disc list-inside space-y-1.5 text-xs text-charcoal leading-relaxed">
+            {entry.data.whatToExpect.map(step => (
+              <li>{step}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main MDX Body -->
+      <div class="prose max-w-none">
+        <Content />
+      </div>
+
+      <!-- Aftercare Notes -->
+      <div class="my-8 bg-sage-light/80 border border-sage/40 p-5 rounded-xl space-y-2">
+        <h4 class="font-serif font-bold text-sage-dark text-base">
+          Post-Procedure Aftercare & Recovery
+        </h4>
+        <p class="text-xs text-sage-dark leading-relaxed font-sans">
+          {entry.data.aftercareNotes}
+        </p>
+      </div>
+
+      <!-- Citations List -->
+      <CitationsList citations={entry.data.citations} />
+
+    </div>
+  </article>
+
+</BaseLayout>

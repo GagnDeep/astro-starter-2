@@ -1,22 +1,63 @@
 ---
-import PostLayout from "../../layouts/Post.astro";
-import { getCollection, getEntry, render } from "astro:content";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MedicalReviewBadge from '../../components/MedicalReviewBadge.astro';
+import CitationsList from '../../components/CitationsList.astro';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({ params: { slug: post.id } }));
+  const posts = await getCollection('blog');
+  return posts.map((entry) => ({
+    params: { slug: entry.id.replace(/\.(md|mdx)$/, '') },
+    props: { entry },
+  }));
 }
 
-if (!Astro.params.slug) {
-  throw new Error("Post slug is undefined");
-}
-const post = await getEntry("blog", Astro.params.slug);
-if (!post) {
-  throw new Error("Failed to get post with slug: " + Astro.params.slug);
-}
-const { Content } = await render(post);
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
 
-<PostLayout frontmatter={post.data} body={post.body}>
-  <Content />
-</PostLayout>
+<BaseLayout
+  title={`${entry.data.title} — Patient Education`}
+  description={entry.data.summary}
+  article={true}
+  publishedDate={entry.data.publishDate}
+  lastReviewed={entry.data.lastReviewed}
+>
+
+  <article class="py-12 bg-cream border-b border-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+      <!-- Article Header -->
+      <header class="space-y-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-sage-dark bg-sage-light px-3 py-1 rounded-full">
+            {entry.data.tags[0] || 'Patient Education'}
+          </span>
+          <MedicalReviewBadge lastReviewed={entry.data.lastReviewed} author={entry.data.author} />
+        </div>
+
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal leading-tight">
+          {entry.data.title}
+        </h1>
+
+        <p class="text-xs text-charcoal-muted font-sans">
+          Published on {new Date(entry.data.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} by <strong>{entry.data.author}</strong>
+        </p>
+
+        <p class="text-xs sm:text-sm text-charcoal-muted leading-relaxed bg-surface border border-border p-4 rounded-xl">
+          <strong>Article Summary:</strong> {entry.data.summary}
+        </p>
+      </header>
+
+      <!-- Main Body -->
+      <div class="prose max-w-none">
+        <Content />
+      </div>
+
+      <!-- Citations List -->
+      <CitationsList citations={entry.data.citations} />
+
+    </div>
+  </article>
+
+</BaseLayout>

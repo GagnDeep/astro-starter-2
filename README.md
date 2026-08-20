@@ -1,81 +1,44 @@
-# Astro Minimal Starter
+# doctorameena.com — Medical Practice Website
 
-A minimal starter template for building an Astro site with [CloudCannon](https://cloudcannon.com/) using **Editable Regions** for visual editing.
+Official personal brand and patient education website for **Dr. Ameena Patel, MD, FACE**, Board-Certified Endocrinologist in Austin, Texas.
 
-See a [demo site](https://tiny-jackal.cloudvent.net/).
+## Tech Stack & Architecture
 
-## Features
+- **Astro (v5+)**: Static Site Generation (SSG) with zero client JS by default for ultra-fast rendering, optimal SEO, and high Lighthouse scores.
+- **Tailwind CSS v4**: CSS-first design token setup configured via `@theme` in `src/styles/main.css`.
+- **TypeScript**: Strict type-checking with Astro content collection Zod schemas.
+- **React Islands (`@astrojs/react`)**: Isolated interactive islands for client-side search modal and responsive mobile navigation drawer.
 
-- Visual editing with [Editable Regions](https://cloudcannon.com/documentation/developer-guides/set-up-visual-editing/an-overview-of-editable-regions/) (text, image, array, source, and component regions)
-- Page building with reusable components
-- Blog with pagination and tags
-- [Tailwind CSS v4](https://tailwindcss.com/) with CSS-first configuration
-- SEO controls
-- Pagefind search
+## Dependency Justification & Pinning
 
-## Getting Started
+All extra dependencies are strictly justified and pinned in `package.json`:
 
-Click `Use this template` to make your own copy of the repository.
+- `@astrojs/mdx`: Required for rich medical content authoring with interactive citation components and callouts.
+- `@astrojs/sitemap`: Automatically builds XML sitemaps including conditions, procedures, and educational posts for search engine indexing.
+- `@astrojs/rss`: Generates `/rss.xml` for patient education articles feed.
+- `@astrojs/react`: Enables interactive islands (`SearchModal.tsx`, `NavDrawer.tsx`).
+- `lucide-react`: Lightweight, accessible UI icon library.
+- `sharp`: High-performance image transformation via `astro:assets`.
 
-### Local Development
+## Design System Tokens
 
-1. Clone the repository to your local machine.
+Design tokens are declared in `src/styles/main.css` and strictly avoid "medical blue":
+- **Primary Brand**: Warm Terracotta (`#9C4A2F`)
+- **Accent**: Forest Sage (`#3D6B52`)
+- **Background**: Soft Cream (`#FAF8F5`)
+- **Surface**: Sandstone (`#F2EFE9`)
+- **Text**: Obsidian Charcoal (`#1E2229`)
+- **Font Display**: Playfair Display (Serif)
+- **Font Body**: Plus Jakarta Sans (Sans-serif)
 
-2. Start the development server.
+## Local Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## CloudCannon Setup
-
-This site is pre-configured for CloudCannon. Connect your repository and CloudCannon will detect the configuration in `.cloudcannon/initial-site-settings.json` and build your site automatically. The editing experience is defined in `cloudcannon.config.yml`, which you can modify to control your editors' experience.
-
-### Editable Regions
-
-This starter demonstrates several types of Editable Region:
-
-- **Text** (`data-editable="text"`) for editing front matter text values inline
-- **Image** (`data-editable="image"`) for editing front matter image values
-- **Array** (`data-editable="array"`) for page-building with reorderable content blocks
-- **Source** (`data-editable="source"`) for making standalone `.astro` pages editable
-- **Component** (`<editable-component>`) for live re-rendering of Astro components
-
-Components that need live re-rendering are registered in `src/scripts/register-components.ts` and loaded conditionally when the site is open in CloudCannon's Visual Editor.
-
-#### Source Editables
-
-The About page (`src/content/pages/about.astro`) demonstrates **source editables** — a pattern where content lives directly in an Astro template rather than in Markdown front matter. Source editable regions use `data-editable="source"`, `data-path="path/to/file.astro"`, and `data-key` attributes. CloudCannon writes changes straight back to the `.astro` file.
-
-This is useful for standalone pages (like About or Contact) where a developer wants full control over the markup while still giving editors visual editing access — **and where page building with components is *not* desired**. No accompanying Markdown file or front matter schema is needed. A thin routing wrapper in `src/pages/about.astro` handles Astro's file-based routing.
-
-### Components
-
-Three page-building components are included:
-
-- **Hero** — heading, subheading, image, and optional button
-- **LeftRight** — side-by-side text and image, with optional flip and button
-- **TextBlock** — heading and rich text content
-
-### Content
-
-- **Pages** are in `src/content/pages/` as Markdown with structured front matter, and support a component-based page-building workflow. Developers can also add standalone pages paired with a routing file in `src/pages/` (like `src/content/pages/about.astro`), and decide which parts of those pages are editable in CloudCannon.
-- **Blog posts** are in `src/content/blog/` as MDX files
-- **Data** files (site settings, navigation) are in `data/`
-
-## Project Structure
-
-```
-├── .cloudcannon/          # CloudCannon schemas and postbuild
-├── cloudcannon.config.yml # CloudCannon configuration
-├── data/                  # Site-wide data files
-├── public/                # Static assets
-└── src/
-    ├── components/        # Astro components
-    ├── content/           # Content collections (pages, blog)
-    ├── layouts/           # Page layouts
-    ├── pages/             # Astro page routes
-    ├── scripts/           # Component registration for visual editing
-    └── styles/            # Global CSS (Tailwind v4)
+Build and type-check:
+```bash
+npm run build
 ```

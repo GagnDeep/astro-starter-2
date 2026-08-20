@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact Clinic & Location NAP — Dr. Ameena Patel, MD"
+  description="Contact Dr. Ameena Patel, MD, FACE in Central Austin. Direct clinic phone, address, parking directions, and opening hours."
+>
+
+  <div class="py-12 bg-cream border-b border-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <div class="space-y-3">
+        <span class="text-xs font-bold text-terracotta uppercase tracking-wider">Get in Touch</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal">
+          Clinic Location & Contact Details
+        </h1>
+        <p class="text-sm text-charcoal-muted leading-relaxed">
+          Our clinic is conveniently located in the Central Austin Medical District with ample garage parking and accessibility.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- NAP Details -->
+        <div class="bg-surface border border-border rounded-xl p-6 space-y-4 text-xs text-charcoal">
+          <h2 class="font-serif text-xl font-bold text-charcoal border-b border-border pb-2">
+            Practice NAP & Hours
+          </h2>
+
+          <div>
+            <strong class="block text-sm text-terracotta font-serif">Dr. Ameena Patel, MD - Austin Endocrinology</strong>
+            <p class="text-charcoal-muted mt-1">Austin Medical Plaza Building</p>
+            <p class="text-charcoal-muted">3801 N Lamar Blvd, Suite 300</p>
+            <p class="text-charcoal-muted">Austin, TX 78756</p>
+          </div>
+
+          <div class="pt-2">
+            <strong class="block text-charcoal font-semibold">Direct Telephone:</strong>
+            <a href="tel:5125550199" class="text-terracotta text-sm font-bold underline">(512) 555-0199</a>
+          </div>
+
+          <div>
+            <strong class="block text-charcoal font-semibold">Email Contact:</strong>
+            <span>care@doctorameena.com</span>
+          </div>
+
+          <div class="pt-2">
+            <strong class="block text-charcoal font-semibold mb-1">Clinic Operating Hours:</strong>
+            <ul class="space-y-1 text-charcoal-muted">
+              <li><strong>Monday – Thursday:</strong> 8:00 AM – 5:00 PM</li>
+              <li><strong>Friday:</strong> 8:00 AM – 1:00 PM</li>
+              <li><strong>Saturday – Sunday:</strong> Closed</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Directions & Parking -->
+        <div class="bg-surface border border-border rounded-xl p-6 space-y-4 text-xs text-charcoal">
+          <h2 class="font-serif text-xl font-bold text-charcoal border-b border-border pb-2">
+            Parking & Accessibility
+          </h2>
+          <div class="space-y-3 leading-relaxed text-charcoal-muted">
+            <p>
+              <strong>Building Location:</strong> Located on N Lamar Blvd between 38th St and 45th St in Central Austin, minutes from Mopac (Loop 1) and I-35.
+            </p>
+            <p>
+              <strong>Free Covered Parking:</strong> On-site covered garage parking is available directly behind the Austin Medical Plaza building. Elevator access leads directly to Suite 300 on the 3rd floor.
+            </p>
+            <p>
+              <strong>ADA Accessibility:</strong> Wheelchair accessible entrance, wide elevator doors, and ADA compliant patient restrooms in Suite 300.
+            </p>
+          </div>
+          <div class="pt-4">
+            <a href="/book/" class="block text-center bg-terracotta text-cream font-semibold py-2.5 rounded-lg text-xs hover:bg-terracotta-hover transition-colors">
+              Schedule Appointment Online
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>
