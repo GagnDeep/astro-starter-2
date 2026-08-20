@@ -1,56 +1,70 @@
 import { defineCollection } from "astro:content";
-import { z } from 'astro/zod';
-import { glob } from 'astro/loaders';
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
-const seoSchema = z
-  .object({
-    page_description: z.string().nullable(),
-    canonical_url: z.string().nullable(),
-    featured_image: z.string().nullable(),
-    featured_image_alt: z.string().nullable(),
-    author_twitter_handle: z.string().nullable(),
-    open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
-  })
-  .optional();
+const seoSchema = z.object({
+  meta_title: z.string().optional(),
+  meta_description: z.string().optional(),
+  canonical_url: z.string().optional(),
+  no_index: z.boolean().default(false),
+}).optional();
 
-const blogCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
+const deductionsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/deductions" }),
   schema: z.object({
     title: z.string(),
-    post_hero: z.object({
-      date: z.string().or(z.date()),
-      heading: z.string(),
-      tags: z.array(z.string()),
-      author: z.string(),
-      image: z.string(),
-      image_alt: z.string(),
-    }),
-    thumb_image_path: z.string(),
-    thumb_image_alt: z.string(),
+    short_title: z.string(),
+    category: z.enum([
+      "Equipment & Hardware",
+      "Software & Cloud",
+      "Office & Workplace",
+      "Meals & Travel",
+      "Services & Subcontractors",
+      "Marketing & Admin",
+      "Health & Insurance",
+      "Education & Training",
+    ]),
+    deduction_percentage: z.string(), // e.g. "100%" or "50%" or "Pro-rated"
+    audit_risk: z.enum(["LOW", "MEDIUM", "HIGH"]),
+    irs_rule_citation: z.string(),
+    summary: z.string(),
+    quick_verdict: z.string(),
+    what_you_can_deduct: z.array(z.string()),
+    what_you_cannot_deduct: z.array(z.string()),
+    receipt_requirement: z.string(),
     seo: seoSchema,
   }),
 });
 
-const pageSchema = z.object({
-  title: z.string(),
-  hero_block: z.any().optional(),
-  content_blocks: z.array(z.any()).optional(),
-  seo: seoSchema,
+const guidesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/guides" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.string(),
+    updatedDate: z.string().optional(),
+    author: z.string().default("Bro Tax CPA Team"),
+    category: z.string(),
+    readTime: z.string(),
+    tags: z.array(z.string()),
+    seo: seoSchema,
+  }),
 });
 
-const paginatedCollectionSchema = z.object({
-  title: z.string(),
-  page_size: z.number().positive(),
-  seo: seoSchema,
-});
-
-const pagesCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,astro}', base: "./src/content/pages" }),
-  schema: z.union([paginatedCollectionSchema, pageSchema]),
+const postsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.string(),
+    author: z.string().default("Bro Tax CPA Team"),
+    tags: z.array(z.string()),
+    seo: seoSchema,
+  }),
 });
 
 export const collections = {
-  blog: blogCollection,
-  pages: pagesCollection,
+  deductions: deductionsCollection,
+  guides: guidesCollection,
+  posts: postsCollection,
 };

@@ -1,5 +1,71 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import cpaBadge from '../assets/illustration-cpa-verified.svg';
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
-<AboutPage />
+<Layout
+  title="About bro.tax — The No-Suits CPA Team"
+  description="Learn why bro.tax was created by CPAs and engineers fed up with corporate tax lobby dark patterns and suit-and-tie markup."
+  canonicalUrl={canonicalUrl}
+>
+  <section class="py-12 md:py-20 bg-[var(--color-bg-primary)]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <header class="border-b-2 border-[var(--color-border-default)] pb-8">
+        <span class="font-mono text-xs font-bold bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-3 py-1 rounded uppercase tracking-wider">
+          Our Anti-Suite Mission
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--color-text-primary)] mt-4 tracking-tight">
+          Why We Built bro.tax
+        </h1>
+        <p class="text-lg text-[var(--color-text-secondary)] mt-4 leading-relaxed font-sans">
+          We are a team of accredited Certified Public Accountants (CPAs) and software engineers who got tired of watching young creators, freelancers, and gig workers get ripped off by beige incumbents and predatory subscription tax apps.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <h2 class="text-2xl font-bold text-[var(--color-text-primary)]">
+            Irreverent in Tone. Rigorous on Facts.
+          </h2>
+          <p class="text-sm text-[var(--color-text-primary)] leading-relaxed">
+            Traditional accounting firms charge $500/hour just to explain basic Schedule C line items. Meanwhile, tax software incumbents like Intuit spent decades lobbying Congress to keep tax filing needlessly complex so they could charge you $120+ just to unlock 1099 features.
+          </p>
+          <p class="text-sm text-[var(--color-text-primary)] leading-relaxed">
+            bro.tax changes that. All of our estimation tools, write-off libraries, and guides are <strong>100% free forever</strong>. When you need a full filing prep package, we charge a flat $49 with zero subscription traps.
+          </p>
+        </div>
+
+        <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-8 rounded-xl text-center shadow-[6px_6px_0px_0px_var(--color-border-default)]">
+          <Image src={cpaBadge} alt="CPA Verification Seal" class="h-28 w-auto mx-auto mb-4" />
+          <h3 class="font-mono text-base font-bold text-[var(--color-text-primary)]">Accredited CPA Review</h3>
+          <p class="text-xs text-[var(--color-text-secondary)] mt-2">
+            Every formula, rate, and guide is reviewed against current IRS Revenue Procedures.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-8 rounded-xl space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--color-text-primary)]">
+          The 3 Pillars of bro.tax
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono text-xs">
+          <div class="space-y-2">
+            <span class="text-base font-bold text-[var(--color-text-emerald)]">1. No Corporate Suits</span>
+            <p class="text-[var(--color-text-secondary)] font-sans">No corporate jargon, no stiff language, no patronizing corporate-speak.</p>
+          </div>
+          <div class="space-y-2">
+            <span class="text-base font-bold text-[var(--color-text-emerald)]">2. 100% CPA Verified</span>
+            <p class="text-[var(--color-text-secondary)] font-sans">Zero hallucinated AI claims. Every rule cites official IRS codes.</p>
+          </div>
+          <div class="space-y-2">
+            <span class="text-base font-bold text-[var(--color-text-emerald)]">3. Flat $49 Price</span>
+            <p class="text-[var(--color-text-secondary)] font-sans">No monthly recurring subscriptions, no state fee surprises, no hidden traps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

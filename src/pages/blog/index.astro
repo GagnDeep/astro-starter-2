@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<Layout
+  title="Freelance Tax News, Updates & Policy Analysis | bro.tax Blog"
+  description="Stay updated on 2025 IRS tax changes, Stripe 1099-K reporting thresholds, late filing extensions, and creator tax updates."
+  canonicalUrl={canonicalUrl}
+>
+  <section class="py-12 md:py-20 bg-[var(--color-bg-primary)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <span class="font-mono text-xs font-bold bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-3 py-1 rounded uppercase tracking-wider">
+          Latest News & Updates
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--color-text-primary)] mt-4 tracking-tight">
+          bro.tax Blog & Policy Updates
+        </h1>
+        <p class="text-lg text-[var(--color-text-secondary)] mt-4 leading-relaxed">
+          Timely breakdowns of new IRS regulations, payment processor 1099-K rules, inflation bracket shifts, and practical tax advice.
+        </p>
+      </div>
+
+      <div class="space-y-6 max-w-4xl">
+        {posts.map((post) => (
+          <a
+            href={`/blog/${post.id}`}
+            class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] rounded-xl p-6 sm:p-8 hover:border-[var(--color-border-accent)] hover:shadow-[4px_4px_0px_0px_var(--color-border-accent)] transition-all block group"
+          >
+            <div class="flex items-center gap-3 font-mono text-xs text-[var(--color-text-secondary)] mb-2">
+              <span class="text-[var(--color-text-emerald)] font-bold">{post.data.pubDate}</span>
+              <span>•</span>
+              <span>By {post.data.author}</span>
+            </div>
+            <h2 class="text-2xl font-extrabold text-[var(--color-text-primary)] group-hover:text-[var(--color-text-emerald)] transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="text-sm text-[var(--color-text-secondary)] mt-2 leading-relaxed">
+              {post.data.description}
+            </p>
+            <div class="mt-4 font-mono text-xs font-bold text-[var(--color-text-emerald)] group-hover:underline">
+              Read Article &rarr;
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

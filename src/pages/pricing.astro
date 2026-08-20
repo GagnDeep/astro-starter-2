@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<Layout
+  title="Transparent $0 vs $49 Flat Pricing | bro.tax"
+  description="Compare bro.tax flat $49 Schedule C Audit Prep Kit against TurboTax ($129+) and H&R Block ($115+). No hidden fees, no subscriptions."
+  canonicalUrl={canonicalUrl}
+>
+  <section class="py-12 md:py-20 bg-[var(--color-bg-primary)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="font-mono text-xs font-bold bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-3 py-1 rounded uppercase tracking-wider">
+          Transparent Pricing
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--color-text-primary)] mt-4 tracking-tight">
+          $0 Free Tools. $49 Flat Kit. Zero Upsells.
+        </h1>
+        <p class="text-lg text-[var(--color-text-secondary)] mt-4 leading-relaxed">
+          We believe basic tax transparency should be free for every independent worker in America. When you want complete filing preparation, we charge a flat $49 fee.
+        </p>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+        <!-- Card 1: $0 Free -->
+        <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-8 rounded-xl shadow-[4px_4px_0px_0px_var(--color-border-default)] flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs font-bold text-[var(--color-text-emerald)] uppercase">Community Tier</span>
+            <h2 class="text-2xl font-extrabold text-[var(--color-text-primary)] mt-1">Free Tools & Libraries</h2>
+            <div class="text-5xl font-black font-mono text-[var(--color-text-primary)] my-6">$0</div>
+            <ul class="space-y-3 font-mono text-xs text-[var(--color-text-primary)]">
+              <li class="flex items-center gap-2"><span class="text-[var(--color-text-emerald)] font-bold">✓</span> 1099 Self-Employment Tax Estimator</li>
+              <li class="flex items-center gap-2"><span class="text-[var(--color-text-emerald)] font-bold">✓</span> Complete 12-Part Write-Off Library</li>
+              <li class="flex items-center gap-2"><span class="text-[var(--color-text-emerald)] font-bold">✓</span> Schedule C Line-by-Line Guides</li>
+              <li class="flex items-center gap-2"><span class="text-[var(--color-text-emerald)] font-bold">✓</span> IRS Quarterly Payment Calendar</li>
+            </ul>
+          </div>
+          <a href="/estimator" class="mt-8 block text-center bg-[var(--color-bg-primary)] border-2 border-[var(--color-border-default)] py-3.5 font-mono text-sm font-bold rounded hover:bg-[var(--color-bg-secondary)] transition-all">
+            Access Free Tools Now
+          </a>
+        </div>
+
+        <!-- Card 2: $49 Flat Kit -->
+        <div class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] border-2 border-[var(--color-border-accent)] p-8 rounded-xl shadow-[8px_8px_0px_0px_var(--color-border-accent)] flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs font-bold text-[var(--color-bg-amber)] uppercase">Filing Package</span>
+            <h2 class="text-2xl font-extrabold text-[var(--color-text-inverse)] mt-1">Schedule C Audit Prep Kit</h2>
+            <div class="text-5xl font-black font-mono text-[var(--color-text-inverse)] my-6">$49 <span class="text-xs font-normal text-[var(--color-border-subtle)]">flat rate</span></div>
+            <ul class="space-y-3 font-mono text-xs text-[var(--color-border-subtle)]">
+              <li class="flex items-center gap-2 text-[var(--color-text-inverse)]"><span class="text-[var(--color-text-emerald)] font-bold">✓</span> Complete Schedule C Form Prep Kit</li>
+              <li class="flex items-center gap-2 text-[var(--color-text-inverse)]"><span class="text-[var(--color-text-emerald)] font-bold">✓</span> CPA Audit Defense Checklist</li>
+              <li class="flex items-center gap-2 text-[var(--color-text-inverse)]"><span class="text-[var(--color-text-emerald)] font-bold">✓</span> QBI Section 199A Max Savings Review</li>
+              <li class="flex items-center gap-2 text-[var(--color-text-inverse)]"><span class="text-[var(--color-text-emerald)] font-bold">✓</span> Zero recurring subscriptions or state fees</li>
+            </ul>
+          </div>
+          <a href="#buy" class="mt-8 block text-center bg-[var(--color-bg-accent)] text-[var(--color-text-inverse)] py-3.5 font-mono text-sm font-bold rounded hover:opacity-90 transition-all">
+            Get $49 Audit Prep Kit &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Competitor Comparison Table -->
+      <div class="max-w-4xl mx-auto bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] rounded-xl p-6 sm:p-8">
+        <h3 class="font-bold text-xl text-[var(--color-text-primary)] mb-6 text-center">
+          How bro.tax Compares to Incumbents
+        </h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left font-mono text-xs border-collapse">
+            <thead>
+              <tr class="bg-[var(--color-bg-primary)] border-b-2 border-[var(--color-border-default)]">
+                <th class="p-3">Feature / Cost</th>
+                <th class="p-3 text-[var(--color-text-emerald)] font-extrabold">bro.tax</th>
+                <th class="p-3">TurboTax Self-Employed</th>
+                <th class="p-3">H&R Block Self-Employed</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--color-border-subtle)]">
+              <tr>
+                <td class="p-3 font-bold">Federal Schedule C Cost</td>
+                <td class="p-3 text-[var(--color-text-emerald)] font-bold">$49 Flat</td>
+                <td class="p-3 text-[var(--color-text-amber)]">$129+</td>
+                <td class="p-3 text-[var(--color-text-amber)]">$115+</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">Monthly Subscription Trap</td>
+                <td class="p-3 text-[var(--color-text-emerald)] font-bold">NO ($0/mo)</td>
+                <td class="p-3">Yes ($15–$30/mo)</td>
+                <td class="p-3">Yes ($12–$25/mo)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">Free Tax Estimators</td>
+                <td class="p-3 text-[var(--color-text-emerald)] font-bold">Unlimited</td>
+                <td class="p-3">Paywalled</td>
+                <td class="p-3">Paywalled</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">12+ Write-off Library</td>
+                <td class="p-3 text-[var(--color-text-emerald)] font-bold">Free Access</td>
+                <td class="p-3">Locked</td>
+                <td class="p-3">Locked</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

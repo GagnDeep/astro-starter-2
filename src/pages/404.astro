@@ -1,13 +1,30 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="404 - Not Found">
-  <section class="flex flex-col items-center justify-center min-h-[60vh] px-8">
-    <img src="/images/404.png" alt="Error illustration" class="max-w-sm mb-8" />
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">Page not found!</h1>
-    <a href="/" class="text-blue-600 hover:text-blue-800 font-medium text-lg">
-      &larr; Back home
-    </a>
+<Layout
+  title="404 — Page Not Found | bro.tax"
+  description="The tax page you are looking for does not exist."
+>
+  <section class="py-24 bg-[var(--color-bg-primary)]">
+    <div class="max-w-2xl mx-auto px-4 text-center space-y-6">
+      <span class="font-mono text-4xl font-extrabold text-[var(--color-text-amber)] block">
+        [ 404 ]
+      </span>
+      <h1 class="text-4xl font-black text-[var(--color-text-primary)]">
+        This Page Wrote Itself Off.
+      </h1>
+      <p class="text-base text-[var(--color-text-secondary)] font-sans">
+        The route you are looking for doesn't exist or was deducted under IRC § 162. Head back home or check out our tax estimators and write-off guides.
+      </p>
+      <div class="pt-4 flex flex-wrap justify-center gap-4 font-mono text-xs font-bold">
+        <a href="/" class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-6 py-3 rounded border border-[var(--color-border-default)]">
+          Back to Homepage
+        </a>
+        <a href="/estimator" class="bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] px-6 py-3 rounded border border-[var(--color-border-default)]">
+          1099 Tax Estimator
+        </a>
+      </div>
+    </div>
   </section>
 </Layout>
