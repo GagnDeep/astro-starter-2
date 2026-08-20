@@ -25,6 +25,27 @@ adds Claude Code-specific workflow notes.
   visual editing even though nothing local depends on it.
 - Prefer `data/site.json` and `data/navigation.json` over hardcoded strings.
 
+## Forms — always the capture API
+
+Any form (contact, newsletter, waitlist, quote, enquiry) posts to the shared
+capture server. **Never** write an API route, mail sender or third-party form
+service into this repo — read AGENTS.md → "Form submissions" first.
+
+- New domain = edit `capture.config.ts` only: swap `publicKey` for that site's
+  `wcs_pk_…`, list its form labels, confirm `thanksUrl`. Also set `site:` in
+  `astro.config.mjs`, since the thank-you redirect must be same-origin.
+- Build forms from `src/components/forms/capture-form.astro` (fields go in the
+  slot) or `newsletter-form.astro`. Adding an input needs no other change —
+  unknown fields are stored in the submission's `data` automatically.
+- Call `submit()` from `src/lib/capture.ts`; never `fetch` the endpoint directly
+  (you lose page URL, referrer and UTM), and never put `key`/`redirect` in a
+  JSON body (the server 303s and the visitor sees a false error).
+- `200`/`201`/`202` are all success. Show a failure's `title` and nothing else.
+- The `wcs_pk_…` key belongs in git and in client code; it can only append. An
+  admin key `wcs_sk_…` must never enter this repo.
+- To verify a change end to end, POST once with curl and confirm `"ok":true`:
+  `curl -s -X POST https://api.markremover.com/v1/collect/contact -H 'content-type: application/json' -H "x-public-key: $KEY" -d '{"email":"test@example.com"}'`
+
 ## Assets and CSS gotchas
 
 - Favicons, PWA icons and the OG image are generated: edit `src/assets/brand/icon.svg`
@@ -42,4 +63,8 @@ adds Claude Code-specific workflow notes.
 1. `pnpm check` → 0 errors.
 2. `pnpm build` → completes, and the pages you touched are in `dist/`.
 3. `pnpm assets:check` if you touched brand assets or `data/site.json`.
-4. If you changed SEO, assets or telemetry behaviour, update AGENTS.md in the same change.
+4. If you added or changed a form, confirm the built page carries the endpoint
+   action (`grep -o 'api.markremover.com[^"]*' dist/contact/index.html`) and that
+   `dist/thanks/index.html` exists.
+5. If you changed SEO, assets, telemetry or form-capture behaviour, update
+   AGENTS.md in the same change.

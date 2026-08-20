@@ -43,6 +43,9 @@ publicly and each one is wrong by default.
    canonical and `og:image`.
 6. **`.env`** — copy `.env.example`, set `PUBLIC_OO_SERVICE`, `PUBLIC_OO_APPLICATION_ID`,
    `PUBLIC_OO_ENV`, and `PUBLIC_OO_ENABLED=true` for deployed environments.
+7. **`capture.config.ts`** — paste this site's own `wcs_pk_…` public key and give
+   each form a label. Every form on the site posts to the shared capture server;
+   do not build a form backend. See "Form submissions" below.
 
 Generated assets are committed to the repo — regenerate deliberately, never during
 `astro build`.
@@ -88,6 +91,7 @@ an Iconify set rather than hand-rolling SVG.
 | Production domain (drives canonicals, sitemap, RSS) | `site:` in `astro.config.mjs` |
 | Nav + footer links | `data/navigation.json` |
 | Telemetry identity (`service`, `env`, `applicationId`) | `.env` (copy `.env.example`) |
+| Form capture key, form labels, thank-you URL | `capture.config.ts` (repo root) |
 | Pages | `src/content/pages/*.md` (front matter → `Page.astro`) |
 | Blog posts | `src/content/blog/*.mdx` |
 | Reusable blocks | `src/components/**`, registered in `src/scripts/register-components.ts` |
@@ -104,9 +108,12 @@ src/
   integrations/  build-time Astro integrations (sitemap filter, CSS cascade guard)
   layouts/       Layout (head/shell) -> Page | Post | Paginated
   lib/
+    capture.ts      form capture helper (submit + actionUrl)
     observability/  OpenObserve config + client
     seo/            meta resolution + JSON-LD builders
+  components/forms/ capture-form.astro, newsletter-form.astro
   pages/         routes, incl. robots.txt.ts and feed.xml.js
+capture.config.ts  form capture endpoint, public key, form labels
 data/            editable site-wide JSON (CloudCannon data files)
 scripts/         asset generation + verification (not part of the build)
 ```
@@ -187,6 +194,79 @@ identifyUser({ id: "1", name: "Captain Hook", email: "hook@example.com" });
 ```
 
 All helpers are safe no-ops when telemetry is disabled or before init resolves.
+
+## Form submissions
+
+Every form on this site posts to our shared capture server. Do not add a form
+backend, a mail service, an SMTP integration or an API route for form handling —
+one already exists and it is the only supported path.
+
+- **Endpoint:** `POST https://api.markremover.com/v1/collect/{form}`
+- **Auth:** this site's public key in the `X-Public-Key` header (or a hidden
+  `key` input on a no-JavaScript form).
+- **Config:** `capture.config.ts` at the repo root — endpoint, public key, form
+  labels, thank-you URL, optional honeypot field. **The only file to edit when
+  standing up a new site.**
+- **Helper:** `src/lib/capture.ts` exports `submit(formLabel, fields)` and
+  `actionUrl(formLabel)`.
+- **Components:** `src/components/forms/capture-form.astro` (full form, fields
+  passed as a slot) and `src/components/forms/newsletter-form.astro` (one-line
+  email capture). `src/pages/contact.astro` is the reference page,
+  `src/pages/thanks.astro` the no-JavaScript landing page.
+- **Enhancement script:** `src/scripts/capture-forms.ts`, imported by the form
+  components — a page with no form ships none of it.
+- **Docs:** https://api.markremover.com/docs (machine-readable at `/openapi.json`).
+
+### New domain checklist (three edits, no code)
+
+1. In `capture.config.ts`, replace `publicKey` with the new site's `wcs_pk_…`
+   key. That is the whole per-domain change for capture.
+2. Add or rename entries in `capture.config.ts` → `forms` for the forms this
+   site has (`contact`, `newsletter`, `waitlist`, `quote`, …). The label is how
+   submissions are grouped in the dashboard; no registration call is needed.
+3. Set `site:` in `astro.config.mjs` to the real production origin — the
+   thank-you redirect is built from it and the server refuses a redirect that
+   is not same-origin with the referrer.
+
+Then drop `<CaptureForm />` or `<NewsletterForm />` onto a page. Nothing else
+changes: no API route, no env var, no server code.
+
+### Rules
+
+1. Use `submit()` from `src/lib/capture.ts`. Never `fetch` the endpoint
+   directly, or the page URL, referrer and UTM parameters go uncollected.
+2. The public key (`wcs_pk_…`) is **safe in client code and safe in git** — the
+   capture endpoint's database role has no `SELECT` on captured content, so the
+   key can only append. Never put an admin key (`wcs_sk_…`) in this repo; that
+   one reads every submission. Do not move the public key into `.env`: it is
+   inlined into the bundle anyway and a missing env var breaks forms silently.
+3. Every field is optional and unknown fields are kept automatically — `email`,
+   `phone`, `name` and `message` get indexed columns, everything else is folded
+   into the submission's `data` object. A new input just works: add it to the
+   form, change nothing else.
+4. Give each form a label in `capture.config.ts`. Never hardcode a label string
+   in a component.
+5. `200`, `201` and `202` are all success — treat `response.ok` as the test.
+   `200` means a duplicate was merged (`duplicate: true`), `202` means the row
+   was safely spooled while the database was briefly down. Errors are
+   `application/problem+json`: show `title` to the visitor and nothing else,
+   branch on `code` (it is stable; `title`/`detail` are prose).
+6. Keep forms working without JavaScript: hidden `key` and `redirect` inputs
+   plus a real `action`, then enhance. `redirect` must be same-origin with the
+   page — the server returns `redirect_not_allowed` otherwise. On success it
+   303s to `thanksUrl?wcs_id=…&wcs_outcome=…`.
+7. **Never send `key` or `redirect` in the JSON body.** A body containing
+   `redirect` makes the server answer `303`; `fetch` follows it, gets HTML, and
+   the parse fails — the visitor sees an error for a submission that was stored.
+   `submit()` strips both, which is why `new FormData(form)` is safe to pass it.
+8. An `Idempotency-Key` header makes a network retry exactly-once; reusing one
+   with a different body is a `409`. `submit()` sends a fresh one per attempt.
+9. Security controls (origin allowlist, per-site rate limit, honeypot,
+   time-trap, Turnstile, HMAC signing) are configured per site on the server and
+   are all off by default. If a honeypot is switched on server-side, set
+   `honeypotField` in `capture.config.ts` so the components render it.
+10. Forms collect personal data — set `PUBLIC_OO_PRIVACY_LEVEL="mask-user-input"`
+    before enabling session replay on a site with real form traffic.
 
 ## Conventions
 

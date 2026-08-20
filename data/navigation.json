@@ -13,6 +13,10 @@
         "text": "Blog"
       },
       {
+        "link": "/contact/",
+        "text": "Contact"
+      },
+      {
         "link": "https://github.com/CloudCannon/astro-starter/",
         "text": "GitHub"
       },
@@ -28,6 +32,10 @@
     "logo_url": "/",
     "copyright": "MyCompany. All rights reserved.",
     "links": [
+      {
+        "link": "/contact/",
+        "text": "Contact"
+      },
       {
         "link": "/blog/",
         "text": "Blog"

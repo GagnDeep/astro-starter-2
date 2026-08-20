@@ -1,0 +1,100 @@
+---
+/**
+ * A working contact form. Copy it, change the inputs, keep the wiring.
+ *
+ * Progressive enhancement: the markup posts straight to the capture endpoint
+ * and lands on the thank-you page with scripting disabled; the imported script
+ * upgrades it to an inline success message when JavaScript is available.
+ *
+ * Fields are a slot — pass your own inputs and they are captured automatically.
+ * `email`, `phone`, `name` and `message` get their own indexed columns on the
+ * server; every other input is folded into the submission's `data` object with
+ * no schema change anywhere.
+ */
+import { capture } from "../../../capture.config";
+import { actionUrl } from "../../lib/capture";
+
+interface Props {
+  /** Form label — how these submissions are grouped in the dashboard. */
+  form?: string;
+  /** Submit button text. */
+  submitLabel?: string;
+  /** Inline message shown after a successful JavaScript submission. */
+  successMessage?: string;
+  class?: string;
+}
+
+const {
+  form = capture.forms.contact,
+  submitLabel = "Send",
+  successMessage = "Thanks — we'll be in touch.",
+  class: className = "",
+} = Astro.props;
+
+// Same-origin absolute URL: the server refuses a cross-origin redirect target.
+const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
+
+const field =
+  "w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600";
+const label = "block text-sm font-medium text-gray-700 mb-1";
+---
+
+<form
+  data-capture={form}
+  data-capture-success={successMessage}
+  method="POST"
+  action={actionUrl(form)}
+  class={`space-y-4 ${className}`}
+>
+  <input type="hidden" name="key" value={capture.publicKey} />
+  <input type="hidden" name="redirect" value={thanks} />
+  {
+    capture.honeypotField && (
+      <div class="hidden" aria-hidden="true">
+        <label for={capture.honeypotField}>Leave this field empty</label>
+        <input
+          id={capture.honeypotField}
+          name={capture.honeypotField}
+          tabindex="-1"
+          autocomplete="off"
+        />
+      </div>
+    )
+  }
+
+  <slot>
+    <div>
+      <label for="name" class={label}>Name</label>
+      <input id="name" name="name" autocomplete="name" required class={field} />
+    </div>
+
+    <div>
+      <label for="email" class={label}>Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required class={field} />
+    </div>
+
+    <div>
+      <label for="message" class={label}>Message</label>
+      <textarea id="message" name="message" rows="5" class={field}></textarea>
+    </div>
+  </slot>
+
+  <button
+    type="submit"
+    class="rounded bg-blue-600 px-5 py-2.5 font-medium text-white hover:bg-blue-700 disabled:opacity-60"
+  >
+    {submitLabel}
+  </button>
+
+  <p
+    data-capture-status
+    role="status"
+    aria-live="polite"
+    class="text-sm text-gray-600 data-[state=error]:text-red-700 data-[state=success]:text-green-700"
+  >
+  </p>
+</form>
+
+<script>
+  import "../../scripts/capture-forms";
+</script>
