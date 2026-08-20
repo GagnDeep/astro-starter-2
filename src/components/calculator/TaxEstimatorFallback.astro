@@ -1,0 +1,69 @@
+---
+// Static HTML Fallback Component for Tax Estimator (Zero-JS clients)
+---
+
+<div class="w-full bg-bg-surface border border-border-subtle rounded-xl p-6 md:p-8 my-8">
+  <div class="border-b border-border-subtle pb-4 mb-6">
+    <h3 class="font-mono font-bold text-xl text-text-main">
+      Exemplu Calcul Fiscal PFA Regim Real 2025 (Exemplu Static)
+    </h3>
+    <p class="text-xs text-text-muted mt-1">
+      Calcul bazat pe salariul minim național de <span class="font-mono tabular-nums text-accent-lime">4.050 lei</span> în conformitate cu HG 1506/2024.
+    </p>
+  </div>
+
+  <div class="overflow-x-auto mb-6">
+    <table class="w-full text-left font-mono text-sm border-collapse">
+      <thead>
+        <tr class="bg-bg-surface-hover border-b border-border-subtle text-accent-lime">
+          <th class="p-3">Scenariu Venit Anual</th>
+          <th class="p-3">Venit Net Real</th>
+          <th class="p-3">CASS (10%)</th>
+          <th class="p-3">CAS (25%)</th>
+          <th class="p-3">Impozit Venit (10%)</th>
+          <th class="p-3">Total Taxe</th>
+          <th class="p-3 text-right">Rată Efectivă</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle text-text-main">
+        <tr class="hover:bg-bg-surface-hover/50">
+          <td class="p-3 font-bold">Venit Mic (30.000 lei)</td>
+          <td class="p-3 tabular-nums">24.000 lei</td>
+          <td class="p-3 tabular-nums">2.430 lei</td>
+          <td class="p-3 tabular-nums">0 lei</td>
+          <td class="p-3 tabular-nums">2.157 lei</td>
+          <td class="p-3 font-bold text-accent-lime tabular-nums">4.587 lei</td>
+          <td class="p-3 text-right font-bold tabular-nums">19,1%</td>
+        </tr>
+        <tr class="hover:bg-bg-surface-hover/50">
+          <td class="p-3 font-bold">Venit Mediu (80.000 lei)</td>
+          <td class="p-3 tabular-nums">65.000 lei</td>
+          <td class="p-3 tabular-nums">4.860 lei</td>
+          <td class="p-3 tabular-nums">12.150 lei</td>
+          <td class="p-3 tabular-nums">4.799 lei</td>
+          <td class="p-3 font-bold text-accent-lime tabular-nums">21.809 lei</td>
+          <td class="p-3 text-right font-bold tabular-nums">33,5%</td>
+        </tr>
+        <tr class="hover:bg-bg-surface-hover/50">
+          <td class="p-3 font-bold">Venit Mare (180.000 lei)</td>
+          <td class="p-3 tabular-nums">150.000 lei</td>
+          <td class="p-3 tabular-nums">9.720 lei</td>
+          <td class="p-3 tabular-nums">12.150 lei</td>
+          <td class="p-3 tabular-nums">12.813 lei</td>
+          <td class="p-3 font-bold text-accent-lime tabular-nums">34.683 lei</td>
+          <td class="p-3 text-right font-bold tabular-nums">23,1%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="p-4 bg-bg-base border border-border-subtle rounded-lg text-xs text-text-muted space-y-2">
+    <p>
+      <strong class="text-text-main font-mono">Notă oficială:</strong> CASS (Sănătate) este stabilit pe trei praguri fixe:
+      6 salarii (<span class="font-mono tabular-nums">24.300 lei</span>),
+      12 salarii (<span class="font-mono tabular-nums">48.600 lei</span>), și
+      24 salarii (<span class="font-mono tabular-nums">97.200 lei</span>).
+      CAS (Pensie) devine obligatoriu la venitul net peste 12 salarii minime.
+    </p>
+  </div>
+</div>

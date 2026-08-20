@@ -1,60 +1,82 @@
 ---
 import { header } from "../../../data/navigation.json";
-// Icons: @lucide/astro renders inline SVG at build time — zero client JS,
-// tree-shaken per import. See AGENTS.md → "Icons".
-import { Menu, X } from "@lucide/astro";
+import { Menu, X, ArrowUpRight } from "@lucide/astro";
 ---
 
-<header class="bg-white">
-  <div class="mx-auto max-w-6xl px-8">
+<header class="bg-bg-base border-b border-border-subtle sticky top-0 z-40 backdrop-blur-md bg-bg-base/90">
+  <div class="mx-auto max-w-6xl px-6 md:px-8">
     <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+      <a href={header.logo_url} class="flex items-center gap-2 group">
+        <span class="font-mono font-black text-2xl tracking-tighter text-text-main group-hover:text-accent-lime transition-colors">
+          ro<span class="text-accent-lime">.tax</span>
+        </span>
+        <span class="text-[10px] font-mono font-bold uppercase tracking-widest bg-accent-lime/10 text-accent-lime border border-accent-lime/30 px-1.5 py-0.5 rounded">
+          2025
+        </span>
       </a>
 
-      <ul class="hidden sm:flex items-center gap-6">
+      <ul class="hidden md:flex items-center gap-6 font-mono text-sm">
         {header.links.map((link) => (
           <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
+            <a class="text-text-muted hover:text-accent-lime transition-colors py-1" href={link.link}>
               {link.text}
             </a>
           </li>
         ))}
       </ul>
 
+      <div class="hidden md:flex items-center gap-4">
+        <a
+          href="/estimator/"
+          class="inline-flex items-center gap-1.5 bg-accent-lime hover:bg-accent-lime-hover text-bg-base font-mono font-bold text-xs uppercase px-4 py-2.5 rounded-lg transition-all transform hover:-translate-y-0.5 shadow-md"
+        >
+          Calculator Instant
+          <ArrowUpRight class="w-4 h-4" aria-hidden="true" />
+        </a>
+      </div>
+
       <button
-        class="sm:hidden p-2"
-        aria-label="Open navigation menu"
+        class="md:hidden p-2 text-text-muted hover:text-text-main"
+        aria-label="Deschide meniul de navigare"
         popovertarget="mobile-menu"
         popovertargetaction="show"
       >
         <Menu class="w-6 h-6" aria-hidden="true" />
       </button>
 
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
+      <div id="mobile-menu" popover class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-bg-base z-50 text-text-main">
+        <div class="flex flex-col h-full px-6 py-4">
+          <div class="flex items-center justify-between border-b border-border-subtle pb-4">
+            <a href={header.logo_url} class="font-mono font-black text-2xl text-text-main">
+              ro<span class="text-accent-lime">.tax</span>
+            </a>
+            <button
+              class="p-2 text-text-muted hover:text-text-main"
+              aria-label="Închide meniul"
+              popovertarget="mobile-menu"
+              popovertargetaction="hide"
+            >
+              <X class="w-6 h-6" aria-hidden="true" />
+            </button>
+          </div>
+          <ul class="flex flex-1 flex-col items-center justify-center gap-6 font-mono text-xl">
+            {header.links.map((link) => (
+              <li>
+                <a class="hover:text-accent-lime transition-colors" href={link.link}>
+                  {link.text}
+                </a>
+              </li>
+            ))}
+            <li class="pt-6">
+              <a
+                href="/estimator/"
+                class="inline-flex items-center gap-2 bg-accent-lime text-bg-base font-mono font-bold text-base uppercase px-6 py-3 rounded-lg"
+              >
+                Calculator 2025
+                <ArrowUpRight class="w-5 h-5" aria-hidden="true" />
               </a>
             </li>
-          ))}
-        </ul>
+          </ul>
         </div>
       </div>
     </nav>

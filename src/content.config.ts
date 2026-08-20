@@ -4,15 +4,44 @@ import { glob } from 'astro/loaders';
 
 const seoSchema = z
   .object({
-    page_description: z.string().nullable(),
-    canonical_url: z.string().nullable(),
-    featured_image: z.string().nullable(),
-    featured_image_alt: z.string().nullable(),
-    author_twitter_handle: z.string().nullable(),
-    open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
+    page_description: z.string().nullable().optional(),
+    canonical_url: z.string().nullable().optional(),
+    featured_image: z.string().nullable().optional(),
+    featured_image_alt: z.string().nullable().optional(),
+    author_twitter_handle: z.string().nullable().optional(),
+    open_graph_type: z.string().nullable().optional(),
+    no_index: z.boolean().optional(),
   })
   .optional();
+
+const deductionsCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/deductions" }),
+  schema: z.object({
+    title: z.string(),
+    category: z.string(),
+    deductibilityPercentage: z.number().min(0).max(100),
+    legalReference: z.string(),
+    maxThresholdRon: z.number().nullable().optional(),
+    summary: z.string(),
+    benefits: z.array(z.string()),
+    requiredDocuments: z.array(z.string()),
+    publishedDate: z.string().or(z.date()),
+    seo: seoSchema,
+  }),
+});
+
+const guidesCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/guides" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    difficulty: z.enum(["Începător", "Intermediar", "Avansat"]),
+    targetAudience: z.string(),
+    updatedDate: z.string().or(z.date()),
+    readTimeMinutes: z.number().positive(),
+    seo: seoSchema,
+  }),
+});
 
 const blogCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
@@ -51,6 +80,8 @@ const pagesCollection = defineCollection({
 });
 
 export const collections = {
+  deductions: deductionsCollection,
+  guides: guidesCollection,
   blog: blogCollection,
   pages: pagesCollection,
 };

@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { ArrowRight, Search, ShieldCheck } from "@lucide/astro";
+
+const deductions = await getCollection("deductions");
+
+// Group categories
+const categories = Array.from(new Set(deductions.map((d) => d.data.category)));
+
+const seo = {
+  page_description:
+    "Ghidul complet al cheltuielilor deductibile pe PFA în 2025. Descoperă ce echipamente, abonamente software, utilități și servicii poți deconta legal.",
+};
+---
+
+<Layout title="Ghidul Cheltuielilor Deductibile PFA 2025 — ro.tax" seo={seo}>
+  <section class="py-12 md:py-16 bg-bg-base border-b border-border-subtle">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="max-w-3xl mb-8">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+          [ BIBLIOTECĂ ORGANICĂ DE DEDUCERI ]
+        </span>
+        <h1 class="font-mono font-black text-3xl sm:text-4xl md:text-5xl text-text-main tracking-tight mb-4">
+          Ghidul de Deduceeri PFA 2025
+        </h1>
+        <p class="text-text-muted text-base leading-relaxed">
+          Fiecare leu decontat legal scade venitul net impozabil și reduce direct obligațiile de plată pentru CASS (10%) și Impozit pe Venit (10%).
+        </p>
+      </div>
+
+      <div class="p-4 bg-bg-surface border border-border-subtle rounded-xl flex items-center gap-3 text-xs text-accent-lime font-mono">
+        <ShieldCheck class="w-5 h-5 shrink-0" />
+        <span>Toate fisele de mai jos conțin referințe exacte din Codul Fiscal (Art. 68) și documentele justificative obligatorii solicitate la audit ANAF.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deductions Listing Grid grouped by Category -->
+  <section class="py-12 md:py-16 bg-bg-surface">
+    <div class="mx-auto max-w-6xl px-6 md:px-8 space-y-12">
+      {categories.map((cat) => {
+        const catDeductions = deductions.filter((d) => d.data.category === cat);
+        return (
+          <div>
+            <h2 class="font-mono font-bold text-xl text-accent-lime border-b border-border-subtle pb-2 mb-6">
+              # {cat}
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {catDeductions.map((item) => (
+                <a
+                  href={`/deductions/${item.id}/`}
+                  class="bg-bg-base border border-border-subtle hover:border-accent-lime/60 p-6 rounded-xl transition-all block group"
+                >
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 bg-accent-lime/10 text-accent-lime border border-accent-lime/30 rounded">
+                      Deductibil {item.data.deductibilityPercentage}%
+                    </span>
+                    {item.data.maxThresholdRon && (
+                      <span class="text-[10px] font-mono text-text-muted">
+                        Plafon: {item.data.maxThresholdRon} lei
+                      </span>
+                    )}
+                  </div>
+                  <h3 class="font-mono font-bold text-base text-text-main group-hover:text-accent-lime transition-colors mb-2">
+                    {item.data.title}
+                  </h3>
+                  <p class="text-xs text-text-muted line-clamp-3 mb-4 leading-relaxed font-sans">
+                    {item.data.summary}
+                  </p>
+                  <span class="text-xs font-mono text-text-main group-hover:text-accent-lime inline-flex items-center gap-1 font-bold">
+                    Reguli & Documente
+                    <ArrowRight class="w-3.5 h-3.5" aria-hidden="true" />
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+</Layout>

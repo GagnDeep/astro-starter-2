@@ -1,13 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { ArrowLeft } from "@lucide/astro";
+
+const seo = {
+  no_index: true,
+  page_description: "Pagina nu a fost găsită.",
+};
 ---
 
-<Layout title="404 - Not Found">
-  <section class="flex flex-col items-center justify-center min-h-[60vh] px-8">
-    <img src="/images/404.png" alt="Error illustration" class="max-w-sm mb-8" />
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">Page not found!</h1>
-    <a href="/" class="text-blue-600 hover:text-blue-800 font-medium text-lg">
-      &larr; Back home
+<Layout title="404 Pagina Nu Există — ro.tax" seo={seo}>
+  <section class="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center">
+    <span class="font-mono font-black text-6xl text-accent-lime mb-4 tabular-nums">
+      404
+    </span>
+    <h1 class="font-mono font-bold text-2xl md:text-3xl text-text-main mb-3">
+      Pagina căutată nu există sau a fost mutată.
+    </h1>
+    <p class="text-text-muted text-sm max-w-md mb-8">
+      Asta nu e o somație de la ANAF, doar un link invalid. Hai înapoi la calculul fiscal.
+    </p>
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 bg-accent-lime text-bg-base font-mono font-bold text-xs uppercase px-6 py-3 rounded-xl hover:bg-accent-lime-hover transition-colors"
+    >
+      <ArrowLeft class="w-4 h-4" />
+      Înapoi pe Prima Pagină
     </a>
   </section>
 </Layout>

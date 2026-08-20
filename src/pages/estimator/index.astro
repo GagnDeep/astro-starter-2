@@ -1,0 +1,113 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { TaxEstimator } from "../../components/calculator/TaxEstimator";
+import TaxEstimatorFallback from "../../components/calculator/TaxEstimatorFallback.astro";
+import { ShieldCheck, BookOpen, ArrowRight } from "@lucide/astro";
+
+const seo = {
+  page_description:
+    "Calculator gratuit taxe PFA regim real și SRL microîntreprindere 2025. Actualizat cu noul salariu minim de 4.050 lei și ordonanțele OUG 156/2024.",
+};
+---
+
+<Layout title="Calculator Taxe PFA & SRL 2025 — ro.tax" seo={seo}>
+  <section class="py-12 md:py-16 bg-bg-base border-b border-border-subtle">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="max-w-3xl mb-10">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+          [ CALCULATOR INTERACTIV ]
+        </span>
+        <h1 class="font-mono font-black text-3xl sm:text-4xl md:text-5xl text-text-main tracking-tight mb-4">
+          Calculator Fiscal Instant PFA & SRL 2025
+        </h1>
+        <p class="text-text-muted text-base leading-relaxed">
+          Calculează exact obligațiile de plată la Sănătate (CASS), Pensie (CAS) și Impozitul pe Venit (10%) pentru anul 2025. Formula respectă Codul Fiscal actualizat și HG 1506/2024 (Salariu minim brut: <strong class="text-accent-lime font-mono tabular-nums">4.050 RON</strong>).
+        </p>
+      </div>
+
+      <!-- Main React Calculator Island loaded client:visible -->
+      <TaxEstimator client:visible />
+
+      <!-- Noscript HTML Fallback for zero-JS clients -->
+      <noscript>
+        <TaxEstimatorFallback />
+      </noscript>
+    </div>
+  </section>
+
+  <!-- Formula & Methodology Breakdown -->
+  <section class="py-16 bg-bg-surface">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="max-w-3xl mx-auto space-y-8">
+        <h2 class="font-mono font-bold text-2xl text-text-main border-b border-border-subtle pb-3">
+          Metodologia de Calcul Fiscal (PFA Regim Real 2025)
+        </h2>
+
+        <div class="space-y-6 text-sm text-text-main font-sans leading-relaxed">
+          <div class="bg-bg-base border border-border-subtle rounded-xl p-6">
+            <h3 class="font-mono font-bold text-accent-lime text-base mb-2">
+              1. Venitul Net Taxabil
+            </h3>
+            <p class="text-text-muted text-xs leading-relaxed">
+              Formula de pornire este diferența simplă dintre venitul brut anual încasat și cheltuielile deductibile efectuate în scopul realizării de venituri:
+            </p>
+            <div class="font-mono text-xs bg-bg-surface p-3 rounded mt-2 border border-border-subtle text-text-main tabular-nums">
+              Venit Net Inainte de Taxe = Venit Brut Incasat − Cheltuieli Deductibile
+            </div>
+          </div>
+
+          <div class="bg-bg-base border border-border-subtle rounded-xl p-6">
+            <h3 class="font-mono font-bold text-accent-lime text-base mb-2">
+              2. Contribuția la Sănătate (CASS — 10%)
+            </h3>
+            <p class="text-text-muted text-xs leading-relaxed mb-3">
+              CASS se calculează ca 10% din baza încadrată pe pragurile de salarii minime brute (<span class="font-mono tabular-nums">4.050 lei/lună</span>):
+            </p>
+            <ul class="list-disc pl-5 font-mono text-xs text-text-muted space-y-1 tabular-nums">
+              <li>Sub 24.300 lei (6 salarii): 10% din venitul net real</li>
+              <li>Între 24.300 lei și 48.600 lei: Baza fixă = 24.300 lei (CASS = 2.430 lei)</li>
+              <li>Între 48.600 lei și 97.200 lei: Baza fixă = 48.600 lei (CASS = 4.860 lei)</li>
+              <li>Peste 97.200 lei (24 salarii cap): Baza fixă = 97.200 lei (CASS = 9.720 lei)</li>
+            </ul>
+          </div>
+
+          <div class="bg-bg-base border border-border-subtle rounded-xl p-6">
+            <h3 class="font-mono font-bold text-accent-lime text-base mb-2">
+              3. Contribuția la Pensie (CAS — 25%)
+            </h3>
+            <p class="text-text-muted text-xs leading-relaxed mb-2">
+              CAS devine obligatorie dacă venitul net depășește pragul de 12 salarii minime brute (<span class="font-mono tabular-nums">48.600 RON</span>). Baza minimă aleasă este 12 salarii:
+            </p>
+            <div class="font-mono text-xs bg-bg-surface p-3 rounded border border-border-subtle text-text-main tabular-nums">
+              CAS = 25% × 48.600 lei = 12.150 lei / an
+            </div>
+          </div>
+
+          <div class="bg-bg-base border border-border-subtle rounded-xl p-6">
+            <h3 class="font-mono font-bold text-accent-lime text-base mb-2">
+              4. Impozitul pe Venit (10%)
+            </h3>
+            <p class="text-text-muted text-xs leading-relaxed mb-2">
+              Conform amendamentelor aduse prin OUG 156/2024, CASS și CAS sunt cheltuieli deductibile din venitul net la stabilirea bazei de impozitare:
+            </p>
+            <div class="font-mono text-xs bg-bg-surface p-3 rounded border border-border-subtle text-text-main tabular-nums">
+              Baza Impozabila = Max(0, Venit Net − CAS − CASS)
+              <br />
+              Impozit Pe Venit = Baza Impozabila × 10%
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-border-subtle flex justify-between items-center">
+          <a
+            href="/deductions/"
+            class="inline-flex items-center gap-2 font-mono text-xs font-bold text-accent-lime hover:underline"
+          >
+            <BookOpen class="w-4 h-4" />
+            Vezi Ghidul de Deduceeri pentru reducerea impozitului
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

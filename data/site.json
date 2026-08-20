@@ -1,17 +1,20 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
-  "lang": "en",
-  "locale": "en_US",
-  "twitter_site": "",
+  "site_title": "ro.tax — Platforma de Taxe Fără Costume pentru Freelanceri și Creatori",
+  "description": "Calcul fiscal instant, ghiduri de deductibilitate și depunere automată a Declarației Unice pentru PFA și SRL în 2025. Fără costume, fără birocrație.",
+  "tagline": "Taxele tale pe PFA și SRL, calculate pe bune.",
+  "lang": "ro",
+  "locale": "ro_RO",
+  "twitter_site": "@rotax_app",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "ro.tax — Platforma de taxe fără costume pentru PFA și SRL în România",
+  "default_author": "ro.tax",
+  "theme_color": "#121316",
   "organization": {
-    "name": "CloudCannon",
+    "name": "ro.tax Technologies S.R.L.",
     "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "same_as": [
+      "https://github.com/rotax",
+      "https://twitter.com/rotax_app"
+    ]
   }
 }

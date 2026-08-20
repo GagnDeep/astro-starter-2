@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { ArrowRight, Clock, UserCheck } from "@lucide/astro";
+
+const guides = await getCollection("guides");
+
+const seo = {
+  page_description:
+    "Ghiduri fiscale complete și actualizate pentru PFA și SRL în 2025. Înțelege e-Factura, Declarația Unică și strategiile de optimizare CASS.",
+};
+---
+
+<Layout title="Ghiduri Fiscali PFA & SRL 2025 — ro.tax" seo={seo}>
+  <section class="py-12 md:py-16 bg-bg-base border-b border-border-subtle">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+          [ GHIDURI EDUCAȚIONALE ]
+        </span>
+        <h1 class="font-mono font-black text-3xl sm:text-4xl md:text-5xl text-text-main tracking-tight mb-4">
+          Ghiduri Fiscali Explicate Pe Bune
+        </h1>
+        <p class="text-text-muted text-base leading-relaxed">
+          Sintetizăm legislația fiscală din România în pași clari și practici, fără limbaj de lemn și fără speculații.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-bg-surface">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {guides.map((guide) => (
+          <a
+            href={`/guides/${guide.id}/`}
+            class="bg-bg-base border border-border-subtle hover:border-accent-lime/60 p-8 rounded-2xl transition-all flex flex-col justify-between group"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4 font-mono text-xs">
+                <span class="px-2.5 py-1 bg-accent-lime/10 text-accent-lime border border-accent-lime/30 rounded font-bold uppercase">
+                  Dificultate: {guide.data.difficulty}
+                </span>
+                <span class="text-text-muted flex items-center gap-1">
+                  <Clock class="w-3.5 h-3.5" />
+                  {guide.data.readTimeMinutes} min lectură
+                </span>
+              </div>
+              <h2 class="font-mono font-bold text-xl text-text-main group-hover:text-accent-lime transition-colors mb-3">
+                {guide.data.title}
+              </h2>
+              <p class="text-xs text-text-muted line-clamp-3 mb-6 leading-relaxed font-sans">
+                {guide.data.description}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-border-subtle flex items-center justify-between font-mono text-xs">
+              <span class="text-text-muted text-[11px]">
+                Grup țintă: <strong class="text-text-main">{guide.data.targetAudience}</strong>
+              </span>
+              <span class="text-accent-lime font-bold inline-flex items-center gap-1">
+                Citește
+                <ArrowRight class="w-4 h-4" />
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

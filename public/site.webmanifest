@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "lang": "en",
+  "name": "ro.tax — Platforma de Taxe Fără Costume pentru Freelanceri și Creatori",
+  "short_name": "ro.tax Technologies S.R.L.",
+  "description": "Calcul fiscal instant, ghiduri de deductibilitate și depunere automată a Declarației Unice pentru PFA și SRL în 2025. Fără costume, fără birocrație.",
+  "lang": "ro",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#121316",
+  "theme_color": "#121316",
   "icons": [
     {
       "src": "/meta/icon-192.png",
