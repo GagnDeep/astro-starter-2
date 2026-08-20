@@ -1,13 +1,30 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<Layout title="404 - Not Found">
-  <section class="flex flex-col items-center justify-center min-h-[60vh] px-8">
-    <img src="/images/404.png" alt="Error illustration" class="max-w-sm mb-8" />
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">Page not found!</h1>
-    <a href="/" class="text-blue-600 hover:text-blue-800 font-medium text-lg">
-      &larr; Back home
-    </a>
-  </section>
-</Layout>
+<BaseLayout
+  title="Page Not Found (404) — Dr. Ameena Patel, MD"
+  description="The requested page could not be found. Explore our endocrinology condition library or book a consultation."
+>
+
+  <div class="py-20 bg-cream text-center border-b border-border">
+    <div class="max-w-md mx-auto px-4 space-y-6">
+      <div class="w-16 h-16 rounded-full bg-terracotta/10 text-terracotta font-serif text-2xl font-bold flex items-center justify-center mx-auto">
+        404
+      </div>
+      <h1 class="font-serif text-3xl font-bold text-charcoal">Page Not Found</h1>
+      <p class="text-xs text-charcoal-muted leading-relaxed">
+        The clinical resource or page you requested could not be located. You can search our medical library or return to the homepage.
+      </p>
+      <div class="flex items-center justify-center gap-4 pt-2">
+        <a href="/" class="bg-terracotta text-cream font-medium px-5 py-2.5 rounded-lg text-xs hover:bg-terracotta-hover transition-colors">
+          Return to Home
+        </a>
+        <a href="/conditions/" class="bg-surface text-charcoal border border-border font-medium px-5 py-2.5 rounded-lg text-xs hover:bg-border/60 transition-colors">
+          Explore Conditions
+        </a>
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>

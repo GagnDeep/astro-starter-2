@@ -2,55 +2,79 @@ import { defineCollection } from "astro:content";
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
-const seoSchema = z
-  .object({
-    page_description: z.string().nullable(),
-    canonical_url: z.string().nullable(),
-    featured_image: z.string().nullable(),
-    featured_image_alt: z.string().nullable(),
-    author_twitter_handle: z.string().nullable(),
-    open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
+const citationSchema = z.object({
+  title: z.string(),
+  publication: z.string(),
+  year: z.number(),
+  doiUrl: z.string().optional(),
+});
+
+const conditionsCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/conditions" }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string(),
+    summary: z.string(),
+    category: z.enum(['Thyroid & Parathyroid', 'Diabetes & Metabolism', 'Hormones & Reproductive Health', 'Bone & Mineral']),
+    lastReviewed: z.string(),
+    author: z.string().default('Dr. Ameena Patel, MD, FACE'),
+    symptoms: z.array(z.string()),
+    diagnosticTests: z.array(z.string()),
+    treatmentTradeoffs: z.array(z.object({
+      option: z.string(),
+      pros: z.string(),
+      cons: z.string(),
+      clinicalNote: z.string()
+    })),
+    urgentCareRedFlags: z.array(z.string()),
+    citations: z.array(citationSchema),
+    seo: z.object({
+      description: z.string(),
+      keywords: z.array(z.string()).optional()
+    }).optional()
   })
-  .optional();
+});
+
+const proceduresCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/procedures" }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string(),
+    summary: z.string(),
+    durationMinutes: z.number(),
+    inOffice: z.boolean().default(true),
+    preparationSteps: z.array(z.string()),
+    whatToExpect: z.array(z.string()),
+    aftercareNotes: z.string(),
+    lastReviewed: z.string(),
+    author: z.string().default('Dr. Ameena Patel, MD, FACE'),
+    citations: z.array(citationSchema),
+    seo: z.object({
+      description: z.string(),
+      keywords: z.array(z.string()).optional()
+    }).optional()
+  })
+});
 
 const blogCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
   schema: z.object({
     title: z.string(),
-    post_hero: z.object({
-      date: z.string().or(z.date()),
-      heading: z.string(),
-      tags: z.array(z.string()),
-      author: z.string(),
-      image: z.string(),
-      image_alt: z.string(),
-    }),
-    thumb_image_path: z.string(),
-    thumb_image_alt: z.string(),
-    seo: seoSchema,
-  }),
-});
-
-const pageSchema = z.object({
-  title: z.string(),
-  hero_block: z.any().optional(),
-  content_blocks: z.array(z.any()).optional(),
-  seo: seoSchema,
-});
-
-const paginatedCollectionSchema = z.object({
-  title: z.string(),
-  page_size: z.number().positive(),
-  seo: seoSchema,
-});
-
-const pagesCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,astro}', base: "./src/content/pages" }),
-  schema: z.union([paginatedCollectionSchema, pageSchema]),
+    summary: z.string(),
+    publishDate: z.string(),
+    lastReviewed: z.string(),
+    author: z.string().default('Dr. Ameena Patel, MD, FACE'),
+    tags: z.array(z.string()),
+    citations: z.array(citationSchema),
+    seo: z.object({
+      description: z.string(),
+      keywords: z.array(z.string()).optional()
+    }).optional()
+  })
 });
 
 export const collections = {
+  conditions: conditionsCollection,
+  procedures: proceduresCollection,
   blog: blogCollection,
-  pages: pagesCollection,
 };

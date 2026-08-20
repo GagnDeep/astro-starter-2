@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allConditions = await getCollection('conditions');
+---
+
+<BaseLayout
+  title="Conditions Library — Austin Endocrinology & Diabetes Care"
+  description="Comprehensive evidence-led conditions index for thyroid disease, diabetes, PCOS, osteoporosis, and adrenal disorders by Dr. Ameena Patel in Austin, TX."
+>
+
+  <div class="py-12 bg-cream border-b border-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+      <div class="space-y-3">
+        <span class="text-xs font-bold text-terracotta uppercase tracking-wider">Clinical Library</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal">
+          Conditions & Endocrinology Care
+        </h1>
+        <p class="text-sm text-charcoal-muted leading-relaxed max-w-2xl">
+          Explore evidence-based guides written directly by Dr. Ameena Patel, MD, FACE. Each page details symptoms, diagnostic criteria, treatment tradeoffs, and urgent care indicators.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {allConditions.map((item) => (
+          <a href={`/conditions/${item.id.replace(/\.(md|mdx)$/, '')}/`} class="group bg-surface border border-border rounded-xl p-6 hover:border-terracotta/50 hover:shadow-md transition-all">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-sage-dark bg-sage-light px-2.5 py-1 rounded-full inline-block mb-3">
+              {item.data.category}
+            </span>
+            <h2 class="font-serif text-lg font-bold text-charcoal group-hover:text-terracotta transition-colors mb-2">
+              {item.data.title}
+            </h2>
+            <p class="text-xs text-charcoal-muted line-clamp-3 leading-relaxed mb-4">
+              {item.data.summary}
+            </p>
+            <div class="text-[11px] text-terracotta font-semibold flex items-center justify-between border-t border-border/60 pt-3">
+              <span>View Treatment Guide</span>
+              <span>→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>
