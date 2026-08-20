@@ -1,0 +1,236 @@
+---
+import Layout from "../layouts/Layout.astro";
+import site from "../../data/site.json";
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Dr. Ameena Endocrinology & Primary Care Austin TX",
+  "description": "Specialized, evidence-led endocrinology care in Austin, TX for thyroid conditions, diabetes, PCOS, osteoporosis, and complex hormonal imbalances.",
+  "about": {
+    "@type": "MedicalSpecialty",
+    "name": "Endocrinology"
+  }
+};
+---
+
+<Layout title="Dr. Ameena, MD — Endocrinology & Metabolic Care Austin, TX" schemaData={schemaData}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-[#1B4332] to-[#2D6A4F] text-white py-16 md:py-24 px-4 sm:px-6 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 bg-emerald-800/80 border border-emerald-600/60 text-amber-200 text-xs sm:text-sm px-3.5 py-1.5 rounded-full font-semibold">
+          <svg class="w-4 h-4 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          Board Certified Endocrinology & Internal Medicine Specialist <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-bold">[NEEDS CONFIRMATION]</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">
+          Compassionate, Evidence-Led Endocrinology Care in Austin, TX
+        </h1>
+
+        <p class="text-emerald-100 text-base sm:text-lg leading-relaxed max-w-2xl">
+          Specialized diagnosis and personalized, guideline-backed treatment for thyroid conditions, diabetes, PCOS, bone loss, and complex hormonal imbalances. Warm, empathetic care without sales pressure.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+          <a href="/booking/" class="btn-accent text-center text-base py-3.5 px-6 shadow-lg">
+            Book Consultation
+          </a>
+          <a href="/tools/symptom-checklist/" class="btn-secondary text-center text-base py-3.5 px-6">
+            Interactive Symptom Tool
+          </a>
+        </div>
+
+        <!-- Trust Features Bar -->
+        <div class="pt-6 border-t border-emerald-700/60 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs text-emerald-100">
+          <div class="flex items-center gap-2">
+            <span class="text-amber-300 font-bold">✓</span>
+            <span>Evidence-Based Guidelines</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-amber-300 font-bold">✓</span>
+            <span>60-Min Initial Visits</span>
+          </div>
+          <div class="flex items-center gap-2 col-span-2 sm:col-span-1">
+            <span class="text-amber-300 font-bold">✓</span>
+            <span>Austin, TX Location <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-bold">[NEEDS CONFIRMATION]</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vector Medical Diagram Card -->
+      <div class="lg:col-span-5 bg-[#FDFBF7] text-[#1C2826] p-6 sm:p-8 rounded-2xl shadow-2xl border border-emerald-900/20 space-y-5">
+        <div class="flex items-center justify-between border-b border-stone-200 pb-4">
+          <div>
+            <h2 class="text-xl font-serif font-bold text-[#1B4332]">Dr. Ameena, MD</h2>
+            <p class="text-xs text-[#2D6A4F] font-semibold">Endocrinology & Metabolic Medicine</p>
+          </div>
+          <span class="badge-reviewed">Austin, TX</span>
+        </div>
+
+        <div class="space-y-3 text-sm text-stone-700 leading-relaxed">
+          <p>
+            "Endocrine health is not about quick fixes or blanket prescriptions. It requires precise lab diagnostics, thorough clinical listening, and individualized physiology-backed plans."
+          </p>
+        </div>
+
+        <!-- SVG Thyroid & Endocrine Systems Diagram -->
+        <div class="bg-[#E8F5E9] p-4 rounded-xl border border-emerald-200 text-center space-y-2">
+          <svg class="w-16 h-16 mx-auto text-[#1B4332]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          <div class="font-serif font-semibold text-xs text-[#1B4332]">Targeted Biological Care</div>
+          <div class="text-[11px] text-stone-600">Thyroid • Glycemic Control • Reproductive Hormones • Bone Mineral Density</div>
+        </div>
+
+        <div class="pt-2 text-center">
+          <a href="/about/" class="text-xs font-semibold text-[#2D6A4F] hover:underline">Read Physician Bio & Philosophy →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Care Pillars Section -->
+  <section class="py-16 px-4 sm:px-6 max-w-7xl mx-auto space-y-12">
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#1B4332]">Specialized Endocrinology Services</h2>
+      <p class="text-stone-600 text-sm sm:text-base">Comprehensive clinical management using high-precision diagnostic protocols and individual care pathways.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition space-y-3">
+        <div class="w-12 h-12 bg-[#E8F5E9] rounded-lg flex items-center justify-center text-[#1B4332] text-xl font-bold">🦋</div>
+        <h3 class="text-lg font-serif font-bold text-[#1B4332]">Thyroid & Parathyroid</h3>
+        <p class="text-xs text-stone-600 leading-relaxed">Hypothyroidism, Hashimoto's, nodule evaluation, ultrasound-guided FNA biopsy, and hyperparathyroidism care.</p>
+        <a href="/conditions/hypothyroidism/" class="text-xs font-semibold text-[#2D6A4F] hover:underline inline-block pt-1">Explore Thyroid Care →</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition space-y-3">
+        <div class="w-12 h-12 bg-[#E8F5E9] rounded-lg flex items-center justify-center text-[#1B4332] text-xl font-bold">📊</div>
+        <h3 class="text-lg font-serif font-bold text-[#1B4332]">Diabetes & CGM Tech</h3>
+        <p class="text-xs text-stone-600 leading-relaxed">Type 2 diabetes reversal protocols, prediabetes management, Type 1 insulin pump tuning, and continuous glucose monitoring.</p>
+        <a href="/treatments/continuous-glucose-monitoring/" class="text-xs font-semibold text-[#2D6A4F] hover:underline inline-block pt-1">CGM & Glycemic Care →</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition space-y-3">
+        <div class="w-12 h-12 bg-[#E8F5E9] rounded-lg flex items-center justify-center text-[#1B4332] text-xl font-bold">⚖️</div>
+        <h3 class="text-lg font-serif font-bold text-[#1B4332]">PCOS & Hormones</h3>
+        <p class="text-xs text-stone-600 leading-relaxed">PCOS insulin management, perimenopause, evidence-based hormone replacement, and androgen imbalance treatment.</p>
+        <a href="/conditions/pcos/" class="text-xs font-semibold text-[#2D6A4F] hover:underline inline-block pt-1">PCOS & Reproductive Care →</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition space-y-3">
+        <div class="w-12 h-12 bg-[#E8F5E9] rounded-lg flex items-center justify-center text-[#1B4332] text-xl font-bold">🦴</div>
+        <h3 class="text-lg font-serif font-bold text-[#1B4332]">Bone & Adrenal Health</h3>
+        <p class="text-xs text-stone-600 leading-relaxed">Osteoporosis DEXA evaluations, fracture risk reduction, adrenal insufficiency, Cushing's, and pituitary disorders.</p>
+        <a href="/conditions/osteoporosis/" class="text-xs font-semibold text-[#2D6A4F] hover:underline inline-block pt-1">Bone Density Evaluation →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Functional Patient Tools Section -->
+  <section class="bg-[#1B4332] text-white py-14 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto space-y-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-amber-300 font-semibold text-xs uppercase tracking-wider">Browser-Based & 100% Private</span>
+          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">Interactive Patient Tools</h2>
+        </div>
+        <p class="text-emerald-200 text-xs sm:text-sm max-w-xl">
+          Prepare for your visit or evaluate symptoms locally. Zero health data is stored or transmitted.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/tools/symptom-checklist/" class="bg-[#143326] p-6 rounded-xl border border-emerald-700/60 hover:border-amber-300 transition group space-y-3">
+          <div class="text-amber-300 font-bold text-lg">📋 Endocrine Symptom Checklist</div>
+          <p class="text-xs text-emerald-100 leading-relaxed">Check off your symptoms across thyroid, glycemic, and hormonal categories and generate a summary for your physician.</p>
+          <span class="text-xs text-amber-300 font-semibold group-hover:underline inline-block">Launch Symptom Checker →</span>
+        </a>
+
+        <a href="/tools/question-builder/" class="bg-[#143326] p-6 rounded-xl border border-emerald-700/60 hover:border-amber-300 transition group space-y-3">
+          <div class="text-amber-300 font-bold text-lg">❓ Visit Question Builder</div>
+          <p class="text-xs text-emerald-100 leading-relaxed">Build a customized list of diagnostic and treatment questions tailored to your specific lab results and concerns.</p>
+          <span class="text-xs text-amber-300 font-semibold group-hover:underline inline-block">Build My Question List →</span>
+        </a>
+
+        <a href="/tools/insurance-checker/" class="bg-[#143326] p-6 rounded-xl border border-emerald-700/60 hover:border-amber-300 transition group space-y-3">
+          <div class="text-amber-300 font-bold text-lg">💳 Insurance Panel Verification</div>
+          <p class="text-xs text-emerald-100 leading-relaxed">Check accepted insurance networks and intake authorization requirements <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-bold">[NEEDS CONFIRMATION]</span>.</p>
+          <span class="text-xs text-amber-300 font-semibold group-hover:underline inline-block">Verify Insurance Panel →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Condition Directory Quick Grid -->
+  <section class="py-16 px-4 sm:px-6 max-w-7xl mx-auto space-y-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-stone-200 pb-4">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#1B4332]">18 Endocrine Conditions Covered</h2>
+        <p class="text-stone-600 text-xs sm:text-sm mt-1">Detailed diagnostic criteria, lab thresholds, guidelines, and management options.</p>
+      </div>
+      <a href="/conditions/" class="text-xs font-semibold text-[#2D6A4F] hover:underline">View All 18 Conditions →</a>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+      <a href="/conditions/hypothyroidism/" class="p-4 rounded-lg bg-white border border-stone-200 hover:border-[#2D6A4F] hover:shadow-sm transition">
+        <div class="text-2xl mb-1">🦋</div>
+        <div class="text-xs font-serif font-bold text-[#1B4332]">Hypothyroidism</div>
+      </a>
+      <a href="/conditions/type-2-diabetes/" class="p-4 rounded-lg bg-white border border-stone-200 hover:border-[#2D6A4F] hover:shadow-sm transition">
+        <div class="text-2xl mb-1">🩸</div>
+        <div class="text-xs font-serif font-bold text-[#1B4332]">Type 2 Diabetes</div>
+      </a>
+      <a href="/conditions/pcos/" class="p-4 rounded-lg bg-white border border-stone-200 hover:border-[#2D6A4F] hover:shadow-sm transition">
+        <div class="text-2xl mb-1">⚖️</div>
+        <div class="text-xs font-serif font-bold text-[#1B4332]">PCOS</div>
+      </a>
+      <a href="/conditions/thyroid-nodules/" class="p-4 rounded-lg bg-white border border-stone-200 hover:border-[#2D6A4F] hover:shadow-sm transition">
+        <div class="text-2xl mb-1">🔍</div>
+        <div class="text-xs font-serif font-bold text-[#1B4332]">Thyroid Nodules</div>
+      </a>
+      <a href="/conditions/osteoporosis/" class="p-4 rounded-lg bg-white border border-stone-200 hover:border-[#2D6A4F] hover:shadow-sm transition">
+        <div class="text-2xl mb-1">🦴</div>
+        <div class="text-xs font-serif font-bold text-[#1B4332]">Osteoporosis</div>
+      </a>
+      <a href="/conditions/prediabetes/" class="p-4 rounded-lg bg-white border border-stone-200 hover:border-[#2D6A4F] hover:shadow-sm transition">
+        <div class="text-2xl mb-1">📈</div>
+        <div class="text-xs font-serif font-bold text-[#1B4332]">Prediabetes</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Location & NAP Card Banner -->
+  <section class="bg-[#E8F5E9] py-12 px-4 sm:px-6 border-y border-emerald-200">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-8 space-y-4">
+        <span class="badge-reviewed">Austin Practice Location</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#1B4332]">Visit Our Austin Clinic</h2>
+        <p class="text-stone-700 text-sm leading-relaxed">
+          Conveniently located near Central Austin, serving patients across Travis County, Round Rock, Cedar Park, and Westlake Hills.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-stone-800 pt-2">
+          <div>
+            <strong class="text-[#1B4332]">Address <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-bold">[NEEDS CONFIRMATION]</span>:</strong><br/>
+            1200 Medical Parkway, Suite 400<br/>Austin, TX 78756
+          </div>
+          <div>
+            <strong class="text-[#1B4332]">Contact Info <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-bold">[NEEDS CONFIRMATION]</span>:</strong><br/>
+            Phone: (512) 555-0199<br/>Fax: (512) 555-0190
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-4 bg-white p-6 rounded-xl border border-stone-200 text-center space-y-4 shadow-sm">
+        <div class="font-serif font-bold text-lg text-[#1B4332]">Schedule an Appointment</div>
+        <p class="text-xs text-stone-600">Initial consults last 60 minutes for thorough history review and diagnostic planning.</p>
+        <a href="/booking/" class="btn-primary w-full text-sm">
+          Book Appointment Online
+        </a>
+        <a href="/location/" class="text-xs text-[#2D6A4F] hover:underline block font-semibold">View Parking & Directions →</a>
+      </div>
+    </div>
+  </section>
+</Layout>

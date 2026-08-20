@@ -1,78 +1,117 @@
 ---
-import { header } from "../../../data/navigation.json";
+import navigation from "../../../data/navigation.json";
+import site from "../../../data/site.json";
+
+const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-white">
-  <div class="mx-auto max-w-6xl px-8">
-    <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-      </a>
+<header class="bg-[#1B4332] text-white sticky top-0 z-40 shadow-md">
+  <!-- Top Announcement / Contact Bar -->
+  <div class="bg-[#143326] text-xs py-1.5 px-4 text-emerald-100 border-b border-emerald-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1">
+      <div class="flex items-center gap-3">
+        <span>📍 Austin, TX <span class="bg-amber-100 text-amber-900 text-[10px] px-1.5 py-0.5 rounded font-semibold ml-1">[NEEDS CONFIRMATION]</span></span>
+        <span class="hidden md:inline">•</span>
+        <span class="hidden md:inline">📞 (512) 555-0199 <span class="bg-amber-100 text-amber-900 text-[10px] px-1.5 py-0.5 rounded font-semibold ml-1">[NEEDS CONFIRMATION]</span></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-emerald-200">Evidence-Led Endocrinology & Metabolic Care</span>
+        <a href="/booking/" class="text-amber-300 hover:underline font-semibold">Book Consultation →</a>
+      </div>
+    </div>
+  </div>
 
-      <ul class="hidden sm:flex items-center gap-6">
-        {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        class="sm:hidden p-2"
-        aria-label="Open navigation menu"
-        popovertarget="mobile-menu"
-        popovertargetaction="show"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+  <!-- Primary Navigation Bar -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-full bg-emerald-800 border border-emerald-600 flex items-center justify-center font-serif text-xl text-emerald-100 font-bold group-hover:bg-emerald-700 transition">
+        A
+      </div>
+      <div>
+        <div class="font-serif text-lg sm:text-xl font-bold tracking-tight text-white leading-tight">
+          {navigation.header.logo_text}
         </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div class="text-xs text-emerald-200 font-sans tracking-wide">
+          {navigation.header.logo_subtext}
         </div>
       </div>
+    </a>
+
+    <!-- Desktop Menu Links -->
+    <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium">
+      {navigation.header.links.map((item) => {
+        const isActive = currentPath.startsWith(item.link) && item.link !== "/" || currentPath === item.link;
+        return (
+          <a
+            href={item.link}
+            class={`px-3 py-2 rounded-md transition ${
+              isActive
+                ? "bg-emerald-800 text-amber-300 font-semibold"
+                : "text-emerald-50 hover:bg-emerald-800/60 hover:text-white"
+            }`}
+          >
+            {item.text}
+          </a>
+        );
+      })}
     </nav>
+
+    <!-- Right CTA Button & Mobile Toggle -->
+    <div class="flex items-center gap-3">
+      <a href="/booking/" class="hidden sm:inline-flex btn-accent text-sm py-2 px-4 shadow-sm">
+        Book Consult
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        class="lg:hidden p-2 rounded-md text-emerald-100 hover:text-white hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-amber-300"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon-open" class="inline" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-[#143326] border-t border-emerald-800 px-4 pt-2 pb-6 space-y-1">
+    {navigation.header.links.map((item) => {
+      const isActive = currentPath.startsWith(item.link) && item.link !== "/" || currentPath === item.link;
+      return (
+        <a
+          href={item.link}
+          class={`block px-3 py-2.5 rounded-md text-base transition ${
+            isActive ? "bg-emerald-800 text-amber-300 font-semibold" : "text-emerald-100 hover:bg-emerald-800 hover:text-white"
+          }`}
+        >
+          {item.text}
+        </a>
+      );
+    })}
+    <div class="pt-3 border-t border-emerald-800">
+      <a href="/booking/" class="block w-full text-center btn-accent py-2.5 font-semibold">
+        Book Appointment
+      </a>
+    </div>
   </div>
 </header>
 
-<style>
-  #mobile-menu {
-    opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
-  }
-  #mobile-menu:popover-open {
-    opacity: 1;
-  }
-  @starting-style {
-    #mobile-menu:popover-open {
-      opacity: 0;
-    }
-  }
-</style>
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("menu-icon-open");
+  const iconClose = document.getElementById("menu-icon-close");
+
+  btn?.addEventListener("click", () => {
+    const isExpanded = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", (!isExpanded).toString());
+    menu?.classList.toggle("hidden");
+    iconOpen?.classList.toggle("hidden");
+    iconClose?.classList.toggle("hidden");
+  });
+</script>

@@ -1,0 +1,80 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { glossaryTerms } from "../../data/glossaryData";
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "Endocrinology & Metabolic Medical Glossary",
+  "hasDefinedTerm": glossaryTerms.map(t => ({
+    "@type": "DefinedTerm",
+    "name": t.term,
+    "description": t.clinicalDefinition
+  }))
+};
+---
+
+<Layout title="25-Term Endocrinology Glossary" schemaData={schemaData}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+    <div class="space-y-3 border-b border-stone-200 pb-6">
+      <span class="badge-reviewed">Patient Reference</span>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#1B4332]">25-Term Endocrinology Medical Glossary</h1>
+      <p class="text-stone-600 text-sm sm:text-base max-w-3xl">
+        Clear, clinical definitions paired with plain-language translations to help you decode lab reports and medical charts.
+      </p>
+    </div>
+
+    <!-- Search / Filter Interactive Widget -->
+    <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm space-y-3">
+      <label for="glossary-search" class="block text-xs font-bold text-[#1B4332] uppercase tracking-wider">Search Glossary Terms:</label>
+      <input
+        type="text"
+        id="glossary-search"
+        placeholder="Type term e.g. TSH, HbA1c, Cortisol, DEXA..."
+        class="w-full p-3 border border-stone-300 rounded-lg text-sm focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none"
+      />
+    </div>
+
+    <!-- Terms List -->
+    <div id="glossary-list" class="space-y-6">
+      {glossaryTerms.map((termItem) => (
+        <div id={termItem.slug} class="glossary-card bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-3 transition">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-100 pb-3">
+            <h2 class="text-xl font-serif font-bold text-[#1B4332]">{termItem.term}</h2>
+            <a href={termItem.relatedLink} class="badge-reviewed hover:bg-emerald-200 transition text-[11px]">
+              Related: {termItem.relatedCondition} →
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="bg-[#FDFBF7] p-3.5 rounded border border-stone-200 space-y-1">
+              <strong class="text-[#1B4332] uppercase tracking-wider text-[10px] block">🔬 Clinical Definition:</strong>
+              <p class="text-stone-800 leading-relaxed font-mono">{termItem.clinicalDefinition}</p>
+            </div>
+            <div class="bg-[#E8F5E9] p-3.5 rounded border border-emerald-200 space-y-1">
+              <strong class="text-[#2D6A4F] uppercase tracking-wider text-[10px] block">💬 Plain Language Translation:</strong>
+              <p class="text-stone-800 leading-relaxed font-sans font-medium">{termItem.plainLanguage}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("glossary-search") as HTMLInputElement;
+    const cards = document.querySelectorAll(".glossary-card");
+
+    searchInput?.addEventListener("input", (e) => {
+      const query = (e.target as HTMLInputElement).value.toLowerCase();
+      cards.forEach((card) => {
+        const text = card.textContent?.toLowerCase() || "";
+        if (text.includes(query)) {
+          (card as HTMLElement).style.display = "block";
+        } else {
+          (card as HTMLElement).style.display = "none";
+        }
+      });
+    });
+  </script>
+</Layout>

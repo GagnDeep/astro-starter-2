@@ -1,0 +1,79 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const insurancePanels = [
+  { name: "Aetna PPO / POS / Choice II", status: "In-Network [NEEDS CONFIRMATION]", referral: "Direct Access (No PCP Referral Needed)" },
+  { name: "Blue Cross Blue Shield Texas (BCBSTX)", status: "In-Network [NEEDS CONFIRMATION]", referral: "Direct Access for PPO; Referral needed for HMO" },
+  { name: "Cigna Healthcare PPO / Open Access", status: "In-Network [NEEDS CONFIRMATION]", referral: "Direct Access" },
+  { name: "Humana Choice PPO", status: "In-Network [NEEDS CONFIRMATION]", referral: "Direct Access" },
+  { name: "Medicare Part B (Traditional Fee-for-Service)", status: "In-Network Participating Provider [NEEDS CONFIRMATION]", referral: "Direct Access" },
+  { name: "UnitedHealthcare Choice Plus PPO", status: "In-Network [NEEDS CONFIRMATION]", referral: "Direct Access" },
+  { name: "Self-Pay / Out-of-Network", status: "Accepted [NEEDS CONFIRMATION]", referral: "Itemized Superbill Provided for Reimbursement" }
+];
+---
+
+<Layout title="Insurance Panel & Intake Checker">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
+    <div class="space-y-3 border-b border-stone-200 pb-6">
+      <span class="badge-reviewed">Practice Administration Record</span>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#1B4332]">Insurance Panel & Intake Verification</h1>
+      <p class="text-stone-600 text-sm sm:text-base">
+        Check accepted insurance networks and intake authorization requirements for Dr. Ameena's practice in Austin, TX.
+      </p>
+    </div>
+
+    <div class="disclaimer-box text-xs">
+      <strong>Notice Regarding Insurance Inclusions:</strong> Specific insurance panel participation, copays, and prior authorization rules are tagged <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-bold">[NEEDS CONFIRMATION]</span> pending direct plan administrative verification. Always confirm coverage with your insurer.
+    </div>
+
+    <!-- Insurance Checker Search/Filter -->
+    <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+      <label for="ins-filter" class="block text-xs font-bold text-[#1B4332] uppercase tracking-wider">Search Insurance Carrier / Network:</label>
+      <input type="text" id="ins-filter" placeholder="Type e.g. Blue Cross, Aetna, Medicare, United..." class="w-full p-3 border border-stone-300 rounded-lg text-sm focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none" />
+    </div>
+
+    <!-- Panel Cards -->
+    <div id="panel-list" class="space-y-4">
+      {insurancePanels.map((panel) => (
+        <div class="panel-card bg-white p-5 rounded-xl border border-stone-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <h2 class="text-base font-serif font-bold text-[#1B4332]">{panel.name}</h2>
+            <p class="text-xs text-stone-600">Referral Requirement: <strong class="text-stone-800">{panel.referral}</strong></p>
+          </div>
+          <span class="badge-confirmation text-xs py-1 px-3 rounded font-bold shrink-0">
+            {panel.status}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <div class="bg-[#E8F5E9] p-6 rounded-xl border border-emerald-200 space-y-3 text-xs text-stone-800">
+      <h3 class="text-base font-serif font-bold text-[#1B4332]">Need Prior Authorization for GLP-1 or CGM?</h3>
+      <p class="leading-relaxed">
+        Our administrative team assists established practice patients with prior authorization documentation for continuous glucose monitors, insulin pumps, and GLP-1 receptor agonist therapies.
+      </p>
+      <div class="pt-2">
+        <a href="/guides/medication-prior-authorization-guide/" class="btn-primary text-xs inline-block">
+          View Prior Authorization Guide →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const filterInput = document.getElementById("ins-filter") as HTMLInputElement;
+    const cards = document.querySelectorAll(".panel-card");
+
+    filterInput?.addEventListener("input", (e) => {
+      const q = (e.target as HTMLInputElement).value.toLowerCase();
+      cards.forEach((card) => {
+        const text = card.textContent?.toLowerCase() || "";
+        if (text.includes(q)) {
+          (card as HTMLElement).style.display = "flex";
+        } else {
+          (card as HTMLElement).style.display = "none";
+        }
+      });
+    });
+  </script>
+</Layout>

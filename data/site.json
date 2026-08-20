@@ -1,8 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "twitter_site": "",
-  "image": "/images/logos/logo-wordmark-blue.png",
-  "image_alt": "CloudCannon logo",
-  "default_author": "CloudCannon"
+  "site_title": "Dr. Ameena, MD — Endocrinology & Primary Care",
+  "description": "Specialized, evidence-led endocrinology care in Austin, TX for thyroid conditions, diabetes, PCOS, osteoporosis, and complex hormonal imbalances.",
+  "twitter_site": "@DrAmeenaMD",
+  "image": "/images/og-default.png",
+  "image_alt": "Dr. Ameena Endocrinology & Primary Care Clinic Austin TX",
+  "default_author": "Dr. Ameena, MD, FACP [NEEDS CONFIRMATION]",
+  "phone": "(512) 555-0199 [NEEDS CONFIRMATION]",
+  "address": {
+    "street": "1200 Medical Parkway, Suite 400 [NEEDS CONFIRMATION]",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78756",
+    "country": "US"
+  },
+  "disclaimer": "Medical Disclaimer: The information provided on doctorameena.com is for general educational and informational purposes only and does not constitute formal medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition."
 }

@@ -1,0 +1,114 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Book an Appointment | Dr. Ameena, MD">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+    <div class="space-y-3 text-center border-b border-stone-200 pb-6">
+      <span class="badge-reviewed">Patient Intake & Scheduling</span>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#1B4332]">Schedule Your Endocrinology Consultation</h1>
+      <p class="text-stone-600 text-sm sm:text-base max-w-2xl mx-auto">
+        Initial consultation visits are scheduled for 60 minutes to allow comprehensive medical history review, diagnostic evaluation, and personalized care planning.
+      </p>
+    </div>
+
+    <!-- Booking Options Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-full bg-[#E8F5E9] text-[#1B4332] font-bold flex items-center justify-center text-sm">1</span>
+          <h2 class="text-xl font-serif font-bold text-[#1B4332]">New Patient Consultation</h2>
+        </div>
+        <p class="text-xs text-stone-600 leading-relaxed">
+          For patients seeking a first-time diagnostic evaluation for thyroid conditions, diabetes, PCOS, bone loss, or hormonal symptoms.
+        </p>
+        <div class="bg-[#FDFBF7] p-3 rounded border border-stone-200 text-xs text-stone-700 space-y-1">
+          <p>⏱️ <strong>Duration:</strong> 60 Minutes</p>
+          <p>📄 <strong>Requirements:</strong> Recent lab work (within 6 months) and list of current medications.</p>
+          <p>💳 <strong>Insurance <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-bold">[NEEDS CONFIRMATION]</span>:</strong> Most major panels accepted.</p>
+        </div>
+        <a href="#intake-form" class="btn-primary w-full text-xs text-center">Select New Patient Consultation</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-full bg-[#E8F5E9] text-[#1B4332] font-bold flex items-center justify-center text-sm">2</span>
+          <h2 class="text-xl font-serif font-bold text-[#1B4332]">Follow-Up & Lab Review</h2>
+        </div>
+        <p class="text-xs text-stone-600 leading-relaxed">
+          For established practice patients reviewing updated lab results, adjusting medication dosages, or monitoring ongoing therapies.
+        </p>
+        <div class="bg-[#FDFBF7] p-3 rounded border border-stone-200 text-xs text-stone-700 space-y-1">
+          <p>⏱️ <strong>Duration:</strong> 30 Minutes</p>
+          <p>📄 <strong>Requirements:</strong> Completed lab work ordered during prior visit.</p>
+          <p>💻 <strong>Format:</strong> In-person or secure telehealth visit.</p>
+        </div>
+        <a href="#intake-form" class="btn-secondary w-full text-xs text-center">Select Established Patient Follow-Up</a>
+      </div>
+    </div>
+
+    <!-- Appointment Intake Request Form -->
+    <div id="intake-form" class="bg-white p-8 rounded-xl border border-stone-200 shadow-sm space-y-6">
+      <div class="border-b border-stone-200 pb-4">
+        <h3 class="text-2xl font-serif font-bold text-[#1B4332]">Appointment Request Form</h3>
+        <p class="text-xs text-stone-500 mt-1">Please fill out your details below. Our scheduling coordinator will contact you within 1 business day.</p>
+      </div>
+
+      <form class="space-y-4 text-xs" onsubmit="event.preventDefault(); alert('Appointment request submitted successfully. Our office will contact you shortly. [NEEDS CONFIRMATION]');">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1" for="first-name">First Name *</label>
+            <input type="text" id="first-name" required class="w-full p-2.5 border border-stone-300 rounded focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none" placeholder="Jane" />
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1" for="last-name">Last Name *</label>
+            <input type="text" id="last-name" required class="w-full p-2.5 border border-stone-300 rounded focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none" placeholder="Doe" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1" for="email">Email Address *</label>
+            <input type="email" id="email" required class="w-full p-2.5 border border-stone-300 rounded focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none" placeholder="jane@example.com" />
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1" for="phone">Phone Number *</label>
+            <input type="tel" id="phone" required class="w-full p-2.5 border border-stone-300 rounded focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none" placeholder="(512) 555-0199" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1" for="reason">Primary Reason for Visit *</label>
+            <select id="reason" required class="w-full p-2.5 border border-stone-300 rounded focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none">
+              <option value="">-- Select Condition --</option>
+              <option value="thyroid">Thyroid Condition / Nodule / Abnormal TSH</option>
+              <option value="diabetes">Type 1 / Type 2 Diabetes / CGM Consultation</option>
+              <option value="pcos">PCOS / Hormonal Imbalance</option>
+              <option value="osteoporosis">Osteoporosis / DEXA Scan Review</option>
+              <option value="adrenal">Adrenal / Pituitary Evaluation</option>
+              <option value="other">Other Endocrine Inquiry</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1" for="preferred-time">Preferred Day / Time</label>
+            <input type="text" id="preferred-time" class="w-full p-2.5 border border-stone-300 rounded focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none" placeholder="e.g. Tuesday mornings" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-stone-700 mb-1" for="notes">Additional Clinical Notes or Questions</label>
+          <textarea id="notes" rows="3" class="w-full p-2.5 border border-stone-300 rounded focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none" placeholder="Brief summary of symptoms or lab values..."></textarea>
+        </div>
+
+        <div class="disclaimer-box">
+          <strong>🔒 HIPAA & Medical Privacy Notice:</strong> Please do not submit emergency medical information or detailed medical records through this form. If you are experiencing a medical emergency, please dial 911 immediately.
+        </div>
+
+        <button type="submit" class="btn-accent text-sm py-3 px-6 w-full font-bold">
+          Submit Consultation Request
+        </button>
+      </form>
+    </div>
+  </div>
+</Layout>
