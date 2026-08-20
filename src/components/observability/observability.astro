@@ -1,0 +1,19 @@
+---
+/**
+ * Boots OpenObserve RUM + Logs.
+ *
+ * Mounted as early as possible in `<head>` (see `src/layouts/Layout.astro`) so
+ * first-paint timings and early errors are captured. The script is a module,
+ * so it is deferred by the browser and never blocks rendering; the SDKs
+ * themselves are dynamically imported and only fetched when
+ * `PUBLIC_OO_ENABLED=true`.
+ *
+ * Nothing here is project-specific — configure via `.env`, not this file.
+ */
+---
+
+<script>
+  import { initObservability } from "../../lib/observability/client";
+
+  void initObservability();
+</script>

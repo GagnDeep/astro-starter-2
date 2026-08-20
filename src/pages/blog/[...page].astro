@@ -13,8 +13,8 @@ export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = await getCollection("blog");
   const page = await getEntry("pages", "blog");
   posts.sort((a, b) => {
-    const aDate = new Date(a.data.post_hero.date);
-    const bDate = new Date(b.data.post_hero.date);
+    const aDate = new Date(a.data.post_hero.date).getTime();
+    const bDate = new Date(b.data.post_hero.date).getTime();
     return bDate - aDate;
   });
   if (!page) return;
@@ -24,7 +24,10 @@ export async function getStaticPaths({ paginate }: { paginate: Function }) {
 }
 
 const page = await getEntry("pages", "blog");
-const frontmatter = page?.data;
+if (!page) {
+  throw new Error("Failed to get blog page data");
+}
+const frontmatter = page.data;
 const pagination = Astro.props.page;
 const { data: posts } = pagination;
 ---

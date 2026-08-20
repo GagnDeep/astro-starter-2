@@ -1,12 +1,12 @@
 ---
-import Layout, { type SEOProps } from "./Layout.astro";
+import Layout from "./Layout.astro";
+import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  frontmatter: {
-    title: string;
-    content_blocks: any[];
-    hero_block: any;
-    seo?: SEOProps;
+  /** Front matter of a `pages` collection entry. */
+  frontmatter: CollectionEntry<"pages">["data"] & {
+    content_blocks?: any[];
+    hero_block?: any;
   };
 };
 
@@ -41,9 +41,9 @@ const HeroComponent = props.hero_block?._name ? components[props.hero_block._nam
     </editable-component>
   )}
 
-  {props.content_blocks?.length > 0 && (
+  {props.content_blocks && props.content_blocks.length > 0 && (
     <div data-editable="array" data-prop="content_blocks" data-id-key="_name" data-component-key="_name">
-      {props.content_blocks.map((block) => {
+      {props.content_blocks.map((block: any) => {
         const Component = components[block._name];
         if (!Component) return null;
         return (

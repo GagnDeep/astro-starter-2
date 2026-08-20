@@ -16,7 +16,7 @@ type Props = {
       tags: Array<string>;
     };
   };
-  body: string;
+  body?: string;
 };
 
 const { frontmatter, body } = Astro.props;
@@ -27,7 +27,14 @@ const filteredPosts = posts.filter(
 );
 ---
 
-<Layout {...frontmatter}>
+<Layout
+  {...frontmatter}
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Blog", url: "/blog/" },
+    { name: frontmatter.title, url: Astro.url.pathname },
+  ]}
+>
   <div class="mx-auto max-w-3xl px-8 py-12 md:py-20">
     <article>
       <editable-component data-prop="post_hero" data-component="PostHero">

@@ -1,12 +1,28 @@
 @import "tailwindcss";
 
-@layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+/*
+ * CASCADE RULE — read before adding CSS to this file.
+ *
+ * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
+ * beats *any* cascade layer regardless of specificity or source order, so a
+ * bare reset like
+ *
+ *   * { margin: 0; padding: 0; }        <-- outside any @layer
+ *
+ * silently kills every `p-*`, `px-*`, `m-*`, `mx-auto` and `space-y-*` on the
+ * site, while colours, flex and grid keep working — which makes it look like
+ * "Tailwind is half broken" rather than a cascade problem.
+ *
+ * Therefore: every rule in this file stays inside `@layer base` or
+ * `@layer components`. No element/reset rule may be written at the top level.
+ * `pnpm build` warns if an unlayered spacing reset reaches the output.
+ *
+ * A `*` reset is not needed anyway: Tailwind's preflight (in `@layer base`)
+ * already sets `margin: 0; padding: 0; box-sizing: border-box` on
+ * `*, ::before, ::after, ::backdrop`.
+ */
 
+@layer base {
   html {
     font-family: system-ui, -apple-system, sans-serif;
   }
@@ -116,8 +132,10 @@
   }
 }
 
-/* CloudCannon content editor alignment classes */
-.align-left { text-align: left; }
-.align-center { text-align: center; }
-.align-right { text-align: right; }
-.align-justify { text-align: justify; }
+@layer components {
+  /* CloudCannon content editor alignment classes */
+  .align-left { text-align: left; }
+  .align-center { text-align: center; }
+  .align-right { text-align: right; }
+  .align-justify { text-align: justify; }
+}

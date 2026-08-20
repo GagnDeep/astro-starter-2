@@ -1,8 +1,17 @@
 {
   "site_title": "Astro Starter",
   "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "tagline": "Build fast, editable websites with Astro.",
+  "lang": "en",
+  "locale": "en_US",
   "twitter_site": "",
-  "image": "/images/logos/logo-wordmark-blue.png",
-  "image_alt": "CloudCannon logo",
-  "default_author": "CloudCannon"
+  "image": "/images/og/og-default.png",
+  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
+  "default_author": "CloudCannon",
+  "theme_color": "#0f172a",
+  "organization": {
+    "name": "CloudCannon",
+    "logo": "/images/logos/logo-blue.png",
+    "same_as": []
+  }
 }

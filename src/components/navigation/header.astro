@@ -1,5 +1,8 @@
 ---
 import { header } from "../../../data/navigation.json";
+// Icons: @lucide/astro renders inline SVG at build time — zero client JS,
+// tree-shaken per import. See AGENTS.md → "Icons".
+import { Menu, X } from "@lucide/astro";
 ---
 
 <header class="bg-white">
@@ -25,9 +28,7 @@ import { header } from "../../../data/navigation.json";
         popovertarget="mobile-menu"
         popovertargetaction="show"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <Menu class="w-6 h-6" aria-hidden="true" />
       </button>
 
       <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
@@ -42,9 +43,7 @@ import { header } from "../../../data/navigation.json";
             popovertarget="mobile-menu"
             popovertargetaction="hide"
           >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X class="w-6 h-6" aria-hidden="true" />
           </button>
         </div>
         <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">

@@ -7,23 +7,39 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "check": "astro check",
+    "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,json,md,mdx,css}\"",
+    "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,json,md,mdx,css}\"",
+    "astro": "astro",
+    "assets": "node scripts/generate-icons.mjs && node scripts/generate-og.mjs && node scripts/check-assets.mjs",
+    "assets:icons": "node scripts/generate-icons.mjs",
+    "assets:og": "node scripts/generate-og.mjs",
+    "assets:check": "node scripts/check-assets.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.0",
     "@astrojs/react": "^5.0.0",
     "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.3",
     "@cloudcannon/editable-regions": "^0.0.12",
+    "@lucide/astro": "^1.33.0",
+    "@openobserve/browser-logs": "^0.4.1",
+    "@openobserve/browser-rum": "^0.4.1",
     "@tailwindcss/vite": "^4.0.0",
     "@types/markdown-it": "^14.0.1",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "astro": "^6.0.2",
-    "astro-seo": "^0.8.0",
     "markdown-it": "^13.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.33.5",
     "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^6.0.3"
   }
 }
