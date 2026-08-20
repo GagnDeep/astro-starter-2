@@ -1,0 +1,150 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TaxEstimator from '../../components/TaxEstimator';
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<Layout
+  title="1099 Freelance Tax Estimator 2025 | bro.tax"
+  description="Calculate your self-employment tax (15.3%), federal income tax liability, QBI deduction, and quarterly estimated tax payments in seconds."
+  canonicalUrl={canonicalUrl}
+>
+  <section class="py-12 md:py-16 bg-[var(--color-bg-primary)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="max-w-3xl mb-12">
+        <span class="font-mono text-xs font-bold bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-3 py-1.5 rounded uppercase tracking-wider">
+          Factual CPA Logic Engine
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[var(--color-text-primary)] mt-4 tracking-tight">
+          1099 Self-Employment Tax Estimator
+        </h1>
+        <p class="text-lg text-[var(--color-text-secondary)] mt-4 leading-relaxed">
+          Plug in your 1099 revenue and business expenses. See exactly how much you owe in 15.3% SE tax, federal income tax, and quarterly estimated payments under IRS Tax Year 2025 rules.
+        </p>
+      </div>
+
+      <!-- React Island Component -->
+      <div class="mb-16">
+        <TaxEstimator client:visible />
+      </div>
+
+      <!-- Static SSG Fallback Worked Example & Rate Tables (Guarantees zero-JS functionality) -->
+      <div class="border-t-4 border-[var(--color-border-default)] pt-12 space-y-12">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--color-text-emerald)] uppercase tracking-wider">
+            Static Worked Example (HTML Fallback)
+          </span>
+          <h2 class="text-2xl font-bold text-[var(--color-text-primary)] mt-1">
+            Worked Example Calculation: $85,000 Gross / $12,000 Expenses
+          </h2>
+          <p class="text-sm text-[var(--color-text-secondary)] mt-2">
+            Here is the step-by-step mathematical breakdown for a single filer with $85,000 in gross 1099 revenue and $12,000 in deductible business expenses.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-mono text-sm">
+          <!-- Worked Calculation Steps -->
+          <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-6 rounded-lg space-y-3">
+            <h3 class="font-bold text-base text-[var(--color-text-primary)] border-b border-[var(--color-border-subtle)] pb-2">
+              Step-by-Step Math Breakdown
+            </h3>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)]">
+              <span>1. Gross 1099 Income:</span>
+              <span class="font-bold tabular-nums">$85,000</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)]">
+              <span>2. Deductible Expenses:</span>
+              <span class="font-bold tabular-nums text-[var(--color-text-emerald)]">-$12,000</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-primary)] p-1 rounded">
+              <span>3. Net Profit (Schedule C):</span>
+              <span class="font-bold tabular-nums">$73,000</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)]">
+              <span>4. Taxable SE Net (92.35%):</span>
+              <span class="font-bold tabular-nums">$67,416</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)]">
+              <span>5. 15.3% SE Tax Owed:</span>
+              <span class="font-bold tabular-nums text-[var(--color-text-amber)]">$10,315</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)]">
+              <span>6. 50% SE Deduction (Sch 1):</span>
+              <span class="font-bold tabular-nums text-[var(--color-text-emerald)]">-$5,157</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)]">
+              <span>7. Adjusted Gross Income:</span>
+              <span class="font-bold tabular-nums">$67,843</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)]">
+              <span>8. Standard Deduction (Single):</span>
+              <span class="font-bold tabular-nums text-[var(--color-text-emerald)]">-$15,000</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-[var(--color-border-subtle)]">
+              <span>9. 20% QBI Deduction (Sec 199A):</span>
+              <span class="font-bold tabular-nums text-[var(--color-text-emerald)]">-$10,569</span>
+            </div>
+            <div class="flex justify-between py-1 bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] p-2 rounded">
+              <span>Total Tax Owed:</span>
+              <span class="font-bold tabular-nums text-[var(--color-bg-amber)]">$14,976</span>
+            </div>
+            <div class="flex justify-between py-1 text-xs text-[var(--color-text-emerald)] font-bold">
+              <span>Quarterly Payment (x4):</span>
+              <span class="tabular-nums">$3,744 / quarter</span>
+            </div>
+          </div>
+
+          <!-- Official Rate Reference Table -->
+          <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-6 rounded-lg space-y-4">
+            <h3 class="font-bold text-base text-[var(--color-text-primary)] border-b border-[var(--color-border-subtle)] pb-2">
+              Official IRS Rate & Threshold Reference (2025)
+            </h3>
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-[var(--color-bg-primary)] border-b border-[var(--color-border-default)]">
+                  <th class="p-2 font-bold">Tax Parameter</th>
+                  <th class="p-2 font-bold">Official 2025 Rate / Cap</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--color-border-subtle)]">
+                <tr>
+                  <td class="p-2 font-semibold">Self-Employment Tax Rate</td>
+                  <td class="p-2 tabular-nums">15.30% (12.4% SS + 2.9% Med)</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-semibold">SE Net Earnings Multiplier</td>
+                  <td class="p-2 tabular-nums">92.35% (0.9235)</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-semibold">Social Security Wage Cap</td>
+                  <td class="p-2 tabular-nums">$176,100</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-semibold">Standard Deduction (Single)</td>
+                  <td class="p-2 tabular-nums">$15,000</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-semibold">Standard Deduction (MFJ)</td>
+                  <td class="p-2 tabular-nums">$30,000</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-semibold">QBI Deduction Rate</td>
+                  <td class="p-2 tabular-nums">Up to 20% of Net QBI</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-semibold">Above-the-Line SE Deduction</td>
+                  <td class="p-2 tabular-nums">50.0% of SE Tax Owed</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="text-xs text-[var(--color-text-secondary)] font-sans leading-relaxed">
+              *Source: IRS Revenue Procedure 2024-40 and Internal Revenue Code § 1401 / § 199A.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

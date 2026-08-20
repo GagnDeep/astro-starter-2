@@ -1,0 +1,261 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TaxEstimator from '../components/TaxEstimator';
+import { Image } from 'astro:assets';
+import cpaBadge from '../assets/illustration-cpa-verified.svg';
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<Layout
+  title="bro.tax — Taxes Without the Suits | Freelance Tax Estimator & Write-Offs"
+  description="The zero-bs, CPA-verified tax estimator and write-off intelligence system for freelancers, creators, and gig workers in their 20s–30s."
+  canonicalUrl={canonicalUrl}
+>
+  <!-- BLOCK 1: Hero Section -->
+  <section class="py-16 md:py-24 bg-[var(--color-bg-primary)] border-b-2 border-[var(--color-border-default)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <span class="inline-block font-mono text-xs font-bold bg-[var(--color-bg-accent)] text-[var(--color-text-inverse)] px-3 py-1.5 rounded uppercase tracking-wider">
+            Anti-H&R-Block Tax Intelligence
+          </span>
+          <h1 class="text-4xl sm:text-6xl font-black text-[var(--color-text-primary)] leading-[1.08] tracking-tight">
+            Taxes Without <br class="hidden sm:inline" />the Suits.
+          </h1>
+          <p class="text-lg sm:text-xl text-[var(--color-text-secondary)] max-w-2xl leading-relaxed">
+            The zero-bs tax estimator and write-off guide for freelancers, creators, and gig workers. Built by CPAs who hate corporate bloat and suit-and-tie markup as much as you do.
+          </p>
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href="/estimator"
+              class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-6 py-3.5 rounded-lg font-mono text-sm sm:text-base font-bold border-2 border-[var(--color-border-default)] shadow-[4px_4px_0px_0px_var(--color-border-accent)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_var(--color-border-accent)] transition-all"
+            >
+              [ Calculate My Tax Burden ]
+            </a>
+            <a
+              href="/deductions"
+              class="bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] px-6 py-3.5 rounded-lg font-mono text-sm sm:text-base font-bold border-2 border-[var(--color-border-default)] hover:bg-[var(--color-bg-primary)] transition-all"
+            >
+              Explore Write-offs &rarr;
+            </a>
+          </div>
+          <div class="flex items-center gap-6 pt-4 font-mono text-xs text-[var(--color-text-secondary)]">
+            <span class="flex items-center gap-1.5 font-bold">
+              <span class="text-[var(--color-text-emerald)]">✓</span> $0 Free Tools
+            </span>
+            <span class="flex items-center gap-1.5 font-bold">
+              <span class="text-[var(--color-text-emerald)]">✓</span> CPA Reviewed
+            </span>
+            <span class="flex items-center gap-1.5 font-bold">
+              <span class="text-[var(--color-text-emerald)]">✓</span> Zero Subscriptions
+            </span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="bg-[var(--color-bg-secondary)] p-6 rounded-xl border-2 border-[var(--color-border-default)] shadow-[8px_8px_0px_0px_var(--color-border-default)] text-center max-w-sm w-full">
+            <Image src={cpaBadge} alt="CPA Verified Seal" class="h-32 w-auto mx-auto mb-4" />
+            <h3 class="font-mono text-base font-extrabold text-[var(--color-text-primary)]">
+              CPA-Verified Math Engine
+            </h3>
+            <p class="text-xs text-[var(--color-text-secondary)] mt-2 leading-relaxed">
+              Every formula traced directly to IRS Revenue Procedures 2024-40 and Internal Revenue Code § 1401 / § 199A.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 2: Live Tax Estimator Preview -->
+  <section class="py-16 bg-[var(--color-bg-secondary)] border-b-2 border-[var(--color-border-default)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="font-mono text-xs font-bold text-[var(--color-text-emerald)] uppercase tracking-wider">
+          Instant Interactive Tool
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--color-text-primary)] mt-2">
+          Instant 1099 Tax Estimator (No Signup Required)
+        </h2>
+        <p class="text-base text-[var(--color-text-secondary)] mt-2">
+          Plug in your freelance income and expenses. Get your SE tax, federal liability, and quarterly payment numbers in 3 seconds.
+        </p>
+      </div>
+
+      <TaxEstimator client:visible />
+    </div>
+  </section>
+
+  <!-- BLOCK 3: Value Proposition Grid (Anti-H&R-Block Features) -->
+  <section class="py-16 md:py-24 bg-[var(--color-bg-primary)] border-b-2 border-[var(--color-border-default)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--color-text-primary)]">
+          Why 40,000+ Independent Workers Ditched Beige Incumbents
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-8 rounded-xl shadow-[4px_4px_0px_0px_var(--color-border-default)]">
+          <div class="font-mono text-2xl font-black text-[var(--color-text-emerald)] mb-2">01</div>
+          <h3 class="text-xl font-bold text-[var(--color-text-primary)] mb-2">Zero Subscription Traps</h3>
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+            H&R Block and TurboTax trap you in $30/month recurring fees or $120 Schedule C unlock paywalls. Bro Tax offers 100% free calculators and guides, plus a flat $49 audit prep kit when you file.
+          </p>
+        </div>
+
+        <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-8 rounded-xl shadow-[4px_4px_0px_0px_var(--color-border-default)]">
+          <div class="font-mono text-2xl font-black text-[var(--color-text-emerald)] mb-2">02</div>
+          <h3 class="text-xl font-bold text-[var(--color-text-primary)] mb-2">CPA-Verified Math</h3>
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+            No black-box "AI hallucinated write-offs." Every formula, rate, and threshold in our system is reviewed by licensed Certified Public Accountants against official IRS tax code.
+          </p>
+        </div>
+
+        <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-8 rounded-xl shadow-[4px_4px_0px_0px_var(--color-border-default)]">
+          <div class="font-mono text-2xl font-black text-[var(--color-text-emerald)] mb-2">03</div>
+          <h3 class="text-xl font-bold text-[var(--color-text-primary)] mb-2">Zero Jargon</h3>
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+            We translate intimidating accounting terms like "FICA employer contribution parity" into plain English so you know exactly what is legal, what is safe, and what triggers audit red flags.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 4: Write-Off Library Teaser Grid -->
+  <section class="py-16 md:py-24 bg-[var(--color-bg-secondary)] border-b-2 border-[var(--color-border-default)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--color-text-emerald)] uppercase tracking-wider">
+            Organic Write-Off Intelligence
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--color-text-primary)] mt-2">
+            Popular Freelance Tax Write-Offs
+          </h2>
+        </div>
+        <a href="/deductions" class="font-mono text-sm font-bold text-[var(--color-text-emerald)] hover:underline">
+          View All 12 Write-Off Guides &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/deductions/laptop-and-tech" class="bg-[var(--color-bg-primary)] border-2 border-[var(--color-border-default)] p-6 rounded-lg hover:border-[var(--color-border-accent)] transition-all group">
+          <span class="font-mono text-xs font-bold bg-[var(--color-bg-amber)] text-[var(--color-text-amber)] px-2 py-0.5 rounded">100% Write-Off</span>
+          <h3 class="text-lg font-bold text-[var(--color-text-primary)] mt-3 group-hover:text-[var(--color-text-emerald)]">Laptops & Tech Gear</h3>
+          <p class="text-xs text-[var(--color-text-secondary)] mt-2">MacBooks, 4K monitors, and cameras under $2,500 de minimis safe harbor.</p>
+        </a>
+
+        <a href="/deductions/software-subscriptions" class="bg-[var(--color-bg-primary)] border-2 border-[var(--color-border-default)] p-6 rounded-lg hover:border-[var(--color-border-accent)] transition-all group">
+          <span class="font-mono text-xs font-bold bg-[var(--color-bg-amber)] text-[var(--color-text-amber)] px-2 py-0.5 rounded">100% Write-Off</span>
+          <h3 class="text-lg font-bold text-[var(--color-text-primary)] mt-3 group-hover:text-[var(--color-text-emerald)]">SaaS & Software</h3>
+          <p class="text-xs text-[var(--color-text-secondary)] mt-2">Figma, Adobe Creative Cloud, ChatGPT Plus, GitHub, Vercel.</p>
+        </a>
+
+        <a href="/deductions/home-office" class="bg-[var(--color-bg-primary)] border-2 border-[var(--color-border-default)] p-6 rounded-lg hover:border-[var(--color-border-accent)] transition-all group">
+          <span class="font-mono text-xs font-bold bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] px-2 py-0.5 rounded">Pro-Rated / $5 sqft</span>
+          <h3 class="text-lg font-bold text-[var(--color-text-primary)] mt-3 group-hover:text-[var(--color-text-emerald)]">Home Office Rent</h3>
+          <p class="text-xs text-[var(--color-text-secondary)] mt-2">Deducting apartment rent and utilities for dedicated workspaces.</p>
+        </a>
+
+        <a href="/deductions/client-meals" class="bg-[var(--color-bg-primary)] border-2 border-[var(--color-border-default)] p-6 rounded-lg hover:border-[var(--color-border-accent)] transition-all group">
+          <span class="font-mono text-xs font-bold bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] px-2 py-0.5 rounded">50% Write-Off</span>
+          <h3 class="text-lg font-bold text-[var(--color-text-primary)] mt-3 group-hover:text-[var(--color-text-emerald)]">Client Meals</h3>
+          <p class="text-xs text-[var(--color-text-secondary)] mt-2">50% deduction rules for food and lattes with business contacts.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 5: Quarterly Tax Deadline Warning Banner -->
+  <section class="py-12 bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--color-text-emerald)] uppercase tracking-wider">
+            IRS Calendar Alert
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold mt-1">
+            Upcoming 2025 Estimated Tax Deadlines
+          </h2>
+          <p class="text-xs text-[var(--color-border-subtle)] mt-1 font-sans">
+            Pay on time directly to the US Treasury at irs.gov/payments to avoid 8%+ underpayment interest charges.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs w-full md:w-auto">
+          <div class="bg-[var(--color-bg-dark-card)] p-3 rounded border border-[var(--color-border-accent)] text-center">
+            <span class="text-[var(--color-border-subtle)] block">Q1 Payment</span>
+            <span class="text-sm font-bold text-[var(--color-text-inverse)] block mt-0.5">April 15, 2025</span>
+          </div>
+          <div class="bg-[var(--color-bg-dark-card)] p-3 rounded border border-[var(--color-border-accent)] text-center">
+            <span class="text-[var(--color-border-subtle)] block">Q2 Payment</span>
+            <span class="text-sm font-bold text-[var(--color-text-inverse)] block mt-0.5">June 16, 2025</span>
+          </div>
+          <div class="bg-[var(--color-bg-dark-card)] p-3 rounded border border-[var(--color-border-accent)] text-center">
+            <span class="text-[var(--color-border-subtle)] block">Q3 Payment</span>
+            <span class="text-sm font-bold text-[var(--color-text-inverse)] block mt-0.5">Sept 15, 2025</span>
+          </div>
+          <div class="bg-[var(--color-bg-dark-card)] p-3 rounded border border-[var(--color-border-accent)] text-center">
+            <span class="text-[var(--color-border-subtle)] block">Q4 Payment</span>
+            <span class="text-sm font-bold text-[var(--color-text-inverse)] block mt-0.5">Jan 15, 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 6: Flat Pricing Comparison Section -->
+  <section class="py-16 md:py-24 bg-[var(--color-bg-primary)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[var(--color-text-primary)]">
+          Transparent Pricing. No Upsell Traps.
+        </h2>
+        <p class="text-base text-[var(--color-text-secondary)] mt-2">
+          Traditional tax software advertises "Free" then forces $120+ unlocks when you mention Schedule C.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Free Plan -->
+        <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-8 rounded-xl flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs font-bold text-[var(--color-text-emerald)] uppercase">Always Free</span>
+            <h3 class="text-2xl font-black text-[var(--color-text-primary)] mt-1">Calculators & Guides</h3>
+            <div class="text-4xl font-extrabold font-mono text-[var(--color-text-primary)] my-4">$0</div>
+            <ul class="space-y-3 font-mono text-xs text-[var(--color-text-primary)]">
+              <li class="flex items-center gap-2">✓ 100% Free 1099 Tax Estimator</li>
+              <li class="flex items-center gap-2">✓ Full 12-Part Write-off Library</li>
+              <li class="flex items-center gap-2">✓ Form 1040 Schedule C Guides</li>
+              <li class="flex items-center gap-2">✓ Quarterly Tax Due Date Calendar</li>
+            </ul>
+          </div>
+          <a href="/estimator" class="mt-8 block text-center bg-[var(--color-bg-primary)] border-2 border-[var(--color-border-default)] py-3 font-mono text-xs font-bold rounded hover:bg-[var(--color-bg-secondary)] transition-all">
+            Use Free Estimator Now
+          </a>
+        </div>
+
+        <!-- Paid $49 Kit Plan -->
+        <div class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] border-2 border-[var(--color-border-accent)] p-8 rounded-xl shadow-[6px_6px_0px_0px_var(--color-border-accent)] flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs font-bold text-[var(--color-bg-amber)] uppercase">Flat Filing Prep</span>
+            <h3 class="text-2xl font-black text-[var(--color-text-inverse)] mt-1">Schedule C Audit Prep Kit</h3>
+            <div class="text-4xl font-extrabold font-mono text-[var(--color-text-inverse)] my-4">$49 <span class="text-xs font-normal text-[var(--color-border-subtle)]">flat fee</span></div>
+            <ul class="space-y-3 font-mono text-xs text-[var(--color-border-subtle)]">
+              <li class="flex items-center gap-2 text-[var(--color-text-inverse)]">✓ Full Schedule C Line-by-Line Prep Kit</li>
+              <li class="flex items-center gap-2 text-[var(--color-text-inverse)]">✓ CPA Audit Defense Checklist & Receipt Vault</li>
+              <li class="flex items-center gap-2 text-[var(--color-text-inverse)]">✓ QBI Section 199A Maximum Savings Review</li>
+              <li class="flex items-center gap-2 text-[var(--color-text-inverse)]">✓ Zero recurring subscriptions or state fees</li>
+            </ul>
+          </div>
+          <a href="/pricing" class="mt-8 block text-center bg-[var(--color-bg-accent)] text-[var(--color-text-inverse)] py-3 font-mono text-xs font-bold rounded hover:opacity-90 transition-all">
+            Get $49 Audit Prep Kit &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,39 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "bro.tax — Taxes Without the Suits | Freelance Tax Estimator & Write-Offs",
+  description = "The zero-bs, CPA-verified tax estimator and write-off guide for freelancers, creators, and gig workers in their 20s–30s. Free calculators and flat $49 filing kit.",
+  canonicalUrl = Astro.url.href,
+  ogType = "website",
+  noindex = false,
+} = Astro.props;
+
+const siteTitle = title.includes("bro.tax") ? title : `${title} | bro.tax`;
+---
+
+<title>{siteTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={siteTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content="bro.tax" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={siteTitle} />
+<meta name="twitter:description" content={description} />

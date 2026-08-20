@@ -1,26 +1,75 @@
 ---
-import { footer } from "../../../data/navigation.json";
+import { Image } from 'astro:assets';
+import logoSvg from '../../assets/logo-bro-tax.svg';
+import cpaBadge from '../../assets/illustration-cpa-verified.svg';
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] border-t-4 border-[var(--color-border-accent)] mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <!-- Col 1: Brand & CPA Seal -->
+      <div class="md:col-span-1 space-y-4">
+        <a href="/" class="inline-block">
+          <Image src={logoSvg} alt="bro.tax logo" class="h-10 w-auto" />
+        </a>
+        <p class="text-sm text-[var(--color-border-subtle)] leading-relaxed font-sans">
+          The anti-H&R-Block. Irreverent in tone, rigorous on facts. Built by CPAs who hate corporate tax lobby traps.
+        </p>
+        <div class="pt-2">
+          <Image src={cpaBadge} alt="CPA Verified Badge" class="h-20 w-auto rounded border border-[var(--color-border-accent)]" />
+        </div>
+      </div>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <!-- Col 2: Free Tools & Calculators -->
+      <div>
+        <h3 class="font-mono text-sm font-bold tracking-wider text-[var(--color-text-emerald)] uppercase mb-4">
+          Free Calculators
+        </h3>
+        <ul class="space-y-2 font-mono text-sm">
+          <li><a href="/estimator" class="hover:underline hover:text-[var(--color-text-emerald)]">1099 Tax Estimator</a></li>
+          <li><a href="/deductions/home-office" class="hover:underline hover:text-[var(--color-text-emerald)]">Home Office Calculator</a></li>
+          <li><a href="/deductions/travel-and-mileage" class="hover:underline hover:text-[var(--color-text-emerald)]">Mileage Rate Calculator</a></li>
+          <li><a href="/guides/quarterly-estimated-taxes" class="hover:underline hover:text-[var(--color-text-emerald)]">Quarterly Tax Due Dates</a></li>
+        </ul>
+      </div>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <!-- Col 3: Write-off Library -->
+      <div>
+        <h3 class="font-mono text-sm font-bold tracking-wider text-[var(--color-text-emerald)] uppercase mb-4">
+          Write-Off Library
+        </h3>
+        <ul class="space-y-2 font-mono text-sm">
+          <li><a href="/deductions/software-subscriptions" class="hover:underline hover:text-[var(--color-text-emerald)]">SaaS & Software</a></li>
+          <li><a href="/deductions/laptop-and-tech" class="hover:underline hover:text-[var(--color-text-emerald)]">MacBooks & Tech Gear</a></li>
+          <li><a href="/deductions/client-meals" class="hover:underline hover:text-[var(--color-text-emerald)]">Client Meals (50% Rule)</a></li>
+          <li><a href="/deductions/health-insurance" class="hover:underline hover:text-[var(--color-text-emerald)] font-bold text-[var(--color-text-inverse)]">Health Insurance</a></li>
+          <li><a href="/deductions" class="hover:underline hover:text-[var(--color-text-emerald)] font-bold text-[var(--color-text-inverse)]">View All 12 Write-Offs &rarr;</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Resources & Transparency -->
+      <div>
+        <h3 class="font-mono text-sm font-bold tracking-wider text-[var(--color-text-emerald)] uppercase mb-4">
+          Transparency & Legal
+        </h3>
+        <ul class="space-y-2 font-mono text-sm">
+          <li><a href="/guides" class="hover:underline hover:text-[var(--color-text-emerald)]">Freelance Guides</a></li>
+          <li><a href="/blog" class="hover:underline hover:text-[var(--color-text-emerald)]">Tax Updates Blog</a></li>
+          <li><a href="/about" class="hover:underline hover:text-[var(--color-text-emerald)]">No-Suits CPA Team</a></li>
+          <li><a href="/pricing" class="hover:underline hover:text-[var(--color-text-emerald)]">$49 Flat Rate Pricing</a></li>
+          <li><a href="/rss.xml" class="hover:underline hover:text-[var(--color-text-emerald)]">RSS Feed</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Disclaimer & Copyright -->
+    <div class="mt-12 pt-8 border-t border-[var(--color-border-dark)] text-xs text-[var(--color-border-subtle)] space-y-4">
+      <p class="leading-relaxed font-sans">
+        <strong>Factual Legal Disclaimer:</strong> bro.tax provides self-service educational tax estimation tools and informational guides reviewed by accredited Certified Public Accountants. Calculated results are estimates based on US Federal Internal Revenue Code (IRC) rules for tax years 2024 and 2025. Accessing bro.tax tools does not constitute formal legal or CPA representation until a paid engagement agreement is signed.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-between font-mono text-xs gap-4 pt-2">
+        <p>&copy; {new Date().getFullYear()} bro.tax — Built with Astro, Tailwind & Zero Corporate Suits.</p>
+        <p class="text-[var(--color-text-emerald)]">Tabular Figures Monospace Engine Active</p>
       </div>
     </div>
   </div>

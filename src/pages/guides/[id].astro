@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({
+    params: { id: guide.id },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const { Content } = await render(guide);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<Layout
+  title={`${guide.data.title} | bro.tax Guides`}
+  description={guide.data.description}
+  canonicalUrl={canonicalUrl}
+  jsonLdType="Article"
+  jsonLdData={{
+    "@type": "Article",
+    "headline": guide.data.title,
+    "description": guide.data.description,
+    "author": { "@type": "Organization", "name": guide.data.author },
+    "publisher": { "@type": "Organization", "name": "bro.tax" },
+    "datePublished": guide.data.pubDate
+  }}
+>
+  <article class="py-12 md:py-20 bg-[var(--color-bg-primary)]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="font-mono text-xs mb-6 text-[var(--color-text-secondary)]">
+        <a href="/" class="hover:underline">Home</a> &gt; <a href="/guides" class="hover:underline">Guides</a> &gt; <span class="text-[var(--color-text-primary)] font-bold">{guide.data.title}</span>
+      </nav>
+
+      <header class="border-b-2 border-[var(--color-border-default)] pb-8 mb-10">
+        <div class="flex items-center gap-3 font-mono text-xs mb-4">
+          <span class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-3 py-1 rounded font-bold uppercase">
+            {guide.data.category}
+          </span>
+          <span class="bg-[var(--color-bg-secondary)] border border-[var(--color-border-subtle)] px-3 py-1 rounded font-bold">
+            {guide.data.readTime}
+          </span>
+          <span class="text-[var(--color-text-secondary)]">
+            Published {guide.data.pubDate}
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black text-[var(--color-text-primary)] tracking-tight leading-tight">
+          {guide.data.title}
+        </h1>
+        <p class="text-lg text-[var(--color-text-secondary)] mt-4 leading-relaxed font-sans">
+          {guide.data.description}
+        </p>
+
+        <div class="mt-6 flex items-center gap-2 font-mono text-xs text-[var(--color-text-emerald)] font-bold">
+          <span>✓ CPA Reviewed & Fact-Checked</span>
+          <span>•</span>
+          <span>By {guide.data.author}</span>
+        </div>
+      </header>
+
+      <div class="prose max-w-none">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>

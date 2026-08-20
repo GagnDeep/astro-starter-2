@@ -1,0 +1,112 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const deductions = await getCollection('deductions');
+  return deductions.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<Layout
+  title={`${entry.data.title} | bro.tax Deductions`}
+  description={entry.data.summary}
+  canonicalUrl={canonicalUrl}
+  jsonLdType="Article"
+  jsonLdData={{
+    "@type": "Article",
+    "headline": entry.data.title,
+    "description": entry.data.summary,
+    "author": { "@type": "Organization", "name": "Bro Tax CPA Team" },
+    "publisher": { "@type": "Organization", "name": "bro.tax" }
+  }}
+>
+  <article class="py-12 md:py-20 bg-[var(--color-bg-primary)]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="font-mono text-xs mb-6 text-[var(--color-text-secondary)]">
+        <a href="/" class="hover:underline">Home</a> &gt; <a href="/deductions" class="hover:underline">Deductions Library</a> &gt; <span class="text-[var(--color-text-primary)] font-bold">{entry.data.short_title}</span>
+      </nav>
+
+      <!-- Page Header -->
+      <header class="border-b-2 border-[var(--color-border-default)] pb-8 mb-10">
+        <div class="flex flex-wrap items-center gap-3 font-mono text-xs mb-4">
+          <span class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-3 py-1 rounded font-bold uppercase">
+            {entry.data.category}
+          </span>
+          <span class="bg-[var(--color-bg-amber)] text-[var(--color-text-amber)] px-3 py-1 rounded font-bold">
+            Write-Off: {entry.data.deduction_percentage}
+          </span>
+          <span class="bg-[var(--color-bg-secondary)] border border-[var(--color-border-subtle)] px-3 py-1 rounded font-bold">
+            Audit Risk: {entry.data.audit_risk}
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black text-[var(--color-text-primary)] tracking-tight leading-tight">
+          {entry.data.title}
+        </h1>
+        <p class="text-lg text-[var(--color-text-secondary)] mt-4 leading-relaxed font-sans">
+          {entry.data.summary}
+        </p>
+
+        <div class="mt-6 bg-[var(--color-bg-secondary)] p-4 rounded-lg border border-[var(--color-border-default)] font-mono text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <span><strong>Official Citation:</strong> {entry.data.irs_rule_citation}</span>
+          <span class="text-[var(--color-text-emerald)] font-bold">✓ CPA Reviewed</span>
+        </div>
+      </header>
+
+      <!-- Key Fact Card Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-6 rounded-lg">
+          <h3 class="font-mono text-xs font-bold text-[var(--color-text-emerald)] uppercase tracking-wider mb-3">
+            ✓ What You CAN Deduct
+          </h3>
+          <ul class="space-y-2 text-xs font-sans text-[var(--color-text-primary)]">
+            {entry.data.what_you_can_deduct.map((item: string) => (
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--color-text-emerald)] font-bold">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-[var(--color-bg-secondary)] border-2 border-[var(--color-border-default)] p-6 rounded-lg">
+          <h3 class="font-mono text-xs font-bold text-[var(--color-text-amber)] uppercase tracking-wider mb-3">
+            ✕ What You CANNOT Deduct
+          </h3>
+          <ul class="space-y-2 text-xs font-sans text-[var(--color-text-primary)]">
+            {entry.data.what_you_cannot_deduct.map((item: string) => (
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--color-text-amber)] font-bold">✕</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Prose Article Body -->
+      <div class="prose max-w-none mb-12">
+        <Content />
+      </div>
+
+      <!-- Receipt Requirement Footer Box -->
+      <div class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] p-6 rounded-xl border-2 border-[var(--color-border-accent)] font-mono text-xs space-y-2">
+        <span class="text-[var(--color-text-emerald)] font-bold uppercase tracking-wider block">
+          IRS Receipt & Record Requirement
+        </span>
+        <p class="text-[var(--color-border-subtle)] font-sans leading-relaxed text-sm">
+          {entry.data.receipt_requirement}
+        </p>
+      </div>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,42 @@
+---
+export interface Props {
+  type?: "TaxService" | "Article" | "HowTo" | "BreadcrumbList";
+  data?: Record<string, any>;
+}
+
+const { type = "TaxService", data = {} } = Astro.props;
+
+let schema: Record<string, any> = {
+  "@context": "https://schema.org",
+};
+
+if (type === "TaxService") {
+  schema = {
+    ...schema,
+    "@type": "TaxService",
+    "name": "bro.tax",
+    "url": "https://bro.tax",
+    "description": "Zero-bs 1099 tax estimation and write-off intelligence for freelancers, creators, and gig workers.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Bro Tax CPA Team",
+      "url": "https://bro.tax/about"
+    },
+    "areaServed": "US",
+    "serviceType": "Self-Employment Tax Estimation & Schedule C Filing Preparation",
+    "offers": {
+      "@type": "Offer",
+      "price": "49.00",
+      "priceCurrency": "USD",
+      "description": "Flat-fee Schedule C Audit Prep Kit"
+    }
+  };
+} else {
+  schema = {
+    ...schema,
+    ...data
+  };
+}
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

@@ -1,78 +1,54 @@
 ---
-import { header } from "../../../data/navigation.json";
+import { Image } from 'astro:assets';
+import logoSvg from '../../assets/logo-bro-tax.svg';
 ---
 
-<header class="bg-white">
-  <div class="mx-auto max-w-6xl px-8">
-    <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+<header class="border-b-2 border-[var(--color-border-default)] bg-[var(--color-bg-primary)] sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <a href="/" class="flex items-center gap-2 group hover:opacity-90 transition-opacity">
+      <Image src={logoSvg} alt="bro.tax logo" class="h-10 w-auto" />
+    </a>
+
+    <!-- Nav Links -->
+    <nav class="hidden md:flex items-center gap-6 font-mono text-sm font-bold">
+      <a href="/estimator" class="text-[var(--color-text-primary)] hover:text-[var(--color-text-emerald)] transition-colors">
+        [ Calculator ]
       </a>
-
-      <ul class="hidden sm:flex items-center gap-6">
-        {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        class="sm:hidden p-2"
-        aria-label="Open navigation menu"
-        popovertarget="mobile-menu"
-        popovertargetaction="show"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-        </div>
-      </div>
+      <a href="/deductions" class="text-[var(--color-text-primary)] hover:text-[var(--color-text-emerald)] transition-colors">
+        Write-Offs
+      </a>
+      <a href="/guides" class="text-[var(--color-text-primary)] hover:text-[var(--color-text-emerald)] transition-colors">
+        Guides
+      </a>
+      <a href="/blog" class="text-[var(--color-text-primary)] hover:text-[var(--color-text-emerald)] transition-colors">
+        Blog
+      </a>
+      <a href="/pricing" class="text-[var(--color-text-primary)] hover:text-[var(--color-text-emerald)] transition-colors">
+        Pricing
+      </a>
+      <a href="/about" class="text-[var(--color-text-primary)] hover:text-[var(--color-text-emerald)] transition-colors">
+        About
+      </a>
     </nav>
+
+    <!-- Header CTA -->
+    <div class="flex items-center gap-3">
+      <a
+        href="/estimator"
+        class="bg-[var(--color-bg-dark)] text-[var(--color-text-inverse)] px-4 py-2.5 rounded-md font-mono text-xs sm:text-sm font-bold border border-[var(--color-border-default)] shadow-[3px_3px_0px_0px_var(--color-border-accent)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_var(--color-border-accent)] transition-all"
+      >
+        Estimate Taxes &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Bar -->
+  <div class="md:hidden border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-secondary)] px-4 py-2 flex items-center justify-around font-mono text-xs font-bold overflow-x-auto whitespace-nowrap">
+    <a href="/estimator" class="py-1 px-2 text-[var(--color-text-primary)] hover:text-[var(--color-text-emerald)]">[ Calculator ]</a>
+    <a href="/deductions" class="py-1 px-2 text-[var(--color-text-primary)]">Write-Offs</a>
+    <a href="/guides" class="py-1 px-2 text-[var(--color-text-primary)]">Guides</a>
+    <a href="/blog" class="py-1 px-2 text-[var(--color-text-primary)]">Blog</a>
+    <a href="/pricing" class="py-1 px-2 text-[var(--color-text-primary)]">Pricing</a>
   </div>
 </header>
-
-<style>
-  #mobile-menu {
-    opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
-  }
-  #mobile-menu:popover-open {
-    opacity: 1;
-  }
-  @starting-style {
-    #mobile-menu:popover-open {
-      opacity: 0;
-    }
-  }
-</style>

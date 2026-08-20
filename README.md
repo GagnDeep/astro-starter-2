@@ -1,81 +1,48 @@
-# Astro Minimal Starter
+# bro.tax — Taxes Without the Suits
 
-A minimal starter template for building an Astro site with [CloudCannon](https://cloudcannon.com/) using **Editable Regions** for visual editing.
+**bro.tax** is an irreverent, CPA-verified, zero-bs tax estimation platform and write-off intelligence system built for US freelancers, creators, gig workers, and self-employed professionals in their 20s–30s.
 
-See a [demo site](https://tiny-jackal.cloudvent.net/).
+---
 
-## Features
+## 📦 Dependency Justification & Pinned Versions
 
-- Visual editing with [Editable Regions](https://cloudcannon.com/documentation/developer-guides/set-up-visual-editing/an-overview-of-editable-regions/) (text, image, array, source, and component regions)
-- Page building with reusable components
-- Blog with pagination and tags
-- [Tailwind CSS v4](https://tailwindcss.com/) with CSS-first configuration
-- SEO controls
-- Pagefind search
+All dependencies in `package.json` are strictly pinned without wildcards (`^` or `~`) to ensure deterministic builds across development, CI/CD, and production environments.
 
-## Getting Started
+| Package | Version | Purpose & Justification |
+| :--- | :--- | :--- |
+| `astro` | `6.0.2` | Core static site generator framework providing fast build times, zero client JS by default, and content collections. |
+| `@astrojs/mdx` | `5.0.0` | Enables MDX support for rich educational guides and deduction articles with interactive component embedding. |
+| `@astrojs/react` | `4.3.0` | UI framework integration required solely for the interactive Tax Estimator island (`client:visible`). |
+| `@astrojs/sitemap` | `3.2.1` | Automatically generates compliant XML sitemaps for maximum search engine crawlability across all route collections. |
+| `@astrojs/rss` | `4.0.17` | Generates official RSS 2.0 XML feeds (`/rss.xml`) for blog posts and freelance tax guides. |
+| `tailwindcss` | `4.0.0` | Utility-first CSS engine powering the high-contrast design system. |
+| `@tailwindcss/vite` | `4.0.0` | Lightning-fast Vite integration for Tailwind CSS v4 design tokens and theme rules. |
+| `lucide-react` | `0.475.0` | Clean, accessible, lightweight vector SVG icons (replaces raw emoji/stock icons). |
+| `react` & `react-dom`| `18.3.1` | Production UI library powering stateful logic inside the Tax Estimator island. |
+| `@astrojs/check` | `0.9.4` | Diagnostic tool for running full TypeScript and template checking across all Astro files. |
+| `typescript` | `5.7.3` | Strong static typing for Zod schemas, tax math functions, and component props. |
+| `sharp` | `0.33.5` | Native image processing engine for Astro's `astro:assets` optimization pipeline. |
 
-Click `Use this template` to make your own copy of the repository.
+---
+
+## 🛠️ Architecture & Build Verification
 
 ### Local Development
-
-1. Clone the repository to your local machine.
-
-2. Start the development server.
-
 ```bash
 npm install
 npm run dev
 ```
 
-## CloudCannon Setup
-
-This site is pre-configured for CloudCannon. Connect your repository and CloudCannon will detect the configuration in `.cloudcannon/initial-site-settings.json` and build your site automatically. The editing experience is defined in `cloudcannon.config.yml`, which you can modify to control your editors' experience.
-
-### Editable Regions
-
-This starter demonstrates several types of Editable Region:
-
-- **Text** (`data-editable="text"`) for editing front matter text values inline
-- **Image** (`data-editable="image"`) for editing front matter image values
-- **Array** (`data-editable="array"`) for page-building with reorderable content blocks
-- **Source** (`data-editable="source"`) for making standalone `.astro` pages editable
-- **Component** (`<editable-component>`) for live re-rendering of Astro components
-
-Components that need live re-rendering are registered in `src/scripts/register-components.ts` and loaded conditionally when the site is open in CloudCannon's Visual Editor.
-
-#### Source Editables
-
-The About page (`src/content/pages/about.astro`) demonstrates **source editables** — a pattern where content lives directly in an Astro template rather than in Markdown front matter. Source editable regions use `data-editable="source"`, `data-path="path/to/file.astro"`, and `data-key` attributes. CloudCannon writes changes straight back to the `.astro` file.
-
-This is useful for standalone pages (like About or Contact) where a developer wants full control over the markup while still giving editors visual editing access — **and where page building with components is *not* desired**. No accompanying Markdown file or front matter schema is needed. A thin routing wrapper in `src/pages/about.astro` handles Astro's file-based routing.
-
-### Components
-
-Three page-building components are included:
-
-- **Hero** — heading, subheading, image, and optional button
-- **LeftRight** — side-by-side text and image, with optional flip and button
-- **TextBlock** — heading and rich text content
-
-### Content
-
-- **Pages** are in `src/content/pages/` as Markdown with structured front matter, and support a component-based page-building workflow. Developers can also add standalone pages paired with a routing file in `src/pages/` (like `src/content/pages/about.astro`), and decide which parts of those pages are editable in CloudCannon.
-- **Blog posts** are in `src/content/blog/` as MDX files
-- **Data** files (site settings, navigation) are in `data/`
-
-## Project Structure
-
+### Type Checking & Build
+```bash
+npm run check    # Runs npx astro check
+npm run build    # Generates production SSG output in dist/
 ```
-├── .cloudcannon/          # CloudCannon schemas and postbuild
-├── cloudcannon.config.yml # CloudCannon configuration
-├── data/                  # Site-wide data files
-├── public/                # Static assets
-└── src/
-    ├── components/        # Astro components
-    ├── content/           # Content collections (pages, blog)
-    ├── layouts/           # Page layouts
-    ├── pages/             # Astro page routes
-    ├── scripts/           # Component registration for visual editing
-    └── styles/            # Global CSS (Tailwind v4)
-```
+
+---
+
+## 🎨 Design System Rules
+
+1. **Tokens Only:** All styling references CSS variables declared in `src/styles/global.css` and mapped via `@theme` in Tailwind CSS v4. No raw hex colors in component files.
+2. **Tabular Monospace Numbers:** Every financial figure, rate, and date uses `font-mono` and `tabular-nums` for precise visual vertical alignment.
+3. **SSG First:** Entire site is static HTML. The React Tax Estimator is the only island (`client:visible`), which degrades gracefully to static HTML worked examples and official rate tables when JavaScript is disabled.

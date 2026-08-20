@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bro.tax/sitemap-index.xml
