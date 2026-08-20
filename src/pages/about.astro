@@ -1,5 +1,84 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
+import { ShieldCheck, ArrowRight, User, Terminal } from "@lucide/astro";
+
+const seo = {
+  page_description:
+    "Povestea ro.tax — Platforma anti-H&R-Block creată de un fost auditor ANAF și un programator care a plătit amenzi nejustificate.",
+};
 ---
 
-<AboutPage />
+<Layout title="Despre Noi — Manifestul Anti-Costum ro.tax" seo={seo}>
+  <section class="py-12 md:py-20 bg-bg-base border-b border-border-subtle">
+    <div class="mx-auto max-w-4xl px-6 md:px-8">
+      <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+        [ MANIFESTUL ANTI-COSTUM ]
+      </span>
+      <h1 class="font-mono font-black text-3xl sm:text-4xl md:text-5xl text-text-main tracking-tight mb-6">
+        Am creat ro.tax pentru că ne-am săturat de birocrația pe hârtie.
+      </h1>
+      <p class="text-text-muted text-base leading-relaxed mb-6">
+        Suntem o echipă hibridă formată din fosti auditori fiscali ANAF și ingineri software de sistem. Misiunea noastră este simplă: transformăm Codul Fiscal din România dintr-o junglă de ordonanțe opace într-un motor software transparent, precis și ușor de folosit.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-bg-surface border-b border-border-subtle">
+    <div class="mx-auto max-w-4xl px-6 md:px-8 space-y-12">
+      <div>
+        <h2 class="font-mono font-bold text-2xl text-text-main mb-4 border-b border-border-subtle pb-2">
+          De ce am fondat ro.tax?
+        </h2>
+        <div class="space-y-4 text-sm text-text-main font-sans leading-relaxed">
+          <p>
+            În primăvara anului 2023, Radu Popa (pe atunci contractor IT pe PFA) a primit o decizie de impunere cu o amendă de <strong>2.400 RON</strong> de la ANAF. Motivul? Contabila sa tradițională ratase calculul noului plafon CASS pentru că "ordonanța s-a dat în decembrie și nu am apucat să citesc toate articolele".
+          </p>
+          <p>
+            Frustrat de lipsa de rigoare a serviciilor clasice de contabilitate, Radu s-a conectat cu Elena Dumitrescu, un fost inspector de audit din cadrul ANAF cu peste 11 ani de experiență în verificarea dosarelor de PFA și persoane fizice. Impreună au reconstruit complet procesul de calcul fiscal.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-bg-base border border-border-subtle rounded-xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-accent-lime/10 border border-accent-lime/30 rounded-lg flex items-center justify-center font-mono font-bold text-accent-lime">
+              ED
+            </div>
+            <div>
+              <h3 class="font-mono font-bold text-text-main text-base">Elena Dumitrescu, CPA</h3>
+              <span class="text-xs text-text-muted font-mono block">Co-fondator & Chief Tax Auditor</span>
+            </div>
+          </div>
+          <p class="text-xs text-text-muted font-sans leading-relaxed">
+            Fost inspector de audit ANAF (2012-2023). A analizat peste 1.400 de dosare de PFA în regim real și cunoaște fiecare virgulă din Codul Fiscal.
+          </p>
+        </div>
+
+        <div class="bg-bg-base border border-border-subtle rounded-xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-accent-lime/10 border border-accent-lime/30 rounded-lg flex items-center justify-center font-mono font-bold text-accent-lime">
+              RP
+            </div>
+            <div>
+              <h3 class="font-mono font-bold text-text-main text-base">Radu Popa</h3>
+              <span class="text-xs text-text-muted font-mono block">Co-fondator & Lead Engineer</span>
+            </div>
+          </div>
+          <p class="text-xs text-text-muted font-sans leading-relaxed">
+            Senior Full-Stack Engineer cu peste 9 ani de experiență în arhitecturi de date și automatizare SaaS. Pasionat de sisteme deterministe fără erori.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-6 bg-accent-lime/5 border border-accent-lime/20 rounded-xl">
+        <h3 class="font-mono font-bold text-sm text-accent-lime uppercase mb-2">
+          Promisiunea noastră de rigoare:
+        </h3>
+        <p class="text-xs text-text-main leading-relaxed">
+          Nu inventăm statistici, nu folosim imagini de stoc cu oameni în costume și nu ascundem tarifele după formulare de contact. Fiecare cifră calculată pe ro.tax este trasabilă direct la articolele specifice din Codul Fiscal.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

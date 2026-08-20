@@ -1,0 +1,493 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { TaxEstimator } from "../components/calculator/TaxEstimator";
+import TaxEstimatorFallback from "../components/calculator/TaxEstimatorFallback.astro";
+import { getCollection } from "astro:content";
+import { ArrowRight, CheckCircle2, Zap } from "@lucide/astro";
+
+const deductions = await getCollection("deductions");
+
+const seo = {
+  page_description:
+    "Calcul fiscal instant, ghiduri de deductibilitate și depunere automată a Declarației Unice pentru PFA și SRL în 2025. Fără costume, fără birocrație.",
+};
+---
+
+<Layout title="ro.tax — Taxele tale pe PFA și SRL, calculate pe bune" seo={seo}>
+  <!-- BLOCK 1: HERO HEADER -->
+  <section class="py-16 md:py-24 border-b border-border-subtle bg-bg-base relative overflow-hidden">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent-lime/10 border border-accent-lime/30 rounded-full text-accent-lime font-mono text-xs font-bold uppercase mb-6">
+          <Zap class="w-3.5 h-3.5" aria-hidden="true" />
+          <span>Legislația Fiscală 2025 • Salariu Minim 4.050 Lei</span>
+        </div>
+        <h1 class="font-mono font-black text-4xl sm:text-5xl md:text-6xl text-text-main tracking-tight leading-[1.1] mb-6">
+          Taxele tale pe PFA și SRL, <span class="text-accent-lime underline decoration-accent-lime/40">calculate pe bune.</span> Fără costume, fără birocrație.
+        </h1>
+        <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-8 max-w-2xl">
+          Calculează-ți taxele reale pentru 2025 în 30 de secunde. Bazat pe noul salariu minim de 4.050 lei și ordonanțele OUG 115/2023 & 156/2024.
+        </p>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="#calculator"
+            class="inline-flex items-center justify-center gap-2 bg-accent-lime hover:bg-accent-lime-hover text-bg-base font-mono font-bold text-sm uppercase px-6 py-4 rounded-xl transition-all transform hover:-translate-y-0.5 shadow-lg"
+          >
+            Calculează Taxele 2025
+            <ArrowRight class="w-4 h-4" aria-hidden="true" />
+          </a>
+          <a
+            href="/deductions/"
+            class="inline-flex items-center justify-center gap-2 bg-bg-surface hover:bg-bg-surface-hover text-text-main font-mono font-bold text-sm border border-border-subtle px-6 py-4 rounded-xl transition-colors"
+          >
+            Vezi Ghidul de Deduceeri
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 2: THE PROBLEM TEARDOWN ("ANTI-SUIT MANIFESTO") -->
+  <section class="py-16 bg-bg-surface border-b border-border-subtle">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="font-mono font-bold text-2xl md:text-3xl text-text-main mb-3">
+          De ce contabilitatea tradițională te costă mai mult decât crezi
+        </h2>
+        <p class="text-text-muted text-sm">
+          Platforma anti-H&R-Block creată special pentru freelancerii care urăsc vorbele goale și ștampilele de carton.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Old CPA Firm -->
+        <div class="bg-bg-base border border-border-subtle rounded-xl p-6 md:p-8 space-y-4">
+          <div class="flex items-center gap-2 text-warning-red font-mono font-bold text-sm uppercase">
+            <span>✕ Contabilitatea Veche în Costume</span>
+          </div>
+          <ul class="space-y-3 text-sm text-text-muted font-sans leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-warning-red font-mono font-bold">✕</span>
+              Îți trimit PDF-uri scanate strâmb și folosesc un jargon indescifrabil ("vector fiscal", "obligații asimilate").
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-warning-red font-mono font-bold">✕</span>
+              Te sună cu o zi înainte de termenul ANAF că ai de plată mii de lei fără nicio explicație prealabilă.
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-warning-red font-mono font-bold">✕</span>
+              Îți cer 100€/lună pentru introducere manuală de bonuri și răspund la e-mail în 4 zile lucrătoare.
+            </li>
+          </ul>
+        </div>
+
+        <!-- ro.tax Way -->
+        <div class="bg-bg-base border border-accent-lime/40 rounded-xl p-6 md:p-8 space-y-4 relative">
+          <div class="flex items-center gap-2 text-accent-lime font-mono font-bold text-sm uppercase">
+            <CheckCircle2 class="w-5 h-5" aria-hidden="true" />
+            <span>Sistemul ro.tax Fără Costume</span>
+          </div>
+          <ul class="space-y-3 text-sm text-text-main font-sans leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-accent-lime font-mono font-bold">✓</span>
+              Calcul exact al fiecărui leu în timp real, cu explicații clare în limba română pe înțelesul tău.
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-accent-lime font-mono font-bold">✓</span>
+              Alerte inteligente pentru pragurile de CASS (6, 12, 24 salarii) ca să nu cazi în capcana "cliff edge".
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-accent-lime font-mono font-bold">✓</span>
+              Abonament transparent de la 89 lei/lună, cu integrare e-Factura directă și verificare contabilă riguroasă.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 3: INTERACTIVE TAX ESTIMATOR ISLAND -->
+  <section id="calculator" class="py-16 md:py-24 border-b border-border-subtle bg-bg-base">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="max-w-2xl mb-10">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+          [ UNELTĂ GRATUITĂ ]
+        </span>
+        <h2 class="font-mono font-bold text-3xl md:text-4xl text-text-main mb-3">
+          Calculator Taxe PFA & SRL 2025
+        </h2>
+        <p class="text-text-muted text-sm leading-relaxed">
+          Introdu venitul tău estimat și cheltuielile pentru a vedea instantaneu distribuția exactă a impozitului de 10%, CASS și CAS.
+        </p>
+      </div>
+
+      <!-- React Island loaded client:visible -->
+      <TaxEstimator client:visible />
+
+      <!-- Noscript HTML Fallback for zero-JS clients -->
+      <noscript>
+        <TaxEstimatorFallback />
+      </noscript>
+    </div>
+  </section>
+
+  <!-- BLOCK 4: DEDUCTIONS LIBRARY PREVIEW -->
+  <section class="py-16 bg-bg-surface border-b border-border-subtle">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+            [ OPTIMIZARE FISCALĂ ]
+          </span>
+          <h2 class="font-mono font-bold text-3xl text-text-main mb-2">
+            Ghidul de Deduceeri: Ce poți deconta legal pe PFA
+          </h2>
+          <p class="text-text-muted text-sm max-w-xl">
+            Fiecare leu decontat legal este un leu scăzut din baza de calcul pentru impozit și sănătate.
+          </p>
+        </div>
+        <a
+          href="/deductions/"
+          class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-accent-lime hover:underline"
+        >
+          Toate cele 12 categorii
+          <ArrowRight class="w-4 h-4" aria-hidden="true" />
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {deductions.slice(0, 6).map((item) => (
+          <a
+            href={`/deductions/${item.id}/`}
+            class="bg-bg-base border border-border-subtle hover:border-accent-lime/60 p-6 rounded-xl transition-all block group"
+          >
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 bg-accent-lime/10 text-accent-lime border border-accent-lime/30 rounded">
+                Deductibil {item.data.deductibilityPercentage}%
+              </span>
+              <span class="text-xs font-mono text-text-muted">
+                {item.data.category}
+              </span>
+            </div>
+            <h3 class="font-mono font-bold text-lg text-text-main group-hover:text-accent-lime transition-colors mb-2">
+              {item.data.title}
+            </h3>
+            <p class="text-xs text-text-muted line-clamp-2 mb-4 leading-relaxed font-sans">
+              {item.data.summary}
+            </p>
+            <span class="text-xs font-mono text-text-main group-hover:text-accent-lime inline-flex items-center gap-1 font-bold">
+              Citește regulile
+              <ArrowRight class="w-3.5 h-3.5" aria-hidden="true" />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 5: PFA vs SRL DECISION MATRIX -->
+  <section class="py-16 md:py-24 bg-bg-base border-b border-border-subtle">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+          [ MATRICE COMPARATIVĂ ]
+        </span>
+        <h2 class="font-mono font-bold text-3xl md:text-4xl text-text-main mb-3">
+          PFA în Regim Real sau SRL Micro?
+        </h2>
+        <p class="text-text-muted text-sm">
+          Comparație rapidă directă pe criteriile care contează cu adevărat în 2025.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left font-mono text-sm border-collapse bg-bg-surface border border-border-subtle rounded-xl overflow-hidden">
+          <thead>
+            <tr class="bg-bg-surface-hover border-b border-border-subtle text-accent-lime">
+              <th class="p-4">Criteriu de decizie</th>
+              <th class="p-4">PFA în Regim Real</th>
+              <th class="p-4">Microîntreprindere SRL</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border-subtle text-text-main">
+            <tr class="hover:bg-bg-surface-hover/50">
+              <td class="p-4 font-bold">Acces la banii încasați</td>
+              <td class="p-4 text-accent-lime font-bold">Instant (Banii tăi personali)</td>
+              <td class="p-4 text-text-muted">Doar prin Dividende (Trimestrial)</td>
+            </tr>
+            <tr class="hover:bg-bg-surface-hover/50">
+              <td class="p-4 font-bold">Impozit pe venit / cifră de afaceri</td>
+              <td class="p-4">10% aplicat pe Venitul Net</td>
+              <td class="p-4">1% sau 3% din Venitul Brut</td>
+            </tr>
+            <tr class="hover:bg-bg-surface-hover/50">
+              <td class="p-4 font-bold">Impozit suplimentar pe dividende</td>
+              <td class="p-4 text-accent-lime font-bold">0% (Nu există dividende)</td>
+              <td class="p-4">8% la scoaterea banilor</td>
+            </tr>
+            <tr class="hover:bg-bg-surface-hover/50">
+              <td class="p-4 font-bold">Plată CASS (Sănătate)</td>
+              <td class="p-4">Plafoane 6, 12, 24 salarii</td>
+              <td class="p-4">Plafoane 6, 12, 24 pe asociat</td>
+            </tr>
+            <tr class="hover:bg-bg-surface-hover/50">
+              <td class="p-4 font-bold">Costuri contabilitate & birocrație</td>
+              <td class="p-4 text-accent-lime font-bold">Scăzute (Abonament 89 lei/mo)</td>
+              <td class="p-4">Medii (Abonament 189 lei/mo)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 6: TRANSPARENT PRICING -->
+  <section class="py-16 md:py-24 bg-bg-surface border-b border-border-subtle">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+          [ TARIFE TRANSPARENTE ]
+        </span>
+        <h2 class="font-mono font-bold text-3xl md:text-4xl text-text-main mb-3">
+          Abonamente simple. Fără taxe ascunse de "consultanță".
+        </h2>
+        <p class="text-text-muted text-sm">
+          Alege planul potrivit pentru structura ta fiscală în 2025. Anulezi oricând.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- PFA Plan -->
+        <div class="bg-bg-base border-2 border-accent-lime rounded-2xl p-8 flex flex-col justify-between relative shadow-xl">
+          <span class="absolute -top-3.5 left-6 bg-accent-lime text-bg-base font-mono font-bold text-[11px] uppercase px-3 py-1 rounded-full">
+            Recomandat Freelanceri
+          </span>
+          <div>
+            <h3 class="font-mono font-bold text-xl text-text-main mb-2">PFA Complete</h3>
+            <p class="text-xs text-text-muted mb-6">Totul inclus pentru PFA în Regim Real.</p>
+            <div class="mb-6">
+              <span class="font-mono text-4xl font-extrabold text-accent-lime tabular-nums">89 lei</span>
+              <span class="text-text-muted text-xs font-mono"> / lună</span>
+            </div>
+            <ul class="space-y-3 font-sans text-xs text-text-main mb-8">
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Integrare e-Factura directă în SPV</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Calcul CASS/CAS automată în timp real</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Generare & Depunere Declarația Unică</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Ghid dedicat de cheltuieli deductibile</span>
+              </li>
+            </ul>
+          </div>
+          <a
+            href="/pricing/"
+            class="w-full text-center bg-accent-lime hover:bg-accent-lime-hover text-bg-base font-mono font-bold text-xs uppercase py-3.5 rounded-xl transition-all"
+          >
+            Încearcă Gratuit 14 Zile
+          </a>
+        </div>
+
+        <!-- Solo SRL Plan -->
+        <div class="bg-bg-base border border-border-subtle rounded-2xl p-8 flex flex-col justify-between">
+          <div>
+            <h3 class="font-mono font-bold text-xl text-text-main mb-2">Solo SRL</h3>
+            <p class="text-xs text-text-muted mb-6">Pentru microîntreprinderi de servicii.</p>
+            <div class="mb-6">
+              <span class="font-mono text-4xl font-extrabold text-text-main tabular-nums">189 lei</span>
+              <span class="text-text-muted text-xs font-mono"> / lună</span>
+            </div>
+            <ul class="space-y-3 font-sans text-xs text-text-main mb-8">
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Contabilitate completă SRL Micro</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Calcul dividende & CASS asociat</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Salarizare 1 angajat inclusă</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Verificare lunară de către contabil CECCAR</span>
+              </li>
+            </ul>
+          </div>
+          <a
+            href="/pricing/"
+            class="w-full text-center bg-bg-surface hover:bg-bg-surface-hover border border-border-subtle text-text-main font-mono font-bold text-xs uppercase py-3.5 rounded-xl transition-all"
+          >
+            Alege Planul SRL
+          </a>
+        </div>
+
+        <!-- Single Return Plan -->
+        <div class="bg-bg-base border border-border-subtle rounded-2xl p-8 flex flex-col justify-between">
+          <div>
+            <h3 class="font-mono font-bold text-xl text-text-main mb-2">Depunere Unică</h3>
+            <p class="text-xs text-text-muted mb-6">Plată unică pentru Formularul 212.</p>
+            <div class="mb-6">
+              <span class="font-mono text-4xl font-extrabold text-text-main tabular-nums">349 lei</span>
+              <span class="text-text-muted text-xs font-mono"> / an</span>
+            </div>
+            <ul class="space-y-3 font-sans text-xs text-text-main mb-8">
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Revizuire completă a veniturilor 2024/2025</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Calcul optimizat CASS și CAS</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Depunere electronică garantată la ANAF</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-accent-lime shrink-0" aria-hidden="true" />
+                <span>Dovadă de depunere recipisă oficială</span>
+              </li>
+            </ul>
+          </div>
+          <a
+            href="/pricing/"
+            class="w-full text-center bg-bg-surface hover:bg-bg-surface-hover border border-border-subtle text-text-main font-mono font-bold text-xs uppercase py-3.5 rounded-xl transition-all"
+          >
+            Depune Declarația
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 7: PROOF & WHO'S BEHIND IT -->
+  <section class="py-16 md:py-24 bg-bg-base border-b border-border-subtle">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-lime block mb-2">
+            [ CINE SUNTEM ]
+          </span>
+          <h2 class="font-mono font-bold text-3xl md:text-4xl text-text-main mb-4">
+            Construit de un fost auditor ANAF și un programator care a plătit amenzi degeaba.
+          </h2>
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            `ro.tax` a apărut după ce Radu Popa (co-fondator și senior engineer) a primit o amendă neașteptată de <span class="font-mono tabular-nums text-text-main">2.400 RON</span> de la ANAF în 2023 din cauza interpretării greșite a pragului de CASS de către o firmă tradițională de contabilitate.
+          </p>
+          <p class="text-text-muted text-sm leading-relaxed mb-6">
+            S-a asociat cu Elena Dumitrescu, CPA cu <span class="font-mono tabular-nums text-text-main">11 ani</span> de experiență în auditul persoanelor fizice autorizate la ANAF, pentru a crea un soft hiper-precis care nu lasă loc de greșeli.
+          </p>
+          <a
+            href="/about/"
+            class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-accent-lime hover:underline"
+          >
+            Citește povestea noastră completă
+            <ArrowRight class="w-4 h-4" aria-hidden="true" />
+          </a>
+        </div>
+
+        <div class="bg-bg-surface border border-border-subtle rounded-2xl p-8 space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-accent-lime/10 border border-accent-lime/30 rounded-xl flex items-center justify-center font-mono font-bold text-accent-lime shrink-0">
+              ED
+            </div>
+            <div>
+              <h4 class="font-mono font-bold text-text-main text-base">Elena Dumitrescu, CPA</h4>
+              <span class="text-xs text-text-muted font-mono block">Co-fondator & Auditor Head</span>
+              <p class="text-xs text-text-muted mt-2">
+                "Codul Fiscal din România nu trebuie să fie o taină mistică. Fiecare articol are o logică matematică clară."
+              </p>
+            </div>
+          </div>
+
+          <div class="border-t border-border-subtle pt-6 flex items-start gap-4">
+            <div class="w-12 h-12 bg-accent-lime/10 border border-accent-lime/30 rounded-xl flex items-center justify-center font-mono font-bold text-accent-lime shrink-0">
+              RP
+            </div>
+            <div>
+              <h4 class="font-mono font-bold text-text-main text-base">Radu Popa</h4>
+              <span class="text-xs text-text-muted font-mono block">Co-fondator & Lead Architect</span>
+              <p class="text-xs text-text-muted mt-2">
+                "Am scris ro.tax pentru că m-am săturat să plătesc contabili care nu-mi explicau de ce trebuia să dau bani în plus la stat."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 8: FAQ & FINAL CTA -->
+  <section class="py-16 md:py-24 bg-bg-surface">
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <div class="max-w-2xl mx-auto text-center mb-12">
+        <h2 class="font-mono font-bold text-3xl text-text-main mb-3">
+          Întrebări frecvente despre taxele pe 2025
+        </h2>
+        <p class="text-text-muted text-sm">
+          Răspunsuri clare la cele mai întâlnite nedumeriri ale freelancerilor.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4 mb-16">
+        <details class="bg-bg-base border border-border-subtle rounded-xl p-5 group">
+          <summary class="font-mono font-bold text-sm text-text-main cursor-pointer flex items-center justify-between">
+            Cât este salariul minim utilizat pentru plafoanele CASS și CAS în 2025?
+            <span class="text-accent-lime group-open:rotate-180 transition-transform">↓</span>
+          </summary>
+          <p class="text-xs text-text-muted leading-relaxed mt-3 font-sans">
+            Salariul minim brut garantat în plată pentru anul 2025 este de <strong>4.050 RON</strong>, aprobat prin HG 1506/2024. Astfel, pragul de 6 salarii este 24.300 lei, cel de 12 salarii este 48.600 lei, iar cel de 24 salarii este 97.200 lei.
+          </p>
+        </details>
+
+        <details class="bg-bg-base border border-border-subtle rounded-xl p-5 group">
+          <summary class="font-mono font-bold text-sm text-text-main cursor-pointer flex items-center justify-between">
+            Care este termenul limită pentru depunerea Declarației Unice în 2025?
+            <span class="text-accent-lime group-open:rotate-180 transition-transform">↓</span>
+          </summary>
+          <p class="text-xs text-text-muted leading-relaxed mt-3 font-sans">
+            Termenul legal de depunere a Formularului 212 și de plată a impozitului pe venit și a contribuțiilor sociale pentru anul 2024 este data de <strong>25 Mai 2025</strong>.
+          </p>
+        </details>
+
+        <details class="bg-bg-base border border-border-subtle rounded-xl p-5 group">
+          <summary class="font-mono font-bold text-sm text-text-main cursor-pointer flex items-center justify-between">
+            Cum funcționează e-Factura direct prin ro.tax?
+            <span class="text-accent-lime group-open:rotate-180 transition-transform">↓</span>
+          </summary>
+          <p class="text-xs text-text-muted leading-relaxed mt-3 font-sans">
+            Aplicația ro.tax se conectează securizat la Spațiul Privat Virtual (SPV) prin API-ul oficial ANAF. În momentul în care emiți o factură din platformă, fișierul XML UBL 2.1 este generat și trimis automat în e-Factura în mai puțin de 5 secunde.
+          </p>
+        </details>
+      </div>
+
+      <!-- Final CTA Box -->
+      <div class="bg-gradient-to-r from-bg-base to-bg-surface border-2 border-accent-lime rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto">
+        <h3 class="font-mono font-black text-3xl md:text-4xl text-text-main mb-4">
+          Gata să renunți la dosarul cu șină și costume?
+        </h3>
+        <p class="text-text-muted text-sm max-w-xl mx-auto mb-8 leading-relaxed">
+          Calculează-ți taxele gratuit chiar acum sau activează abonamentul PFA Complete pentru a scăpa definitiv de stresul ANAF.
+        </p>
+        <a
+          href="/estimator/"
+          class="inline-flex items-center gap-2 bg-accent-lime hover:bg-accent-lime-hover text-bg-base font-mono font-bold text-sm uppercase px-8 py-4 rounded-xl transition-all shadow-xl"
+        >
+          Deschide Calculatorul Fiscal 2025
+          <ArrowRight class="w-4 h-4" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -12,7 +12,7 @@ export default defineConfig({
   // The canonical origin of the production site. Everything SEO-related
   // (canonicals, Open Graph URLs, sitemap, robots.txt, RSS) derives from this,
   // so it is the single most important value to change for a new project.
-  site: "https://tiny-jackal.cloudvent.net/",
+  site: "https://ro.tax/",
 
   // Emit /about/index.html -> URLs always end in a trailing slash. `canonical`
   // in src/lib/seo/meta.ts is built to match, so there is exactly one URL per
@@ -64,22 +64,22 @@ export default defineConfig({
       PUBLIC_OO_APPLICATION_ID: envField.string({
         context: "client",
         access: "public",
-        default: "astro-starter",
+        default: "ro-tax",
       }),
       PUBLIC_OO_SERVICE: envField.string({
         context: "client",
         access: "public",
-        default: "astro-starter",
+        default: "ro-tax-web",
       }),
       PUBLIC_OO_ENV: envField.string({
         context: "client",
         access: "public",
-        default: "development",
+        default: "production",
       }),
       PUBLIC_OO_VERSION: envField.string({
         context: "client",
         access: "public",
-        default: "0.0.1",
+        default: "1.0.0",
       }),
 
       // --- Org-level: identical across every site in this OpenObserve org --

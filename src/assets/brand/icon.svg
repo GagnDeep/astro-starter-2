@@ -1,16 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
-  <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
-  -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
-  <path
-    d="M256 112 L384 368 H128 Z"
-    fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
-  />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="ro.tax brand mark">
+  <rect width="512" height="512" rx="96" fill="#121316" />
+  <rect x="16" y="16" width="480" height="480" rx="80" fill="none" stroke="#2E3038" stroke-width="12" />
+  <!-- Monospace ro.tax Logo text -->
+  <text x="70" y="270" font-family="'JetBrains Mono', monospace" font-weight="900" font-size="118" fill="#F4F5F7" letter-spacing="-4">ro<tspan fill="#CCFF00">.tax</tspan></text>
+  <!-- Acid Lime Accent Bar -->
+  <rect x="70" y="315" width="372" height="24" rx="6" fill="#CCFF00" />
+  <!-- Minimal Tax Check Tag -->
+  <path d="M370 140 L410 180 L450 120" stroke="#CCFF00" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" fill="none" />
 </svg>

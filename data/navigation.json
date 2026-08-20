@@ -1,36 +1,62 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/favicon.svg",
+    "logo_alt_text": "ro.tax logo",
+    "logo_text": "ro.tax",
     "logo_url": "/",
     "links": [
       {
+        "link": "/estimator/",
+        "text": "Calculator 2025"
+      },
+      {
+        "link": "/deductions/",
+        "text": "Deduceri"
+      },
+      {
+        "link": "/guides/",
+        "text": "Ghiduri Fiscali"
+      },
+      {
+        "link": "/pricing/",
+        "text": "Prețuri"
+      },
+      {
         "link": "/about/",
-        "text": "About"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "text": "Despre Noi"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/favicon.svg",
+    "logo_alt_text": "ro.tax logo",
+    "logo_text": "ro.tax",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "ro.tax Technologies S.R.L. Toate drepturile rezervate.",
     "links": [
       {
+        "link": "/estimator/",
+        "text": "Calculator PFA & SRL"
+      },
+      {
+        "link": "/deductions/",
+        "text": "Ghidul de Deduceeri"
+      },
+      {
+        "link": "/guides/",
+        "text": "Ghiduri Fiscali"
+      },
+      {
         "link": "/blog/",
-        "text": "Blog"
+        "text": "Articole & Știri"
+      },
+      {
+        "link": "/pricing/",
+        "text": "Planuri & Tarif"
+      },
+      {
+        "link": "/about/",
+        "text": "Manifest Anti-Costum"
       },
       {
         "link": "/feed.xml",

@@ -1,26 +1,75 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import { ShieldAlert, FileText, CheckCircle2 } from "@lucide/astro";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-bg-surface border-t border-border-subtle text-text-main mt-16">
+  <div class="mx-auto max-w-6xl px-6 md:px-8 py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <!-- Brand column -->
+      <div class="md:col-span-2 space-y-4">
+        <a href={footer.logo_url} class="inline-block font-mono font-black text-2xl text-text-main">
+          ro<span class="text-accent-lime">.tax</span>
+        </a>
+        <p class="text-xs text-text-muted max-w-sm leading-relaxed">
+          Platforma de taxe fără costume pentru freelanceri, creatori și lucrători independenți din România. Rigurozitate contabilă garantată de fosti auditori ANAF.
+        </p>
+        <div class="flex items-center gap-2 text-xs text-accent-lime font-mono pt-2">
+          <CheckCircle2 class="w-4 h-4" aria-hidden="true" />
+          <span>Actualizat conform Codului Fiscal 2025</span>
+        </div>
+      </div>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <!-- Quick links -->
+      <div>
+        <h4 class="font-mono font-bold text-xs uppercase tracking-wider text-text-muted mb-4">
+          Navigare Rapidă
+        </h4>
+        <ul class="space-y-2.5 font-mono text-xs">
+          {footer.links.slice(0, 4).map((link) => (
+            <li>
+              <a class="text-text-muted hover:text-accent-lime transition-colors" href={link.link}>
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <!-- Resources -->
+      <div>
+        <h4 class="font-mono font-bold text-xs uppercase tracking-wider text-text-muted mb-4">
+          Resurse & Legal
+        </h4>
+        <ul class="space-y-2.5 font-mono text-xs">
+          {footer.links.slice(4).map((link) => (
+            <li>
+              <a class="text-text-muted hover:text-accent-lime transition-colors" href={link.link}>
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Mandatory Banned-Humor Disclaimer Zone -->
+    <div class="border-t border-border-subtle pt-6 mt-6">
+      <div class="p-4 bg-bg-base border border-border-subtle rounded-lg mb-6 flex items-start gap-3">
+        <ShieldAlert class="w-5 h-5 text-text-muted shrink-0 mt-0.5" aria-hidden="true" />
+        <p class="text-[11px] text-text-muted leading-relaxed font-sans">
+          <strong>Declinare a responsabilității legale:</strong> Informațiile fiscale și calculele furnizate pe ro.tax au scop orientativ și sunt actualizate în conformitate cu legislația din România (Codul Fiscal actualizat prin OUG 115/2023, OUG 156/2024 și HG 1506/2024). Depunerea declarațiilor oficiale se efectuează sub consultanță contabilă autorizată CECCAR.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-text-muted">
+        <div>&copy; {new Date().getFullYear()} {footer.copyright}</div>
+        <div class="flex items-center gap-4">
+          <a href="/feed.xml" class="hover:text-accent-lime transition-colors flex items-center gap-1">
+            <FileText class="w-3.5 h-3.5" aria-hidden="true" />
+            RSS Feed
+          </a>
+        </div>
       </div>
     </div>
   </div>
