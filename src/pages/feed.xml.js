@@ -1,18 +1,19 @@
 import site from '../../data/site.json';
-import { getCollection } from 'astro:content';
-
+import { blogData } from '../data/blogData';
 import rss from '@astrojs/rss';
-const posts = await getCollection('blog');
 
 export async function GET() {
+  const baseUrl = 'https://doctorameena.com';
+
   return rss({
     title: site.site_title,
     description: site.description,
-    site: 'https://tiny-jackal.cloudvent.net',
-    items: posts.map((post) => ({
-      link: `/blog/${post.id}`,
-      title: post.data.title,
-      pubDate: post.data.post_hero.date,
+    site: baseUrl,
+    items: blogData.map((post) => ({
+      link: `/blog/${post.slug}/`,
+      title: post.title,
+      pubDate: new Date(post.date),
+      description: post.summary,
     })),
     customData: `<language>en-us</language>`,
   });

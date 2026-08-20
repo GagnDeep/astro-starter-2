@@ -1,0 +1,132 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { conditionsData } from "../../data/conditionsData";
+
+export function getStaticPaths() {
+  return conditionsData.map((condition) => ({
+    params: { slug: condition.slug },
+    props: { condition },
+  }));
+}
+
+const { condition } = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": condition.title,
+  "description": condition.overview,
+  "possibleTreatment": condition.treatmentOptions.map(t => ({
+    "@type": "MedicalTherapy",
+    "name": t.title,
+    "description": t.description
+  }))
+};
+---
+
+<Layout title={condition.title} schemaData={schemaData}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+    <!-- Header Banner -->
+    <div class="space-y-4 border-b border-stone-200 pb-8">
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <a href="/conditions/" class="text-[#2D6A4F] hover:underline font-semibold">← All Conditions</a>
+        <span class="text-stone-300">•</span>
+        <span class="badge-category">{condition.category}</span>
+        <span class="badge-reviewed">Reviewed by {condition.reviewedBy} on {condition.lastReviewed}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#1B4332]">{condition.title}</h1>
+      <p class="text-lg text-stone-600 leading-relaxed">{condition.subtitle}</p>
+    </div>
+
+    <!-- Clinical Overview -->
+    <section class="prose max-w-none space-y-4">
+      <h2 class="text-2xl font-serif font-bold text-[#1B4332]">Clinical Overview</h2>
+      <p class="text-stone-800 text-base leading-relaxed">{condition.overview}</p>
+
+      <div class="bg-[#E8F5E9] p-4 rounded-lg border border-emerald-200 text-xs text-stone-800">
+        <strong class="text-[#1B4332]">Epidemiology & Prevalence:</strong> {condition.epidemiology}
+      </div>
+    </section>
+
+    <!-- Symptoms Checklist -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-serif font-bold text-[#1B4332]">Common Clinical Symptoms</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        {condition.symptoms.map((symptom) => (
+          <div class="bg-white p-3 rounded.lg border border-stone-200 flex items-start gap-2.5">
+            <span class="text-[#2D6A4F] font-bold">✓</span>
+            <span class="text-stone-800 font-medium">{symptom}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Diagnostic Criteria -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-serif font-bold text-[#1B4332]">Diagnostic Criteria & Lab Values</h2>
+      <div class="space-y-3">
+        {condition.diagnosticCriteria.map((item) => (
+          <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm space-y-1">
+            <div class="font-serif font-bold text-sm text-[#1B4332]">{item.label}</div>
+            <p class="text-xs text-stone-700 leading-relaxed">{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Treatment Options -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-serif font-bold text-[#1B4332]">Medical Management & Care Pathways</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {condition.treatmentOptions.map((opt) => (
+          <div class="bg-[#FDFBF7] p-5 rounded-xl border border-stone-200 space-y-2">
+            <h3 class="font-serif font-bold text-base text-[#1B4332]">{opt.title}</h3>
+            <p class="text-xs text-stone-700 leading-relaxed">{opt.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    {condition.faqs.length > 0 && (
+      <section class="space-y-4">
+        <h2 class="text-2xl font-serif font-bold text-[#1B4332]">Patient Questions</h2>
+        <div class="space-y-3">
+          {condition.faqs.map((faq) => (
+            <div class="bg-white p-5 rounded-xl border border-stone-200 space-y-1">
+              <h3 class="font-serif font-bold text-sm text-[#1B4332]">Q: {faq.question}</h3>
+              <p class="text-xs text-stone-700 leading-relaxed">A: {faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Medical Disclaimer -->
+    <div class="disclaimer-box">
+      <strong>Medical Disclaimer:</strong> The diagnostic criteria and management options for {condition.title} are provided strictly for educational purposes. Consult with Dr. Ameena, MD or your primary care physician for individualized testing and diagnosis.
+    </div>
+
+    <!-- References & Citations -->
+    <section class="citations-box space-y-2">
+      <h3 class="text-sm font-serif font-bold text-[#1B4332]">Primary Clinical Guidelines & References:</h3>
+      <ol class="list-decimal pl-5 space-y-1 text-xs text-stone-600">
+        {condition.citations.map((cite) => (
+          <li>{cite}</li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- CTA Card -->
+    <div class="bg-[#1B4332] text-white p-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <h3 class="text-lg font-serif font-bold text-white">Seeking Evaluation for {condition.title}?</h3>
+        <p class="text-xs text-emerald-200">Schedule a 60-minute consultation with Dr. Ameena in Austin, TX.</p>
+      </div>
+      <a href="/booking/" class="btn-accent text-xs whitespace-nowrap">
+        Book Appointment Online
+      </a>
+    </div>
+  </div>
+</Layout>

@@ -1,40 +1,77 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_text": "Dr. Ameena, MD",
+    "logo_subtext": "Endocrinology & Metabolic Care",
     "logo_url": "/",
     "links": [
+      {
+        "link": "/conditions/",
+        "text": "Conditions"
+      },
+      {
+        "link": "/treatments/",
+        "text": "Treatments"
+      },
+      {
+        "link": "/guides/",
+        "text": "Patient Guides"
+      },
+      {
+        "link": "/tools/",
+        "text": "Interactive Tools"
+      },
+      {
+        "link": "/glossary/",
+        "text": "Glossary"
+      },
+      {
+        "link": "/blog/",
+        "text": "Blog"
+      },
       {
         "link": "/about/",
         "text": "About"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "link": "/location/",
+        "text": "Location"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Dr. Ameena Endocrinology & Metabolic Care. All rights reserved.",
     "links": [
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/services/",
+        "text": "Services"
+      },
+      {
+        "link": "/booking/",
+        "text": "Book Consult"
+      },
+      {
+        "link": "/faq/",
+        "text": "FAQs"
+      },
+      {
+        "link": "/location/",
+        "text": "Location & Hours"
       },
       {
         "link": "/feed.xml",
         "text": "RSS Feed"
+      },
+      {
+        "link": "/privacy/",
+        "text": "Privacy Policy"
+      },
+      {
+        "link": "/disclaimer/",
+        "text": "Medical Disclaimer"
+      },
+      {
+        "link": "/terms/",
+        "text": "Terms of Use"
       }
     ]
   }

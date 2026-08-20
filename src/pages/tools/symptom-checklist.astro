@@ -1,0 +1,162 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const categories = [
+  {
+    title: "Thyroid & Energy Symptoms",
+    items: [
+      "Unexplained fatigue or low physical stamina",
+      "Cold intolerance (feeling cold when others are comfortable)",
+      "Heat intolerance or unexpected sweating",
+      "Unintended weight gain or difficulty losing weight",
+      "Unintended rapid weight loss",
+      "Dry skin, hair thinning, or brittle nails",
+      "Constipation or sluggish digestion"
+    ]
+  },
+  {
+    title: "Glycemic & Metabolic Symptoms",
+    items: [
+      "Frequent excessive thirst (polydipsia)",
+      "Frequent urination, especially waking at night",
+      "Postprandial fatigue or energy crashes after meals",
+      "Shakiness, dizziness, or irritability if meals are delayed",
+      "Acanthosis nigricans (dark velvety skin patches on neck/axillae)",
+      "Slow-healing cuts or skin infections"
+    ]
+  },
+  {
+    title: "Hormonal & Reproductive Symptoms",
+    items: [
+      "Irregular, light, or absent menstrual cycles",
+      "Coarse facial or body hair growth (hirsutism)",
+      "Persistent adult facial or chest acne",
+      "Vasomotor hot flashes or severe night sweats",
+      "Decreased libido or erectile difficulties"
+    ]
+  },
+  {
+    title: "Bone & Mineral Health Symptoms",
+    items: [
+      "Height loss over time (> 1 inch)",
+      "History of low-impact bone fracture after age 45",
+      "Recurrent kidney stones",
+      "Persistent bone aches or muscle weakness"
+    ]
+  }
+];
+---
+
+<Layout title="Interactive Endocrine Symptom Checklist">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
+    <div class="space-y-3 border-b border-stone-200 pb-6">
+      <div class="flex items-center gap-2">
+        <span class="badge-reviewed">100% Private / Client-Side Tool</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#1B4332]">Endocrine Symptom Checklist</h1>
+      <p class="text-stone-600 text-sm sm:text-base">
+        Select the symptoms you are experiencing below. Generate a clean summary to print or bring to your consultation with Dr. Ameena.
+      </p>
+    </div>
+
+    <!-- Privacy Banner -->
+    <div class="disclaimer-box text-xs">
+      <strong>🔒 Privacy Guarantee:</strong> This checklist runs entirely inside your browser. Zero health data is collected, saved, or sent to any server.
+    </div>
+
+    <!-- Symptom Category Cards -->
+    <div class="space-y-6">
+      {categories.map((cat, catIdx) => (
+        <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+          <h2 class="text-lg font-serif font-bold text-[#1B4332] border-b border-stone-100 pb-2">{cat.title}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            {cat.items.map((item, itemIdx) => {
+              const id = `symptom-${catIdx}-${itemIdx}`;
+              return (
+                <label for={id} class="flex items-start gap-2.5 p-2.5 rounded bg-[#FDFBF7] border border-stone-200 hover:border-[#2D6A4F] cursor-pointer transition">
+                  <input type="checkbox" id={id} value={item} data-category={cat.title} class="symptom-cb mt-0.5 rounded text-[#2D6A4F] focus:ring-[#2D6A4F]" />
+                  <span class="text-stone-800 font-medium leading-relaxed">{item}</span>
+                </label>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Summary Output Card -->
+    <div class="bg-[#E8F5E9] p-6 rounded-xl border border-emerald-300 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-serif font-bold text-[#1B4332]">Your Symptom Summary</h3>
+        <span id="selected-count" class="badge-category bg-[#2D6A4F] text-white">0 Selected</span>
+      </div>
+
+      <div id="summary-content" class="bg-white p-4 rounded-lg border border-stone-200 text-xs text-stone-700 min-h-[80px]">
+        <em>No symptoms selected yet. Check the boxes above to populate your summary list.</em>
+      </div>
+
+      <div class="flex flex-wrap gap-3 pt-2">
+        <button id="print-btn" class="btn-primary text-xs">
+          🖨️ Print / Save Summary
+        </button>
+        <a href="/booking/" class="btn-accent text-xs">
+          Schedule Consultation with Dr. Ameena
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll(".symptom-cb");
+    const summaryBox = document.getElementById("summary-content");
+    const countBadge = document.getElementById("selected-count");
+    const printBtn = document.getElementById("print-btn");
+
+    function updateSummary() {
+      const selected: { category: string; text: string }[] = [];
+      checkboxes.forEach((cb) => {
+        const input = cb as HTMLInputElement;
+        if (input.checked) {
+          selected.push({
+            category: input.getAttribute("data-category") || "General",
+            text: input.value,
+          });
+        }
+      });
+
+      if (countBadge) countBadge.textContent = `${selected.length} Selected`;
+
+      if (selected.length === 0) {
+        if (summaryBox) {
+          summaryBox.innerHTML = `<em>No symptoms selected yet. Check the boxes above to populate your summary list.</em>`;
+        }
+        return;
+      }
+
+      // Group by category
+      const grouped: { [key: string]: string[] } = {};
+      selected.forEach((s) => {
+        if (!grouped[s.category]) grouped[s.category] = [];
+        grouped[s.category].push(s.text);
+      });
+
+      let html = `<div class="space-y-3"><p class="font-bold text-[#1B4332]">Patient Symptom Checklist Summary (Prepared for Visit):</p>`;
+      for (const cat in grouped) {
+        html += `<div><strong class="text-[#2D6A4F] block mb-1">${cat}:</strong><ul class="list-disc pl-5 space-y-0.5">`;
+        grouped[cat].forEach((item) => {
+          html += `<li>${item}</li>`;
+        });
+        html += `</ul></div>`;
+      }
+      html += `</div>`;
+
+      if (summaryBox) summaryBox.innerHTML = html;
+    }
+
+    checkboxes.forEach((cb) => cb.addEventListener("change", updateSummary));
+
+    printBtn?.addEventListener("click", () => {
+      window.print();
+    });
+  </script>
+</Layout>

@@ -7,37 +7,106 @@ import Footer from "../components/navigation/footer.astro";
 import { SEO } from "astro-seo";
 
 export interface SEOProps {
-  page_description: string | null;
-  featured_image: string | null;
-  featured_image_alt: string | null;
-  canonical_url: string | null;
-  no_index: boolean | null;
-  open_graph_type: string | null;
-  author_twitter_handle: string | null;
+  page_description?: string | null;
+  featured_image?: string | null;
+  featured_image_alt?: string | null;
+  canonical_url?: string | null;
+  no_index?: boolean | null;
+  open_graph_type?: string | null;
+  author_twitter_handle?: string | null;
+  published_time?: string;
+  modified_time?: string;
 }
 
 export interface Props {
   title: string;
   seo?: SEOProps;
+  schemaType?: "Physician" | "MedicalCondition" | "MedicalWebPage" | "FAQPage" | "Article";
+  schemaData?: any;
 }
 
-const { seo, title } = Astro.props;
-const baseUrl = Astro.site?.toString() ?? "";
+const { seo, title, schemaType, schemaData } = Astro.props;
+const baseUrl = Astro.site?.toString() || "https://doctorameena.com";
 
 let pageTitle = "";
 if (!title) {
   pageTitle = site.site_title;
 } else if (Astro.url.pathname === "/") {
-  pageTitle = title;
+  pageTitle = `${site.site_title} | Austin, TX`;
 } else {
   pageTitle = `${title} | ${site.site_title}`;
 }
 
 const description = seo?.page_description ?? site.description;
 const image = seo?.featured_image ?? site.image;
-const imagePath = path.join(baseUrl, image);
+const imagePath = image.startsWith("http") ? image : new URL(image, baseUrl).toString();
 const imageAlt = seo?.featured_image_alt ?? site.image_alt;
-const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl);
+const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl).toString();
+
+// Standard Physician & MedicalClinic JSON-LD Schema
+const defaultClinicSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Physician", "MedicalClinic"],
+  "name": "Dr. Ameena, MD — Endocrinology & Primary Care",
+  "url": baseUrl,
+  "logo": new URL("/favicon.svg", baseUrl).toString(),
+  "image": imagePath,
+  "telephone": "(512) 555-0199",
+  "medicalSpecialty": ["Endocrinology", "InternalMedicine"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1200 Medical Parkway, Suite 400 [NEEDS CONFIRMATION]",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78756",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.3125,
+    "longitude": -97.7431
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "08:00",
+      "closes": "16:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "08:00",
+      "closes": "12:00"
+    }
+  ],
+  "priceRange": "$$"
+};
+
+// Breadcrumb Schema
+const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+const breadcrumbListSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": baseUrl
+    },
+    ...pathSegments.map((segment, index) => {
+      const url = `${baseUrl}/${pathSegments.slice(0, index + 1).join("/")}/`;
+      const name = segment.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+      return {
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": name,
+        "item": url
+      };
+    })
+  ]
+};
 ---
 
 <!doctype html>
@@ -46,17 +115,18 @@ const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="Dr. Ameena Endocrinology Feed" href="/feed.xml" />
     <meta name="generator" content={Astro.generator} />
 
     <SEO
       noindex={seo?.no_index || false}
       title={pageTitle}
       description={description}
-      canonical={canonicalURL.toString()}
+      canonical={canonicalURL}
       openGraph={{
         basic: {
           title: pageTitle,
-          url: baseUrl?.toString(),
+          url: canonicalURL,
           type: seo?.open_graph_type || "website",
           image: imagePath,
         },
@@ -64,24 +134,27 @@ const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl);
         image: { url: imagePath, alt: imageAlt },
       }}
       twitter={{
-        creator: `${seo?.author_twitter_handle || site.twitter_site}`,
-        site: `${site.twitter_site}`,
+        creator: site.twitter_site,
+        site: site.twitter_site,
         card: "summary_large_image",
       }}
     />
+
+    <!-- JSON-LD Structured Data Injection -->
+    <script type="application/ld+json" set:html={JSON.stringify(defaultClinicSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbListSchema)} />
+    {schemaData && (
+      <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+    )}
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen bg-[#FDFBF7] text-[#1C2826] antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:p-3 focus:bg-[#1B4332] focus:text-white focus:rounded">
+      Skip to main content
+    </a>
     <Header />
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
     <Footer />
-    <script>
-      if (window.inEditorMode) {
-        import("../scripts/register-components.ts").catch((error) => {
-          console.warn("Failed to load CloudCannon component registration:", error);
-        });
-      }
-    </script>
   </body>
 </html>

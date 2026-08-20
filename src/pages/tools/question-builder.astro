@@ -1,0 +1,129 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const predefinedQuestions = [
+  { topic: "Thyroid & Nodules", question: "What is my current TSH/Free T4 target, and how does my ultrasound TI-RADS score affect my biopsy timeline?" },
+  { topic: "Thyroid & Medication", question: "Are my morning symptoms related to levothyroxine absorption or timing with coffee/supplements?" },
+  { topic: "Diabetes & CGM", question: "Am I a good candidate for a Continuous Glucose Monitor (CGM) or automated insulin pump?" },
+  { topic: "Prediabetes & Reversal", question: "What specific glycemic and dietary targets should I track over the next 3 months to reverse my A1C?" },
+  { topic: "PCOS & Hormones", question: "How does my insulin resistance relate to my androgen levels, and what are the benefits of Metformin or Spironolactone for my symptoms?" },
+  { topic: "Bone Density & DEXA", question: "What do my lumbar spine and hip DEXA T-scores mean for my 10-year fracture risk, and is medication indicated?" },
+  { topic: "Adrenal & Cortisol", question: "Which specific blood, urine, or salivary tests will help differentiate my stress fatigue from true adrenal dysfunction?" }
+];
+---
+
+<Layout title="Visit Question Builder">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
+    <div class="space-y-3 border-b border-stone-200 pb-6">
+      <span class="badge-reviewed">Visit Preparation Tool</span>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#1B4332]">Appointment Question Builder</h1>
+      <p class="text-stone-600 text-sm sm:text-base">
+        Select or add customized questions to ask during your consultation with Dr. Ameena.
+      </p>
+    </div>
+
+    <!-- Privacy Notice -->
+    <div class="disclaimer-box text-xs">
+      <strong>🔒 Private Local Tool:</strong> Your custom questions are processed entirely in your web browser. Nothing is saved or shared.
+    </div>
+
+    <!-- Predefined Questions Selector -->
+    <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-4">
+      <h2 class="text-lg font-serif font-bold text-[#1B4332]">1. Select Recommended Questions by Topic</h2>
+      <div class="space-y-2.5 text-xs">
+        {predefinedQuestions.map((qItem, idx) => (
+          <label for={`q-${idx}`} class="flex items-start gap-3 p-3 rounded bg-[#FDFBF7] border border-stone-200 hover:border-[#2D6A4F] cursor-pointer transition">
+            <input type="checkbox" id={`q-${idx}`} value={qItem.question} data-topic={qItem.topic} class="q-cb mt-0.5 rounded text-[#2D6A4F] focus:ring-[#2D6A4F]" />
+            <div>
+              <span class="badge-category text-[10px] mb-1">{qItem.topic}</span>
+              <p class="text-stone-800 font-medium leading-relaxed">{qItem.question}</p>
+            </div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Add Custom Question Form -->
+    <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm space-y-3 text-xs">
+      <h2 class="text-lg font-serif font-bold text-[#1B4332]">2. Add a Custom Question</h2>
+      <div class="flex gap-2">
+        <input type="text" id="custom-q-input" placeholder="Type your personal question here..." class="flex-1 p-2.5 border border-stone-300 rounded focus:ring-2 focus:ring-[#2D6A4F] focus:outline-none" />
+        <button id="add-custom-btn" class="btn-primary text-xs whitespace-nowrap">Add Question</button>
+      </div>
+    </div>
+
+    <!-- Output Worksheet -->
+    <div class="bg-[#E8F5E9] p-6 rounded-xl border border-emerald-300 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-serif font-bold text-[#1B4332]">Your Visit Question List</h3>
+        <span id="question-count" class="badge-category bg-[#2D6A4F] text-white">0 Questions</span>
+      </div>
+
+      <div id="q-output-box" class="bg-white p-4 rounded-lg border border-stone-200 text-xs text-stone-700 min-h-[80px]">
+        <em>No questions selected yet. Check the boxes or add a question above.</em>
+      </div>
+
+      <div class="flex flex-wrap gap-3 pt-2">
+        <button id="print-q-btn" class="btn-primary text-xs">
+          🖨️ Print Question List
+        </button>
+        <a href="/booking/" class="btn-accent text-xs">
+          Book Consultation
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll(".q-cb");
+    const customInput = document.getElementById("custom-q-input") as HTMLInputElement;
+    const addCustomBtn = document.getElementById("add-custom-btn");
+    const outputBox = document.getElementById("q-output-box");
+    const countBadge = document.getElementById("question-count");
+    const printBtn = document.getElementById("print-q-btn");
+
+    let customQuestions: string[] = [];
+
+    function renderQuestions() {
+      const selected: string[] = [];
+      checkboxes.forEach((cb) => {
+        const input = cb as HTMLInputElement;
+        if (input.checked) {
+          selected.push(input.value);
+        }
+      });
+
+      const total = [...selected, ...customQuestions];
+
+      if (countBadge) countBadge.textContent = `${total.length} Questions`;
+
+      if (total.length === 0) {
+        if (outputBox) outputBox.innerHTML = `<em>No questions selected yet. Check the boxes or add a question above.</em>`;
+        return;
+      }
+
+      let html = `<ol class="list-decimal pl-5 space-y-2 font-medium text-stone-800">`;
+      total.forEach((q) => {
+        html += `<li class="leading-relaxed">${q}</li>`;
+      });
+      html += `</ol>`;
+
+      if (outputBox) outputBox.innerHTML = html;
+    }
+
+    checkboxes.forEach((cb) => cb.addEventListener("change", renderQuestions));
+
+    addCustomBtn?.addEventListener("click", () => {
+      const val = customInput?.value.trim();
+      if (val) {
+        customQuestions.push(val);
+        customInput.value = "";
+        renderQuestions();
+      }
+    });
+
+    printBtn?.addEventListener("click", () => {
+      window.print();
+    });
+  </script>
+</Layout>

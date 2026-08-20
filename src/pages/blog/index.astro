@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { blogData } from "../../data/blogData";
+---
+
+<Layout title="Evidence-Based Endocrinology Blog">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+    <div class="space-y-3 border-b border-stone-200 pb-6">
+      <span class="badge-reviewed">Clinical Articles & Insights</span>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#1B4332]">12 Evidence-Based Endocrinology Articles</h1>
+      <p class="text-stone-600 text-sm sm:text-base max-w-3xl">
+        In-depth clinical reviews, guideline updates, and physiological explanations written and reviewed by Dr. Ameena, MD.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {blogData.map((post) => (
+        <a href={`/blog/${post.slug}/`} class="bg-white p-6 rounded-xl border border-stone-200 hover:border-[#2D6A4F] hover:shadow-md transition space-y-4 flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs text-stone-500">
+              <span class="badge-category">{post.category}</span>
+              <span>{post.readTime}</span>
+            </div>
+            <h2 class="text-lg font-serif font-bold text-[#1B4332] group-hover:text-[#2D6A4F] transition">{post.title}</h2>
+            <p class="text-xs text-stone-600 leading-relaxed">{post.summary}</p>
+          </div>
+          <div class="pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
+            <span class="text-stone-500 font-medium">{post.date}</span>
+            <span class="text-[#2D6A4F] font-semibold group-hover:underline">Read Article →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

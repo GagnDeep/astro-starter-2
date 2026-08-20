@@ -1,26 +1,86 @@
 ---
-import { footer } from "../../../data/navigation.json";
+import navigation from "../../../data/navigation.json";
+import site from "../../../data/site.json";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-[#1B4332] text-white pt-12 pb-8 border-t-4 border-[#2D6A4F]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-emerald-800">
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
+      <!-- Practice & NAP Block -->
+      <div class="space-y-3">
+        <div class="font-serif text-xl font-bold text-white">Dr. Ameena, MD</div>
+        <p class="text-xs text-emerald-200">Board Certified Endocrinologist & Internal Medicine Specialist <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-semibold ml-1">[NEEDS CONFIRMATION]</span></p>
+
+        <div class="text-xs text-emerald-100 space-y-1.5 pt-2">
+          <p class="flex items-start gap-1.5">
+            <span>📍</span>
+            <span>1200 Medical Parkway, Suite 400<br/>Austin, TX 78756 <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-semibold">[NEEDS CONFIRMATION]</span></span>
+          </p>
+          <p class="flex items-center gap-1.5">
+            <span>📞</span>
+            <span>(512) 555-0199 <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-semibold">[NEEDS CONFIRMATION]</span></span>
+          </p>
+          <p class="flex items-center gap-1.5">
+            <span>📠</span>
+            <span>Fax: (512) 555-0190 <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-semibold">[NEEDS CONFIRMATION]</span></span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Navigation -->
+      <div>
+        <div class="font-serif text-base font-semibold text-amber-200 mb-3">Clinical Care</div>
+        <ul class="space-y-2 text-xs text-emerald-100">
+          <li><a href="/conditions/" class="hover:text-amber-300 transition">All 18 Conditions Handled</a></li>
+          <li><a href="/treatments/" class="hover:text-amber-300 transition">Treatments & Procedures</a></li>
+          <li><a href="/services/" class="hover:text-amber-300 transition">Clinical Services Overview</a></li>
+          <li><a href="/booking/" class="hover:text-amber-300 transition">Book First Appointment</a></li>
+          <li><a href="/location/" class="hover:text-amber-300 transition">Location & Directions</a></li>
+        </ul>
+      </div>
+
+      <!-- Patient Resources -->
+      <div>
+        <div class="font-serif text-base font-semibold text-amber-200 mb-3">Patient Resources</div>
+        <ul class="space-y-2 text-xs text-emerald-100">
+          <li><a href="/guides/" class="hover:text-amber-300 transition">12 Patient Care Guides</a></li>
+          <li><a href="/tools/symptom-checklist/" class="hover:text-amber-300 transition">Symptom Checklist Tool</a></li>
+          <li><a href="/tools/question-builder/" class="hover:text-amber-300 transition">Appointment Question Builder</a></li>
+          <li><a href="/tools/insurance-checker/" class="hover:text-amber-300 transition">Insurance Panel Checker</a></li>
+          <li><a href="/glossary/" class="hover:text-amber-300 transition">25-Term Medical Glossary</a></li>
+          <li><a href="/blog/" class="hover:text-amber-300 transition">Evidence-Based Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Practice Hours & Privacy -->
+      <div class="space-y-3">
+        <div class="font-serif text-base font-semibold text-amber-200 mb-2">Office Hours <span class="bg-amber-100 text-amber-900 text-[10px] px-1 rounded font-semibold">[NEEDS CONFIRMATION]</span></div>
+        <div class="text-xs text-emerald-100 space-y-1">
+          <p><strong class="text-white">Mon–Thu:</strong> 8:00 AM – 4:30 PM</p>
+          <p><strong class="text-white">Friday:</strong> 8:00 AM – 12:00 PM</p>
+          <p><strong class="text-white">Sat–Sun:</strong> Closed</p>
+        </div>
+        <div class="pt-2">
+          <a href="/booking/" class="btn-accent text-xs py-2 px-3 inline-block">Request Appointment</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIPAA & Medical Disclaimer Box -->
+    <div class="my-6 p-4 rounded bg-[#143326] border border-emerald-800 text-xs text-emerald-200 leading-relaxed">
+      <p class="font-semibold text-amber-200 mb-1">⚕️ Important Medical & Privacy Disclaimer:</p>
+      <p>{site.disclaimer}</p>
+      <p class="mt-1 text-emerald-300">All interactive patient tools on doctorameena.com run locally in your web browser. No protected health information (PHI) is collected, transmitted, or stored on our servers.</p>
+    </div>
+
+    <!-- Copyright & Legal Links -->
+    <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-emerald-300 pt-4 gap-2">
+      <p>© {new Date().getFullYear()} {navigation.footer.copyright}</p>
+      <div class="flex flex-wrap gap-4">
+        {navigation.footer.links.map((item) => (
+          <a href={item.link} class="hover:text-amber-300 transition">{item.text}</a>
         ))}
-      </ul>
-
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
       </div>
     </div>
   </div>

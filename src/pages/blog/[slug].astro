@@ -1,22 +1,77 @@
 ---
-import PostLayout from "../../layouts/Post.astro";
-import { getCollection, getEntry, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { blogData } from "../../data/blogData";
 
-export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({ params: { slug: post.id } }));
+export function getStaticPaths() {
+  return blogData.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
-if (!Astro.params.slug) {
-  throw new Error("Post slug is undefined");
-}
-const post = await getEntry("blog", Astro.params.slug);
-if (!post) {
-  throw new Error("Failed to get post with slug: " + Astro.params.slug);
-}
-const { Content } = await render(post);
+const { post } = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": post.summary,
+  "author": {
+    "@type": "Person",
+    "name": post.author
+  },
+  "datePublished": post.date
+};
 ---
 
-<PostLayout frontmatter={post.data} body={post.body}>
-  <Content />
-</PostLayout>
+<Layout title={post.title} schemaData={schemaData}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+    <div class="space-y-4 border-b border-stone-200 pb-8">
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <a href="/blog/" class="text-[#2D6A4F] hover:underline font-semibold">← All Clinical Blog Posts</a>
+        <span class="text-stone-300">•</span>
+        <span class="badge-category">{post.category}</span>
+        <span class="badge-reviewed">Medically Reviewed by {post.author} on {post.date}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#1B4332]">{post.title}</h1>
+      <p class="text-lg text-stone-600 leading-relaxed">{post.subtitle}</p>
+
+      <div class="text-xs text-stone-500 font-medium">
+        <span>By {post.author}</span> • <span>{post.readTime}</span>
+      </div>
+    </div>
+
+    <!-- Summary Callout -->
+    <div class="bg-[#E8F5E9] p-5 rounded-xl border border-emerald-200 text-xs sm:text-sm text-stone-800 leading-relaxed font-medium">
+      <strong class="text-[#1B4332] block mb-1 text-sm font-serif">Executive Clinical Summary:</strong>
+      {post.summary}
+    </div>
+
+    <!-- Article Body -->
+    <div class="prose max-w-none text-stone-800 space-y-6" set:html={post.contentHtml} />
+
+    <div class="disclaimer-box">
+      <strong>Medical Disclaimer:</strong> This article is published for educational and reference purposes only and does not replace direct medical advice.
+    </div>
+
+    <section class="citations-box space-y-2">
+      <h3 class="text-sm font-serif font-bold text-[#1B4332]">Peer-Reviewed References & Clinical Sources:</h3>
+      <ol class="list-decimal pl-5 space-y-1 text-xs text-stone-600">
+        {post.citations.map((cite) => (
+          <li>{cite}</li>
+        ))}
+      </ol>
+    </section>
+
+    <div class="bg-[#1B4332] text-white p-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <h3 class="text-lg font-serif font-bold text-white">Have Questions About Your Endocrine Health?</h3>
+        <p class="text-xs text-emerald-200">Schedule an evidence-led consultation with Dr. Ameena in Austin, TX.</p>
+      </div>
+      <a href="/booking/" class="btn-accent text-xs whitespace-nowrap">
+        Book Consultation Online
+      </a>
+    </div>
+  </article>
+</Layout>
