@@ -1,0 +1,61 @@
+---
+import PageLayout from "../layouts/Page.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+import site from "../../data/site.json";
+
+const frontmatter = {
+  title: "Natural dog treat subscription",
+  seo: {
+    page_description: site.description,
+  }
+};
+---
+
+<PageLayout frontmatter={frontmatter}>
+  <!-- Hero (Problem-First) -->
+  <section class="bg-[var(--color-bg-base)] py-20 px-4 text-center border-b border-[var(--color-border-light)]">
+    <div class="max-w-4xl mx-auto space-y-6">
+      <h1 class="text-5xl font-bold text-[var(--color-text-main)] font-sans">Stop guessing what's making your dog sick.</h1>
+      <p class="text-xl text-[var(--color-text-muted)] max-w-2xl mx-auto leading-relaxed">
+        The hyper-transparent, single-ingredient focused subscription box for dogs with sensitive stomachs and mindful owners. No fillers, no toys.
+      </p>
+      <div class="max-w-md mx-auto pt-8">
+        <CaptureForm form="waitlist" submitLabel="Get on the Waitlist" />
+      </div>
+    </div>
+  </section>
+
+  <!-- The 10% Rule Calculator Teaser -->
+  <section class="py-16 px-4 bg-white border-b border-[var(--color-border-light)]">
+    <div class="max-w-4xl mx-auto text-center space-y-6">
+      <h2 class="text-3xl font-bold font-serif text-[var(--color-text-main)]">Are you overfeeding treats?</h2>
+      <p class="text-lg text-[var(--color-text-muted)]">
+        AAFCO guidelines state treats should not exceed 10% of daily caloric intake.
+      </p>
+      <a href="/tools/calorie-calculator" class="inline-block bg-[var(--color-primary)] text-white px-6 py-3 rounded font-medium hover:bg-[var(--color-primary-hover)] transition-colors">
+        Use our Calorie Calculator
+      </a>
+    </div>
+  </section>
+
+  <!-- Ingredient Transparency Grid -->
+  <section class="py-16 px-4 bg-[var(--color-bg-base)]">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center font-serif text-[var(--color-text-main)] mb-12">What's actually in our box?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="p-6 bg-white rounded border border-[var(--color-border-light)] shadow-sm">
+          <h3 class="font-bold text-xl mb-2"><a href="/ingredients/beef-liver">100% Beef Liver</a></h3>
+          <p class="text-[var(--color-text-muted)]">Air-dried, single ingredient. Rich in Vitamin A and iron.</p>
+        </div>
+        <div class="p-6 bg-white rounded border border-[var(--color-border-light)] shadow-sm">
+          <h3 class="font-bold text-xl mb-2"><a href="/ingredients/sweet-potato">Sweet Potato</a></h3>
+          <p class="text-[var(--color-text-muted)]">Dehydrated slices for a high-fiber, low-fat chew.</p>
+        </div>
+        <div class="p-6 bg-white rounded border border-[var(--color-border-light)] shadow-sm">
+          <h3 class="font-bold text-xl mb-2"><a href="/ingredients/salmon-skin">Salmon Skin</a></h3>
+          <p class="text-[var(--color-text-muted)]">Packed with Omega-3s for coat health and joint support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

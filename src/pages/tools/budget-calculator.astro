@@ -1,0 +1,87 @@
+---
+import PageLayout from "../../layouts/Page.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const frontmatter = {
+  title: "Dog Treat Budget Calculator",
+  seo: {
+    page_description: "Calculate how much you spend on treats monthly versus the cost of a curated, healthy box.",
+  }
+};
+---
+<PageLayout frontmatter={frontmatter}>
+  <section class="max-w-4xl mx-auto py-16 px-4">
+    <h1 class="text-4xl font-bold font-serif mb-6 text-[var(--color-text-main)]">Dog Treat Budget Calculator</h1>
+    <p class="text-lg text-[var(--color-text-muted)] mb-8">
+      Are you overspending on filler treats that make your dog sick? Compare your retail spend against our single-ingredient subscription box.
+    </p>
+
+    <div class="bg-[var(--color-bg-base)] p-6 rounded border border-[var(--color-border-light)] mb-12">
+      <!-- No JS Fallback -->
+      <noscript>
+        <div class="prose max-w-none">
+          <h3>How to compare manually:</h3>
+          <p>Add up all the treats you buy in a month. Our subscription boxes start at $35/month for high-quality, dense nutrition.</p>
+        </div>
+      </noscript>
+      <form id="budget-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="retail_cost">Average spend per bag of treats ($):</label>
+          <input type="number" id="retail_cost" required class="w-full border border-[var(--color-border-light)] px-3 py-2 rounded focus:ring-1 focus:ring-[var(--color-primary)]" min="1" step="0.5" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="bags_per_month">Bags bought per month:</label>
+          <input type="number" id="bags_per_month" required class="w-full border border-[var(--color-border-light)] px-3 py-2 rounded focus:ring-1 focus:ring-[var(--color-primary)]" min="1" />
+        </div>
+        <button type="submit" class="bg-[var(--color-primary)] text-white px-6 py-2 rounded hover:bg-[var(--color-primary-hover)] font-medium">Calculate Spend</button>
+      </form>
+      <div id="budget-result" class="hidden mt-8 p-4 bg-white border border-[var(--color-border-light)] rounded" aria-live="polite">
+        <h3 class="text-xl font-bold mb-2">Results</h3>
+        <p>Your Current Monthly Spend: $<span id="res-spend" class="font-bold"></span></p>
+        <p class="mt-4">DogSnacker Standard Box: <span class="font-bold text-[var(--color-primary)]">$35.00/month</span></p>
+        <p id="res-diff-text" class="font-bold mt-2"></p>
+      </div>
+    </div>
+
+    <!-- Capture Integration -->
+    <div class="bg-gray-100 p-8 rounded text-center mt-12">
+      <h2 class="text-2xl font-bold font-serif mb-4">Ready to upgrade their treats?</h2>
+      <CaptureForm form="waitlist" submitLabel="Get Your First Box" class="max-w-md mx-auto" />
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  const form = document.getElementById('budget-form');
+  const resultDiv = document.getElementById('budget-result');
+  const resSpend = document.getElementById('res-spend');
+  const resDiffText = document.getElementById('res-diff-text');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cost = parseFloat((document.getElementById('retail_cost') as HTMLInputElement).value);
+      const bags = parseFloat((document.getElementById('bags_per_month') as HTMLInputElement).value);
+
+      if (!cost || !bags) return;
+
+      const total = cost * bags;
+      const subPrice = 35.00;
+      const diff = total - subPrice;
+
+      if (resSpend && resDiffText && resultDiv) {
+        resSpend.textContent = total.toFixed(2);
+
+        if (diff > 0) {
+          resDiffText.textContent = `You could save $${diff.toFixed(2)} per month while getting higher quality treats!`;
+          resDiffText.className = "font-bold mt-2 text-[var(--color-primary)]";
+        } else {
+          resDiffText.textContent = `For just $${Math.abs(diff).toFixed(2)} more, you could guarantee zero fillers and absolute transparency.`;
+          resDiffText.className = "font-bold mt-2 text-[var(--color-secondary)]";
+        }
+
+        resultDiv.classList.remove('hidden');
+      }
+    });
+  }
+</script>
