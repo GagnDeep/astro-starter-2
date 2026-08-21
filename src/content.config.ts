@@ -50,7 +50,37 @@ const pagesCollection = defineCollection({
   schema: z.union([paginatedCollectionSchema, pageSchema]),
 });
 
+const toolsCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx,astro}', base: "./src/content/tools" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const glossaryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string(),
+    definition: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const referenceCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/reference" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   pages: pagesCollection,
+  tools: toolsCollection,
+  glossary: glossaryCollection,
+  reference: referenceCollection,
 };

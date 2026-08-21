@@ -1,0 +1,26 @@
+---
+import PageLayout from "../../layouts/Page.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("glossary");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+  }));
+}
+
+if (!Astro.params.slug) {
+  throw new Error("Slug is undefined");
+}
+const entry = await getEntry("glossary", Astro.params.slug);
+if (!entry) {
+  throw new Error("Failed to get entry with slug: " + Astro.params.slug);
+}
+const { Content } = await render(entry);
+---
+
+<PageLayout frontmatter={entry.data}>
+  <article class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8 prose prose-lg prose-slate">
+    <Content />
+  </article>
+</PageLayout>

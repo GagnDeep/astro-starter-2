@@ -1,8 +1,18 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
 ---
 
-<footer class="bg-gray-800 text-white">
+<footer class="bg-primary text-white">
+  <div class="mx-auto max-w-6xl px-8 py-12 border-b border-white/20 mb-8">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="text-center sm:text-left">
+        <h3 class="text-xl font-bold font-heading mb-2">Gut Health Weekly</h3>
+        <p class="text-gray-300">Join 50,000+ others getting pragmatic gut health tips every Sunday.</p>
+      </div>
+      <NewsletterForm form="newsletter" submitLabel="Subscribe" class="w-full sm:w-auto" />
+    </div>
+  </div>
   <div class="mx-auto max-w-6xl px-8 py-12">
     <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
       <a class="flex justify-center sm:justify-start" href={footer.logo_url}>

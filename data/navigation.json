@@ -1,12 +1,20 @@
 {
   "header": {
     "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Digestine logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/compare/",
+        "text": "Compare"
+      },
+      {
+        "link": "/tools/",
+        "text": "Tools"
+      },
+      {
+        "link": "/learn/",
+        "text": "Learn"
       },
       {
         "link": "/blog/",
@@ -15,30 +23,30 @@
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
     "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Digestine logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Digestine. All rights reserved.",
     "links": [
       {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/about/",
+        "text": "About"
+      },
+      {
+        "link": "/glossary/",
+        "text": "Glossary"
+      },
+      {
+        "link": "/ingredients/",
+        "text": "Ingredients"
       },
       {
         "link": "/feed.xml",
