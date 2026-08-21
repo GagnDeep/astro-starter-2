@@ -1,16 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
-  <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
-  -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
-  <path
-    d="M256 112 L384 368 H128 Z"
-    fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
-  />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Solid teal background -->
+  <rect width="512" height="512" fill="#0f766e"/>
+
+  <!-- "U" shape in white -->
+  <path d="M156 128V284C156 339.228 200.772 384 256 384C311.228 384 356 339.228 356 284V128"
+        stroke="white"
+        stroke-width="56"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- A central document / eye motif -->
+  <circle cx="256" cy="284" r="28" fill="white"/>
 </svg>
