@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
-  "lang": "en",
-  "locale": "en_US",
-  "twitter_site": "",
+  "site_title": "uConvertDocument",
+  "description": "The fastest, completely free document format converter. Convert PDF, DOCX, XLSX, and more instantly with no limits or signups.",
+  "tagline": "Convert Documents Instantly. 100% Free.",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "uConvertDocument Logo",
+  "theme_color": "#2563EB",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "uConvertDocument",
+    "logo": "/images/og/og-default.png",
     "same_as": []
-  }
+  },
+  "locale": "en_US",
+  "lang": "en",
+  "default_author": "uConvertDocument Team",
+  "twitter_site": "@uConvertDoc"
 }

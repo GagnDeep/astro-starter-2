@@ -22,7 +22,7 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
       <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Contact</h1>
       <p class="mb-10 text-lg text-gray-600">Tell us what you need and we'll get back to you.</p>
 
-      <CaptureForm form={capture.forms.contact} submitLabel="Send message">
+      <CaptureForm formLabel={capture.forms.contact} submitLabel="Send message">
         <div>
           <label for="name" class={label}>Name</label>
           <input id="name" name="name" autocomplete="name" required class={field} />

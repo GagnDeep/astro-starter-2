@@ -16,7 +16,7 @@ import { actionUrl } from "../../lib/capture";
 
 interface Props {
   /** Form label — how these submissions are grouped in the dashboard. */
-  form?: string;
+  formLabel?: string;
   /** Submit button text. */
   submitLabel?: string;
   /** Inline message shown after a successful JavaScript submission. */
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const {
-  form = capture.forms.contact,
+  formLabel = capture.forms.contact,
   submitLabel = "Send",
   successMessage = "Thanks — we'll be in touch.",
   class: className = "",
@@ -40,10 +40,10 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
 ---
 
 <form
-  data-capture={form}
+  data-capture={formLabel}
   data-capture-success={successMessage}
   method="POST"
-  action={actionUrl(form)}
+  action={actionUrl(formLabel)}
   class={`space-y-4 ${className}`}
 >
   <input type="hidden" name="key" value={capture.publicKey} />
@@ -78,13 +78,6 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
       <textarea id="message" name="message" rows="5" class={field}></textarea>
     </div>
   </slot>
-
-  <button
-    type="submit"
-    class="rounded bg-blue-600 px-5 py-2.5 font-medium text-white hover:bg-blue-700 disabled:opacity-60"
-  >
-    {submitLabel}
-  </button>
 
   <p
     data-capture-status

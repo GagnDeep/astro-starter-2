@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+---
+
+<Layout
+  title="Home" seo={{
+    page_description:
+      "Convert Documents Instantly. 100% Free. No limits, no watermarks, no signups.",
+  }}
+>
+  <div class="container mx-auto px-4 py-16 text-center">
+    <h1 class="text-5xl font-extrabold mb-6">
+      Convert Documents Instantly. <span class="text-primary">100% Free.</span>
+    </h1>
+    <p class="text-xl text-text-muted mb-10 max-w-2xl mx-auto">
+      No limits, no watermarks, no signups. The fastest document converter online.
+    </p>
+
+    <div class="flex flex-col md:flex-row justify-center gap-4 mb-16">
+      <a
+        href="/tools/pdf-to-word/"
+        class="bg-primary text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-blue-700 transition"
+        >PDF to Word</a
+      >
+      <a
+        href="/tools/merge-pdf/"
+        class="bg-surface text-primary border border-primary font-semibold py-3 px-8 rounded-lg text-lg hover:bg-gray-50 transition"
+        >Merge PDF</a
+      >
+    </div>
+
+    <div class="bg-surface border rounded-xl p-8 max-w-xl mx-auto mb-16 shadow-sm">
+      <h2 class="text-2xl font-bold mb-2">Join the Pro Waitlist</h2>
+      <p class="text-text-muted mb-6">
+        Get early access to our lightning-fast, ad-free desktop app.
+      </p>
+      <CaptureForm formLabel="waitlist">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Enter your email"
+            class="flex-grow px-4 py-2 border border-border-subtle rounded-md focus:ring-primary focus:border-primary"
+          />
+          <button
+            type="submit"
+            class="bg-primary text-white font-medium py-2 px-6 rounded-md hover:bg-blue-700 transition whitespace-nowrap"
+            >Join Waitlist</button
+          >
+        </div>
+      </CaptureForm>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left max-w-5xl mx-auto">
+      <div class="p-6 border rounded-lg">
+        <h3 class="text-xl font-bold mb-3 flex items-center">
+          <svg
+            class="w-6 h-6 text-primary mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path></svg
+          >
+          No Watermarks
+        </h3>
+        <p class="text-text-muted">
+          Your documents stay clean. We never add intrusive watermarks or branding to your converted
+          files.
+        </p>
+      </div>
+      <div class="p-6 border rounded-lg">
+        <h3 class="text-xl font-bold mb-3 flex items-center">
+          <svg
+            class="w-6 h-6 text-primary mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+            ></path></svg
+          >
+          Fast & Secure
+        </h3>
+        <p class="text-text-muted">
+          All file transfers are secured with advanced SSL encryption. Files are deleted
+          automatically after 2 hours.
+        </p>
+      </div>
+      <div class="p-6 border rounded-lg">
+        <h3 class="text-xl font-bold mb-3 flex items-center">
+          <svg
+            class="w-6 h-6 text-primary mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+          >
+          No Signups
+        </h3>
+        <p class="text-text-muted">
+          Start converting immediately. We don't ask for your email address unless you want to join
+          our newsletter.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
