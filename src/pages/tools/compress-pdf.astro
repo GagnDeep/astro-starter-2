@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+---
+
+<Layout title="Compress PDF Online" seo={{ page_description: "Reduce PDF file size for email easily." }}>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Compress PDF</h1>
+      <p class="mb-10 text-lg text-slate-600">Reduce the file size of your PDF so it fits in an email.</p>
+
+      <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200 mb-12">
+        <h2 class="text-xl font-bold mb-4">Select File to Compress</h2>
+        <noscript>
+          <div class="bg-rose-50 text-rose-800 p-4 rounded mb-4">
+            JavaScript is required to perform local file compression.
+          </div>
+        </noscript>
+        <div id="tool-ui" class="text-center p-12 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50">
+          <p class="text-slate-600 mb-4">Upload a PDF to reduce its size.</p>
+          <button class="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition">Browse File</button>
+        </div>
+      </div>
+
+      <div class="prose prose-slate max-w-none mb-12">
+        <h2>Reduce PDF Size</h2>
+        <p>
+          If your email client is rejecting a file because it is over the 25MB limit, you need to compress it. Our tool reduces file size by optimizing internal <a href="/glossary/raster-image">raster images</a> and cleaning up unused fonts.
+        </p>
+
+        <h3>Quality vs. Size Tradeoffs</h3>
+        <p>
+          Compression inherently involves reducing the quality of embedded images. Text quality is unaffected, but photographs or scanned documents may look slightly less crisp. If you have several small files, consider <a href="/tools/merge-pdf">merging your PDFs</a> first.
+        </p>
+      </div>
+
+      <div class="bg-slate-50 p-8 rounded-lg">
+        <h3 class="font-bold text-lg mb-2">Need to shrink entire folders?</h3>
+        <p class="text-slate-600 mb-4">Join our waitlist for the Pro Bulk Processing tool.</p>
+        <CaptureForm form={capture.forms.waitlist} submitLabel="Join Waitlist">
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" required class="w-full rounded border border-slate-300 px-3 py-2 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" />
+          </div>
+        </CaptureForm>
+      </div>
+    </div>
+  </section>
+</Layout>

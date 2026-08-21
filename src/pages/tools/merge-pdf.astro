@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+---
+
+<Layout title="Merge PDFs Online" seo={{ page_description: "Combine multiple PDFs into one document easily." }}>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Merge PDF Documents</h1>
+      <p class="mb-10 text-lg text-slate-600">Combine multiple files into a single PDF safely.</p>
+
+      <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200 mb-12">
+        <h2 class="text-xl font-bold mb-4">Select Files to Merge</h2>
+        <noscript>
+          <div class="bg-rose-50 text-rose-800 p-4 rounded mb-4">
+            JavaScript is required to perform local file merging. Without JS, files must be sent via our contact form for manual merging.
+          </div>
+        </noscript>
+        <div id="tool-ui" class="text-center p-12 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50">
+          <p class="text-slate-600 mb-4">Drag and drop PDF files here, or click to browse.</p>
+          <button class="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition">Browse Files</button>
+        </div>
+        <div class="mt-6 text-sm text-slate-500 tabular-nums">
+          <p>Processing happens in your browser. No files are uploaded to our servers.</p>
+        </div>
+      </div>
+
+      <div class="prose prose-slate max-w-none mb-12">
+        <h2>How to Merge PDFs</h2>
+        <p>
+          Merging PDFs is one of the most common document tasks. FreeFormPDF allows you to combine multiple PDFs directly in your browser.
+        </p>
+        <ol>
+          <li>Select the files you want to combine.</li>
+          <li>Rearrange the files into the correct order.</li>
+          <li>Click merge to download a single, combined PDF file.</li>
+        </ol>
+
+        <h3>Privacy & Security</h3>
+        <p>Unlike other tools that force you to upload documents to a remote server, our PDF merging tool runs locally. Your files never leave your computer unless you explicitly choose our cloud-sync option.</p>
+
+        <h3>Edge Cases & Limitations</h3>
+        <p>
+          Currently, merging PDFs with complex active forms (like <a href="/blog/xfa-vs-acroform">XFA Forms</a>) may result in <a href="/blog/flatten-pdf-meaning">flattened outputs</a>. Encrypted files must be unlocked before merging. You may also be interested in our <a href="/tools/compress-pdf">compress PDF tool</a> to shrink your merged file size.
+        </p>
+      </div>
+
+      <div class="bg-slate-50 p-8 rounded-lg">
+        <h3 class="font-bold text-lg mb-2">Want to know when we add Cloud Sync?</h3>
+        <p class="text-slate-600 mb-4">We are adding direct Google Drive and Dropbox integrations. Join the waitlist.</p>
+        <CaptureForm form={capture.forms.waitlist} submitLabel="Join Waitlist">
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" required class="w-full rounded border border-slate-300 px-3 py-2 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600" />
+          </div>
+        </CaptureForm>
+      </div>
+    </div>
+  </section>
+</Layout>

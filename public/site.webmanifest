@@ -1,7 +1,7 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "FreeFormPDF",
+  "short_name": "FreeFormPDF",
+  "description": "The fast, bullshit-free tool to fill, sign, and export PDF forms. No watermarks on the free tier.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
