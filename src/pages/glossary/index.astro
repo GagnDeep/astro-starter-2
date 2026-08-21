@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import fs from "fs";
+
+// Read terms from the json file we just created
+const termsRaw = fs.readFileSync("src/pages/glossary/terms.json", "utf-8");
+const terms = JSON.parse(termsRaw);
+
+const seo = {
+  page_description: "A glossary of over 20 dog treat and nutrition terms. No marketing fluff, just definitions.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="Treat Glossary - DogSnacker" seo={seo}>
+  <div class="max-w-4xl mx-auto py-16 px-4">
+    <h1 class="text-4xl font-bold mb-6">Treat Glossary</h1>
+    <p class="text-xl text-gray-700 mb-12">
+      The pet food industry is full of confusing terminology and marketing speak. Here is what those words actually mean.
+    </p>
+
+    <div class="space-y-8">
+      {terms.map((item: any) => (
+        <div class="border-b border-gray-200 pb-6 last:border-0">
+          <h2 class="text-2xl font-bold mb-2 text-primary">{item.term}</h2>
+          <p class="text-lg text-gray-700">{item.def}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

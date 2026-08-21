@@ -1,0 +1,68 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { Check } from "@lucide/astro";
+
+const seo = {
+  page_description: "Subscribe to the healthy, single-ingredient dog treat box.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="Subscribe - DogSnacker" seo={seo}>
+  <div class="max-w-4xl mx-auto py-16 px-4">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold mb-4">Real treats, delivered monthly</h1>
+      <p class="text-xl text-gray-600">No toys. No junk. Just high-value snacks your dog actually wants.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      <div class="bg-white p-8 rounded-lg shadow-md border-2 border-primary">
+        <div class="text-center mb-6">
+          <h2 class="text-2xl font-bold">The Treat Box</h2>
+          <div class="mt-4 flex justify-center items-baseline">
+            <span class="text-5xl font-extrabold tracking-tight number-tabular">$29</span>
+            <span class="text-xl text-gray-500 ml-1">/mo</span>
+          </div>
+        </div>
+
+        <ul class="space-y-4 mb-8">
+          <li class="flex items-start">
+            <Check class="w-6 h-6 text-primary flex-shrink-0 mr-2" aria-hidden="true" />
+            <span>3 bags of single-ingredient treats</span>
+          </li>
+          <li class="flex items-start">
+            <Check class="w-6 h-6 text-primary flex-shrink-0 mr-2" aria-hidden="true" />
+            <span>1 long-lasting chew</span>
+          </li>
+          <li class="flex items-start">
+            <Check class="w-6 h-6 text-primary flex-shrink-0 mr-2" aria-hidden="true" />
+            <span>Free shipping</span>
+          </li>
+          <li class="flex items-start">
+            <Check class="w-6 h-6 text-primary flex-shrink-0 mr-2" aria-hidden="true" />
+            <span>Cancel anytime</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-gray-50 p-8 rounded-lg border border-gray-200 flex flex-col justify-center">
+        <h3 class="text-xl font-bold mb-4">Join the Waitlist</h3>
+        <p class="mb-6 text-gray-600">We are currently at capacity. Join the waitlist to be notified when spots open up, and get a free bag in your first box.</p>
+
+        <CaptureForm form="waitlist" class="space-y-4">
+          <div>
+            <label for="email" class="sr-only">Email address</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" />
+          </div>
+          <button type="submit" class="btn-primary w-full">Join Waitlist</button>
+        </CaptureForm>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+import { Check } from "@lucide/astro";
+
+const seo = {
+  page_description: "The healthy, single-ingredient treat subscription for dogs. No junk, no filler, just high-value snacks that dogs actually want.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="DogSnacker - Real treats for real dogs." seo={seo}>
+  <!-- Block 1: Hero -->
+  <div class="bg-gray-50 border-b border-gray-200 py-24 px-4">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-gray-900 leading-tight">
+          No toys. <span class="text-primary block mt-2">Just the good stuff.</span>
+        </h1>
+        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+          The single-ingredient dog treat subscription box. We deliver high-value training rewards and long-lasting chews every month. Never run out of treats again.
+        </p>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mb-6">
+          <h2 class="text-lg font-bold mb-4">Join the waitlist. Get a free bag.</h2>
+          <CaptureForm form="waitlist" class="space-y-4">
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input type="hidden" name="source" value="homepage-hero" />
+              <label for="hero-email" class="sr-only">Email address</label>
+              <input type="email" id="hero-email" name="email" required placeholder="Enter your email" class="flex-1 px-4 py-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary bg-gray-50" />
+              <button type="submit" class="btn-primary w-full sm:w-auto">Claim Free Bag</button>
+            </div>
+          </CaptureForm>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-square bg-green-100 rounded-full absolute -inset-4 blur-3xl opacity-50"></div>
+        <img src="/images/og/og-default.png" alt="Dog treats" class="rounded-2xl shadow-xl relative z-10 w-full object-cover" width="600" height="600" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Block 2: Problem/Solution -->
+  <div class="py-24 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-3xl font-bold mb-6">Your dog wants meat, not squeakers.</h2>
+          <p class="text-lg text-gray-700 mb-6">
+            Most subscription boxes send you one bag of treats and three plush toys that end up shredded under the couch in five minutes.
+          </p>
+          <p class="text-lg text-gray-700 mb-6">
+            We focus entirely on what actually matters: high-value rewards for training, and safe, digestible chews for quiet time.
+          </p>
+          <a href="/compare/barkbox-alternative" class="text-primary font-bold hover:underline inline-flex items-center">
+            See how we compare to BarkBox
+            <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+        </div>
+        <div class="bg-gray-900 text-white p-10 rounded-2xl">
+          <ul class="space-y-6">
+            <li class="flex">
+              <Check class="w-6 h-6 text-green-400 mr-4 flex-shrink-0" aria-hidden="true" />
+              <span><strong class="block text-lg">Single-ingredient only.</strong> Beef liver, sweet potato, salmon skin. No fillers.</span>
+            </li>
+            <li class="flex">
+              <Check class="w-6 h-6 text-green-400 mr-4 flex-shrink-0" aria-hidden="true" />
+              <span><strong class="block text-lg">Sourced safely.</strong> No unregulated rawhide. Everything is highly digestible.</span>
+            </li>
+            <li class="flex">
+              <Check class="w-6 h-6 text-green-400 mr-4 flex-shrink-0" aria-hidden="true" />
+              <span><strong class="block text-lg">Calorie aware.</strong> Guides and tools to make sure you aren't overfeeding.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Block 3: How it Works -->
+  <div class="bg-gray-50 py-24 px-4 border-y border-gray-200">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-16">How DogSnacker works</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="w-16 h-16 bg-green-100 text-primary rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">1</div>
+          <h3 class="text-xl font-bold mb-3">Tell us about your dog</h3>
+          <p class="text-gray-600">Allergies? Soft chewer? Calorie restricted? We customize the box to fit their needs.</p>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="w-16 h-16 bg-green-100 text-primary rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">2</div>
+          <h3 class="text-xl font-bold mb-3">We curate the box</h3>
+          <p class="text-gray-600">Every month you receive 3 bags of training treats and 1 long-lasting chew.</p>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="w-16 h-16 bg-green-100 text-primary rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">3</div>
+          <h3 class="text-xl font-bold mb-3">Delivered to your door</h3>
+          <p class="text-gray-600">Free shipping. Cancel anytime. Never run out of high-value rewards.</p>
+        </div>
+      </div>
+      <div class="mt-12">
+        <a href="/subscribe" class="btn-primary text-lg px-8">View Pricing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Block 5: FAQ -->
+  <div class="py-24 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 text-center">Common questions</h2>
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-bold mb-2">Are the treats raw?</h3>
+          <p class="text-gray-700">No. Our meat treats are either freeze-dried or slowly dehydrated to remove moisture safely while preserving nutrients. This makes them shelf-stable without chemical preservatives.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Do you include rawhide?</h3>
+          <p class="text-gray-700">Absolutely not. We do not use rawhide due to the choking and blockage risks. We use digestible chews like beef trachea, bully sticks, and sweet potato.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Can I just buy one bag?</h3>
+          <p class="text-gray-700">Currently, we operate purely as a subscription to keep our supply chain tight and prices down. But you can cancel immediately after your first box if you just want to try it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Block 6: Final CTA -->
+  <div class="bg-primary text-white py-24 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-bold mb-6">Don't let the treat jar go empty.</h2>
+      <p class="text-xl text-green-100 mb-10">Join the waitlist today and secure a free bag of beef liver treats in your first box.</p>
+      <div class="max-w-md mx-auto bg-white p-2 rounded-lg">
+        <CaptureForm form="waitlist" class="flex flex-col sm:flex-row gap-2">
+          <input type="hidden" name="source" value="homepage-footer" />
+          <input type="email" name="email" required placeholder="Email address" class="flex-1 px-4 py-3 border border-gray-300 rounded-md text-gray-900" />
+          <button type="submit" class="btn-primary">Join Waitlist</button>
+        </CaptureForm>
+      </div>
+    </div>
+  </div>
+</Layout>

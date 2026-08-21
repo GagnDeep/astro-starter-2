@@ -1,0 +1,57 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import CaptureForm from "../../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Is beef liver good for dogs? A complete guide to benefits, risks, and how much to feed.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  author_twitter_handle: null,
+  open_graph_type: "article",
+  no_index: false,
+};
+---
+
+<Layout title="Is Beef Liver Good for Dogs? - DogSnacker Library" seo={seo}>
+  <div class="max-w-3xl mx-auto py-16 px-4 prose max-w-none">
+    <h1>Is Beef Liver Good for Dogs?</h1>
+    <p class="lead text-xl text-gray-600 mb-8">Beef liver is one of the most nutrient-dense foods you can give a dog, but it must be fed in moderation.</p>
+
+    <h2>The Benefits of Beef Liver</h2>
+    <p>Liver is often called nature’s multivitamin. It is packed with:</p>
+    <ul>
+      <li><strong>Vitamin A:</strong> Crucial for vision, immune function, and skin health.</li>
+      <li><strong>Iron:</strong> Essential for red blood cell production and oxygen transport.</li>
+      <li><strong>Copper:</strong> Helps absorb iron and form bone.</li>
+      <li><strong>B Vitamins:</strong> Specifically B12, which supports nerve function.</li>
+    </ul>
+
+    <h2>The Risks: Vitamin A Toxicity</h2>
+    <p>Because liver is so rich in Vitamin A (which is fat-soluble and stored in the body), feeding too much can lead to Hypervitaminosis A. Symptoms include bone deformities, weight loss, and joint pain.</p>
+
+    <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200 my-8 not-prose text-gray-900">
+      <h3 class="text-lg font-bold mb-2">How Much is Safe?</h3>
+      <p>As a rule of thumb, liver should make up no more than <strong>5% of your dog’s total diet</strong>. If you feed commercial dog food (which is already fortified with Vitamin A), treat liver strictly as a high-value training reward, not a meal replacement.</p>
+    </div>
+
+    <h2>Dehydrated vs. Freeze-Dried Liver</h2>
+    <p>For treats, you will mostly find dehydrated or freeze-dried liver. Both processes remove moisture, which concentrates the nutrients (and the smell, which dogs love).</p>
+    <ul>
+      <li><strong>Freeze-Dried:</strong> Retains slightly more nutrients and has a softer, crumblier texture. Great for breaking into tiny pieces for training.</li>
+      <li><strong>Dehydrated:</strong> Chewier and slightly more durable. Often used for slightly larger treat pieces.</li>
+    </ul>
+
+    <hr class="my-12" />
+
+    <div class="bg-primary/10 p-8 rounded-lg not-prose">
+      <h3 class="text-2xl font-bold mb-4 text-primary">Get the Healthy Treating Guide</h3>
+      <p class="mb-6 text-gray-700">Download our free 12-page PDF guide on safe treat ingredients, caloric limits, and what to avoid.</p>
+      <CaptureForm form="newsletter" class="flex flex-col sm:flex-row gap-2">
+        <input type="hidden" name="source" value="library-liver" />
+        <input type="email" name="email" required placeholder="Email address" class="flex-1 px-4 py-3 border border-gray-300 rounded-md bg-white" />
+        <button type="submit" class="btn-primary">Send me the guide</button>
+      </CaptureForm>
+    </div>
+  </div>
+</Layout>
