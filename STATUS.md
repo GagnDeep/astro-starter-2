@@ -1,11 +1,12 @@
-# STATUS (Iteration 3)
+# STATUS (Iteration 4)
 
 ## Ranked Gap List
-1. **Thin Pages (Critical):** While the top 5 blog posts were expanded, the remaining 7 blog posts, 16 reference pages, and 10 guides are still effectively stubs (very short text).
-2. **Missing Content (Medium):** The prompt requested 3-4 calculators, we have 3. Adding a 4th would fulfill the upper bound.
-3. **Escalation Path Tasks (Low):** The prompt says "add 3 posts and 3 reference pages from fresh keyword gaps".
+1. **Thin Pages (Critical):** Continual deepening needed for reference and guide pages to ensure authoritative content with examples, tables, and edge cases.
+2. **Missing Content (Medium):** We need 3 more posts and 3 more reference pages based on keyword gaps.
+3. **Internal Linking (Medium):** Ensure robust internal linking for the newly created pages.
+4. **Capture Placement (Low):** Verify capture forms are appropriately placed on new pages.
 
 ## Progress
-- Fixing Gap 1: Deepening the remaining 7 blog posts, 16 reference pages, and 10 guides.
-- Fixing Gap 2: Adding a 4th tool (DPP Cost Estimator).
-- Fixing Gap 3: Adding 3 new posts and 3 new reference pages.
+- Fixing Gap 1: Deepening 5 more reference/guide pages.
+- Fixing Gap 2: Adding 3 new posts and 3 new reference pages.
+- Fixing Gap 3: Adding internal links to the new content.
