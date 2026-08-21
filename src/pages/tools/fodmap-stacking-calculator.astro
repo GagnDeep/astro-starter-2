@@ -1,0 +1,171 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const seo = {
+  page_description: "Calculate your FODMAP stacking load and predict flare-ups based on the meals you ate today. Free interactive IBS tool.",
+  canonical_url: "/tools/fodmap-stacking-calculator/",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="FODMAP Stacking Calculator | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16">
+    <h1 class="text-4xl font-bold text-[var(--color-primary-950)] mb-4">FODMAP Stacking Calculator</h1>
+    <p class="text-lg text-[var(--color-text-muted)] mb-8">
+      Did you combine too many low-FODMAP foods in one sitting? Enter what you ate below to check your total load for Oligosaccharides, Fructose, Polyols, and Lactose.
+    </p>
+
+    <!-- Client-side Calculator Island (Svelte/Vue/React/Vanilla) -->
+    <!-- We will use a vanilla JS interactive block with a no-JS fallback table -->
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-[var(--color-primary-100)] mb-12">
+      <noscript>
+        <div class="p-4 bg-[var(--color-secondary-50)] border-l-4 border-[var(--color-secondary-500)] mb-6 text-sm text-[var(--color-secondary-900)]">
+          <strong>Note:</strong> The interactive calculator requires JavaScript. Below is our reference table for manual calculation.
+        </div>
+
+        <table class="w-full text-left mb-4 border-collapse">
+          <thead>
+            <tr>
+              <th class="border-b p-2 font-medium">Food</th>
+              <th class="border-b p-2 font-medium">FODMAP Group</th>
+              <th class="border-b p-2 font-medium">Safe Serving</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="p-2 border-b">Almonds</td><td class="p-2 border-b">GOS</td><td class="p-2 border-b">10 nuts</td></tr>
+            <tr><td class="p-2 border-b">Avocado</td><td class="p-2 border-b">Sorbitol</td><td class="p-2 border-b">30g (1/8th)</td></tr>
+            <tr><td class="p-2 border-b">Sweet Potato</td><td class="p-2 border-b">Mannitol</td><td class="p-2 border-b">75g (1/2 cup)</td></tr>
+            <tr><td class="p-2 border-b">Zucchini</td><td class="p-2 border-b">Fructans</td><td class="p-2 border-b">65g (1/3 cup)</td></tr>
+          </tbody>
+        </table>
+        <p class="text-sm"><em>Rule of thumb:</em> Avoid combining two foods from the same FODMAP group within 3-4 hours if you are sensitive to that group.</p>
+      </noscript>
+
+      <div id="calculator-app" class="hidden">
+        <!-- Interactive JS UI goes here -->
+        <div class="space-y-6">
+          <div>
+            <label for="food-select" class="block font-medium mb-2">Select a food to add to your meal:</label>
+            <div class="flex gap-2">
+              <select id="food-select" class="flex-1 rounded-md border border-[var(--color-primary-200)] px-3 py-2 bg-white focus:ring-2 focus:ring-[var(--color-primary-500)] outline-none">
+                <option value="">-- Choose a food --</option>
+                <option value="almonds" data-group="GOS" data-load="moderate">Almonds (20 nuts)</option>
+                <option value="avocado" data-group="Sorbitol" data-load="high">Avocado (Half)</option>
+                <option value="sweet-potato" data-group="Mannitol" data-load="moderate">Sweet Potato (1 cup)</option>
+                <option value="zucchini" data-group="Fructans" data-load="moderate">Zucchini (1 cup)</option>
+                <option value="oats" data-group="GOS" data-load="moderate">Rolled Oats (1 cup)</option>
+                <option value="blueberries" data-group="Fructans" data-load="low">Blueberries (1 cup)</option>
+              </select>
+              <button id="add-food-btn" class="bg-[var(--color-secondary-600)] text-white px-4 py-2 rounded-md hover:bg-[var(--color-secondary-700)]">Add</button>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-medium mb-2">Your Meal:</h3>
+            <ul id="meal-list" class="space-y-2 mb-4 empty:after:content-['No_foods_added_yet.'] empty:after:text-[var(--color-text-muted)] empty:after:text-sm"></ul>
+          </div>
+
+          <div class="p-4 bg-[var(--color-primary-50)] rounded-md border border-[var(--color-primary-100)]">
+            <h3 class="font-medium text-[var(--color-primary-900)] mb-3">Stacking Analysis:</h3>
+            <div id="analysis-results" class="text-sm space-y-2">
+              <p class="text-[var(--color-text-muted)]">Add foods above to see your FODMAP load.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[var(--color-secondary-50)] p-8 rounded-lg mb-16">
+      <h2 class="text-2xl font-bold mb-4">Want detailed stacking reports by email?</h2>
+      <p class="mb-6">Enter your email and we'll send you our comprehensive 2024 FODMAP stacking matrix guide.</p>
+      <CaptureForm form="newsletter" submitLabel="Send me the matrix" />
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Simple Vanilla JS Interactive Logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const app = document.getElementById("calculator-app");
+    if (app) app.classList.remove("hidden"); // Reveal if JS is enabled
+
+    const select = document.getElementById("food-select") as HTMLSelectElement;
+    const addBtn = document.getElementById("add-food-btn");
+    const mealList = document.getElementById("meal-list");
+    const results = document.getElementById("analysis-results");
+
+    const currentMeal: Array<{name: string, group: string, load: string}> = [];
+
+    addBtn?.addEventListener("click", () => {
+      const option = select.options[select.selectedIndex];
+      if (!option.value) return;
+
+      const food = {
+        name: option.text,
+        group: option.getAttribute("data-group") || "None",
+        load: option.getAttribute("data-load") || "low"
+      };
+
+      currentMeal.push(food);
+      renderMeal();
+      analyzeMeal();
+    });
+
+    function renderMeal() {
+      if (!mealList) return;
+      mealList.innerHTML = "";
+      currentMeal.forEach((food, index) => {
+        const li = document.createElement("li");
+        li.className = "flex justify-between p-2 bg-white border border-[var(--color-primary-100)] rounded text-sm";
+        li.innerHTML = `<span>${food.name} <span class="text-xs text-[var(--color-text-muted)] ml-2 bg-gray-100 px-1 rounded">${food.group}</span></span>
+        <button data-index="${index}" class="text-red-600 hover:underline text-xs remove-btn">Remove</button>`;
+        mealList.appendChild(li);
+      });
+
+      document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const idx = parseInt((e.target as HTMLElement).getAttribute("data-index") || "0");
+          currentMeal.splice(idx, 1);
+          renderMeal();
+          analyzeMeal();
+        });
+      });
+    }
+
+    function analyzeMeal() {
+      if (!results) return;
+      if (currentMeal.length === 0) {
+        results.innerHTML = `<p class="text-[var(--color-text-muted)]">Add foods above to see your FODMAP load.</p>`;
+        return;
+      }
+
+      const groups: Record<string, number> = {};
+      currentMeal.forEach(f => {
+        if (!groups[f.group]) groups[f.group] = 0;
+        groups[f.group] += f.load === "high" ? 3 : f.load === "moderate" ? 2 : 1;
+      });
+
+      let html = "";
+      let hasStacking = false;
+
+      for (const [group, loadScore] of Object.entries(groups)) {
+        if (loadScore >= 3) {
+          hasStacking = true;
+          html += `<p class="text-red-700 font-medium">⚠️ High ${group} Load (Score: ${loadScore}). This combination is likely to trigger symptoms if you are sensitive to ${group}.</p>`;
+        } else if (loadScore === 2) {
+          html += `<p class="text-orange-600">Moderate ${group} Load. Caution advised if you are very sensitive.</p>`;
+        } else {
+          html += `<p class="text-green-700">Low ${group} Load. Safe combination.</p>`;
+        }
+      }
+
+      if (!hasStacking && Object.keys(groups).length > 0) {
+        html += `<p class="mt-2 text-sm">Great! You are not stacking any specific FODMAP groups excessively in this meal.</p>`;
+      }
+
+      results.innerHTML = html;
+    }
+  });
+</script>

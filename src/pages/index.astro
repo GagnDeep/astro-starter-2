@@ -1,0 +1,145 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+
+// Placeholder for a hero graphic we might add, keeping it generic if needed.
+// Using lucide icons for feature blocks.
+
+
+const seo = {
+  page_description: "Stop guessing what caused your IBS flare-up. IBS-Go is the only tracker that calculates your FODMAP stacking and links yesterday's meals to today's symptoms.",
+  canonical_url: "/",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="IBS-Go | The Intelligent IBS Symptom & FODMAP Tracker" seo={seo}>
+  <!-- HERO -->
+  <section class="bg-[var(--color-primary-50)] pt-20 pb-24 border-b border-[var(--color-primary-100)]">
+    <div class="container-wide grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-primary-950)] leading-tight mb-6">
+          Stop Guessing What Caused Your IBS Flare-Up.
+        </h1>
+        <p class="text-lg text-[var(--color-text-muted)] mb-8">
+          The elimination diet is overwhelming. IBS-Go is the only tracker that calculates your FODMAP stacking and links yesterday's meals to today's symptoms.
+        </p>
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-[var(--color-primary-100)]">
+          <h3 class="font-semibold text-[var(--color-primary-900)] mb-2">Join the Early Access Waitlist</h3>
+          <p class="text-sm text-[var(--color-text-muted)] mb-4">Get 50% off premium when we launch.</p>
+          <NewsletterForm form="waitlist" submitLabel="Join Waitlist" placeholder="Enter your email" />
+        </div>
+      </div>
+      <div class="bg-[var(--color-surface)] rounded-2xl shadow-xl border border-[var(--color-primary-100)] aspect-[4/3] flex items-center justify-center p-8">
+         <!-- Abstract representation of UI since we don't have screenshots -->
+         <div class="w-full h-full border-2 border-dashed border-[var(--color-primary-200)] rounded-xl bg-[var(--color-primary-50)] flex flex-col items-center justify-center text-center p-6">
+            <span class="text-4xl mb-4 text-[var(--color-primary-500)]">🔍</span>
+            <h3 class="text-xl font-bold text-[var(--color-primary-800)] mb-2">Symptom Prediction Matrix</h3>
+            <p class="text-[var(--color-text-muted)] text-sm">Visualizes meal timelines against symptom onset (24-72hr delay mapping).</p>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM / AGITATION -->
+  <section class="py-20 bg-white">
+    <div class="container-narrow text-center">
+      <h2 class="text-3xl font-bold text-[var(--color-primary-900)] mb-6">The paper food diary isn't working.</h2>
+      <p class="text-lg text-[var(--color-text-muted)] mb-12">
+        Tracking IBS isn't just about what you ate. It's about <em>how much</em>, <em>when</em>, and what you combined it with. Most apps just log meals, leaving you to guess the patterns.
+      </p>
+
+      <div class="grid sm:grid-cols-3 gap-8">
+        <div class="p-6 bg-[var(--color-background)] rounded-lg text-left">
+          <div class="text-red-500 text-3xl mb-4">❌</div>
+          <h3 class="font-semibold mb-2">FODMAP Stacking</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Eating two safe foods can trigger symptoms if they share the same FODMAP group. Old trackers miss this.</p>
+        </div>
+        <div class="p-6 bg-[var(--color-background)] rounded-lg text-left">
+          <div class="text-red-500 text-3xl mb-4">⏱️</div>
+          <h3 class="font-semibold mb-2">Delayed Reactions</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Symptoms often hit 24 hours later. Standard diaries make it impossible to connect Tuesday's bloat to Monday's lunch.</p>
+        </div>
+        <div class="p-6 bg-[var(--color-background)] rounded-lg text-left">
+          <div class="text-red-500 text-3xl mb-4">📉</div>
+          <h3 class="font-semibold mb-2">Burnout</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Writing down every ingredient is exhausting. If it takes 5 minutes to log a meal, you'll stop doing it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="py-20 bg-[var(--color-primary-800)] text-white">
+    <div class="container-wide">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-3xl font-bold mb-6 text-white">Intelligent Tracking, Zero Friction.</h2>
+          <ul class="space-y-6">
+            <li class="flex gap-4">
+              <span class="text-[var(--color-primary-300)] mt-1">✦</span>
+              <div>
+                <h4 class="font-semibold text-lg">Auto-Calculate FODMAPs</h4>
+                <p class="text-[var(--color-primary-200)] text-sm mt-1">Log "Sweet Potato" and we instantly calculate the Mannitol load based on serving size.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="text-[var(--color-primary-300)] mt-1">✦</span>
+              <div>
+                <h4 class="font-semibold text-lg">Flare-Up Predictor</h4>
+                <p class="text-[var(--color-primary-200)] text-sm mt-1">Our algorithm analyzes your transit time to link current symptoms to specific past meals.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="text-[var(--color-primary-300)] mt-1">✦</span>
+              <div>
+                <h4 class="font-semibold text-lg">Bristol Stool Chart Integration</h4>
+                <p class="text-[var(--color-primary-200)] text-sm mt-1">Log bowel movements with scientifically validated metrics, exportable for your dietitian.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-[var(--color-primary-900)] p-8 rounded-xl border border-[var(--color-primary-700)]">
+           <h3 class="text-xl font-bold mb-4">See how we compare</h3>
+           <table class="w-full text-left text-sm">
+             <tr class="border-b border-[var(--color-primary-700)]">
+               <th class="py-3 font-medium text-[var(--color-primary-200)]">Feature</th>
+               <th class="py-3 font-medium text-white">IBS-Go</th>
+               <th class="py-3 font-medium text-[var(--color-primary-400)]">Monash App</th>
+               <th class="py-3 font-medium text-[var(--color-primary-400)]">Bowelle</th>
+             </tr>
+             <tr class="border-b border-[var(--color-primary-700)]">
+               <td class="py-3">FODMAP Stacking Check</td>
+               <td class="py-3 text-green-400">Yes</td>
+               <td class="py-3 text-red-400">No</td>
+               <td class="py-3 text-red-400">No</td>
+             </tr>
+             <tr class="border-b border-[var(--color-primary-700)]">
+               <td class="py-3">Symptom Prediction</td>
+               <td class="py-3 text-green-400">Yes</td>
+               <td class="py-3 text-red-400">No</td>
+               <td class="py-3 text-red-400">No</td>
+             </tr>
+             <tr>
+               <td class="py-3">Dietitian Export</td>
+               <td class="py-3 text-green-400">Yes</td>
+               <td class="py-3 text-red-400">No</td>
+               <td class="py-3 text-green-400">Yes</td>
+             </tr>
+           </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-[var(--color-surface)]">
+    <div class="container-narrow text-center">
+      <h2 class="text-3xl font-bold text-[var(--color-primary-900)] mb-6">Take control of your gut today.</h2>
+      <p class="text-lg text-[var(--color-text-muted)] mb-8">Join thousands of people finally finding relief from the endless elimination cycle.</p>
+      <div class="max-w-md mx-auto">
+        <NewsletterForm form="waitlist" submitLabel="Get Early Access" placeholder="Email address" />
+      </div>
+    </div>
+  </section>
+</Layout>

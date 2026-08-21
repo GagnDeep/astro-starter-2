@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "IBS and FODMAP Medical Glossary. Understand the terms your gastroenterologist uses, in plain English.",
+  canonical_url: "/glossary/",
+};
+---
+<Layout title="IBS Glossary | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16">
+    <h1 class="text-4xl font-bold text-[var(--color-primary-950)] mb-4">IBS & Gut Health Glossary</h1>
+    <p class="text-lg text-[var(--color-text-muted)] mb-12">Medical jargon decoded for the everyday patient.</p>
+
+    <div class="space-y-4">
+      <a href="/glossary/fructans" class="block p-6 bg-white border border-[var(--color-primary-200)] rounded-lg hover:border-[var(--color-primary-500)] transition-colors">
+        <h2 class="text-xl font-bold text-[var(--color-primary-900)]">Fructans (Oligosaccharides)</h2>
+        <p class="text-[var(--color-text-muted)] mt-2">Chains of fructose molecules found in wheat, garlic, and onions. Humans lack the enzyme to break these down.</p>
+      </a>
+
+      <a href="/glossary/fodmap-stacking" class="block p-6 bg-white border border-[var(--color-primary-200)] rounded-lg hover:border-[var(--color-primary-500)] transition-colors">
+        <h2 class="text-xl font-bold text-[var(--color-primary-900)]">FODMAP Stacking</h2>
+        <p class="text-[var(--color-text-muted)] mt-2">Eating multiple 'safe' portions of foods from the same FODMAP group, pushing your total load over the threshold to trigger symptoms.</p>
+      </a>
+
+      <!-- Stubbed for speed; real site would iterate a collection -->
+      <div class="block p-6 bg-gray-50 border border-gray-200 rounded-lg">
+        <h2 class="text-xl font-bold text-gray-700">Osmotic Load</h2>
+        <p class="text-gray-500 mt-2">When unabsorbed sugars (like FODMAPs) draw excess water into the bowel, often causing IBS-D (diarrhea).</p>
+      </div>
+    </div>
+  </main>
+</Layout>

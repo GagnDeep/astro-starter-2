@@ -1,0 +1,87 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "Simple pricing for IBS-Go premium. Unlock advanced FODMAP stacking, predictive flare-up analytics, and dietitian exports.",
+  canonical_url: "/pricing/",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="Pricing | IBS-Go" seo={seo}>
+  <main class="container-wide py-16">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-[var(--color-primary-950)] mb-4">Simple pricing for a calmer gut.</h1>
+      <p class="text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+        Start tracking for free. Upgrade to Premium when you need advanced analytics to break through a plateau.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+      <!-- Free Tier -->
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-[var(--color-primary-100)] flex flex-col">
+        <h3 class="text-2xl font-bold mb-2">Basic</h3>
+        <div class="text-4xl font-bold mb-6">$0<span class="text-lg text-[var(--color-text-muted)] font-normal">/forever</span></div>
+        <ul class="space-y-4 mb-8 flex-1">
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-primary-500)]">✓</span>
+            <span>Basic food and symptom logging</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-primary-500)]">✓</span>
+            <span>Bristol stool chart tracker</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-primary-500)]">✓</span>
+            <span>Monash-aligned food database lookup</span>
+          </li>
+          <li class="flex items-start gap-3 text-[var(--color-text-muted)]">
+            <span>✗</span>
+            <span>No FODMAP stacking alerts</span>
+          </li>
+        </ul>
+        <button class="w-full py-3 rounded-lg border-2 border-[var(--color-primary-600)] text-[var(--color-primary-600)] font-semibold hover:bg-[var(--color-primary-50)] transition-colors">
+          Download Free
+        </button>
+      </div>
+
+      <!-- Premium Tier -->
+      <div class="bg-[var(--color-primary-900)] text-white p-8 rounded-2xl shadow-xl relative flex flex-col">
+        <div class="absolute top-0 right-0 bg-[var(--color-secondary-500)] text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl uppercase tracking-wide">
+          Most Popular
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-white">Premium</h3>
+        <div class="text-4xl font-bold mb-6">$8<span class="text-lg text-[var(--color-primary-200)] font-normal">/month</span></div>
+        <ul class="space-y-4 mb-8 flex-1">
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-secondary-400)]">✓</span>
+            <span>Everything in Basic</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-secondary-400)]">✓</span>
+            <span class="font-medium">Live FODMAP stacking alerts</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-secondary-400)]">✓</span>
+            <span>Predictive flare-up analysis algorithm</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[var(--color-secondary-400)]">✓</span>
+            <span>PDF export for your Dietitian</span>
+          </li>
+        </ul>
+        <div class="bg-[var(--color-primary-800)] p-4 rounded-lg">
+          <h4 class="text-sm font-semibold mb-2">Join the Waitlist for 50% Off</h4>
+          <NewsletterForm form="waitlist" submitLabel="Claim Discount" placeholder="Email address" />
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto text-center">
+       <h3 class="text-xl font-bold mb-4">Are you a registered dietitian?</h3>
+       <p class="text-[var(--color-text-muted)] mb-4">We offer free premium accounts for practicing dietitians and bulk discounts for clinics.</p>
+       <a href="/contact/" class="text-[var(--color-primary-600)] font-medium hover:underline">Contact our clinic team &rarr;</a>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Privacy Policy for IBS-Go. Learn how we protect your health data, symptom logs, and account information.",
+  canonical_url: "/legal/privacy/",
+  no_index: true,
+};
+---
+<Layout title="Privacy Policy | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>Privacy Policy</h1>
+    <p>Last Updated: October 2024</p>
+
+    <h2>1. The Health Data Promise</h2>
+    <p>We build tools for people with IBS, which means we handle sensitive health data (symptoms, bowel movements, diet). We believe this data belongs to you. We do not sell your health data to third parties, advertisers, or data brokers. Period.</p>
+
+    <h2>2. Data We Collect</h2>
+    <ul>
+      <li><strong>Account Data:</strong> Email address for premium subscriptions and waitlists.</li>
+      <li><strong>Health Data:</strong> Food logs, symptom severity, transit time estimates, and Bristol stool scale logs that you input into the app.</li>
+      <li><strong>Telemetry:</strong> We use OpenObserve to collect anonymized usage data and crash reports. This is strictly to fix bugs and improve performance. Session replays are disabled on form inputs containing personal data.</li>
+    </ul>
+
+    <h2>3. How We Use Your Data</h2>
+    <p>Your health data is used exclusively to generate your predictive analytics, stacking loads, and PDF exports for your dietitian.</p>
+
+    <h2>4. Deletion</h2>
+    <p>You can delete your account and all associated health data at any time from within the app settings. The wipe is immediate and permanent.</p>
+  </main>
+</Layout>
