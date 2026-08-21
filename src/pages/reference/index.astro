@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const topics = [
+  { slug: "optimal-h264-export-settings", title: "Optimal H.264 Export Settings for Web" },
+  { slug: "understanding-cdns", title: "Understanding Content Delivery Networks (CDNs) for Video" },
+  { slug: "html5-video-attributes", title: "How to properly format an HTML5 <video> tag" },
+  { slug: "autoplay-policies", title: "Autoplay Policies Across Major Browsers" },
+  { slug: "video-cors-errors", title: "Resolving Video CORS errors" },
+  { slug: "accessibility-vtt", title: "Accessibility: Adding VTT Subtitles" },
+  { slug: "protecting-videos", title: "How to protect videos from right-click downloads" },
+  { slug: "core-web-vitals", title: "The impact of video on Core Web Vitals" },
+  { slug: "storage-vs-bandwidth", title: "Calculating Video Storage vs Bandwidth Costs" },
+  { slug: "why-hls", title: "Why HLS is the standard for VOD" },
+  { slug: "future-codecs", title: "VP9 vs HEVC vs AV1: The Future of Web Video" },
+  { slug: "poster-images", title: "Using Poster Images for Faster Page Loads" },
+  { slug: "mobile-encoding", title: "Mobile vs Desktop Video Encoding Profiles" },
+  { slug: "keyframes-gop", title: "Understanding Keyframes and GOP size" },
+  { slug: "preloading-metadata", title: "How to preload video metadata" }
+];
+---
+<Layout title="Web Video Reference Library" seo={{ page_description: "Expert guides on video encoding, streaming, and embedding for web developers." }}>
+  <section class="py-16 md:py-24 max-w-4xl mx-auto px-8">
+    <h1 class="text-4xl font-bold mb-6">Web Video Reference Library</h1>
+    <p class="text-xl text-[var(--color-text-muted)] mb-12 max-w-2xl">Deep dives and technical documentation on everything you need to know about hosting, encoding, and delivering video on the web.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topics.map(t => (
+        <a href={`/reference/${t.slug}/`} class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-primary)] transition-colors">
+          <h2 class="text-lg font-bold mb-2">{t.title}</h2>
+          <p class="text-sm text-[var(--color-text-muted)]">Read the guide &rarr;</p>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-16 bg-gray-50 p-8 rounded-lg">
+      <h3 class="text-2xl font-bold mb-4">Don't want to learn the hard way?</h3>
+      <p class="mb-6">uVideoPlayer handles transcoding, HLS packaging, and global CDN delivery automatically. Focus on your content, not codecs.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Get product updates" class="max-w-md" />
+    </div>
+  </section>
+</Layout>

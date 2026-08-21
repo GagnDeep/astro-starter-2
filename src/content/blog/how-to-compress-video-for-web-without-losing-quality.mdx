@@ -1,0 +1,97 @@
+---
+title: "How to Compress Video for Web Without Losing Quality"
+post_hero:
+  date: "2023-12-10"
+  heading: "How to Compress Video for Web Without Losing Quality"
+  tags:
+    - Encoding
+    - Performance
+    - Tutorial
+  author: "Mark Remover"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "Video compression graphic"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Compression"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "Learn the exact FFmpeg commands and Handbrake settings to compress your MP4 videos by up to 80% without sacrificing visual fidelity."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+When you export a video from Premiere Pro or Final Cut, the resulting file is designed for an archive, not an internet connection. If you attempt to upload a 2GB `.mp4` directly to your website, two things will happen:
+1. Your hosting bill will skyrocket.
+2. Your users will experience severe buffering.
+
+In this guide, we are going to learn how to aggressively compress web video using Constant Rate Factor (CRF) encoding, allowing us to drop file sizes by up to 80% while keeping the video looking identical to the human eye.
+
+## The Myth of "Target Bitrate"
+
+Most tutorials tell you to compress video by setting a "Target Bitrate"—for example, telling your encoder to compress the video to exactly 5 Mbps.
+
+This is fundamentally flawed.
+
+If your video is a talking head against a white wall, 5 Mbps is way too much data. You are wasting space. If your video is a complex montage of confetti and explosions, 5 Mbps is not enough data, and the video will look like a pixelated mess.
+
+Instead of targeting a specific file size, we should target a specific **Quality**.
+
+## Enter Constant Rate Factor (CRF)
+
+CRF is an encoding method used by the x264 and x265 encoders. Instead of asking for a specific bitrate, you ask the encoder for a specific quality level.
+
+The encoder then analyzes every single frame. If the frame is complex, it uses a high bitrate. If the frame is simple, it uses a very low bitrate. The result is a file that is exactly as large as it needs to be to look good, and not a single byte larger.
+
+### The CRF Scale
+The CRF scale runs from 0 (lossless) to 51 (worst possible quality).
+* **CRF 0:** Uncompressed. Massive file size.
+* **CRF 17:** Visually transparent. To the human eye, it looks identical to the source.
+* **CRF 23:** The default setting. A great balance of size and quality for 1080p video.
+* **CRF 28:** Very aggressive compression. Noticeable artifacts, but tiny file sizes.
+
+## How to Compress with FFmpeg
+
+FFmpeg is the open-source command-line tool that powers almost every video platform on earth. Here is the exact command to compress a master file for the web:
+
+```bash
+ffmpeg -i master_file.mov -vcodec libx264 -crf 23 -preset veryslow -acodec aac -b:a 128k output_web.mp4
+```
+
+Let's break down exactly what this command is doing:
+* `-i master_file.mov`: Your giant input file.
+* `-vcodec libx264`: We are encoding to H.264, the most universally supported web codec.
+* `-crf 23`: We are targeting "good" quality. If the file is still too big, raise this to 26.
+* `-preset veryslow`: This tells FFmpeg to spend a lot of CPU time figuring out the most efficient way to compress the file. It takes longer to render, but results in a smaller file at the exact same quality.
+* `-acodec aac -b:a 128k`: We compress the audio to AAC at 128 kbps (standard web quality).
+
+## How to Compress with Handbrake
+
+If you prefer a graphical interface, [Handbrake](https://handbrake.fr/) is an excellent free tool built on top of FFmpeg.
+
+1. Open your master file in Handbrake.
+2. Under the **Summary** tab, ensure the format is MP4 and check "Web Optimized" (this moves the `moov` atom to the start of the file, allowing the video to start playing before it is fully downloaded).
+3. Under the **Video** tab, select the `H.264 (x264)` encoder.
+4. Set the Framerate to `Same as source` and select `Variable Framerate`.
+5. Under "Quality", select **Constant Quality** and drag the slider to **23**.
+6. Set the "Encoder Preset" slider to **Very Slow**.
+7. Click Start Encode.
+
+## The Results
+
+Let's look at a real-world test case: a 60-second, 1080p screen recording of a software tutorial.
+* **Original ProRes Master:** 1.2 GB
+* **Adobe Premiere "YouTube 1080p" Export (CBR):** 120 MB
+* **FFmpeg CRF 23 Export:** 18 MB
+
+By using CRF encoding, we reduced the web-ready file size by a further 85% compared to Adobe's default export, with absolutely no visible loss in quality.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Skip the command line</h3>
+  <p>If you don't want to run FFmpeg on your laptop every time you upload a video, uVideoPlayer handles CRF encoding and HLS packaging automatically in the cloud.</p>
+  <CaptureForm form={capture.forms.newsletter} submitLabel="Get product updates" />
+</div>

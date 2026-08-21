@@ -1,0 +1,92 @@
+---
+title: "The Death of Third-Party Cookies and Video Analytics"
+post_hero:
+  date: "2023-12-18"
+  heading: "The Death of Third-Party Cookies and Video Analytics"
+  tags:
+    - Privacy
+    - Analytics
+    - Marketing
+  author: "Sarah Jane"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "Privacy graphic"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Analytics privacy"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "How Apple's ITP and the deprecation of third-party cookies are breaking marketing attribution for embedded video platforms."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+For the last decade, marketers have relied on embedded video players (like Wistia, Vidyard, and YouTube) to build incredibly granular attribution models.
+
+If a user watched 75% of your product demo on your website, a third-party cookie fired, sent that data to Facebook or Google, and allowed you to retarget that specific user with a highly personalized ad.
+
+**That era is over.**
+
+With Apple's Intelligent Tracking Prevention (ITP) in Safari, Firefox's Enhanced Tracking Protection (ETP), and Google Chrome's impending deprecation of third-party cookies, the traditional cross-domain video analytics stack is fundamentally broken.
+
+## What Exactly is Breaking?
+
+When you embed a video player using an `<iframe>`, you are loading a tiny window to another website (e.g., `player.vimeo.com`) inside your website (`yourcompany.com`).
+
+Historically, when that iframe loaded, Vimeo would drop a cookie in the user's browser. Because that cookie belonged to `vimeo.com`, it was considered a "third-party cookie."
+
+Today, Safari and Firefox **block all third-party cookies by default**.
+
+This means that if a user watches a video on your site on Tuesday, and then comes back on Thursday to watch another video, the embedded video player has no idea they are the same person. All user-level continuity across sessions is severed.
+
+## The Impact on Marketing
+
+### 1. View-to-Lead Attribution is Dead
+You can no longer reliably say, "User X watched 50% of the video and then filled out the lead form." Because the video player (in the iframe) and your website lead form (first-party context) can no longer share a tracking ID via cookies, the connection is lost for a significant portion of your traffic.
+
+### 2. CRM Integrations are Failing
+Platforms like Wistia charge a massive premium for deep HubSpot or Marketo integrations. These integrations relied heavily on dropping a tracking cookie when a user clicked a marketing email, and matching that cookie when they watched a video on the landing page. With strict ITP enforcement, these integrations are failing silently, resulting in massive dark spots in your CRM data.
+
+### 3. Retargeting Audiences are Shrinking
+If you build custom audiences on Facebook based on "Users who watched > 50% of my video," expect the size of that audience to drop by 30-50% as iOS users are excluded from the tracking pool.
+
+## The Solution: Server-Side and First-Party Analytics
+
+Marketers must adapt to a privacy-first web. You can no longer outsource your attribution to the iframe.
+
+### 1. Shift to Aggregate Analytics
+Stop obsessing over individual user tracking. Focus on aggregate metrics. If you change the thumbnail on your video, does the aggregate play rate go up? If you shorten the video by 30 seconds, does the aggregate completion rate improve? These metrics do not require cross-domain tracking and are fully compliant with modern privacy laws.
+
+### 2. First-Party Event Forwarding
+Instead of relying on the iframe to send data to Facebook, use the Player API.
+
+When you use a custom HTML5 player, or an embed that exposes a robust Javascript API, you can listen for video events (`play`, `pause`, `ended`) directly in the first-party context of your website.
+
+```javascript
+const player = document.getElementById('my-video');
+
+player.addEventListener('ended', () => {
+  // Fire a Google Analytics event using your own FIRST-PARTY tracking
+  gtag('event', 'video_complete', {
+    'video_title': 'Product Demo'
+  });
+});
+```
+
+Because this event is fired from `yourcompany.com` using your own analytics script, it is not blocked by third-party cookie restrictions.
+
+## Conclusion
+
+The deprecation of third-party cookies is not the end of video marketing, but it is the end of lazy video marketing.
+
+You can no longer rely on expensive enterprise video platforms to magically track your users across the web via cross-domain iframes. To survive, you need a fast, unbranded player that exposes simple Javascript events, allowing you to build your own first-party analytics infrastructure.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Own your data.</h3>
+  <p>uVideoPlayer doesn't set any third-party marketing cookies. We provide a clean Javascript API so you can route events directly into your own secure, first-party analytics pipeline.</p>
+  <CaptureForm form={capture.forms.newsletter} submitLabel="Learn more" />
+</div>

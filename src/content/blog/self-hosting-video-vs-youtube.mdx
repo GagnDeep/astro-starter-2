@@ -1,0 +1,86 @@
+---
+title: "Self-Hosting Video vs YouTube: The Hidden Cost of Free"
+post_hero:
+  date: "2023-11-20"
+  heading: "Self-Hosting Video vs YouTube: The Hidden Cost of Free"
+  tags:
+    - Business
+    - Growth
+    - YouTube
+  author: "Sarah Jane"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "Cost analysis graphic"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Cost analysis"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "YouTube is free, but embedding it on your website costs you traffic, brand integrity, and conversions. Here is why you should self-host."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+Every bootstrapped founder makes the same mistake: you build a beautiful landing page, record a great product demo, and then to save $5 a month, you upload the demo to YouTube and embed it as an "Unlisted" video.
+
+It's free. It's fast. And it is actively destroying your conversion rate.
+
+## The Business Model of YouTube
+
+To understand why YouTube embeds are toxic to your website, you must understand YouTube's core business model: **Session Time**.
+
+YouTube makes money by showing ads. The longer a user stays on YouTube, the more ads they see. Therefore, every single pixel of the YouTube player interface is engineered to pull the user away from the site they are currently on and back into the YouTube ecosystem.
+
+When you embed a YouTube video on your landing page, you are installing a highly-optimized exit door right next to your "Buy Now" button.
+
+### 1. The "Related Videos" Trap
+You've seen this happen. A potential customer watches your 2-minute product demo. As soon as the video ends, the player stops and displays a grid of 9 "Related Videos".
+
+You have zero control over what shows up here. Best case scenario: it's a funny cat video that distracts them. Worst case scenario: it's a review of your direct competitor's product, uploaded by a creator with 500,000 subscribers.
+
+You just paid for the Google Ad click to get them to your site, and then handed them directly to your competitor.
+
+### 2. The Unremovable Branding
+The YouTube logo sits in the bottom right corner. The title bar hovers at the top. The player controls are aggressively red. If you spent thousands of dollars designing a minimalist, high-end aesthetic for your SaaS product, slapping a bright red YouTube player in the middle of it instantly cheapens the brand.
+
+### 3. The "Watch on YouTube" Button
+Clicking almost anywhere on a paused YouTube embed will open a new tab taking the user to YouTube.com. Once they are there, the algorithm takes over, and they are never coming back to finish your checkout process.
+
+## The Alternative: True Self-Hosting
+
+When we say "self-hosting," we don't mean uploading a `.mp4` file to your WordPress media library (please don't do that, it will crash your server). We mean using a dedicated, white-label video infrastructure provider.
+
+### The Benefits
+
+1. **Keep Your Traffic:** A white-label player (like uVideoPlayer) has no links out. When the video ends, it can loop, fade to black, or display a custom Call to Action (CTA) button that drives users to your checkout page.
+2. **Brand Consistency:** You set the primary hex color of the player to match your brand guidelines.
+3. **Data Ownership:** You get analytics that matter to you (completion rates, drop-off points), not just "views".
+
+## The Financial Tradeoff
+
+Let's look at the actual cost.
+
+If your landing page gets 10,000 visitors a month, and 20% of them watch your 2-minute explainer video in 1080p.
+* Views: 2,000
+* Data per view: ~50MB
+* Total Monthly Bandwidth: 100GB
+
+At standard self-hosting rates ($5 base + $0.02/GB), hosting this video yourself costs **$7.00 per month**.
+
+If losing a single customer to a YouTube "Related Video" costs you a $29/mo SaaS subscription, then you are losing hundreds of dollars in Lifetime Value (LTV) to save $7.
+
+## Conclusion
+
+YouTube is an incredible platform for **discovery**. You should absolutely be creating content for YouTube to reach new audiences.
+
+But once a user has crossed the threshold onto your own website, you must stop treating them like YouTube's audience and start treating them like your own.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Stop leaking your traffic</h3>
+  <p>uVideoPlayer is the exact opposite of a YouTube embed. Zero branding, zero related videos, 100% focus on your product.</p>
+  <CaptureForm form={capture.forms.contact} submitLabel="Try it free" />
+</div>

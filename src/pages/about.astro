@@ -1,5 +1,33 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+import { capture } from "../../capture.config";
 ---
 
-<AboutPage />
+<Layout title="About uVideoPlayer" seo={{ page_description: "Why we built a simpler video player for independent creators." }}>
+  <section class="py-16 md:py-24 max-w-4xl mx-auto px-8 prose">
+    <h1>About uVideoPlayer</h1>
+    <p class="lead">Video hosting doesn't have to be complicated, and it shouldn't cost as much as your rent.</p>
+
+    <h2>The Problem</h2>
+    <p>For years, creators relied on Vimeo to host premium, ad-free video content for their courses, membership sites, and portfolios. But as Vimeo pivoted towards enterprise B2B customers, small creators were left behind—facing aggressive bandwidth caps and sudden price hikes.</p>
+    <p>The alternative was YouTube, but embedding YouTube videos means surrendering your audience to their algorithm. Your viewers are shown ads, and the moment your video ends, they are recommended content from your competitors.</p>
+
+    <h2>Our Solution</h2>
+    <p>We built uVideoPlayer to be the exact opposite. A simple, lightning-fast HTML5 video player that you can embed anywhere. It has zero branding, zero ads, and a transparent pay-as-you-go pricing model.</p>
+    <p>You shouldn't have to pay for marketing automation tools, CRM integrations, or team collaboration features if all you want to do is put a clean video on your website.</p>
+
+    <h2>Our Values</h2>
+    <ul>
+      <li><strong>Transparency:</strong> You only pay for the bandwidth you use.</li>
+      <li><strong>Speed:</strong> Our player is tiny, ensuring your Core Web Vitals remain in the green.</li>
+      <li><strong>Independence:</strong> We are proudly bootstrapped and answer only to our users, not venture capitalists.</li>
+    </ul>
+
+    <div class="mt-12 bg-gray-50 p-8 rounded border border-[var(--color-border)] not-prose">
+      <h3 class="text-2xl font-bold mb-4">Have questions?</h3>
+      <p class="mb-6 text-[var(--color-text-muted)]">We actually read every message. Drop us a line.</p>
+      <CaptureForm form={capture.forms.contact} submitLabel="Contact the founders" />
+    </div>
+  </section>
+</Layout>

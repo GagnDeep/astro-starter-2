@@ -1,0 +1,82 @@
+---
+title: "A Developer's Guide to Adaptive Bitrate Streaming (HLS/DASH)"
+post_hero:
+  date: "2023-11-28"
+  heading: "A Developer's Guide to Adaptive Bitrate Streaming (HLS/DASH)"
+  tags:
+    - Engineering
+    - HLS
+    - Performance
+  author: "Mark Remover"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "HLS manifest graphic"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "HLS thumbnail"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "Learn how HLS and DASH work under the hood to deliver buffer-free video across the web, and why the standard MP4 is obsolete."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+If you put a 1080p, 5GB `.mp4` file on your website, a user with a gigabit fiber connection will click play and have a great experience. A user on a 3G mobile connection on a train will click play, watch the loading spinner for two minutes, and then leave.
+
+This is the fundamental problem of web video: network conditions are wildly unpredictable.
+
+The solution, invented in the late 2000s and now powering Netflix, YouTube, and Twitch, is **Adaptive Bitrate Streaming (ABR)**.
+
+## The Core Concept
+
+Instead of serving one massive file, ABR relies on two core principles:
+1. **Multiple Renditions:** Encode the source video into several different quality levels (e.g., 1080p, 720p, 480p, 360p).
+2. **Segmentation:** Chop every single one of those renditions into tiny, bite-sized files (usually 4 to 6 seconds long).
+
+When the player starts, it downloads a text file called a **Manifest**. The manifest lists all the available qualities and the URLs for every tiny 4-second chunk.
+
+## How the Player Adapts
+
+Let's walk through a real-world scenario of a user on a train.
+
+1. **Initial Load:** The player downloads the manifest. It doesn't know the user's internet speed yet, so it plays it safe. It requests the first 4-second chunk of the lowest quality (360p).
+2. **Speed Test:** The player measures exactly how long it took to download that first chunk. If the 4-second chunk downloaded in 0.5 seconds, the player knows the internet is fast.
+3. **Scaling Up:** For the next chunk (seconds 4 through 8), the player looks at the manifest and requests the 1080p version.
+4. **The Train Enters a Tunnel:** The user's cell signal drops drastically. The player attempts to download the next 1080p chunk, but it's taking too long. It is going to buffer.
+5. **Scaling Down:** Before the buffer runs out, the player aborts the 1080p request and quickly asks for the 480p version of that exact same 4-second timestamp. The video quality drops slightly, but the playback never stutters.
+
+## HLS vs DASH
+
+There are two major protocols that govern how these manifests and chunks are formatted.
+
+### 1. HLS (HTTP Live Streaming)
+Developed by Apple in 2009 to allow video to play on the original iPhone without killing the network.
+* **Manifest format:** `.m3u8`
+* **Segment format:** Historically `.ts` (MPEG-TS), now heavily moving toward fragmented MP4 (`fMP4`).
+* **Support:** Natively supported in Safari (macOS/iOS). Requires a JavaScript engine (like `hls.js`) to play in Chrome and Firefox.
+
+### 2. MPEG-DASH
+Developed as an open-source alternative to Apple's proprietary format.
+* **Manifest format:** `.mpd` (XML based)
+* **Segment format:** Fragmented MP4 (`fMP4`).
+* **Support:** Relies entirely on Media Source Extensions (MSE) in JavaScript. Not supported natively in iOS Safari (which heavily restricts Apple devices from using it without complex workarounds).
+
+Because of Apple's iron grip on the iOS ecosystem, **HLS has essentially won the streaming wars**. If you can only afford to package your video in one format, it must be HLS.
+
+## The Engineering Cost of ABR
+
+Implementing ABR is incredibly compute-intensive.
+
+If you want to support a 5-rung ladder (1080p, 720p, 480p, 360p, 240p), your servers have to transcode the original video 5 separate times. Then, a packager must slice those 5 files into thousands of individual segments and generate the master manifest.
+
+If you are a solo developer, building this pipeline using FFmpeg and AWS MediaConvert is a massive undertaking.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Skip the FFmpeg headaches</h3>
+  <p>uVideoPlayer has a massive, scalable transcoding pipeline built-in. You upload one file, and we instantly generate the optimal HLS ladder and distribute it to a global edge network.</p>
+  <CaptureForm form={capture.forms.contact} submitLabel="Try it free" />
+</div>

@@ -1,12 +1,25 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
 ---
 
 <footer class="bg-gray-800 text-white">
   <div class="mx-auto max-w-6xl px-8 py-12">
+
+    <div class="mb-12 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-gray-700 pb-12">
+      <div>
+        <h3 class="text-xl font-bold mb-2">Get product updates</h3>
+        <p class="text-gray-400">Join our newsletter to stay updated on web video.</p>
+      </div>
+      <div>
+        <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" />
+      </div>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
+      <a class="flex justify-center sm:justify-start font-bold text-xl" href={footer.logo_url}>
+        {footer.logo_alt_text}
       </a>
 
       <ul class="flex gap-6 items-center justify-center">

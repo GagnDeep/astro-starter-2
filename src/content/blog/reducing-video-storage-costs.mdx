@@ -1,0 +1,97 @@
+---
+title: "How to Reduce Video Storage and Bandwidth Costs"
+post_hero:
+  date: "2023-11-02"
+  heading: "How to Reduce Video Storage and Bandwidth Costs"
+  tags:
+    - Costs
+    - Engineering
+    - Cloud
+  author: "Mark Remover"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "Cost calculation concept"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Cost thumbnail"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "Learn actionable strategies to drastically cut your AWS S3 storage and CloudFront bandwidth bills for video hosting."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+If you run a platform that hosts user-generated video or a large library of premium content, you already know the pain of the monthly AWS bill. Video files are massive, and the costs to store and deliver them scale linearly with your success.
+
+In this guide, we will break down the exact strategies video engineers use to reduce cloud costs without degrading the user experience.
+
+## 1. Stop Storing Master Files (Or Move Them to Deep Glacier)
+
+When a user uploads a 4K ProRes file from their iPhone, it can easily be 5GB for a 10-minute video. If your transcoding pipeline converts that into web-ready HLS streams, you no longer need that original 5GB file for active playback.
+
+**The Mistake:** Keeping the master `.mov` or `.mp4` in your primary S3 bucket (S3 Standard).
+
+**The Fix:**
+1. Setup an S3 Lifecycle Rule on your `uploads` bucket.
+2. After 7 days, transition the master files to **S3 Glacier Deep Archive**.
+
+S3 Standard costs ~$0.023 per GB. S3 Glacier Deep Archive costs ~$0.00099 per GB.
+That is a **95% reduction in storage costs** for files that are rarely, if ever, accessed again.
+
+## 2. Implement Capped Variable Bitrate (VBR) Encoding
+
+When you use FFmpeg to encode video, you can choose Constant Bitrate (CBR) or Variable Bitrate (VBR).
+
+* **CBR** forces the encoder to use exactly 5 Mbps, even if the screen is completely black. This wastes massive amounts of data.
+* **VBR** allows the encoder to use more data for complex action scenes (like explosions) and less data for simple scenes (like a static slide in a presentation).
+
+Always use **Constrained VBR (CVBR)**. This allows the bitrate to drop during simple scenes to save file size, but caps the maximum bitrate so complex scenes don't cause sudden buffering spikes for users on slow connections.
+
+**FFmpeg Example for CVBR:**
+```bash
+ffmpeg -i input.mp4 -c:v libx264 -crf 23 -maxrate 5M -bufsize 10M output.mp4
+```
+*(This targets a constant quality of CRF 23, but strictly prevents the bitrate from ever exceeding 5 Mbps).*
+
+## 3. Limit Your HLS Rendition Ladder
+
+An ABR (Adaptive Bitrate) "ladder" is the set of resolutions you generate for a video. A common ladder looks like this:
+* 1080p @ 5 Mbps
+* 720p @ 2.5 Mbps
+* 480p @ 1 Mbps
+* 360p @ 400 kbps
+
+**The Mistake:** Generating a 1080p rendition for a video that was uploaded at 720p. You are paying to store and deliver upscaled, blurry pixels.
+
+**The Fix:** Build intelligence into your transcoding pipeline. Read the source file's resolution using `ffprobe` before encoding. If the source is 720p, drop the 1080p rung from your ladder entirely.
+
+## 4. Optimize the Player Configuration
+
+Your biggest expense is usually bandwidth (CDN egress), not storage. You are charged for every megabyte that leaves your CDN, *even if the user doesn't watch the video*.
+
+**The Mistake:** Preloading the entire video on page load.
+If you use `<video preload="auto">`, the browser will try to download the entire video file as soon as the page opens. If a user visits the page and leaves after 5 seconds, you just paid to deliver 100MB of data for nothing.
+
+**The Fix:**
+* Set `preload="metadata"`. This only downloads the first few kilobytes to get the video duration and dimensions.
+* If using an HLS player (like Video.js or Hls.js), configure the **forward buffer length**. Set it to only buffer 30 seconds ahead of the playhead.
+
+## 5. Leverage Multi-CDN Architecture
+
+If you are pushing petabytes of data, you should not be locked into a single CDN like AWS CloudFront.
+
+CloudFront's list price is roughly $0.08 per GB. CDNs like BunnyCDN or Cloudflare can be as low as $0.01 per GB. By implementing a multi-CDN strategy, you route video requests to the cheapest CDN that meets your performance requirements for a given region.
+
+## Conclusion
+
+Cutting video costs requires attacking the problem from both sides: reducing the size of the files sitting on your disks (storage) and preventing unnecessary data from being sent over the wire (bandwidth).
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Stop paying enterprise rates</h3>
+  <p>uVideoPlayer offers a simple $5/mo + $0.02/GB pricing model. No seat licenses, no hidden fees, just honest bandwidth pricing.</p>
+  <CaptureForm form={capture.forms.quote} submitLabel="Get a custom quote" />
+</div>

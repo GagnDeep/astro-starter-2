@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+import { capture } from "../../capture.config";
+
+const faqs = [
+  {
+    q: "How does the pricing actually work?",
+    a: "We charge a flat $5/month platform fee, plus $0.02 for every Gigabyte (GB) of bandwidth you use. There are no hidden fees, no per-seat licenses, and no storage limits."
+  },
+  {
+    q: "Can I remove the uVideoPlayer branding?",
+    a: "Yes. By default, there is absolutely zero uVideoPlayer branding on your videos. You are the star of the show."
+  },
+  {
+    q: "Do you support 4K video?",
+    a: "Yes. We automatically transcode your source files into a full adaptive bitrate ladder, including 4K if the source allows it. The player will dynamically adjust quality based on the viewer's internet speed."
+  },
+  {
+    q: "Is there a limit to how many videos I can upload?",
+    a: "No. You can upload an unlimited number of videos. You only pay for the bandwidth consumed when your users watch them."
+  },
+  {
+    q: "How do you handle video security?",
+    a: "You can restrict playback to specific domains (e.g., only your website). We also support signed URLs for protecting premium course content from being shared."
+  },
+  {
+    q: "Do you offer an API?",
+    a: "We are currently focused on providing the simplest drag-and-drop embed experience possible. If you need complex programmatic video manipulation, you may be better served by an enterprise API like Mux or AWS."
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(faq => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a
+    }
+  }))
+};
+---
+<Layout title="Frequently Asked Questions" seo={{ page_description: "Answers to common questions about uVideoPlayer's pricing, features, and security." }}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} slot="head"></script>
+
+  <section class="py-16 md:py-24 max-w-3xl mx-auto px-8">
+    <h1 class="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
+    <p class="text-xl text-[var(--color-text-muted)] mb-12">Everything you need to know about the product and billing.</p>
+
+    <div class="space-y-8">
+      {faqs.map(faq => (
+        <div class="border-b border-[var(--color-border)] pb-8">
+          <h3 class="text-xl font-bold mb-3">{faq.q}</h3>
+          <p class="text-[var(--color-text-muted)] leading-relaxed">{faq.a}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 bg-gray-50 p-8 rounded border border-[var(--color-border)]">
+      <h3 class="text-2xl font-bold mb-4">Still have questions?</h3>
+      <p class="mb-6 text-[var(--color-text-muted)]">Our support team is ready to help.</p>
+      <CaptureForm form={capture.forms.contact} submitLabel="Contact Support" />
+    </div>
+  </section>
+</Layout>

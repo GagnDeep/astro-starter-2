@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const useCases = [
+  { slug: "online-courses", title: "Video Hosting for Online Courses" },
+  { slug: "ecommerce", title: "Product Videos for E-commerce" },
+  { slug: "portfolios", title: "Video Portfolios for Creatives" },
+  { slug: "real-estate", title: "Property Tours for Real Estate" },
+  { slug: "saas", title: "Onboarding Videos for SaaS" },
+  { slug: "agencies", title: "Client Video Delivery for Agencies" },
+  { slug: "fitness", title: "Workout Streams for Fitness Coaches" },
+  { slug: "non-profits", title: "Campaign Videos for Non-Profits" },
+  { slug: "enterprise", title: "Internal Training for Enterprise" },
+  { slug: "internal-comms", title: "Secure Internal Communications" }
+];
+---
+<Layout title="uVideoPlayer Use Cases" seo={{ page_description: "Discover how different industries use uVideoPlayer for fast, ad-free video hosting." }}>
+  <section class="py-16 md:py-24 max-w-4xl mx-auto px-8">
+    <h1 class="text-4xl font-bold mb-6">Built for your industry</h1>
+    <p class="text-xl text-[var(--color-text-muted)] mb-12 max-w-2xl">From solo creators selling courses to enterprises securing internal training, see how uVideoPlayer fits your workflow.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {useCases.map(uc => (
+        <a href={`/use-cases/${uc.slug}/`} class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-primary)] transition-colors">
+          <h2 class="text-lg font-bold mb-2">{uc.title}</h2>
+          <p class="text-sm text-[var(--color-text-muted)]">Read use case &rarr;</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

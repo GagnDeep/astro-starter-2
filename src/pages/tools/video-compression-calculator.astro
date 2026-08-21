@@ -1,0 +1,86 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Video File Size Calculator" seo={{ page_description: "Calculate expected video file sizes based on bitrate and duration." }}>
+  <section class="py-16 md:py-24 max-w-4xl mx-auto px-8 prose">
+    <h1>Video File Size Calculator</h1>
+    <p>Predict how large your exported video file will be based on its target bitrate. This is essential for ensuring your raw MP4s are small enough for web delivery.</p>
+
+    <div class="bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded p-6 my-8 not-prose">
+      <form id="size-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">Video Duration (Minutes)</label>
+          <input type="number" id="size-duration" value="5" class="w-full rounded border border-[var(--color-border)] px-3 py-2" required min="0.1" step="0.1" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Target Video Bitrate (Mbps)</label>
+          <input type="number" id="size-bitrate" value="5" class="w-full rounded border border-[var(--color-border)] px-3 py-2" required min="0.1" step="0.1" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Audio Bitrate (kbps)</label>
+          <select id="size-audio" class="w-full rounded border border-[var(--color-border)] px-3 py-2 bg-white">
+            <option value="128">128 kbps (Standard Web)</option>
+            <option value="192">192 kbps (High Quality)</option>
+            <option value="256">256 kbps (Premium)</option>
+            <option value="320">320 kbps (Maximum)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="rounded bg-[var(--color-primary)] px-5 py-2 text-white font-medium mt-4">Calculate Size</button>
+      </form>
+
+      <div id="size-result" class="hidden mt-8 p-4 bg-gray-50 border-l-4 border-[var(--color-primary)]">
+        <h3 class="font-bold text-lg mb-2">Estimated File Size: <span id="out-size"></span> MB</h3>
+        <p class="text-sm mt-4 text-[var(--color-text-muted)]">
+          <strong>How this is calculated:</strong><br/>
+          (Video Bitrate in Mbps + (Audio Bitrate in kbps / 1000)) × Duration in seconds / 8.<br/>
+          <em>Note: Actual sizes will vary based on encoder efficiency and variable bitrate (VBR) settings.</em>
+        </p>
+      </div>
+
+      <noscript>
+        <div class="mt-8 p-4 bg-gray-50 border-l-4 border-[var(--color-primary)]">
+          <h3 class="font-bold text-lg mb-2">How to calculate manually</h3>
+          <p>Since JavaScript is disabled, you can use this formula:</p>
+          <p class="font-mono bg-white p-2 border border-gray-200 rounded text-sm mb-4">
+            Size in MB = (Total Bitrate in Mbps × Duration in seconds) ÷ 8
+          </p>
+          <p class="text-sm">
+            For example, a 5 Mbps video that is 60 seconds long: (5 × 60) ÷ 8 = 37.5 MB. (Don't forget to add your audio bitrate).
+          </p>
+        </div>
+      </noscript>
+    </div>
+
+    <h2>Why Bitrate Matters</h2>
+    <p>Bitrate is the most critical factor in web video. A 1080p video encoded at 20Mbps will look stunning on your desktop, but will buffer constantly for users on cellular networks. A good rule of thumb for standard web 1080p is between 3Mbps and 6Mbps.</p>
+
+    <div class="mt-12 bg-gray-50 p-8 rounded border border-gray-200">
+      <h3 class="mt-0">Never worry about bitrates again</h3>
+      <p>uVideoPlayer automatically transcodes your master file into multiple resolutions and bitrates, serving the right one to each user instantly.</p>
+      <a href="/pricing/" class="inline-block rounded bg-[var(--color-primary)] px-5 py-2 text-white font-medium no-underline hover:bg-[var(--color-primary-dark)]">See Plans</a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.getElementById('size-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const durationMins = parseFloat((document.getElementById('size-duration') as HTMLInputElement).value);
+    const videoBitrateMbps = parseFloat((document.getElementById('size-bitrate') as HTMLInputElement).value);
+    const audioBitrateKbps = parseFloat((document.getElementById('size-audio') as HTMLSelectElement).value);
+
+    const durationSeconds = durationMins * 60;
+    const audioBitrateMbps = audioBitrateKbps / 1000;
+
+    const totalBitrateMbps = videoBitrateMbps + audioBitrateMbps;
+
+    // Megabits to Megabytes (divide by 8)
+    const sizeInMb = (totalBitrateMbps * durationSeconds) / 8;
+
+    document.getElementById('out-size')!.textContent = sizeInMb.toFixed(2);
+    document.getElementById('size-result')!.classList.remove('hidden');
+  });
+</script>

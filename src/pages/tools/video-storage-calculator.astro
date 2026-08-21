@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Video Storage Calculator" seo={{ page_description: "Calculate how much raw storage your video library requires." }}>
+  <section class="py-16 md:py-24 max-w-4xl mx-auto px-8 prose">
+    <h1>Video Storage Calculator</h1>
+    <p>Predict your raw S3 or CDN storage costs based on the total hours of video in your library and your average bitrate. This calculates storage footprint, not delivery bandwidth.</p>
+
+    <div class="bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded p-6 my-8 not-prose">
+      <form id="storage-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">Total Library Size (Hours)</label>
+          <input type="number" id="storage-hours" value="100" class="w-full rounded border border-[var(--color-border)] px-3 py-2" required min="1" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Average Bitrate (Mbps)</label>
+          <input type="number" id="storage-bitrate" value="5" class="w-full rounded border border-[var(--color-border)] px-3 py-2" required min="0.1" step="0.1" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Storage Provider</label>
+          <select id="storage-provider" class="w-full rounded border border-[var(--color-border)] px-3 py-2 bg-white">
+            <option value="0.023">AWS S3 Standard ($0.023/GB)</option>
+            <option value="0.0125">Google Cloud Storage ($0.0125/GB)</option>
+            <option value="0.005">Backblaze Storage ($0.005/GB)</option>
+            <option value="0.00099">AWS Glacier Deep Archive ($0.00099/GB)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="rounded bg-[var(--color-primary)] px-5 py-2 text-white font-medium mt-4">Calculate Storage</button>
+      </form>
+
+      <div id="storage-result" class="hidden mt-8 p-4 bg-gray-50 border-l-4 border-[var(--color-primary)]">
+        <h3 class="font-bold text-lg mb-2">Estimated Storage Required: <span id="out-gb"></span> GB</h3>
+        <p class="text-[var(--color-text-muted)] text-xl font-medium mb-1">Estimated Cost: $<span id="out-cost"></span> / month</p>
+        <p class="text-sm mt-4 text-[var(--color-text-muted)]">
+          <strong>How this is calculated:</strong><br/>
+          (Bitrate in Mbps × Hours × 3600 seconds) / 8192 = Gigabytes.<br/>
+          <em>Note: If you use Adaptive Bitrate Streaming (HLS), multiply this result by ~1.5 to account for multiple quality renditions.</em>
+        </p>
+      </div>
+
+      <noscript>
+        <div class="mt-8 p-4 bg-gray-50 border-l-4 border-[var(--color-primary)]">
+          <h3 class="font-bold text-lg mb-2">How to calculate manually</h3>
+          <p>Since JavaScript is disabled, you can use this formula:</p>
+          <p class="font-mono bg-white p-2 border border-gray-200 rounded text-sm mb-4">
+            Total GB = (Bitrate in Mbps × Total Hours × 3600) ÷ 8192
+          </p>
+          <p class="text-sm">
+            Multiply the resulting GB by your provider's monthly per-GB rate (e.g., $0.023 for AWS S3).
+          </p>
+        </div>
+      </noscript>
+    </div>
+
+    <h2>Why Storage is the Hidden Cost</h2>
+    <p>While bandwidth often gets the spotlight, storage costs compound. Every video you add increases your monthly baseline bill permanently. If you are keeping master 4K files in hot storage (like S3 Standard), you are likely overpaying by 90%.</p>
+
+    <div class="mt-12 bg-gray-50 p-8 rounded border border-gray-200">
+      <h3 class="mt-0">Let us handle the infrastructure</h3>
+      <p>uVideoPlayer includes generous storage limits and automatically moves unused master files to cold storage so you don't have to think about lifecycle rules.</p>
+      <a href="/pricing/" class="inline-block rounded bg-[var(--color-primary)] px-5 py-2 text-white font-medium no-underline hover:bg-[var(--color-primary-dark)]">See Pricing</a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.getElementById('storage-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const hours = parseFloat((document.getElementById('storage-hours') as HTMLInputElement).value);
+    const bitrateMbps = parseFloat((document.getElementById('storage-bitrate') as HTMLInputElement).value);
+    const ratePerGb = parseFloat((document.getElementById('storage-provider') as HTMLSelectElement).value);
+
+    // Total seconds
+    const seconds = hours * 3600;
+
+    // Megabits to Gigabytes calculation
+    // 1 Byte = 8 bits
+    // 1 Gigabyte = 1024 Megabytes
+    // Total GB = (Mbps * seconds) / (8 * 1024)
+    const totalGb = (bitrateMbps * seconds) / 8192;
+    const monthlyCost = totalGb * ratePerGb;
+
+    document.getElementById('out-gb')!.textContent = totalGb.toLocaleString(undefined, {maximumFractionDigits: 2});
+    document.getElementById('out-cost')!.textContent = monthlyCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('storage-result')!.classList.remove('hidden');
+  });
+</script>
