@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Understand the difference between 432Hz and 440Hz handpans.",
+  canonical_url: "/tools/frequency-converter/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Frequency Converter",
+  author_twitter_handle: "",
+  open_graph_type: "website",
+  no_index: false
+};
+---
+
+<Layout title="432Hz vs 440Hz Converter & Guide" seo={seo}>
+  <div class="mx-auto max-w-4xl px-8 py-16">
+    <h1 class="text-4xl font-bold mb-4 font-display">Handpan Pitch Guide: 432Hz vs 440Hz</h1>
+    <p class="text-lg text-gray-600 mb-8">
+      The handpan community often debates A=440Hz vs A=432Hz. This tool explains what it means and helps you decide.
+    </p>
+
+    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100 mb-12">
+      <div class="prose max-w-none">
+        <h2>What does this mean?</h2>
+        <p>
+          "A=440Hz" means the note A above middle C vibrates at 440 times per second. This is the international standard for tuning. Almost all modern music, pianos, and guitars use this.
+        </p>
+        <p>
+          "A=432Hz" is slightly lower. Some people believe it sounds warmer, more relaxing, or has mathematical ties to nature.
+        </p>
+
+        <h3>The Golden Rule of Handpans:</h3>
+        <blockquote class="bg-amber-50 p-4 border-l-4 border-amber-500 rounded-r-lg font-medium">
+          A 432Hz handpan CANNOT be played with standard 440Hz instruments (pianos, guitars, backing tracks). It will sound horribly out of tune.
+        </blockquote>
+
+        <ul class="list-disc ml-6 mt-4">
+          <li><strong>Buy 440Hz if:</strong> You want to play with other musicians, jam to Spotify, or record over standard electronic tracks.</li>
+          <li><strong>Buy 432Hz if:</strong> You are strictly a solo player, use it only for meditation, or play exclusively with other 432Hz instruments.</li>
+        </ul>
+      </div>
+
+      <div class="mt-8 p-6 bg-steel-50 border border-steel-200 rounded-lg text-center">
+        <h3 class="text-xl font-bold mb-2">Can I retune a 440Hz to 432Hz?</h3>
+        <p class="text-gray-700">
+          <strong>Usually NO.</strong> The metal is formed for a specific frequency. Retuning by 8Hz requires drastic reshaping of the notes, which most tuners will refuse because it ruins the architecture of the tone fields. You must buy it in the frequency you want.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

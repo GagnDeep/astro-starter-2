@@ -1,0 +1,116 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Find the perfect handpan scale for your style and experience level.",
+  canonical_url: "/tools/scale-finder/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Scale Finder Tool",
+  author_twitter_handle: "",
+  open_graph_type: "website",
+  no_index: false
+};
+---
+
+<Layout title="Handpan Scale Finder" seo={seo}>
+  <div class="mx-auto max-w-4xl px-8 py-16">
+    <h1 class="text-4xl font-bold mb-4 font-display">Handpan Scale Finder</h1>
+    <p class="text-lg text-gray-600 mb-8">
+      Answer a few questions and we'll recommend the perfect scale family for your needs.
+    </p>
+
+    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100 mb-12">
+      <noscript>
+        <div class="bg-amber-50 p-6 rounded-lg border border-amber-200 mb-6">
+          <h2 class="text-xl font-semibold mb-2">How to choose a scale manually:</h2>
+          <ul class="list-disc ml-6 space-y-2 text-gray-700">
+            <li><strong>Beginner?</strong> D Minor (Kurd) or C# Minor (Annaziska) are the most universal.</li>
+            <li><strong>Want happy/uplifting?</strong> Look at Major scales like F Major or C Major.</li>
+            <li><strong>Want melancholic/deep?</strong> Minor and Celtic scales are best.</li>
+            <li><strong>Want exotic?</strong> Middle Eastern (Hijaz) or Asian (Akebono) scales.</li>
+          </ul>
+        </div>
+      </noscript>
+
+      <form id="scale-form" class="space-y-6">
+        <div>
+          <label class="block font-semibold mb-2">What is your experience level?</label>
+          <select id="experience" class="w-full p-3 border rounded-md" required>
+            <option value="beginner">Total Beginner</option>
+            <option value="intermediate">I play other instruments</option>
+            <option value="advanced">Advanced / Professional</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-semibold mb-2">What vibe are you looking for?</label>
+          <select id="vibe" class="w-full p-3 border rounded-md" required>
+            <option value="melancholic">Deep, melancholic, meditative (Minor)</option>
+            <option value="uplifting">Happy, uplifting, bright (Major)</option>
+            <option value="exotic">Exotic, mystical (Hijaz/Akebono)</option>
+            <option value="celtic">Folk, storytelling (Celtic Minor)</option>
+          </select>
+        </div>
+
+        <button type="button" id="calculate-btn" class="bg-brand-800 text-white px-6 py-3 rounded-md font-semibold hover:bg-brand-700 transition">
+          Find My Scale
+        </button>
+      </form>
+
+      <div id="results" class="hidden mt-8 p-6 bg-brand-50 border border-brand-200 rounded-lg">
+        <h3 class="text-2xl font-bold text-brand-900 mb-2">Your Recommended Scale: <span id="result-scale" class="text-brand-700"></span></h3>
+        <p id="result-desc" class="text-gray-700 mb-4"></p>
+
+        <hr class="my-6 border-brand-200" />
+
+        <h4 class="font-semibold mb-4">Want a custom recommendation from an expert?</h4>
+        <CaptureForm form="quote">
+          <input type="hidden" name="calculated_scale" id="capture-scale" value="" />
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">Email</label>
+            <input type="email" name="email" class="w-full p-2 border rounded-md" required />
+          </div>
+          <button class="bg-steel-700 text-white px-4 py-2 rounded-md hover:bg-steel-900 transition">Get Recommendation</button>
+        </CaptureForm>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('calculate-btn');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const exp = (document.getElementById('experience') as HTMLSelectElement).value;
+          const vibe = (document.getElementById('vibe') as HTMLSelectElement).value;
+
+          let scaleName = "D Minor (Kurd)";
+          let desc = "The most popular scale in the world. Easy to play, great for beginners, and pairs with almost anything.";
+
+          if (vibe === 'uplifting') {
+            scaleName = "F Major / C Major";
+            desc = "Bright and happy. Major scales are less common but beautiful for uplifting music.";
+          } else if (vibe === 'exotic') {
+            scaleName = "C# Hijaz or D Akebono";
+            desc = "These scales have a distinct Eastern or Asian flavor. Great for solo meditative playing.";
+          } else if (vibe === 'celtic') {
+            scaleName = "Amara / Celtic Minor";
+            desc = "Lacks the 6th note, giving it an open, airy, and very forgiving sound perfect for beginners.";
+          }
+
+          if (exp === 'advanced' && vibe === 'melancholic') {
+            scaleName = "E or F# Minor (Mutant with bottom notes)";
+            desc = "As an advanced player, you'll want an extended scale with bottom notes for full expression.";
+          }
+
+          document.getElementById('result-scale')!.innerText = scaleName;
+          document.getElementById('result-desc')!.innerText = desc;
+          (document.getElementById('capture-scale') as HTMLInputElement).value = scaleName;
+
+          document.getElementById('results')!.classList.remove('hidden');
+        });
+      }
+    });
+  </script>
+</Layout>

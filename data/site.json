@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Handpano",
+  "description": "The definitive, objective, zero-BS buyer's guide and reference library for absolute beginners to intermediate handpan players.",
+  "tagline": "Find your perfect handpan without getting scammed.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Handpano — find your perfect handpan without getting scammed.",
+  "default_author": "Handpano Editor",
+  "theme_color": "#FAFAF9",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Handpano",
+    "logo": "/images/brand/icon.svg",
     "same_as": []
   }
 }
