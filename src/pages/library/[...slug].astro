@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+export async function getStaticPaths() {
+  const library = await getCollection("library");
+  return library.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+---
+
+<Layout title={doc.data.title} seo={{ page_description: doc.data.description } }>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row gap-12">
+    <div class="flex-1 prose">
+      <h1>{doc.data.title}</h1>
+      <Content />
+    </div>
+    <div class="lg:w-80 space-y-6">
+      <div class="bg-slate-50 border border-slate-200 p-6 rounded-lg sticky top-6">
+        <h3 class="font-semibold text-slate-900 mb-2">Get notified when the Delegated Act drops</h3>
+        <p class="text-sm text-slate-600 mb-4">We track the EU Commission so you don't have to.</p>
+        <CaptureForm form="checklist_sidebar" submitLabel="Subscribe" class="btn btn-primary w-full">
+           <input type="hidden" name="source" value={`library_${doc.id}`} />
+           <label class="sr-only" for="email">Work Email</label>
+           <input type="email" id="email" name="email" required placeholder="name@company.com" class="w-full px-3 py-2 border border-slate-300 rounded mb-4 focus:ring-2 focus:ring-blue-500" />
+        </CaptureForm>
+      </div>
+    </div>
+  </div>
+</Layout>

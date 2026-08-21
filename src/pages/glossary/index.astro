@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const glossary = await getCollection("glossary");
+---
+
+<Layout title="Glossary" seo={{ page_description: "Glossary of terms for the EU Battery Regulation." } }>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-4xl font-bold text-slate-900 mb-8">Glossary</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {glossary.map(term => (
+        <a href={`/glossary/${term.id}/`} class="block p-4 bg-white border border-slate-200 rounded hover:shadow-md transition">
+          <h2 class="text-lg font-semibold text-blue-600">{term.data.title}</h2>
+          <p class="text-sm text-slate-600 mt-1 line-clamp-2">{term.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

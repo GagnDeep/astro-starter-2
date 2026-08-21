@@ -395,3 +395,31 @@ _inputs:
       When selected this removes the page from your sitemap and adds the noindex robots meta tag.
   _name:
     hidden: true
+  library:
+    path: src/content/library
+    glob:
+      - '**/*.mdx'
+      - '**/*.md'
+    url: '/library/[full_slug]/'
+    icon: menu_book
+  tools:
+    path: src/content/tools
+    glob:
+      - '**/*.mdx'
+      - '**/*.md'
+    url: '/tools/[full_slug]/'
+    icon: build
+  glossary:
+    path: src/content/glossary
+    glob:
+      - '**/*.mdx'
+      - '**/*.md'
+    url: '/glossary/[full_slug]/'
+    icon: format_list_bulleted
+  vendors:
+    path: src/content/vendors
+    glob:
+      - '**/*.mdx'
+      - '**/*.md'
+    url: '/vendors/[full_slug]/'
+    icon: store

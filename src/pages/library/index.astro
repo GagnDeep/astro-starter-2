@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const library = await getCollection("library");
+---
+
+<Layout title="Technical Library" seo={{ page_description: "Technical library for EU Battery Regulation compliance." } }>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-4xl font-bold text-slate-900 mb-8">Technical Library</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {library.map(doc => (
+        <a href={`/library/${doc.id}/`} class="block p-6 bg-white border border-slate-200 rounded-lg hover:shadow-md transition">
+          <h2 class="text-xl font-semibold text-slate-900 mb-2">{doc.data.title}</h2>
+          <p class="text-slate-600">{doc.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
