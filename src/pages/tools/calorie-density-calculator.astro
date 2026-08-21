@@ -1,0 +1,118 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Calculate the exact calories per gram of any dog treat from its Guaranteed Analysis.",
+  open_graph_type: "website" as const,
+};
+---
+
+<Layout title="Treat Calorie Calculator" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6 text-[var(--color-primary)]">Treat Calorie Calculator</h1>
+
+    <div class="prose mb-8">
+      <p>
+        Not all treats list calories on the bag! Use this tool to estimate the calories (kcal) per treat by entering the Guaranteed Analysis from the back of the package.
+      </p>
+    </div>
+
+    <div class="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)] mb-8">
+      <form id="calc-form" class="space-y-4">
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Crude Protein (Min %)</label>
+            <input type="number" id="protein" step="0.1" required class="w-full rounded border border-[var(--color-border)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Crude Fat (Min %)</label>
+            <input type="number" id="fat" step="0.1" required class="w-full rounded border border-[var(--color-border)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Crude Fiber (Max %)</label>
+            <input type="number" id="fiber" step="0.1" required class="w-full rounded border border-[var(--color-border)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Moisture (Max %)</label>
+            <input type="number" id="moisture" step="0.1" required class="w-full rounded border border-[var(--color-border)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Ash % (Estimate 5-8% if unlisted)</label>
+            <input type="number" id="ash" step="0.1" value="6" required class="w-full rounded border border-[var(--color-border)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Weight of one treat (g)</label>
+            <input type="number" id="weight" step="0.1" value="5" required class="w-full rounded border border-[var(--color-border)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none" />
+          </div>
+        </div>
+
+        <button type="submit" class="w-full mt-4 bg-[var(--color-primary)] text-white font-medium py-2 px-4 rounded hover:bg-[var(--color-primary-hover)]">Calculate Calories</button>
+      </form>
+
+      <noscript>
+        <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-[var(--color-warning)] text-[var(--color-warning)] text-sm">
+          <strong>Note:</strong> JavaScript is required for the interactive calculator. <br/>
+          <strong>Manual Method (Modified Atwater Factors):</strong><br/>
+          1. Carbs % = 100 - (Protein + Fat + Fiber + Moisture + Ash)<br/>
+          2. Kcal/kg = (3.5 × Protein) + (8.5 × Fat) + (3.5 × Carbs) × 10<br/>
+          3. Kcal/g = (Kcal/kg) / 1000
+        </div>
+      </noscript>
+
+      <div id="results" class="hidden mt-8 pt-6 border-t border-[var(--color-border)]">
+        <h3 class="text-xl font-semibold mb-4">Results</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-white p-4 rounded border border-[var(--color-border)] text-center">
+            <div class="text-sm text-gray-500 mb-1">Calories per 100g</div>
+            <div class="text-2xl font-bold" id="res-100g"></div>
+            <div class="text-xs text-gray-400">kcal</div>
+          </div>
+          <div class="bg-[var(--color-primary)] text-white p-4 rounded border border-[var(--color-primary)] text-center">
+            <div class="text-sm opacity-90 mb-1">Calories per Treat</div>
+            <div class="text-2xl font-bold" id="res-treat"></div>
+            <div class="text-xs opacity-80">kcal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('calc-form') as HTMLFormElement;
+  const resultsDiv = document.getElementById('results');
+  const res100g = document.getElementById('res-100g');
+  const resTreat = document.getElementById('res-treat');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const protein = parseFloat((document.getElementById('protein') as HTMLInputElement).value);
+      const fat = parseFloat((document.getElementById('fat') as HTMLInputElement).value);
+      const fiber = parseFloat((document.getElementById('fiber') as HTMLInputElement).value);
+      const moisture = parseFloat((document.getElementById('moisture') as HTMLInputElement).value);
+      const ash = parseFloat((document.getElementById('ash') as HTMLInputElement).value);
+      const weight = parseFloat((document.getElementById('weight') as HTMLInputElement).value);
+
+      // NFE (Nitrogen Free Extract / Carbs)
+      let carbs = 100 - (protein + fat + fiber + moisture + ash);
+      if (carbs < 0) carbs = 0; // Prevent negative carbs in edge cases
+
+      // Modified Atwater Formula:
+      // Protein: 3.5 kcal/g
+      // Fat: 8.5 kcal/g
+      // Carbs: 3.5 kcal/g
+      const kcalPer100g = (3.5 * protein) + (8.5 * fat) + (3.5 * carbs);
+
+      const kcalPerTreat = (kcalPer100g / 100) * weight;
+
+      if (resultsDiv && res100g && resTreat) {
+        res100g.textContent = kcalPer100g.toFixed(0);
+        resTreat.textContent = kcalPerTreat.toFixed(1);
+        resultsDiv.classList.remove('hidden');
+      }
+    });
+  }
+</script>

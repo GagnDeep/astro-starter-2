@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Frequently Asked Questions about Dog Treats",
+};
+---
+
+<Layout title="FAQ" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1 class="text-3xl font-bold mb-6 text-[var(--color-primary)]">Frequently Asked Questions</h1>
+
+    <h3>Are bully sticks safe for puppies under 6 months?</h3>
+    <p>Always consult your vet. Bully sticks are very dense in calories and can cause gastrointestinal upset if introduced too early or consumed too quickly. Monitor closely.</p>
+
+    <h3>Why does my dog throw up after eating rawhide?</h3>
+    <p>Rawhide is notoriously difficult to digest and can swell in the stomach or cause blockages. <a href="/library/types/rawhide/">Read more about the risks of rawhide</a>.</p>
+
+    <h3>Best low fat treats for dogs with pancreatitis</h3>
+    <p>Dogs with a history of pancreatitis require very low-fat diets. Look for treats with less than 5% fat, or consider using pieces of their prescription kibble.</p>
+
+    <h3>What happens if my dog eats a whole bag of treats?</h3>
+    <p>This can lead to severe gastrointestinal distress, vomiting, diarrhea, or worse, depending on the ingredients. Contact your vet or animal poison control immediately.</p>
+  </div>
+</Layout>

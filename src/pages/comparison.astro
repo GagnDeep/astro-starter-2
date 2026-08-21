@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Compare different types of dog treats and chews.",
+};
+---
+
+<Layout title="Treat Comparison" seo={seo}>
+  <div class="max-w-5xl mx-auto px-4 py-12 prose">
+    <h1 class="text-3xl font-bold mb-6 text-[var(--color-primary)]">Compare Dog Chews</h1>
+    <p>A high-level comparison of the most common types of long-lasting chews.</p>
+
+    <div class="overflow-x-auto not-prose">
+      <table class="w-full text-left border-collapse border border-[var(--color-border)]">
+        <thead>
+          <tr class="bg-[var(--color-surface)]">
+            <th class="p-4 border border-[var(--color-border)] font-bold text-gray-700">Type</th>
+            <th class="p-4 border border-[var(--color-border)] font-bold text-gray-700">Digestibility</th>
+            <th class="p-4 border border-[var(--color-border)] font-bold text-gray-700">Choke Risk</th>
+            <th class="p-4 border border-[var(--color-border)] font-bold text-gray-700">Caloric Density</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-4 border border-[var(--color-border)] font-semibold"><a href="/library/types/bully-sticks/" class="text-[var(--color-secondary)] hover:underline">Bully Sticks</a></td>
+            <td class="p-4 border border-[var(--color-border)]">High</td>
+            <td class="p-4 border border-[var(--color-border)]">Moderate (End pieces)</td>
+            <td class="p-4 border border-[var(--color-border)] text-[var(--color-warning)]">High (~3000 kcal/kg)</td>
+          </tr>
+          <tr>
+            <td class="p-4 border border-[var(--color-border)] font-semibold"><a href="/library/types/yak-chews/" class="text-[var(--color-secondary)] hover:underline">Yak Chews</a></td>
+            <td class="p-4 border border-[var(--color-border)]">Moderate</td>
+            <td class="p-4 border border-[var(--color-border)] text-[var(--color-danger)]">High (Tooth fracture)</td>
+            <td class="p-4 border border-[var(--color-border)]">Moderate</td>
+          </tr>
+          <tr>
+            <td class="p-4 border border-[var(--color-border)] font-semibold"><a href="/library/types/rawhide/" class="text-[var(--color-secondary)] hover:underline">Rawhide</a></td>
+            <td class="p-4 border border-[var(--color-border)] text-[var(--color-danger)]">Low</td>
+            <td class="p-4 border border-[var(--color-border)] text-[var(--color-danger)]">High (Blockage)</td>
+            <td class="p-4 border border-[var(--color-border)]">Moderate</td>
+          </tr>
+          <tr>
+            <td class="p-4 border border-[var(--color-border)] font-semibold"><a href="/library/types/antlers/" class="text-[var(--color-secondary)] hover:underline">Antlers</a></td>
+            <td class="p-4 border border-[var(--color-border)]">Low</td>
+            <td class="p-4 border border-[var(--color-border)] text-[var(--color-danger)]">High (Tooth fracture)</td>
+            <td class="p-4 border border-[var(--color-border)]">Low</td>
+          </tr>
+          <tr>
+            <td class="p-4 border border-[var(--color-border)] font-semibold"><a href="/library/types/pig-ears/" class="text-[var(--color-secondary)] hover:underline">Pig Ears</a></td>
+            <td class="p-4 border border-[var(--color-border)]">High</td>
+            <td class="p-4 border border-[var(--color-border)]">Moderate</td>
+            <td class="p-4 border border-[var(--color-border)] text-[var(--color-danger)]">Very High (Fat)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</Layout>

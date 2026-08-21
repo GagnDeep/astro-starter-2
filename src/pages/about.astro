@@ -1,5 +1,19 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "About DogSnacking.com",
+};
 ---
 
-<AboutPage />
+<Layout title="About Us" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1 class="text-3xl font-bold mb-6 text-[var(--color-primary)]">About DogSnacking</h1>
+    <p>
+      DogSnacking was built to provide an objective, data-driven, and veterinary-sourced guide to what you feed your dog between meals.
+    </p>
+    <p>
+      We aim to cut through the marketing noise and give pet owners the tools they need—like our <a href="/tools/treat-allowance-calculator/">Treat Allowance Calculator</a>—to make healthy choices for their dogs.
+    </p>
+  </div>
+</Layout>

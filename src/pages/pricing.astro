@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Cost analysis of different dog treat types.",
+};
+---
+
+<Layout title="Cost Analysis of Treats" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1 class="text-3xl font-bold mb-6 text-[var(--color-primary)]">Treat Pricing & Cost Analysis</h1>
+    <p>Understanding the true cost of treats requires looking at the cost per ounce or per calorie.</p>
+
+    <h2>Average Cost Per Ounce</h2>
+    <ul>
+      <li><strong>Bully Sticks:</strong> $2.50 - $4.00 / oz</li>
+      <li><strong>Yak Chews:</strong> $1.50 - $2.50 / oz</li>
+      <li><strong>Dehydrated Sweet Potato:</strong> $1.00 - $1.50 / oz</li>
+      <li><strong>Commercial Dental Chews:</strong> $0.80 - $1.20 / oz</li>
+    </ul>
+
+    <p>While premium single-ingredient treats cost more upfront, they often have higher digestibility and fewer fillers than cheaper alternatives.</p>
+  </div>
+</Layout>

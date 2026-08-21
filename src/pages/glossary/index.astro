@@ -1,0 +1,95 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Glossary of Dog Snack Terms - DogSnacking.com",
+  open_graph_type: "website" as const,
+};
+---
+
+<Layout title="Glossary of Dog Snack Terms" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1 class="text-[var(--color-primary)]">Glossary of Dog Snack Terms</h1>
+    <p>A comprehensive guide to the terminology used on dog treat labels and in veterinary nutrition.</p>
+
+    <dl>
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">As-Fed Basis</dt>
+      <dd>The nutritional profile of the food or treat exactly as it comes out of the package, including moisture.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Ash</dt>
+      <dd>The non-combustible mineral residue left over after a sample of food is completely burned. It represents the total mineral content (calcium, phosphorus, etc.).</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">BHA/BHT</dt>
+      <dd>Synthetic preservatives (Butylated Hydroxyanisole and Butylated Hydroxytoluene) used to prevent fats from going rancid. Often avoided by health-conscious owners.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">By-Product</dt>
+      <dd>Secondary products produced in addition to the principal product. In pet food, this often refers to non-rendered, clean parts, other than meat, derived from slaughtered mammals.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Calories (kcal)</dt>
+      <dd>A unit of energy. In pet nutrition, it is typically expressed as kilocalories (kcal). This is the most critical metric for preventing obesity.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Carrageenan</dt>
+      <dd>An extract from red seaweed used as a thickener and emulsifier. Controversial due to some studies linking it to gastrointestinal inflammation.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Crude Fat</dt>
+      <dd>An estimate of the total lipid (fat) content in a food, determined by extracting the fat with ether.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Crude Fiber</dt>
+      <dd>An estimate of the indigestible portion of carbohydrates (cellulose, lignin). Important for digestive health.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Crude Protein</dt>
+      <dd>An estimate of the total protein content, calculated by measuring the amount of nitrogen in the food.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Dehydrated</dt>
+      <dd>A preservation process that removes moisture using low, slow heat. Retains more nutrients than high-heat baking.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Digestibility</dt>
+      <dd>The proportion of nutrients in a food that are actually absorbed by the dog's gastrointestinal tract, rather than excreted in feces.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Dry Matter Basis</dt>
+      <dd>The nutritional profile of the food after all moisture has been mathematically removed. Essential for comparing wet and dry foods.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Ethoxyquin</dt>
+      <dd>A synthetic antioxidant and preservative, originally developed as a pesticide, used to preserve fats. Highly controversial.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Freeze-Dried</dt>
+      <dd>A process where food is frozen, then placed in a vacuum to remove moisture (sublimation). Preserves nearly all raw nutrients and structure.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Guaranteed Analysis</dt>
+      <dd>A mandatory label panel showing the minimum percentages of crude protein and crude fat, and maximum percentages of crude fiber and moisture.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Human-Grade</dt>
+      <dd>A marketing term meaning every ingredient and the final product are handled, processed, and transported according to FDA regulations for human food.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Hypoallergenic</dt>
+      <dd>Typically refers to diets or treats formulated to minimize the risk of triggering an allergic reaction, often using novel or hydrolyzed proteins.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Kcal</dt>
+      <dd>Kilocalorie; the standard unit of measurement for energy in pet food. Synonymous with "Calories" on a human nutrition label.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">MER (Maintenance Energy Requirement)</dt>
+      <dd>The amount of energy needed to keep an animal in a healthy body condition, factoring in activity level, age, and environment.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Methylxanthines</dt>
+      <dd>A class of alkaloid compounds, including theobromine and caffeine (found in chocolate), which are highly toxic to dogs.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Novel Protein</dt>
+      <dd>A protein source the dog has never eaten before (e.g., kangaroo, alligator, venison), used in elimination diets to diagnose allergies.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Pancreatitis</dt>
+      <dd>Inflammation of the pancreas, often triggered by the consumption of a high-fat meal or treat.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Rendered</dt>
+      <dd>A process using high heat and pressure to separate fat and protein from animal tissues, often resulting in "meat meals."</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">RER (Resting Energy Requirement)</dt>
+      <dd>The base number of calories a dog needs to maintain essential bodily functions while at rest in a thermoneutral environment.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Single-Ingredient</dt>
+      <dd>A treat made from exactly one component (e.g., just dehydrated beef liver). Ideal for dogs with allergies or sensitive stomachs.</dd>
+
+      <dt class="font-bold text-lg mt-4 text-[var(--color-secondary)]">Xylitol</dt>
+      <dd>An artificial sweetener commonly found in sugar-free gum, peanut butter, and toothpaste. Highly toxic to dogs, causing rapid hypoglycemia and liver failure.</dd>
+    </dl>
+  </div>
+</Layout>

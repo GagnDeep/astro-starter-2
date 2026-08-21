@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "DogSnacking",
+  "description": "The objective, data-driven, and veterinary-sourced guide to what you feed your dog between meals.",
+  "tagline": "Healthier snacks, longer lives.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
+  "twitter_site": "@dogsnacking",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "DogSnacking — The objective, data-driven, and veterinary-sourced guide to what you feed your dog between meals.",
+  "default_author": "DogSnacking Editor",
+  "theme_color": "#047857",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "DogSnacking",
+    "logo": "/images/logos/logo.png",
     "same_as": []
   }
 }
