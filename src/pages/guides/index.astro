@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const guides = await getCollection('guides');
+
+const seo = {
+  page_description: "Tactical implementation guides for Digital Product Passports.",
+};
+---
+
+<Layout title="Implementation Guides" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Implementation Guides</h1>
+    <p>Step-by-step procedures for ESPR compliance.</p>
+
+    <ul>
+      {guides.map((guide) => (
+        <li>
+          <a href={`/guides/${guide.id}`}>{guide.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>

@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Transparent pricing for our ESPR compliance and Digital Product Passport platform.",
+};
+---
+
+<Layout title="Pricing" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Pricing</h1>
+    <p>Simple, transparent pricing for cable manufacturers and importers.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+      <div class="p-6 border border-[var(--color-border)] rounded">
+        <h2>Starter</h2>
+        <p class="text-3xl font-mono">€499<span class="text-sm">/mo</span></p>
+        <ul>
+          <li>Up to 50 Product SKUs</li>
+          <li>Basic LCA calculations</li>
+          <li>Standard Data Carrier (QR)</li>
+        </ul>
+      </div>
+      <div class="p-6 border border-[var(--color-primary)] rounded">
+        <h2>Enterprise</h2>
+        <p class="text-3xl font-mono">Custom</p>
+        <ul>
+          <li>Unlimited SKUs</li>
+          <li>ERP Integration (SAP, Oracle)</li>
+          <li>Third-party auditor portal</li>
+        </ul>
+        <CaptureForm form="quote">
+          <button type="submit" class="bg-[var(--color-primary)] text-white px-4 py-2 font-bold rounded mt-4">Request Quote</button>
+        </CaptureForm>
+      </div>
+    </div>
+  </main>
+</Layout>

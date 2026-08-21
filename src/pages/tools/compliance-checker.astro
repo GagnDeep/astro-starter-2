@@ -1,0 +1,92 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "ESPR Compliance Checker for cables. Determine if your cable type requires a Digital Product Passport.",
+};
+---
+
+<Layout title="ESPR Compliance Checker" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>ESPR Compliance Checker</h1>
+    <p>Determine if your cable type requires a Digital Product Passport under the EU Ecodesign for Sustainable Products Regulation (ESPR).</p>
+
+    <div class="mt-8 p-6 border border-[var(--color-border)] rounded bg-white">
+      <form id="checker-form" class="flex flex-col gap-4">
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">Cable Category</span>
+          <select name="category" class="p-2 border border-[var(--color-border)] rounded">
+            <option value="telecom">Telecommunication (Copper)</option>
+            <option value="fiber">Fiber Optic</option>
+            <option value="power-low">Low Voltage Power (&lt; 1kV)</option>
+            <option value="power-high">High Voltage Power (> 1kV)</option>
+            <option value="industrial">Specialty Industrial</option>
+          </select>
+        </label>
+
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">Annual EU Import Volume (kg)</span>
+          <input type="number" name="volume" value="1000" min="0" class="p-2 border border-[var(--color-border)] rounded font-mono" />
+        </label>
+
+        <button type="button" id="calc-btn" class="bg-[var(--color-secondary)] text-white px-4 py-2 font-bold rounded hover:bg-[#1f3a2c] self-start mt-2 cursor-pointer">
+          Check Compliance
+        </button>
+      </form>
+
+      <div id="result-block" class="mt-8 hidden">
+        <h3 class="border-b border-[var(--color-border)] pb-2">Result</h3>
+        <p id="result-text" class="font-bold text-lg"></p>
+        <div class="bg-gray-50 p-4 border border-[var(--color-border)] text-sm rounded mt-4">
+          <strong>How this is calculated (No-JS Fallback Method):</strong>
+          <p>Under current ESPR proposals, power and telecom cables above minimal import thresholds (typically >500kg/year) fall into priority categories for early DPP enforcement (estimated 2026-2027). High-voltage power cables have stricter LCA material tracking requirements than standard low-voltage. Fiber optics are currently debated but widely expected to follow copper telecom timelines.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 p-6 bg-[var(--color-bg)] border border-[var(--color-border)]">
+      <h2>Save your result</h2>
+      <p>Get a detailed PDF of these requirements sent to your email.</p>
+      <CaptureForm form="newsletter">
+        <div class="flex flex-col gap-4">
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-bold">Email Address</span>
+            <input type="email" name="email" required class="p-2 border border-[var(--color-border)] rounded" />
+          </label>
+          <button type="submit" class="bg-[var(--color-primary)] text-white px-4 py-2 font-bold rounded cursor-pointer self-start hover:bg-[#b02d18]">
+            Send me the report
+          </button>
+        </div>
+      </CaptureForm>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calc-btn')?.addEventListener('click', () => {
+    const form = document.getElementById('checker-form') as HTMLFormElement;
+    if (!form) return;
+
+    const formData = new FormData(form);
+    const category = formData.get('category') as string;
+    const volume = parseInt(formData.get('volume') as string, 10);
+
+    const resultBlock = document.getElementById('result-block');
+    const resultText = document.getElementById('result-text');
+
+    if (resultBlock && resultText) {
+      resultBlock.classList.remove('hidden');
+      if (volume < 500) {
+        resultText.innerText = `Exempt (Monitor): At ${volume}kg, your volume is currently below the general threshold (500kg). However, if you supply a regulated OEM (e.g., automotive), they may force you to provide DPP data regardless of volume.`;
+        resultText.className = "font-bold text-lg text-green-700";
+      } else if (category === 'power-high') {
+        resultText.innerText = "Mandatory (High Priority): High Voltage Power cables require a full LCA-backed DPP in the first wave (est. 2026). Ensure you are tracing copper/aluminum back to the smelter.";
+        resultText.className = "font-bold text-lg text-[var(--color-primary)]";
+      } else {
+        resultText.innerText = "Mandatory (Wave 2): Your product category is slated for mandatory DPP compliance (Estimated 2027). Start mapping your Tier 2 supply chain data (insulation, sheathing) now.";
+        resultText.className = "font-bold text-lg text-[var(--color-accent)]";
+      }
+    }
+  });
+</script>

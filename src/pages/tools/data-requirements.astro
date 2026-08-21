@@ -1,0 +1,85 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Generate a checklist of required fields for your cable product passport.",
+};
+---
+
+<Layout title="Data Requirements Generator" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>DPP Data Requirements Generator</h1>
+    <p>Select your integration scope to see what data fields you must provide in your digital product passport.</p>
+
+    <div class="mt-8 p-6 border border-[var(--color-border)] rounded bg-white">
+      <form id="req-form" class="flex flex-col gap-4">
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">Include RoHS/REACH compliance?</span>
+          <select name="rohs" class="p-2 border border-[var(--color-border)] rounded">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </label>
+
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">Include Carbon LCA?</span>
+          <select name="lca" class="p-2 border border-[var(--color-border)] rounded">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </label>
+
+        <button type="button" id="calc-btn" class="bg-[var(--color-secondary)] text-white px-4 py-2 font-bold rounded hover:bg-[#1f3a2c] self-start mt-2 cursor-pointer">
+          Generate Checklist
+        </button>
+      </form>
+
+      <div id="result-block" class="mt-8 hidden">
+        <h3 class="border-b border-[var(--color-border)] pb-2">Required Fields</h3>
+        <ul id="req-list" class="list-disc pl-5"></ul>
+        <div class="bg-gray-50 p-4 border border-[var(--color-border)] text-sm rounded mt-4">
+          <strong>How this is calculated (No-JS Fallback Method):</strong>
+          <p>The baseline ESPR DPP requires: Unique Product Identifier, Manufacturer Name/Address, Product Weight, Recycled Content (%), and End-of-Life Instructions. Adding RoHS/REACH adds Material Safety Declarations. Adding LCA adds Carbon Footprint (kg CO2e) per meter.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calc-btn')?.addEventListener('click', () => {
+    const form = document.getElementById('req-form') as HTMLFormElement;
+    if (!form) return;
+
+    const formData = new FormData(form);
+    const rohs = formData.get('rohs') as string;
+    const lca = formData.get('lca') as string;
+
+    const resultBlock = document.getElementById('result-block');
+    const reqList = document.getElementById('req-list');
+
+    if (resultBlock && reqList) {
+      resultBlock.classList.remove('hidden');
+
+      const fields = [
+        "Unique Identifier (e.g., GTIN)",
+        "Manufacturer Name & Registered Address",
+        "Total Product Weight",
+        "Recycled Material Content (%)",
+        "End-of-Life / Recycling Instructions"
+      ];
+
+      if (rohs === 'yes') {
+        fields.push("Hazardous Substances Declaration (RoHS) - Full Material Declaration (FMD)");
+        fields.push("SVHC Content (REACH)");
+      }
+
+      if (lca === 'yes') {
+        fields.push("Global Warming Potential (kg CO2e) - Including primary supplier data for metals");
+        fields.push("Primary Energy Demand (MJ)");
+      }
+
+      reqList.innerHTML = fields.map(f => `<li>${f}</li>`).join('');
+    }
+  });
+</script>

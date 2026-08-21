@@ -1,0 +1,62 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Estimate the CO2 footprint of your cables based on materials and weight.",
+};
+---
+
+<Layout title="Carbon Estimator" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Cable Carbon Estimator</h1>
+    <p>A simplified tool to estimate Global Warming Potential (GWP) of copper cables for early DPP planning.</p>
+
+    <div class="mt-8 p-6 border border-[var(--color-border)] rounded bg-white">
+      <form id="carbon-form" class="flex flex-col gap-4">
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">Copper Weight per km (kg)</span>
+          <input type="number" name="copper" value="50" min="0" step="0.1" class="p-2 border border-[var(--color-border)] rounded font-mono" />
+        </label>
+
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">PVC/Jacket Weight per km (kg)</span>
+          <input type="number" name="pvc" value="30" min="0" step="0.1" class="p-2 border border-[var(--color-border)] rounded font-mono" />
+        </label>
+
+        <button type="button" id="calc-btn" class="bg-[var(--color-secondary)] text-white px-4 py-2 font-bold rounded hover:bg-[#1f3a2c] self-start mt-2 cursor-pointer">
+          Estimate CO2e
+        </button>
+      </form>
+
+      <div id="result-block" class="mt-8 hidden">
+        <h3 class="border-b border-[var(--color-border)] pb-2">Estimated Embodied Carbon</h3>
+        <p class="font-mono text-2xl font-bold"><span id="result-text"></span> kg CO2e / km</p>
+        <div class="bg-gray-50 p-4 border border-[var(--color-border)] text-sm rounded mt-4">
+          <strong>How this is calculated (No-JS Fallback Method):</strong>
+          <p>Calculation: <code>(Copper Weight * 3.8) + (PVC Weight * 2.5) = Total kg CO2e / km</code>. <br/>Note: 3.8 kg CO2e/kg is a standard industry average for virgin copper wire drawing. 2.5 kg CO2e/kg is the generic factor for PVC extrusion. Values are rounded to one decimal place. This is an estimation for planning, not a formal LCA.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calc-btn')?.addEventListener('click', () => {
+    const form = document.getElementById('carbon-form') as HTMLFormElement;
+    if (!form) return;
+
+    const formData = new FormData(form);
+    const copper = parseFloat(formData.get('copper') as string);
+    const pvc = parseFloat(formData.get('pvc') as string);
+
+    const resultBlock = document.getElementById('result-block');
+    const resultText = document.getElementById('result-text');
+
+    if (resultBlock && resultText) {
+      resultBlock.classList.remove('hidden');
+      // Using constants: Copper ~ 3.8 kg CO2e/kg, PVC ~ 2.5 kg CO2e/kg
+      const total = (copper * 3.8) + (pvc * 2.5);
+      resultText.innerText = total.toFixed(1);
+    }
+  });
+</script>
