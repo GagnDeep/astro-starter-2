@@ -1,18 +1,16 @@
 ---
-title: "Material Declaration Standards"
-
+title: "Data Security in DPPs"
 seo:
-  page_description: "Expert guide on Material Declaration Standards. Compliance, testing, and lifecycle."
-  canonical_url: "https://cablepassport.com/reference/material-declaration-standards/"
+  page_description: "Expert guide on Data Security in DPPs. Compliance, testing, and lifecycle."
+  canonical_url: "https://cablepassport.com/reference/data-security-dpp/"
   featured_image: null
   featured_image_alt: null
   author_twitter_handle: null
   open_graph_type: "article"
   no_index: false
-
 ---
 
-# Material Declaration Standards
+# Data Security in DPPs
 
 Detailed analysis of the ESPR regulatory framework for cables.
 
@@ -49,7 +47,6 @@ While the overarching ESPR text was adopted in 2024, enforcement is governed by 
 Unlike CE marking, which often relies on self-declaration, the DPP infrastructure is designed for proactive, digital market surveillance. Customs authorities will be able to scan the DPP data carrier (QR or RFID) at the border. If the decentralized data repository returns an invalid schema, or if the LCA figures exceed set thresholds (which will be established in the delegated acts), the shipment can be blocked.
 
 Therefore, your data must not only be present, but verifiable by third-party auditors.
-
 
 ## Additional Resources
 - [Read the ESPR Framework Overview](/reference/espr-framework-overview)

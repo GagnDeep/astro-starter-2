@@ -1,0 +1,93 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Calculate the return on investment for implementing a Digital Product Passport system early.",
+};
+---
+
+<Layout title="DPP ROI Calculator" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>DPP Early Adoption ROI Calculator</h1>
+    <p>Estimate the potential savings and market access benefits of implementing a Digital Product Passport system before the mandatory deadlines.</p>
+
+    <div class="mt-8 p-6 border border-[var(--color-border)] rounded bg-white">
+      <form id="roi-form" class="flex flex-col gap-4">
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">Annual Cable Revenue in EU (€)</span>
+          <input type="number" name="revenue" value="1000000" min="0" class="p-2 border border-[var(--color-border)] rounded font-mono" />
+        </label>
+
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">Estimated Penalty for Non-Compliance (% of Revenue)</span>
+          <input type="number" name="penalty" value="4" min="0" max="100" class="p-2 border border-[var(--color-border)] rounded font-mono" />
+        </label>
+
+        <label class="flex flex-col gap-1">
+          <span class="font-bold">Cost to Implement DPP Software (€)</span>
+          <input type="number" name="cost" value="25000" min="0" class="p-2 border border-[var(--color-border)] rounded font-mono" />
+        </label>
+
+        <button type="button" id="calc-btn" class="bg-[var(--color-secondary)] text-white px-4 py-2 font-bold rounded hover:bg-[#1f3a2c] self-start mt-2 cursor-pointer">
+          Calculate ROI
+        </button>
+      </form>
+
+      <div id="result-block" class="mt-8 hidden">
+        <h3 class="border-b border-[var(--color-border)] pb-2">Estimated Return</h3>
+        <p class="font-mono text-2xl font-bold"><span id="result-text"></span></p>
+        <div class="bg-gray-50 p-4 border border-[var(--color-border)] text-sm rounded mt-4">
+          <strong>How this is calculated (No-JS Fallback Method):</strong>
+          <p>Calculation: <code>(Revenue * (Penalty / 100)) - Implementation Cost = Net Savings</code>. This assumes that without early adoption, there will be a disruption in market access resulting in the stated penalty or lost revenue. The ROI is the net savings divided by the cost.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 p-6 bg-[var(--color-bg)] border border-[var(--color-border)]">
+      <h2>Get a Custom Quote</h2>
+      <p>Need exact figures for your enterprise? Reach out to us.</p>
+      <CaptureForm form="quote">
+        <div class="flex flex-col gap-4">
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-bold">Email Address</span>
+            <input type="email" name="email" required class="p-2 border border-[var(--color-border)] rounded" />
+          </label>
+          <button type="submit" class="bg-[var(--color-primary)] text-white px-4 py-2 font-bold rounded cursor-pointer self-start hover:bg-[#b02d18]">
+            Get Quote
+          </button>
+        </div>
+      </CaptureForm>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calc-btn')?.addEventListener('click', () => {
+    const form = document.getElementById('roi-form') as HTMLFormElement;
+    if (!form) return;
+
+    const formData = new FormData(form);
+    const revenue = parseFloat(formData.get('revenue') as string);
+    const penalty = parseFloat(formData.get('penalty') as string);
+    const cost = parseFloat(formData.get('cost') as string);
+
+    const resultBlock = document.getElementById('result-block');
+    const resultText = document.getElementById('result-text');
+
+    if (resultBlock && resultText) {
+      resultBlock.classList.remove('hidden');
+      const penaltyAmount = revenue * (penalty / 100);
+      const netSavings = penaltyAmount - cost;
+
+      if (netSavings > 0) {
+        const roi = (netSavings / cost) * 100;
+        resultText.innerText = `Net Savings: €${netSavings.toLocaleString()} (ROI: ${roi.toFixed(1)}%)`;
+        resultText.className = "text-green-700";
+      } else {
+        resultText.innerText = `Net Loss: €${Math.abs(netSavings).toLocaleString()}. The cost outweighs the immediate penalty risk.`;
+        resultText.className = "text-red-700";
+      }
+    }
+  });
+</script>
