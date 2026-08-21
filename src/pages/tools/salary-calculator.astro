@@ -28,6 +28,18 @@ const seo = {
           <button type="button" id="calc-btn" class="w-full bg-navy-900 text-white py-2 rounded font-medium hover:bg-navy-800 transition-colors">Calculate</button>
         </form>
 
+        <noscript>
+          <div class="mt-8 bg-brand-50 p-4 rounded-md border border-brand-100 text-sm">
+            <h3 class="font-bold mb-2">How to calculate manually:</h3>
+            <ol class="list-decimal pl-4 space-y-2">
+              <li>Divide your annual salary by 12 to get your gross monthly pay.</li>
+              <li>Subtract 5% of your gross monthly pay (Mandatory Pension).</li>
+              <li>Subtract your portion of the monthly health insurance premium.</li>
+              <li>The result is your estimated take-home pay.</li>
+            </ol>
+          </div>
+        </noscript>
+
         <div id="results" class="mt-8 hidden bg-gray-50 p-4 rounded-md border border-gray-200">
           <h3 class="font-bold text-lg mb-4">Monthly Breakdown (US$)</h3>
           <div class="flex justify-between mb-2">

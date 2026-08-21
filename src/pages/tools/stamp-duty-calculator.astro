@@ -31,6 +31,16 @@ const seo = {
           <button type="button" id="calc-btn" class="w-full bg-navy-900 text-white py-2 rounded font-medium hover:bg-navy-800 transition-colors">Calculate Duty</button>
         </form>
 
+        <noscript>
+          <div class="mt-8 bg-brand-50 p-4 rounded-md border border-brand-100 text-sm">
+            <h3 class="font-bold mb-2">How to calculate manually:</h3>
+            <ul class="list-disc pl-4 space-y-2">
+              <li><strong>Standard Rate:</strong> Multiply purchase price by 0.075 (7.5%).</li>
+              <li><strong>First-Time Caymanian:</strong> CI$0 on first CI$400k. 2% on CI$400k - CI$500k. 7.5% if above CI$500k.</li>
+            </ul>
+          </div>
+        </noscript>
+
         <div id="results" class="mt-8 hidden bg-gray-50 p-4 rounded-md border border-gray-200">
           <h3 class="font-bold text-lg mb-4">Stamp Duty Due</h3>
           <div class="flex justify-between font-bold text-red-700 text-2xl">
