@@ -10,7 +10,7 @@ const seoSchema = z
     featured_image_alt: z.string().nullable(),
     author_twitter_handle: z.string().nullable(),
     open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
+    no_index: z.boolean().default(false),
   })
   .optional();
 
@@ -23,11 +23,11 @@ const blogCollection = defineCollection({
       heading: z.string(),
       tags: z.array(z.string()),
       author: z.string(),
-      image: z.string(),
-      image_alt: z.string(),
-    }),
-    thumb_image_path: z.string(),
-    thumb_image_alt: z.string(),
+      image: z.string().optional(),
+      image_alt: z.string().optional(),
+    }).optional(),
+    thumb_image_path: z.string().nullable().optional(),
+    thumb_image_alt: z.string().nullable().optional(),
     seo: seoSchema,
   }),
 });
@@ -50,7 +50,47 @@ const pagesCollection = defineCollection({
   schema: z.union([paginatedCollectionSchema, pageSchema]),
 });
 
+const referenceCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/reference" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const taxonomyCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/taxonomy" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const glossaryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string(),
+    definition: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const toolsCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/tools" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   pages: pagesCollection,
+  reference: referenceCollection,
+  taxonomy: taxonomyCollection,
+  glossary: glossaryCollection,
+  tools: toolsCollection,
 };

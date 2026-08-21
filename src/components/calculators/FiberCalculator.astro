@@ -1,0 +1,51 @@
+---
+import NewsletterForm from "../forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
+---
+<div class="calculator-container p-6 border border-slate-200 rounded-lg bg-white shadow-sm my-8">
+  <h3 class="text-xl font-bold mb-4 text-slate-900">Fiber Needs Calculator</h3>
+  <form id="fiber-form" class="space-y-4">
+    <div>
+      <label class="block font-semibold mb-1 text-slate-700">Daily Calorie Intake</label>
+      <input type="number" id="fiber-calories" class="w-full border border-slate-300 rounded px-3 py-2 text-slate-900" required min="1000" max="5000" value="2000" step="100" />
+    </div>
+    <button type="submit" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded w-full transition-colors cursor-pointer">Calculate</button>
+  </form>
+
+  <div id="fiber-result" class="hidden mt-6 p-4 bg-emerald-50 text-emerald-900 border border-emerald-200 rounded">
+    <p class="font-bold text-lg mb-2 m-0">Your Daily Fiber Target: <span id="fiber-value"></span>g</p>
+    <p class="text-sm m-0">Based on the AHA recommendation of 14g per 1000 calories.</p>
+  </div>
+
+  <div id="calculator-capture" class="hidden mt-4 p-4 border border-slate-200 rounded">
+    <p class="font-bold mb-2">Want weekly macro tips?</p>
+    <NewsletterForm form={capture.forms.newsletter} />
+  </div>
+
+  <noscript>
+    <div class="mt-6 p-4 bg-amber-50 text-amber-900 border border-amber-200 rounded">
+      <p class="font-bold mb-2 m-0">How to calculate manually:</p>
+      <p class="text-sm m-0">Divide your daily calories by 1000, then multiply by 14g.</p>
+    </div>
+  </noscript>
+</div>
+
+<script>
+  const form = document.getElementById('fiber-form');
+  const resultDiv = document.getElementById('fiber-result');
+  const valueSpan = document.getElementById('fiber-value');
+
+  if (form && resultDiv && valueSpan) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const calories = parseFloat((document.getElementById('fiber-calories') as HTMLInputElement).value);
+
+      // Standard guideline: 14g per 1000 kcal
+      const fiber = Math.round((calories / 1000) * 14);
+
+      valueSpan.textContent = fiber.toString();
+      resultDiv.classList.remove('hidden');
+      document.getElementById('calculator-capture')?.classList.remove('hidden');
+    });
+  }
+</script>

@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const glossary = await getCollection('glossary');
+
+const seo = {
+  page_description: "A comprehensive glossary of nutrition terms.",
+  no_index: false
+};
+---
+
+<Layout title="Page" seo={seo}>
+  <div class="prose mx-auto py-12 px-4 max-w-4xl">
+    <h1>Glossary</h1>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 list-none pl-0">
+      {glossary.map(term => (
+        <li class="m-0 p-4 border border-slate-200 rounded-lg">
+          <a href={`/glossary/${term.id}`} class="font-bold text-lg no-underline hover:underline">{term.data.title}</a>
+          <p class="text-sm text-slate-600 mt-2 mb-0">{term.data.definition}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CaptureForm from '../components/forms/capture-form.astro';
+import NewsletterForm from '../components/forms/newsletter-form.astro';
+import { capture } from "../../capture.config";
+import ProteinCalculator from '../components/calculators/ProteinCalculator.astro';
+
+const frontmatter = {
+  title: "Protein vs Fiber for Weight Loss"
+};
+
+const seo = {
+  page_description: "Calculate your protein and fiber needs for optimal satiety and weight loss.",
+  no_index: false
+};
+---
+
+<Layout title="Page" seo={seo}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero Block -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+      <div class="prose">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Are you eating enough of the right macros?</h1>
+        <p class="text-xl text-slate-600 mb-8">Find out using our calculators. Optimize your diet for satiety and muscle preservation, bridging the gap between clinical science and everyday meal prep.</p>
+        <div class="flex gap-4">
+          <a href="/tools" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded transition-colors no-underline">All Calculators</a>
+          <a href="/reference" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 px-6 rounded transition-colors no-underline">Reference Library</a>
+        </div>
+      </div>
+      <div>
+        <ProteinCalculator />
+      </div>
+    </div>
+
+    <!-- The Core Debate -->
+    <div class="mb-24">
+      <h2 class="text-3xl font-bold mb-8 text-center">The Core Debate: Protein vs Fiber</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200 prose">
+          <h3 class="text-emerald-700">Protein for Satiety</h3>
+          <p>Protein drives the <strong>Thermic Effect of Food (TEF)</strong>, meaning your body burns up to 30% of the calories just digesting it. It also stimulates the release of satiety peptides like PYY and GLP-1, and preserves lean body mass during a caloric deficit.</p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200 prose">
+          <h3 class="text-emerald-700">Fiber for Satiety</h3>
+          <p>Fiber provides <strong>physical bulk</strong> in the stomach and delays gastric emptying. Soluble fiber feeds the gut microbiome, producing Short-Chain Fatty Acids (SCFAs) that regulate appetite hormones over a longer period compared to protein.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mythbusting -->
+    <div class="mb-24 bg-slate-900 text-slate-50 p-12 rounded-2xl">
+      <h2 class="text-3xl font-bold mb-8 text-white">Common Myths Busted</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="text-emerald-400 font-bold mb-2">Myth: High protein damages kidneys</h4>
+          <p class="text-slate-300">Fact: This is only true if you have pre-existing kidney disease. For healthy individuals, high protein intake is perfectly safe. <span class="text-xs opacity-75">[NEEDS CONFIRMATION]</span></p>
+        </div>
+        <div>
+          <h4 class="text-emerald-400 font-bold mb-2">Myth: Fiber isn't digested, so it doesn't matter</h4>
+          <p class="text-slate-300">Fact: Soluble fiber feeds your gut microbiome, producing SCFAs that regulate appetite hormones. <span class="text-xs opacity-75">[NEEDS CONFIRMATION]</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-4">Get evidence-based macro tips weekly</h2>
+      <NewsletterForm form={capture.forms.newsletter} />
+    </div>
+  </div>
+</Layout>

@@ -2,7 +2,7 @@
 import "../styles/main.css";
 import site from "../../data/site.json";
 import Header from "../components/navigation/header.astro";
-import Footer from "../components/navigation/footer.astro";
+import Footer from "../components/layouts/Footer.astro";
 import Seo from "../components/seo/seo.astro";
 import Observability from "../components/observability/observability.astro";
 import type { ArticleMeta, SeoFrontmatter } from "../lib/seo/meta";
@@ -11,7 +11,7 @@ import type { BreadcrumbItem } from "../lib/seo/schema";
 export type SEOProps = SeoFrontmatter;
 
 export interface Props {
-  title: string;
+  title?: string;
   seo?: SEOProps;
   /** Article metadata for blog posts; drives OG article tags + BlogPosting JSON-LD. */
   article?: ArticleMeta;
@@ -72,7 +72,6 @@ const resolvedArticle: ArticleMeta | undefined =
     <main id="main-content" class="flex-1">
       <slot />
     </main>
-    <Footer />
     <script>
       if (window.inEditorMode) {
         import("../scripts/register-components.ts").catch((error) => {
@@ -80,5 +79,6 @@ const resolvedArticle: ArticleMeta | undefined =
         });
       }
     </script>
+  <Footer />
   </body>
 </html>

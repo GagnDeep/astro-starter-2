@@ -1,0 +1,50 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { capture } from "../../../capture.config";
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title} seo={entry.data.seo}>
+  <article class="prose mx-auto py-12 px-4 max-w-4xl">
+    <Content />
+
+    <div class="mt-16 bg-slate-50 p-8 rounded-lg border border-slate-200 shadow-sm">
+      <h2 class="text-2xl font-bold mb-4 mt-0">Ready to optimize your diet?</h2>
+      <p class="mb-6">Join our waitlist for personalized macro coaching.</p>
+
+      <CaptureForm form={capture.forms.waitlist}>
+        <div class="space-y-4">
+          <div>
+            <label class="block font-semibold mb-1 text-sm text-slate-700" for="name">Name</label>
+            <input type="text" id="name" name="name" class="w-full border border-slate-300 rounded px-3 py-2" required />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-sm text-slate-700" for="email">Email</label>
+            <input type="email" id="email" name="email" class="w-full border border-slate-300 rounded px-3 py-2" required />
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-sm text-slate-700" for="goal">Primary Goal</label>
+            <select id="goal" name="goal" class="w-full border border-slate-300 rounded px-3 py-2">
+              <option value="weight_loss">Weight Loss</option>
+              <option value="muscle_gain">Muscle Gain</option>
+              <option value="satiety">Improve Satiety</option>
+            </select>
+          </div>
+          <button type="submit" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded w-full transition-colors">Join Waitlist</button>
+        </div>
+      </CaptureForm>
+    </div>
+  </article>
+</Layout>
