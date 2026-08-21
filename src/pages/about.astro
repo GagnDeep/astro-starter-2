@@ -1,5 +1,30 @@
 ---
-import AboutPage from "../content/pages/about.astro";
----
+import Layout from "../layouts/Layout.astro";
 
-<AboutPage />
+const seo = {
+  page_description: "About FoodLogTrack and our mission to provide free, accessible dietary tools.",
+  no_index: false,
+};
+---
+<Layout title="About Us" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 py-12 prose text-text">
+    <h1 class="text-4xl font-bold text-primary mb-6">About FoodLogTrack</h1>
+
+    <p>The fitness and nutrition industry is plagued by predatory subscription models that gatekeep basic, fundamental mathematical equations behind paywalls. FoodLogTrack was created to solve that problem.</p>
+
+    <h2>Our Mission</h2>
+    <p>We provide elite-tier, primary-sourced calculators and reference guides for free. No subscriptions, no gated features, and absolutely no BS.</p>
+
+    <h2>How We Make Money</h2>
+    <p>To keep the platform free, we monetize via high-quality display ads and contextual affiliate integrations (such as supplements or meal prep delivery services that we actually endorse).</p>
+
+    <h2>The Standard We Hold</h2>
+    <ul>
+      <li><strong>Accuracy:</strong> All our calculators are based on verified, primary-sourced formulas (like the Mifflin-St Jeor equation).</li>
+      <li><strong>Clarity:</strong> We explain <em>why</em> a calculation works, not just the final number.</li>
+      <li><strong>Accessibility:</strong> Our tools are fast, require no login, and work entirely in your browser.</li>
+    </ul>
+
+    <p class="mt-8">Ready to get started? Head back to the <a href="/" class="text-secondary font-bold">Homepage</a> to use our tools.</p>
+  </div>
+</Layout>

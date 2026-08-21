@@ -1,0 +1,115 @@
+---
+// TDEE Calculator Component
+// Calculates BMR using Mifflin-St Jeor equation and applies activity multipliers.
+---
+
+<div class="bg-surface border border-border p-6 rounded-lg max-w-2xl mx-auto shadow-sm">
+  <h2 class="text-2xl font-bold mb-4 text-primary">TDEE & BMR Calculator</h2>
+  <p class="text-text-muted mb-6 text-sm">Calculate your Total Daily Energy Expenditure and Basal Metabolic Rate using the verified Mifflin-St Jeor equation.</p>
+
+  <form id="tdee-form" class="space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="gender" class="block text-sm font-medium text-text mb-1">Gender</label>
+        <select id="gender" name="gender" required class="w-full rounded border border-border bg-background px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div>
+        <label for="age" class="block text-sm font-medium text-text mb-1">Age</label>
+        <input type="number" id="age" name="age" min="15" max="100" required class="w-full rounded border border-border bg-background px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary font-mono" />
+      </div>
+      <div>
+        <label for="weight" class="block text-sm font-medium text-text mb-1">Weight (kg)</label>
+        <input type="number" id="weight" name="weight" min="30" max="300" step="0.1" required class="w-full rounded border border-border bg-background px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary font-mono" />
+      </div>
+      <div>
+        <label for="height" class="block text-sm font-medium text-text mb-1">Height (cm)</label>
+        <input type="number" id="height" name="height" min="100" max="250" step="1" required class="w-full rounded border border-border bg-background px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary font-mono" />
+      </div>
+    </div>
+
+    <div>
+      <label for="activity" class="block text-sm font-medium text-text mb-1">Activity Level</label>
+      <select id="activity" name="activity" required class="w-full rounded border border-border bg-background px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+        <option value="1.2">Sedentary (little or no exercise)</option>
+        <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
+        <option value="1.55">Moderately active (moderate exercise 3-5 days/week)</option>
+        <option value="1.725">Very active (hard exercise 6-7 days/week)</option>
+        <option value="1.9">Super active (very hard exercise, physical job)</option>
+      </select>
+    </div>
+
+    <button type="submit" class="w-full rounded bg-primary px-5 py-2.5 font-medium text-white hover:opacity-90">Calculate</button>
+  </form>
+
+  <div id="tdee-results" class="hidden mt-8 pt-6 border-t border-border">
+    <h3 class="text-xl font-bold mb-4">Your Results</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-background p-4 rounded border border-border">
+        <p class="text-sm text-text-muted font-medium mb-1">Basal Metabolic Rate (BMR)</p>
+        <p class="text-3xl font-bold text-secondary font-mono"><span id="bmr-result">0</span> <span class="text-base font-normal text-text-muted">kcal/day</span></p>
+        <p class="text-xs text-text-muted mt-2">Calories burned at complete rest.</p>
+      </div>
+      <div class="bg-background p-4 rounded border border-border">
+        <p class="text-sm text-text-muted font-medium mb-1">Total Daily Energy Expenditure (TDEE)</p>
+        <p class="text-3xl font-bold text-primary font-mono"><span id="tdee-result">0</span> <span class="text-base font-normal text-text-muted">kcal/day</span></p>
+        <p class="text-xs text-text-muted mt-2">Maintenance calories based on activity.</p>
+      </div>
+    </div>
+
+    <div class="mt-6 p-4 bg-background border border-border rounded text-sm">
+      <h4 class="font-bold mb-2">How this is calculated:</h4>
+      <p class="mb-2">We use the <strong>Mifflin-St Jeor</strong> equation, which is widely considered the most accurate standard formula by the Academy of Nutrition and Dietetics.</p>
+      <ul class="list-disc pl-5 space-y-1 text-text-muted">
+        <li>Men: (10 × weight in kg) + (6.25 × height in cm) - (5 × age in years) + 5</li>
+        <li>Women: (10 × weight in kg) + (6.25 × height in cm) - (5 × age in years) - 161</li>
+      </ul>
+      <p class="mt-2 text-xs">Note: Results are rounded to the nearest whole number.</p>
+    </div>
+  </div>
+
+  <noscript>
+    <div class="mt-6 p-4 bg-background border border-border rounded text-sm text-text-muted">
+      <p>JavaScript is required for the interactive calculator.</p>
+      <p class="mt-2">To calculate manually:</p>
+      <p class="mt-1 font-mono text-xs">Men BMR: 10×(kg) + 6.25×(cm) - 5×(years) + 5</p>
+      <p class="font-mono text-xs">Women BMR: 10×(kg) + 6.25×(cm) - 5×(years) - 161</p>
+      <p class="mt-1 font-mono text-xs">TDEE = BMR × Activity Multiplier (1.2 to 1.9)</p>
+    </div>
+  </noscript>
+</div>
+
+<script>
+  const form = document.getElementById('tdee-form') as HTMLFormElement;
+  const resultsDiv = document.getElementById('tdee-results');
+  const bmrResult = document.getElementById('bmr-result');
+  const tdeeResult = document.getElementById('tdee-result');
+
+  if (form && resultsDiv && bmrResult && tdeeResult) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const gender = formData.get('gender') as string;
+      const age = parseFloat(formData.get('age') as string);
+      const weight = parseFloat(formData.get('weight') as string);
+      const height = parseFloat(formData.get('height') as string);
+      const activity = parseFloat(formData.get('activity') as string);
+
+      if (!age || !weight || !height || !activity) return;
+
+      // Mifflin-St Jeor Equation
+      let bmr = (10 * weight) + (6.25 * height) - (5 * age);
+      bmr = gender === 'male' ? bmr + 5 : bmr - 161;
+
+      const tdee = bmr * activity;
+
+      bmrResult.textContent = Math.round(bmr).toString();
+      tdeeResult.textContent = Math.round(tdee).toString();
+
+      resultsDiv.classList.remove('hidden');
+    });
+  }
+</script>
