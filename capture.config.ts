@@ -32,6 +32,8 @@ export const capture = {
     newsletter: "newsletter",
     waitlist: "waitlist",
     quote: "quote",
+    leadgen: "leadgen",
+    courses: "courses",
   },
 
   /**
@@ -46,7 +48,7 @@ export const capture = {
    * configured server-side (`honeypot_field`); a honeypot the server does not
    * know about only adds a field to the stored payload.
    */
-  honeypotField: null as string | null,
+  honeypotField: "hp_email_verification",
 } as const;
 
 export type FormLabel = keyof typeof capture.forms;

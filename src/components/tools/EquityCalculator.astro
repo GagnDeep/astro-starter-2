@@ -1,0 +1,97 @@
+---
+/**
+ * Equity Calculator
+ *
+ * Calculates Useable Equity.
+ * Constants:
+ * - Max LVR for most banks without LMI: 80% (Source: APRA)
+ *
+ * Logic:
+ * Useable Equity = (Property Value * 0.80) - Current Mortgage
+ */
+---
+<div class="calculator-container my-8 rounded-lg border border-border bg-surface p-6 shadow-sm">
+  <h3 class="mb-4 text-xl font-semibold text-text">Useable Equity Calculator</h3>
+  <p class="mb-6 text-text-muted">Find out how much equity you can unlock from your existing property to use as a deposit for an investment.</p>
+
+  <noscript>
+    <div class="rounded bg-gray-100 p-4 mb-4 border border-gray-300">
+      <h4 class="font-semibold mb-2">How to calculate it manually (No-JS Fallback)</h4>
+      <p>Banks typically only let you borrow up to 80% of your property's value without charging Lenders Mortgage Insurance (LMI).</p>
+      <p><strong>Formula:</strong> (Property Value &times; 0.80) - Current Mortgage Balance</p>
+      <p class="mt-2 text-sm text-text-muted">Example: $800k home, $400k mortgage. (800k &times; 0.8) = $640k. $640k - $400k = $240k useable equity.</p>
+    </div>
+  </noscript>
+
+  <form id="equity-form" class="space-y-4" onsubmit="return false;">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="eqPropertyValue">Estimated Property Value ($)</label>
+        <input type="number" id="eqPropertyValue" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="800000" min="1" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="eqMortgage">Current Mortgage Balance ($)</label>
+        <input type="number" id="eqMortgage" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="400000" min="0" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="eqLvr">Max LVR % (typically 80%)</label>
+        <input type="number" id="eqLvr" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="80" min="1" max="100" required />
+      </div>
+    </div>
+    <button type="button" id="calcEquityBtn" class="mt-4 rounded bg-primary px-5 py-2.5 font-medium text-surface hover:bg-primary-hover">Calculate Equity</button>
+  </form>
+
+  <div id="equity-results" class="hidden mt-6 rounded bg-base p-5 border border-border">
+    <h4 class="mb-3 font-semibold text-lg">Results</h4>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div class="p-3 bg-surface rounded border border-border">
+        <span class="block text-sm text-text-muted">Total Equity</span>
+        <span id="totalEquityResult" class="block text-2xl font-bold text-text">--</span>
+      </div>
+      <div class="p-3 bg-surface rounded border border-border border-l-4 border-l-primary">
+        <span class="block text-sm text-text-muted">Useable Equity (at specified LVR)</span>
+        <span id="useableEquityResult" class="block text-2xl font-bold text-primary">--</span>
+      </div>
+    </div>
+    <p id="equityExplanation" class="text-sm text-text-muted"></p>
+  </div>
+</div>
+
+<script>
+  function calculateEquity() {
+    const valEl = document.getElementById('eqPropertyValue') as HTMLInputElement | null;
+    const mortEl = document.getElementById('eqMortgage') as HTMLInputElement | null;
+    const lvrEl = document.getElementById('eqLvr') as HTMLInputElement | null;
+
+    if (!valEl || !mortEl || !lvrEl) return;
+
+    const value = parseFloat(valEl.value);
+    const mortgage = parseFloat(mortEl.value);
+    const lvrStr = parseFloat(lvrEl.value);
+
+    if (isNaN(value) || isNaN(mortgage) || isNaN(lvrStr) || value <= 0) return;
+
+    const lvr = lvrStr / 100;
+    const totalEquity = value - mortgage;
+    const maxBorrowing = value * lvr;
+    const useableEquity = maxBorrowing - mortgage;
+
+    const totalEqEl = document.getElementById('totalEquityResult');
+    const useableEqEl = document.getElementById('useableEquityResult');
+    const eqExplEl = document.getElementById('equityExplanation');
+    const eqResultsEl = document.getElementById('equity-results');
+
+    if (totalEqEl) totalEqEl.innerText = '$' + Math.max(0, totalEquity).toLocaleString(undefined, {maximumFractionDigits: 0});
+
+    if (useableEquity > 0) {
+      if (useableEqEl) useableEqEl.innerText = '$' + useableEquity.toLocaleString(undefined, {maximumFractionDigits: 0});
+      if (eqExplEl) eqExplEl.innerText = `You have $${useableEquity.toLocaleString(undefined, {maximumFractionDigits: 0})} in useable equity. At an 80% LVR, this could potentially form the 20% deposit (plus purchasing costs) for a property worth around $${(useableEquity * 4).toLocaleString(undefined, {maximumFractionDigits: 0})}.`;
+    } else {
+      if (useableEqEl) useableEqEl.innerText = '$0';
+      if (eqExplEl) eqExplEl.innerText = `You do not currently have useable equity below an ${lvrStr}% LVR. Your mortgage balance is too high relative to the property's value.`;
+    }
+    if (eqResultsEl) eqResultsEl.classList.remove('hidden');
+  }
+
+  document.getElementById('calcEquityBtn')?.addEventListener('click', calculateEquity);
+</script>

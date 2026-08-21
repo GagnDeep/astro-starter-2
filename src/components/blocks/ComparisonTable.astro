@@ -1,0 +1,32 @@
+---
+export interface Props {
+  headers: string[];
+  rows: string[][];
+  caption?: string;
+}
+
+const { headers, rows, caption } = Astro.props;
+---
+<div class="my-8 overflow-x-auto rounded-lg border border-border bg-surface shadow-sm">
+  <table class="w-full text-left text-sm">
+    {caption && <caption class="p-4 text-left font-semibold text-text">{caption}</caption>}
+    <thead class="bg-base border-b border-border text-xs uppercase text-text-muted">
+      <tr>
+        {headers.map(header => (
+          <th scope="col" class="px-6 py-3">{header}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border">
+      {rows.map(row => (
+        <tr class="hover:bg-gray-50">
+          {row.map((cell, index) => (
+            <td class={`px-6 py-4 ${index === 0 ? 'font-medium text-text' : 'text-text-muted'}`}>
+              {cell}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

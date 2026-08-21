@@ -1,0 +1,49 @@
+---
+title: "Courses & Pricing"
+seo:
+  page_description: "Take your investing to the next level with our premium courses."
+  open_graph_type: website
+  no_index: false
+---
+import PricingCards from '../../components/blocks/PricingCards.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+# Premium Education
+
+Ready to accelerate your learning? While our calculators and library are free, we offer premium courses for investors who want a structured, step-by-step system.
+
+<PricingCards
+  plans={[
+    {
+      name: 'Foundations',
+      price: 'Free',
+      description: 'Access to our full reference library, glossary, and basic calculators.',
+      features: ['Full article access', 'Basic tools (Yield, Holding Costs)', 'Weekly newsletter'],
+      ctaText: 'Get Started',
+      ctaLink: '/library'
+    },
+    {
+      name: 'Masterclass',
+      price: '$499',
+      description: 'Our comprehensive A-Z property investing course.',
+      features: ['12 hours of video content', 'Advanced spreadsheet models', 'Suburb selection framework', 'Private community access'],
+      highlight: true,
+      ctaText: 'Join the Waitlist',
+      ctaLink: '#waitlist'
+    },
+    {
+      name: '1-on-1 Strategy',
+      price: 'Custom',
+      description: 'Personalized portfolio review and strategy session with an expert.',
+      features: ['Full portfolio review', 'Custom strategy document', 'Direct access to an advisor'],
+      ctaText: 'Enquire Now',
+      ctaLink: '/contact'
+    }
+  ]}
+/>
+
+<div id="waitlist" class="max-w-md mx-auto my-16 p-8 border border-border rounded-xl bg-surface shadow-sm">
+  <h3 class="text-2xl font-bold mb-4 text-center">Join the Masterclass Waitlist</h3>
+  <p class="text-text-muted mb-6 text-center text-sm">Our next cohort opens soon. Enter your details to get early access and special pricing.</p>
+  <CaptureForm form="courses" submitLabel="Join Waitlist" successMessage="You're on the list! We'll email you when the doors open." />
+</div>

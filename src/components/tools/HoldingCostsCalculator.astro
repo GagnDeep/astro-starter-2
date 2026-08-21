@@ -1,0 +1,111 @@
+---
+/**
+ * Holding Costs Calculator
+ *
+ * Logic:
+ * Weekly Holding Cost = (Weekly Expenses + Weekly Mortgage Interest) - Weekly Rent
+ */
+---
+<div class="calculator-container my-8 rounded-lg border border-border bg-surface p-6 shadow-sm">
+  <h3 class="mb-4 text-xl font-semibold text-text">Holding Costs Calculator</h3>
+  <p class="mb-6 text-text-muted">Estimate how much an investment property will cost you out of pocket each week.</p>
+
+  <noscript>
+    <div class="rounded bg-gray-100 p-4 mb-4 border border-gray-300">
+      <h4 class="font-semibold mb-2">How to calculate it manually (No-JS Fallback)</h4>
+      <p>1. Calculate weekly interest: (Loan Amount &times; Interest Rate) &divide; 52</p>
+      <p>2. Calculate weekly expenses: Annual Expenses &divide; 52</p>
+      <p>3. Subtract weekly rent from the total weekly costs.</p>
+    </div>
+  </noscript>
+
+  <form id="holding-form" class="space-y-4" onsubmit="return false;">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="hcLoan">Loan Amount ($)</label>
+        <input type="number" id="hcLoan" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="400000" min="0" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="hcRate">Interest Rate (%)</label>
+        <input type="number" id="hcRate" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="6.5" min="0" step="0.1" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="hcRent">Weekly Rent ($)</label>
+        <input type="number" id="hcRent" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="500" min="0" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="hcExpenses">Annual Expenses ($) (Strata, rates, management)</label>
+        <input type="number" id="hcExpenses" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="7000" min="0" required />
+      </div>
+    </div>
+    <button type="button" id="calcHoldingBtn" class="mt-4 rounded bg-primary px-5 py-2.5 font-medium text-surface hover:bg-primary-hover">Calculate Costs</button>
+  </form>
+
+  <div id="holding-results" class="hidden mt-6 rounded bg-base p-5 border border-border">
+    <h4 class="mb-3 font-semibold text-lg">Results</h4>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+      <div class="p-3 bg-surface rounded border border-border text-center">
+        <span class="block text-sm text-text-muted">Weekly Costs</span>
+        <span id="hcCostsResult" class="block text-xl font-bold text-text">--</span>
+      </div>
+      <div class="p-3 bg-surface rounded border border-border text-center">
+        <span class="block text-sm text-text-muted">Weekly Income</span>
+        <span id="hcIncomeResult" class="block text-xl font-bold text-text">--</span>
+      </div>
+      <div class="p-3 bg-surface rounded border border-border text-center border-b-4 border-b-primary">
+        <span class="block text-sm text-text-muted">Out of Pocket</span>
+        <span id="hcShortfallResult" class="block text-xl font-bold text-primary">--</span>
+      </div>
+    </div>
+    <p id="holdingExplanation" class="text-sm text-text-muted"></p>
+  </div>
+</div>
+
+<script>
+  function calculateHolding() {
+    const loanEl = document.getElementById('hcLoan') as HTMLInputElement | null;
+    const rateEl = document.getElementById('hcRate') as HTMLInputElement | null;
+    const rentEl = document.getElementById('hcRent') as HTMLInputElement | null;
+    const expEl = document.getElementById('hcExpenses') as HTMLInputElement | null;
+
+    if (!loanEl || !rateEl || !rentEl || !expEl) return;
+
+    const loan = parseFloat(loanEl.value);
+    const rate = parseFloat(rateEl.value) / 100;
+    const rent = parseFloat(rentEl.value);
+    const expenses = parseFloat(expEl.value);
+
+    if (isNaN(loan) || isNaN(rate) || isNaN(rent) || isNaN(expenses)) return;
+
+    const weeklyInterest = (loan * rate) / 52;
+    const weeklyExpenses = expenses / 52;
+    const totalWeeklyCosts = weeklyInterest + weeklyExpenses;
+    const shortfall = totalWeeklyCosts - rent;
+
+    const costsEl = document.getElementById('hcCostsResult');
+    const incomeEl = document.getElementById('hcIncomeResult');
+    const shortfallEl = document.getElementById('hcShortfallResult');
+    const explEl = document.getElementById('holdingExplanation');
+    const resultsEl = document.getElementById('holding-results');
+
+    if (costsEl) costsEl.innerText = '$' + totalWeeklyCosts.toFixed(2);
+    if (incomeEl) incomeEl.innerText = '$' + rent.toFixed(2);
+
+    if (shortfall > 0) {
+      if (shortfallEl) {
+        shortfallEl.innerText = '-$' + shortfall.toFixed(2);
+        shortfallEl.classList.replace('text-green-600', 'text-primary');
+      }
+      if (explEl) explEl.innerText = `This property is negatively geared. It will cost you $${shortfall.toFixed(2)} out of pocket each week. (Note: This does not factor in potential tax benefits from negative gearing or depreciation).`;
+    } else {
+      if (shortfallEl) {
+        shortfallEl.innerText = '+$' + Math.abs(shortfall).toFixed(2);
+        shortfallEl.classList.add('text-green-600');
+      }
+      if (explEl) explEl.innerText = `This property is positively geared! It puts $${Math.abs(shortfall).toFixed(2)} in your pocket each week before tax.`;
+    }
+    if (resultsEl) resultsEl.classList.remove('hidden');
+  }
+
+  document.getElementById('calcHoldingBtn')?.addEventListener('click', calculateHolding);
+</script>

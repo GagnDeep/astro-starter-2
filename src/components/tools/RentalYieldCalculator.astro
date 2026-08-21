@@ -1,0 +1,101 @@
+---
+/**
+ * Rental Yield Calculator
+ *
+ * Calculates Gross and Net Rental Yield.
+ * Constants:
+ * - Management fees average: 7-10% (we use 8% as default)
+ * - Maintenance: 1-1.5% of property value (we use 1% as default)
+ *
+ * Logic:
+ * Gross Yield = (Weekly Rent * 52) / Property Value
+ * Net Yield = ((Weekly Rent * 52) - Annual Expenses) / Property Value
+ */
+---
+<div class="calculator-container my-8 rounded-lg border border-border bg-surface p-6 shadow-sm">
+  <h3 class="mb-4 text-xl font-semibold text-text">Rental Yield Calculator</h3>
+  <p class="mb-6 text-text-muted">Calculate the gross and net rental yield of an investment property.</p>
+
+  <noscript>
+    <div class="rounded bg-gray-100 p-4 mb-4 border border-gray-300">
+      <h4 class="font-semibold mb-2">How to calculate it manually (No-JS Fallback)</h4>
+      <p><strong>Gross Yield:</strong> ((Weekly Rent &times; 52) &divide; Property Value) &times; 100</p>
+      <p><strong>Net Yield:</strong> (((Weekly Rent &times; 52) - Annual Expenses) &divide; Property Value) &times; 100</p>
+      <p class="mt-2 text-sm text-text-muted">Example: $500/week rent on a $500,000 property is ($26,000 / $500,000) = 5.2% Gross Yield.</p>
+    </div>
+  </noscript>
+
+  <form id="yield-form" class="space-y-4" onsubmit="return false;">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="propertyValue">Property Value ($)</label>
+        <input type="number" id="propertyValue" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="500000" min="1" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="weeklyRent">Weekly Rent ($)</label>
+        <input type="number" id="weeklyRent" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="500" min="0" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="annualExpenses">Annual Expenses ($)</label>
+        <input type="number" id="annualExpenses" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="5000" min="0" required />
+      </div>
+    </div>
+    <button type="button" id="calcYieldBtn" class="mt-4 rounded bg-primary px-5 py-2.5 font-medium text-surface hover:bg-primary-hover">Calculate Yield</button>
+  </form>
+
+  <div id="yield-results" class="hidden mt-6 rounded bg-base p-5 border border-border">
+    <h4 class="mb-3 font-semibold text-lg">Results</h4>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div class="p-3 bg-surface rounded border border-border">
+        <span class="block text-sm text-text-muted">Gross Yield</span>
+        <span id="grossYieldResult" class="block text-2xl font-bold text-primary">--</span>
+      </div>
+      <div class="p-3 bg-surface rounded border border-border">
+        <span class="block text-sm text-text-muted">Net Yield</span>
+        <span id="netYieldResult" class="block text-2xl font-bold text-primary">--</span>
+      </div>
+    </div>
+    <p id="yieldExplanation" class="text-sm text-text-muted"></p>
+  </div>
+</div>
+
+<script>
+  function calculateYield() {
+    const valEl = document.getElementById('propertyValue') as HTMLInputElement | null;
+    const rentEl = document.getElementById('weeklyRent') as HTMLInputElement | null;
+    const expEl = document.getElementById('annualExpenses') as HTMLInputElement | null;
+
+    if (!valEl || !rentEl || !expEl) return;
+
+    const value = parseFloat(valEl.value);
+    const rent = parseFloat(rentEl.value);
+    const expenses = parseFloat(expEl.value);
+
+    if (isNaN(value) || isNaN(rent) || isNaN(expenses) || value <= 0) return;
+
+    const annualRent = rent * 52;
+    const grossYield = (annualRent / value) * 100;
+    const netYield = ((annualRent - expenses) / value) * 100;
+
+    const grossEl = document.getElementById('grossYieldResult');
+    const netEl = document.getElementById('netYieldResult');
+    const explEl = document.getElementById('yieldExplanation');
+    const resultsEl = document.getElementById('yield-results');
+
+    if (grossEl) grossEl.innerText = grossYield.toFixed(2) + '%';
+    if (netEl) netEl.innerText = netYield.toFixed(2) + '%';
+
+    let explanation = `Your property generates $${annualRent.toLocaleString()} in gross annual rent. `;
+    if (grossYield >= 5) {
+      explanation += `A gross yield of ${grossYield.toFixed(2)}% is considered strong in most Australian capital cities. `;
+    } else {
+      explanation += `A gross yield of ${grossYield.toFixed(2)}% is common in high-growth areas, but may require negative gearing. `;
+    }
+    explanation += `After $${expenses.toLocaleString()} in estimated expenses, your net yield is ${netYield.toFixed(2)}%.`;
+
+    if (explEl) explEl.innerText = explanation;
+    if (resultsEl) resultsEl.classList.remove('hidden');
+  }
+
+  document.getElementById('calcYieldBtn')?.addEventListener('click', calculateYield);
+</script>

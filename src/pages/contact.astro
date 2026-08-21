@@ -12,17 +12,17 @@ import NewsletterForm from "../components/forms/newsletter-form.astro";
 import { capture } from "../../capture.config";
 
 const field =
-  "w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600";
-const label = "block text-sm font-medium text-gray-700 mb-1";
+  "w-full rounded border border-border px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary";
+const label = "block text-sm font-medium text-text mb-1";
 ---
 
-<Layout title="Contact" seo={{ page_description: "Get in touch — we read every message." }}>
+<Layout title="Contact" seo={{ page_description: "Get in touch with the Institute of Property team." }}>
   <section class="py-16 md:py-24">
     <div class="mx-auto max-w-3xl px-8">
-      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Contact</h1>
-      <p class="mb-10 text-lg text-gray-600">Tell us what you need and we'll get back to you.</p>
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl text-text">Contact Us</h1>
+      <p class="mb-10 text-lg text-text-muted">Have a question about our calculators or courses? Send us a message.</p>
 
-      <CaptureForm form={capture.forms.contact} submitLabel="Send message">
+      <CaptureForm form={capture.forms.contact} submitLabel="Send message" class="p-6 bg-surface border border-border rounded-lg shadow-sm">
         <div>
           <label for="name" class={label}>Name</label>
           <input id="name" name="name" autocomplete="name" required class={field} />
@@ -34,26 +34,12 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
         </div>
 
         <div>
-          <label for="phone" class={label}
-            >Phone <span class="text-gray-400">(optional)</span></label
-          >
-          <input id="phone" name="phone" type="tel" autocomplete="tel" class={field} />
-        </div>
-
-        <div>
-          <label for="company" class={label}
-            >Company <span class="text-gray-400">(optional)</span></label
-          >
-          <input id="company" name="company" autocomplete="organization" class={field} />
-        </div>
-
-        <div>
-          <label for="budget" class={label}>Budget</label>
-          <select id="budget" name="budget" class={field}>
-            <option value="">Not sure yet</option>
-            <option>Under $5k</option>
-            <option>$5k – $20k</option>
-            <option>$20k+</option>
+          <label for="topic" class={label}>Topic</label>
+          <select id="topic" name="topic" class={field}>
+            <option value="General">General Enquiry</option>
+            <option value="Calculators">Calculators / Tools Help</option>
+            <option value="Courses">Courses & Strategy</option>
+            <option value="Press">Media / Press</option>
           </select>
         </div>
 
@@ -65,11 +51,11 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
     </div>
   </section>
 
-  <section class="bg-gray-50 py-12 md:py-20">
+  <section class="bg-gray-50 py-12 md:py-20 border-t border-border">
     <div class="mx-auto max-w-3xl px-8">
-      <h2 class="mb-2 text-2xl font-bold text-balance md:text-3xl">Join the waitlist</h2>
-      <p class="mb-6 text-gray-600">One email when we launch. No noise.</p>
-      <NewsletterForm form={capture.forms.waitlist} submitLabel="Join waitlist" class="max-w-md" />
+      <h2 class="mb-2 text-2xl font-bold text-balance md:text-3xl text-text">Join the newsletter</h2>
+      <p class="mb-6 text-text-muted">Get the latest property data and insights delivered to your inbox.</p>
+      <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" class="max-w-md" />
     </div>
   </section>
 </Layout>
