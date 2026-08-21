@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_title: "AI Course FAQ | World AI School",
+  page_description: "Frequently asked questions about our practical AI training and courses.",
+};
+
+const faqs = [
+  {
+    q: "Do I need to know how to code?",
+    a: "No. Our courses focus on no-code and low-code tools. You will learn how to use AI to generate code if you need it, but you don't need prior programming experience."
+  },
+  {
+    q: "How long does a course take?",
+    a: "Most of our practical guides and courses are designed to be completed in 1-2 weeks if you study 3-4 hours per week."
+  },
+  {
+    q: "Are the tools free?",
+    a: "We teach foundational concepts using free versions of tools like ChatGPT and Claude wherever possible. Some advanced tutorials may require a paid subscription (like ChatGPT Plus), but we always specify this upfront."
+  },
+  {
+    q: "Do you offer team training?",
+    a: "Yes, we offer enterprise licensing and private cohort training. Please contact us for details."
+  },
+  {
+    q: "Is this just prompt engineering?",
+    a: "No. Prompt engineering is a small piece of the puzzle. We teach you how to build automated workflows, connect AI to your existing apps (like Slack or CRM), and evaluate model performance."
+  }
+];
+---
+
+<Layout title="FAQ" seo={seo}>
+  <div class="max-w-3xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
+    <p class="text-xl text-slate-600 mb-12">Everything you need to know about our training approach.</p>
+
+    <div class="space-y-8">
+      {faqs.map((faq) => (
+        <div class="border-b border-slate-200 pb-6">
+          <h2 class="text-xl font-semibold mb-3 text-slate-900">{faq.q}</h2>
+          <p class="text-slate-600 leading-relaxed">{faq.a}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 bg-slate-50 p-6 rounded-lg text-center">
+      <h3 class="font-semibold mb-2">Still have questions?</h3>
+      <a href="/contact" class="text-brand-600 font-medium hover:underline">Get in touch with our team &rarr;</a>
+    </div>
+  </div>
+</Layout>

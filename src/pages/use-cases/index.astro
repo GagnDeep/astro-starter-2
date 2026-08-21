@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("use-cases");
+
+const seo = {
+  page_description: "Discover how peers in your industry are using AI today.",
+};
+---
+
+<Layout title="AI Use Cases by Industry" seo={seo}>
+  <div class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold mb-4">AI Use Cases by Industry</h1>
+    <p class="text-xl text-slate-600 mb-12">See how working professionals apply AI right now.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {entries.map((entry) => (
+        <a href={`/use-cases/${entry.id}/`} class="block p-6 border border-slate-200 rounded-lg hover:border-brand-500 transition-colors">
+          <p class="text-xs font-bold text-brand-600 uppercase mb-2">{entry.data.industry}</p>
+          <h2 class="text-xl font-semibold mb-2">{entry.data.title}</h2>
+          <p class="text-slate-600 line-clamp-3 text-sm">{entry.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

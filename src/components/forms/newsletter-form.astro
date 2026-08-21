@@ -54,11 +54,11 @@ const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
       autocomplete="email"
       required
       placeholder={placeholder}
-      class="w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
+      class="w-full rounded border border-slate-300 px-3 py-2 focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
     />
     <button
       type="submit"
-      class="shrink-0 rounded bg-blue-600 px-5 py-2.5 font-medium text-white hover:bg-blue-700 disabled:opacity-60"
+      class="shrink-0 rounded bg-brand-600 px-5 py-2.5 font-medium text-white hover:bg-brand-700 disabled:opacity-60"
     >
       {submitLabel}
     </button>
@@ -68,7 +68,7 @@ const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
     data-capture-status
     role="status"
     aria-live="polite"
-    class="mt-2 text-sm text-gray-600 data-[state=error]:text-red-700 data-[state=success]:text-green-700"
+    class="mt-2 text-sm text-slate-600 data-[state=error]:text-red-700 data-[state=success]:text-green-700"
   >
   </p>
 </form>

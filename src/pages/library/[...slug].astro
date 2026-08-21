@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
+import { getCollection, type CollectionEntry, render } from "astro:content";
+
+export interface Props {
+  entry: CollectionEntry<"library">;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection("library");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, seo } = entry.data;
+
+const finalSeo = {
+  ...seo,
+  page_description: seo?.page_description || description,
+};
+---
+
+<Layout title={title} seo={finalSeo} breadcrumbs={[
+  { name: "Home", url: "/" },
+  { name: "Library", url: "/library/" },
+  { name: title, url: Astro.url.pathname },
+]}>
+  <article class="max-w-4xl mx-auto px-6 py-12 prose">
+    <h1>{title}</h1>
+    <p class="text-xl text-slate-600 mb-8">{description}</p>
+    <Content />
+
+    <div class="mt-16 bg-slate-50 p-8 rounded-xl border border-slate-200 not-prose">
+      <h3 class="text-xl font-bold mb-2">Want more workflows like this?</h3>
+      <p class="text-slate-600 mb-6 text-sm">Join thousands of professionals getting our weekly AI strategies.</p>
+      <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" class="w-full" />
+    </div>
+  </article>
+</Layout>

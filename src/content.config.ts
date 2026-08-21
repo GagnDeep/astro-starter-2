@@ -4,13 +4,13 @@ import { glob } from 'astro/loaders';
 
 const seoSchema = z
   .object({
-    page_description: z.string().nullable(),
-    canonical_url: z.string().nullable(),
-    featured_image: z.string().nullable(),
-    featured_image_alt: z.string().nullable(),
-    author_twitter_handle: z.string().nullable(),
-    open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
+    page_description: z.string().nullable().optional(),
+    canonical_url: z.string().nullable().optional(),
+    featured_image: z.string().nullable().optional(),
+    featured_image_alt: z.string().nullable().optional(),
+    author_twitter_handle: z.string().nullable().optional(),
+    open_graph_type: z.string().nullable().optional(),
+    no_index: z.boolean().optional(),
   })
   .optional();
 
@@ -50,7 +50,52 @@ const pagesCollection = defineCollection({
   schema: z.union([paginatedCollectionSchema, pageSchema]),
 });
 
+const libraryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/library" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+    order: z.number().optional(),
+    seo: seoSchema,
+  }),
+});
+
+const toolsCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/tools" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    component: z.string(), // Identifier for which tool component to render
+    seo: seoSchema,
+  }),
+});
+
+const glossaryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string(),
+    definition: z.string(),
+    related_terms: z.array(z.string()).optional(),
+    seo: seoSchema,
+  }),
+});
+
+const useCasesCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/use-cases" }),
+  schema: z.object({
+    title: z.string(),
+    industry: z.string(),
+    summary: z.string(),
+    seo: seoSchema,
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   pages: pagesCollection,
+  library: libraryCollection,
+  tools: toolsCollection,
+  glossary: glossaryCollection,
+  "use-cases": useCasesCollection,
 };

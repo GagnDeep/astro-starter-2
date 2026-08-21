@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("glossary");
+entries.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const seo = {
+  page_description: "A pragmatic dictionary of artificial intelligence terms for working professionals.",
+};
+---
+
+<Layout title="AI Terminology Glossary" seo={seo}>
+  <div class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold mb-4">AI Terminology Glossary</h1>
+    <p class="text-xl text-slate-600 mb-12">No PhD required. Clear, actionable definitions for the modern worker.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {entries.map((entry) => (
+        <a href={`/glossary/${entry.id}/`} class="block p-6 border border-slate-200 rounded-lg hover:border-brand-500 transition-colors">
+          <h2 class="text-xl font-semibold mb-2">{entry.data.title}</h2>
+          <p class="text-slate-600 line-clamp-3">{entry.data.definition}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

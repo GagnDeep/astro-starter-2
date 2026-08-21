@@ -2,6 +2,8 @@
 import Layout from "./Layout.astro";
 import PostSummary from "../components/blog/summary.astro";
 import PostHero from "../components/blog/post-hero/post-hero.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+import { capture } from "../../capture.config";
 import { getCollection } from "astro:content";
 
 type Props = {
@@ -22,6 +24,8 @@ type Props = {
 const { frontmatter, body } = Astro.props;
 
 const posts = await getCollection("blog");
+// Sort by date so "Recent Posts" is actually recent
+posts.sort((a, b) => new Date(b.data.post_hero.date).getTime() - new Date(a.data.post_hero.date).getTime());
 const filteredPosts = posts.filter(
   (post) => post.data.title !== frontmatter.title,
 );
@@ -46,11 +50,17 @@ const filteredPosts = posts.filter(
         </editable-text>
       </div>
     </article>
+
+    <div class="mt-16 bg-slate-50 p-8 rounded-xl border border-slate-200">
+      <h3 class="text-xl font-bold mb-2">Get our 5-day email course</h3>
+      <p class="text-slate-600 mb-6 text-sm">One actionable prompt technique per day. Free.</p>
+      <NewsletterForm form={capture.forms.newsletter} submitLabel="Start Learning" class="w-full" />
+    </div>
   </div>
 
   {
     filteredPosts.length > 0 && (
-      <section class="mx-auto max-w-6xl px-8 pb-16">
+      <section class="mx-auto max-w-6xl px-8 pb-16 pt-8 border-t border-slate-200">
         <h2 class="text-2xl font-bold mb-6">Recent Posts</h2>
         <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {filteredPosts.slice(0, 3).map((post) => (

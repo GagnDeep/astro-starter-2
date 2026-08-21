@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, type CollectionEntry, render } from "astro:content";
+
+export interface Props {
+  entry: CollectionEntry<"glossary">;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection("glossary");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, definition, seo } = entry.data;
+
+const finalSeo = {
+  ...seo,
+  page_description: seo?.page_description || definition,
+};
+---
+
+<Layout title={`What is ${title}? AI Glossary`} seo={finalSeo}>
+  <article class="max-w-4xl mx-auto px-6 py-12 prose">
+    <h1>{title}</h1>
+    <p class="text-xl font-medium text-slate-800 mb-8">{definition}</p>
+    <Content />
+  </article>
+</Layout>

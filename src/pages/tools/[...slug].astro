@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
+import { getCollection, type CollectionEntry, render } from "astro:content";
+import AiRoiCalculator from "../../components/tools/ai-roi-calculator";
+import TokenCostCalculator from "../../components/tools/token-cost-calculator";
+import AutomationTimeCalculator from "../../components/tools/automation-time-calculator";
+
+export interface Props {
+  entry: CollectionEntry<"tools">;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection("tools");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, component, seo } = entry.data;
+
+const finalSeo = {
+  ...seo,
+  page_description: seo?.page_description || description,
+};
+---
+
+<Layout title={title} seo={finalSeo}>
+  <div class="max-w-4xl mx-auto px-6 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">{title}</h1>
+      <p class="text-xl text-slate-600">{description}</p>
+    </div>
+
+    <div class="mb-12">
+      {component === 'ai-roi-calculator' && <AiRoiCalculator client:load />}
+      {component === 'token-cost-calculator' && <TokenCostCalculator client:load />}
+      {component === 'automation-time-calculator' && <AutomationTimeCalculator client:load />}
+    </div>
+
+    <div class="mt-8 mb-12 bg-slate-50 p-6 rounded-lg border border-brand-200">
+      <h3 class="font-bold mb-2 text-brand-900">Want more workflows like this?</h3>
+      <p class="text-slate-600 mb-4 text-sm">Join thousands of professionals getting our weekly AI strategies.</p>
+      <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" />
+    </div>
+
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </div>
+</Layout>
