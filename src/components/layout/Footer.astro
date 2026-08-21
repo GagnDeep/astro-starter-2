@@ -1,0 +1,44 @@
+---
+import CaptureForm from "../forms/capture-form.astro";
+---
+<footer class="bg-white border-t border-[var(--color-secondary)] py-12 mt-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="md:col-span-1">
+        <span class="font-bold text-xl tracking-tight">TrackAndLog</span>
+        <p class="mt-4 text-sm text-gray-500">
+          Fast, simple metric logging for the quantified self.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4">Product</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/pricing" class="hover:text-[var(--color-primary)]">Pricing</a></li>
+          <li><a href="/features/csv-export" class="hover:text-[var(--color-primary)]">Features</a></li>
+          <li><a href="/calculators/rolling-average" class="hover:text-[var(--color-primary)]">Calculators</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4">Company</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="hover:text-[var(--color-primary)]">About</a></li>
+          <li><a href="/contact" class="hover:text-[var(--color-primary)]">Contact</a></li>
+          <li><a href="/faq" class="hover:text-[var(--color-primary)]">FAQ</a></li>
+          <li><a href="/legal/privacy" class="hover:text-[var(--color-primary)]">Privacy</a></li>
+          <li><a href="/legal/terms" class="hover:text-[var(--color-primary)]">Terms</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-1">
+        <h4 class="font-bold mb-4">Stay updated</h4>
+        <CaptureForm form="newsletter" cta="Subscribe" />
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-[var(--color-secondary)] text-center text-sm text-gray-500">
+      &copy; {new Date().getFullYear()} TrackAndLog. All rights reserved.
+    </div>
+  </div>
+</footer>

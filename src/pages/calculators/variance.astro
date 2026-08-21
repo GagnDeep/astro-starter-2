@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import VarianceCalculator from "../../components/calculators/VarianceCalculator";
+
+const seo = {
+  page_description: "Calculate the variance and standard deviation of your daily metrics to understand your consistency.",
+  open_graph_type: "website"
+};
+---
+<Layout seo={seo} title="Variance Calculator | TrackAndLog">
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="prose">
+      <h1>Variance Calculator</h1>
+      <p>While a rolling average shows your trend, variance shows your consistency. Are you hitting the same metric every day, or swinging wildly between extremes?</p>
+
+      <noscript>
+        <div class="bg-gray-100 p-4 border border-gray-300 my-4">
+          <p><strong>JavaScript Required</strong></p>
+          <p>This calculator requires JavaScript to run interactively. To calculate variance manually: find the mean, subtract the mean from each number and square the result, then find the average of those squared differences.</p>
+        </div>
+      </noscript>
+
+      <VarianceCalculator client:load />
+
+      <h2>Why calculate variance?</h2>
+      <p>If you are tracking <a href="/metrics/sleep-duration">sleep duration</a>, averaging 7 hours might sound good. But if you get 4 hours one night and 10 the next, your high variance indicates poor sleep hygiene. Lowering your standard deviation is often just as important as raising your average.</p>
+    </div>
+  </main>
+</Layout>

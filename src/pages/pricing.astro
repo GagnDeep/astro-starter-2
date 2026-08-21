@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Pricing for TrackAndLog. Free for personal logging.",
+};
+---
+<Layout seo={seo} title="Pricing | TrackAndLog">
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="prose">
+      <h1>Pricing</h1>
+      <p>Simple, transparent pricing for tracking your metrics.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8 not-prose">
+        <div class="border border-[var(--color-secondary)] p-6 rounded-lg bg-white shadow-sm">
+          <h2 class="text-2xl font-bold mb-2">Personal</h2>
+          <p class="text-4xl font-mono tabular-nums mb-4">$0 <span class="text-lg text-gray-500">/ forever</span></p>
+          <ul class="space-y-2 mb-6">
+            <li>Unlimited metrics</li>
+            <li>CSV exports</li>
+            <li>Mobile-friendly web app</li>
+            <li>No ads</li>
+          </ul>
+          <a href="/contact" class="btn-primary w-full text-center">Start Free</a>
+        </div>
+
+        <div class="border border-[var(--color-primary)] p-6 rounded-lg bg-white shadow-sm relative">
+          <div class="absolute top-0 right-0 bg-[var(--color-primary)] text-white px-3 py-1 text-sm font-bold rounded-bl-lg rounded-tr-lg">Coming Soon</div>
+          <h2 class="text-2xl font-bold mb-2">Pro (API Access)</h2>
+          <p class="text-4xl font-mono tabular-nums mb-4">$5 <span class="text-lg text-gray-500">/ mo</span></p>
+          <ul class="space-y-2 mb-6">
+            <li>Everything in Personal</li>
+            <li>Write/Read API access</li>
+            <li>Webhooks</li>
+            <li>Advanced correlation tools</li>
+          </ul>
+          <a href="/contact" class="btn-primary w-full text-center opacity-50 cursor-not-allowed">Join Waitlist</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -13,6 +13,6 @@ if (!Astro.props.frontmatter) {
 const props = Astro.props.frontmatter;
 ---
 
-<Layout {...props}>
+<Layout {...props} title={props.title || "TrackAndLog"}>
   <slot />
 </Layout>

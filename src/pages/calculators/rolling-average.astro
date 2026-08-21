@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import RollingAverageCalculator from "../../components/calculators/RollingAverageCalculator";
+
+const seo = {
+  page_description: "Calculate the rolling average of your daily metrics to understand long-term trends.",
+  open_graph_type: "website"
+};
+---
+<Layout seo={seo} title="Rolling Average Calculator | TrackAndLog">
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="prose">
+      <h1>Rolling Average Calculator</h1>
+      <p>A rolling average smooths out daily fluctuations (variance) in your data to reveal the underlying trend. Enter your data below to see how a rolling window affects your average.</p>
+
+      <noscript>
+        <div class="bg-gray-100 p-4 border border-gray-300 my-4">
+          <p><strong>JavaScript Required</strong></p>
+          <p>This calculator requires JavaScript to run interactively. The mathematical formula for a rolling average of window size <em>n</em> is:</p>
+          <code>Average = (Sum of last n days) / n</code>
+        </div>
+      </noscript>
+
+      <RollingAverageCalculator client:load />
+
+      <h2>Why use a rolling average?</h2>
+      <p>If you weigh yourself daily, your weight will fluctuate based on hydration and time of day. Looking at a 7-day rolling average provides a truer picture of your <a href="/metrics/weight">weight</a> trajectory.</p>
+    </div>
+  </main>
+</Layout>

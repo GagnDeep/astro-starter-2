@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("metrics");
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Layout seo={entry.data.seo} title={entry.data.title || "TrackAndLog"}>
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <article class="prose">
+      <Content />
+    </article>
+
+    <div class="mt-16 p-8 bg-white rounded-lg border border-[var(--color-primary)] shadow-sm">
+      <h3 class="text-2xl font-bold mb-4">Start tracking today</h3>
+      <p class="mb-6">Use our fast, lightweight logger to record your metrics without the guilt of missed streaks.</p>
+      <CaptureForm form="signup" cta="Create Free Account" />
+    </div>
+  </main>
+</Layout>
