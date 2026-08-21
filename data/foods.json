@@ -1,0 +1,457 @@
+[
+  {
+    "slug": "avocado",
+    "name": "Avocado",
+    "category": "Fruits",
+    "fodmap_rating": "Moderate / High in large amounts",
+    "fodmap_type": "Polyols (Sorbitol)",
+    "green_serving": "30g (approx 1/8 medium avocado)",
+    "amber_serving": "45g (approx 1/4 avocado)",
+    "red_serving": "80g+ (approx 1/2 avocado or more)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Avocados are rich in healthy monounsaturated fats and fiber. However, they contain sorbitol, a sugar alcohol that can cause bloating and loose stools in sorbitol-sensitive individuals.",
+    "tips": "Enjoy a thin layer spread on gluten-free sourdough or limit to 1/8 of an avocado per meal during the elimination phase.",
+    "alternatives": [
+      "Olives",
+      "Macadamia oil",
+      "Mayonnaise (garlic-free)"
+    ]
+  },
+  {
+    "slug": "apples",
+    "name": "Apples (Pink Lady, Gala, Granny Smith)",
+    "category": "Fruits",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Excess Fructose & Polyols (Sorbitol)",
+    "green_serving": "20g (approx 2-3 small slices)",
+    "amber_serving": "25g",
+    "red_serving": "150g (1 medium apple)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Apples contain significant concentrations of both excess fructose and sorbitol across all varieties.",
+    "tips": "Swap whole apples for strawberries, blueberries, or unripe bananas during the 2-6 week elimination phase.",
+    "alternatives": [
+      "Strawberries",
+      "Unripe Bananas",
+      "Oranges",
+      "Cantaloupe"
+    ]
+  },
+  {
+    "slug": "garlic",
+    "name": "Garlic",
+    "category": "Vegetables & Seasonings",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Fructans",
+    "green_serving": "Garlic-infused oil (0g fructans)",
+    "amber_serving": "N/A",
+    "red_serving": "3g (1 clove)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Garlic is one of the most concentrated sources of fructans (oligosaccharides). Because fructans are water-soluble, cooking garlic in soups or sauces leaches fructans into the dish.",
+    "tips": "Use commercially prepared garlic-infused oil (fructans are fat-insoluble and do not transfer into oil) or asafoetida powder.",
+    "alternatives": [
+      "Garlic-infused olive oil",
+      "Asafoetida (Hing) powder",
+      "Chives",
+      "Green tops of spring onions"
+    ]
+  },
+  {
+    "slug": "onions",
+    "name": "Onions (Yellow, Red, White)",
+    "category": "Vegetables & Seasonings",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Fructans",
+    "green_serving": "Green tops of spring onions / scallions (16g)",
+    "amber_serving": "N/A",
+    "red_serving": "10g+ (approx 1/8 onion)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2024)",
+    "description": "Onions contain high amounts of fructan polymers. Fructans cannot be digested by human small intestinal enzymes and undergo rapid fermentation in the colon.",
+    "tips": "Replace onion bulb with green spring onion tops or chives. For saut\u00e9ing, use onion-infused oil.",
+    "alternatives": [
+      "Spring onion green tops",
+      "Chives",
+      "Leek green leaves",
+      "Asafoetida"
+    ]
+  },
+  {
+    "slug": "almonds",
+    "name": "Almonds",
+    "category": "Nuts & Seeds",
+    "fodmap_rating": "Moderate FODMAP",
+    "fodmap_type": "GOS (Galacto-oligosaccharides)",
+    "green_serving": "12g (approx 10 nuts)",
+    "amber_serving": "15g (approx 12 nuts)",
+    "red_serving": "24g+ (20+ nuts)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Almonds are a nutritious source of Vitamin E and protein, but contain galacto-oligosaccharides in higher serving sizes.",
+    "tips": "Stick to a 10-nut serving or substitute with macadamia nuts or Brazil nuts which are low FODMAP in larger portions.",
+    "alternatives": [
+      "Macadamia nuts",
+      "Brazil nuts",
+      "Walnuts",
+      "Pecan nuts"
+    ]
+  },
+  {
+    "slug": "cow-milk",
+    "name": "Cow's Milk (Whole, Semi-Skimmed)",
+    "category": "Dairy & Alternatives",
+    "fodmap_rating": "High FODMAP (unless lactose-free)",
+    "fodmap_type": "Lactose",
+    "green_serving": "15ml (1 tbsp) or Lactose-Free Milk (250ml)",
+    "amber_serving": "125ml (1/2 cup)",
+    "red_serving": "250ml (1 cup standard milk)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Standard dairy milk contains lactose, a disaccharide requiring the enzyme lactase for breakdown. Many adults with IBS have partial or full lactase deficiency.",
+    "tips": "Choose lactose-free dairy milk or fortified plant milks like almond or rice milk.",
+    "alternatives": [
+      "Lactose-free milk",
+      "Almond milk",
+      "Rice milk",
+      "Macadamia milk"
+    ]
+  },
+  {
+    "slug": "honey",
+    "name": "Honey",
+    "category": "Sweeteners",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Excess Fructose",
+    "green_serving": "7g (approx 1 tsp)",
+    "amber_serving": "14g",
+    "red_serving": "28g+ (1 tbsp+)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Honey contains fructose in excess of glucose. Fructose absorption relies on GLUT-5 transporters, which become saturated when fructose exceeds glucose.",
+    "tips": "Sweeten tea or porridge with pure maple syrup or rice malt syrup, which have balanced fructose-to-glucose ratios.",
+    "alternatives": [
+      "Pure maple syrup",
+      "Rice malt syrup",
+      "Table sugar (sucrose)"
+    ]
+  },
+  {
+    "slug": "oats",
+    "name": "Rolled Oats / Porridge Oats",
+    "category": "Grains & Cereals",
+    "fodmap_rating": "Low FODMAP in standard portions",
+    "fodmap_type": "GOS & Fructans (in large portions)",
+    "green_serving": "52g (approx 1/2 cup uncooked)",
+    "amber_serving": "60g",
+    "red_serving": "78g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Rolled oats provide soluble fiber (beta-glucan) which promotes healthy gut transit and stool consistency in both IBS-C and IBS-D.",
+    "tips": "Ensure oats are certified gluten-free if coeliac disease is a concern. Enjoy rolled oats soaked overnight in almond milk.",
+    "alternatives": [
+      "Quinoa flakes",
+      "Rice porridge",
+      "Buckwheat flakes"
+    ]
+  },
+  {
+    "slug": "blueberries",
+    "name": "Blueberries",
+    "category": "Fruits",
+    "fodmap_rating": "Low FODMAP in moderate portions",
+    "fodmap_type": "Fructans (in large portions)",
+    "green_serving": "125g (approx 1 cup or 1 fold-over handful)",
+    "amber_serving": "150g",
+    "red_serving": "500g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2024)",
+    "description": "Blueberries are rich in antioxidants and polyphenols while remaining gentle on the digestive tract in standard breakfast portions.",
+    "tips": "Add fresh or frozen blueberries to oat porridge, lactose-free yogurt, or low-FODMAP smoothie bowls.",
+    "alternatives": [
+      "Strawberries",
+      "Raspberries (60g)",
+      "Cantaloupe"
+    ]
+  },
+  {
+    "slug": "wheat-bread",
+    "name": "Wheat Bread (White or Wholemeal)",
+    "category": "Grains & Bakery",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Fructans",
+    "green_serving": "24g (approx 1 slice white wheat bread)",
+    "amber_serving": "36g",
+    "red_serving": "48g+ (2 slices)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Standard wheat bread contains fructan carbohydrate chains. Note that fructan intolerance is distinct from gluten protein allergy or coeliac disease.",
+    "tips": "Switch to authentic sourdough bread or certified gluten-free bread during the elimination phase.",
+    "alternatives": [
+      "Traditional sourdough bread",
+      "Gluten-free bread",
+      "Rice cakes"
+    ]
+  },
+  {
+    "slug": "sourdough-bread",
+    "name": "Traditional Wheat Sourdough Bread",
+    "category": "Grains & Bakery",
+    "fodmap_rating": "Low FODMAP",
+    "fodmap_type": "Fructans (lowered by wild yeast fermentation)",
+    "green_serving": "109g (2 slices)",
+    "amber_serving": "130g",
+    "red_serving": "165g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Long slow sourdough fermentation (12-24 hours) allows lactobacilli and yeast to break down fructan chains, rendering the bread low-FODMAP.",
+    "tips": "Buy authentic artisanal sourdough made with sourdough starter rather than yeast-fermented bread with added sourdough flavor.",
+    "alternatives": [
+      "Gluten-free bread",
+      "Spelt sourdough bread"
+    ]
+  },
+  {
+    "slug": "wheat-pasta",
+    "name": "Standard Wheat Pasta",
+    "category": "Grains & Bakery",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Fructans",
+    "green_serving": "74g cooked (approx 1/2 cup)",
+    "amber_serving": "100g cooked",
+    "red_serving": "140g+ cooked",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Durum wheat pasta is high in fructans per standard main meal serving.",
+    "tips": "Opt for 100% white or brown rice pasta, quinoa pasta, or corn pasta.",
+    "alternatives": [
+      "Rice pasta",
+      "Quinoa pasta",
+      "Soba noodles (100% buckwheat)"
+    ]
+  },
+  {
+    "slug": "firm-tofu",
+    "name": "Firm Tofu (Drained)",
+    "category": "Proteins & Plant-Based",
+    "fodmap_rating": "Low FODMAP",
+    "fodmap_type": "GOS (removed during pressing)",
+    "green_serving": "160g",
+    "amber_serving": "250g",
+    "red_serving": "350g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Firm tofu is made by pressing soybean curds and draining water-soluble GOS oligosaccharides out, leaving a safe low-FODMAP protein.",
+    "tips": "Press firm tofu with a towel for 15 minutes before cubing and stir-frying with garlic-infused oil and soy sauce.",
+    "alternatives": [
+      "Tempeh (100g)",
+      "Eggs",
+      "Chicken breast",
+      "Lactose-free cottage cheese"
+    ]
+  },
+  {
+    "slug": "silken-tofu",
+    "name": "Silken Tofu",
+    "category": "Proteins & Plant-Based",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "GOS (Galacto-oligosaccharides)",
+    "green_serving": "39g",
+    "amber_serving": "55g",
+    "red_serving": "85g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Unlike firm tofu, silken tofu retains liquid whey containing water-soluble GOS.",
+    "tips": "Avoid silken tofu in vegan desserts or smoothies during elimination; use firm tofu or plant protein powders instead.",
+    "alternatives": [
+      "Firm tofu",
+      "Brown rice protein powder",
+      "Hemp protein powder"
+    ]
+  },
+  {
+    "slug": "button-mushrooms",
+    "name": "White Button / Cremini Mushrooms",
+    "category": "Vegetables",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Polyols (Mannitol)",
+    "green_serving": "10g (1/2 small mushroom)",
+    "amber_serving": "15g",
+    "red_serving": "75g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "White button and cremini mushrooms contain high amounts of mannitol sugar alcohol.",
+    "tips": "Oyster mushrooms and canned champignon mushrooms (drained) are low FODMAP up to 75g.",
+    "alternatives": [
+      "Oyster mushrooms",
+      "Canned mushrooms (drained)",
+      "Zucchini (65g)"
+    ]
+  },
+  {
+    "slug": "cauliflower",
+    "name": "Cauliflower",
+    "category": "Vegetables",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Polyols (Mannitol)",
+    "green_serving": "10g (approx 1 small floret)",
+    "amber_serving": "15g",
+    "red_serving": "75g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Cauliflower contains high mannitol concentrations, which draw water into the bowel and trigger gas production in sensitive colons.",
+    "tips": "Swap cauliflower rice or roast cauliflower for broccoli florets (up to 75g) or carrots.",
+    "alternatives": [
+      "Broccoli florets (75g)",
+      "Carrots",
+      "Green beans (75g)"
+    ]
+  },
+  {
+    "slug": "chickpeas",
+    "name": "Chickpeas (Canned, Drained)",
+    "category": "Proteins & Legumes",
+    "fodmap_rating": "Moderate FODMAP in standard portions",
+    "fodmap_type": "GOS (Galacto-oligosaccharides)",
+    "green_serving": "42g (approx 1/4 cup drained)",
+    "amber_serving": "55g",
+    "red_serving": "84g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Canned chickpeas lose significant GOS into the canning liquid water. Thorough rinsing lowers FODMAP content significantly compared to boiled dry chickpeas.",
+    "tips": "Rinse canned chickpeas thoroughly under cold running water before adding 1/4 cup to salads or stews.",
+    "alternatives": [
+      "Canned lentils (46g drained)",
+      "Firm tofu",
+      "Edamame beans (90g)"
+    ]
+  },
+  {
+    "slug": "ripe-bananas",
+    "name": "Ripe Bananas (Yellow with spots)",
+    "category": "Fruits",
+    "fodmap_rating": "Moderate / High FODMAP",
+    "fodmap_type": "Fructans & Excess Fructose",
+    "green_serving": "35g (approx 1/3 medium ripe banana)",
+    "amber_serving": "45g",
+    "red_serving": "100g+ (1 medium ripe banana)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2024)",
+    "description": "As bananas ripen, resistant starches convert into free sugars including fructans and fructose.",
+    "tips": "If eating bananas during elimination, choose firm green-tipped bananas which are low FODMAP at a full 100g serving.",
+    "alternatives": [
+      "Firm green bananas",
+      "Strawberries",
+      "Blueberries"
+    ]
+  },
+  {
+    "slug": "firm-green-bananas",
+    "name": "Firm Bananas (Green skin)",
+    "category": "Fruits",
+    "fodmap_rating": "Low FODMAP",
+    "fodmap_type": "Resistant Starch (Prebiotic)",
+    "green_serving": "100g (1 medium firm banana)",
+    "amber_serving": "110g",
+    "red_serving": "125g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2024)",
+    "description": "Unripe green bananas contain resistant starch rather than free fructans, providing beneficial prebiotic fiber without triggering osmotic shifts.",
+    "tips": "Slice firm green bananas into morning porridge or blend into smoothies.",
+    "alternatives": [
+      "Strawberries",
+      "Cantaloupe",
+      "Oranges"
+    ]
+  },
+  {
+    "slug": "sweet-potato",
+    "name": "Sweet Potato (Peeled)",
+    "category": "Vegetables",
+    "fodmap_rating": "Low FODMAP in moderate portions",
+    "fodmap_type": "Polyols (Mannitol in large portions)",
+    "green_serving": "75g (approx 1/2 cup cubed)",
+    "amber_serving": "100g",
+    "red_serving": "150g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Sweet potatoes are rich in beta-carotene and potassium. They are low FODMAP in generous 75g portions but accumulate mannitol in larger amounts.",
+    "tips": "Combine 75g sweet potato with white potatoes (which contain no detectable FODMAPs) for roast dinners.",
+    "alternatives": [
+      "White potato (Kennebec/Russet)",
+      "Parsnips",
+      "Carrots"
+    ]
+  },
+  {
+    "slug": "tomatoes",
+    "name": "Common Tomatoes / Roma Tomatoes",
+    "category": "Vegetables",
+    "fodmap_rating": "Low FODMAP",
+    "fodmap_type": "Fructose (in very large portions)",
+    "green_serving": "65g (1 small common tomato)",
+    "amber_serving": "75g",
+    "red_serving": "250g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Fresh common tomatoes provide Vitamin C and lycopene with minimal FODMAP content per meal serving.",
+    "tips": "Use fresh common tomatoes or canned plum tomatoes for homemade pasta sauces made with garlic-infused oil.",
+    "alternatives": [
+      "Red bell pepper (57g)",
+      "Zucchini (65g)"
+    ]
+  },
+  {
+    "slug": "greek-yogurt",
+    "name": "Plain Greek Yogurt (Standard)",
+    "category": "Dairy & Alternatives",
+    "fodmap_rating": "Moderate FODMAP",
+    "fodmap_type": "Lactose",
+    "green_serving": "23g (1 tbsp) or Lactose-Free Greek Yogurt (200g)",
+    "amber_serving": "40g",
+    "red_serving": "200g+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Straining Greek yogurt removes some whey and lactose, but standard Greek yogurt still contains enough lactose to trigger symptoms in lactose-sensitive IBS.",
+    "tips": "Purchase certified lactose-free Greek yogurt to enjoy full protein benefits without digestive distress.",
+    "alternatives": [
+      "Lactose-free Greek yogurt",
+      "Coconut yogurt (125g)",
+      "Lactose-free kefir"
+    ]
+  },
+  {
+    "slug": "eggs",
+    "name": "Chicken Eggs (Poached, Boiled, Scrambled)",
+    "category": "Proteins",
+    "fodmap_rating": "Low FODMAP (FODMAP Free)",
+    "fodmap_type": "None (Protein & Fat only)",
+    "green_serving": "2 eggs (120g) - No limit",
+    "amber_serving": "N/A",
+    "red_serving": "N/A",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Eggs consist entirely of protein and fats and contain zero carbohydrates or fermentable sugars.",
+    "tips": "Scramble eggs with spinach and chives in garlic-infused oil for a quick low-FODMAP meal.",
+    "alternatives": [
+      "Firm tofu",
+      "Chicken",
+      "Salmon",
+      "Beef"
+    ]
+  },
+  {
+    "slug": "celery",
+    "name": "Celery Stalks",
+    "category": "Vegetables",
+    "fodmap_rating": "High FODMAP",
+    "fodmap_type": "Polyols (Mannitol)",
+    "green_serving": "10g (approx 1/4 small stalk)",
+    "amber_serving": "15g",
+    "red_serving": "50g+ (1 stalk)",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Celery contains high mannitol per full stalk. Juicing celery concentrates mannitol further.",
+    "tips": "Avoid celery juicing during elimination. Use 10g chopped celery in salads or substitute with cucumber.",
+    "alternatives": [
+      "Cucumber",
+      "Radishes",
+      "Carrot sticks"
+    ]
+  },
+  {
+    "slug": "green-tea",
+    "name": "Green Tea (Brewed)",
+    "category": "Beverages",
+    "fodmap_rating": "Low FODMAP",
+    "fodmap_type": "Fructans (if brewed very strong)",
+    "green_serving": "250ml (1 cup brewed 2-3 mins)",
+    "amber_serving": "300ml",
+    "red_serving": "500ml+",
+    "monash_threshold_citation": "Monash FODMAP App (Updated 2023)",
+    "description": "Green tea is rich in epigallocatechin gallate (EGCG) antioxidants and low in fermentable carbs.",
+    "tips": "Steep for 2-3 minutes; avoid over-steeping to minimize astringency and potential gut irritation from tannin overload.",
+    "alternatives": [
+      "Peppermint tea",
+      "Chamomile tea (weak)",
+      "Ginger tea"
+    ]
+  }
+]

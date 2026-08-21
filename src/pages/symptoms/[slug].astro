@@ -1,0 +1,111 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import symptomsData from "../../../data/symptoms.json";
+import { ShieldAlert, AlertTriangle, CheckCircle2, ArrowLeft } from "@lucide/astro";
+
+export async function getStaticPaths() {
+  return symptomsData.map((sym) => ({
+    params: { slug: sym.slug },
+    props: { sym },
+  }));
+}
+
+const { sym } = Astro.props;
+const title = `${sym.name} — IBS Symptom & Trigger Guide | IBS Go`;
+const description = `Clinical overview of ${sym.name} (${sym.medical_name}): dietary triggers, non-dietary drivers, red-flag symptoms, and evidence-based management.`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": title,
+  "description": description,
+  "aspect": "Overview",
+  "about": {
+    "@type": "MedicalCondition",
+    "name": sym.name,
+    "possibleTreatment": sym.management
+  }
+};
+---
+
+<Layout title={title} seo={{ page_description: description }}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <nav class="mb-6 text-sm text-stone-600 flex items-center gap-2">
+      <a href="/" class="hover:underline">Home</a> <span>/</span>
+      <a href="/symptoms/" class="hover:underline">Symptom Library</a> <span>/</span>
+      <span class="font-semibold text-stone-900">{sym.name}</span>
+    </nav>
+
+    <header class="mb-8">
+      <span class="text-xs font-bold text-stone-600 bg-stone-100 px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
+        {sym.medical_name}
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold text-stone-900 mb-4">{sym.name}</h1>
+      <p class="text-stone-700 text-lg leading-relaxed">{sym.description}</p>
+    </header>
+
+    <!-- Red-Flag Warning for this symptom -->
+    <div class="bg-rose-50 border-l-4 border-rose-600 p-5 rounded-r-xl mb-8 text-sm text-stone-900">
+      <div class="flex items-start gap-3">
+        <ShieldAlert class="w-6 h-6 text-rose-700 shrink-0 mt-0.5" />
+        <div>
+          <strong class="font-bold text-rose-950 block mb-1">When to Seek Immediate Medical Evaluation:</strong>
+          <ul class="list-disc list-inside text-xs text-rose-900 space-y-1">
+            {sym.red_flags.map((rf) => (
+              <li>{rf}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Triggers Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-white border border-stone-200 p-6 rounded-xl shadow-sm">
+        <h3 class="text-lg font-bold text-stone-900 mb-3 flex items-center gap-2">
+          <AlertTriangle class="w-5 h-5 text-amber-600" /> Primary Dietary Triggers
+        </h3>
+        <ul class="space-y-2 text-xs text-stone-700">
+          {sym.dietary_triggers.map((dt) => (
+            <li class="flex items-start gap-2 bg-stone-50 p-2 rounded-md">
+              <span class="text-amber-600 font-bold">•</span> {dt}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bg-white border border-stone-200 p-6 rounded-xl shadow-sm">
+        <h3 class="text-lg font-bold text-stone-900 mb-3 flex items-center gap-2">
+          <AlertTriangle class="w-5 h-5 text-amber-600" /> Non-Dietary & Physiological Factors
+        </h3>
+        <ul class="space-y-2 text-xs text-stone-700">
+          {sym.non_dietary_triggers.map((ndt) => (
+            <li class="flex items-start gap-2 bg-stone-50 p-2 rounded-md">
+              <span class="text-amber-600 font-bold">•</span> {ndt}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Evidence-Based Management Plan -->
+    <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl mb-10">
+      <h3 class="text-lg font-bold text-emerald-950 mb-3 flex items-center gap-2">
+        <CheckCircle2 class="w-5 h-5 text-emerald-700" /> Evidence-Based Management Interventions
+      </h3>
+      <ol class="list-decimal list-inside space-y-2 text-xs text-emerald-900 font-medium">
+        {sym.management.map((m) => (
+          <li class="bg-white/80 p-2.5 rounded-lg border border-emerald-100">{m}</li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="flex flex-wrap gap-4 text-sm font-medium pt-6 border-t border-stone-200">
+      <a href="/symptoms/" class="text-amber-800 hover:underline">&larr; Back to Symptom Library</a>
+      <a href="/food/" class="text-amber-800 hover:underline">Check Low-FODMAP Food Directory &rarr;</a>
+      <a href="/protocols/" class="text-amber-800 hover:underline">Protocol Guides &rarr;</a>
+    </div>
+  </main>
+</Layout>

@@ -1,77 +1,44 @@
 ---
-import { header } from "../../../data/navigation.json";
-// Icons: @lucide/astro renders inline SVG at build time — zero client JS,
-// tree-shaken per import. See AGENTS.md → "Icons".
-import { Menu, X } from "@lucide/astro";
+import { Search, Apple, Stethoscope, BookOpen, Smartphone, ShieldAlert } from "@lucide/astro";
 ---
 
-<header class="bg-white">
-  <div class="mx-auto max-w-6xl px-8">
-    <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-      </a>
-
-      <ul class="hidden sm:flex items-center gap-6">
-        {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        class="sm:hidden p-2"
-        aria-label="Open navigation menu"
-        popovertarget="mobile-menu"
-        popovertargetaction="show"
-      >
-        <Menu class="w-6 h-6" aria-hidden="true" />
-      </button>
-
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-        </div>
+<header class="bg-sand-50/90 backdrop-blur-md border-b border-sand-200 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <a href="/" class="flex items-center gap-2.5 group">
+      <div class="w-8 h-8 rounded-lg bg-terracotta-500 text-sand-50 flex items-center justify-center font-bold text-sm shadow-xs group-hover:bg-terracotta-600 transition-colors">
+        IBS
       </div>
+      <span class="font-bold text-stone-900 text-lg tracking-tight">IBS Go</span>
+    </a>
+
+    <!-- Nav Links -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-700">
+      <a href="/food/" class="hover:text-terracotta-600 transition-colors flex items-center gap-1.5">
+        <Apple class="w-4 h-4 text-emerald-700" /> Food Directory
+      </a>
+      <a href="/symptoms/" class="hover:text-terracotta-600 transition-colors flex items-center gap-1.5">
+        <Stethoscope class="w-4 h-4 text-terracotta-500" /> Symptoms
+      </a>
+      <a href="/protocols/" class="hover:text-terracotta-600 transition-colors flex items-center gap-1.5">
+        <BookOpen class="w-4 h-4 text-sage-600" /> Protocols
+      </a>
+      <a href="/tools/food-lookup/" class="hover:text-terracotta-600 transition-colors flex items-center gap-1.5">
+        <Search class="w-4 h-4 text-stone-500" /> Tools
+      </a>
+      <a href="/blog/" class="hover:text-terracotta-600 transition-colors">
+        Articles
+      </a>
+      <a href="/pricing/" class="hover:text-terracotta-600 transition-colors">
+        Pricing
+      </a>
     </nav>
+
+    <!-- App CTA -->
+    <div class="flex items-center gap-3">
+      <a href="/pricing/" class="px-4 py-2 bg-terracotta-500 text-sand-50 font-bold text-xs rounded-lg hover:bg-terracotta-600 transition-colors shadow-xs">
+        Try App Free
+      </a>
+    </div>
   </div>
 </header>
-
-<style>
-  #mobile-menu {
-    opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
-  }
-  #mobile-menu:popover-open {
-    opacity: 1;
-  }
-  @starting-style {
-    #mobile-menu:popover-open {
-      opacity: 0;
-    }
-  }
-</style>

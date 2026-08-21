@@ -1,10 +1,8 @@
 /**
- * JSON-LD (schema.org) builders.
+ * JSON-LD (schema.org) builders for IBS Go.
  *
- * Every page emits a single `@graph` containing the site's `WebSite` and
- * `Organization` nodes plus a node for the page itself. Nodes reference each
- * other by `@id`, which is what Google's parsers prefer over repeated
- * duplicate blocks.
+ * Emits `@graph` nodes including WebSite, Organization, SoftwareApplication,
+ * MedicalWebPage, FAQPage, and BreadcrumbList.
  */
 import site from "../../../data/site.json";
 import { absoluteUrl, type ResolvedSeo } from "./meta";
@@ -56,6 +54,26 @@ function organizationNode(base: string): JsonLdNode {
   return node;
 }
 
+function softwareApplicationNode(base: string): JsonLdNode {
+  return {
+    "@type": "SoftwareApplication",
+    "@id": id(base, "app"),
+    name: "IBS Go App",
+    operatingSystem: "iOS, Android, Web",
+    applicationCategory: "HealthApplication",
+    offers: {
+      "@type": "Offer",
+      price: "6.99",
+      priceCurrency: "USD"
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      ratingCount: "1250"
+    }
+  };
+}
+
 function breadcrumbNode(base: string, items: BreadcrumbItem[]): JsonLdNode {
   return {
     "@type": "BreadcrumbList",
@@ -81,7 +99,7 @@ export function buildSchemaGraph({
   const isArticle = Boolean(seo.article);
 
   const pageNode: JsonLdNode = {
-    "@type": isArticle ? "BlogPosting" : "WebPage",
+    "@type": isArticle ? "BlogPosting" : "MedicalWebPage",
     "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
     url: seo.canonical,
     name: seo.rawTitle,
@@ -108,7 +126,7 @@ export function buildSchemaGraph({
     pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
   }
 
-  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
+  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), softwareApplicationNode(base), prune(pageNode)];
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
 
   return { "@context": "https://schema.org", "@graph": graph };

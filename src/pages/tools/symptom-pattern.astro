@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import symptomsData from "../../../data/symptoms.json";
+import { Activity, ShieldAlert, CheckCircle2 } from "@lucide/astro";
+
+const title = "Symptom Pattern & Trigger Visualizer — IBS Go";
+const description = "Learn how symptom timing, transit delays, and FODMAP stacking interact with visceral hypersensitivity.";
+---
+
+<Layout title={title} seo={{ page_description: description }}>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <nav class="mb-6 text-sm text-stone-600 flex items-center gap-2">
+      <a href="/" class="hover:underline">Home</a> <span>/</span> <a href="/symptoms/" class="hover:underline">Symptoms</a> <span>/</span> <span class="font-semibold text-stone-900">Pattern Tool</span>
+    </nav>
+
+    <header class="mb-8">
+      <h1 class="text-3xl sm:text-4xl font-bold text-stone-900 mb-3">Symptom Pattern & Trigger Visualizer</h1>
+      <p class="text-stone-700 text-lg">Understanding gut transit time delays (4 to 24 hours) between meal consumption and colonic fermentation flares.</p>
+    </header>
+
+    <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded-r-lg mb-8 text-sm text-stone-800 flex items-start gap-3">
+      <ShieldAlert class="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+      <div>
+        <strong>Gut Transit Principle:</strong> Gas and distension from colonic fermentation typically manifest 2 to 8 hours post-meal, while gastrocolic reflexes occur within 30 minutes.
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl border border-stone-200 p-6 shadow-sm mb-10">
+      <h2 class="text-xl font-bold text-stone-900 mb-4">Symptom Timing Reference Matrix</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm border-collapse">
+          <thead>
+            <tr class="bg-stone-100 border-b border-stone-200 font-semibold">
+              <th class="p-3">Symptom</th>
+              <th class="p-3">Onset Window</th>
+              <th class="p-3">Primary Physiological Driver</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+            {symptomsData.slice(0, 10).map((s) => (
+              <tr>
+                <td class="p-3 font-bold text-stone-900">{s.name}</td>
+                <td class="p-3 font-mono text-xs text-amber-900 font-semibold">15 mins – 6 hours</td>
+                <td class="p-3 text-xs text-stone-700">{s.medical_name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-4 text-sm font-medium pt-6 border-t border-stone-200">
+      <a href="/symptoms/" class="text-amber-800 hover:underline">&larr; Symptom Library</a>
+      <a href="/tools/reintroduction-planner/" class="text-amber-800 hover:underline">Reintroduction Planner Tool &rarr;</a>
+    </div>
+  </main>
+</Layout>

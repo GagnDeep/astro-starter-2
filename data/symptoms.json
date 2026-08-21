@@ -1,0 +1,366 @@
+[
+  {
+    "slug": "abdominal-bloating",
+    "name": "Abdominal Bloating & Distension",
+    "medical_name": "Meteorism / Abdominal Distension",
+    "description": "Feeling of full, tight, or swollen abdomen, often accompanied by visible physical expansion (distension). Driven by gas production from colonic fermentation and altered visceral sensation.",
+    "dietary_triggers": [
+      "High-FODMAP fructans (garlic, onion, wheat)",
+      "Polyols (sorbitol, mannitol)",
+      "Carbonated drinks",
+      "Artificial sweeteners"
+    ],
+    "non_dietary_triggers": [
+      "Aerophagia (swallowing air while eating fast)",
+      "Stress & anxiety",
+      "Constipation / fecal loading",
+      "Small Intestinal Bacterial Overgrowth (SIBO)"
+    ],
+    "management": [
+      "Temporary low-FODMAP elimination",
+      "Peppermint oil capsules (enteric-coated)",
+      "Gentle walking after meals",
+      "Diaphragmatic breathing to relax abdominal wall"
+    ],
+    "red_flags": [
+      "Severe sudden-onset pain",
+      "Inability to pass gas or stool with vomiting",
+      "Unexplained weight loss",
+      "Palpable abdominal mass"
+    ]
+  },
+  {
+    "slug": "diarrhea-ibs-d",
+    "name": "Diarrhea-Predominant IBS (IBS-D)",
+    "medical_name": "IBS with Predominant Diarrhea (Rome IV)",
+    "description": "Loose, watery stools occurring in >25% of bowel movements, often with urgency and cramping. Caused by accelerated colonic transit, bile acid malabsorption, or osmotic fluid shifts.",
+    "dietary_triggers": [
+      "Excess free fructose & polyols (drawing water into bowel)",
+      "Caffeine & alcohol",
+      "High-fat fried meals",
+      "Spicy food containing capsaicin"
+    ],
+    "non_dietary_triggers": [
+      "Acute acute psychological stress",
+      "Autonomic nervous system dysregulation",
+      "Post-infectious gastroenteritis history"
+    ],
+    "management": [
+      "Soluble fiber supplement (titrated Psyllium husk)",
+      "Hydration with electrolyte rebalance",
+      "Soluble fiber rich foods (rolled oats)",
+      "Loperamide as directed by doctor"
+    ],
+    "red_flags": [
+      "Nocturnal diarrhea (waking up to pass stool)",
+      "Blood or mucus in stool",
+      "Unexplained fevers or joint pain",
+      "Recent antibiotics use (rule out C. diff)"
+    ]
+  },
+  {
+    "slug": "constipation-ibs-c",
+    "name": "Constipation-Predominant IBS (IBS-C)",
+    "medical_name": "IBS with Predominant Constipation (Rome IV)",
+    "description": "Hard, lumpy, or infrequent stools (<3 per week) occurring in >25% of bowel movements, accompanied by straining and feeling of incomplete evacuation.",
+    "dietary_triggers": [
+      "Low fluid intake",
+      "Insufficient soluble fiber",
+      "Excessive calcium or iron supplementation",
+      "Unbalanced restriction diets"
+    ],
+    "non_dietary_triggers": [
+      "Physical inactivity",
+      "Pelvic floor dyssynergia",
+      "Suppressing urge to defecate due to anxiety or schedule"
+    ],
+    "management": [
+      "Gradual increase of soluble fiber (Psyllium / Kiwifruit 2 daily)",
+      "Hydration (2-2.5L water daily)",
+      "Osmotic laxatives (Macrogol / PEG 3350) per doctor guidance",
+      "Squatting posture with footstool"
+    ],
+    "red_flags": [
+      "New onset constipation after age 50",
+      "Rectal bleeding or dark tarry stool",
+      "Severe abdominal pain with distension",
+      "Family history of colorectal cancer"
+    ]
+  },
+  {
+    "slug": "mixed-bowel-habits-ibs-m",
+    "name": "Mixed Bowel Habits IBS (IBS-M)",
+    "medical_name": "IBS with Alternating / Mixed Bowel Habits",
+    "description": "Alternating between loose/watery stools and hard/straining stools, both occurring in >25% of bowel movements. Requires flexible management strategies.",
+    "dietary_triggers": [
+      "Fluctuating fiber intake",
+      "Irregular meal timing",
+      "Combined high-FODMAP stack meals"
+    ],
+    "non_dietary_triggers": [
+      "Circadian rhythm disruptions / shift work",
+      "Hormonal changes (menstrual phase)",
+      "Chronic stress fluctuations"
+    ],
+    "management": [
+      "Focusing on soluble fiber consistency",
+      "Maintaining stable meal intervals",
+      "Symptom tracking to isolate specific trigger groups"
+    ],
+    "red_flags": [
+      "Progressive worsening symptoms",
+      "Unexplained weight loss",
+      "Anemia or fatigue",
+      "Family history of inflammatory bowel disease (IBD)"
+    ]
+  },
+  {
+    "slug": "excessive-flatulence",
+    "name": "Excessive Gas & Flatulence",
+    "medical_name": "Flatus / Increased Gas Volume",
+    "description": "Passing excessive volume or frequency of intestinal gas, often accompanied by foul odor or lower abdominal discomfort.",
+    "dietary_triggers": [
+      "Sulfur-rich compounds (cruciferous vegetables, garlic, eggs)",
+      "Fructans & GOS fermentation",
+      "Sorbitol / Mannitol"
+    ],
+    "non_dietary_triggers": [
+      "Altered gut microbiome (colonic dysbiosis)",
+      "Rapid eating / chewing gum"
+    ],
+    "management": [
+      "Soaking dried legumes or choosing canned rinsed legumes",
+      "Alpha-galactosidase enzymes (Beano) for GOS foods",
+      "Peppermint tea"
+    ],
+    "red_flags": [
+      "Foul odor with involuntary weight loss",
+      "Severe focal pain",
+      "Fecal incontinence"
+    ]
+  },
+  {
+    "slug": "abdominal-pain-cramping",
+    "name": "Abdominal Pain & Cramping",
+    "medical_name": "Visceral Hyperalgesia / Smooth Muscle Spasm",
+    "description": "Recurrent cramping or dull pain in the lower or mid-abdomen, characteristically related to defecation or changes in stool frequency/form.",
+    "dietary_triggers": [
+      "Large high-fat meals (triggering strong gastrocolic reflex)",
+      "High-FODMAP osmotic overload",
+      "Alcohol & artificial spicy sauces"
+    ],
+    "non_dietary_triggers": [
+      "Visceral hypersensitivity (heightened pain sensing in gut nerves)",
+      "Psychological stress",
+      "Smooth muscle spasm"
+    ],
+    "management": [
+      "Antispasmodic medication as prescribed by GP",
+      "Heat therapy (heating pad on abdomen)",
+      "Diaphragmatic relaxation exercises",
+      "Small frequent meals"
+    ],
+    "red_flags": [
+      "Pain that wakes you from sleep",
+      "Pain localized strictly in right lower quadrant",
+      "High fever or chills",
+      "Continuous unremitting pain for >24 hours"
+    ]
+  },
+  {
+    "slug": "nausea-early-satiety",
+    "name": "Nausea & Early Satiety",
+    "medical_name": "Postprandial Distress / Functional Dyspepsia Overlap",
+    "description": "Feeling uncomfortably full shortly after starting a meal, accompanied by mild stomach nausea or upper abdominal heaviness.",
+    "dietary_triggers": [
+      "High-fat fried foods slowing gastric emptying",
+      "Large liquid meal volume",
+      "Excessive coffee / acid beverages"
+    ],
+    "non_dietary_triggers": [
+      "Delayed gastric emptying (gastroparesis)",
+      "Anxiety / sympathetic nervous system dominance"
+    ],
+    "management": [
+      "Eating smaller, frequent meals",
+      "Ginger tea or ginger supplements",
+      "Avoiding lying down for 2 hours post-meal"
+    ],
+    "red_flags": [
+      "Persistent unremitting vomiting",
+      "Difficulty swallowing (dysphagia) or food sticking",
+      "Vomiting blood or coffee-ground material",
+      "Rapid unintended weight loss"
+    ]
+  },
+  {
+    "slug": "visceral-hypersensitivity",
+    "name": "Visceral Hypersensitivity",
+    "medical_name": "Altered Nociception / Gut-Brain Axis Sensitivity",
+    "description": "A condition where gut nerves become hyper-reactive, causing normal amounts of gas or intestinal contraction to be perceived as severe pain or pressure.",
+    "dietary_triggers": [
+      "Mechanical wall stretching from osmotic fluid shifts or gas"
+    ],
+    "non_dietary_triggers": [
+      "Central nervous system sensitization",
+      "Chronic stress, trauma, or sleep deprivation"
+    ],
+    "management": [
+      "Gut-directed hypnotherapy (Nerva model)",
+      "Cognitive Behavioral Therapy (CBT)",
+      "Low-dose neuromodulators (TCAs/SSRIs) as advised by gastroenterologist"
+    ],
+    "red_flags": [
+      "Neurological deficits",
+      "Severe night sweats",
+      "Systemic inflammatory markers"
+    ]
+  },
+  {
+    "slug": "postprandial-distress",
+    "name": "Postprandial Distress (After-Meal Flare)",
+    "medical_name": "Exaggerated Gastrocolic Reflex",
+    "description": "Sudden urge to pass stool, abdominal pain, or distension within 15-45 minutes after eating a meal.",
+    "dietary_triggers": [
+      "High fat content",
+      "Ice-cold drinks during warm meals",
+      "Very large meal portion sizes"
+    ],
+    "non_dietary_triggers": [
+      "High baseline anxiety",
+      "Eating on the go / rushing meals"
+    ],
+    "management": [
+      "Mindful eating: chewing food thoroughly and eating slowly",
+      "Splitting daily calories into 4-5 smaller meals",
+      "Warm peppermint water"
+    ],
+    "red_flags": [
+      "Severe vomiting",
+      "Blood in stool",
+      "Fever"
+    ]
+  },
+  {
+    "slug": "food-intolerance-fructans",
+    "name": "Fructan Sensitivity",
+    "medical_name": "Fructan Malabsorption / Fermentation",
+    "description": "Reaction to fructan polymers found in garlic, onions, wheat, and rye due to absence of human enzymes to break beta-fructose bonds.",
+    "dietary_triggers": [
+      "Garlic, onions, wheat bread, rye, barley, ripe bananas, artichokes"
+    ],
+    "non_dietary_triggers": [
+      "Altered colonic fermentation speed"
+    ],
+    "management": [
+      "Replacing garlic/onion with infused oils",
+      "Choosing sourdough wheat or gluten-free alternatives",
+      "Systematic fructan reintroduction challenge"
+    ],
+    "red_flags": [
+      "Hives, anaphylaxis, breathing difficulty (indicates wheat allergy/coeliac disease, not FODMAP intolerance)"
+    ]
+  },
+  {
+    "slug": "pelvic-floor-dysfunction",
+    "name": "Pelvic Floor Dyssynergia",
+    "medical_name": "Dyssynergic Defecation",
+    "description": "Inability to coordinate pelvic floor muscles during defecation, leading to paradoxical contraction instead of relaxation when straining.",
+    "dietary_triggers": [
+      "Excess dry fiber without water"
+    ],
+    "non_dietary_triggers": [
+      "Chronic straining habits",
+      "Pelvic trauma or childbirth"
+    ],
+    "management": [
+      "Pelvic floor biofeedback physical therapy",
+      "Using an elevated toilet footstool",
+      "Avoiding forced straining"
+    ],
+    "red_flags": [
+      "Rectal prolapse",
+      "Complete inability to pass stool for >5 days"
+    ]
+  },
+  {
+    "slug": "gut-dysbiosis",
+    "name": "Gut Microbiome Dysbiosis",
+    "medical_name": "Intestinal Microbiota Alteration",
+    "description": "Imbalance in the diversity or ratio of beneficial vs fermentative commensal gut bacteria, frequently observed post-antibiotics or infection.",
+    "dietary_triggers": [
+      "Ultra-processed low-fiber diets",
+      "Overly prolonged restrictive elimination diets (>8 weeks)"
+    ],
+    "non_dietary_triggers": [
+      "Broad-spectrum antibiotic courses",
+      "Chronic psychological stress"
+    ],
+    "management": [
+      "Reintroducing diverse plant fibers post-elimination",
+      "Specific probiotic strains tested for IBS (e.g., Bifidobacterium infantis 35624)"
+    ],
+    "red_flags": [
+      "Severe Clostridioides difficile colitis symptoms"
+    ]
+  },
+  {
+    "slug": "bile-acid-malabsorption",
+    "name": "Bile Acid Diarrhea (BAD)",
+    "medical_name": "Bile Acid Malabsorption / Enterohepatic Circulation Failure",
+    "description": "Excess bile acids entering the colon, stimulating fluid secretion and rapid motility; often misdiagnosed as IBS-D.",
+    "dietary_triggers": [
+      "High-fat meals stimulating bile release"
+    ],
+    "non_dietary_triggers": [
+      "Ileal resection, gallbladder removal (cholecystectomy), or terminal ileitis"
+    ],
+    "management": [
+      "Low-fat dietary adjustment",
+      "Bile acid sequestrants (Colestyramine / Colesevelam) prescribed by doctor"
+    ],
+    "red_flags": [
+      "Unexplained watery diarrhea after gallbladder surgery"
+    ]
+  },
+  {
+    "slug": "small-intestinal-bacterial-overgrowth",
+    "name": "Small Intestinal Bacterial Overgrowth (SIBO)",
+    "medical_name": "SIBO (Hydrogen / Methane Predominant)",
+    "description": "Excessive bacterial population in the small intestine fermenting carbohydrates prematurely before colonic transit.",
+    "dietary_triggers": [
+      "Fermentable carbohydrates fermenting early in small bowel"
+    ],
+    "non_dietary_triggers": [
+      "Impaired Migrating Motor Complex (MMC)",
+      "Anatomic blind loops or low stomach acid"
+    ],
+    "management": [
+      "Targeted medical antibiotics (e.g., Rifaximin) prescribed by gastroenterologist",
+      "Prokinetic support during MMC fasting windows"
+    ],
+    "red_flags": [
+      "Severe nutritional deficiencies (Vitamin B12, fat-soluble vitamins)"
+    ]
+  },
+  {
+    "slug": "stress-gut-axis-flare",
+    "name": "Stress & Autonomic Gut Flares",
+    "medical_name": "Sympathetic Nervous System Activation / Enteric Activation",
+    "description": "Gut symptom exacerbation triggered directly by stress hormones (cortisol, CRH) altering gut permeability and motility.",
+    "dietary_triggers": [
+      "Caffeine and stimulants during acute stress"
+    ],
+    "non_dietary_triggers": [
+      "Work burnout, emotional distress, poor sleep quality"
+    ],
+    "management": [
+      "Gut-directed hypnotherapy",
+      "Diaphragmatic 4-7-8 breathing",
+      "Regular aerobic movement"
+    ],
+    "red_flags": [
+      "Suicidal ideation or severe mental health crisis"
+    ]
+  }
+]

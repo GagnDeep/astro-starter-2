@@ -1,0 +1,67 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import protocolsData from "../../../data/protocols.json";
+import { BookOpen, ShieldAlert, CheckCircle2, Clock, AlertTriangle } from "@lucide/astro";
+
+const title = "Low-FODMAP Protocol Guides: Elimination, Reintroduction & Life — IBS Go";
+const description = "Step-by-step clinical protocol guides for low-FODMAP elimination (2-6 weeks), systematic challenge testing, social dining, label reading, and fiber balancing.";
+---
+
+<Layout title={title} seo={{ page_description: description }}>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <nav class="mb-6 text-sm text-stone-600 flex items-center gap-2">
+      <a href="/" class="hover:underline">Home</a> <span>/</span> <span class="font-semibold text-stone-900">Protocol Guides</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold mb-3">
+        Monash & BDA Clinical Protocol Standards
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-4">
+        Low-FODMAP Protocol Guides
+      </h1>
+      <p class="text-lg text-stone-700 max-w-3xl leading-relaxed">
+        The low-FODMAP diet is not a lifestyle restriction—it is a 3-phase diagnostic protocol. Follow our step-by-step guides to establish a clear symptom baseline and reintroduce foods safely.
+      </p>
+    </header>
+
+    <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded-r-lg mb-10 text-sm text-stone-800 flex items-start gap-3">
+      <ShieldAlert class="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+      <div>
+        <strong>Crucial Clinical Rule:</strong> Do not stay on strict FODMAP elimination for longer than 6 weeks without consulting a Registered Dietitian. Long-term restriction starves beneficial gut microbes!
+      </div>
+    </div>
+
+    <!-- Protocols List -->
+    <div class="space-y-6 mb-12">
+      {protocolsData.map((proto, idx) => (
+        <article class="bg-white p-6 sm:p-8 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition-colors">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+            <div>
+              <span class="text-xs font-mono font-bold text-amber-900 bg-amber-100 px-2.5 py-1 rounded-md mb-2 inline-block">
+                Guide #{idx + 1} • {proto.duration}
+              </span>
+              <h2 class="text-2xl font-bold text-stone-900">{proto.title}</h2>
+            </div>
+            <a href={`/protocols/${proto.slug}/`} class="inline-flex items-center justify-center px-4 py-2 bg-amber-800 text-white text-xs font-bold rounded-lg hover:bg-amber-900 transition-colors shrink-0">
+              Read Full Protocol &rarr;
+            </a>
+          </div>
+
+          <p class="text-stone-700 text-sm mb-4 leading-relaxed">{proto.subtitle}</p>
+
+          <div class="bg-stone-50 p-4 rounded-lg border border-stone-100 text-xs text-stone-700 space-y-1">
+            <strong class="text-stone-900 block mb-1">Dietitian Key Takeaway:</strong>
+            <p>{proto.dietitian_tip}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="pt-8 border-t border-stone-200 flex flex-wrap gap-4 text-sm font-medium">
+      <a href="/food/" class="text-amber-800 hover:underline">View Food Directory &rarr;</a>
+      <a href="/symptoms/" class="text-amber-800 hover:underline">View Symptom Library &rarr;</a>
+      <a href="/tools/reintroduction-planner/" class="text-amber-800 hover:underline">Interactive Reintroduction Planner &rarr;</a>
+    </div>
+  </main>
+</Layout>

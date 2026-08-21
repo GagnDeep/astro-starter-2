@@ -1,0 +1,92 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import protocolsData from "../../../data/protocols.json";
+import { ShieldAlert, CheckCircle2, AlertTriangle, Clock, BookOpen, ArrowLeft } from "@lucide/astro";
+
+export async function getStaticPaths() {
+  return protocolsData.map((proto) => ({
+    params: { slug: proto.slug },
+    props: { proto },
+  }));
+}
+
+const { proto } = Astro.props;
+const title = `${proto.title} — Step-by-Step Low-FODMAP Guide | IBS Go`;
+const description = `${proto.subtitle}. Includes duration, key steps, common mistakes, and expert dietitian advice.`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": title,
+  "description": description,
+  "aspect": "Treatment"
+};
+---
+
+<Layout title={title} seo={{ page_description: description }}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <nav class="mb-6 text-sm text-stone-600 flex items-center gap-2">
+      <a href="/" class="hover:underline">Home</a> <span>/</span>
+      <a href="/protocols/" class="hover:underline">Protocols</a> <span>/</span>
+      <span class="font-semibold text-stone-900">{proto.title}</span>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="px-3 py-1 bg-amber-100 text-amber-900 text-xs font-mono font-bold rounded-full">
+          Duration: {proto.duration}
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-stone-900 mb-4">{proto.title}</h1>
+      <p class="text-stone-700 text-lg leading-relaxed">{proto.subtitle}</p>
+    </header>
+
+    <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded-r-lg mb-8 text-sm text-stone-800 flex items-start gap-3">
+      <ShieldAlert class="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+      <div>
+        <strong>Protocol Purpose:</strong> {proto.purpose}
+      </div>
+    </div>
+
+    <!-- Key Steps -->
+    <section class="bg-white rounded-xl border border-stone-200 p-6 shadow-sm mb-8">
+      <h2 class="text-xl font-bold text-stone-900 mb-4 flex items-center gap-2">
+        <CheckCircle2 class="w-5 h-5 text-emerald-700" /> Actionable Protocol Steps
+      </h2>
+      <ol class="list-decimal list-inside space-y-3 text-stone-800 text-sm">
+        {proto.key_steps.map((step) => (
+          <li class="bg-stone-50 p-3 rounded-lg border border-stone-100 font-medium">{step}</li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Common Mistakes -->
+    <section class="bg-white rounded-xl border border-stone-200 p-6 shadow-sm mb-8">
+      <h2 class="text-xl font-bold text-stone-900 mb-4 flex items-center gap-2">
+        <AlertTriangle class="w-5 h-5 text-rose-600" /> Common Pitfalls to Avoid
+      </h2>
+      <ul class="space-y-2 text-stone-800 text-sm">
+        {proto.common_mistakes.map((m) => (
+          <li class="bg-rose-50 p-3 rounded-lg border border-rose-100 text-rose-900 flex items-start gap-2">
+            <span class="font-bold text-rose-700">✕</span> {m}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Dietitian Pro Tip -->
+    <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl mb-10">
+      <h3 class="text-lg font-bold text-emerald-950 mb-2">Registered Dietitian Pro Tip</h3>
+      <p class="text-emerald-900 text-sm leading-relaxed">{proto.dietitian_tip}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-4 text-sm font-medium pt-6 border-t border-stone-200">
+      <a href="/protocols/" class="text-amber-800 hover:underline">&larr; Back to Protocols List</a>
+      <a href="/food/" class="text-amber-800 hover:underline">Check Low-FODMAP Food Directory &rarr;</a>
+      <a href="/tools/reintroduction-planner/" class="text-amber-800 hover:underline">Reintroduction Planner Tool &rarr;</a>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Smartphone, Shield, Zap, HeartPulse } from "@lucide/astro";
+
+const title = "IBS Go Mobile & Web App Features — Zero-Friction Symptom Tracking";
+const description = "Discover IBS Go app features: micro-logging, Monash serving lookup, transit delay visualization, and privacy-first local storage.";
+---
+
+<Layout title={title} seo={{ page_description: description }}>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <nav class="mb-6 text-sm text-stone-600 flex items-center gap-2">
+      <a href="/" class="hover:underline">Home</a> <span>/</span> <span class="font-semibold text-stone-900">App</span>
+    </nav>
+
+    <header class="mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-stone-900 mb-4">Designed for Comfort, Built for Clarity</h1>
+      <p class="text-stone-700 text-lg max-w-3xl">IBS Go replaces overwhelming multi-page logs with effortless 5-second micro-logging and instant visual pattern detection.</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+        <Smartphone class="w-8 h-8 text-amber-800 mb-4" />
+        <h2 class="text-lg font-bold text-stone-900 mb-2">5-Second Micro-Logging</h2>
+        <p class="text-xs text-stone-600 leading-relaxed">Log meals, Bristol stool types, and stress ratings in seconds without typing lengthy essays.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+        <Zap class="w-8 h-8 text-amber-800 mb-4" />
+        <h2 class="text-lg font-bold text-stone-900 mb-2">Stacking Calculator</h2>
+        <p class="text-xs text-stone-600 leading-relaxed">Automatic warnings when combining multiple green/amber portions in a single digestion window.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+        <Shield class="w-8 h-8 text-amber-800 mb-4" />
+        <h2 class="text-lg font-bold text-stone-900 mb-2">Privacy First</h2>
+        <p class="text-xs text-stone-600 leading-relaxed">Your personal health data stays on your device. Zero ad-broker tracking or health data selling.</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-4 text-sm font-medium pt-6 border-t border-stone-200">
+      <a href="/pricing/" class="text-amber-800 hover:underline">View Subscription Pricing &rarr;</a>
+      <a href="/research/" class="text-amber-800 hover:underline">Clinical Literature Basis &rarr;</a>
+    </div>
+  </main>
+</Layout>

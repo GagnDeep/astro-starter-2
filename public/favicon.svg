@@ -1,16 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
-  <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
-  -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
-  <path
-    d="M256 112 L384 368 H128 Z"
-    fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
-  />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="128" fill="#FDFBF7"/>
+  <circle cx="256" cy="256" r="216" fill="#F4EFE6" stroke="#E2D7C5" stroke-width="8"/>
+
+  <!-- Warm Terracotta & Sage Gut Curve / Leaf Motif -->
+  <path d="M256 100 C160 100 130 180 130 256 C130 332 180 400 256 400 C332 400 382 332 382 256 C382 180 352 100 256 100 Z" fill="#C85A32" opacity="0.15"/>
+  <path d="M256 130 C180 130 160 200 160 256 C160 312 200 370 256 370 C312 370 352 312 352 256 C352 200 332 130 256 130 Z" stroke="#C85A32" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M210 210 C210 180 256 170 256 220 C256 270 302 260 302 300 C302 330 256 340 256 300" stroke="#4A7A63" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="170" r="14" fill="#4A7A63"/>
+  <circle cx="256" cy="340" r="14" fill="#C85A32"/>
 </svg>

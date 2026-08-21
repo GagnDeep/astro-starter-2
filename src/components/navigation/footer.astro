@@ -1,26 +1,78 @@
 ---
-import { footer } from "../../../data/navigation.json";
+import { ShieldAlert, HeartPulse } from "@lucide/astro";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-stone-900 text-stone-300 pt-12 pb-16 border-t border-stone-800">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <!-- Brand & Mission -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-md bg-amber-600 text-stone-950 font-bold text-xs flex items-center justify-center">
+            IBS
+          </div>
+          <span class="font-bold text-white text-base tracking-tight">IBS Go</span>
+        </div>
+        <p class="text-xs text-stone-400 leading-relaxed">
+          Warm, evidence-based low-FODMAP diet and symptom tracking companion. Grounded in Monash, NICE, and ACG clinical guidelines.
+        </p>
+        <p class="text-[11px] text-amber-400 font-medium">
+          [NEEDS CONFIRMATION] Prospective clinical trials & advisor boards pending verification.
+        </p>
+      </div>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <!-- Quick Directory Links -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Directory & Guides</h3>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/food/" class="hover:text-amber-400 transition-colors">Low-FODMAP Food Directory</a></li>
+          <li><a href="/symptoms/" class="hover:text-amber-400 transition-colors">Symptom & Trigger Library</a></li>
+          <li><a href="/protocols/" class="hover:text-amber-400 transition-colors">3-Phase Protocol Guides</a></li>
+          <li><a href="/glossary/" class="hover:text-amber-400 transition-colors">Clinical Terms Glossary</a></li>
+          <li><a href="/research/" class="hover:text-amber-400 transition-colors">Research & Competitor Analysis</a></li>
+        </ul>
+      </div>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <!-- Interactive Tools -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Tools & App</h3>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/tools/food-lookup/" class="hover:text-amber-400 transition-colors">Food FODMAP Lookup Tool</a></li>
+          <li><a href="/tools/symptom-pattern/" class="hover:text-amber-400 transition-colors">Symptom Pattern Visualizer</a></li>
+          <li><a href="/tools/reintroduction-planner/" class="hover:text-amber-400 transition-colors">Reintroduction Planner</a></li>
+          <li><a href="/app/" class="hover:text-amber-400 transition-colors">IBS Go App Features</a></li>
+          <li><a href="/pricing/" class="hover:text-amber-400 transition-colors">Premium Subscription Pricing</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal & Medical Disclaimers -->
+      <div>
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Legal & Disclaimers</h3>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/medical-disclaimer/" class="hover:text-amber-400 transition-colors">Medical Advice Disclaimer</a></li>
+          <li><a href="/privacy/" class="hover:text-amber-400 transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms/" class="hover:text-amber-400 transition-colors">Terms of Service</a></li>
+          <li><a href="/about/" class="hover:text-amber-400 transition-colors">About IBS Go</a></li>
+          <li><a href="/contact/" class="hover:text-amber-400 transition-colors">Contact Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Universal Clinical Disclaimer Footer Box -->
+    <div class="p-4 rounded-xl bg-stone-950 border border-stone-800 text-[11px] text-stone-400 leading-relaxed mb-8 flex items-start gap-3">
+      <ShieldAlert class="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+      <div>
+        <strong class="text-stone-200 block mb-1">Education Only — Not Medical Advice:</strong>
+        IBS Go provides educational information and self-tracking software. It is not a diagnostic medical tool and does not replace professional gastroenterology care. Always consult a physician or registered dietitian before beginning restrictive dietary protocols.
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 pt-6 border-t border-stone-800 gap-4">
+      <p>© {new Date().getFullYear()} IBS Go Health Inc. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="/privacy/" class="hover:underline">Privacy</a>
+        <a href="/terms/" class="hover:underline">Terms</a>
+        <a href="/medical-disclaimer/" class="hover:underline">Medical Disclaimer</a>
       </div>
     </div>
   </div>

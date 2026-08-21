@@ -1,0 +1,122 @@
+{
+  "competitors": [
+    {
+      "name": "Monash University FODMAP Diet App",
+      "type": "Clinical Food Directory & Protocol Standard",
+      "strengths": "Gold standard laboratory-tested FODMAP serving thresholds; direct link to Monash research team.",
+      "weaknesses": "Clunky non-intuitive UI, basic tracking functionality, lacks holistic lifestyle/stress factors.",
+      "differentiation": "IBS Go integrates Monash-backed thresholds directly into an effortless daily symptom & pattern visualizer with mind-gut guidance."
+    },
+    {
+      "name": "Cara Care",
+      "type": "Holistic Digital GI Health Companion",
+      "strengths": "Medically certified, comprehensive symptom & stool tracking, prescription-level reimbursement in Germany.",
+      "weaknesses": "High barrier to entry outside Germany, complex multi-step logging interface, overwhelming for quick meal checks.",
+      "differentiation": "IBS Go offers zero-friction micro-logging and instant static lookup without paywalling basic food safety checks."
+    },
+    {
+      "name": "Bowelle",
+      "type": "Minimalist IBS Tracker",
+      "strengths": "Beautiful, simple design; visual mood and symptom logs.",
+      "weaknesses": "No built-in FODMAP database or food safety lookup; manual typing required for all meals.",
+      "differentiation": "IBS Go combines Bowelle's warmth and visual ease with an instant Monash-referenced FODMAP database."
+    },
+    {
+      "name": "FODMAP Friendly App",
+      "type": "Certification Body & Food Lookup",
+      "strengths": "Independent lab accreditation, exact percentage breakdowns of individual FODMAP types.",
+      "weaknesses": "Limited UI polish, minimal symptom correlation or reintroduction planning capabilities.",
+      "differentiation": "IBS Go provides step-by-step reintroduction planners and pattern analytics alongside verified serving thresholds."
+    },
+    {
+      "name": "Nerva by Mindset Health",
+      "type": "Gut-Directed Hypnotherapy App",
+      "strengths": "Evidence-backed 6-week gut-brain hypnotherapy program based on Monash trial data.",
+      "weaknesses": "Expensive subscription ($60+/mo), no dietary or food logging tools.",
+      "differentiation": "IBS Go focuses on dietary protocol management, daily tracking, and trigger detection while acknowledging mind-gut connection."
+    },
+    {
+      "name": "Fast Tract Diet App",
+      "type": "Fermentable Carbs / SIBO Tracker",
+      "strengths": "Uses Fermentation Potential (FP) system for SIBO and acid reflux.",
+      "weaknesses": "Niche framework, steep learning curve, differs from standard Monash FODMAP consensus.",
+      "differentiation": "IBS Go adheres strictly to widely accepted Monash, NICE, and ACG low-FODMAP clinical guidelines."
+    },
+    {
+      "name": "FoodMarble AIRE 2",
+      "type": "Hydrogen & Methane Breath Analyzer Device",
+      "strengths": "Real-time gas measurement via portable hardware breath test.",
+      "weaknesses": "High upfront hardware cost ($249+), breath gas readings can fluctuate based on non-dietary variables.",
+      "differentiation": "IBS Go is software-only, accessible instantly on any web browser or mobile phone without proprietary hardware."
+    }
+  ],
+  "keywords": [
+    { "keyword": "ibs symptom tracker app", "intent": "commercial", "category": "General IBS", "serp_focus": "App store & review roundups" },
+    { "keyword": "low fodmap food list pdf", "intent": "informational", "category": "Food Specific", "serp_focus": "Featured snippets & downloadable tables" },
+    { "keyword": "is avocado low fodmap", "intent": "informational", "category": "Food Specific", "serp_focus": "Direct serving threshold snippets" },
+    { "keyword": "are bananas low fodmap", "intent": "informational", "category": "Food Specific", "serp_focus": "Ripeness-dependent FODMAP rating" },
+    { "keyword": "is garlic high fodmap", "intent": "informational", "category": "Food Specific", "serp_focus": "Fructan warning & substitutes" },
+    { "keyword": "is firm tofu low fodmap", "intent": "informational", "category": "Food Specific", "serp_focus": "Processing & serving size SERP" },
+    { "keyword": "low fodmap reintroduction phase steps", "intent": "informational", "category": "Protocol", "serp_focus": "Step-by-step protocol guides" },
+    { "keyword": "ibs d diet plan", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Clinical dietary recommendations" },
+    { "keyword": "ibs c bloating relief", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Fiber balance & motility guides" },
+    { "keyword": "red flag symptoms ibs doctor", "intent": "informational", "category": "Clinical Warning", "serp_focus": "Emergency & doctor referral triggers" },
+    { "keyword": "monash fodmap app alternative", "intent": "commercial", "category": "Competitor", "serp_focus": "App comparison & review SERPs" },
+    { "keyword": "cara care vs bowelle", "intent": "commercial", "category": "Competitor", "serp_focus": "Comparative app reviews" },
+    { "keyword": "low fodmap eating out guide", "intent": "informational", "category": "Protocol", "serp_focus": "Practical dining out lists" },
+    { "keyword": "low fodmap travel tips", "intent": "informational", "category": "Protocol", "serp_focus": "Travel preparation & snacks" },
+    { "keyword": "sibo vs ibs symptoms", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Diagnostic distinction tables" },
+    { "keyword": "visceral hypersensitivity ibs", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Gut-brain pain mechanism" },
+    { "keyword": "postprandial distress bloating after eating", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Meal timing & gastric accommodation" },
+    { "keyword": "fructans intolerance symptoms", "intent": "informational", "category": "Food Specific", "serp_focus": "Garlic, onion & wheat reaction logs" },
+    { "keyword": "galacto oligosaccharides gos sources", "intent": "informational", "category": "Food Specific", "serp_focus": "Legume & bean preparation" },
+    { "keyword": "polyols sorbitol mannitol list", "intent": "informational", "category": "Food Specific", "serp_focus": "Stone fruits & sugar-free items" },
+    { "keyword": "fructose malabsorption test", "intent": "informational", "category": "Clinical", "serp_focus": "Breath test limitations & dietary trial" },
+    { "keyword": "is sourdough bread low fodmap", "intent": "informational", "category": "Food Specific", "serp_focus": "Fermentation time & fructan degradation" },
+    { "keyword": "low fodmap milk alternatives", "intent": "informational", "category": "Food Specific", "serp_focus": "Lactose-free & almond milk guide" },
+    { "keyword": "can you stay on low fodmap forever", "intent": "informational", "category": "Protocol", "serp_focus": "Gut microbiome impact warnings" },
+    { "keyword": "how to reintroduce garlic low fodmap", "intent": "informational", "category": "Protocol", "serp_focus": "Garlic clove challenge protocol" },
+    { "keyword": "how to reintroduce lactose", "intent": "informational", "category": "Protocol", "serp_focus": "Cow milk serving increase protocol" },
+    { "keyword": "ibs gas pain relief instant", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Posture, movement & peppermint oil" },
+    { "keyword": "soluble vs insoluble fiber ibs", "intent": "informational", "category": "Food Specific", "serp_focus": "Psyllium vs bran clinical trials" },
+    { "keyword": "ibs d emergency stop diarrhea", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Loperamide, hydration & red flags" },
+    { "keyword": "ibs c magnesium oxide vs citrate", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Osmotic laxative dosing guidance" },
+    { "keyword": "rome iv criteria ibs diagnosis", "intent": "informational", "category": "Clinical", "serp_focus": "Clinical diagnostic definition" },
+    { "keyword": "nice guidelines ibs management 2021", "intent": "informational", "category": "Clinical", "serp_focus": "First-line & second-line diet advice" },
+    { "keyword": "acg clinical guideline ibs 2021", "intent": "informational", "category": "Clinical", "serp_focus": "American College of Gastroenterology recommendations" },
+    { "keyword": "monash fodmap thresholds update 2023", "intent": "informational", "category": "Clinical", "serp_focus": "Lab cutoffs for red/amber/green" },
+    { "keyword": "best gut tracking app for iphone and android", "intent": "commercial", "category": "App", "serp_focus": "Cross-platform feature tables" },
+    { "keyword": "privacy safe health journal no sign up", "intent": "commercial", "category": "App", "serp_focus": "Local-first data privacy" },
+    { "keyword": "how to log food triggers ibs", "intent": "informational", "category": "Protocol", "serp_focus": "Symptom timing & transit delay logging" },
+    { "keyword": "stress induced ibs flare up recovery", "intent": "informational", "category": "Symptom Specific", "serp_focus": "Diaphragmatic breathing & vagus nerve" },
+    { "keyword": "low fodmap meal prep ideas", "intent": "informational", "category": "Protocol", "serp_focus": "Batch cooking without onions" },
+    { "keyword": "hidden fodmap ingredients in spices", "intent": "informational", "category": "Food Specific", "serp_focus": "Onion powder & natural flavors list" }
+  ],
+  "clinical_sources": [
+    {
+      "citation": "Monash University FODMAP Research Team (2023/2024 updates)",
+      "scope": "Laboratory cutoffs for Fructans, GOS, Lactose, Excess Fructose, Sorbitol, and Mannitol per standard serving size.",
+      "application": "Drives all food serving green/amber/red thresholds across the IBS Go directory."
+    },
+    {
+      "citation": "NICE Guidelines CG61: Irritable bowel syndrome in adults (Updated 2021)",
+      "scope": "First-line dietary and lifestyle advice (regular meals, fluid intake, restriction of alcohol/caffeine/fiber adjustments) prior to restrictive diets.",
+      "application": "Embedded in Protocol Guides and Post-Diagnostic guidance."
+    },
+    {
+      "citation": "American College of Gastroenterology (ACG) Clinical Guideline: Management of IBS (2021)",
+      "scope": "Strong recommendation for limited trial of low-FODMAP diet for global symptom relief in IBS; guidance on gut-directed psychotherapies.",
+      "application": "Informs clinical post framing, Mind-Gut integrations, and evidence-level disclosures."
+    },
+    {
+      "citation": "Rome IV Criteria for Functional Gastrointestinal Disorders (2016)",
+      "scope": "Recurrent abdominal pain on average at least 1 day/week in the last 3 months, associated with 2+ criteria (defecation, frequency change, stool form change).",
+      "application": "Informs symptom library diagnostic context and red-flag doctor referral triggers."
+    },
+    {
+      "citation": "British Dietetic Association (BDA) Systematic Review on Low FODMAP Diet (2018)",
+      "scope": "Efficacy of low FODMAP diet in clinical practice and the critical requirement for dietitian-led reintroduction.",
+      "application": "Drives strict non-restriction policy and reintroduction phase emphasis."
+    }
+  ]
+}
