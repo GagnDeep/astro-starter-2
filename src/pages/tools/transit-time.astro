@@ -14,20 +14,26 @@ const seo = {
 
 <Layout title="Transit Time Calculator" seo={seo}>
   <main class="max-w-4xl mx-auto px-4 py-16 prose">
-    <h1>Transit Time Calculator</h1>
-    <p>Understanding how long food takes to move through your digestive tract can provide insights into your gut health. Average transit time is 30-40 hours (Source: Mayo Clinic).</p>
+    <h1>Gut Transit Time Calculator</h1>
+    <p>Understanding how long food takes to move through your digestive tract can provide profound insights into your gut health, motility, and microbiome environment. The average transit time is 30-40 hours (Source: Mayo Clinic).</p>
 
-    <div class="bg-brand-secondary p-6 rounded-lg my-8">
-      <h2>Calculate Your Estimate</h2>
-      <p>This is a simplified no-JS fallback method. Note when you ate a marker food (like corn or beets) and when you first saw it in your stool.</p>
+    <h2>Why Transit Time Matters</h2>
+    <p>If food moves too quickly, you risk nutrient malabsorption and dehydration. If it moves too slowly, food ferments, creating excess gas, and allows bacteria to migrate up into the small intestine, increasing the risk of SIBO (Small Intestinal Bacterial Overgrowth).</p>
 
-      <CaptureForm form="waitlist" submitLabel="Send me the full guide">
+    <h3>The Marker Method</h3>
+    <p>The most accurate at-home way to test this is the "Marker Method". Eat a food that isn't easily digested, such as sweet corn, sesame seeds, or beets, and record the exact time. Then, record the time when you first notice it in your stool.</p>
+
+    <div class="bg-brand-secondary p-6 rounded-lg my-8 shadow-sm">
+      <h2 class="mt-0">Calculate Your Estimate</h2>
+      <p>This is a simplified no-JS fallback method. Note when you ate a marker food and when you first saw it in your stool. Submit your data to receive a personalized analysis of your transit time.</p>
+
+      <CaptureForm form="waitlist" submitLabel="Send me my analysis">
         <label class="block mb-4">
-          <span class="text-sm font-medium">Time eaten (approx):</span>
+          <span class="text-sm font-medium">Time marker eaten:</span>
           <input type="datetime-local" name="time_eaten" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" required />
         </label>
         <label class="block mb-4">
-          <span class="text-sm font-medium">Time observed:</span>
+          <span class="text-sm font-medium">Time first observed in stool:</span>
           <input type="datetime-local" name="time_observed" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" required />
         </label>
         <label class="block mb-4">
@@ -36,5 +42,33 @@ const seo = {
         </label>
       </CaptureForm>
     </div>
+
+    <h3>Interpreting Results</h3>
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr>
+          <th class="border-b p-2">Transit Time</th>
+          <th class="border-b p-2">Indication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border-b p-2">Under 12 hours</td>
+          <td class="border-b p-2">Hypermotility (Diarrhea risk, Malabsorption)</td>
+        </tr>
+        <tr>
+          <td class="border-b p-2">12 - 24 hours</td>
+          <td class="border-b p-2">Fast, but potentially normal for high-fiber diets</td>
+        </tr>
+        <tr>
+          <td class="border-b p-2">30 - 40 hours</td>
+          <td class="border-b p-2"><strong>Optimal / Average (Mayo Clinic standard)</strong></td>
+        </tr>
+        <tr>
+          <td class="border-b p-2">Over 72 hours</td>
+          <td class="border-b p-2">Hypomotility (Severe constipation, dysbiosis risk)</td>
+        </tr>
+      </tbody>
+    </table>
   </main>
 </Layout>
