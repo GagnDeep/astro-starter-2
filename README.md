@@ -1,172 +1,62 @@
-# Astro Minimal Starter
+# The Cayman Journal
 
-A minimal starter template for building an Astro site with [CloudCannon](https://cloudcannon.com/) using **Editable Regions** for visual editing.
+The definitive niche news journal for Cayman Islands business, finance, and the expat community.
 
-See a [demo site](https://tiny-jackal.cloudvent.net/).
+## Project Architecture
 
-## Features
+This site is built using [Astro](https://astro.build/) as a purely static site generator. It uses Tailwind CSS v4 for styling and has a strictly defined content architecture to ensure SEO dominance and high conversion.
 
-- Visual editing with [Editable Regions](https://cloudcannon.com/documentation/developer-guides/set-up-visual-editing/an-overview-of-editable-regions/) (text, image, array, source, and component regions)
-- Page building with reusable components
-- Blog with pagination and tags
-- [Tailwind CSS v4](https://tailwindcss.com/) with CSS-first configuration
-- Search-engine ready out of the box: canonicals, Open Graph/Twitter cards, JSON-LD
-  (`WebSite`, `Organization`, `BlogPosting`, `BreadcrumbList`), `sitemap-index.xml`
-  with `no_index` pages filtered out, `robots.txt`, RSS, and per-page SEO front matter
-- [OpenObserve](https://openobserve.ai/) RUM, logs and session replay, configured
-  entirely through environment variables
-- Generated brand assets: one source SVG → favicons, `favicon.ico`, apple-touch icon,
-  PWA icons + manifest, and a 1200x630 Open Graph image (`pnpm assets`)
-- [Lucide](https://lucide.dev) icons via `@lucide/astro` — inline SVG, no client JS
-- Pagefind search
-- Agent-ready docs: [AGENTS.md](./AGENTS.md) and [CLAUDE.md](./CLAUDE.md)
+### Content Collections
+The site is divided into four main content collections, all defined in `src/content.config.ts`:
 
-## Getting Started
+1.  **Guides (`src/content/guides/`)**: Deep reference material on corporate structuring, economic substance, and Cayman law.
+2.  **Living (`src/content/living/`)**: Practical guides for expatriates relocating to or living in the Cayman Islands (cost of living, work permits, real estate).
+3.  **Glossary (`src/content/glossary/`)**: A reference dictionary of Cayman business and legal terms (e.g., CIMA, CIGA, Exempted Company).
+4.  **Blog (`src/content/blog/`)**: Time-sensitive news and analysis on market trends and regulatory updates.
 
-Click `Use this template` to make your own copy of the repository.
+### Tools
+The site includes interactive tools built with vanilla JavaScript (no client-side framework overhead) located in `src/pages/tools/`. Each tool includes a `<noscript>` fallback explaining the manual calculation logic.
+*   `/tools/salary-calculator`
+*   `/tools/pr-points-calculator`
+*   `/tools/stamp-duty-calculator`
 
-### Local Development
+## Styling & Design Tokens
 
-1. Clone the repository to your local machine.
+This project uses **Tailwind CSS v4**, which is CSS-first. There is no `tailwind.config.js`.
 
-2. Start the development server.
+**All design tokens and custom CSS live in `src/styles/main.css`.**
+
+*   Colors, fonts, and theme variables are defined in the `@theme` block.
+*   Custom prose styling and component classes are strictly layered within `@layer components` or `@layer base`.
+*   **Rule:** Never write unlayered CSS. Doing so will break Tailwind's spacing utilities.
+
+## Form Capture API
+
+The site uses a unified capture API for all forms (newsletters, contact forms, waitlists).
+
+**Wiring Instructions:**
+1.  **Config:** The endpoint, public key (`wcs_pk_dummy_cayman_journal`), and form labels are defined in `capture.config.ts` at the repository root.
+2.  **Components:** Use `<CaptureForm />` or `<NewsletterForm />` from `src/components/forms/`.
+3.  **Never Use Direct Fetch:** Forms are progressively enhanced via `src/scripts/capture-forms.ts`. Do not write custom API routes or direct fetch calls for forms.
+
+## SEO and JSON-LD
+
+SEO is handled entirely via frontmatter in markdown files and the `src/components/seo/seo.astro` component.
+*   Never manually add `<title>` or `<meta>` tags to individual pages.
+*   JSON-LD schemas (`Article`, `WebSite`, `Organization`, `BreadcrumbList`) are generated automatically by `src/lib/seo/schema.ts` based on the frontmatter and the routing tree.
+
+## Running the Project
 
 ```bash
+# Install dependencies
 pnpm install
-cp .env.example .env    # optional; only needed for OpenObserve
+
+# Start the dev server
 pnpm dev
-```
 
-Other scripts: `pnpm build` (static output to `dist/`), `pnpm preview`,
-`pnpm check` (types), `pnpm format`. The build intentionally runs nothing but
-`astro build` — no linters or formatters can block it.
+# Type check
+pnpm check
 
-### Configure a new site
-
-1. `data/site.json` — title, description, tagline, organization, locale, theme colour.
-2. `astro.config.mjs` — set `site:` to your production domain. Canonicals, the
-   sitemap and RSS all derive from it.
-3. Replace `src/assets/brand/icon.svg` with your mark, then run `pnpm assets` to
-   regenerate every favicon, app icon, the web manifest and the default Open Graph
-   image. `pnpm assets:check` verifies the result.
-4. `.env` — set `PUBLIC_OO_SERVICE`, `PUBLIC_OO_APPLICATION_ID`, `PUBLIC_OO_ENV`
-   and `PUBLIC_OO_ENABLED=true` when you want telemetry.
-
-### Brand assets
-
-```bash
-pnpm assets          # icons + OG image + verification
-pnpm assets:og       # just the share image
-node scripts/generate-og.mjs --title "Post title" --out public/images/og/post.png
-```
-
-Generated files are committed; nothing regenerates during `astro build`.
-
-### Icons
-
-```astro
----
-import { ArrowRight } from "@lucide/astro";
----
-<ArrowRight class="w-5 h-5" aria-hidden="true" />
-```
-
-## SEO
-
-Pages declare SEO in front matter and the shared head component does the rest:
-
-```yaml
-seo:
-  page_description: A unique, human-written summary of about 155 characters.
-  featured_image: /images/blog/featured-image-2.jpg
-  featured_image_alt: Describes the image.
-  canonical_url:
-  open_graph_type: article
-  no_index: false
-```
-
-Never add `<title>`, canonical, Open Graph or JSON-LD tags to individual pages —
-`src/components/seo/seo.astro` emits exactly one of each. See AGENTS.md for the
-full checklist.
-
-## Observability (OpenObserve)
-
-RUM, logs and session replay initialise in `<head>` before the app renders, so
-early errors and first-paint timings are captured. Everything is driven by typed
-`astro:env` variables validated at build time — see `.env.example`.
-
-```bash
-PUBLIC_OO_APPLICATION_ID="my-web-application"
-PUBLIC_OO_SERVICE="my-web-application"
-PUBLIC_OO_ENV="production"
-PUBLIC_OO_ENABLED=true
-```
-
-Telemetry is **off by default**, so local development stays quiet, and the SDKs
-are dynamically imported — a disabled build never downloads them. Do Not Track
-and Global Privacy Control are honoured. To record custom events:
-
-```ts
-import { trackEvent, identifyUser } from "../lib/observability/client";
-
-trackEvent("cta_clicked", { location: "hero" });
-identifyUser({ id: "1", name: "Captain Hook", email: "hook@example.com" });
-```
-
-## CloudCannon Setup
-
-This site is pre-configured for CloudCannon. Connect your repository and CloudCannon will detect the configuration in `.cloudcannon/initial-site-settings.json` and build your site automatically. The editing experience is defined in `cloudcannon.config.yml`, which you can modify to control your editors' experience.
-
-### Editable Regions
-
-This starter demonstrates several types of Editable Region:
-
-- **Text** (`data-editable="text"`) for editing front matter text values inline
-- **Image** (`data-editable="image"`) for editing front matter image values
-- **Array** (`data-editable="array"`) for page-building with reorderable content blocks
-- **Source** (`data-editable="source"`) for making standalone `.astro` pages editable
-- **Component** (`<editable-component>`) for live re-rendering of Astro components
-
-Components that need live re-rendering are registered in `src/scripts/register-components.ts` and loaded conditionally when the site is open in CloudCannon's Visual Editor.
-
-#### Source Editables
-
-The About page (`src/content/pages/about.astro`) demonstrates **source editables** — a pattern where content lives directly in an Astro template rather than in Markdown front matter. Source editable regions use `data-editable="source"`, `data-path="path/to/file.astro"`, and `data-key` attributes. CloudCannon writes changes straight back to the `.astro` file.
-
-This is useful for standalone pages (like About or Contact) where a developer wants full control over the markup while still giving editors visual editing access — **and where page building with components is *not* desired**. No accompanying Markdown file or front matter schema is needed. A thin routing wrapper in `src/pages/about.astro` handles Astro's file-based routing.
-
-### Components
-
-Three page-building components are included:
-
-- **Hero** — heading, subheading, image, and optional button
-- **LeftRight** — side-by-side text and image, with optional flip and button
-- **TextBlock** — heading and rich text content
-
-### Content
-
-- **Pages** are in `src/content/pages/` as Markdown with structured front matter, and support a component-based page-building workflow. Developers can also add standalone pages paired with a routing file in `src/pages/` (like `src/content/pages/about.astro`), and decide which parts of those pages are editable in CloudCannon.
-- **Blog posts** are in `src/content/blog/` as MDX files
-- **Data** files (site settings, navigation) are in `data/`
-
-## Project Structure
-
-```
-├── .cloudcannon/          # CloudCannon schemas and postbuild
-├── cloudcannon.config.yml # CloudCannon configuration
-├── data/                  # Site-wide data files
-├── public/                # Static assets
-├── .env.example           # OpenObserve configuration template
-├── scripts/               # icon/OG generation + asset verification
-├── AGENTS.md              # Guide for AI agents working in this repo
-└── src/
-    ├── assets/            # images + brand/icon.svg (source for generated assets)
-    ├── components/        # Astro components (incl. seo/, observability/)
-    ├── content/           # Content collections (pages, blog)
-    ├── integrations/      # Build-time Astro integrations
-    ├── layouts/           # Page layouts
-    ├── lib/               # seo/ and observability/ helpers
-    ├── pages/             # Astro page routes (incl. robots.txt, feed.xml)
-    ├── scripts/           # Component registration for visual editing
-    └── styles/            # Global CSS (Tailwind v4)
+# Build the static site (output to /dist)
+pnpm build
 ```
