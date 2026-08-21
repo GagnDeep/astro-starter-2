@@ -3,15 +3,30 @@ import Layout from "../../layouts/Layout.astro";
 
 const terms = [
   { term: "ABR (Adaptive Bitrate Streaming)", def: "Dynamically adjusts the video quality based on the viewer's internet speed to prevent buffering." },
+  { term: "Aspect Ratio", def: "The proportional relationship between the width and height of a video. Standard widescreen is 16:9, while vertical video is 9:16." },
   { term: "Bitrate", def: "The amount of data processed over time, usually measured in kilobits per second (kbps) or megabits per second (Mbps)." },
+  { term: "Buffering", def: "When a video pauses during playback because the player is waiting for more data to download." },
   { term: "CDN (Content Delivery Network)", def: "A global network of servers that caches video content closer to viewers to ensure fast loading times." },
   { term: "Codec", def: "Software that compresses or decompresses video files. Common ones include H.264, HEVC (H.265), and VP9." },
-  { term: "HLS (HTTP Live Streaming)", def: "An adaptive bitrate streaming protocol created by Apple, widely supported across almost all modern browsers and devices." },
+  { term: "Container", def: "A file format (like .mp4 or .mkv) that holds the video, audio, and metadata together." },
   { term: "DASH (Dynamic Adaptive Streaming over HTTP)", def: "An open-source alternative to HLS for adaptive bitrate streaming." },
+  { term: "DRM (Digital Rights Management)", def: "Technology used to restrict unauthorized access or copying of premium video content." },
+  { term: "Encoding", def: "The initial process of converting uncompressed raw video into a compressed digital format." },
+  { term: "FPS (Frames Per Second)", def: "The frequency at which consecutive images are displayed. Cinematic video is usually 24fps; gaming or sports is often 60fps." },
+  { term: "GOP (Group of Pictures)", def: "In video compression, a group of successive pictures within a coded video stream, beginning with a keyframe." },
+  { term: "H.264 (AVC)", def: "The most widely used video codec on the web due to its nearly 100% universal hardware support." },
+  { term: "HEVC (H.265)", def: "The successor to H.264, offering better compression but limited browser support (mainly Safari)." },
+  { term: "HLS (HTTP Live Streaming)", def: "An adaptive bitrate streaming protocol created by Apple, widely supported across almost all modern browsers and devices." },
+  { term: "I-Frame (Keyframe)", def: "A frame in a compressed video that contains the complete image data, requiring no references to other frames." },
+  { term: "iframe Embed", def: "An HTML tag used to embed a video player hosted on another domain into your website." },
+  { term: "Latency", def: "The delay between when a video is requested (or broadcast) and when it actually appears on the viewer's screen." },
+  { term: "Manifest File (.m3u8)", def: "A text file used in HLS streaming that tells the player where to find the different video segments and qualities." },
+  { term: "Player Chrome", def: "The user interface elements of a video player, such as the play button, progress bar, and volume controls." },
+  { term: "Poster Image", def: "The static image displayed in the player before the video begins playing." },
+  { term: "Resolution", def: "The number of pixels in a video, typically expressed as width × height (e.g., 1920×1080)." },
   { term: "Transcoding", def: "The process of converting a video file from one format or resolution to multiple others to support different devices." },
   { term: "VOD (Video on Demand)", def: "Pre-recorded video content that viewers can watch at any time, unlike live streaming." },
-  { term: "Player Chrome", def: "The user interface elements of a video player, such as the play button, progress bar, and volume controls." },
-  { term: "iframe Embed", def: "An HTML tag used to embed a video player hosted on another domain into your website." }
+  { term: "WebM", def: "An open, royalty-free media file format designed specifically for the web, heavily backed by Google." }
 ];
 ---
 

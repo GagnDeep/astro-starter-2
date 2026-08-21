@@ -1,0 +1,118 @@
+---
+title: "H.264 vs HEVC for Web Video: Which Should You Choose?"
+post_hero:
+  date: "2023-10-15"
+  heading: "H.264 vs HEVC for Web Video: Which Should You Choose?"
+  tags:
+    - Codecs
+    - Performance
+    - Web Video
+  author: "Sarah Jane"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "Comparison of video codecs"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Codec comparison thumbnail"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "A deep dive into the differences between H.264 (AVC) and HEVC (H.265) for web video playback, compatibility, and file size."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+When building a video platform, or even just adding a hero video to your homepage, the very first technical decision you make is which codec to use. The choice almost always boils down to two options: **H.264 (Advanced Video Coding, AVC)** or its younger sibling, **HEVC (High Efficiency Video Coding, H.265)**.
+
+This guide explores the tradeoffs, the math behind the compression, and the browser compatibility matrix that ultimately forces most developers' hands.
+
+## The Short Answer
+
+If you can only encode your video once, encode it in **H.264**.
+
+If you are using Adaptive Bitrate Streaming (HLS or DASH) and want to save on bandwidth costs, you should encode in **both** and let the player decide based on browser support.
+
+## Understanding H.264 (AVC)
+
+H.264 was finalized in 2003. It is ancient in software years, but it is the undisputed king of web video.
+
+### Pros of H.264
+* **100% Hardware Decoding:** Every smartphone, tablet, laptop, and smart TV manufactured in the last 15 years has a dedicated hardware chip designed specifically to decode H.264. This means playing H.264 video doesn't drain the battery or cause the fans to spin up.
+* **100% Browser Support:** Chrome, Safari, Firefox, Edge, and mobile browsers all support H.264 out of the box. No polyfills or fallback logic required.
+* **Fast Encoding:** Because it is older and less complex, encoding video to H.264 is very fast and requires less compute power (which means lower AWS/server costs).
+
+### Cons of H.264
+* **Inefficient Compression:** Compared to modern codecs, H.264 files are large. To maintain crisp 1080p quality, you typically need a bitrate between 4 Mbps and 8 Mbps. For 4K, you need 35 Mbps or more.
+
+## Understanding HEVC (H.265)
+
+HEVC was introduced in 2013 as the successor to H.264, explicitly designed to handle the rise of 4K video.
+
+### Pros of HEVC
+* **Incredible Compression:** HEVC is roughly 50% more efficient than H.264. A video that takes up 100MB in H.264 will only take up about 50MB in HEVC at the exact same perceived visual quality.
+* **Better for 4K:** Because of the efficiency, you can deliver high-quality 4K video at around 15-20 Mbps, making it viable for average home internet connections.
+
+### Cons of HEVC
+* **Browser Compatibility is a Nightmare:** This is the dealbreaker. HEVC is heavily patented. Because of the licensing costs, **Google Chrome and Mozilla Firefox do not support HEVC**. If you put an HEVC `.mp4` on your website, a Chrome user will just see a blank screen or an error.
+* **Apple Ecosystem Reliance:** HEVC is fully supported by Apple (Safari, iOS, macOS) because Apple is part of the patent pool.
+* **Compute Heavy:** Encoding HEVC takes significantly more processing power, meaning it takes longer and costs more to encode on the server side.
+
+## The Compatibility Matrix
+
+Here is the current state of browser support for the major codecs:
+
+| Browser | H.264 (AVC) | HEVC (H.265) | VP9 | AV1 |
+| :--- | :---: | :---: | :---: | :---: |
+| **Chrome (Desktop)** | ✅ Yes | ❌ No | ✅ Yes | ✅ Yes |
+| **Safari (Mac/iOS)** | ✅ Yes | ✅ Yes | ✅ Yes (macOS 11+) | ❌ No |
+| **Firefox** | ✅ Yes | ❌ No | ✅ Yes | ✅ Yes |
+| **Edge** | ✅ Yes | ⚠️ (Requires OS extension) | ✅ Yes | ✅ Yes |
+
+*(Note: VP9 is Google's open-source alternative to HEVC, which is why Chrome supports it. AV1 is the next-generation royalty-free codec, but hardware decoding is still rare).*
+
+## The Financial Impact: Storage vs Bandwidth
+
+Why would you bother with HEVC if Chrome doesn't support it? **Bandwidth costs.**
+
+Video hosting providers (like AWS CloudFront or Fastly) charge you for data transferred out to users. Let's look at a worked example for a moderately popular e-learning platform.
+
+### Worked Example
+* **Video library:** 100 hours of 1080p video.
+* **Monthly views:** 100,000 hours watched.
+* **H.264 average bitrate:** 5 Mbps (2.25 GB per hour).
+* **HEVC average bitrate:** 2.5 Mbps (1.12 GB per hour).
+* **Bandwidth cost:** $0.05 per GB.
+
+**Scenario A: H.264 Only**
+* Storage: 225 GB
+* Bandwidth: 225,000 GB
+* **Total Monthly Cost:** ~$11,250
+
+**Scenario B: Hybrid (H.264 + HEVC/VP9)**
+Assuming 50% of your audience uses Safari (who get HEVC) or Chrome (who get VP9), and 50% fall back to H.264.
+* Storage: 450 GB (You have to store both versions)
+* Bandwidth: 112,500 GB (HEVC/VP9) + 112,500 GB (H.264) = 168,750 GB
+* **Total Monthly Cost:** ~$8,437
+
+By encoding a second version of your videos, you increased your storage costs slightly, but **saved $2,813 per month** in bandwidth.
+
+## The Solution: Adaptive Bitrate Streaming (HLS)
+
+You cannot achieve Scenario B using a simple `<video src="video.mp4">` tag.
+
+To serve different codecs to different browsers automatically, you must use **HLS (HTTP Live Streaming)** or DASH.
+
+When you use HLS, you provide a "manifest" file (`.m3u8`). The video player reads this manifest, checks what the browser supports, and automatically downloads the most efficient codec. If the user is on Safari, it pulls the HEVC chunks. If they are on Chrome, it pulls the H.264 chunks.
+
+## Conclusion
+
+Never replace your H.264 files with HEVC; you will break playback for 60% of the internet. Instead, use HEVC (and VP9) *in addition* to H.264 within an adaptive streaming setup to cut your bandwidth bills in half while ensuring 100% compatibility.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Don't want to manage codecs yourself?</h3>
+  <p>uVideoPlayer handles transcoding, HLS manifest generation, and multi-codec delivery automatically. You upload one file; we deliver the optimal format to every browser.</p>
+  <CaptureForm form={capture.forms.newsletter} submitLabel="Get product updates" />
+</div>

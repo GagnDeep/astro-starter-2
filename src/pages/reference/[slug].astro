@@ -1,0 +1,123 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+export async function getStaticPaths() {
+  const topics = [
+    {
+      slug: "optimal-h264-export-settings",
+      title: "Optimal H.264 Export Settings for Web",
+      desc: "Learn exactly how to configure Adobe Premiere or Handbrake for the perfect balance of quality and file size.",
+      content: `
+      <h2>Why H.264 is still king</h2>
+      <p>Despite newer codecs like HEVC and AV1, H.264 (AVC) remains the most universally supported video codec across all browsers and devices. If you are serving a single MP4 fallback, it must be H.264.</p>
+
+      <h2>Target Bitrates by Resolution</h2>
+      <table>
+        <thead><tr><th>Resolution</th><th>Framerate</th><th>Target Bitrate (Mbps)</th></tr></thead>
+        <tbody>
+          <tr><td>1080p</td><td>24/25/30 fps</td><td>8 Mbps</td></tr>
+          <tr><td>1080p</td><td>48/50/60 fps</td><td>12 Mbps</td></tr>
+          <tr><td>720p</td><td>24/25/30 fps</td><td>5 Mbps</td></tr>
+          <tr><td>4K (2160p)</td><td>24/25/30 fps</td><td>35-45 Mbps</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Keyframe Distance (GOP Size)</h2>
+      <p>For streaming, set your keyframe distance (Group of Pictures) to exactly half your framerate. If you are shooting at 30fps, set keyframes every 15 frames. This ensures the player has frequent entry points when seeking or switching adaptive bitrates.</p>
+      `
+    },
+    {
+      slug: "understanding-cdns",
+      title: "Understanding Content Delivery Networks (CDNs) for Video",
+      desc: "Why hosting video on your own single server is a bad idea, and how CDNs solve it.",
+      content: `
+      <h2>The Latency Problem</h2>
+      <p>If your website is hosted in New York, a visitor from London has to wait for data to travel across the Atlantic. For HTML and text, this is a delay of milliseconds. For a 50MB video file, it means constant buffering.</p>
+
+      <h2>How Edge Caching Works</h2>
+      <p>A CDN copies your video to hundreds of servers ("Points of Presence" or PoPs) around the world. When that London visitor clicks play, the video is delivered from a server in London, not New York.</p>
+
+      <h3>Cache Hit Ratio</h3>
+      <p>The Cache Hit Ratio (CHR) measures how often a request is served from the edge vs your origin server. A good video CDN should maintain a CHR of > 95%.</p>
+      `
+    },
+    {
+      slug: "html5-video-attributes",
+      title: "How to properly format an HTML5 <video> tag",
+      desc: "A comprehensive guide to the attributes that make a web video accessible and performant.",
+      content: `
+      <h2>The Anatomy of a Perfect Embed</h2>
+      <p>A bare <code>&lt;video src="..."&gt;</code> tag is not enough. You need specific attributes to handle mobile devices, screen readers, and performance.</p>
+
+      <ul>
+        <li><strong>playsinline:</strong> Critical for iOS. Without this, your video will force itself into full-screen mode when played on an iPhone.</li>
+        <li><strong>poster:</strong> An absolute must. This image loads instantly and holds the layout space, preventing Cumulative Layout Shift (CLS) while the video engine initializes.</li>
+        <li><strong>preload:</strong> Set to "metadata" to fetch the video duration and dimensions without downloading the entire file, saving bandwidth.</li>
+      </ul>
+      `
+    },
+    {
+      slug: "autoplay-policies",
+      title: "Autoplay Policies Across Major Browsers",
+      desc: "Why your background video isn't playing, and how to fix it.",
+      content: `
+      <h2>The Rule of Mute</h2>
+      <p>In 2018, Chrome, Safari, and Firefox all implemented strict autoplay policies. The golden rule is: <strong>You can only autoplay a video if it is muted.</strong></p>
+
+      <h2>Required Attributes</h2>
+      <p>To successfully autoplay a background video, your HTML must look like this:</p>
+      <pre><code>&lt;video autoplay muted loop playsinline&gt;</code></pre>
+      <p>If you miss the <code>muted</code> attribute, the browser will block the playback entirely. If you miss <code>playsinline</code>, iOS Safari will block it.</p>
+      `
+    },
+    {
+      slug: "video-cors-errors",
+      title: "Resolving Video CORS errors",
+      desc: "How to fix Cross-Origin Resource Sharing issues when hosting videos on a subdomain or CDN.",
+      content: `
+      <h2>What is CORS?</h2>
+      <p>Cross-Origin Resource Sharing (CORS) is a security feature. If your website (<code>https://mysite.com</code>) tries to load a video from a CDN (<code>https://cdn.mysite.com</code>) and manipulate it with JavaScript (like drawing it to a canvas or reading its captions), the browser will block it unless the CDN explicitly allows it.</p>
+
+      <h2>The Fix</h2>
+      <p>You must configure your CDN or storage bucket (like AWS S3) to send an <code>Access-Control-Allow-Origin</code> header. Often, setting it to <code>*</code> is easiest for public videos.</p>
+
+      <p>Additionally, your video tag must include <code>crossorigin="anonymous"</code> to tell the browser to make the request without sending user credentials.</p>
+      `
+    },
+    { slug: "accessibility-vtt", title: "Accessibility: Adding VTT Subtitles", desc: "Learn how to add subtitles and captions.", content: "<p>Stub content.</p>" },
+    { slug: "protecting-videos", title: "How to protect videos from right-click downloads", desc: "Learn how to prevent simple downloads.", content: "<p>Stub content.</p>" },
+    { slug: "core-web-vitals", title: "The impact of video on Core Web Vitals", desc: "Understand LCP and CLS impacts.", content: "<p>Stub content.</p>" },
+    { slug: "storage-vs-bandwidth", title: "Calculating Video Storage vs Bandwidth Costs", desc: "Understand the pricing model differences.", content: "<p>Stub content.</p>" },
+    { slug: "why-hls", title: "Why HLS is the standard for VOD", desc: "Learn why HLS won the streaming wars.", content: "<p>Stub content.</p>" },
+    { slug: "future-codecs", title: "VP9 vs HEVC vs AV1: The Future of Web Video", desc: "A look at the next generation of video codecs.", content: "<p>Stub content.</p>" },
+    { slug: "poster-images", title: "Using Poster Images for Faster Page Loads", desc: "How to use the poster attribute effectively.", content: "<p>Stub content.</p>" },
+    { slug: "mobile-encoding", title: "Mobile vs Desktop Video Encoding Profiles", desc: "Why you need different settings for mobile.", content: "<p>Stub content.</p>" },
+    { slug: "keyframes-gop", title: "Understanding Keyframes and GOP size", desc: "Deep dive into intra-frame compression.", content: "<p>Stub content.</p>" },
+    { slug: "preloading-metadata", title: "How to preload video metadata", desc: "Using preload=metadata to save bandwidth.", content: "<p>Stub content.</p>" }
+  ];
+
+  return topics.map((topic) => ({
+    params: { slug: topic.slug },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+---
+<Layout title={topic.title} seo={{ page_description: topic.desc }}>
+  <article class="py-16 md:py-24 max-w-3xl mx-auto px-8 prose">
+    <a href="/reference/" class="text-[var(--color-primary)] no-underline hover:underline">&larr; Back to Reference Library</a>
+    <h1 class="mt-8">{topic.title}</h1>
+    <p class="lead">{topic.desc}</p>
+
+    <div set:html={topic.content} />
+
+    <div class="mt-16 bg-gray-50 p-8 rounded border border-gray-200 not-prose">
+      <h3 class="text-2xl font-bold mb-4">Want more technical guides?</h3>
+      <p class="mb-6 text-[var(--color-text-muted)]">Join our newsletter for weekly tips on web video engineering.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Subscribe" />
+    </div>
+  </article>
+</Layout>

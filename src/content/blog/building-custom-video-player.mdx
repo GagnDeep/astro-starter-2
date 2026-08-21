@@ -1,0 +1,192 @@
+---
+title: "How to Build a Custom HTML5 Video Player from Scratch"
+post_hero:
+  date: "2023-11-15"
+  heading: "How to Build a Custom HTML5 Video Player from Scratch"
+  tags:
+    - Frontend
+    - Javascript
+    - HTML5
+  author: "Mark Remover"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "Code editor showing HTML5 video"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Code thumbnail"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "A complete tutorial on using the HTML5 Video API to build a custom-styled video player with play, pause, seek, and volume controls."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+The native HTML5 `<video controls>` attribute is fantastic for getting a video on a page quickly. However, the design of those native controls is dictated entirely by the browser. Chrome looks different than Safari, and Firefox looks different than iOS.
+
+If you want a unified brand experience, or if you need custom features like chapter markers, you have to build your own Player Chrome using the HTML5 Video API.
+
+In this tutorial, we will build a custom player UI from scratch.
+
+## 1. The HTML Structure
+
+First, we need to hide the native controls and build our own overlay. We wrap the video and our custom controls in a relative container.
+
+```html
+<div class="video-container" style="position: relative; max-width: 800px;">
+  <!-- Note: We removed the 'controls' attribute -->
+  <video id="my-video" src="movie.mp4" poster="poster.jpg" style="width: 100%;"></video>
+
+  <!-- Custom Controls Overlay -->
+  <div class="custom-controls" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); display: flex; padding: 10px;">
+
+    <button id="play-pause-btn">Play</button>
+
+    <input type="range" id="seek-bar" value="0" style="flex-grow: 1; margin: 0 10px;">
+
+    <span id="time-display" style="color: white; margin-right: 10px;">0:00 / 0:00</span>
+
+    <button id="mute-btn">Mute</button>
+
+    <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+
+    <button id="fullscreen-btn" style="margin-left: 10px;">Full</button>
+
+  </div>
+</div>
+```
+
+## 2. Wiring up the JavaScript
+
+The HTML5 Video element exposes a rich JavaScript API. We can trigger actions (like `.play()`) and listen to events (like `timeupdate`).
+
+Let's grab our elements:
+
+```javascript
+const video = document.getElementById('my-video');
+const playBtn = document.getElementById('play-pause-btn');
+const seekBar = document.getElementById('seek-bar');
+const timeDisplay = document.getElementById('time-display');
+const muteBtn = document.getElementById('mute-btn');
+const volumeBar = document.getElementById('volume-bar');
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+```
+
+### Play and Pause
+
+We toggle the play state and update the button text.
+
+```javascript
+playBtn.addEventListener('click', () => {
+  if (video.paused) {
+    video.play();
+    playBtn.textContent = 'Pause';
+  } else {
+    video.pause();
+    playBtn.textContent = 'Play';
+  }
+});
+
+// Also allow clicking the video itself to play/pause
+video.addEventListener('click', () => {
+  playBtn.click();
+});
+```
+
+### Formatting Time
+
+Video time is returned in seconds. We need a helper to format it as `M:SS`.
+
+```javascript
+function formatTime(seconds) {
+  const min = Math.floor(seconds / 60);
+  const sec = Math.floor(seconds % 60);
+  return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+}
+```
+
+### Updating the Seek Bar
+
+As the video plays, it fires a `timeupdate` event multiple times per second. We use this to move the scrubber.
+
+```javascript
+video.addEventListener('timeupdate', () => {
+  // Calculate percentage
+  const percent = (video.currentTime / video.duration) * 100;
+  seekBar.value = percent;
+
+  // Update text
+  timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+});
+```
+
+### Seeking (Scrubbing)
+
+When the user clicks or drags the seek bar, we need to update the video's time.
+
+```javascript
+seekBar.addEventListener('input', () => {
+  const time = video.duration * (seekBar.value / 100);
+  video.currentTime = time;
+});
+```
+
+### Volume and Mute
+
+```javascript
+muteBtn.addEventListener('click', () => {
+  video.muted = !video.muted;
+  muteBtn.textContent = video.muted ? 'Unmute' : 'Mute';
+});
+
+volumeBar.addEventListener('input', () => {
+  video.volume = volumeBar.value;
+  // Automatically unmute if they drag the volume up
+  if (video.volume > 0 && video.muted) {
+    muteBtn.click();
+  }
+});
+```
+
+### Fullscreen
+
+Fullscreen requires handling vendor prefixes for different browsers.
+
+```javascript
+fullscreenBtn.addEventListener('click', () => {
+  const container = video.parentElement;
+
+  if (!document.fullscreenElement) {
+    if (container.requestFullscreen) {
+      container.requestFullscreen();
+    } else if (container.webkitRequestFullscreen) { /* Safari */
+      container.webkitRequestFullscreen();
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+});
+```
+
+## 3. The Catch: HLS and Accessibility
+
+While this tutorial covers the basics of a standard MP4 file, a production-grade video player is significantly more complex.
+
+1. **Accessibility:** You must handle keyboard navigation (tabbing), ARIA labels for screen readers, and displaying VTT subtitle tracks.
+2. **HLS/DASH:** If you want adaptive bitrate streaming, the native `<video>` tag won't work in Chrome without an engine like `hls.js` sitting between the video source and the DOM.
+3. **Mobile Nuances:** iOS Safari has strict rules about full-screen and autoplay that require specific event handling.
+
+## Conclusion
+
+Building a custom player UI is a great exercise in learning the Media API. However, for a production application, maintaining a custom player across every browser and device combination is a full-time job.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Want a beautiful player without writing Javascript?</h3>
+  <p>uVideoPlayer gives you a fast, unbranded, fully-customizable HTML5 player out of the box, with built-in HLS support and accessibility compliance.</p>
+  <CaptureForm form={capture.forms.contact} submitLabel="Try it free" />
+</div>

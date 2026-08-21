@@ -4,21 +4,21 @@ import CaptureForm from "../../components/forms/capture-form.astro";
 import { capture } from "../../../capture.config";
 
 const topics = [
-  "Optimal H.264 Export Settings for Web",
-  "Understanding Content Delivery Networks (CDNs)",
-  "How to properly format an HTML5 <video> tag",
-  "Autoplay Policies Across Major Browsers",
-  "Accessibility: Adding VTT Subtitles",
-  "How to protect videos from right-click downloads",
-  "The impact of video on Core Web Vitals",
-  "Calculating Video Storage vs Bandwidth Costs",
-  "Why HLS is the standard for VOD",
-  "VP9 vs HEVC vs AV1: The Future of Web Video",
-  "Using Poster Images for Faster Page Loads",
-  "Mobile vs Desktop Video Encoding Profiles",
-  "Understanding Keyframes and GOP size",
-  "Resolving Video CORS errors",
-  "How to preload video metadata"
+  { slug: "optimal-h264-export-settings", title: "Optimal H.264 Export Settings for Web" },
+  { slug: "understanding-cdns", title: "Understanding Content Delivery Networks (CDNs) for Video" },
+  { slug: "html5-video-attributes", title: "How to properly format an HTML5 <video> tag" },
+  { slug: "autoplay-policies", title: "Autoplay Policies Across Major Browsers" },
+  { slug: "video-cors-errors", title: "Resolving Video CORS errors" },
+  { slug: "accessibility-vtt", title: "Accessibility: Adding VTT Subtitles" },
+  { slug: "protecting-videos", title: "How to protect videos from right-click downloads" },
+  { slug: "core-web-vitals", title: "The impact of video on Core Web Vitals" },
+  { slug: "storage-vs-bandwidth", title: "Calculating Video Storage vs Bandwidth Costs" },
+  { slug: "why-hls", title: "Why HLS is the standard for VOD" },
+  { slug: "future-codecs", title: "VP9 vs HEVC vs AV1: The Future of Web Video" },
+  { slug: "poster-images", title: "Using Poster Images for Faster Page Loads" },
+  { slug: "mobile-encoding", title: "Mobile vs Desktop Video Encoding Profiles" },
+  { slug: "keyframes-gop", title: "Understanding Keyframes and GOP size" },
+  { slug: "preloading-metadata", title: "How to preload video metadata" }
 ];
 ---
 <Layout title="Web Video Reference Library" seo={{ page_description: "Expert guides on video encoding, streaming, and embedding for web developers." }}>
@@ -28,8 +28,8 @@ const topics = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {topics.map(t => (
-        <a href="#" class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-primary)] transition-colors">
-          <h2 class="text-lg font-bold mb-2">{t}</h2>
+        <a href={`/reference/${t.slug}/`} class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-primary)] transition-colors">
+          <h2 class="text-lg font-bold mb-2">{t.title}</h2>
           <p class="text-sm text-[var(--color-text-muted)]">Read the guide &rarr;</p>
         </a>
       ))}
