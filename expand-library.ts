@@ -1,4 +1,6 @@
----
+import fs from 'fs';
+
+const bmrExplained = `---
 _schema: "default"
 title: "BMR Explained"
 seo:
@@ -25,8 +27,8 @@ For most people, BMR accounts for roughly **60% to 75%** of their Total Daily En
 
 There are several formulas, but the **Mifflin-St Jeor equation** is widely regarded by dietitians as the most accurate standard formula. It requires your weight, height, age, and biological sex.
 
-- **Men:** `10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) + 5`
-- **Women:** `10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) - 161`
+- **Men:** \`10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) + 5\`
+- **Women:** \`10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) - 161\`
 
 ### Worked Example
 
@@ -56,3 +58,6 @@ Her BMR is approximately 1,370 calories per day.
 1. Use our [BMR Calculator](/tools/bmr-calculator/) to find your specific number.
 2. Use our [TDEE Calculator](/tools/tdee-calculator/) to factor in your daily activity and find your maintenance calories.
 3. Start tracking your intake with FoodLogTrack.
+`;
+
+fs.writeFileSync('src/content/pages/library/bmr-explained.md', bmrExplained);

@@ -1,4 +1,6 @@
----
+import fs from 'fs';
+
+const accurateTracking = `---
 title: "How to track calories accurately: A Complete Guide"
 post_hero:
   date: "2023-10-01"
@@ -107,3 +109,6 @@ Accuracy in tracking comes down to consistency and eliminating guesswork. Buy a 
 Ready to start tracking without the premium paywalls? Join the FoodLogTrack waitlist below.
 
 <CaptureForm form="waitlist" />
+`;
+
+fs.writeFileSync('src/content/blog/how-to-track-calories-accurately.mdx', accurateTracking);

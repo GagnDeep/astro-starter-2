@@ -1,4 +1,6 @@
----
+import fs from 'fs';
+
+const tdee = `---
 import Layout from "../../layouts/Layout.astro";
 import CaptureForm from "../../components/forms/capture-form.astro";
 
@@ -166,3 +168,6 @@ const seo = {
     }
   }
 </script>
+`;
+
+fs.writeFileSync('src/pages/tools/tdee-calculator.astro', tdee);
