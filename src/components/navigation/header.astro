@@ -1,77 +1,29 @@
 ---
-import { header } from "../../../data/navigation.json";
-// Icons: @lucide/astro renders inline SVG at build time — zero client JS,
-// tree-shaken per import. See AGENTS.md → "Icons".
 import { Menu, X } from "@lucide/astro";
+
+const navLinks = [
+  { name: "Timer", href: "/" },
+  { name: "Guides", href: "/guides/box-breathing" },
+  { name: "Tools", href: "/tools/4-7-8-timer" },
+  { name: "Blog", href: "/blog" }
+];
 ---
 
-<header class="bg-white">
-  <div class="mx-auto max-w-6xl px-8">
-    <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+<header class="w-full bg-bg-base/80 backdrop-blur-md border-b border-surface/50 sticky top-0 z-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold tracking-tight text-text-base">
+      BreathingTimer
+    </a>
+
+    <nav class="hidden md:flex gap-6 items-center">
+      {navLinks.map((link) => (
+        <a href={link.href} class="text-sm font-medium text-text-muted hover:text-text-base transition-colors">
+          {link.name}
+        </a>
+      ))}
+      <a href="/pricing" class="bg-surface hover:bg-surface/80 text-text-base px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-surface/50">
+        It's Free
       </a>
-
-      <ul class="hidden sm:flex items-center gap-6">
-        {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        class="sm:hidden p-2"
-        aria-label="Open navigation menu"
-        popovertarget="mobile-menu"
-        popovertargetaction="show"
-      >
-        <Menu class="w-6 h-6" aria-hidden="true" />
-      </button>
-
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-        </div>
-      </div>
     </nav>
   </div>
 </header>
-
-<style>
-  #mobile-menu {
-    opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
-  }
-  #mobile-menu:popover-open {
-    opacity: 1;
-  }
-  @starting-style {
-    #mobile-menu:popover-open {
-      opacity: 0;
-    }
-  }
-</style>

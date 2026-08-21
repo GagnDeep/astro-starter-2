@@ -1,0 +1,92 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CO2Tolerance from "../../components/tools/CO2Tolerance";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { Check } from "@lucide/astro";
+
+const seo = {
+  page_description: "Take the CO2 Tolerance Test online. Measure your baseline stress, breathlessness threshold, and respiratory health.",
+};
+---
+
+<Layout title="CO2 Tolerance Test" {seo}>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+    <header class="text-center mb-12 sm:mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-base mb-4">
+        CO2 Tolerance Test
+      </h1>
+      <p class="text-lg sm:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
+        Measure your baseline nervous system state. A lower score indicates higher baseline stress and poor carbon dioxide tolerance.
+      </p>
+    </header>
+
+    <div class="mb-20">
+      <CO2Tolerance client:load />
+      <noscript>
+        <div class="max-w-lg mx-auto bg-surface p-8 rounded-xl text-center border border-surface/50 mt-4">
+          <p class="text-text-base font-semibold mb-2">JavaScript is required for the timer.</p>
+          <p class="text-text-muted text-sm">
+            If you prefer not to enable it, use a stopwatch and follow this protocol:
+            <br/><br/>
+            1. Breathe normally for 1 minute.<br/>
+            2. Take one normal inhale.<br/>
+            3. Start the stopwatch and exhale as slowly as you physically can.<br/>
+            4. Stop the timer when you run out of air, have to swallow, or have to inhale.
+          </p>
+        </div>
+      </noscript>
+    </div>
+
+    <section class="mb-24">
+      <div class="grid sm:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold mb-6 text-text-base">Why CO2 matters</h2>
+          <p class="text-text-muted mb-6 leading-relaxed">
+            The urge to breathe is not driven by a lack of oxygen, but by the buildup of carbon dioxide (CO2). If you have low CO2 tolerance, you breathe too often and too shallowly, triggering mild sympathetic nervous system (fight-or-flight) responses all day long.
+          </p>
+          <ul class="space-y-4">
+            {
+              [
+                "< 20s: High baseline stress, over-breather",
+                "20s-40s: Average, room for improvement",
+                "40s-60s: Good functional breathing",
+                "> 60s: Advanced respiratory control"
+              ].map((item) => (
+                <li class="flex items-start text-text-base font-mono text-sm">
+                  <Check class="w-5 h-5 text-primary mr-3 shrink-0" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="bg-surface p-8 rounded-2xl border border-surface/50">
+          <h3 class="text-xl font-semibold mb-4 text-text-base">Save your result</h3>
+          <p class="text-text-muted text-sm mb-6">
+            Enter your email to receive a detailed breakdown of your score and a 4-week protocol to increase your CO2 tolerance.
+          </p>
+          <CaptureForm form="tool_results" class="space-y-4">
+            <div>
+              <label for="email" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="you@example.com"
+                class="w-full bg-bg-base border border-surface/50 rounded-lg px-4 py-3 text-text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary-hover text-bg-base font-semibold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-bg-base"
+            >
+              Email my results
+            </button>
+          </CaptureForm>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

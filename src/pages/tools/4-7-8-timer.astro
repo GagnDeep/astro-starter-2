@@ -1,0 +1,92 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BreathingTimer from "../../components/tools/BreathingTimer";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { Check } from "@lucide/astro";
+
+const seo = {
+  page_description: "A free 4-7-8 relaxing breath timer. Use this technique to reduce anxiety and prepare for sleep.",
+};
+---
+
+<Layout title="4-7-8 Breathing Timer" {seo}>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+    <header class="text-center mb-12 sm:mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-base mb-4">
+        4-7-8 Breathing Timer
+      </h1>
+      <p class="text-lg sm:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
+        The "Relaxing Breath". Inhale for 4 seconds, hold for 7, exhale for 8. A natural tranquilizer for the nervous system.
+      </p>
+    </header>
+
+    <div class="mb-20">
+      <BreathingTimer client:load defaultPreset="478" />
+      <noscript>
+        <div class="max-w-lg mx-auto bg-surface p-8 rounded-xl text-center border border-surface/50 mt-4">
+          <p class="text-text-base font-semibold mb-2">JavaScript is required for the timer.</p>
+          <p class="text-text-muted text-sm">
+            If you prefer not to enable it, here is the 4-7-8 protocol:
+            <br/><br/>
+            1. Inhale quietly through your nose for 4 seconds.<br/>
+            2. Hold your breath for 7 seconds.<br/>
+            3. Exhale completely through your mouth, making a whoosh sound, for 8 seconds.<br/>
+            Repeat up to 4 times.
+          </p>
+        </div>
+      </noscript>
+    </div>
+
+    <section class="mb-24">
+      <div class="grid sm:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold mb-6 text-text-base">How 4-7-8 Breathing Works</h2>
+          <p class="text-text-muted mb-6 leading-relaxed">
+            Popularized by Dr. Andrew Weil, this asymmetric breathing pattern forces the mind and body to focus on regulating the breath, rather than replaying unhelpful thoughts.
+          </p>
+          <ul class="space-y-4">
+            {
+              [
+                "Acts as a natural tranquilizer",
+                "Gains effectiveness with repetition over time",
+                "Long exhale triggers parasympathetic response",
+                "Recommended max: 4 cycles initially, 8 later"
+              ].map((item) => (
+                <li class="flex items-start text-text-base">
+                  <Check class="w-6 h-6 text-primary mr-3 shrink-0" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="bg-surface p-8 rounded-2xl border border-surface/50">
+          <h3 class="text-xl font-semibold mb-4 text-text-base">Sleep Optimization Guide</h3>
+          <p class="text-text-muted text-sm mb-6">
+            Get our free 5-day email guide on using breathwork to cure sleep onset insomnia and improve deep sleep metrics.
+          </p>
+          <CaptureForm form="newsletter" class="space-y-4">
+            <div>
+              <label for="email" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="you@example.com"
+                class="w-full bg-bg-base border border-surface/50 rounded-lg px-4 py-3 text-text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary-hover text-bg-base font-semibold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-bg-base"
+            >
+              Get the Guide
+            </button>
+          </CaptureForm>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

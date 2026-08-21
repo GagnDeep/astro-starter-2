@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BreathingTimer from "../components/tools/BreathingTimer";
+import CaptureForm from "../components/forms/capture-form.astro";
+import { Check } from "@lucide/astro";
+
+const seo = {
+  page_description: "A zero-fluff, completely free box breathing and meditation timer. No accounts, no subscriptions, no gurus. Just breathe.",
+};
+---
+
+<Layout title="Breathing Timer - Just Breathe" {seo}>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+    <header class="text-center mb-12 sm:mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-base mb-4">
+        Just breathe.
+      </h1>
+      <p class="text-lg sm:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
+        The uncompromising, zero-fluff breathing utility. No gurus, no subscriptions, no forced accounts.
+        Select your protocol and start immediately.
+      </p>
+    </header>
+
+    <div class="mb-20">
+      <BreathingTimer client:load defaultPreset="box" />
+      <noscript>
+        <div class="max-w-lg mx-auto bg-surface p-8 rounded-xl text-center border border-surface/50 mt-4">
+          <p class="text-text-base font-semibold mb-2">JavaScript is required for the timer.</p>
+          <p class="text-text-muted text-sm">
+            If you prefer not to enable it, here is the Box Breathing protocol:
+            <br/><br/>
+            1. Inhale for 4 seconds.<br/>
+            2. Hold for 4 seconds.<br/>
+            3. Exhale for 4 seconds.<br/>
+            4. Hold for 4 seconds.<br/>
+            Repeat.
+          </p>
+        </div>
+      </noscript>
+    </div>
+
+    <section class="mb-24">
+      <div class="grid sm:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold mb-6 text-text-base">Why use paced breathing?</h2>
+          <p class="text-text-muted mb-6 leading-relaxed">
+            Paced breathing exercises like Box Breathing and 4-7-8 are scientifically proven to down-regulate the sympathetic nervous system, lowering heart rate and reducing acute stress.
+          </p>
+          <ul class="space-y-4">
+            {
+              [
+                "Lower heart rate instantly",
+                "Reduce panic attack severity",
+                "Improve focus before high-stress events",
+                "Prepare the body for sleep"
+              ].map((item) => (
+                <li class="flex items-start text-text-base">
+                  <Check class="w-6 h-6 text-primary mr-3 shrink-0" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="bg-surface p-8 rounded-2xl border border-surface/50">
+          <h3 class="text-xl font-semibold mb-4 text-text-base">Save your presets</h3>
+          <p class="text-text-muted text-sm mb-6">
+            We are building a feature to let you save custom timings via email link (no password required). Join the waitlist to get early access.
+          </p>
+          <CaptureForm form="waitlist" class="space-y-4">
+            <div>
+              <label for="email" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="you@example.com"
+                class="w-full bg-bg-base border border-surface/50 rounded-lg px-4 py-3 text-text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary-hover text-bg-base font-semibold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-bg-base"
+            >
+              Join Waitlist
+            </button>
+          </CaptureForm>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-surface/50 pt-16">
+      <h2 class="text-2xl font-bold mb-8 text-center text-text-base">Guides & Resources</h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <a href="/guides/box-breathing" class="block p-6 rounded-xl bg-surface border border-surface/50 hover:border-primary/50 transition-colors group">
+          <h3 class="font-semibold text-text-base mb-2 group-hover:text-primary transition-colors">What is Box Breathing?</h3>
+          <p class="text-text-muted text-sm line-clamp-2">Learn the history, science, and practical applications of the 4-4-4-4 technique.</p>
+        </a>
+        <a href="/guides/navy-seal-breathing" class="block p-6 rounded-xl bg-surface border border-surface/50 hover:border-primary/50 transition-colors group">
+          <h3 class="font-semibold text-text-base mb-2 group-hover:text-primary transition-colors">Tactical Breathing</h3>
+          <p class="text-text-muted text-sm line-clamp-2">How first responders and military personnel use breathing to maintain focus under fire.</p>
+        </a>
+        <a href="/guides/sleep-breathing" class="block p-6 rounded-xl bg-surface border border-surface/50 hover:border-primary/50 transition-colors group">
+          <h3 class="font-semibold text-text-base mb-2 group-hover:text-primary transition-colors">Breathing for Sleep</h3>
+          <p class="text-text-muted text-sm line-clamp-2">The mechanics of the 4-7-8 method and why asymmetric breathing triggers rest.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

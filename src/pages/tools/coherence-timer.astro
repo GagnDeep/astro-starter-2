@@ -1,0 +1,91 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CoherenceTimer from "../../components/tools/CoherenceTimer";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { Check } from "@lucide/astro";
+
+const seo = {
+  page_description: "A free resonant frequency coherence breathing timer. Synchronize your heart rate variability (HRV) with 5.5-second breathing cycles.",
+};
+---
+
+<Layout title="Coherence Timer" {seo}>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+    <header class="text-center mb-12 sm:mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-base mb-4">
+        Coherence Timer
+      </h1>
+      <p class="text-lg sm:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
+        Synchronize your heart and breathing rhythms at the optimal resonant frequency of 5.5 breaths per minute.
+      </p>
+    </header>
+
+    <div class="mb-20">
+      <CoherenceTimer client:load />
+      <noscript>
+        <div class="max-w-lg mx-auto bg-surface p-8 rounded-xl text-center border border-surface/50 mt-4">
+          <p class="text-text-base font-semibold mb-2">JavaScript is required for the timer.</p>
+          <p class="text-text-muted text-sm">
+            If you prefer not to enable it, here is the Coherence Breathing protocol:
+            <br/><br/>
+            1. Inhale for 5.5 seconds.<br/>
+            2. Exhale for 5.5 seconds.<br/>
+            Repeat constantly.
+          </p>
+        </div>
+      </noscript>
+    </div>
+
+    <section class="mb-24">
+      <div class="grid sm:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold mb-6 text-text-base">The Science of Coherence</h2>
+          <p class="text-text-muted mb-6 leading-relaxed">
+            Coherence breathing (or resonant breathing) focuses on maximizing heart rate variability (HRV). Research indicates that breathing at approximately 5.5 to 6 breaths per minute synchronizes respiratory sinus arrhythmia with the body's natural baroreflex.
+          </p>
+          <ul class="space-y-4">
+            {
+              [
+                "Maximizes Heart Rate Variability (HRV)",
+                "Balances sympathetic and parasympathetic systems",
+                "Improves baroreflex sensitivity",
+                "Reduces physiological stress baseline"
+              ].map((item) => (
+                <li class="flex items-start text-text-base">
+                  <Check class="w-6 h-6 text-primary mr-3 shrink-0" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="bg-surface p-8 rounded-2xl border border-surface/50">
+          <h3 class="text-xl font-semibold mb-4 text-text-base">Get our HRV Guide</h3>
+          <p class="text-text-muted text-sm mb-6">
+            Enter your email to receive our free, zero-fluff 7-day email guide on measuring and improving your Heart Rate Variability through breathwork.
+          </p>
+          <CaptureForm form="newsletter" class="space-y-4">
+            <div>
+              <label for="email" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="you@example.com"
+                class="w-full bg-bg-base border border-surface/50 rounded-lg px-4 py-3 text-text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+              />
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary-hover text-bg-base font-semibold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-bg-base"
+            >
+              Send me the guide
+            </button>
+          </CaptureForm>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
