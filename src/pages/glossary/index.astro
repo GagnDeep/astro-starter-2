@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const terms = await getCollection('glossary');
+---
+
+<Layout title="Tax Terms Glossary">
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Tax Terms Glossary</h1>
+    <dl>
+      {terms.map(t => (
+        <div class="mb-4">
+          <dt class="font-bold text-lg"><a href={`/glossary/${t.id}/`}>{t.data.term}</a></dt>
+          <dd>{t.data.definition}</dd>
+        </div>
+      ))}
+    </dl>
+  </main>
+</Layout>

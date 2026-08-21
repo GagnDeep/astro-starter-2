@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const categories = await getCollection('categories');
+---
+
+<Layout title="Tax Forms by Category">
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Tax Forms by Category</h1>
+    <ul>
+      {categories.map(cat => (
+        <li>
+          <a href={`/categories/${cat.id}/`}>{cat.data.title}</a> - {cat.data.description}
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>

@@ -1,0 +1,179 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import NewsletterForm from '../../components/forms/capture-form.astro';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('tools');
+  return tools.map((t) => ({
+    params: { slug: t.id },
+    props: { tool: t },
+  }));
+}
+
+const { tool } = Astro.props;
+const { Content } = await render(tool);
+const seo = { ...tool.data.seo, title: tool.data.title };
+---
+
+<Layout seo={seo} title={tool.data.title}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>{tool.data.title}</h1>
+    <p>{tool.data.description}</p>
+
+    <div class="my-8">
+      {tool.id === 'tax-bracket-calculator' && (
+        <div class="bg-surface p-6 border border-border rounded shadow-sm not-prose">
+          <form id="bracket-form" method="get" action="" class="space-y-4">
+            <div>
+              <label for="income" class="block font-bold mb-1">Your Income ($):</label>
+              <input type="number" id="income" name="income" required class="w-full border p-2 rounded" placeholder="e.g. 50000" />
+            </div>
+            <div>
+              <label for="status" class="block font-bold mb-1">Filing Status:</label>
+              <select id="status" name="status" class="w-full border p-2 rounded">
+                <option value="single">Single</option>
+                <option value="married">Married Filing Jointly</option>
+                <option value="head">Head of Household</option>
+              </select>
+            </div>
+            <button type="submit" class="bg-primary text-surface px-6 py-2 rounded font-bold hover:bg-opacity-90">Calculate Bracket</button>
+          </form>
+
+          <div id="bracket-result" class="mt-6 p-4 bg-primary-light rounded hidden">
+            <h3 class="text-lg font-bold text-primary mt-0 mb-2">Estimated Result</h3>
+            <p id="bracket-output" class="text-xl mb-0 font-mono"></p>
+            <p class="text-sm mt-2 text-text-muted">This is an estimate based on 2024 standard brackets.</p>
+          </div>
+
+          <noscript>
+            <div class="mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded text-sm text-yellow-800">
+              <strong>JavaScript Required:</strong> Our interactive calculator requires JavaScript.
+              To calculate manually:
+              <br>1. Subtract the standard deduction from your income ($14,600 for single, $29,200 for married in 2024).
+              <br>2. Compare your resulting taxable income against the 2024 IRS tax bracket tables (10%, 12%, 22%, 24%, 32%, 35%, 37%).
+            </div>
+          </noscript>
+        </div>
+      )}
+
+      {tool.id === 'refund-estimator' && (
+        <div class="bg-surface p-6 border border-border rounded shadow-sm not-prose">
+          <form id="refund-form" class="space-y-4">
+            <div>
+              <label for="gross" class="block font-bold mb-1">Gross Income ($):</label>
+              <input type="number" id="gross" required class="w-full border p-2 rounded" />
+            </div>
+            <div>
+              <label for="withheld" class="block font-bold mb-1">Total Taxes Withheld (Box 2 on W-2) ($):</label>
+              <input type="number" id="withheld" required class="w-full border p-2 rounded" />
+            </div>
+            <button type="submit" class="bg-primary text-surface px-6 py-2 rounded font-bold hover:bg-opacity-90">Estimate Refund</button>
+          </form>
+
+          <div id="refund-result" class="mt-6 p-4 bg-primary-light rounded hidden">
+            <h3 class="text-lg font-bold text-primary mt-0 mb-2">Estimated Result</h3>
+            <p id="refund-output" class="text-xl mb-0 font-mono"></p>
+          </div>
+
+          <noscript>
+            <div class="mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded text-sm text-yellow-800">
+              <strong>JavaScript Required:</strong> To manually estimate your refund, subtract your estimated tax liability from the total taxes withheld on your W-2. If withheld > liability, you get a refund.
+            </div>
+          </noscript>
+        </div>
+      )}
+
+      {tool.id === 'w4-withholding' && (
+        <div class="bg-surface p-6 border border-border rounded shadow-sm not-prose">
+          <p>We are currently updating our W-4 withholding tool for 2024. In the meantime, you can download the <a href="/forms/w4/" class="text-secondary underline">W-4 PDF</a> or use the official <a href="https://www.irs.gov/individuals/tax-withholding-estimator" class="text-secondary underline" target="_blank" rel="noopener">IRS Estimator</a>.</p>
+        </div>
+      )}
+
+      <Content />
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-gray-200 bg-surface border rounded-lg p-6">
+      <h3 class="mt-0">Get Your Results Saved</h3>
+      <p class="text-sm mb-4">Enter your email and we'll send you a reminder with these details.</p>
+      <NewsletterForm />
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Tax Bracket Calculator Logic
+  const bracketForm = document.getElementById('bracket-form') as HTMLFormElement | null;
+  if (bracketForm) {
+    bracketForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const incomeInput = document.getElementById('income') as HTMLInputElement;
+      const statusInput = document.getElementById('status') as HTMLSelectElement;
+      if (!incomeInput || !statusInput) return;
+
+      const income = Number(incomeInput.value);
+      const status = statusInput.value;
+
+      let rate = 10;
+      let standardDeduction = status === 'single' ? 14600 : (status === 'married' ? 29200 : 21900);
+      let taxableIncome = Math.max(0, income - standardDeduction);
+
+      if (status === 'single') {
+        if (taxableIncome > 11600) rate = 12;
+        if (taxableIncome > 47150) rate = 22;
+        if (taxableIncome > 100525) rate = 24;
+        if (taxableIncome > 191950) rate = 32;
+        if (taxableIncome > 243725) rate = 35;
+        if (taxableIncome > 609350) rate = 37;
+      } else if (status === 'married') {
+        if (taxableIncome > 23200) rate = 12;
+        if (taxableIncome > 94300) rate = 22;
+        if (taxableIncome > 201050) rate = 24;
+        if (taxableIncome > 383900) rate = 32;
+        if (taxableIncome > 487450) rate = 35;
+        if (taxableIncome > 731200) rate = 37;
+      }
+
+      const res = document.getElementById('bracket-result');
+      const out = document.getElementById('bracket-output');
+      if (res && out) {
+        res.classList.remove('hidden');
+        out.textContent = `Top Marginal Tax Rate: ${rate}%`;
+      }
+    });
+  }
+
+  // Refund Estimator Logic (Very simplistic)
+  const refundForm = document.getElementById('refund-form') as HTMLFormElement | null;
+  if (refundForm) {
+    refundForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const grossInput = document.getElementById('gross') as HTMLInputElement;
+      const withheldInput = document.getElementById('withheld') as HTMLInputElement;
+      if (!grossInput || !withheldInput) return;
+
+      const gross = Number(grossInput.value);
+      const withheld = Number(withheldInput.value);
+
+      // Simple generic estimate: 12% effective tax rate after $14,600 standard deduction
+      const taxable = Math.max(0, gross - 14600);
+      const estimatedTax = taxable * 0.12;
+
+      const refund = withheld - estimatedTax;
+
+      const res = document.getElementById('refund-result');
+      const out = document.getElementById('refund-output');
+
+      if (res && out) {
+        res.classList.remove('hidden');
+        if (refund >= 0) {
+          out.textContent = `Estimated Refund: $${Math.round(refund).toLocaleString()}`;
+          out.className = "text-xl mb-0 font-mono text-primary font-bold";
+        } else {
+          out.textContent = `Estimated Owed: $${Math.round(Math.abs(refund)).toLocaleString()}`;
+          out.className = "text-xl mb-0 font-mono text-error font-bold";
+        }
+      }
+    });
+  }
+</script>

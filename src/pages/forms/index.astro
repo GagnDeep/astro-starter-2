@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const forms = await getCollection('forms');
+---
+
+<Layout title="IRS Tax Forms List">
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>IRS Tax Forms</h1>
+    <p>Download official IRS tax forms in PDF format.</p>
+    <ul>
+      {forms.map(form => (
+        <li>
+          <a href={`/forms/${form.id}/`}>{form.data.title}</a> - {form.data.description}
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>

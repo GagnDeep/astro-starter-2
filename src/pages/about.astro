@@ -1,5 +1,16 @@
 ---
-import AboutPage from "../content/pages/about.astro";
----
+import Layout from '../layouts/Layout.astro';
 
-<AboutPage />
+const seo = {
+  title: 'About FreeTaxPDF',
+  page_description: 'Learn about FreeTaxPDF, our mission, and why we provide free tax forms.'
+};
+---
+<Layout seo={seo} title="About FreeTaxPDF">
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>About Us</h1>
+    <p>We believe finding official IRS tax forms shouldn't be a hassle.</p>
+    <p>Our mission is to provide the fastest, clearest place to download official IRS forms, with plain-English guides and honest recommendations for when to use software instead.</p>
+    <p>Unlike other sites, we don't bombard you with ads or try to trick you into expensive services. We just want you to have the documents you need.</p>
+  </main>
+</Layout>

@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const tools = await getCollection('tools');
+---
+
+<Layout title="Free Tax Tools & Calculators">
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Free Tax Tools & Calculators</h1>
+    <ul>
+      {tools.map(t => (
+        <li>
+          <a href={`/tools/${t.id}/`}>{t.data.title}</a> - {t.data.description}
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>
