@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+<Layout title="Video Calculators">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8">Video Calculators</h1>
+    <p class="text-lg text-secondary mb-8">Tools to help you plan your video processing.</p>
+    <div class="grid gap-6 md:grid-cols-2">
+      <a href="/calculators/video-file-size" class="block p-6 border border-border rounded-lg bg-bg hover:border-primary transition-colors">
+        <h2 class="text-xl font-bold mb-2">File Size Calculator</h2>
+        <p class="text-secondary">Estimate video file size based on bitrate and duration.</p>
+      </a>
+      <a href="/calculators/bitrate-calculator" class="block p-6 border border-border rounded-lg bg-bg hover:border-primary transition-colors">
+        <h2 class="text-xl font-bold mb-2">Bitrate Calculator</h2>
+        <p class="text-secondary">Find the optimal bitrate for a target file size.</p>
+      </a>
+      <a href="/calculators/aspect-ratio" class="block p-6 border border-border rounded-lg bg-bg hover:border-primary transition-colors">
+        <h2 class="text-xl font-bold mb-2">Aspect Ratio Calculator</h2>
+        <p class="text-secondary">Calculate missing dimensions based on aspect ratio.</p>
+      </a>
+      <a href="/calculators/storage-needs" class="block p-6 border border-border rounded-lg bg-bg hover:border-primary transition-colors">
+        <h2 class="text-xl font-bold mb-2">Storage Needs</h2>
+        <p class="text-secondary">Plan hard drive space for long-term video archiving.</p>
+      </a>
+    </div>
+  </div>
+</Layout>

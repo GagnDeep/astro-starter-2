@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import VideoPlayer from "../components/VideoPlayer.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+import { capture } from "../../capture.config";
+---
+
+<Layout title="UPlayVideo - Online Video Player & Format Converter">
+  <!-- Hero -->
+  <section class="py-16 md:py-24 bg-surface border-b border-border text-center px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+        Play and Convert Any Video.<br/><span class="text-primary">Zero Uploads.</span>
+      </h1>
+      <p class="text-lg md:text-xl text-secondary mb-10 max-w-2xl mx-auto">
+        Lightning-fast conversion and playback happening directly in your browser. Complete privacy, no waiting in queues, and 100% free.
+      </p>
+
+      <VideoPlayer mode="converter" />
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section class="py-16 bg-bg border-b border-border px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">How it works (No-BS)</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="bg-surface w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-primary border border-border">1</div>
+          <h3 class="font-bold text-xl mb-2">Select Video</h3>
+          <p class="text-secondary">Choose any local video file. It never leaves your device.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-surface w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-primary border border-border">2</div>
+          <h3 class="font-bold text-xl mb-2">Local Processing</h3>
+          <p class="text-secondary">Your browser handles the decoding and conversion directly.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-surface w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-primary border border-border">3</div>
+          <h3 class="font-bold text-xl mb-2">Instant Save</h3>
+          <p class="text-secondary">Save the converted file instantly. No download wait time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Format Support Grid -->
+  <section class="py-16 bg-surface border-b border-border px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8">Supported Formats</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {['MP4', 'MKV', 'MOV', 'WebM', 'AVI', 'WMV', 'FLV', 'TS'].map(format => (
+          <a href={`/formats/${format.toLowerCase()}`} class="block p-4 border border-border rounded bg-bg text-center hover:border-primary transition-colors font-semibold">
+            {format}
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/formats/" class="text-primary hover:underline font-medium">See all supported formats &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capture (Updates) -->
+  <section class="py-16 bg-bg px-4">
+    <div class="max-w-xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-4">Get Development Updates</h2>
+      <p class="text-secondary mb-8">We're constantly adding new formats and tools. Join our low-noise waitlist for updates.</p>
+      <CaptureForm form={capture.forms.waitlist} submitLabel="Join Waitlist" class="max-w-sm mx-auto text-left" />
+    </div>
+  </section>
+</Layout>

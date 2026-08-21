@@ -1,0 +1,49 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+---
+<Layout title="Transcoding vs Encoding | Glossary" seo={{
+  page_description: "Definition of video transcoding. Understand the difference between encoding, transcoding, and remuxing, and how it impacts video quality.",
+  open_graph_type: "article"
+}}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-secondary mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/glossary/" class="hover:text-primary">Glossary</a> &gt; Transcoding
+    </div>
+    <h1 class="text-4xl font-bold mb-8">Transcoding</h1>
+    <div class="prose max-w-none mb-12">
+      <p class="lead text-xl text-secondary">
+        <strong>Transcoding</strong> is the direct digital-to-digital conversion of one video format or <a href="/glossary/codec">codec</a> into another.
+      </p>
+
+      <h2>Encoding vs Transcoding</h2>
+      <p>These terms are often used interchangeably, but there is a technical difference:</p>
+      <ul>
+        <li><strong>Encoding:</strong> Taking uncompressed, raw data (like light hitting a camera sensor, or an uncompressed timeline in an editor) and compressing it into a format like <a href="/reference/h264">H.264</a> for the first time.</li>
+        <li><strong>Transcoding:</strong> Taking a video that is <em>already compressed</em> (e.g., an H.264 file) and decompressing it, then re-compressing it into a different format (e.g., <a href="/reference/h265">H.265</a>).</li>
+      </ul>
+
+      <h2>Generation Loss</h2>
+      <p>
+        Because nearly all consumer video formats use <a href="/glossary/lossy">lossy</a> compression, transcoding is a destructive process. Every time you transcode a file, the algorithm throws away a little bit more data. If you download a YouTube video, edit it, export it, and re-upload it, the final video will look noticeably worse than the original. This degradation is called generation loss.
+      </p>
+      <p>If you need to reduce a file's size, try to calculate the exact <a href="/glossary/bitrate">target bitrate</a> using a <a href="/calculators/bitrate-calculator">bitrate calculator</a> and do the transcode <em>once</em> from the highest quality master file available.</p>
+
+      <h2>Transcoding vs Remuxing</h2>
+      <p>
+        If you have an <a href="/reference/mkv">MKV</a> file and want it to be an <a href="/reference/mp4">MP4</a> file, you do not necessarily need to transcode it.
+      </p>
+      <p>
+        If the codec inside is already compatible, you can perform a process called <a href="/glossary/multiplexing">remuxing</a>, which simply strips off the MKV box and wraps the exact same data stream in an MP4 box. This process is instant and involves absolutely zero generation loss.
+      </p>
+      <p>
+        Our <a href="/">local video tool</a> allows you to convert and transcode formats directly in your browser.
+      </p>
+    </div>
+
+    <div class="bg-surface p-8 rounded-lg border border-border">
+      <h3 class="text-xl font-bold mb-4">Master video terminology</h3>
+      <NewsletterForm form="newsletter" />
+    </div>
+  </div>
+</Layout>

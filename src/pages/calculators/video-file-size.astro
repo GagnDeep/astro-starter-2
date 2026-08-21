@@ -1,0 +1,121 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
+---
+<Layout title="Video File Size Calculator">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-secondary mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/calculators/" class="hover:text-primary">Calculators</a> &gt; Video File Size
+    </div>
+    <h1 class="text-4xl font-bold mb-4">Video File Size Calculator</h1>
+    <p class="text-lg text-secondary mb-8">
+      Estimate the final size of a video based on its combined video and audio bitrate, and total duration.
+    </p>
+
+    <div class="bg-surface border border-border rounded-lg p-6 mb-12 shadow-sm">
+      <noscript>
+        <div class="bg-amber-50 text-amber-800 p-4 rounded mb-6 text-sm border-l-4 border-accent">
+          <strong>JavaScript Required:</strong> The calculator requires JavaScript to run the formulas.
+          The basic formula is: <code>Size (MB) = (Video Bitrate + Audio Bitrate) * Duration(s) / 8192</code>.
+        </div>
+      </noscript>
+
+      <form id="calc-form" class="space-y-6 js-only-block hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-semibold mb-1">Video Bitrate (kbps)</label>
+            <input type="number" id="v-bitrate" value="5000" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+            <p class="text-xs text-secondary mt-1">e.g., 5000 for 1080p Web</p>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-1">Audio Bitrate (kbps)</label>
+            <input type="number" id="a-bitrate" value="128" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+            <p class="text-xs text-secondary mt-1">e.g., 128 for AAC Stereo</p>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-1">Duration (minutes)</label>
+            <input type="number" id="duration-m" value="60" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-1">Duration (seconds)</label>
+            <input type="number" id="duration-s" value="0" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-border mt-6 text-center">
+          <p class="text-sm font-semibold text-secondary uppercase tracking-wider mb-2">Estimated File Size</p>
+          <div id="result" class="text-4xl font-bold text-primary">-- MB</div>
+          <p class="text-xs text-secondary mt-2 max-w-sm mx-auto">
+            *This is an estimate. Variable Bitrate (VBR) encoding will cause the actual size to fluctuate based on video complexity.
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <div class="prose max-w-none mb-12">
+      <h2>How the math works</h2>
+      <p>
+        Video file size is simply a function of bitrate and time. The resolution (1080p, 4K) and frame rate (30fps, 60fps) do not directly determine the file size — they only determine how much data needs to be compressed into that bitrate.
+      </p>
+      <p>
+        <strong>Formula:</strong> <code>File Size (MB) = Total Bitrate (kbps) × Duration (seconds) ÷ 8192</code>
+      </p>
+      <ul>
+        <li><strong>Total Bitrate:</strong> Video Bitrate + Audio Bitrate</li>
+        <li><strong>8192:</strong> The conversion factor (1 Byte = 8 bits, 1 Megabyte = 1024 Kilobytes). <code>8 * 1024 = 8192</code>.</li>
+      </ul>
+
+      <h3>Verified Constants</h3>
+      <p>According to YouTube and Netflix encoding guidelines, here are common target bitrates:</p>
+      <table>
+        <thead>
+          <tr><th>Resolution</th><th>SDR Frame Rate (24-30fps)</th><th>HDR Frame Rate (48-60fps)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1080p</td><td>8 Mbps (8,000 kbps)</td><td>12 Mbps (12,000 kbps)</td></tr>
+          <tr><td>1440p (2K)</td><td>16 Mbps (16,000 kbps)</td><td>24 Mbps (24,000 kbps)</td></tr>
+          <tr><td>2160p (4K)</td><td>35-45 Mbps (45,000 kbps)</td><td>53-68 Mbps (68,000 kbps)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-surface p-8 rounded-lg border border-border mt-8">
+      <h3 class="text-xl font-bold mb-4">Subscribe for more video engineering tips</h3>
+      <NewsletterForm form={capture.forms.newsletter} />
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function calc() {
+    const vElement = document.getElementById('v-bitrate') as HTMLInputElement;
+    const v = vElement ? parseFloat(vElement.value) || 0 : 0;
+    const aElement = document.getElementById('a-bitrate') as HTMLInputElement;
+    const a = aElement ? parseFloat(aElement.value) || 0 : 0;
+    const mElement = document.getElementById('duration-m') as HTMLInputElement;
+    const m = mElement ? parseFloat(mElement.value) || 0 : 0;
+    const sElement = document.getElementById('duration-s') as HTMLInputElement;
+    const s = sElement ? parseFloat(sElement.value) || 0 : 0;
+
+    const totalSeconds = (m * 60) + s;
+    const totalKbps = v + a;
+    const megabytes = (totalKbps * totalSeconds) / 8192;
+
+    let display = "";
+    if (megabytes > 1024) {
+      display = (megabytes / 1024).toFixed(2) + " GB";
+    } else {
+      display = megabytes.toFixed(2) + " MB";
+    }
+
+    const resultEl = document.getElementById('result');
+    if (resultEl) resultEl.innerText = display;
+  }
+
+  const form = document.getElementById('calc-form');
+  if (form) {
+    form.addEventListener('input', calc);
+    calc(); // initial
+  }
+</script>

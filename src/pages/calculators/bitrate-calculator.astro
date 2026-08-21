@@ -1,0 +1,148 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
+---
+<Layout title="Video Bitrate Calculator">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-secondary mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/calculators/" class="hover:text-primary">Calculators</a> &gt; Bitrate Calculator
+    </div>
+    <h1 class="text-4xl font-bold mb-4">Video Bitrate Calculator</h1>
+    <p class="text-lg text-secondary mb-8">
+      Determine the optimal video bitrate required to fit your video into a specific target file size (e.g., Discord's 25MB limit or an email attachment limit).
+    </p>
+
+    <div class="bg-surface border border-border rounded-lg p-6 mb-12 shadow-sm">
+      <noscript>
+        <div class="bg-amber-50 text-amber-800 p-4 rounded mb-6 text-sm border-l-4 border-accent">
+          <strong>JavaScript Required:</strong> This calculator requires JavaScript.
+          The formula is: <code>Video Bitrate (kbps) = ((Target Size MB * 8192) / Duration Seconds) - Audio Bitrate</code>.
+        </div>
+      </noscript>
+
+      <form id="bitrate-calc-form" class="space-y-6 js-only-block hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-semibold mb-1">Target File Size (MB)</label>
+            <input type="number" id="target-size" value="25" step="0.1" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+            <p class="text-xs text-secondary mt-1">e.g., 25 for Discord</p>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-1">Audio Bitrate (kbps)</label>
+            <input type="number" id="a-bitrate-target" value="128" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+            <p class="text-xs text-secondary mt-1">Common: 128 (Stereo), 256, 320</p>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-1">Duration (minutes)</label>
+            <input type="number" id="duration-m-target" value="2" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-1">Duration (seconds)</label>
+            <input type="number" id="duration-s-target" value="30" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-border mt-6 text-center">
+          <p class="text-sm font-semibold text-secondary uppercase tracking-wider mb-2">Required Video Bitrate</p>
+          <div id="bitrate-result" class="text-4xl font-bold text-primary">-- kbps</div>
+          <div id="bitrate-warning" class="text-sm text-red-600 mt-2 hidden font-medium"></div>
+          <p class="text-xs text-secondary mt-2 max-w-sm mx-auto">
+            Set your encoder to this video bitrate (VBR Average or CBR) to hit the target size. We recommend setting it slightly lower (~5%) to account for container overhead.
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <div class="prose max-w-none mb-12">
+      <h2>How the math works</h2>
+      <p>
+        To find the required video bitrate, we work backwards from the <a href="/calculators/video-file-size">file size formula</a>. We first calculate the total bitrate allowed for the given file size and duration, and then subtract the audio bitrate.
+      </p>
+      <p>
+        <strong>Formula:</strong> <code>Video Bitrate (kbps) = [ (Target Size in MB × 8192) ÷ Total Seconds ] - Audio Bitrate (kbps)</code>
+      </p>
+
+      <h3>Verified Limitations</h3>
+      <p>When compressing heavily, keep these absolute minimum bitrates in mind for acceptable quality:</p>
+      <table>
+        <thead>
+          <tr><th>Resolution</th><th>H.264 Minimum (kbps)</th><th>H.265 / HEVC Minimum (kbps)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>720p (30fps)</td><td>1,500 kbps</td><td>1,000 kbps</td></tr>
+          <tr><td>1080p (30fps)</td><td>3,000 kbps</td><td>2,000 kbps</td></tr>
+          <tr><td>4K (30fps)</td><td>15,000 kbps</td><td>10,000 kbps</td></tr>
+        </tbody>
+      </table>
+      <p>If your calculated bitrate falls below these numbers, you should consider reducing the video resolution or lowering the framerate (e.g., to 24fps) before encoding.</p>
+    </div>
+
+    <div class="bg-surface p-8 rounded-lg border border-border mt-8">
+      <h3 class="text-xl font-bold mb-4">Subscribe for more video engineering tips</h3>
+      <NewsletterForm form={capture.forms.newsletter} />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  :global(.js-active) .js-only-block {
+    display: block;
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js-active');
+
+  function calculateBitrate() {
+    const targetEl = document.getElementById('target-size') as HTMLInputElement;
+    const aEl = document.getElementById('a-bitrate-target') as HTMLInputElement;
+    const mEl = document.getElementById('duration-m-target') as HTMLInputElement;
+    const sEl = document.getElementById('duration-s-target') as HTMLInputElement;
+
+    const targetMB = targetEl ? parseFloat(targetEl.value) || 0 : 0;
+    const audioKbps = aEl ? parseFloat(aEl.value) || 0 : 0;
+    const minutes = mEl ? parseFloat(mEl.value) || 0 : 0;
+    const seconds = sEl ? parseFloat(sEl.value) || 0 : 0;
+
+    const totalSeconds = (minutes * 60) + seconds;
+    const resultEl = document.getElementById('bitrate-result');
+    const warningEl = document.getElementById('bitrate-warning');
+
+    if (totalSeconds <= 0 || targetMB <= 0) {
+      if (resultEl) resultEl.innerText = "-- kbps";
+      if (warningEl) warningEl.classList.add('hidden');
+      return;
+    }
+
+    // Total allowed kbps to hit the size limit
+    const totalAllowedKbps = (targetMB * 8192) / totalSeconds;
+    const requiredVideoKbps = totalAllowedKbps - audioKbps;
+
+    if (resultEl) {
+      if (requiredVideoKbps <= 0) {
+        resultEl.innerText = "Impossible";
+        if (warningEl) {
+            warningEl.innerText = "The audio bitrate alone exceeds the target file size for this duration.";
+            warningEl.classList.remove('hidden');
+        }
+      } else {
+        resultEl.innerText = Math.floor(requiredVideoKbps).toLocaleString() + " kbps";
+
+        // Overhead margin suggestion (5% lower)
+        const safeKbps = Math.floor(requiredVideoKbps * 0.95);
+        if (warningEl) {
+            warningEl.innerText = `To be safe from container overhead, use ${safeKbps.toLocaleString()} kbps.`;
+            warningEl.classList.remove('hidden');
+            warningEl.classList.replace('text-red-600', 'text-secondary');
+        }
+      }
+    }
+  }
+
+  const form = document.getElementById('bitrate-calc-form');
+  if (form) {
+    form.addEventListener('input', calculateBitrate);
+    calculateBitrate(); // initial
+  }
+</script>

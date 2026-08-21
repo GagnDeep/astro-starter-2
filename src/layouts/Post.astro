@@ -29,11 +29,6 @@ const filteredPosts = posts.filter(
 
 <Layout
   {...frontmatter}
-  breadcrumbs={[
-    { name: "Home", url: "/" },
-    { name: "Blog", url: "/blog/" },
-    { name: frontmatter.title, url: Astro.url.pathname },
-  ]}
 >
   <div class="mx-auto max-w-3xl px-8 py-12 md:py-20">
     <article>

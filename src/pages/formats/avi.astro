@@ -1,0 +1,49 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+---
+<Layout title="AVI Format Support" seo={{
+  page_description: "Technical details on the AVI video format. Understand why this legacy Microsoft container is obsolete and how to convert it to modern formats.",
+  open_graph_type: "article"
+}}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-secondary mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/formats/" class="hover:text-primary">Formats</a> &gt; AVI
+    </div>
+    <h1 class="text-4xl font-bold mb-8">AVI (Audio Video Interleave)</h1>
+    <div class="prose max-w-none mb-12">
+      <p class="lead text-xl text-secondary">
+        AVI is a legacy <a href="/reference/containers">multimedia container format</a> introduced by Microsoft in 1992 as part of its Video for Windows technology.
+      </p>
+
+      <h2>The Legacy of AVI</h2>
+      <p>
+        For nearly two decades, AVI was the standard format for video on PCs. It usually contained video encoded in DivX or Xvid, providing what was at the time "high quality" video at sizes small enough to burn onto CDs.
+      </p>
+
+      <h2>Why AVI is Obsolete</h2>
+      <p>
+        Today, AVI is considered entirely obsolete for consumer delivery. You should not use AVI for modern video projects.
+      </p>
+      <ul>
+        <li><strong>No modern codec support:</strong> AVI was not designed for modern compression like <a href="/reference/h264">H.264</a> or <a href="/reference/h265">H.265</a>. While you can technically hack H.264 into an AVI container, it causes playback errors and audio sync issues.</li>
+        <li><strong>Massive File Sizes:</strong> Because it relies on older, less efficient codecs, an AVI file will be massive compared to an <a href="/reference/mp4">MP4</a> of the exact same visual quality. Check our <a href="/calculators/video-file-size">file size calculator</a> to see the difference modern bitrates make.</li>
+        <li><strong>No Web Support:</strong> You cannot natively embed an AVI file in an HTML5 <code>&lt;video&gt;</code> tag. Browsers will refuse to play it.</li>
+      </ul>
+
+      <h2>What to do with AVI files</h2>
+      <p>
+        If you have old home videos or archives in AVI format, you should <a href="/glossary/transcoding">transcode</a> them to MP4 for preservation and playback on modern devices (like Apple TVs, iPhones, or Smart TVs).
+      </p>
+      <p>
+        You can use our <a href="/">local video converter</a> to convert legacy AVI files into modern, web-safe MP4s directly in your browser.
+      </p>
+    </div>
+
+    <div class="bg-surface p-8 rounded-lg border border-border">
+      <h3 class="text-xl font-bold mb-4">Format updates</h3>
+      <p class="text-secondary mb-4">Get the latest format and compatibility news.</p>
+      <NewsletterForm form="newsletter" />
+    </div>
+  </div>
+</Layout>

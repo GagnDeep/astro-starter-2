@@ -1,0 +1,103 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+---
+<Layout title="H.264 vs H.265 (HEVC): What is the difference?" seo={{
+  page_description: "A deep dive comparing H.264 (AVC) and H.265 (HEVC) video codecs. Learn when to use which format based on compatibility, file size, and quality.",
+  open_graph_type: "article"
+}}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-secondary mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/blog/" class="hover:text-primary">Blog</a> &gt; H.264 vs H.265
+    </div>
+    <h1 class="text-4xl font-bold mb-8 capitalize">H.264 vs H.265 (HEVC): What is the difference?</h1>
+
+    <div class="prose max-w-none mb-12">
+      <p class="lead text-xl text-secondary">
+        If you export a video today, you usually face a choice: do you stick with the battle-tested <a href="/reference/h264">H.264 (AVC)</a>, or move to the newer <a href="/reference/h265">H.265 (HEVC)</a>? The answer depends entirely on your audience and delivery platform.
+      </p>
+
+      <h2>The Short Version</h2>
+      <p>
+        <strong>H.265 is roughly 50% more efficient than H.264.</strong> This means an H.265 video will look just as good as an H.264 video while taking up half the file size. Alternatively, at the exact same file size, the H.265 video will have vastly superior image quality.
+      </p>
+      <p>
+        So why doesn't everyone use H.265? Two reasons: <strong>computing power</strong> and <strong>licensing</strong>.
+      </p>
+
+      <h2>How H.265 achieves better compression</h2>
+      <p>
+        Video compression works by grouping pixels into blocks. In H.264, the encoder looks at the frame and groups similar pixels into "Macroblocks" which can be a maximum of 16x16 pixels.
+      </p>
+      <p>
+        H.265 introduces Coding Tree Units (CTUs). Instead of being capped at 16x16, H.265 can use blocks up to 64x64 pixels. If a video features a large blue sky, H.264 has to draw hundreds of 16x16 boxes to cover it. H.265 can cover the same area with a few 64x64 boxes, massively reducing the amount of data needed to describe the frame.
+      </p>
+      <p>
+        Furthermore, H.265 has better motion prediction. It is smarter at analyzing where an object was in the previous frame and where it moved in the current frame, sending only the "movement vector" data rather than redrawing the object.
+      </p>
+
+      <h2>Performance and Playback</h2>
+      <p>
+        Because H.265 is mathematically much more complex, it requires significantly more computing power to encode and decode.
+      </p>
+      <ul>
+        <li><strong>Encoding:</strong> Exporting an H.265 video can take 2-4 times longer than H.264 on the same CPU.</li>
+        <li><strong>Decoding:</strong> Playing an H.265 file on an older smartphone or laptop without dedicated hardware decoding will drain the battery rapidly and cause stuttering.</li>
+      </ul>
+
+      <h2>The Browser Compatibility Problem</h2>
+      <p>
+        Because of complex patent pools and licensing fees, H.265 is not universally supported on the web.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Browser</th>
+            <th>H.264 Support</th>
+            <th>H.265 (HEVC) Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Chrome</td>
+            <td>100% Native</td>
+            <td>Only if the OS provides a hardware decoder (Chrome 104+)</td>
+          </tr>
+          <tr>
+            <td>Apple Safari</td>
+            <td>100% Native</td>
+            <td>100% Native (macOS/iOS)</td>
+          </tr>
+          <tr>
+            <td>Mozilla Firefox</td>
+            <td>100% Native</td>
+            <td><strong>No Native Support</strong> (Refuses to pay licensing)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Which should you choose?</h2>
+
+      <h3>Choose H.264 if:</h3>
+      <ul>
+        <li>You are embedding video directly on a website using the HTML5 <code>&lt;video&gt;</code> tag and need it to work for every user, everywhere.</li>
+        <li>You are uploading to a social media platform that will compress the video anyway (Twitter, Instagram).</li>
+        <li>You are sending the video to a client and don't know what device they will use to watch it.</li>
+      </ul>
+      <p>Need to calculate exactly how large an H.264 file will be? Use our <a href="/calculators/video-file-size">File Size Calculator</a>.</p>
+
+      <h3>Choose H.265 if:</h3>
+      <ul>
+        <li>You are shooting video on an iPhone (which defaults to HEVC to save space).</li>
+        <li>You are exporting 4K HDR footage (H.265 supports 10-bit color much better).</li>
+        <li>You are archiving personal footage to a hard drive and want to maximize <a href="/calculators/storage-needs">storage space</a>.</li>
+      </ul>
+    </div>
+
+    <div class="bg-surface p-8 rounded-lg border border-border">
+      <h3 class="text-xl font-bold mb-4">Stay ahead of the curve</h3>
+      <p class="text-secondary mb-4">Get updates on new codecs like AV1 straight to your inbox.</p>
+      <NewsletterForm form={"newsletter"} />
+    </div>
+  </div>
+</Layout>

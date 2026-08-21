@@ -1,0 +1,168 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
+---
+<Layout title="Aspect Ratio Calculator">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-secondary mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/calculators/" class="hover:text-primary">Calculators</a> &gt; Aspect Ratio
+    </div>
+    <h1 class="text-4xl font-bold mb-4">Aspect Ratio Calculator</h1>
+    <p class="text-lg text-secondary mb-8">
+      Calculate missing dimensions when resizing video to maintain the original aspect ratio and prevent stretching or letterboxing.
+    </p>
+
+    <div class="bg-surface border border-border rounded-lg p-6 mb-12 shadow-sm">
+      <noscript>
+        <div class="bg-amber-50 text-amber-800 p-4 rounded mb-6 text-sm border-l-4 border-accent">
+          <strong>JavaScript Required:</strong> This calculator requires JavaScript.
+          The formula is: <code>New Height = (Original Height / Original Width) * New Width</code>.
+        </div>
+      </noscript>
+
+      <div class="js-only-block hidden">
+        <form id="ar-calc-form" class="space-y-8">
+
+          <div class="p-4 bg-bg border border-border rounded-lg">
+            <h3 class="font-bold mb-4 border-b border-border pb-2">1. Original Dimensions</h3>
+            <div class="flex items-center gap-4">
+              <div class="flex-1">
+                <label class="block text-sm font-semibold mb-1">Width (W1)</label>
+                <input type="number" id="orig-w" value="1920" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-center font-mono text-lg" />
+              </div>
+              <div class="text-2xl text-secondary font-bold mt-5">:</div>
+              <div class="flex-1">
+                <label class="block text-sm font-semibold mb-1">Height (H1)</label>
+                <input type="number" id="orig-h" value="1080" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-center font-mono text-lg" />
+              </div>
+            </div>
+            <div class="text-center mt-3 text-sm font-medium text-primary" id="detected-ratio">Ratio: 16:9</div>
+          </div>
+
+          <div class="p-4 bg-bg border border-border rounded-lg">
+            <h3 class="font-bold mb-4 border-b border-border pb-2">2. New Dimensions (Enter one to calculate the other)</h3>
+            <div class="flex items-center gap-4">
+              <div class="flex-1">
+                <label class="block text-sm font-semibold mb-1">New Width (W2)</label>
+                <input type="number" id="new-w" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-center font-mono text-lg bg-green-50" placeholder="e.g. 1280" />
+              </div>
+              <div class="text-2xl text-secondary font-bold mt-5">:</div>
+              <div class="flex-1">
+                <label class="block text-sm font-semibold mb-1">New Height (H2)</label>
+                <input type="number" id="new-h" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-center font-mono text-lg bg-blue-50" placeholder="e.g. 720" />
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="prose max-w-none mb-12">
+      <h2>Standard Video Aspect Ratios</h2>
+      <p>Knowing common aspect ratios is crucial when creating content for different platforms.</p>
+      <table>
+        <thead>
+          <tr><th>Ratio</th><th>Common Name</th><th>Platforms & Use Cases</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>16:9</strong></td><td>Widescreen</td><td>YouTube, TV broadcast, standard monitors. (e.g., 1920x1080, 1280x720)</td></tr>
+          <tr><td><strong>9:16</strong></td><td>Vertical</td><td>TikTok, Instagram Reels, YouTube Shorts. (e.g., 1080x1920)</td></tr>
+          <tr><td><strong>1:1</strong></td><td>Square</td><td>Instagram Grid, Facebook Feeds. (e.g., 1080x1080)</td></tr>
+          <tr><td><strong>4:3</strong></td><td>Standard (SD)</td><td>Old CRT televisions, iPad screens. (e.g., 1440x1080)</td></tr>
+          <tr><td><strong>2.35:1</strong></td><td>Cinemascope</td><td>Theatrical films, anamorphic wide. (e.g., 1920x816)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>The "Mod 2" Rule (Even Numbers)</h3>
+      <p>
+        When resizing video, you should almost always ensure your final width and height are <strong>even numbers</strong> (divisible by 2). Some older codecs (like certain implementations of MPEG-4) require dimensions to be divisible by 4, 8, or even 16 (Mod 16).
+      </p>
+      <p>H.264 and H.265 handle Mod 2 fine, but providing an odd number (like 719px) will often cause the encoder to crash or automatically pad the video with a green/black line. Our calculator automatically rounds to the nearest even number if needed.</p>
+    </div>
+
+    <div class="bg-surface p-8 rounded-lg border border-border mt-8">
+      <h3 class="text-xl font-bold mb-4">Never crop a video incorrectly again</h3>
+      <NewsletterForm form={capture.forms.newsletter} />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  :global(.js-active) .js-only-block {
+    display: block;
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js-active');
+
+  const w1El = document.getElementById('orig-w') as HTMLInputElement;
+  const h1El = document.getElementById('orig-h') as HTMLInputElement;
+  const w2El = document.getElementById('new-w') as HTMLInputElement;
+  const h2El = document.getElementById('new-h') as HTMLInputElement;
+  const ratioEl = document.getElementById('detected-ratio');
+
+  // Helper to get greatest common divisor
+  function gcd(a: number, b: number): number {
+    return (b == 0) ? a : gcd(b, a % b);
+  }
+
+  function updateRatioText() {
+    const w1 = w1El ? parseFloat(w1El.value) || 0 : 0;
+    const h1 = h1El ? parseFloat(h1El.value) || 0 : 0;
+    if (w1 > 0 && h1 > 0 && ratioEl) {
+      const divisor = gcd(w1, h1);
+      const rw = w1 / divisor;
+      const rh = h1 / divisor;
+
+      // Simplify common cinematic ratios
+      let displayRatio = `${rw}:${rh}`;
+      const decimalRatio = (w1/h1).toFixed(2);
+      if (decimalRatio === "2.35") displayRatio = "2.35:1";
+      if (decimalRatio === "2.39") displayRatio = "2.39:1";
+
+      ratioEl.innerText = `Ratio: ${displayRatio}`;
+    }
+  }
+
+  // If New Width is typed
+  w2El?.addEventListener('input', () => {
+    const w1 = parseFloat(w1El.value) || 1;
+    const h1 = parseFloat(h1El.value) || 1;
+    const w2 = parseFloat(w2El.value);
+
+    if (w2 > 0) {
+      let h2 = Math.round((h1 / w1) * w2);
+      // Enforce Mod 2
+      if (h2 % 2 !== 0) h2 += 1;
+      h2El.value = h2.toString();
+    } else {
+      h2El.value = "";
+    }
+  });
+
+  // If New Height is typed
+  h2El?.addEventListener('input', () => {
+    const w1 = parseFloat(w1El.value) || 1;
+    const h1 = parseFloat(h1El.value) || 1;
+    const h2 = parseFloat(h2El.value);
+
+    if (h2 > 0) {
+      let w2 = Math.round((w1 / h1) * h2);
+      // Enforce Mod 2
+      if (w2 % 2 !== 0) w2 += 1;
+      w2El.value = w2.toString();
+    } else {
+      w2El.value = "";
+    }
+  });
+
+  // Update ratio text on original dims change
+  w1El?.addEventListener('input', updateRatioText);
+  h1El?.addEventListener('input', updateRatioText);
+
+  // Initial run
+  updateRatioText();
+</script>
