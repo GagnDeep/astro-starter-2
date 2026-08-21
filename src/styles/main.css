@@ -22,9 +22,26 @@
  * `*, ::before, ::after, ::backdrop`.
  */
 
+@theme {
+  --color-bg-base: #FAFAF9;
+  --color-text-main: #1C1917;
+  --color-text-muted: #57534E;
+  --color-primary: #047857;
+  --color-primary-hover: #065F46;
+  --color-secondary: #B45309;
+  --color-border-light: #E7E5E4;
+  --color-error: #B91C1C;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Merriweather', Georgia, serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
 @layer base {
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-base);
+    color: var(--color-text-main);
   }
 
   main {
@@ -90,10 +107,13 @@
     margin-inline: 1rem;
   }
   .prose a {
-    color: #034ad8;
+    color: var(--color-primary);
     text-decoration: underline;
     text-underline-offset: 0.1rem;
     cursor: pointer;
+  }
+  .prose a:hover {
+    color: var(--color-primary-hover);
   }
   .prose sup { vertical-align: super; font-size: smaller; }
   .prose sub { vertical-align: sub; font-size: smaller; }

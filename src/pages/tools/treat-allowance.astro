@@ -1,0 +1,75 @@
+---
+import PageLayout from "../../layouts/Page.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const frontmatter = {
+  title: "Treat Allowance Calculator",
+  seo: {
+    page_description: "Calculate how many physical treats your dog can have based on calorie density and their daily 10% allowance limit.",
+  }
+};
+---
+<PageLayout frontmatter={frontmatter}>
+  <section class="max-w-4xl mx-auto py-16 px-4">
+    <h1 class="text-4xl font-bold font-serif mb-6 text-[var(--color-text-main)]">Treat Allowance Calculator</h1>
+    <p class="text-lg text-[var(--color-text-muted)] mb-8">
+      Know your dog's daily treat calorie limit but not sure how many treats that equals? Use this tool to find out.
+    </p>
+
+    <div class="bg-[var(--color-bg-base)] p-6 rounded border border-[var(--color-border-light)] mb-12">
+      <!-- No JS Fallback -->
+      <noscript>
+        <div class="prose max-w-none">
+          <h3>How to calculate manually:</h3>
+          <p>Divide your dog's daily treat calorie allowance (from the 10% rule) by the calories per single treat.</p>
+        </div>
+      </noscript>
+      <form id="allowance-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="allowance">Daily Treat Calorie Limit (kcal):</label>
+          <input type="number" id="allowance" required class="w-full border border-[var(--color-border-light)] px-3 py-2 rounded focus:ring-1 focus:ring-[var(--color-primary)]" min="1" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="kcal_per_treat">Calories per Treat (kcal):</label>
+          <input type="number" id="kcal_per_treat" required class="w-full border border-[var(--color-border-light)] px-3 py-2 rounded focus:ring-1 focus:ring-[var(--color-primary)]" min="0.1" step="0.1" />
+        </div>
+        <button type="submit" class="bg-[var(--color-primary)] text-white px-6 py-2 rounded hover:bg-[var(--color-primary-hover)] font-medium">Calculate Allowance</button>
+      </form>
+      <div id="allowance-result" class="hidden mt-8 p-4 bg-white border border-[var(--color-border-light)] rounded" aria-live="polite">
+        <h3 class="text-xl font-bold mb-2">Results</h3>
+        <p>You can safely give your dog up to: <span id="res-count" class="font-bold text-[var(--color-primary)] text-2xl"></span> treats per day.</p>
+      </div>
+    </div>
+
+    <!-- Capture Integration -->
+    <div class="bg-gray-100 p-8 rounded text-center">
+      <h2 class="text-2xl font-bold font-serif mb-4">Finding it hard to find low-calorie treats?</h2>
+      <p class="mb-6">Join DogSnacker for transparent, single-ingredient treats perfect for guilt-free training.</p>
+      <CaptureForm form="waitlist" submitLabel="Subscribe for Updates" class="max-w-md mx-auto" />
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  const form = document.getElementById('allowance-form');
+  const resultDiv = document.getElementById('allowance-result');
+  const resCount = document.getElementById('res-count');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const allowance = parseFloat((document.getElementById('allowance') as HTMLInputElement).value);
+      const kcalPerTreat = parseFloat((document.getElementById('kcal_per_treat') as HTMLInputElement).value);
+
+      if (!allowance || !kcalPerTreat || kcalPerTreat <= 0) return;
+
+      // Round down to be safe on calories
+      const treats = Math.floor(allowance / kcalPerTreat);
+
+      if (resCount && resultDiv) {
+        resCount.textContent = treats.toString();
+        resultDiv.classList.remove('hidden');
+      }
+    });
+  }
+</script>

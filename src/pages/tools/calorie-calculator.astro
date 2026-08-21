@@ -1,0 +1,90 @@
+---
+import PageLayout from "../../layouts/Page.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import site from "../../../data/site.json";
+
+const frontmatter = {
+  title: "Dog Treat Calorie Calculator",
+  seo: {
+    page_description: "Calculate how many calories your dog needs per day and how many can come from treats, based on AAFCO guidelines.",
+  }
+};
+---
+<PageLayout frontmatter={frontmatter}>
+  <section class="max-w-4xl mx-auto py-16 px-4">
+    <h1 class="text-4xl font-bold font-serif mb-6 text-[var(--color-text-main)]">Dog Treat Calorie Calculator</h1>
+    <p class="text-lg text-[var(--color-text-muted)] mb-8">
+      Veterinary sources (like AAFCO and WSAVA) recommend that treats make up no more than 10% of your dog's daily caloric intake to prevent nutritional imbalances.
+    </p>
+
+    <!-- Interactive Island Component will mount here. Fallback below -->
+    <div id="calorie-tool" class="bg-[var(--color-bg-base)] p-6 rounded border border-[var(--color-border-light)] mb-12">
+      <!-- No JS Fallback -->
+      <noscript>
+        <div class="prose max-w-none">
+          <h3>How to calculate manually:</h3>
+          <p>1. <strong>Calculate Resting Energy Requirement (RER):</strong> 70 * (body weight in kg)^0.75.</p>
+          <p>2. <strong>Calculate Maintenance Energy Requirement (MER):</strong> Multiply RER by a factor based on activity (e.g., 1.6 for average neutered adult, 1.8 for intact).</p>
+          <p>3. <strong>Calculate Treat Allowance:</strong> Take 10% of the MER. This is the maximum daily calorie limit for treats.</p>
+        </div>
+      </noscript>
+      <form id="calorie-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="weight">Dog's Weight (lbs):</label>
+          <input type="number" id="weight" name="weight" required class="w-full border border-[var(--color-border-light)] px-3 py-2 rounded focus:ring-1 focus:ring-[var(--color-primary)]" min="1" max="250" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="activity">Activity Level:</label>
+          <select id="activity" name="activity" class="w-full border border-[var(--color-border-light)] px-3 py-2 rounded focus:ring-1 focus:ring-[var(--color-primary)] bg-white">
+            <option value="1.6">Average Adult (Neutered/Spayed)</option>
+            <option value="1.8">Intact Adult</option>
+            <option value="1.2">Senior / Weight Loss</option>
+            <option value="2.0">Active Working Dog</option>
+          </select>
+        </div>
+        <button type="submit" class="bg-[var(--color-primary)] text-white px-6 py-2 rounded hover:bg-[var(--color-primary-hover)] font-medium">Calculate</button>
+      </form>
+      <div id="calorie-result" class="hidden mt-8 p-4 bg-white border border-[var(--color-border-light)] rounded" aria-live="polite">
+        <h3 class="text-xl font-bold mb-2">Results</h3>
+        <p>Total Daily Calories: <span id="res-total" class="font-bold text-[var(--color-secondary)]"></span> kcal</p>
+        <p>Maximum Treat Calories (10% Rule): <span id="res-treat" class="font-bold text-[var(--color-primary)]"></span> kcal</p>
+        <p class="text-sm mt-4 text-[var(--color-text-muted)]">*Based on RER formula: 70 * (kg^0.75) * activity factor. These are estimates; always consult your vet.</p>
+      </div>
+    </div>
+
+    <!-- Capture Integration -->
+    <div class="bg-gray-100 p-8 rounded text-center">
+      <h2 class="text-2xl font-bold font-serif mb-4">Want single-ingredient treats that fit this budget?</h2>
+      <CaptureForm form="quote" submitLabel="Get Your Custom Plan" class="max-w-md mx-auto" />
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  // Very light vanilla JS island
+  const form = document.getElementById('calorie-form');
+  const resultDiv = document.getElementById('calorie-result');
+  const resTotal = document.getElementById('res-total');
+  const resTreat = document.getElementById('res-treat');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const weightLbs = parseFloat((document.getElementById('weight') as HTMLInputElement).value);
+      const activity = parseFloat((document.getElementById('activity') as HTMLSelectElement).value);
+
+      if (!weightLbs || weightLbs <= 0) return;
+
+      const weightKg = weightLbs / 2.20462;
+      const rer = 70 * Math.pow(weightKg, 0.75);
+      const totalCalories = Math.round(rer * activity);
+      const treatCalories = Math.round(totalCalories * 0.10);
+
+      if (resTotal && resTreat && resultDiv) {
+        resTotal.textContent = totalCalories.toString();
+        resTreat.textContent = treatCalories.toString();
+        resultDiv.classList.remove('hidden');
+      }
+    });
+  }
+</script>

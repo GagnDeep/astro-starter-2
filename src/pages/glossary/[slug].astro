@@ -1,0 +1,30 @@
+---
+import PageLayout from "../../layouts/Page.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export interface Props {
+  page: CollectionEntry<"pages">;
+}
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  return pages
+    .filter((page) => page.id.startsWith('glossary/'))
+    .map((page) => {
+      const slug = page.id.replace(/^glossary\//, "").replace(/\.md$/, "");
+      return { params: { slug }, props: { page } };
+    });
+}
+
+const { page } = Astro.props;
+---
+<PageLayout frontmatter={page.data}>
+  <div class="max-w-3xl mx-auto py-12 px-4 border-t border-[var(--color-border-light)] mt-12">
+    <div class="bg-gray-50 p-8 rounded text-center shadow-sm">
+      <h2 class="text-2xl font-bold font-serif mb-4 text-[var(--color-text-main)]">Want to skip the guesswork?</h2>
+      <p class="mb-6 text-[var(--color-text-muted)]">Get single-ingredient treats tailored for your dog delivered monthly.</p>
+      <CaptureForm form="newsletter" submitLabel="Get Started" class="max-w-md mx-auto" />
+    </div>
+  </div>
+</PageLayout>

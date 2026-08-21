@@ -1,48 +1,64 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-green.png",
+    "logo_alt_text": "DogSnacker Logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "text": "Home",
+        "link": "/"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "text": "Ingredients",
+        "link": "/ingredients/beef-liver"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "text": "Needs",
+        "link": "/needs/sensitive-stomach"
       },
       {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
+        "text": "Tools",
+        "link": "/tools/calorie-calculator"
       },
       {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "text": "Blog",
+        "link": "/blog/food-vs-treats-ratio"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-green.png",
+    "logo_alt_text": "DogSnacker Logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "DogSnacker. All rights reserved.",
     "links": [
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "text": "About",
+        "link": "/about"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "text": "FAQ",
+        "link": "/faq"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "text": "Compare",
+        "link": "/compare"
+      },
+      {
+        "text": "Pricing",
+        "link": "/pricing"
+      },
+      {
+        "text": "Contact",
+        "link": "/contact"
+      },
+      {
+        "text": "Privacy Policy",
+        "link": "/privacy"
+      },
+      {
+        "text": "Terms & Conditions",
+        "link": "/legal"
       }
     ]
   }
