@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+---
+<Layout title="Food Cost Calculator" seo={{ page_description: "Determine the exact food cost percentage and optimal menu price for any dish." }}>
+  <div class="max-w-3xl mx-auto py-12 px-4">
+    <h1 class="text-4xl font-bold mb-4">Food Cost Calculator</h1>
+    <p class="text-lg text-text-muted mb-8">
+      Professional kitchens target a food cost percentage between 28% and 32%. Use this tool to calculate your dish cost and set a profitable menu price.
+    </p>
+
+    <div class="bg-surface-alt p-6 border border-border rounded mb-8 shadow-sm">
+      <noscript>
+        <p class="text-accent mb-4 font-semibold">JavaScript is required for interactive calculation.</p>
+        <div class="prose max-w-none">
+          <h3>The Method</h3>
+          <p>To calculate manually:</p>
+          <ol>
+            <li>Add up the cost of every ingredient used in the recipe to find Total Cost.</li>
+            <li>If calculating percentage: Divide Total Cost by Menu Price.</li>
+            <li>If calculating price: Divide Total Cost by Target Percentage (e.g., Cost / 0.30).</li>
+          </ol>
+        </div>
+      </noscript>
+
+      <form id="cost-form" class="space-y-4 hidden">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-medium mb-1" for="dish-cost">Total Dish Cost ($)</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="dish-cost" value="4.50" step="0.01" min="0" required />
+          </div>
+          <div>
+            <label class="block font-medium mb-1" for="target-pct">Target Cost (%)</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="target-pct" value="30" min="1" max="100" required />
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-border mt-6">
+          <h3 class="text-xl font-bold mb-4">Results</h3>
+          <p class="text-lg mb-2">Recommended Menu Price: <strong id="price-result" class="font-mono text-2xl text-accent">$15.00</strong></p>
+          <p class="text-sm mt-4 mb-2 text-text-muted">Or, analyze a custom price:</p>
+          <div class="flex items-center gap-4">
+            <div>
+              <label class="block font-medium mb-1 text-sm" for="custom-price">Custom Price ($)</label>
+              <input class="w-32 rounded border border-border px-3 py-2 font-mono text-sm focus:ring-1 focus:ring-primary" type="number" id="custom-price" value="18.00" step="0.01" min="0" />
+            </div>
+            <div class="pt-5">
+              <span class="text-sm text-text-muted">Actual Food Cost: <strong id="actual-pct-result" class="font-mono text-lg text-primary">25.0%</strong></span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="bg-surface-alt p-6 border border-border rounded mt-12 hidden" id="calc-capture">
+      <h3 class="text-xl font-bold mb-2">Scale your culinary business</h3>
+      <p class="mb-4">Get professional management templates and industry insights.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Subscribe" />
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('cost-form');
+        const captureBox = document.getElementById('calc-capture');
+        if (!form) return;
+
+        form.classList.remove('hidden');
+        if (captureBox) captureBox.classList.remove('hidden');
+
+        const dishCostInput = document.getElementById('dish-cost') as HTMLInputElement;
+        const targetPctInput = document.getElementById('target-pct') as HTMLInputElement;
+        const customPriceInput = document.getElementById('custom-price') as HTMLInputElement;
+
+        const priceResult = document.getElementById('price-result');
+        const actualPctResult = document.getElementById('actual-pct-result');
+
+        function calculate() {
+          const cost = parseFloat(dishCostInput.value) || 0;
+          const target = parseFloat(targetPctInput.value) || 1;
+          const custom = parseFloat(customPriceInput.value) || 1;
+
+          const recommendedPrice = cost / (target / 100);
+          const actualPct = (cost / custom) * 100;
+
+          if (priceResult) priceResult.textContent = `$${recommendedPrice.toFixed(2)}`;
+          if (actualPctResult) actualPctResult.textContent = `${actualPct.toFixed(1)}%`;
+        }
+
+        dishCostInput.addEventListener('input', calculate);
+        targetPctInput.addEventListener('input', calculate);
+        customPriceInput.addEventListener('input', calculate);
+
+        calculate();
+      });
+    </script>
+  </div>
+</Layout>

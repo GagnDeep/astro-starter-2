@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CaptureForm from '../components/forms/capture-form.astro';
+import { capture } from '../../capture.config';
+---
+<Layout title="Institute of Cooking" seo={{ page_description: "The analytical, rigorous guide for serious home cooks bridging the gap to professional techniques." }}>
+  <!-- Hero with Interactive Quiz CTA -->
+  <section class="bg-primary text-white py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-5xl font-bold mb-6">Master Professional Culinary Techniques</h1>
+      <p class="text-xl mb-10 text-gray-300">The analytical, rigorous guide for serious home cooks.</p>
+
+      <div class="bg-surface text-text p-8 rounded-lg max-w-md mx-auto text-left shadow-lg">
+        <h2 class="text-2xl font-bold mb-4">Find Your Culinary Path</h2>
+        <p class="mb-6 text-text-muted">Take our 1-minute assessment to identify the exact techniques holding you back.</p>
+        <CaptureForm form={capture.forms.quiz} submitLabel="Start Assessment">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="quiz-name">Name</label>
+            <input id="quiz-name" name="name" required class="w-full rounded border border-gray-300 px-3 py-2 focus:ring-1 focus:ring-blue-600" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="quiz-email">Email</label>
+            <input id="quiz-email" name="email" type="email" required class="w-full rounded border border-gray-300 px-3 py-2 focus:ring-1 focus:ring-blue-600" />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="experience">Experience Level</label>
+            <select id="experience" name="experience" class="w-full rounded border border-gray-300 px-3 py-2 focus:ring-1 focus:ring-blue-600">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+        </CaptureForm>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Course Reviews Teaser -->
+  <section class="py-16 px-4 bg-surface">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8">Technical Course Reviews</h2>
+      <p class="mb-6 text-lg">We dive deep into curriculums so you don't waste your money.</p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <a href="/blog/masterclass-gordon-ramsay-review/" class="block bg-surface-alt p-6 border border-border rounded hover:border-accent transition-colors">
+          <h3 class="text-xl font-bold mb-2">Gordon Ramsay Masterclass Review</h3>
+          <p class="text-text-muted">An honest, technical assessment of the curriculum.</p>
+        </a>
+        <a href="/blog/rouxbe-culinary-school-review/" class="block bg-surface-alt p-6 border border-border rounded hover:border-accent transition-colors">
+          <h3 class="text-xl font-bold mb-2">Rouxbe Culinary School Review</h3>
+          <p class="text-text-muted">Is the online certificate worth the investment?</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Kitchen Calculator Widget -->
+  <section class="py-16 px-4 bg-surface-alt border-y border-border">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">Culinary Mathematics</h2>
+      <p class="mb-8">Stop guessing. Use precise formulas for consistent results.</p>
+      <a href="/calculators/" class="btn-primary">View All Calculators</a>
+    </div>
+  </section>
+
+  <!-- Lab-Tested Gear -->
+  <section class="py-16 px-4 bg-surface">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8">Lab-Tested Gear</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="/equipment/chef-knives/" class="block p-4 border border-border rounded hover:border-accent">Chef Knives</a>
+        <a href="/equipment/dutch-ovens/" class="block p-4 border border-border rounded hover:border-accent">Dutch Ovens</a>
+        <a href="/equipment/thermometers/" class="block p-4 border border-border rounded hover:border-accent">Thermometers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reference Library Highlights -->
+  <section class="py-16 px-4 bg-primary text-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">Reference Library</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/reference/mother-sauces/" class="px-4 py-2 border border-gray-600 rounded hover:bg-gray-700">Mother Sauces</a>
+        <a href="/reference/knife-cuts/" class="px-4 py-2 border border-gray-600 rounded hover:bg-gray-700">Knife Cuts</a>
+        <a href="/reference/meat-temperatures/" class="px-4 py-2 border border-gray-600 rounded hover:bg-gray-700">Meat Temperatures</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,8 @@
+---
+title: "Best Kitchen Scales"
+description: "In-depth review and testing methodology for kitchen scales."
+---
+
+When evaluating kitchen scales, we focus on objective performance, durability, and ergonomic design. Our lab-tested reviews ensure you only invest in gear that will elevate your culinary skills.
+
+Related guides: [Chef Knives](/equipment/chef-knives) and [Cutting Boards](/equipment/cutting-boards).

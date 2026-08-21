@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const referenceEntries = await getCollection('reference');
+---
+<Layout title="Reference Library" seo={{ page_description: "Core culinary techniques and reference library." }}>
+  <div class="max-w-4xl mx-auto py-12 px-4">
+    <h1 class="text-4xl mb-8">Reference Library</h1>
+    <ul class="space-y-4">
+      {referenceEntries.map(entry => (
+        <li>
+          <a href={`/reference/${entry.id}/`} class="text-xl font-bold">{entry.data.title}</a>
+          <p class="text-text-muted">{entry.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>
