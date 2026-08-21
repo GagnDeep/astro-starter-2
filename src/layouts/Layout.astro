@@ -74,11 +74,7 @@ const resolvedArticle: ArticleMeta | undefined =
     </main>
     <Footer />
     <script>
-      if (window.inEditorMode) {
-        import("../scripts/register-components.ts").catch((error) => {
-          console.warn("Failed to load CloudCannon component registration:", error);
-        });
-      }
+
     </script>
   </body>
 </html>

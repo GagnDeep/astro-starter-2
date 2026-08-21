@@ -21,7 +21,6 @@
     "@astrojs/react": "^5.0.0",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.3",
-    "@cloudcannon/editable-regions": "^0.0.12",
     "@lucide/astro": "^1.33.0",
     "@openobserve/browser-logs": "^0.4.1",
     "@openobserve/browser-rum": "^0.4.1",

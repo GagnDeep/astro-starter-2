@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("glossary");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title + " - Glossary"} seo={entry.data.seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="prose max-w-none mb-12">
+      <Content />
+    </div>
+
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-lg">
+      <h3 class="text-lg font-bold mb-4">Join our Waitlist</h3>
+      <CaptureForm form="waitlist" />
+    </div>
+  </div>
+</Layout>

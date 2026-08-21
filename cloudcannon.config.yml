@@ -133,6 +133,21 @@ collections_config:
         options:
           values: data.tags
           empty_type: array
+  glossary:
+    path: src/content/glossary
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/glossary/[slug]/'
+    icon: library_books
+    _enabled_editors:
+      - visual
+      - content
+    _inputs:
+      title:
+        type: text
+      description:
+        type: textarea
   data:
     path: data
     disable_url: true
@@ -167,6 +182,7 @@ collection_groups:
     collections:
       - pages
       - blog
+      - glossary
   - heading: Data
     collections:
       - data

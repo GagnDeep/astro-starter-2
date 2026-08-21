@@ -1,6 +1,9 @@
 ---
 import PageLayout from "../layouts/Page.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Calculator from "../components/tools/Calculator.tsx";
+import FormatChecker from "../components/tools/FormatChecker.tsx";
+import LinkGenerator from "../components/tools/LinkGenerator.tsx";
 
 export interface Props {
   page: CollectionEntry<"pages">;
@@ -17,6 +20,11 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props;
+const { Content } = await render(page);
 ---
 
-<PageLayout frontmatter={page.data} />
+<PageLayout frontmatter={page.data}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose">
+    <Content components={{ Calculator, FormatChecker, LinkGenerator }} />
+  </div>
+</PageLayout>

@@ -13,19 +13,10 @@ import {
   PUBLIC_OO_CLIENT_TOKEN,
   PUBLIC_OO_ENABLED,
   PUBLIC_OO_ENV,
-  PUBLIC_OO_FORWARD_ERRORS_TO_LOGS,
-  PUBLIC_OO_INSECURE_HTTP,
   PUBLIC_OO_ORGANIZATION,
   PUBLIC_OO_PRIVACY_LEVEL,
-  PUBLIC_OO_RESPECT_DO_NOT_TRACK,
   PUBLIC_OO_SERVICE,
-  PUBLIC_OO_SESSION_REPLAY_SAMPLE_RATE,
-  PUBLIC_OO_SESSION_SAMPLE_RATE,
   PUBLIC_OO_SITE,
-  PUBLIC_OO_TRACING_URLS,
-  PUBLIC_OO_TRACK_LONG_TASKS,
-  PUBLIC_OO_TRACK_RESOURCES,
-  PUBLIC_OO_TRACK_USER_INTERACTIONS,
   PUBLIC_OO_VERSION,
 } from "astro:env/client";
 
@@ -72,28 +63,28 @@ function parseTracingUrls(raw: string): TracingUrlMatcher[] {
 
 export const observabilityConfig: ObservabilityConfig = {
   enabled: PUBLIC_OO_ENABLED,
-  respectDoNotTrack: PUBLIC_OO_RESPECT_DO_NOT_TRACK,
+  respectDoNotTrack: true,
 
-  clientToken: PUBLIC_OO_CLIENT_TOKEN,
-  applicationId: PUBLIC_OO_APPLICATION_ID,
-  site: PUBLIC_OO_SITE,
-  organizationIdentifier: PUBLIC_OO_ORGANIZATION,
-  service: PUBLIC_OO_SERVICE,
-  env: PUBLIC_OO_ENV,
-  version: PUBLIC_OO_VERSION,
+  clientToken: PUBLIC_OO_CLIENT_TOKEN || "",
+  applicationId: PUBLIC_OO_APPLICATION_ID || "udocumentview",
+  site: PUBLIC_OO_SITE || "data.markremover.com",
+  organizationIdentifier: PUBLIC_OO_ORGANIZATION || "default",
+  service: PUBLIC_OO_SERVICE || "udocumentview",
+  env: PUBLIC_OO_ENV || "development",
+  version: PUBLIC_OO_VERSION || "0.0.1",
   apiVersion: PUBLIC_OO_API_VERSION,
-  insecureHTTP: PUBLIC_OO_INSECURE_HTTP,
+  insecureHTTP: false,
 
-  trackResources: PUBLIC_OO_TRACK_RESOURCES,
-  trackLongTasks: PUBLIC_OO_TRACK_LONG_TASKS,
-  trackUserInteractions: PUBLIC_OO_TRACK_USER_INTERACTIONS,
-  forwardErrorsToLogs: PUBLIC_OO_FORWARD_ERRORS_TO_LOGS,
+  trackResources: true,
+  trackLongTasks: true,
+  trackUserInteractions: true,
+  forwardErrorsToLogs: true,
 
   defaultPrivacyLevel: PUBLIC_OO_PRIVACY_LEVEL as PrivacyLevel,
-  sessionSampleRate: PUBLIC_OO_SESSION_SAMPLE_RATE,
-  sessionReplaySampleRate: PUBLIC_OO_SESSION_REPLAY_SAMPLE_RATE,
+  sessionSampleRate: 100,
+  sessionReplaySampleRate: 100,
 
-  allowedTracingUrls: parseTracingUrls(PUBLIC_OO_TRACING_URLS),
+  allowedTracingUrls: parseTracingUrls(""),
 };
 
 /** The origin RUM/log events are shipped to — handy for `<link rel=preconnect>`. */
