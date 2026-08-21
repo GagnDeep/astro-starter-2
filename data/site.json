@@ -1,17 +1,17 @@
 {
   "site_title": "Institute of Property",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "description": "Data-Driven Property Investment Education",
+  "tagline": "The calm, analytical approach to UK property investment.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
+  "image_alt": "Institute of Property Education",
+  "default_author": "Institute of Property",
   "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Property",
+    "logo": "/favicon.svg",
     "same_as": []
   }
 }
