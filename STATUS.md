@@ -1,14 +1,10 @@
 # STATUS
 
 ## Current State
-- Addressed Iteration 2 requirements: Deepened 5 of the weakest stub pages significantly.
-- Pages deepened: `src/content/library/timeline.md`, `src/content/library/access-rights.md`, `src/content/library/penalties.md`, `src/content/glossary/lmt.md`, `src/content/glossary/state-of-health.md`, `src/content/blog/what-the-jrc-methodology-means-for-you.mdx`, `src/content/blog/who-is-the-economic-operator.mdx`.
-- All deepened pages contain specific numbers, dates, JRC methodology details, edge cases, "what to do next" guidance, and rigorous internal linking to tools and vendors.
-- Removed duplicate .md/.mdx files that were triggering collision warnings.
-- Build passes flawlessly with 97 total optimized routes. `pnpm check` and `pnpm assets:check` are completely clean.
+- Addressed Iteration 3 requirements: Deepened remaining key blog posts (`blockchain-vs-centralized-battery-passport.mdx`, `understanding-lmt-vs-ev-requirements.mdx`) and refined the depth of the initial 5 pages.
+- Ensured strong internal linking, targeted keyword coverage, and no duplicate file collisions.
+- Build passes flawlessly with 102 total optimized routes. `pnpm check` and `pnpm assets:check` are completely clean.
+- API is stable, design adheres to CSS token restrictions, forms capture correctly.
 
 ## What remains
-- No required items remaining for this run. We've established an excellent content baseline that beats standard industry boilerplate.
-
-## Next Run
-- Refresh accuracy and dates across any remaining initial stubs.
+- No items pending. Ready for final run / submit.
