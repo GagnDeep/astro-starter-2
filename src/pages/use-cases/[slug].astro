@@ -1,0 +1,72 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+export async function getStaticPaths() {
+  const useCases = [
+    {
+      slug: "online-courses",
+      title: "Video Hosting for Online Courses",
+      desc: "Protect your premium content and deliver buffer-free learning experiences.",
+      content: `
+      <h2>The Challenge for Course Creators</h2>
+      <p>When you sell an online course, your video is your product. If you use YouTube, students are distracted by ads and suggested videos. If you use Vimeo, you're paying hundreds of dollars a month just for privacy controls.</p>
+
+      <h2>The uVideoPlayer Solution</h2>
+      <ul>
+        <li><strong>Domain Restriction:</strong> Lock your videos so they only play on your course platform (Teachable, Thinkific, or custom).</li>
+        <li><strong>No Distractions:</strong> Zero branding, zero related videos. The student stays focused on your content.</li>
+        <li><strong>Pay-as-you-go:</strong> Only pay for the bandwidth your students actually watch. No seat licenses.</li>
+      </ul>
+      `
+    },
+    {
+      slug: "ecommerce",
+      title: "Product Videos for E-commerce",
+      desc: "Increase conversion rates with lightning-fast product demonstration videos.",
+      content: `
+      <h2>Video Sells Products</h2>
+      <p>Customers are 85% more likely to purchase a product after watching a video about it. But if that video slows down your Shopify or WooCommerce site, the resulting bounce rate will kill your conversions.</p>
+
+      <h2>Optimized for Speed</h2>
+      <ul>
+        <li><strong>Instant Autoplay:</strong> Muted background videos play instantly without heavy iframe payloads.</li>
+        <li><strong>Global CDN:</strong> Videos load fast whether your customer is in New York or Tokyo.</li>
+        <li><strong>Mobile First:</strong> Adaptive streaming ensures mobile shoppers don't waste their data plans on 4K files.</li>
+      </ul>
+      `
+    },
+    { slug: "portfolios", title: "Video Portfolios for Creatives", desc: "Showcase your reel without third-party logos.", content: "<p>Stub content.</p>" },
+    { slug: "real-estate", title: "Property Tours for Real Estate", desc: "High-quality virtual tours that don't buffer.", content: "<p>Stub content.</p>" },
+    { slug: "saas", title: "Onboarding Videos for SaaS", desc: "In-app tutorials that look native to your UI.", content: "<p>Stub content.</p>" },
+    { slug: "agencies", title: "Client Video Delivery for Agencies", desc: "White-labeled hosting for your client deliverables.", content: "<p>Stub content.</p>" },
+    { slug: "fitness", title: "Workout Streams for Fitness Coaches", desc: "Reliable VOD playback for your fitness community.", content: "<p>Stub content.</p>" },
+    { slug: "non-profits", title: "Campaign Videos for Non-Profits", desc: "Cost-effective hosting for fundraising campaigns.", content: "<p>Stub content.</p>" },
+    { slug: "enterprise", title: "Internal Training for Enterprise", desc: "Secure, unlisted hosting for employee onboarding.", content: "<p>Stub content.</p>" },
+    { slug: "internal-comms", title: "Secure Internal Communications", desc: "CEO updates and town halls delivered securely.", content: "<p>Stub content.</p>" }
+  ];
+
+  return useCases.map((uc) => ({
+    params: { slug: uc.slug },
+    props: { uc },
+  }));
+}
+
+const { uc } = Astro.props;
+---
+<Layout title={uc.title} seo={{ page_description: uc.desc }}>
+  <article class="py-16 md:py-24 max-w-3xl mx-auto px-8 prose">
+    <a href="/use-cases/" class="text-[var(--color-primary)] no-underline hover:underline">&larr; Back to Use Cases</a>
+    <h1 class="mt-8">{uc.title}</h1>
+    <p class="lead">{uc.desc}</p>
+
+    <div set:html={uc.content} />
+
+    <div class="mt-16 bg-[var(--color-bg-base)] p-8 rounded border border-[var(--color-border)] not-prose">
+      <h3 class="text-2xl font-bold mb-4">Ready to upgrade your video strategy?</h3>
+      <p class="mb-6 text-[var(--color-text-muted)]">Start your free trial today. No credit card required.</p>
+      <CaptureForm form={capture.forms.contact} submitLabel="Start Free Trial" />
+    </div>
+  </article>
+</Layout>
