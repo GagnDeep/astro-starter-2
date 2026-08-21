@@ -1,0 +1,116 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo: any = {
+  page_description: "Calculate your potential savings under California's NEM 3.0 net billing tariff.",
+  no_index: false,
+};
+---
+
+<Layout title={seo.title || "Solar"} seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>NEM 3.0 Savings Calculator</h1>
+    <p>Use this tool to estimate your solar savings under California's Net Billing Tariff (NEM 3.0).</p>
+
+    <noscript>
+      <div class="bg-gray-100 p-6 rounded-lg mb-8">
+        <h3>How NEM 3.0 works (No-JS Fallback)</h3>
+        <p>Under NEM 3.0, the value of the solar energy you export to the grid is reduced by about 75% compared to NEM 2.0.</p>
+        <p><strong>Example Calculation:</strong></p>
+        <ul>
+          <li>Average monthly bill: $250</li>
+          <li>Estimated system size needed: 6 kW</li>
+          <li>Estimated export rate: ~$0.05 - $0.08 / kWh (varies by hour and utility)</li>
+          <li><em>Conclusion:</em> A battery is almost always recommended under NEM 3.0 to store your energy rather than exporting it for pennies.</li>
+        </ul>
+      </div>
+    </noscript>
+
+    <div id="calculator" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8 tabular-nums">
+      <form id="nem-calc-form" class="space-y-4">
+        <div>
+          <label for="monthly-bill" class="block text-sm font-medium mb-1">Average Monthly Electric Bill ($)</label>
+          <input type="number" id="monthly-bill" name="monthly-bill" value="250" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-[var(--interactive)] focus:outline-none focus:ring-1 focus:ring-[var(--interactive)]" />
+        </div>
+        <div>
+          <label for="utility" class="block text-sm font-medium mb-1">Utility Company</label>
+          <select id="utility" name="utility" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-[var(--interactive)] focus:outline-none focus:ring-1 focus:ring-[var(--interactive)]">
+            <option value="pge">PG&E</option>
+            <option value="sce">SCE</option>
+            <option value="sdge">SDG&E</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2 mt-4">
+          <input type="checkbox" id="add-battery" name="add-battery" checked />
+          <label for="add-battery" class="text-sm">Include Battery Storage (Highly Recommended for NEM 3.0)</label>
+        </div>
+        <button type="button" id="calc-btn" class="rounded bg-[var(--accent-primary)] px-5 py-2.5 font-medium text-white hover:bg-[var(--accent-secondary)]">Calculate Savings</button>
+      </form>
+
+      <div id="results" class="mt-8 hidden">
+        <h3 class="text-xl font-semibold mb-4">Estimated Results</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-gray-50 p-4 rounded border border-gray-200">
+            <p class="text-sm text-gray-500 mb-1">Estimated System Size</p>
+            <p class="text-2xl font-bold" id="res-size">--</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded border border-gray-200">
+            <p class="text-sm text-gray-500 mb-1">Year 1 Savings</p>
+            <p class="text-2xl font-bold text-[var(--accent-primary)]" id="res-savings">--</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded border border-gray-200">
+            <p class="text-sm text-gray-500 mb-1">Payback Period</p>
+            <p class="text-2xl font-bold" id="res-payback">--</p>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 mt-4"><em>Assumptions:</em> Calculation assumes average CA energy usage (approx 20 kWh/day for $250 bill). Export rates vary heavily. Battery increases upfront cost by ~$12,000 but captures ~100% of generated value.</p>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('calc-btn')?.addEventListener('click', () => {
+        const billInput = document.getElementById('monthly-bill') as HTMLInputElement;
+        const utilityInput = document.getElementById('utility') as HTMLSelectElement;
+        const batteryInput = document.getElementById('add-battery') as HTMLInputElement;
+
+        const bill = parseFloat(billInput.value) || 0;
+        const hasBattery = batteryInput.checked;
+
+        // Rough estimation logic for CA
+        const estimatedKw = Math.max(3, (bill / 40));
+        const estimatedCost = estimatedKw * 3000 + (hasBattery ? 12000 : 0);
+        const netCostAfterITC = estimatedCost * 0.7; // 30% tax credit
+
+        let annualSavings = 0;
+        if (hasBattery) {
+          // Captures almost all value
+          annualSavings = bill * 12 * 0.9;
+        } else {
+          // NEM 3.0 punishes solar-only
+          annualSavings = bill * 12 * 0.4;
+        }
+
+        const paybackYears = netCostAfterITC / annualSavings;
+
+        const resultsDiv = document.getElementById('results');
+        const resSize = document.getElementById('res-size');
+        const resSavings = document.getElementById('res-savings');
+        const resPayback = document.getElementById('res-payback');
+
+        if (resultsDiv && resSize && resSavings && resPayback) {
+          resultsDiv.classList.remove('hidden');
+          resSize.textContent = `${estimatedKw.toFixed(1)} kW`;
+          resSavings.textContent = `$${annualSavings.toFixed(0)}`;
+          resPayback.textContent = `${paybackYears.toFixed(1)} years`;
+        }
+      });
+    </script>
+
+    <div class="mt-16 bg-gray-50 p-8 rounded-lg border border-gray-200">
+      <h3>Get a Custom NEM 3.0 Quote</h3>
+      <p>The math above is an estimate. Get a precise, roof-specific design.</p>
+      <CaptureForm form="quote" submitLabel="Get Exact Math" />
+    </div>
+  </div>
+</Layout>

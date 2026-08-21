@@ -1,0 +1,145 @@
+
+> astro-editable-regions-starter@1.0.0 dev /app
+> astro dev
+
+[vite] connected.
+04:41:12 [types] Generated 1ms
+[vite] connected.
+04:41:13 [content] Syncing content
+04:41:13 [WARN] [glob-loader] No entry type found for about.astro
+04:41:13 [content] Synced content
+04:41:13 [vite] Re-optimizing dependencies because vite config has changed
+ astro  v6.0.2 ready in 3012 ms
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+04:41:13 watching for file changes...
+
+ update  ▶ New version of Astro available: 7.2.4
+  Run pnpm dlx @astrojs/upgrade to update
+
+04:48:20 [200] /tools/nem-3-calculator/ 105ms
+04:48:21 [vite] ✨ new dependencies optimized: astro/runtime/client/dev-toolbar/entrypoint.js, astro/virtual-modules/prefetch.js, @openobserve/browser-rum, @openobserve/browser-logs
+04:48:21 [vite] ✨ optimized dependencies changed. reloading
+04:48:21 [200] /tools/nem-3-calculator/ 58ms
+04:48:22 [200] /tools/battery-roi/ 73ms
+04:48:22 [200] /contact/ 71ms
+[vite] program reload
+[vite] An error happened during full reload
+Failed to load url astro:server-app.js (resolved id: astro:server-app.js). Does the file exist?
+Error: Failed to load url astro:server-app.js (resolved id: astro:server-app.js). Does the file exist?
+    at loadAndTransform (file:///app/node_modules/.pnpm/vite@7.3.6_@types+node@24.13.3_jiti@2.7.0_lightningcss@1.32.0_yaml@2.9.0/node_modules/vite/dist/node/chunks/config.js:22739:33)
+04:49:56 [glob-loader] Reloaded data from nem-3-0-explained.md
+04:49:56 [glob-loader] Reloaded data from pg-e-solar-rates-guide.md
+04:49:56 [glob-loader] Reloaded data from sce-solar-true-up.md
+04:49:56 [glob-loader] Reloaded data from sdg-e-solar-plans.md
+04:49:56 [glob-loader] Reloaded data from california-solar-tax-credit-2024.md
+04:49:56 [glob-loader] Reloaded data from federal-itc-rules.md
+04:49:56 [glob-loader] Reloaded data from sgip-battery-rebate.md
+04:49:56 [glob-loader] Reloaded data from enphase-vs-solaredge.md
+04:49:56 [glob-loader] Reloaded data from tesla-powerwall-3-review.md
+04:49:56 [glob-loader] Reloaded data from best-solar-batteries-2024.md
+04:49:56 [glob-loader] Reloaded data from solar-panel-degradation-over-time.md
+04:49:57 [glob-loader] Reloaded data from tier-1-solar-panels-list.md
+04:49:57 [glob-loader] Reloaded data from monocrystalline-vs-polycrystalline.md
+04:49:57 [glob-loader] Reloaded data from n-type-vs-p-type-solar-cells.md
+04:49:57 [glob-loader] Reloaded data from solar-inverter-lifespan.md
+04:49:57 [glob-loader] Reloaded data from solar-in-los-angeles.md
+04:49:57 [glob-loader] Reloaded data from solar-in-san-diego.md
+04:49:57 [glob-loader] Reloaded data from solar-in-san-francisco.md
+04:49:57 [glob-loader] Reloaded data from solar-in-san-jose.md
+04:49:57 [glob-loader] Reloaded data from solar-in-sacramento.md
+04:49:57 [glob-loader] Reloaded data from solar-in-fresno.md
+04:49:57 [glob-loader] Reloaded data from solar-in-oakland.md
+04:49:57 [glob-loader] Reloaded data from solar-in-bakersfield.md
+04:49:57 [glob-loader] Reloaded data from solar-in-anaheim.md
+04:49:57 [glob-loader] Reloaded data from solar-in-riverside.md
+04:49:57 [glob-loader] Reloaded data from net-energy-metering-nem.md
+04:49:57 [glob-loader] Reloaded data from nem-3-0-net-billing-tariff.md
+04:49:57 [glob-loader] Reloaded data from true-up-bill.md
+04:49:57 [glob-loader] Reloaded data from inverter.md
+04:49:57 [glob-loader] Reloaded data from microinverter.md
+04:49:57 [glob-loader] Reloaded data from string-inverter.md
+04:49:57 [glob-loader] Reloaded data from kilowatt-kw.md
+04:49:57 [glob-loader] Reloaded data from kilowatt-hour-kwh.md
+04:49:57 [glob-loader] Reloaded data from time-of-use-tou-rates.md
+04:49:57 [glob-loader] Reloaded data from self-generation-incentive-program-sgip.md
+04:49:57 [glob-loader] Reloaded data from degradation-rate.md
+04:49:57 [glob-loader] Reloaded data from investment-tax-credit-itc.md
+04:49:57 [glob-loader] Reloaded data from monocrystalline.md
+04:49:57 [glob-loader] Reloaded data from polycrystalline.md
+04:49:57 [glob-loader] Reloaded data from virtual-power-plant-vpp.md
+04:49:57 [glob-loader] Reloaded data from agrivoltaics.md
+04:49:57 [glob-loader] Reloaded data from bifacial-solar-panel.md
+04:49:57 [glob-loader] Reloaded data from grid-tied-system.md
+04:49:57 [glob-loader] Reloaded data from off-grid-system.md
+04:49:57 [glob-loader] Reloaded data from power-purchase-agreement-ppa.md
+04:49:57 [glob-loader] Reloaded data from is-solar-still-worth-it-in-california-under-nem-3.mdx
+04:49:57 [glob-loader] Reloaded data from how-long-does-a-solar-battery-last.mdx
+04:49:57 [glob-loader] Reloaded data from pg-e-rate-hike-solar-offset.mdx
+04:49:57 [glob-loader] Reloaded data from how-many-panels-do-i-need-to-zero-out-my-bill.mdx
+04:49:57 [glob-loader] Reloaded data from can-i-go-off-grid-in-california.mdx
+04:49:57 [glob-loader] Reloaded data from federal-solar-tax-credit-carry-over.mdx
+04:49:57 [glob-loader] Reloaded data from how-much-value-does-solar-add-to-a-home-in-ca.mdx
+04:49:57 [glob-loader] Reloaded data from lease-vs-buy-solar-panels.mdx
+04:49:57 [glob-loader] Reloaded data from do-i-need-a-battery-with-nem-3-0.mdx
+04:49:57 [glob-loader] Reloaded data from best-solar-panels-for-high-heat.mdx
+04:49:57 [glob-loader] Reloaded data from how-to-clean-solar-panels-safely.mdx
+04:49:57 [glob-loader] Reloaded data from will-solar-panels-damage-my-roof.mdx
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload
+[vite] program reload

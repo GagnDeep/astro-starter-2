@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  title: "Solar FAQs",
+  page_description: "Frequently asked questions about going solar in California.",
+  no_index: false,
+};
+---
+
+<Layout title={seo?.title || "Solar"} seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="space-y-8 mt-8">
+      <div>
+        <h3>What is NEM 3.0?</h3>
+        <p>NEM 3.0 (Net Billing Tariff) is California's updated solar billing policy that went into effect in April 2023. It significantly reduced the value of solar energy exported to the grid, dropping from retail rates (averaging ~$0.30/kWh) to avoided cost rates (averaging ~$0.05/kWh). Because of this, home batteries are now essential to store energy instead of exporting it.</p>
+      </div>
+
+      <div>
+        <h3>How long will it take for my solar system to pay for itself?</h3>
+        <p>Under NEM 3.0, a solar + battery system purchased with cash typically pays for itself in 6 to 9 years. If financed, the payback period stretches to 8-12 years depending on interest rates. Solar-only systems (no battery) can take 10-14 years to reach break-even.</p>
+      </div>
+
+      <div>
+        <h3>Do I still have to pay my utility company if I have solar?</h3>
+        <p>Yes. Even if your solar system offsets 100% of your usage, you will still receive a monthly bill for "Non-Bypassable Charges" (NBCs) and a basic connection fee, which typically totals $15 to $25 per month for PG&E, SCE, or SDG&E customers.</p>
+      </div>
+
+      <div>
+        <h3>Will solar panels void my roof warranty?</h3>
+        <p>A professional installation by a licensed solar contractor should not void your roof warranty. Installers use specialized flashing and sealants to prevent leaks and typically provide their own 10-year workmanship warranty covering roof penetrations.</p>
+      </div>
+
+      <div>
+        <h3>What happens if the power goes out?</h3>
+        <p>If you have a standard grid-tied solar system (without a battery), your panels will shut down during a blackout for safety reasons (to prevent back-feeding electricity into the grid and injuring line workers). To have power during an outage, you must have a battery system configured for backup or a specific grid-agnostic inverter system like Enphase IQ8.</p>
+      </div>
+    </div>
+
+    <div class="mt-16 bg-gray-50 p-8 rounded-lg border border-gray-200">
+      <h3>Have a specific question?</h3>
+      <p>Drop us a line and our experts will get back to you with real data, not a sales pitch.</p>
+      <CaptureForm />
+    </div>
+  </div>
+</Layout>

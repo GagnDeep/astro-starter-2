@@ -49,7 +49,7 @@ import { Menu, X } from "@lucide/astro";
         <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
           {header.links.map((link) => (
             <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
+              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-[var(--interactive)] transition-colors" href={link.link}>
                 {link.text}
               </a>
             </li>

@@ -16,8 +16,8 @@ export default function BlogPagination({ pagination }) {
         <a
           className={`inline-block px-4 py-2 rounded-lg font-semibold ${
             i === currentPage
-              ? "bg-blue-600 text-white"
-              : "text-gray-700 hover:text-blue-600"
+              ? "bg-[var(--interactive)] text-white"
+              : "text-gray-700 hover:text-[var(--interactive)]"
           }`}
           href={i === 1 ? "/blog" : `/blog/${i}`}
         >
@@ -33,7 +33,7 @@ export default function BlogPagination({ pagination }) {
         {prev && (
           <li>
             <a
-              className="inline-block px-4 py-2 text-gray-700 hover:text-blue-600"
+              className="inline-block px-4 py-2 text-gray-700 hover:text-[var(--interactive)]"
               href={prev}
               aria-label="Previous page"
             >
@@ -45,7 +45,7 @@ export default function BlogPagination({ pagination }) {
         {next && (
           <li>
             <a
-              className="inline-block px-4 py-2 text-gray-700 hover:text-blue-600"
+              className="inline-block px-4 py-2 text-gray-700 hover:text-[var(--interactive)]"
               href={next}
               aria-label="Next page"
             >
