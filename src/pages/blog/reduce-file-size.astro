@@ -2,34 +2,74 @@
 import Layout from "../../layouts/Layout.astro";
 import NewsletterForm from "../../components/forms/newsletter-form.astro";
 ---
-<Layout title="reduce-file-size" seo={{ page_description: "Learn about reduce-file-size and video formats." }}>
+<Layout title="5 Ways to Reduce Video File Size (Without Ruining It)" seo={{
+  page_description: "A practical guide to reducing video file sizes for email and Discord. Learn about lowering bitrates, changing codecs to HEVC, and audio compression.",
+  open_graph_type: "article"
+}}>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="text-sm text-secondary mb-4">
-      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/blog/" class="hover:text-primary capitalize">blog</a> &gt; reduce-file-size
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/blog/" class="hover:text-primary">Blog</a> &gt; Reduce File Size
     </div>
-    <h1 class="text-4xl font-bold mb-8 capitalize">reduce file size</h1>
+    <h1 class="text-4xl font-bold mb-8 capitalize">5 Ways to Reduce Video File Size (Without Ruining It)</h1>
+
     <div class="prose max-w-none mb-12">
-      <p>Understanding reduce file size is essential for working with digital video.</p>
-      <h2>What is reduce file size?</h2>
-      <p>This is a detailed explanation of the concept, containing tables and specific numbers verified against primary sources.</p>
+      <p class="lead text-xl text-secondary">
+        We have all been there. You try to email a video, or upload a clip to Discord, and you are hit with a harsh error: <em>"File size exceeds 25MB."</em> Here are five proven methods to reduce your video file size safely.
+      </p>
 
-      <h3>Key Details</h3>
-      <table>
-        <thead>
-          <tr><th>Feature</th><th>Value</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Type</td><td>Standard</td></tr>
-          <tr><td>Usage</td><td>Common</td></tr>
-        </tbody>
-      </table>
+      <h2>1. The Direct Approach: Lower the Video Bitrate</h2>
+      <p>
+        This is the most impactful step you can take. A video's file size is almost entirely dependent on its <a href="/reference/bitrate">bitrate</a>.
+      </p>
+      <p>
+        Bitrate is the amount of data allowed per second. If you have a 1-minute video at 10,000 kbps, it will be 75MB. If you re-encode that exact same video at 3,000 kbps, it will be 22MB.
+      </p>
+      <p>
+        <strong>How to do it:</strong> Use our <a href="/calculators/bitrate-calculator">Bitrate Calculator</a>. Enter your target size (e.g., 25MB) and the length of your video. It will tell you exactly what bitrate you need to set in your encoder (like Handbrake or Premiere) to hit that exact size.
+      </p>
 
-      <p>For more related info, see <a href="/reference/">our reference guide</a> or <a href="/glossary/">glossary</a>.</p>
+      <h2>2. Change the Codec to H.265 (HEVC)</h2>
+      <p>
+        If lowering the bitrate makes the video look too blocky, your next option is to use a more efficient <a href="/glossary/codec">codec</a>.
+      </p>
+      <p>
+        Most web video is encoded using <a href="/reference/h264">H.264</a>. If you switch your export settings to <a href="/reference/h265">H.265 (HEVC)</a>, you can cut the bitrate in half <em>while maintaining the exact same visual quality</em>.
+      </p>
+      <ul>
+        <li><strong>Pro:</strong> Massive space savings.</li>
+        <li><strong>Con:</strong> Takes longer to encode; might not play natively on older Windows machines or Firefox (read our <a href="/blog/h264-vs-h265">H.264 vs H.265 guide</a>).</li>
+      </ul>
+
+      <h2>3. Don't Forget Audio Compression</h2>
+      <p>
+        People often crush the video quality into oblivion while leaving the audio entirely uncompressed (WAV or PCM). Uncompressed stereo audio takes up about 10.5 MB per minute. If you are aiming for a 25MB Discord limit, audio alone will eat half your budget!
+      </p>
+      <p>
+        Always ensure your audio track is compressed to <a href="/reference/aac">AAC</a> or MP3. A standard 128 kbps stereo AAC track sounds virtually identical to uncompressed audio on standard speakers, but takes up less than 1 MB per minute.
+      </p>
+
+      <h2>4. Downscale the Resolution</h2>
+      <p>
+        Lowering the resolution (from 4K to 1080p, or 1080p to 720p) does not inherently reduce file size—remember, size is dictated by bitrate.
+      </p>
+      <p>
+        However, if you are forcing a very low bitrate (like 1,500 kbps) to hit an email attachment limit, a 1080p video will look horribly blocky and pixelated. By downscaling the video to 720p, the encoder has fewer pixels to worry about, allowing that limited bitrate to cover the image much more cleanly.
+      </p>
+      <p>
+        <em>Rule of thumb:</em> If you must drop your bitrate below 3,000 kbps, you should probably drop your resolution to 720p. If you need to <a href="/calculators/aspect-ratio">calculate new dimensions</a>, keep the aspect ratio intact.
+      </p>
+
+      <h2>5. Trim the Fat</h2>
+      <p>
+        It sounds obvious, but the best way to reduce file size is to reduce duration. If you have a 3-minute clip where the interesting part only happens in the last 30 seconds, trim the video before compressing.
+      </p>
+      <p>
+        Using a tool that can do "Stream Copy" or "Lossless Cut" allows you to trim the <a href="/reference/mp4">MP4 file</a> directly without re-encoding it, preserving 100% of the original quality while slashing the file size.
+      </p>
     </div>
 
     <div class="bg-surface p-8 rounded-lg border border-border">
-      <h3 class="text-xl font-bold mb-4">Stay Updated</h3>
-      <p class="text-secondary mb-4">Get the latest video tips and format news.</p>
+      <h3 class="text-xl font-bold mb-4">Get more optimization tricks</h3>
       <NewsletterForm form="newsletter" />
     </div>
   </div>

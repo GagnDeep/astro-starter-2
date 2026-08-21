@@ -2,34 +2,112 @@
 import Layout from "../../layouts/Layout.astro";
 import NewsletterForm from "../../components/forms/newsletter-form.astro";
 ---
-<Layout title="mkv-vs-mp4" seo={{ page_description: "Learn about mkv-vs-mp4 and video formats." }}>
+<Layout title="MKV vs MP4: Which Video Format Should You Use?" seo={{
+  page_description: "A detailed comparison of MKV and MP4 container formats. Learn about subtitles, audio tracks, device compatibility, and when to choose each.",
+  open_graph_type: "article"
+}}>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="text-sm text-secondary mb-4">
-      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/blog/" class="hover:text-primary capitalize">blog</a> &gt; mkv-vs-mp4
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/blog/" class="hover:text-primary">Blog</a> &gt; MKV vs MP4
     </div>
-    <h1 class="text-4xl font-bold mb-8 capitalize">mkv vs mp4</h1>
-    <div class="prose max-w-none mb-12">
-      <p>Understanding mkv vs mp4 is essential for working with digital video.</p>
-      <h2>What is mkv vs mp4?</h2>
-      <p>This is a detailed explanation of the concept, containing tables and specific numbers verified against primary sources.</p>
+    <h1 class="text-4xl font-bold mb-8 capitalize">MKV vs MP4: Which Video Format Should You Use?</h1>
 
-      <h3>Key Details</h3>
+    <div class="prose max-w-none mb-12">
+      <p class="lead text-xl text-secondary">
+        If you download a movie, it's probably an MKV. If you record a video on your phone, it's probably an MP4. Both are incredibly popular, but they serve entirely different purposes in the digital video ecosystem.
+      </p>
+
+      <h2>The Great Misconception: Codec vs Container</h2>
+      <p>
+        Before comparing the two, we must establish a foundational truth: <strong>neither MKV nor MP4 determine the quality of your video.</strong>
+      </p>
+      <p>
+        They are not <a href="/glossary/codec">codecs</a>; they are <a href="/reference/containers">containers</a>. Imagine them as boxes. The quality of the item inside the box (the video stream, encoded in <a href="/reference/h264">H.264</a> or <a href="/reference/h265">H.265</a>) is what matters. A 4K H.265 video stream looks exactly the same whether you put it in an MP4 box or an MKV box. The file size will also be virtually identical.
+      </p>
+      <p>
+        The difference lies in <em>what else</em> you can put in the box.
+      </p>
+
+      <h2>Feature Comparison: The MKV Advantage</h2>
+      <p>
+        <a href="/reference/mkv">MKV (Matroska)</a> was designed as an open-source format to be the "ultimate" digital container. It can hold virtually anything. <a href="/reference/mp4">MP4 (MPEG-4 Part 14)</a> is an industry standard designed for strict compatibility.
+      </p>
+
       <table>
         <thead>
-          <tr><th>Feature</th><th>Value</th></tr>
+          <tr>
+            <th>Feature</th>
+            <th>MP4</th>
+            <th>MKV</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>Type</td><td>Standard</td></tr>
-          <tr><td>Usage</td><td>Common</td></tr>
+          <tr>
+            <td><strong>Audio Tracks</strong></td>
+            <td>Usually limited (AAC, MP3). Struggles with lossless surround.</td>
+            <td>Unlimited. Supports FLAC, TrueHD, DTS-MA, Dolby Atmos.</td>
+          </tr>
+          <tr>
+            <td><strong>Subtitles</strong></td>
+            <td>Basic text (SRT) or burned-in.</td>
+            <td>Advanced styling (ASS/SSA), unlimited tracks.</td>
+          </tr>
+          <tr>
+            <td><strong>Chapters</strong></td>
+            <td>Supported, but rarely utilized.</td>
+            <td>Fully supported, standard practice for rips.</td>
+          </tr>
+          <tr>
+            <td><strong>Attachments</strong></td>
+            <td>No</td>
+            <td>Yes (Fonts, cover art, PDFs).</td>
+          </tr>
+          <tr>
+            <td><strong>Error Recovery</strong></td>
+            <td>Poor (If the header is corrupt, the file is dead).</td>
+            <td>Excellent (Can often play corrupted files).</td>
+          </tr>
         </tbody>
       </table>
 
-      <p>For more related info, see <a href="/reference/">our reference guide</a> or <a href="/glossary/">glossary</a>.</p>
+      <h2>Compatibility: The MP4 Advantage</h2>
+      <p>
+        If MKV is so much more capable, why do we still use MP4? The answer is <strong>universal playback</strong>.
+      </p>
+      <p>
+        Because MKV is open-source and capable of holding complex combinations of data, massive hardware manufacturers historically refused to support it natively. For a decade, you could not play an MKV file on a Mac, an iPhone, an Xbox, or a Smart TV without downloading a third-party app like VLC.
+      </p>
+      <p>
+        MP4 is an international ISO standard. It is guaranteed to play on:
+      </p>
+      <ul>
+        <li>Every web browser (Chrome, Safari, Firefox).</li>
+        <li>Every smartphone (iOS, Android).</li>
+        <li>Every video editing software (Premiere, Final Cut, DaVinci).</li>
+        <li>Every social media platform (YouTube, TikTok, Twitter).</li>
+      </ul>
+
+      <h2>The Solution: Remuxing</h2>
+      <p>
+        What do you do if you have an MKV file but your TV only accepts MP4? You don't have to re-encode the file (which takes hours and ruins quality).
+      </p>
+      <p>
+        Because they are just boxes, you can take the H.264 video stream <em>out</em> of the MKV box and put it <em>into</em> an MP4 box. This process is called <strong>Remuxing</strong> (<a href="/glossary/multiplexing">Multiplexing</a>). It takes seconds, uses zero CPU power, and results in a 1:1 quality match.
+      </p>
+      <p>
+        You can use tools like OBS Studio or our <a href="/">local video converter</a> to remux files instantly.
+      </p>
+
+      <h2>Summary: Which to choose?</h2>
+      <ul>
+        <li><strong>Choose MKV when:</strong> You are ripping a Blu-ray, backing up high-quality archival footage, or need multiple language and subtitle tracks in a single file.</li>
+        <li><strong>Choose MP4 when:</strong> You are uploading to the web, sending a video to a client, importing into an editor, or viewing on an Apple device.</li>
+      </ul>
     </div>
 
     <div class="bg-surface p-8 rounded-lg border border-border">
-      <h3 class="text-xl font-bold mb-4">Stay Updated</h3>
-      <p class="text-secondary mb-4">Get the latest video tips and format news.</p>
+      <h3 class="text-xl font-bold mb-4">Never get stuck with a bad file format again</h3>
+      <p class="text-secondary mb-4">Subscribe for more tips on video compression and playback.</p>
       <NewsletterForm form="newsletter" />
     </div>
   </div>

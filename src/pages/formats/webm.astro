@@ -2,34 +2,54 @@
 import Layout from "../../layouts/Layout.astro";
 import NewsletterForm from "../../components/forms/newsletter-form.astro";
 ---
-<Layout title="webm" seo={{ page_description: "Learn about webm and video formats." }}>
+<Layout title="WebM Format Support" seo={{
+  page_description: "Learn about WebM, the open-source video format built by Google. Ideal for transparent video (alpha channels) and highly efficient web delivery.",
+  open_graph_type: "article"
+}}>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="text-sm text-secondary mb-4">
-      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/formats/" class="hover:text-primary capitalize">formats</a> &gt; webm
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/formats/" class="hover:text-primary">Formats</a> &gt; WebM
     </div>
-    <h1 class="text-4xl font-bold mb-8 capitalize">webm</h1>
+    <h1 class="text-4xl font-bold mb-8">WebM</h1>
     <div class="prose max-w-none mb-12">
-      <p>Understanding webm is essential for working with digital video.</p>
-      <h2>What is webm?</h2>
-      <p>This is a detailed explanation of the concept, containing tables and specific numbers verified against primary sources.</p>
+      <p class="lead text-xl text-secondary">
+        WebM is an open, royalty-free <a href="/reference/containers">container format</a> created by Google specifically for HTML5 video on the web.
+      </p>
 
-      <h3>Key Details</h3>
-      <table>
-        <thead>
-          <tr><th>Feature</th><th>Value</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Type</td><td>Standard</td></tr>
-          <tr><td>Usage</td><td>Common</td></tr>
-        </tbody>
-      </table>
+      <h2>Under the Hood</h2>
+      <p>
+        Technically, WebM is a restricted subset of the <a href="/reference/mkv">Matroska (MKV)</a> container. While MKV can hold almost any codec, WebM restricts the internal streams to specific, royalty-free open codecs:
+      </p>
+      <ul>
+        <li><strong>Video:</strong> VP8, <a href="/reference/vp9">VP9</a>, or <a href="/reference/av1">AV1</a>.</li>
+        <li><strong>Audio:</strong> Vorbis or Opus.</li>
+      </ul>
 
-      <p>For more related info, see <a href="/reference/">our reference guide</a> or <a href="/glossary/">glossary</a>.</p>
+      <h2>The WebM Superpower: Transparency</h2>
+      <p>
+        If you want to place a spinning 3D logo or a lower-third graphic with a transparent background over a website element, you cannot use a standard <a href="/reference/mp4">MP4</a>. The H.264 standard does not support an Alpha Channel (transparency).
+      </p>
+      <p>
+        WebM (specifically using the VP9 codec) fully supports alpha channels. This makes it the absolute standard format for transparent video on the web.
+      </p>
+
+      <h2>Browser Compatibility</h2>
+      <p>
+        Because it is championed by Google, WebM enjoys perfect support in Chrome, Edge, and Android.
+      </p>
+      <p>
+        Historically, Apple refused to support WebM in Safari, forcing developers to use HEVC with alpha on Apple devices, and WebM everywhere else. However, since macOS Big Sur (Safari 14+), Apple has silently added WebM support, making it nearly universal for modern desktop browsing. (Mobile Safari support remains mixed).
+      </p>
+
+      <h2>Convert to WebM</h2>
+      <p>
+        You can convert your files to WebM format directly in your browser using our <a href="/">local video converter</a>. Because WebM is highly efficient, you can expect excellent <a href="/calculators/video-file-size">file sizes</a>.
+      </p>
     </div>
 
     <div class="bg-surface p-8 rounded-lg border border-border">
-      <h3 class="text-xl font-bold mb-4">Stay Updated</h3>
-      <p class="text-secondary mb-4">Get the latest video tips and format news.</p>
+      <h3 class="text-xl font-bold mb-4">Format updates</h3>
+      <p class="text-secondary mb-4">Get the latest format and compatibility news.</p>
       <NewsletterForm form="newsletter" />
     </div>
   </div>

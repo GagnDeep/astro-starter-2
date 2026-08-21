@@ -2,34 +2,74 @@
 import Layout from "../../layouts/Layout.astro";
 import NewsletterForm from "../../components/forms/newsletter-form.astro";
 ---
-<Layout title="video-editing-basics" seo={{ page_description: "Learn about video-editing-basics and video formats." }}>
+<Layout title="Video Editing Basics: A Guide for Beginners" seo={{
+  page_description: "Learn the fundamental concepts of video editing. Understand timelines, proxies, rendering vs exporting, and essential project settings.",
+  open_graph_type: "article"
+}}>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="text-sm text-secondary mb-4">
-      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/blog/" class="hover:text-primary capitalize">blog</a> &gt; video-editing-basics
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/blog/" class="hover:text-primary">Blog</a> &gt; Editing Basics
     </div>
-    <h1 class="text-4xl font-bold mb-8 capitalize">video editing basics</h1>
+    <h1 class="text-4xl font-bold mb-8 capitalize">Video Editing Basics: A Guide for Beginners</h1>
+
     <div class="prose max-w-none mb-12">
-      <p>Understanding video editing basics is essential for working with digital video.</p>
-      <h2>What is video editing basics?</h2>
-      <p>This is a detailed explanation of the concept, containing tables and specific numbers verified against primary sources.</p>
+      <p class="lead text-xl text-secondary">
+        Opening Premiere Pro or DaVinci Resolve for the first time is intimidating. You are presented with dozens of panels, dials, and obscure technical terms. This guide strips away the noise and focuses on the core concepts you actually need to know.
+      </p>
 
-      <h3>Key Details</h3>
-      <table>
-        <thead>
-          <tr><th>Feature</th><th>Value</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Type</td><td>Standard</td></tr>
-          <tr><td>Usage</td><td>Common</td></tr>
-        </tbody>
-      </table>
+      <h2>1. The Timeline and Non-Linear Editing (NLE)</h2>
+      <p>
+        Modern video software is "Non-Linear". This simply means you can jump to any point in the project, place a clip anywhere, and delete things from the middle without ruining the rest of the sequence.
+      </p>
+      <p>
+        The <strong>Timeline</strong> is where you build your video. It reads from left to right (time) and from bottom to top (layers). If you stack Video Clip B on top of Video Clip A, the audience will only see Video Clip B, but they might still hear the audio from Clip A if you didn't mute it.
+      </p>
 
-      <p>For more related info, see <a href="/reference/">our reference guide</a> or <a href="/glossary/">glossary</a>.</p>
+      <h2>2. Project Settings vs Export Settings</h2>
+      <p>
+        A massive beginner mistake is confusing the project sequence with the final export.
+      </p>
+      <ul>
+        <li><strong>Sequence Settings:</strong> The canvas you edit on. If you shot your footage in 4K at 60fps, your sequence should usually be 4K at 60fps.</li>
+        <li><strong>Export Settings:</strong> How the final file is saved. You can take a 4K sequence and export it as a 1080p <a href="/reference/mp4">MP4</a> to save space using our <a href="/calculators/video-file-size">file size guidelines</a>.</li>
+      </ul>
+
+      <h2>3. Proxies (Editing 4K smoothly)</h2>
+      <p>
+        "Why is my video lagging when I press play?"
+      </p>
+      <p>
+        When you shoot video on a modern camera or phone, it uses a highly compressed <a href="/glossary/codec">codec</a> like <a href="/reference/h265">HEVC</a> to save space on the SD card. Your computer has to work incredibly hard to decompress that file in real-time while you edit.
+      </p>
+      <p>
+        The solution is <strong>Proxies</strong>. A proxy is a temporary, low-resolution, easy-to-read copy of your video (often encoded in ProRes or DNxHD). The editing software swaps in these blurry proxies while you work so everything runs smoothly. When you click "Export," the software swaps the original 4K high-quality files back in automatically.
+      </p>
+
+      <h2>4. Cuts and Transitions</h2>
+      <p>
+        The most powerful tool in video editing is the standard Cut. Over-using transitions is the fastest way to make a video look amateur.
+      </p>
+      <ul>
+        <li><strong>Standard Cut:</strong> Instantly switching from one clip to another. Use this 95% of the time.</li>
+        <li><strong>J-Cut:</strong> You hear the audio of the <em>next</em> clip before seeing the video. Great for dialogue.</li>
+        <li><strong>L-Cut:</strong> The video cuts to the next clip, but the audio from the <em>previous</em> clip continues to play.</li>
+        <li><strong>Cross Dissolve:</strong> Fading one clip into another. Use sparingly, usually to signify a passage of time.</li>
+      </ul>
+
+      <h2>5. Rendering vs Exporting</h2>
+      <p>
+        These terms are often used interchangeably, but in software like Premiere:
+      </p>
+      <p>
+        <strong>Rendering</strong> refers to processing complex effects (like color grading or text animations) <em>temporarily</em> so you can watch them smoothly on your timeline.
+      </p>
+      <p>
+        <strong>Exporting</strong> (or Encoding / <a href="/glossary/transcoding">Transcoding</a>) is the final step where you bake all the clips, audio, and effects into a single deliverable file like an <a href="/reference/mkv">MKV</a> or MP4.
+      </p>
     </div>
 
     <div class="bg-surface p-8 rounded-lg border border-border">
-      <h3 class="text-xl font-bold mb-4">Stay Updated</h3>
-      <p class="text-secondary mb-4">Get the latest video tips and format news.</p>
+      <h3 class="text-xl font-bold mb-4">Learn more about video editing</h3>
       <NewsletterForm form="newsletter" />
     </div>
   </div>

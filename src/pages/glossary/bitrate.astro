@@ -2,34 +2,51 @@
 import Layout from "../../layouts/Layout.astro";
 import NewsletterForm from "../../components/forms/newsletter-form.astro";
 ---
-<Layout title="bitrate" seo={{ page_description: "Learn about bitrate and video formats." }}>
+<Layout title="What is Video Bitrate? | Glossary" seo={{
+  page_description: "Definition of video bitrate. Learn how bitrate controls video file size, the difference between VBR and CBR, and optimal settings.",
+  open_graph_type: "article"
+}}>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="text-sm text-secondary mb-4">
-      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/glossary/" class="hover:text-primary capitalize">glossary</a> &gt; bitrate
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/glossary/" class="hover:text-primary">Glossary</a> &gt; Bitrate
     </div>
-    <h1 class="text-4xl font-bold mb-8 capitalize">bitrate</h1>
+    <h1 class="text-4xl font-bold mb-8">Video Bitrate</h1>
     <div class="prose max-w-none mb-12">
-      <p>Understanding bitrate is essential for working with digital video.</p>
-      <h2>What is bitrate?</h2>
-      <p>This is a detailed explanation of the concept, containing tables and specific numbers verified against primary sources.</p>
+      <p class="lead text-xl text-secondary">
+        <strong>Bitrate</strong> is the amount of data dedicated to a single second of video. It is the single most important factor in determining both the visual quality and the final file size of a video.
+      </p>
 
-      <h3>Key Details</h3>
-      <table>
-        <thead>
-          <tr><th>Feature</th><th>Value</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Type</td><td>Standard</td></tr>
-          <tr><td>Usage</td><td>Common</td></tr>
-        </tbody>
-      </table>
+      <h2>How Bitrate is Measured</h2>
+      <p>
+        Bitrate is typically measured in <strong>Kilobits per second (kbps)</strong> or <strong>Megabits per second (Mbps)</strong>.
+      </p>
+      <p>Note the lowercase "b" (bits), not uppercase "B" (Bytes). There are 8 bits in a Byte. So a video encoded at 8 Mbps (Megabits) takes up exactly 1 MB (Megabyte) of space on your hard drive every second.</p>
 
-      <p>For more related info, see <a href="/reference/">our reference guide</a> or <a href="/glossary/">glossary</a>.</p>
+      <p>You can see exactly how this math works out using our <a href="/calculators/video-file-size">Video File Size Calculator</a>.</p>
+
+      <h2>CBR vs VBR</h2>
+      <p>When encoding a video, you must choose how the bitrate is distributed over time:</p>
+      <ul>
+        <li>
+          <strong><a href="/glossary/cbr">CBR (Constant Bitrate)</a>:</strong> The encoder forces exactly the same amount of data into every single second, regardless of what is happening on screen. Useful for live streaming (Twitch, YouTube Live) where network stability is more important than efficiency.
+        </li>
+        <li>
+          <strong><a href="/glossary/vbr">VBR (Variable Bitrate)</a>:</strong> The encoder gives more data to complex scenes (action, moving water) and less data to simple scenes (a black screen, a static interview). Highly recommended for uploading files to the web to save space.
+        </li>
+      </ul>
+
+      <h2>The Resolution Relationship</h2>
+      <p>
+        A common myth is that changing resolution changes the file size. It doesn't.
+      </p>
+      <p>
+        If you export a 1080p video at 5,000 kbps, and a 4K video at 5,000 kbps, <strong>they will be the exact same file size</strong>. However, the 4K video will look terrible. It has 4 times as many pixels, but the exact same data allowance. The bitrate is spread too thin.
+      </p>
+      <p>Read our guide on <a href="/blog/reduce-file-size">how to reduce file sizes safely</a> for more context.</p>
     </div>
 
     <div class="bg-surface p-8 rounded-lg border border-border">
-      <h3 class="text-xl font-bold mb-4">Stay Updated</h3>
-      <p class="text-secondary mb-4">Get the latest video tips and format news.</p>
+      <h3 class="text-xl font-bold mb-4">Master video terminology</h3>
       <NewsletterForm form="newsletter" />
     </div>
   </div>

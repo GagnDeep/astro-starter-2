@@ -1,16 +1,16 @@
 # STATUS: UPlayVideo
 
 ## Ranked Gap List
-1.  **Thin Calculators:** `bitrate-calculator.astro`, `aspect-ratio.astro`, and `storage-needs.astro` are currently just placeholders and need full vanilla JS logic, verified maths, and no-JS fallbacks.
-2.  **Thin Blog Pages:** The 12 generated blog posts are stubs (~100 words). They need to be expanded to 1,500-2,500 words with tables, tradeoffs, and cited figures. (Starting with top 3).
-3.  **Missing Internal Links:** Most reference/glossary/format pages lack the minimum 2 internal links to other relevant content.
-4.  **Incomplete SEO Metadata:** Not all pages are utilizing `seo: { ... }` fully with unique descriptions.
+1.  **Thin Blog Pages (Remaining 10):** While the top 2 posts were deepened, posts like `video-editing-basics.astro`, `mkv-vs-mp4.astro`, and `reduce-file-size.astro` are still basic stubs needing expansion to 1,500+ words.
+2.  **Thin Taxonomy/Glossary Pages:** Format pages (`webm`, `avi`, `mov`) and Glossary terms (`codec`, `transcoding`) need expansion to include edge cases, common usage tables, and stronger cross-linking.
+3.  **Missing Internal Links:** Ensure the deepened pages link to at least 2 other relevant content pieces (calculators, format pages).
+4.  **Content Auditing:** Double check that `seo` blocks are correctly populated for all deepened pages.
 
 ## Current Progress
 - 60+ pages scaffolded.
-- Global layout, SEO pipeline, and Tailwind CSS variables implemented.
-- Base `VideoPlayer` and `Video File Size Calculator` implemented.
-- Capture forms (Newsletter, Waitlist, Contact) integrated into components.
+- Calculators (Bitrate, Aspect Ratio, Storage Needs) fully implemented with vanilla JS and verified math.
+- Top 2 blog posts (`how-to-compress-video`, `h264-vs-h265`) deepened.
+- Top 2 reference pages (`mp4`, `mkv`) deepened and SEO-optimized.
 
 ## Open [NEEDS CONFIRMATION] Items
-- "How to extract audio from a YouTube video" (Pivot to generic local extraction confirmed by in-browser constraint).
+- None at this time.
