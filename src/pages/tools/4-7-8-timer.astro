@@ -1,0 +1,93 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout title="4-7-8 Breathing Timer">
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6">4-7-8 Breathing Timer</h1>
+    <div class="mb-8">
+      <div class="p-8 bg-slate-50 border border-slate-200 rounded-lg text-center" id="tool-container">
+        <!-- JS-driven interactive pacer goes here -->
+        <div id="pacer-ui" class="hidden">
+           <h2 id="phase-text" class="text-2xl font-bold mb-4 text-[var(--color-primary)]">Inhale</h2>
+           <div id="timer-text" class="text-5xl font-mono mb-8 text-[var(--color-text-main)]">4</div>
+           <button id="start-btn" class="px-6 py-2 bg-[var(--color-primary)] text-white rounded font-medium">Start Timer</button>
+        </div>
+
+        <!-- No-JS fallback -->
+        <noscript>
+          <h2 class="text-xl font-bold mb-4">How to perform 4-7-8 Breathing</h2>
+          <ol class="list-decimal text-left inline-block pl-8 space-y-2">
+            <li>Inhale quietly through the nose for 4 seconds</li>
+            <li>Hold your breath for 7 seconds</li>
+            <li>Exhale completely through the mouth for 8 seconds</li>
+          </ol>
+          <p class="mt-4 text-sm text-gray-600">Enable JavaScript for the interactive visual pacer.</p>
+        </noscript>
+      </div>
+    </div>
+
+    <article class="prose">
+      <h2>The Mechanism Behind 4-7-8</h2>
+      <p>The 4-7-8 breathing technique, popularized by Dr. Andrew Weil, is a "tranquilizer for the nervous system." It forces the mind and body to focus on regulating the breath, rather than replaying unhelpful thoughts when you lie down to sleep.</p>
+
+      <h3>Why these numbers?</h3>
+      <p>The 7-second hold gives the lungs time to maximize oxygen absorption into the bloodstream. The extended 8-second exhale strongly stimulates the vagus nerve (which controls the parasympathetic nervous system), leading to a rapid reduction in heart rate and blood pressure.</p>
+
+      <h3>Result Explanation</h3>
+      <p>Completing 4 cycles takes approximately 76 seconds. This short duration is all that is typically required to shift the nervous system into a relaxed state before sleep onset.</p>
+    </article>
+
+    <div class="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-lg">
+      <h2 class="text-xl font-medium mb-4">Subscribe for more tools</h2>
+      <CaptureForm form="newsletter" submitLabel="Subscribe" />
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // 4-7-8 Breathing Logic
+  const phases = [
+    { name: "Inhale", duration: 4 },
+    { name: "Hold", duration: 7 },
+    { name: "Exhale", duration: 8 }
+  ];
+
+  let currentPhaseIdx = 0;
+  let remainingTime = phases[0].duration;
+  let intervalId: number | null = null;
+
+  const ui = document.getElementById("pacer-ui");
+  const phaseText = document.getElementById("phase-text");
+  const timerText = document.getElementById("timer-text");
+  const startBtn = document.getElementById("start-btn");
+
+  if (ui && phaseText && timerText && startBtn) {
+    ui.classList.remove("hidden");
+
+    startBtn.addEventListener("click", () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+        startBtn.textContent = "Start Timer";
+        currentPhaseIdx = 0;
+        remainingTime = phases[0].duration;
+        phaseText.textContent = phases[0].name;
+        timerText.textContent = remainingTime.toString();
+        return;
+      }
+
+      startBtn.textContent = "Stop Timer";
+      intervalId = window.setInterval(() => {
+        remainingTime -= 1;
+        if (remainingTime <= 0) {
+          currentPhaseIdx = (currentPhaseIdx + 1) % phases.length;
+          remainingTime = phases[currentPhaseIdx].duration;
+          phaseText.textContent = phases[currentPhaseIdx].name;
+        }
+        timerText.textContent = remainingTime.toString();
+      }, 1000);
+    });
+  }
+</script>

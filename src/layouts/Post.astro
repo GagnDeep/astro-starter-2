@@ -2,6 +2,7 @@
 import Layout from "./Layout.astro";
 import PostSummary from "../components/blog/summary.astro";
 import PostHero from "../components/blog/post-hero/post-hero.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
 import { getCollection } from "astro:content";
 
 type Props = {
@@ -44,6 +45,10 @@ const filteredPosts = posts.filter(
         <editable-text data-prop="@content" data-type="block">
           <slot />
         </editable-text>
+      </div>
+      <div class="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-lg">
+        <h2 class="text-xl font-medium mb-4">Get a weekly breathing protocol</h2>
+        <CaptureForm form="newsletter" submitLabel="Subscribe" />
       </div>
     </article>
   </div>

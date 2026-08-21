@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+export async function getStaticPaths() {
+  const techniquesEntries = await getCollection('techniques');
+  return techniquesEntries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title} seo={entry.data.seo}>
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <article class="prose">
+      <Content />
+    </article>
+    <div class="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-lg">
+      <h2 class="text-xl font-medium mb-4">Get a weekly breathing protocol</h2>
+      <CaptureForm form="newsletter" submitLabel="Subscribe" />
+    </div>
+  </main>
+</Layout>

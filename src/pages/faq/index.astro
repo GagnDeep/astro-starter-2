@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout title="FAQ">
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6">Frequently Asked Questions</h1>
+    <article class="prose mb-12">
+      <h2>How many seconds should I inhale for anxiety?</h2>
+      <p>For immediate state shifts downregulating the sympathetic nervous system, extending the exhale is more important than the inhale duration. A common protocol is a 4-second inhale and a 6-to-8-second exhale.</p>
+
+      <h2>Is mouth breathing bad?</h2>
+      <p>Chronic mouth breathing bypasses nasal filtration and warming, and significantly reduces nitric oxide uptake, which is a key vasodilator. Nasal breathing is strongly recommended for baseline respiration.</p>
+    </article>
+    <div class="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-lg">
+      <h2 class="text-xl font-medium mb-4">Have another question?</h2>
+      <CaptureForm form="contact" submitLabel="Ask Question" />
+    </div>
+  </main>
+</Layout>
