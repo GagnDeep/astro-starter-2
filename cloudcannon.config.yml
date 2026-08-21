@@ -167,6 +167,8 @@ collection_groups:
     collections:
       - pages
       - blog
+      - reference
+      - glossary
   - heading: Data
     collections:
       - data

@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Seo from "../../components/seo/seo.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+export async function getStaticPaths() {
+  const references = await getCollection("reference" as any);
+  return references.map((reference: any) => ({
+    params: { slug: reference.id },
+    props: { reference },
+  }));
+}
+
+const { reference } = Astro.props as any;
+const { Content } = await render(reference);
+---
+<Layout title={reference.data.title}>
+  <Seo seo={reference.data.seo || { page_description: reference.data.description, no_index: false }} />
+  <article class="prose max-w-4xl mx-auto py-12 px-4">
+    <h1>{reference.data.title}</h1>
+    <Content />
+
+    <div class="mt-12 p-8 bg-surface border border-secondary rounded-lg not-prose">
+      <h3 class="text-xl font-bold mb-4">Want more insights on {reference.data.title}?</h3>
+      <p class="mb-4">Get actionable strategies delivered weekly.</p>
+      <CaptureForm form="newsletter" submitLabel="Get Updates">
+        <input type="email" name="email" required placeholder="Your email address" class="w-full px-3 py-2 border border-secondary rounded mb-4" />
+      </CaptureForm>
+    </div>
+  </article>
+</Layout>
