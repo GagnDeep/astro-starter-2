@@ -1,0 +1,40 @@
+---
+import PageLayout from "../../layouts/Page.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+import FiberCalculator from "../../components/tools/FiberCalculator";
+import TransitTimeTracker from "../../components/tools/TransitTimeTracker";
+import WaterIntakeCalculator from "../../components/tools/WaterIntakeCalculator";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("tools");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+  }));
+}
+
+if (!Astro.params.slug) {
+  throw new Error("Slug is undefined");
+}
+const entry = await getEntry("tools", Astro.params.slug);
+if (!entry) {
+  throw new Error("Failed to get entry with slug: " + Astro.params.slug);
+}
+const { Content } = await render(entry);
+---
+
+<PageLayout frontmatter={entry.data}>
+  <article class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8 prose prose-lg prose-slate">
+    <Content />
+
+    {entry.id === 'fiber-calculator' && <FiberCalculator client:load />}
+    {entry.id === 'transit-time' && <TransitTimeTracker client:load />}
+    {entry.id === 'water-intake' && <WaterIntakeCalculator client:load />}
+
+    <div class="mt-8 bg-blue-50 border border-blue-100 p-6 rounded-lg text-center">
+      <h3 class="text-xl font-bold text-blue-900 mb-2">Save your results</h3>
+      <p class="text-blue-800 mb-4">Enter your email to receive a detailed breakdown of your {entry.data.title} and a personalized gut health plan.</p>
+      <NewsletterForm form="tools" submitLabel="Send My Results" placeholder="Enter your email" />
+    </div>
+  </article>
+</PageLayout>

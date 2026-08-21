@@ -1,17 +1,20 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Digestine | The Pragmatic Gut Health Solution",
+  "description": "Stop thinking about your stomach. Digestine offers straightforward, effective relief for bloating, irregularity, and gut health without the confusing jargon.",
+  "tagline": "Stop thinking about your stomach. Start living.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
+  "twitter_site": "@digestine",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Digestine — The Pragmatic Gut Health Solution.",
+  "default_author": "Digestine Team",
+  "theme_color": "#1A4331",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Digestine",
     "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "same_as": [
+      "https://twitter.com/digestine",
+      "https://instagram.com/digestine"
+    ]
   }
 }

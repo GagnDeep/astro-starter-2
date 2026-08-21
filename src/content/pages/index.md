@@ -1,79 +1,64 @@
 ---
 _schema: default
-title: Astro Minimal Starter
+title: Digestine | The Pragmatic Gut Health Solution
 seo:
   page_description: >-
-    A starting point for developers looking to build a website with Astro, using
-    Editable Regions in CloudCannon.
+    Stop thinking about your stomach. Digestine offers straightforward, effective relief for bloating, irregularity, and gut health without the confusing jargon.
   canonical_url:
   featured_image:
   featured_image_alt:
   author_twitter_handle:
-  open_graph_type:
+  open_graph_type: website
   no_index: false
 hero_block:
   _name: Hero
-  heading: Astro Minimal Starter
+  heading: Stop thinking about your stomach. Start living.
   subheading: >-
-    A **minimal** starting point for developers looking to build a website with
-    Astro, using Editable Regions in CloudCannon. Create your own copy, and
-    start creating your own components to use in the Visual Editor. 
-
-
-    Once you've explored this minimal starter, consider  taking a look at the
-    [Astro Component
-    Starter](https://github.com/CloudCannon/astro-component-starter) to assist
-    in building out your components.
+    You shouldn't need a PhD in microbiology to feel normal again.
+    Digestine is the pragmatic, science-backed synbiotic designed for real people who just want their digestion to work.
   image:
     image_path: /src/assets/images/transparent-bg/undraw-online-test.svg
-    alt_text: An illustration of someone leaning against a desktop computer monitor.
-  button:
-    text: Get Started
-    link: https://github.com/CloudCannon/astro-starter/
+    alt_text: Abstract illustration of digestive balance.
+  button: null
 content_blocks:
+  - _name: TextBlock
+    heading: Why You're Here
+    content_html: >-
+      <p class="text-xl">Bloating after every meal. Irregularity that dictates your schedule. That sluggish, heavy feeling you just can't shake. We get it.</p><p class="text-xl">Most supplements overcomplicate the solution with "kitchen-sink" formulas or confusing jargon. We focus on what actually works: clinically-studied prebiotics and probiotics, delivered effectively.</p>
   - _name: LeftRight
-    heading: Keep what you need. Delete the rest.
+    heading: A Pragmatic Approach to Gut Health
     text_content: >-
-      This starter aims to get developers building their own site quickly in
-      CloudCannon. It strikes a balance between minimal boilerplate and useful
-      features out of the box:
+      **1. Prep:** We prime the gut environment with targeted prebiotics to feed the good bacteria.
 
+      **2. Seed:** Our spore-based probiotics survive stomach acid to reach the colon intact.
 
-      - Tailwind CSS v4
-
-      - Blog with pagination & tags
-
-      - Visual editing with Editable Regions
-
-      - Header and Footer controls
-
-      - Create and delete pages
-
-      - SEO controls
+      **3. Feed:** We support the production of Short-Chain Fatty Acids (SCFAs) for long-term health.
     image:
       image_path: /src/assets/images/transparent-bg/undraw-hello.svg
-      alt_text: An illustration of someone sitting at a desk with a monitor and books.
+      alt_text: An illustration representing the 3-step process.
     flipped: true
-    button: {}
+    button:
+      text: Learn More
+      link: /learn
+  - _name: TextBlock
+    heading: Take the Guesswork Out
+    content_html: >-
+      <p class="text-xl mb-4">Not sure where to start? Try one of our interactive tools to understand your unique needs.</p>
+      <div class="flex gap-4">
+        <a href="/tools/fiber-calculator" class="inline-block px-6 py-3 bg-primary text-white rounded-md">Fiber Calculator</a>
+        <a href="/tools/transit-time" class="inline-block px-6 py-3 border border-primary text-primary rounded-md">Transit Time Tracker</a>
+      </div>
   - _name: LeftRight
-    heading: You choose your editing experience.
+    heading: Digestine vs. The Rest
     text_content: >-
-      A flexible git-backed CMS that specialises in editing markdown and data
-      files.
+      Tired of paying $80/month for 75 ingredients when you only need 3?
 
-
-      Visual editing allows you to preview your changes live before you save
-      them.
-
-
-      Git-backed means you can keep all your familiar git workflows, while
-      providing an easy-to-understand interface for non-technical editors to
-      collaborate via git.
+      Digestine offers targeted, evidence-based strains without the fluff. No proprietary blends, no hidden fillers.
     image:
       image_path: /src/assets/images/transparent-bg/undraw-startup.svg
-      alt_text: An illustration of someone sitting at a desk.
+      alt_text: An illustration of someone choosing a better path.
     flipped: false
     button:
-      text: CloudCannon Docs
-      link: https://cloudcannon.com/documentation/
+      text: Compare Digestine
+      link: /compare
 ---

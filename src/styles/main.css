@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #1A4331;
+  --color-secondary: #8FA998;
+  --color-accent: #C27357;
+  --color-bg: #F9F8F6;
+  --color-text: #2D3330;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
 /*
  * CASCADE RULE — read before adding CSS to this file.
  *
@@ -24,7 +35,9 @@
 
 @layer base {
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
   }
 
   main {
