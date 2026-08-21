@@ -8,7 +8,12 @@ import sitemapNoindexFilter from "./src/integrations/sitemap-noindex";
 import cssCascadeGuard from "./src/integrations/css-cascade-guard";
 
 // https://astro.build/config
+
 export default defineConfig({
+  image: {
+    domains: ["picsum.photos"],
+    responsiveStyles: true,
+  },
   // The canonical origin of the production site. Everything SEO-related
   // (canonicals, Open Graph URLs, sitemap, robots.txt, RSS) derives from this,
   // so it is the single most important value to change for a new project.
@@ -39,10 +44,7 @@ export default defineConfig({
     cssCascadeGuard(),
   ],
 
-  image: {
-    // Modern formats by default; Astro falls back automatically.
-    responsiveStyles: true,
-  },
+
 
   vite: {
     plugins: [tailwindcss()],

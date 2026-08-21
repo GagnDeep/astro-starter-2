@@ -1,0 +1,32 @@
+---
+import Layout from "./Layout.astro";
+import type { SEOProps } from "./Layout.astro";
+
+export interface Props {
+  title: string;
+  description?: string;
+  hydration_index?: number;
+  seo?: SEOProps;
+}
+
+const { title, description, hydration_index, seo } = Astro.props;
+---
+<Layout title={title} seo={seo}>
+  <article class="max-w-4xl mx-auto px-4 py-12 prose prose-slate">
+    <header class="mb-8 flex items-center justify-between border-b pb-8">
+      <div>
+        <h1 class="text-4xl font-bold mb-2">{title}</h1>
+        {description && <p class="text-xl text-slate-600 m-0">{description}</p>}
+      </div>
+      {hydration_index && (
+        <div class="text-center p-4 bg-primary text-white rounded-lg min-w-32">
+          <div class="text-3xl font-bold">{hydration_index}</div>
+          <div class="text-xs uppercase tracking-wider">Hydration Index</div>
+        </div>
+      )}
+    </header>
+    <div class="mb-12">
+      <slot />
+    </div>
+  </article>
+</Layout>

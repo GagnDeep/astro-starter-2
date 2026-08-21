@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const beverageEntries = await getCollection("beverages");
+---
+<Layout title="Beverage Hydration Index">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8">Beverage Hydration Index</h1>
+    <p class="text-xl text-slate-600 mb-12">Find out how different drinks compare to water (Index: 100).</p>
+
+    <div class="space-y-4">
+      {beverageEntries.sort((a,b) => (b.data.hydration_index || 0) - (a.data.hydration_index || 0)).map(entry => (
+        <a href={`/beverages/${entry.id}/`} class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg hover:shadow-sm transition-shadow">
+          <div>
+            <h2 class="text-lg font-bold text-slate-800">{entry.data.title}</h2>
+          </div>
+          <div class="font-mono font-bold text-xl text-primary bg-slate-100 px-3 py-1 rounded">
+            {entry.data.hydration_index}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
