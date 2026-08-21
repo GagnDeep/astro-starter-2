@@ -1,0 +1,213 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Dollar Cost Averaging Calculator: See the math behind investing consistently over time.",
+};
+
+let result: null | { shares: number, averageCost: number, currentPrice: number, totalInvested: number, currentValue: number, profit: number } = null;
+let error: string | null = null;
+let initialParams = { monthlyInvestment: 500, months: 12, startPrice: 100, endPrice: 120, volatility: 10 };
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const monthlyInvestment = parseFloat(data.get("monthlyInvestment")?.toString() || "0");
+    const months = parseInt(data.get("months")?.toString() || "0", 10);
+    const startPrice = parseFloat(data.get("startPrice")?.toString() || "0");
+    const endPrice = parseFloat(data.get("endPrice")?.toString() || "0");
+
+    initialParams = { monthlyInvestment, months, startPrice, endPrice, volatility: 10 };
+
+    let totalShares = 0;
+    let totalInvested = 0;
+    let currentPrice = startPrice;
+
+    // Simulate simple linear price movement for demonstration
+    const priceChangePerMonth = (endPrice - startPrice) / Math.max(months - 1, 1);
+
+    for (let i = 0; i < months; i++) {
+      totalShares += monthlyInvestment / currentPrice;
+      totalInvested += monthlyInvestment;
+      currentPrice += priceChangePerMonth;
+    }
+
+    result = {
+      shares: totalShares,
+      averageCost: totalInvested / totalShares,
+      currentPrice: endPrice,
+      totalInvested: totalInvested,
+      currentValue: totalShares * endPrice,
+      profit: (totalShares * endPrice) - totalInvested
+    };
+  } catch (e) {
+    error = "Please enter valid numbers.";
+  }
+}
+---
+
+<Layout title="Dollar Cost Averaging Calculator | Institute of Investing" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4">Dollar Cost Averaging (DCA) Simulator</h1>
+    <p class="text-xl text-gray-600 mb-8">See how investing consistently lowers your average cost per share.</p>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <form method="POST" class="space-y-4 bg-gray-50 p-6 rounded-lg" id="dca-form">
+          {error && <div class="bg-red-100 text-red-700 p-3 rounded" role="alert">{error}</div>}
+
+          <div>
+            <label class="block font-semibold mb-1">Monthly Investment ($)</label>
+            <input type="number" name="monthlyInvestment" value={initialParams.monthlyInvestment} required min="1" class="w-full px-4 py-2 border rounded" />
+          </div>
+
+          <div>
+            <label class="block font-semibold mb-1">Number of Months</label>
+            <input type="number" name="months" value={initialParams.months} required min="2" max="600" class="w-full px-4 py-2 border rounded" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block font-semibold mb-1">Starting Price ($)</label>
+              <input type="number" name="startPrice" value={initialParams.startPrice} required min="1" class="w-full px-4 py-2 border rounded" />
+            </div>
+            <div>
+              <label class="block font-semibold mb-1">Ending Price ($)</label>
+              <input type="number" name="endPrice" value={initialParams.endPrice} required min="1" class="w-full px-4 py-2 border rounded" />
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded mt-4 hover:bg-blue-700 transition">
+            Simulate DCA
+          </button>
+        </form>
+      </div>
+
+      <div class="bg-gray-100 p-8 rounded-lg flex flex-col justify-center" id="dca-result" aria-live="polite">
+        {result ? (
+          <div class="space-y-6">
+            <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-300 pb-6">
+               <div>
+                 <div class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Average Cost</div>
+                 <div class="text-2xl font-bold">${result.averageCost.toFixed(2)}</div>
+               </div>
+               <div>
+                 <div class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Final Price</div>
+                 <div class="text-2xl font-bold">${result.currentPrice.toFixed(2)}</div>
+               </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-600">Total Invested:</span>
+                <span class="font-bold">${result.totalInvested.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+              </div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-600">Current Value:</span>
+                <span class="font-bold">${result.currentValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+              </div>
+              <div class="flex justify-between mt-4 pt-4 border-t border-gray-300">
+                <span class="text-gray-800 font-bold">Total Profit/Loss:</span>
+                <span class={`font-bold ${result.profit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {result.profit >= 0 ? '+' : ''}${result.profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                </span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div class="text-center text-gray-500">
+            <p>Run the simulation to see how your average cost compares to the actual price of the asset over time.</p>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="mt-16 prose prose-blue max-w-none border-t pt-8">
+      <h2>The psychology of DCA</h2>
+      <p>Dollar Cost Averaging (DCA) means investing the same amount of money at regular intervals, regardless of what the market is doing.</p>
+      <p>Mathematically, if you have a lump sum, investing it all at once usually beats DCA because the market goes up more often than it goes down. However, <strong>psychologically</strong>, DCA is brilliant. It forces you to buy more shares when prices are low, and prevents you from trying to "time the market."</p>
+    </div>
+
+    <!-- Capture Form -->
+    <div class="bg-blue-50 p-8 rounded-lg mt-12 text-center">
+      <h3 class="text-2xl font-bold mb-2">Master the basics</h3>
+      <p class="text-gray-700 mb-6">Join our newsletter to learn the fundamental strategies of investing.</p>
+      <div class="max-w-md mx-auto">
+        <CaptureForm form="newsletter" submitLabel="Subscribe">
+          <label class="block mb-4">
+            <span class="sr-only">Email Address</span>
+            <input type="email" name="email" required placeholder="your@email.com" class="w-full px-4 py-2 border rounded" />
+          </label>
+        </CaptureForm>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const form = document.getElementById('dca-form') as HTMLFormElement;
+  const resultContainer = document.getElementById('dca-result');
+
+  if (form && resultContainer) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const monthlyInvestment = parseFloat(formData.get('monthlyInvestment') as string);
+      const months = parseInt(formData.get('months') as string, 10);
+      const startPrice = parseFloat(formData.get('startPrice') as string);
+      const endPrice = parseFloat(formData.get('endPrice') as string);
+
+      let totalShares = 0;
+      let totalInvested = 0;
+      let currentPrice = startPrice;
+      const priceChangePerMonth = (endPrice - startPrice) / Math.max(months - 1, 1);
+
+      for (let i = 0; i < months; i++) {
+        totalShares += monthlyInvestment / currentPrice;
+        totalInvested += monthlyInvestment;
+        currentPrice += priceChangePerMonth;
+      }
+
+      const averageCost = totalInvested / totalShares;
+      const currentValue = totalShares * endPrice;
+      const profit = currentValue - totalInvested;
+
+      const profitClass = profit >= 0 ? 'text-green-600' : 'text-red-600';
+      const profitSign = profit >= 0 ? '+' : '';
+
+      resultContainer.innerHTML = `
+        <div class="space-y-6">
+          <div class="grid grid-cols-2 gap-4 text-center border-b border-gray-300 pb-6">
+             <div>
+               <div class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Average Cost</div>
+               <div class="text-2xl font-bold">$${averageCost.toFixed(2)}</div>
+             </div>
+             <div>
+               <div class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Final Price</div>
+               <div class="text-2xl font-bold">$${endPrice.toFixed(2)}</div>
+             </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-600">Total Invested:</span>
+              <span class="font-bold">$${totalInvested.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+            </div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-600">Current Value:</span>
+              <span class="font-bold">$${currentValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+            </div>
+            <div class="flex justify-between mt-4 pt-4 border-t border-gray-300">
+              <span class="text-gray-800 font-bold">Total Profit/Loss:</span>
+              <span class="font-bold ${profitClass}">
+                ${profitSign}$${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+              </span>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+</script>

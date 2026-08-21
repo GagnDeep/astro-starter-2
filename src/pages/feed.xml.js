@@ -1,18 +1,19 @@
-import site from '../../data/site.json';
-import { getCollection } from 'astro:content';
-
 import rss from '@astrojs/rss';
-const posts = await getCollection('blog');
+import { getCollection } from 'astro:content';
+import siteData from '../../data/site.json';
 
-export async function GET() {
+export async function GET(context) {
+  const blog = await getCollection('blog');
+
   return rss({
-    title: site.site_title,
-    description: site.description,
-    site: 'https://tiny-jackal.cloudvent.net',
-    items: posts.map((post) => ({
-      link: `/blog/${post.id}`,
+    title: siteData.site_title,
+    description: siteData.description,
+    site: context.site,
+    items: blog.map((post) => ({
       title: post.data.title,
-      pubDate: post.data.post_hero.date,
+      pubDate: post.data.date ? new Date(post.data.date) : new Date(),
+      description: post.data.seo?.page_description || '',
+      link: `/blog/${post.id}/`,
     })),
     customData: `<language>en-us</language>`,
   });

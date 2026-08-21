@@ -1,0 +1,191 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Calculate how compound interest can grow your investments over time.",
+};
+
+// Handle no-JS form submission fallback
+let result: null | { futureValue: number, totalContributions: number, totalInterest: number } = null;
+let error: string | null = null;
+let initialParams = { principal: 1000, contribution: 100, years: 30, rate: 7 };
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const principal = parseFloat(data.get("principal")?.toString() || "0");
+    const contribution = parseFloat(data.get("contribution")?.toString() || "0");
+    const years = parseInt(data.get("years")?.toString() || "0", 10);
+    const rate = parseFloat(data.get("rate")?.toString() || "0") / 100;
+
+    initialParams = { principal, contribution, years, rate: rate * 100 };
+
+    if (isNaN(principal) || isNaN(contribution) || isNaN(years) || isNaN(rate)) {
+      throw new Error("Invalid input");
+    }
+
+    let futureValue = principal;
+    let totalContributions = principal;
+
+    // Annually compounded
+    for (let i = 0; i < years; i++) {
+      futureValue = (futureValue + (contribution * 12)) * (1 + rate);
+      totalContributions += (contribution * 12);
+    }
+
+    result = {
+      futureValue: Math.round(futureValue),
+      totalContributions: Math.round(totalContributions),
+      totalInterest: Math.round(futureValue - totalContributions)
+    };
+  } catch (e) {
+    error = "Please enter valid numbers.";
+  }
+}
+---
+
+<Layout title="Compound Interest Calculator | Institute of Investing" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4">Compound Interest Calculator</h1>
+    <p class="text-xl text-gray-600 mb-8">Calculate how your investments grow over time.</p>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <form method="POST" class="space-y-4 bg-gray-50 p-6 rounded-lg" id="calc-form">
+          {error && <div class="bg-red-100 text-red-700 p-3 rounded" role="alert">{error}</div>}
+
+          <div>
+            <label class="block font-semibold mb-1">Initial Investment ($)</label>
+            <input type="number" name="principal" value={initialParams.principal} required min="0" class="w-full px-4 py-2 border rounded" />
+          </div>
+
+          <div>
+            <label class="block font-semibold mb-1">Monthly Contribution ($)</label>
+            <input type="number" name="contribution" value={initialParams.contribution} required min="0" class="w-full px-4 py-2 border rounded" />
+          </div>
+
+          <div>
+            <label class="block font-semibold mb-1">Years to Grow</label>
+            <input type="number" name="years" value={initialParams.years} required min="1" max="100" class="w-full px-4 py-2 border rounded" />
+          </div>
+
+          <div>
+            <label class="block font-semibold mb-1">Expected Annual Return (%)</label>
+            <input type="number" name="rate" value={initialParams.rate} required min="0" max="30" step="0.1" class="w-full px-4 py-2 border rounded" />
+            <p class="text-sm text-gray-500 mt-1">Historically, the S&P 500 averages 7-10% per year.</p>
+          </div>
+
+          <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition">
+            Calculate
+          </button>
+        </form>
+      </div>
+
+      <div class="bg-blue-900 text-white p-8 rounded-lg flex flex-col justify-center" id="result-container" aria-live="polite">
+        {result ? (
+          <div class="text-center space-y-6">
+            <div>
+              <div class="text-blue-200 text-sm font-semibold uppercase tracking-wider">Future Value</div>
+              <div class="text-5xl font-bold">${result.futureValue.toLocaleString()}</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 border-t border-blue-700 pt-6">
+              <div>
+                <div class="text-blue-200 text-xs uppercase tracking-wider">Total Contributions</div>
+                <div class="text-xl font-semibold">${result.totalContributions.toLocaleString()}</div>
+              </div>
+              <div>
+                <div class="text-blue-200 text-xs uppercase tracking-wider">Total Interest</div>
+                <div class="text-xl font-semibold text-green-400">${result.totalInterest.toLocaleString()}</div>
+              </div>
+            </div>
+
+            <p class="text-sm text-blue-200 mt-4">
+              Your money grew by {Math.round((result.totalInterest / result.totalContributions) * 100)}% through the power of compounding.
+            </p>
+          </div>
+        ) : (
+          <div class="text-center text-blue-200">
+            <p>Enter your numbers and click calculate to see your future value.</p>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Methodology -->
+    <div class="mt-16 prose prose-blue max-w-none border-t pt-8">
+      <h2>How does this work?</h2>
+      <p>This calculator uses the standard compound interest formula, assuming contributions are made at the end of each month and compounded annually. It does not account for taxes or inflation.</p>
+
+      <p>The math behind compound interest is often cited as the most powerful force in finance. Because you earn interest not just on your original money, but also on the interest that money has already earned, your wealth grows on an exponential curve rather than a linear line.</p>
+    </div>
+
+    <!-- Capture Form -->
+    <div class="bg-gray-50 p-8 rounded-lg mt-12 text-center">
+      <h3 class="text-2xl font-bold mb-2">Want to learn how to hit that 7% return?</h3>
+      <p class="text-gray-700 mb-6">Join our newsletter to learn how to buy low-cost index funds safely.</p>
+      <div class="max-w-md mx-auto">
+        <CaptureForm form="newsletter" submitLabel="Subscribe">
+          <label class="block mb-4">
+            <span class="sr-only">Email Address</span>
+            <input type="email" name="email" required placeholder="your@email.com" class="w-full px-4 py-2 border rounded border-gray-300" />
+          </label>
+        </CaptureForm>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Progressive enhancement for client-side calculation
+  const form = document.getElementById('calc-form') as HTMLFormElement;
+  const resultContainer = document.getElementById('result-container');
+
+  if (form && resultContainer) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const principal = parseFloat(formData.get('principal') as string);
+      const contribution = parseFloat(formData.get('contribution') as string);
+      const years = parseInt(formData.get('years') as string, 10);
+      const rate = parseFloat(formData.get('rate') as string) / 100;
+
+      let futureValue = principal;
+      let totalContributions = principal;
+
+      for (let i = 0; i < years; i++) {
+        futureValue = (futureValue + (contribution * 12)) * (1 + rate);
+        totalContributions += (contribution * 12);
+      }
+
+      const totalInterest = futureValue - totalContributions;
+      const percentGrowth = Math.round((totalInterest / totalContributions) * 100);
+
+      resultContainer.innerHTML = `
+        <div class="text-center space-y-6">
+          <div>
+            <div class="text-blue-200 text-sm font-semibold uppercase tracking-wider">Future Value</div>
+            <div class="text-5xl font-bold">$${Math.round(futureValue).toLocaleString()}</div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 border-t border-blue-700 pt-6">
+            <div>
+              <div class="text-blue-200 text-xs uppercase tracking-wider">Total Contributions</div>
+              <div class="text-xl font-semibold">$${Math.round(totalContributions).toLocaleString()}</div>
+            </div>
+            <div>
+              <div class="text-blue-200 text-xs uppercase tracking-wider">Total Interest</div>
+              <div class="text-xl font-semibold text-green-400">$${Math.round(totalInterest).toLocaleString()}</div>
+            </div>
+          </div>
+
+          <p class="text-sm text-blue-200 mt-4">
+            Your money grew by ${percentGrowth}% through the power of compounding.
+          </p>
+        </div>
+      `;
+    });
+  }
+</script>

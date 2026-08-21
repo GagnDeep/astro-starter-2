@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  page_description: "Structured courses to take you from absolute beginner to confident investor.",
+};
+---
+
+<Layout title="Courses & Pricing | Institute of Investing" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-center mb-4">Courses & Pricing</h1>
+    <p class="text-xl text-center text-gray-600 mb-12">Stop guessing. Start investing with a structured plan.</p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Free Tier -->
+      <div class="border rounded-lg p-8">
+        <h2 class="text-2xl font-bold mb-2">The Library</h2>
+        <div class="text-3xl font-bold mb-6">Free</div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center">✓ Access to all reference guides</li>
+          <li class="flex items-center">✓ Access to all financial tools</li>
+          <li class="flex items-center">✓ Weekly newsletter</li>
+        </ul>
+        <a href="/reference" class="block w-full text-center border-2 border-blue-600 text-blue-600 font-bold py-3 rounded hover:bg-blue-50">Browse the Library</a>
+      </div>
+
+      <!-- Paid Course -->
+      <div class="border-2 border-blue-600 rounded-lg p-8 relative shadow-lg">
+        <div class="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 text-sm font-bold rounded-bl-lg rounded-tr-md">Most Popular</div>
+        <h2 class="text-2xl font-bold mb-2">7-Day First Investment Sprint</h2>
+        <div class="text-3xl font-bold mb-6">$49</div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center">✓ Step-by-step video tutorials</li>
+          <li class="flex items-center">✓ Broker selection guide</li>
+          <li class="flex items-center">✓ First-purchase walkthrough</li>
+          <li class="flex items-center">✓ Portfolio rebalancing templates</li>
+          <li class="flex items-center">✓ Lifetime access</li>
+        </ul>
+        <button class="block w-full text-center bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700">Enroll Now</button>
+      </div>
+    </div>
+  </main>
+</Layout>

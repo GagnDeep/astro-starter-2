@@ -1,0 +1,221 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Calculate how much fund fees (expense ratios) cost you over time.",
+};
+
+let result: null | { lowFeeTotal: number, highFeeTotal: number, difference: number, years: number } = null;
+let error: string | null = null;
+let initialParams = { investment: 10000, contribution: 500, years: 30, returnRate: 8, lowFee: 0.04, highFee: 1.0 };
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const investment = parseFloat(data.get("investment")?.toString() || "0");
+    const contribution = parseFloat(data.get("contribution")?.toString() || "0");
+    const years = parseInt(data.get("years")?.toString() || "0", 10);
+    const returnRate = parseFloat(data.get("returnRate")?.toString() || "0") / 100;
+    const lowFee = parseFloat(data.get("lowFee")?.toString() || "0") / 100;
+    const highFee = parseFloat(data.get("highFee")?.toString() || "0") / 100;
+
+    initialParams = { investment, contribution, years, returnRate: returnRate * 100, lowFee: lowFee * 100, highFee: highFee * 100 };
+
+    let lowVal = investment;
+    let highVal = investment;
+
+    for (let i = 0; i < years; i++) {
+      lowVal = (lowVal + (contribution * 12)) * (1 + (returnRate - lowFee));
+      highVal = (highVal + (contribution * 12)) * (1 + (returnRate - highFee));
+    }
+
+    result = {
+      lowFeeTotal: Math.round(lowVal),
+      highFeeTotal: Math.round(highVal),
+      difference: Math.round(lowVal - highVal),
+      years
+    };
+  } catch (e) {
+    error = "Please enter valid numbers.";
+  }
+}
+---
+
+<Layout title="Expense Ratio Calculator | Institute of Investing" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4">Expense Ratio Calculator</h1>
+    <p class="text-xl text-gray-600 mb-8">See exactly how much a 1% fee costs you over decades.</p>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <form method="POST" class="space-y-4 bg-gray-50 p-6 rounded-lg" id="fee-form">
+          {error && <div class="bg-red-100 text-red-700 p-3 rounded" role="alert">{error}</div>}
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block font-semibold mb-1">Initial ($)</label>
+              <input type="number" name="investment" value={initialParams.investment} required min="0" class="w-full px-4 py-2 border rounded" />
+            </div>
+            <div>
+              <label class="block font-semibold mb-1">Monthly ($)</label>
+              <input type="number" name="contribution" value={initialParams.contribution} required min="0" class="w-full px-4 py-2 border rounded" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block font-semibold mb-1">Years</label>
+              <input type="number" name="years" value={initialParams.years} required min="1" max="100" class="w-full px-4 py-2 border rounded" />
+            </div>
+            <div>
+              <label class="block font-semibold mb-1">Market Return (%)</label>
+              <input type="number" name="returnRate" value={initialParams.returnRate} required min="0" max="20" step="0.1" class="w-full px-4 py-2 border rounded" />
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-gray-200 mt-4">
+            <h3 class="font-bold mb-4">Compare Funds</h3>
+
+            <div class="mb-4">
+              <label class="block font-semibold mb-1 text-green-700">Low-Cost Index Fund Fee (%)</label>
+              <input type="number" name="lowFee" value={initialParams.lowFee} required min="0" step="0.01" class="w-full px-4 py-2 border rounded border-green-300" />
+            </div>
+
+            <div>
+              <label class="block font-semibold mb-1 text-red-700">Active Mutual Fund Fee (%)</label>
+              <input type="number" name="highFee" value={initialParams.highFee} required min="0" step="0.01" class="w-full px-4 py-2 border rounded border-red-300" />
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded mt-4 hover:bg-blue-700 transition">
+            Calculate Fees
+          </button>
+        </form>
+      </div>
+
+      <div class="bg-gray-100 p-8 rounded-lg flex flex-col justify-center" id="fee-result" aria-live="polite">
+        {result ? (
+          <div class="space-y-6">
+            <div>
+              <div class="text-gray-500 text-sm font-semibold uppercase tracking-wider mb-1">You lose:</div>
+              <div class="text-4xl font-bold text-red-600">${result.difference.toLocaleString()}</div>
+              <div class="text-sm text-gray-600 mt-1">to fees and lost compounding over {result.years} years.</div>
+            </div>
+
+            <div class="border-t border-gray-300 pt-6 space-y-4">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-semibold text-green-700">Index Fund Total:</span>
+                  <span class="font-bold">${result.lowFeeTotal.toLocaleString()}</span>
+                </div>
+                <div class="w-full bg-gray-300 rounded-full h-2">
+                  <div class="bg-green-600 h-2 rounded-full" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-semibold text-red-700">Active Fund Total:</span>
+                  <span class="font-bold">${result.highFeeTotal.toLocaleString()}</span>
+                </div>
+                <div class="w-full bg-gray-300 rounded-full h-2">
+                  <div class="bg-red-500 h-2 rounded-full" style={`width: ${(result.highFeeTotal / result.lowFeeTotal) * 100}%`}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div class="text-center text-gray-500">
+            <p>Enter the fees of two different funds to see how much they impact your wealth over time.</p>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Methodology -->
+    <div class="mt-16 prose prose-blue max-w-none border-t pt-8">
+      <h2>Why are fees so important?</h2>
+      <p>A 1% fee might sound tiny, but it doesn't just take 1% of your final total. Because it is taken out <em>every single year</em>, it permanently removes money that would have otherwise compounded for decades.</p>
+
+      <p>As John Bogle, founder of Vanguard, famously said: "In investing, you get what you don't pay for."</p>
+    </div>
+
+    <!-- Capture Form -->
+    <div class="bg-blue-50 p-8 rounded-lg mt-12 text-center">
+      <h3 class="text-2xl font-bold mb-2">Stop paying Wall Street.</h3>
+      <p class="text-gray-700 mb-6">Learn how to build a low-cost portfolio yourself with our free weekly newsletter.</p>
+      <div class="max-w-md mx-auto">
+        <CaptureForm form="newsletter" submitLabel="Subscribe">
+          <label class="block mb-4">
+            <span class="sr-only">Email Address</span>
+            <input type="email" name="email" required placeholder="your@email.com" class="w-full px-4 py-2 border rounded" />
+          </label>
+        </CaptureForm>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Progressive enhancement for client-side calculation
+  const form = document.getElementById('fee-form') as HTMLFormElement;
+  const resultContainer = document.getElementById('fee-result');
+
+  if (form && resultContainer) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const investment = parseFloat(formData.get('investment') as string);
+      const contribution = parseFloat(formData.get('contribution') as string);
+      const years = parseInt(formData.get('years') as string, 10);
+      const returnRate = parseFloat(formData.get('returnRate') as string) / 100;
+      const lowFee = parseFloat(formData.get('lowFee') as string) / 100;
+      const highFee = parseFloat(formData.get('highFee') as string) / 100;
+
+      let lowVal = investment;
+      let highVal = investment;
+
+      for (let i = 0; i < years; i++) {
+        lowVal = (lowVal + (contribution * 12)) * (1 + (returnRate - lowFee));
+        highVal = (highVal + (contribution * 12)) * (1 + (returnRate - highFee));
+      }
+
+      const difference = lowVal - highVal;
+      const percentLeft = (highVal / lowVal) * 100;
+
+      resultContainer.innerHTML = `
+        <div class="space-y-6">
+          <div>
+            <div class="text-gray-500 text-sm font-semibold uppercase tracking-wider mb-1">You lose:</div>
+            <div class="text-4xl font-bold text-red-600">$${Math.round(difference).toLocaleString()}</div>
+            <div class="text-sm text-gray-600 mt-1">to fees and lost compounding over ${years} years.</div>
+          </div>
+
+          <div class="border-t border-gray-300 pt-6 space-y-4">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold text-green-700">Index Fund Total:</span>
+                <span class="font-bold">$${Math.round(lowVal).toLocaleString()}</span>
+              </div>
+              <div class="w-full bg-gray-300 rounded-full h-2">
+                <div class="bg-green-600 h-2 rounded-full" style="width: 100%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold text-red-700">Active Fund Total:</span>
+                <span class="font-bold">$${Math.round(highVal).toLocaleString()}</span>
+              </div>
+              <div class="w-full bg-gray-300 rounded-full h-2">
+                <div class="bg-red-500 h-2 rounded-full" style="width: ${percentLeft}%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+</script>

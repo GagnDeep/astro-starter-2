@@ -1,5 +1,36 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from '../layouts/Layout.astro';
+import CaptureForm from '../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "About the Institute of Investing: The calm, objective classroom for the first-time investor.",
+};
 ---
 
-<AboutPage />
+<Layout title="About Us | Institute of Investing" seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-12 prose prose-blue">
+    <h1 class="text-4xl font-bold mb-8">About the Institute of Investing</h1>
+
+    <p class="text-xl">Our mission is simple: to provide the calm, objective classroom for the first-time investor.</p>
+
+    <h2>The Problem</h2>
+    <p>The internet is full of "investing advice." But most of it is noise. It's either aggressively selling you high-risk stock picks, pushing you into complex trading strategies, or burying you in academic jargon that assumes you already have an MBA.</p>
+
+    <h2>Our Approach</h2>
+    <p>We believe investing doesn't have to be a gamble. In fact, good investing is remarkably boring. The data shows that the vast majority of professionals cannot consistently beat the market. Therefore, the best strategy for almost everyone is to buy the entire market through low-cost index funds and hold them for a very long time.</p>
+
+    <p>We don't sell stock picks. We don't promise you'll get rich quick. We don't use hype words. We sell financial literacy and a structural understanding of how wealth is actually built.</p>
+
+    <h2>Join the Classroom</h2>
+    <div class="not-prose bg-blue-50 p-6 rounded-lg my-8">
+      <h3 class="text-xl font-bold mb-2">Get our free weekly lesson</h3>
+      <p class="mb-4 text-sm text-gray-700">One clear, actionable concept sent to your inbox every Tuesday.</p>
+      <CaptureForm form="newsletter" submitLabel="Subscribe">
+        <label class="block mb-4">
+          <span class="sr-only">Email</span>
+          <input type="email" name="email" required placeholder="your@email.com" class="w-full px-4 py-2 border rounded" />
+        </label>
+      </CaptureForm>
+    </div>
+  </main>
+</Layout>

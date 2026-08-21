@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+
+// Convert absolute to relative path if starting with /src/assets
+let resolvedImage: any = null;
+if (post.data.image && post.data.image.startsWith('/src/assets/')) {
+  try {
+    const images = import.meta.glob('/src/assets/images/**/*.{jpeg,jpg,png,gif,webp,svg}');
+    const imagePath = post.data.image;
+    if (images[imagePath]) {
+      resolvedImage = images[imagePath]();
+    }
+  } catch (e) {
+    console.error("Failed to load image", post.data.image);
+  }
+}
+---
+
+<article class="flex flex-col gap-4 border p-4 rounded hover:shadow-md transition">
+  <a href={`/blog/${post.id}/`} class="block group">
+    {resolvedImage ? (
+       <div class="aspect-video w-full overflow-hidden bg-gray-100 rounded mb-4">
+         <Image src={resolvedImage as any} alt={post.data.image_alt || ""} class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+       </div>
+    ) : post.data.image ? (
+       <div class="aspect-video w-full overflow-hidden bg-gray-100 rounded mb-4">
+         <img src={post.data.image} alt={post.data.image_alt || ""} class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" />
+       </div>
+    ) : null}
+    <h3 class="text-xl font-bold group-hover:text-blue-600 transition">{post.data.title}</h3>
+  </a>
+  <div class="text-sm text-gray-500 flex gap-2">
+    {post.data.date && <time datetime={new Date(post.data.date).toISOString()}>{new Date(post.data.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>}
+    {post.data.author && <span>· {post.data.author}</span>}
+  </div>
+  <p class="text-gray-700 line-clamp-3">{post.data.seo?.page_description}</p>
+</article>

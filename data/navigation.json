@@ -1,48 +1,56 @@
 {
   "header": {
     "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Institute of Investing logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/reference/",
+        "text": "Basics"
+      },
+      {
+        "link": "/taxonomy/",
+        "text": "Strategies"
+      },
+      {
+        "link": "/tools/",
+        "text": "Tools"
       },
       {
         "link": "/blog/",
-        "text": "Blog"
+        "text": "Articles"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "link": "/pricing/",
+        "text": "Courses"
       }
     ]
   },
   "footer": {
     "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Institute of Investing logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Institute of Investing. All rights reserved.",
     "links": [
+      {
+        "link": "/about/",
+        "text": "About Us"
+      },
+      {
+        "link": "/faq/",
+        "text": "FAQ"
+      },
+      {
+        "link": "/glossary/",
+        "text": "Glossary"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/legal/",
+        "text": "Legal"
       }
     ]
   }
