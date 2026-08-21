@@ -1,0 +1,142 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Seo from "../../components/seo/seo.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = { page_description: "Calculate your mortgage payoff with extra payments.", no_index: false };
+---
+<Layout title="Mortgage Payoff Calculator">
+  <Seo seo={seo} />
+  <div class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-4">Mortgage Payoff Calculator</h1>
+    <p class="text-xl mb-8">See exactly how much interest you save by making extra principal payments.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="md:col-span-1 bg-surface p-6 rounded-lg border border-secondary">
+        <h2 class="text-xl font-bold mb-4">Inputs</h2>
+        <form id="mortgageForm" class="space-y-4">
+          <noscript>
+            <div class="p-4 bg-yellow-50 text-yellow-900 border border-yellow-200 rounded mb-4">
+              <h3 class="font-bold">Interactive Calculator Requires JavaScript</h3>
+              <p class="mb-2">Since JavaScript is disabled, you can calculate this manually using the following method:</p>
+
+              <p><strong>Method:</strong> The standard mortgage payment is calculated as <code>M = P[r(1+r)^n] / [(1+r)^n - 1]</code>. To find your new payoff time, add your extra payment to <code>M</code> and calculate how many months it takes for the principal balance to reach zero.</p>
+              <ul class="list-disc ml-4 mt-2">
+                <li><code>P</code> = Loan Amount</li>
+                <li><code>r</code> = Monthly Interest Rate</li>
+                <li><code>n</code> = Total Months (Years &times; 12)</li>
+              </ul>
+
+            </div>
+          </noscript>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Loan Amount ($)</label>
+            <input type="number" id="loanAmount" class="w-full px-3 py-2 border border-secondary rounded" value="300000" min="0" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Interest Rate (%)</label>
+            <input type="number" id="interestRate" class="w-full px-3 py-2 border border-secondary rounded" value="6.5" min="0" step="0.1" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Loan Term (Years)</label>
+            <input type="number" id="loanTerm" class="w-full px-3 py-2 border border-secondary rounded" value="30" min="1" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Extra Monthly Payment ($)</label>
+            <input type="number" id="extraPayment" class="w-full px-3 py-2 border border-secondary rounded" value="200" min="0" />
+          </div>
+        </form>
+      </div>
+
+      <div class="md:col-span-2 bg-surface p-6 rounded-lg border border-secondary">
+        <h2 class="text-xl font-bold mb-4">Payoff Results</h2>
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="p-4 border border-secondary rounded">
+            <div class="text-sm text-secondary mb-1">Interest Saved</div>
+            <div id="interestSaved" class="text-3xl font-bold text-primary">$0.00</div>
+          </div>
+          <div class="p-4 border border-secondary rounded">
+            <div class="text-sm text-secondary mb-1">Time Saved</div>
+            <div id="timeSaved" class="text-3xl font-bold text-primary">0 years</div>
+          </div>
+        </div>
+
+        <div class="prose max-w-none mb-8">
+          <p>By adding $<span id="outExtraPayment">200</span> to your monthly payment, you will pay off your mortgage <span id="outTimeSavedText">0 years</span> earlier.</p>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-secondary">
+          <h3 class="text-lg font-bold mb-4">Email these results</h3>
+          <CaptureForm form="quote" submitLabel="Send Report">
+             <input type="hidden" name="tool" value="Mortgage Payoff" />
+             <input type="email" name="email" required placeholder="Your email address" class="w-full px-3 py-2 border border-secondary rounded mb-4" />
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function formatCurrency(num: number) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+  }
+
+  function calculate() {
+    const P = parseFloat((document.getElementById('loanAmount') as HTMLInputElement).value) || 0;
+    const rate = parseFloat((document.getElementById('interestRate') as HTMLInputElement).value) || 0;
+    const years = parseFloat((document.getElementById('loanTerm') as HTMLInputElement).value) || 0;
+    const extraPayment = parseFloat((document.getElementById('extraPayment') as HTMLInputElement).value) || 0;
+
+    const r = (rate / 100) / 12;
+    const n = years * 12;
+
+    // Standard monthly payment (M)
+    let M = 0;
+    if (r === 0) {
+      M = P / n;
+    } else {
+      M = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+
+    const standardTotalInterest = (M * n) - P;
+
+    // With extra payment
+    const newM = M + extraPayment;
+
+    let balance = P;
+    let newMonths = 0;
+    let newTotalInterest = 0;
+
+    while (balance > 0 && newMonths < (n * 2)) {
+      const interestForMonth = balance * r;
+      newTotalInterest += interestForMonth;
+
+      const principalForMonth = newM - interestForMonth;
+      balance -= principalForMonth;
+      newMonths++;
+    }
+
+    const interestSaved = Math.max(0, standardTotalInterest - newTotalInterest);
+    const monthsSaved = Math.max(0, n - newMonths);
+    const yearsSaved = (monthsSaved / 12).toFixed(1);
+
+    const interestSavedEl = document.getElementById('interestSaved');
+    const timeSavedEl = document.getElementById('timeSaved');
+    const outExtraPaymentEl = document.getElementById('outExtraPayment');
+    const outTimeSavedTextEl = document.getElementById('outTimeSavedText');
+
+    if (interestSavedEl) interestSavedEl.innerText = formatCurrency(interestSaved);
+    if (timeSavedEl) timeSavedEl.innerText = `${yearsSaved} years`;
+    if (outExtraPaymentEl) outExtraPaymentEl.innerText = extraPayment.toString();
+    if (outTimeSavedTextEl) outTimeSavedTextEl.innerText = `${yearsSaved} years`;
+  }
+
+  const inputs = document.querySelectorAll('#mortgageForm input');
+  inputs.forEach(input => {
+    input.addEventListener('input', calculate);
+  });
+
+  calculate();
+</script>

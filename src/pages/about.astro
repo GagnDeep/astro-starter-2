@@ -1,5 +1,24 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Seo from "../components/seo/seo.astro";
+
+const seo = {
+  page_description: "About ClearPath Finance: action-oriented financial tools.",
+  no_index: false,
+};
 ---
 
-<AboutPage />
+<Layout title="About Us">
+  <Seo seo={seo} />
+  <Hero
+    title="About ClearPath Finance"
+    description="Actionable, tool-driven financial planning for independent professionals."
+  />
+  <div class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8 prose">
+    <h2>Our Mission</h2>
+    <p>At ClearPath Finance, we believe in math, not sales pitches. Our tools are designed to give you the clear numbers you need to make confident financial decisions, whether you're planning for retirement, paying off a mortgage, or tracking your net worth.</p>
+    <h2>Why We Built This</h2>
+    <p>The internet is full of "financial advice" that is actually just a thinly veiled attempt to sell you a product or get you to hire an advisor. We built ClearPath to be the anti-pitch: just the math, clearly explained, so you can plan your own path.</p>
+  </div>
+</Layout>

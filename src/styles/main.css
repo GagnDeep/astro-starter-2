@@ -139,3 +139,28 @@
   .align-right { text-align: right; }
   .align-justify { text-align: justify; }
 }
+
+@layer base {
+  :root {
+    --color-primary: #047857;
+    --color-secondary: #475569;
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-text: #1e293b;
+    --color-error: #dc2626;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-error: var(--color-error);
+}

@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Seo from "../components/seo/seo.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "ClearPath Finance provides actionable, tool-driven financial planning for independent professionals and self-directed investors.",
+  no_index: false,
+};
+---
+
+<Layout title="ClearPath Finance">
+  <Seo seo={seo} />
+
+  <Hero
+    title="Take Control of Your Financial Future"
+    description="No Advisor Required. Build your path with transparent, math-driven tools."
+    includeForm={true}
+  />
+
+  <section class="py-16 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12">Essential Tools</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <a href="/tools/retirement-calculator/" class="block p-6 border border-secondary rounded-lg hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2 text-primary">Retirement Calculator</h3>
+          <p class="text-text">Calculate your true retirement number based on your actual spending.</p>
+        </a>
+        <a href="/tools/mortgage-payoff/" class="block p-6 border border-secondary rounded-lg hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2 text-primary">Mortgage Payoff</h3>
+          <p class="text-text">See exactly how much you save by paying extra principal each month.</p>
+        </a>
+        <a href="/tools/compound-interest/" class="block p-6 border border-secondary rounded-lg hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2 text-primary">Compound Interest</h3>
+          <p class="text-text">Visualize the power of time and consistent investing.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-bg">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">Get Weekly Insights</h2>
+      <p class="mb-8">Join our newsletter for weekly, actionable financial strategies. Zero spam.</p>
+      <div class="max-w-md mx-auto">
+        <CaptureForm form="newsletter" submitLabel="Subscribe">
+          <div class="mb-4">
+            <label for="email_nl" class="sr-only">Email address</label>
+            <input type="email" id="email_nl" name="email" placeholder="Your email address" required class="w-full px-4 py-3 border border-secondary rounded-md" />
+          </div>
+        </CaptureForm>
+      </div>
+    </div>
+  </section>
+</Layout>

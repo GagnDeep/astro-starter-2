@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Seo from "../../components/seo/seo.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post: any) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as any;
+const { Content } = await render(post);
+---
+<Layout title={post.data.title}>
+  <Seo seo={post.data.seo || { page_description: post.data.title, no_index: false }} />
+  <article class="prose max-w-3xl mx-auto py-12 px-4">
+    <h1>{post.data.title}</h1>
+    <Content />
+  </article>
+</Layout>

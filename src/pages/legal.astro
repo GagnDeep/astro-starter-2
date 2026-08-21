@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Seo from "../components/seo/seo.astro";
+
+const seo = {
+  page_description: "Legal disclaimers and terms for ClearPath Finance.",
+  no_index: false,
+};
+---
+
+<Layout title="Legal Disclaimers">
+  <Seo seo={seo} />
+  <div class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8 prose">
+    <h1>Legal & Disclaimers</h1>
+    <p>ClearPath Finance provides educational tools and resources. We are not registered investment advisors. The calculations and insights provided on this site are for educational purposes only and should not be considered personalized financial, tax, or legal advice.</p>
+    <h2>Accuracy of Information</h2>
+    <p>While we strive to ensure our calculators and references are accurate and based on cited primary sources, tax laws and market conditions change frequently. Always consult a qualified professional before making significant financial decisions.</p>
+  </div>
+</Layout>

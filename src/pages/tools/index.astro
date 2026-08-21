@@ -1,0 +1,17 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Seo from "../../components/seo/seo.astro";
+
+const seo = { page_description: "Financial Tools index.", no_index: false };
+---
+<Layout title="Financial Tools">
+  <Seo seo={seo} />
+  <div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-8">Financial Tools</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="/tools/retirement-calculator/" class="p-4 border border-secondary rounded hover:bg-surface text-primary font-medium">Retirement Calculator</a>
+      <a href="/tools/mortgage-payoff/" class="p-4 border border-secondary rounded hover:bg-surface text-primary font-medium">Mortgage Payoff</a>
+      <a href="/tools/compound-interest/" class="p-4 border border-secondary rounded hover:bg-surface text-primary font-medium">Compound Interest</a>
+    </div>
+  </div>
+</Layout>

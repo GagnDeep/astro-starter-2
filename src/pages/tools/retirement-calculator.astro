@@ -1,0 +1,118 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Seo from "../../components/seo/seo.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = { page_description: "Calculate your true retirement number based on actual spending and safe withdrawal rates.", no_index: false };
+---
+<Layout title="Retirement Calculator">
+  <Seo seo={seo} />
+  <div class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-4">Retirement Calculator</h1>
+    <p class="text-xl mb-8">Calculate your true retirement number using the 4% rule and estimated annual returns.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="md:col-span-1 bg-surface p-6 rounded-lg border border-secondary">
+        <h2 class="text-xl font-bold mb-4">Inputs</h2>
+        <form id="retirementForm" class="space-y-4">
+          <noscript>
+            <div class="p-4 bg-yellow-50 text-yellow-900 border border-yellow-200 rounded mb-4">
+              <h3 class="font-bold">Interactive Calculator Requires JavaScript</h3>
+              <p class="mb-2">Since JavaScript is disabled, you can calculate this manually using the following method:</p>
+
+              <p><strong>Formula:</strong> <code>Balance = P(1+r)^n + PMT[((1+r)^n - 1) / r]</code></p>
+              <ul class="list-disc ml-4 mt-2">
+                <li><code>P</code> = Current Savings</li>
+                <li><code>PMT</code> = Monthly Contribution</li>
+                <li><code>r</code> = Annual Return / 12</li>
+                <li><code>n</code> = Years to Retirement &times; 12</li>
+              </ul>
+
+            </div>
+          </noscript>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Current Age</label>
+            <input type="number" id="currentAge" class="w-full px-3 py-2 border border-secondary rounded" value="30" min="18" max="80" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Retirement Age</label>
+            <input type="number" id="retireAge" class="w-full px-3 py-2 border border-secondary rounded" value="65" min="30" max="100" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Current Savings ($)</label>
+            <input type="number" id="currentSavings" class="w-full px-3 py-2 border border-secondary rounded" value="50000" min="0" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Monthly Contribution ($)</label>
+            <input type="number" id="monthlyContribution" class="w-full px-3 py-2 border border-secondary rounded" value="1000" min="0" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Annual Return (%)</label>
+            <input type="number" id="annualReturn" class="w-full px-3 py-2 border border-secondary rounded" value="7" min="0" max="15" step="0.1" />
+          </div>
+        </form>
+      </div>
+
+      <div class="md:col-span-2 bg-surface p-6 rounded-lg border border-secondary">
+        <h2 class="text-xl font-bold mb-4">Your Projected Nest Egg</h2>
+        <div id="results" class="text-5xl font-bold text-primary mb-4">$0.00</div>
+
+        <div class="prose max-w-none mb-8">
+          <p id="explanationText">At age <span id="outRetireAge">65</span>, your estimated portfolio balance will be calculated using standard compound interest formulas.</p>
+          <p class="text-sm text-secondary">Assumes compounding monthly. This is a simplified projection for educational purposes, not financial advice.</p>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-secondary">
+          <h3 class="text-lg font-bold mb-4">Save your projection</h3>
+          <CaptureForm form="quote" submitLabel="Email My Results">
+             <input type="hidden" name="tool" value="Retirement Calculator" />
+             <input type="email" name="email" required placeholder="Your email address" class="w-full px-3 py-2 border border-secondary rounded mb-4" />
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function formatCurrency(num: number) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+  }
+
+  function calculate() {
+    const currentAge = parseFloat((document.getElementById('currentAge') as HTMLInputElement).value) || 0;
+    const retireAge = parseFloat((document.getElementById('retireAge') as HTMLInputElement).value) || 0;
+    const currentSavings = parseFloat((document.getElementById('currentSavings') as HTMLInputElement).value) || 0;
+    const monthlyContribution = parseFloat((document.getElementById('monthlyContribution') as HTMLInputElement).value) || 0;
+    const annualReturn = parseFloat((document.getElementById('annualReturn') as HTMLInputElement).value) || 0;
+
+    const years = Math.max(0, retireAge - currentAge);
+    const months = years * 12;
+    const monthlyRate = (annualReturn / 100) / 12;
+
+    let balance = currentSavings;
+
+    if (monthlyRate === 0) {
+      balance += monthlyContribution * months;
+    } else {
+      balance = currentSavings * Math.pow(1 + monthlyRate, months) +
+                monthlyContribution * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+    }
+
+    const resultsEl = document.getElementById('results');
+    const outRetireAgeEl = document.getElementById('outRetireAge');
+
+    if (resultsEl) resultsEl.innerText = formatCurrency(balance);
+    if (outRetireAgeEl) outRetireAgeEl.innerText = retireAge.toString();
+  }
+
+  // Bind events
+  const inputs = document.querySelectorAll('#retirementForm input');
+  inputs.forEach(input => {
+    input.addEventListener('input', calculate);
+  });
+
+  // Initial calculation
+  calculate();
+</script>
