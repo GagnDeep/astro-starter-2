@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Property Investment Tools | Institute of Property">
+  <div class="py-16 px-6 sm:px-12 bg-background min-h-screen">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Investment Calculators</h1>
+      <p class="text-lg text-text-muted mb-10">Run the numbers before you commit.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="/tools/yield-calculator/" class="card hover:border-accent">
+          <h3 class="font-bold text-xl mb-2">Yield Calculator</h3>
+          <p class="text-text-muted">Calculate Gross and Net Yield accurately.</p>
+        </a>
+        <a href="/tools/roi-calculator/" class="card hover:border-accent">
+          <h3 class="font-bold text-xl mb-2">ROI Calculator</h3>
+          <p class="text-text-muted">Measure cash-on-cash return for your investments.</p>
+        </a>
+        <a href="/tools/mortgage-calculator/" class="card hover:border-accent">
+          <h3 class="font-bold text-xl mb-2">Mortgage Calculator</h3>
+          <p class="text-text-muted">Stress test rates and interest-only vs repayment.</p>
+        </a>
+        <a href="/tools/stamp-duty-calculator/" class="card hover:border-accent">
+          <h3 class="font-bold text-xl mb-2">Stamp Duty Calculator</h3>
+          <p class="text-text-muted">Factor in the 3% surcharge for second homes.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

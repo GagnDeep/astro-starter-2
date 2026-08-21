@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const glossaryPages = await getCollection('glossary');
+// Sort alphabetically
+glossaryPages.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<Layout title="Property Glossary | Institute of Property">
+  <div class="py-16 px-6 sm:px-12 bg-background min-h-screen">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Property Investment Glossary</h1>
+      <p class="text-lg text-text-muted mb-10">Clear, precise definitions for industry jargon.</p>
+
+      <div class="space-y-4">
+        {glossaryPages.map(page => (
+          <div class="card">
+            <h2 class="text-xl font-bold mb-2">
+              <a href={`/glossary/${page.id.split('.')[0]}/`} class="hover:underline">{page.data.title}</a>
+            </h2>
+            <p class="text-text-muted">{page.data.definition}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

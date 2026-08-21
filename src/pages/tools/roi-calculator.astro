@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="ROI Calculator | Institute of Property">
+  <div class="py-16 px-6 sm:px-12 bg-background min-h-screen">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4 text-center">Return on Investment (ROI)</h1>
+      <p class="text-center text-text-muted mb-10 max-w-2xl mx-auto">Calculate your cash-on-cash return. This tells you how hard your actual cash invested is working.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card">
+          <form id="roi-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1" for="cash_in">Total Cash Invested (£)</label>
+              <p class="text-xs text-text-muted mb-1">Deposit, fees, stamp duty, refurb</p>
+              <input type="number" id="cash_in" class="input-field" value="65000" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="annual_profit">Net Annual Profit (£)</label>
+              <p class="text-xs text-text-muted mb-1">Rent minus ALL costs and mortgage</p>
+              <input type="number" id="annual_profit" class="input-field" value="3600" required>
+            </div>
+            <button type="submit" class="btn-primary w-full">Calculate</button>
+          </form>
+        </div>
+
+        <div class="card bg-primary text-surface flex flex-col justify-center items-center text-center">
+          <div id="results" class="hidden w-full">
+            <h3 class="text-xl font-medium text-surface/80 mb-2">Cash on Cash Return</h3>
+            <p id="roi-result" class="text-5xl font-bold text-accent mb-6">5.54%</p>
+          </div>
+          <div id="initial-state" class="text-surface/60">
+            Enter your figures and click calculate.
+          </div>
+        </div>
+      </div>
+
+      <noscript>
+        <div class="mt-12 prose prose-slate max-w-none">
+          <h3>The Formula</h3>
+          <p><strong>ROI</strong> = (Net Annual Profit / Total Cash Invested) * 100</p>
+        </div>
+      </noscript>
+    </div>
+  </div>
+
+  <script is:inline>
+    const form = document.getElementById('roi-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cash = parseFloat(document.getElementById('cash_in').value);
+      const profit = parseFloat(document.getElementById('annual_profit').value);
+
+      if(cash > 0) {
+        const roi = (profit / cash) * 100;
+        document.getElementById('roi-result').innerText = roi.toFixed(2) + '%';
+        document.getElementById('initial-state').classList.add('hidden');
+        document.getElementById('results').classList.remove('hidden');
+      }
+    });
+  </script>
+</Layout>

@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('reference');
+  return pages.map(page => ({
+    params: { slug: page.id.split('.')[0] },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await (await import('astro:content')).render(page);
+---
+
+<Layout title={`${page.data.title} | Institute of Property`} seo={{page_description: page.data.description, open_graph_type: "article"}} >
+  <article class="py-16 px-6 sm:px-12 max-w-4xl mx-auto prose prose-slate">
+    <Content />
+
+    <div class="mt-16 bg-surface p-8 border border-border rounded-lg shadow-sm not-prose">
+      <h3 class="text-xl font-bold mb-4">Need help applying this?</h3>
+      <p class="text-text-muted mb-6">Get a tailored response from our advisory network.</p>
+      <CaptureForm form={capture.forms.contact} submitLabel="Request Advice" />
+    </div>
+  </article>
+</Layout>

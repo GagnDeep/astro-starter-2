@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const taxPages = await getCollection('taxonomy');
+---
+
+<Layout title="Property Taxonomies | Institute of Property">
+  <div class="py-16 px-6 sm:px-12 bg-background min-h-screen">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Investment Strategies & Regions</h1>
+      <p class="text-lg text-text-muted mb-10">Explore specific strategies and local markets.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {taxPages.map(page => (
+          <a href={`/taxonomy/${page.id.split('.')[0]}/`} class="card hover:border-accent">
+            <h3 class="font-semibold text-lg mb-2">{page.data.title}</h3>
+            <p class="text-sm text-text-muted">{page.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
