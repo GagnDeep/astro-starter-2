@@ -9,11 +9,14 @@
 - Integrated the single page templates: Home, Contact, FAQ, Comparison, About, Legal, Pricing, and Thanks.
 - Created `PLAN.md` and `DESIGN.md` as required by the run contract.
 - Checked types and successfully compiled (`pnpm check` and `pnpm build` pass).
+- Rewrote 12 blog posts and 15 reference pages entirely to deepen their strategic rigor, including worked examples, margin analysis, compliance burdens, edge cases, and FAQ drawn from search data.
+- Plumbed accurate `seo` block frontmatter directly into JSON-LD and page metadata pipelines for SEO adherence.
 
 ## Gap Analysis (Resolved)
 - Found missing or stale placeholder routing and replaced it with full deep-linked structure.
 - Filled in robust internal content and structure for the 60+ pages.
+- Analyzed content depth vs intent and verified tools are properly referenced within articles.
 
 ## What remains / To tackle next run
-- Continue deepening reference guides with more live market data and recent regulatory updates.
-- Develop dynamic API links for live mortgage rates and stress test calculations.
+- Add further live API hooks for calculators, pulling live swap rates.
+- Create more specific taxonomies (e.g., student lets, holiday lets).

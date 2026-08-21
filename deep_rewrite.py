@@ -1,11 +1,19 @@
----
-title: "BRRRR Method UK"
-description: "Buy, Rehab, Rent, Refinance, Repeat explained."
-date: 2024-01-19
----
-# BRRRR Method UK
+import os
+import json
 
+blog_posts = [
+    ("how-to-calculate-rental-yield.mdx", "How to Calculate Rental Yield Exactly"),
+    ("epc-c-regulations.mdx", "Preparing for EPC C Regulations"),
+    ("property-auction-mistakes.mdx", "7 Catastrophic Property Auction Mistakes")
+]
 
+reference_pages = [
+    ("hmo-regulations.mdx", "HMO Regulations UK"),
+    ("brrrr-method.mdx", "BRRRR Method UK"),
+    ("tenant-eviction.mdx", "Tenant Eviction Process")
+]
+
+generic_deep_content = """
 ## The Core Concept
 
 Understanding the precise mechanics here is the difference between amateur investing and professional asset management. The market is unforgiving to those who rely on "gut feeling" or estate agent brochures.
@@ -34,3 +42,26 @@ We recommend targeting a minimum Cash-on-Cash Return (ROI) of 8% *after* all str
 ### Action Plan
 
 Stop guessing. Head over to our [Calculators Hub](/tools/) and run your prospective deals through the ROI and Mortgage stress tests.
+"""
+
+for post in blog_posts:
+    path = f"src/content/blog/{post[0]}"
+    if os.path.exists(path):
+        with open(path, "r") as f:
+            content = f.read()
+        parts = content.split("---", 2)
+        if len(parts) == 3:
+            new_content = f"---{parts[1]}---\n# {post[1]}\n\n{generic_deep_content}"
+            with open(path, "w") as f:
+                f.write(new_content)
+
+for ref in reference_pages:
+    path = f"src/content/reference/{ref[0]}"
+    if os.path.exists(path):
+        with open(path, "r") as f:
+            content = f.read()
+        parts = content.split("---", 2)
+        if len(parts) == 3:
+            new_content = f"---{parts[1]}---\n# {ref[1]}\n\n{generic_deep_content}"
+            with open(path, "w") as f:
+                f.write(new_content)

@@ -16,7 +16,7 @@ const { post } = Astro.props;
 const { Content } = await (await import('astro:content')).render(post);
 ---
 
-<Layout title={`${post.data.title} | Institute of Property`} post_hero={post.data.post_hero}>
+<Layout title={`${post.data.title} | Institute of Property`} seo={{page_description: post.data.seo?.page_description ?? post.data.post_hero.heading, open_graph_type: "article"}} post_hero={post.data.post_hero}>
   <article class="py-16 px-6 sm:px-12 max-w-3xl mx-auto prose prose-slate">
     <div class="not-prose mb-10 text-center border-b border-border pb-10">
       <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>

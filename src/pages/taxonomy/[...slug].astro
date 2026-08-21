@@ -14,7 +14,7 @@ const { page } = Astro.props;
 const { Content } = await (await import('astro:content')).render(page);
 ---
 
-<Layout title={`${page.data.title} | Institute of Property`}>
+<Layout title={`${page.data.title} | Institute of Property`} seo={{page_description: page.data.description}} >
   <div class="py-16 px-6 sm:px-12 max-w-4xl mx-auto prose prose-slate">
     <Content />
   </div>
