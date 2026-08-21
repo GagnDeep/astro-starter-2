@@ -1,0 +1,82 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const field = "w-full rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-[rgb(var(--color-primary))] focus:outline-none focus:ring-1 focus:ring-[rgb(var(--color-primary))]";
+const label = "block text-sm font-medium text-gray-700 mb-1";
+---
+<Layout title="Tax Bracket Calculator" seo={{ page_description: "Calculate your 2024 tax brackets." }}>
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-4">Tax Bracket Calculator</h1>
+    <p class="mb-8 text-gray-700">Enter your expected taxable income below. We do the math instantly in your browser without tracking you.</p>
+
+    <div class="bg-gray-50 p-6 rounded-lg border">
+      <form class="space-y-4" onsubmit="event.preventDefault(); window.calculateBracket();">
+        <div>
+          <label for="income" class={label}>Estimated Taxable Income ($)</label>
+          <input id="income" type="number" min="0" step="100" class={field} required />
+        </div>
+        <div>
+          <label for="status" class={label}>Filing Status</label>
+          <select id="status" class={field}>
+            <option value="single">Single</option>
+            <option value="married">Married Filing Jointly</option>
+          </select>
+        </div>
+        <button type="submit" class="rounded bg-[rgb(var(--color-secondary))] px-5 py-2.5 font-medium text-white hover:opacity-90">Calculate</button>
+      </form>
+
+      <noscript>
+        <div class="mt-4 text-red-600">
+          <strong>Note:</strong> JavaScript is required for the live interactive calculator. Without JS, you can view the 2024 tax bracket tables below:
+          <ul class="list-disc ml-6 mt-2 text-sm text-gray-700">
+            <li>10%: $0 to $11,600 (Single) / $0 to $23,200 (Married)</li>
+            <li>12%: $11,601 to $47,150 (Single) / $23,201 to $94,300 (Married)</li>
+            <li>22%: $47,151 to $100,525 (Single) / $94,301 to $201,050 (Married)</li>
+          </ul>
+        </div>
+      </noscript>
+
+      <div id="results" class="hidden mt-6 pt-6 border-t">
+        <h3 class="text-xl font-bold mb-2">Results</h3>
+        <p class="mb-2"><strong>Marginal Tax Bracket:</strong> <span id="marginal"></span></p>
+        <p class="mb-4"><strong>Estimated Total Tax:</strong> <span id="totaltax"></span></p>
+        <div class="mt-4 p-4 bg-white border rounded">
+          <p class="text-sm font-semibold mb-2">Want a copy of this estimate?</p>
+          <CaptureForm form={capture.forms.quote} submitLabel="Email me this estimate">
+             <input type="hidden" name="tool" value="tax-bracket" />
+             <input type="hidden" name="calculated_tax" id="capture-tax" value="" />
+             <input type="email" name="email" placeholder="you@example.com" required class={field} />
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  window.calculateBracket = function() {
+    const income = parseFloat(document.getElementById('income').value);
+    const status = document.getElementById('status').value;
+
+    // 2024 Simplified brackets for example purposes
+    let tax = 0;
+    let marginal = '0%';
+
+    if (status === 'single') {
+        if (income <= 11600) { tax = income * 0.1; marginal = '10%'; }
+        else if (income <= 47150) { tax = 1160 + ((income - 11600) * 0.12); marginal = '12%'; }
+        else { tax = 5426 + ((income - 47150) * 0.22); marginal = '22% (or higher)'; }
+    } else {
+        if (income <= 23200) { tax = income * 0.1; marginal = '10%'; }
+        else if (income <= 94300) { tax = 2320 + ((income - 23200) * 0.12); marginal = '12%'; }
+        else { tax = 10852 + ((income - 94300) * 0.22); marginal = '22% (or higher)'; }
+    }
+
+    document.getElementById('marginal').innerText = marginal;
+    document.getElementById('totaltax').innerText = '$' + tax.toFixed(2);
+    document.getElementById('capture-tax').value = tax.toFixed(2);
+    document.getElementById('results').classList.remove('hidden');
+  };
+</script>

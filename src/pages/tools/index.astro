@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+<Layout title="Free Tax Tools" seo={{ page_description: "Free, no-JS-required tax calculators and tools." }}>
+  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-8">Tax Tools & Calculators</h1>
+    <ul class="space-y-4">
+        <li>
+          <a href="/tools/tax-bracket-calculator/" class="text-xl text-[rgb(var(--color-primary))] hover:underline font-semibold">
+            Tax Bracket Calculator
+          </a>
+          <p class="text-gray-600">Quickly estimate your marginal and effective tax brackets.</p>
+        </li>
+        <li>
+          <a href="/tools/1099-estimator/" class="text-xl text-[rgb(var(--color-primary))] hover:underline font-semibold">
+            1099 Estimator
+          </a>
+          <p class="text-gray-600">Estimate taxes owed on 1099 freelance income.</p>
+        </li>
+    </ul>
+  </div>
+</Layout>

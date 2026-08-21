@@ -1,0 +1,69 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const field = "w-full rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-[rgb(var(--color-primary))] focus:outline-none focus:ring-1 focus:ring-[rgb(var(--color-primary))]";
+const label = "block text-sm font-medium text-gray-700 mb-1";
+---
+<Layout title="1099 Tax Estimator" seo={{ page_description: "Estimate self-employment taxes for 1099 income." }}>
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-4">1099 Tax Estimator</h1>
+    <p class="mb-8 text-gray-700">Estimate how much you'll owe on your freelance or gig economy income.</p>
+
+    <div class="bg-gray-50 p-6 rounded-lg border">
+      <form class="space-y-4" onsubmit="event.preventDefault(); window.calculate1099();">
+        <div>
+          <label for="gross" class={label}>Gross 1099 Income ($)</label>
+          <input id="gross" type="number" min="0" step="100" class={field} required />
+        </div>
+        <div>
+          <label for="expenses" class={label}>Estimated Business Expenses ($)</label>
+          <input id="expenses" type="number" min="0" step="10" class={field} value="0" required />
+        </div>
+        <button type="submit" class="rounded bg-[rgb(var(--color-secondary))] px-5 py-2.5 font-medium text-white hover:opacity-90">Calculate</button>
+      </form>
+
+      <noscript>
+        <div class="mt-4 text-red-600">
+          <strong>Note:</strong> JavaScript is required for the live interactive calculator.
+          Without JS, remember that Self-Employment Tax is approximately 15.3% of your net business profit (Gross Income - Expenses).
+        </div>
+      </noscript>
+
+      <div id="results" class="hidden mt-6 pt-6 border-t">
+        <h3 class="text-xl font-bold mb-2">Results</h3>
+        <p class="mb-2"><strong>Net Profit:</strong> <span id="netprofit"></span></p>
+        <p class="mb-2"><strong>Estimated Self-Employment Tax (15.3%):</strong> <span id="setax"></span></p>
+        <p class="mb-4 text-sm text-gray-600">Note: You may also owe regular income tax on this profit.</p>
+        <div class="mt-4 p-4 bg-white border rounded">
+          <p class="text-sm font-semibold mb-2">Email me this estimate:</p>
+          <CaptureForm form={capture.forms.quote} submitLabel="Send">
+             <input type="hidden" name="tool" value="1099-estimator" />
+             <input type="hidden" name="calculated_setax" id="capture-setax" value="" />
+             <input type="email" name="email" placeholder="you@example.com" required class={field} />
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  window.calculate1099 = function() {
+    const gross = parseFloat(document.getElementById('gross').value);
+    const expenses = parseFloat(document.getElementById('expenses').value);
+
+    let net = gross - expenses;
+    if (net < 0) net = 0;
+
+    // Roughly 92.35% of net earnings are subject to the 15.3% SE tax
+    const taxableForSE = net * 0.9235;
+    const seTax = taxableForSE * 0.153;
+
+    document.getElementById('netprofit').innerText = '$' + net.toFixed(2);
+    document.getElementById('setax').innerText = '$' + seTax.toFixed(2);
+    document.getElementById('capture-setax').value = seTax.toFixed(2);
+    document.getElementById('results').classList.remove('hidden');
+  };
+</script>
