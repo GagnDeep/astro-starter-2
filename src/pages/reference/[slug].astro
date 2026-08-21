@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+export async function getStaticPaths() {
+  const references = await getCollection("reference");
+  return references.map((ref) => ({
+    params: { slug: ref.id },
+    props: { ref },
+  }));
+}
+
+const { ref } = Astro.props;
+const { Content } = await render(ref);
+---
+
+<Layout title={ref.data.title} seo={ref.data.seo}>
+  <div class="max-w-4xl mx-auto px-4 py-20">
+    <div class="mb-8">
+      <a href="/reference/" class="text-primary hover:underline">&larr; Back to Reference Library</a>
+    </div>
+
+    <div class="prose max-w-none mb-16">
+      <Content />
+    </div>
+
+    <div class="bg-surface p-8 rounded-lg border border-border mt-12">
+      <h3 class="text-xl font-bold mb-4">Want to avoid these headaches?</h3>
+      <p class="text-text/70 mb-6">Our API handles cross-browser rendering, linearization, and responsiveness automatically. Try it for free.</p>
+      <CaptureForm form="waitlist" submitLabel="Get API Access" />
+    </div>
+  </div>
+</Layout>

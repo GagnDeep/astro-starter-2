@@ -1,22 +1,36 @@
 ---
-import PostLayout from "../../layouts/Post.astro";
-import { getCollection, getEntry, render } from "astro:content";
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({ params: { slug: post.id } }));
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
 }
 
-if (!Astro.params.slug) {
-  throw new Error("Post slug is undefined");
-}
-const post = await getEntry("blog", Astro.params.slug);
-if (!post) {
-  throw new Error("Failed to get post with slug: " + Astro.params.slug);
-}
+const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<PostLayout frontmatter={post.data} body={post.body}>
-  <Content />
-</PostLayout>
+<Layout title={post.data.title} seo={post.data.seo} post_hero={post.data.post_hero}>
+  <article class="max-w-3xl mx-auto px-4 py-20">
+    <a href="/blog/" class="text-primary hover:underline mb-8 block">&larr; Back to Blog</a>
+    <h1 class="text-4xl font-bold mb-4 font-heading">{post.data.title}</h1>
+    <div class="text-text/60 mb-12 pb-4 border-b border-border">Published {new Date(post.data.post_hero?.date || new Date()).toLocaleDateString()}</div>
+
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+
+    <div class="bg-bg p-8 rounded-lg border border-border mt-16 text-center">
+      <h3 class="text-2xl font-bold mb-2">Build faster document experiences</h3>
+      <p class="text-text/70 mb-6">Join thousands of developers using our ultra-lightweight document API.</p>
+      <div class="max-w-md mx-auto text-left">
+        <CaptureForm form="newsletter" submitLabel="Subscribe to updates" />
+      </div>
+    </div>
+  </article>
+</Layout>

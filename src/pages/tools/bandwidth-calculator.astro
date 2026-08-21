@@ -1,0 +1,117 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Calculate your document hosting bandwidth costs. Compare standard downloads vs optimized viewers.",
+};
+---
+
+<Layout title="Document Hosting Bandwidth Calculator | uDocumentViewer" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-20">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Bandwidth Calculator</h1>
+      <p class="text-xl text-text/80">Calculate how much money you save by using a linearized document viewer.</p>
+    </div>
+
+    <!-- No-JS Fallback -->
+    <noscript>
+      <div class="bg-surface border border-border p-8 rounded-lg mb-8 prose">
+        <h2>How to calculate bandwidth savings manually:</h2>
+        <p>A standard PDF download forces the user to download 100% of the file. If you have a 10MB PDF and 1,000 views, that's <strong>10GB of bandwidth</strong>.</p>
+        <p>A linearized PDF viewer only downloads the pages the user actually looks at. If the average user reads 2 pages of a 100-page document, they download roughly 2% of the file.</p>
+        <p><strong>Math:</strong> (10MB * 0.02) * 1,000 views = <strong>0.2GB of bandwidth</strong>. (A 98% saving).</p>
+      </div>
+    </noscript>
+
+    <div class="grid md:grid-cols-2 gap-12" id="calc-app" style="display: none;">
+      <div class="bg-surface p-6 rounded-lg border border-border space-y-6">
+        <div>
+          <label class="block text-sm font-medium mb-1">Average Document Size (MB)</label>
+          <input type="number" id="doc-size" value="15" class="w-full rounded border border-border px-3 py-2 bg-surface focus:border-primary focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Monthly Views</label>
+          <input type="number" id="views" value="50000" class="w-full rounded border border-border px-3 py-2 bg-surface focus:border-primary focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Average Pages Read (%)</label>
+          <p class="text-xs text-text/60 mb-2">Industry average is 15-20% for whitepapers.</p>
+          <input type="range" id="percent-read" min="1" max="100" value="20" class="w-full" />
+          <div class="text-center font-mono font-bold mt-2"><span id="percent-val">20</span>%</div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Bandwidth Cost ($ per GB)</label>
+          <p class="text-xs text-text/60 mb-2">AWS standard is ~$0.09/GB.</p>
+          <input type="number" id="cost-gb" value="0.09" step="0.01" class="w-full rounded border border-border px-3 py-2 bg-surface focus:border-primary focus:outline-none" />
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center">
+        <div class="bg-bg p-8 rounded-lg border border-border mb-6">
+          <h3 class="text-lg font-semibold mb-4 text-center">Standard Direct Download</h3>
+          <div class="text-3xl font-bold text-center text-error mb-2"><span id="standard-gb">0</span> GB</div>
+          <div class="text-xl text-center text-text/70">$<span id="standard-cost">0.00</span> /mo</div>
+        </div>
+
+        <div class="bg-primary/5 p-8 rounded-lg border-2 border-primary">
+          <h3 class="text-lg font-semibold mb-4 text-center text-primary">With uDocumentViewer API</h3>
+          <div class="text-4xl font-bold text-center text-primary mb-2"><span id="opt-gb">0</span> GB</div>
+          <div class="text-2xl font-bold text-center text-primary/80">$<span id="opt-cost">0.00</span> /mo</div>
+
+          <div class="mt-6 pt-6 border-t border-primary/20 text-center">
+            <div class="text-sm text-text/70">Monthly Savings</div>
+            <div class="text-2xl font-bold text-green-600">-$<span id="savings">0.00</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("calc-app").style.display = "grid";
+
+      const sizeInput = document.getElementById("doc-size");
+      const viewsInput = document.getElementById("views");
+      const percentInput = document.getElementById("percent-read");
+      const percentVal = document.getElementById("percent-val");
+      const costInput = document.getElementById("cost-gb");
+
+      const calculate = () => {
+        const sizeMB = parseFloat(sizeInput.value) || 0;
+        const views = parseInt(viewsInput.value) || 0;
+        const percent = parseInt(percentInput.value) || 100;
+        const costPerGB = parseFloat(costInput.value) || 0;
+
+        percentVal.textContent = percent;
+
+        // Standard: size * views
+        const standardMB = sizeMB * views;
+        const standardGB = standardMB / 1024;
+        const standardCost = standardGB * costPerGB;
+
+        // Optimized: (size * views) * (percent / 100) + base viewer load (~12kb, negligible)
+        const optMB = (sizeMB * views) * (percent / 100);
+        const optGB = optMB / 1024;
+        const optCost = optGB * costPerGB;
+
+        document.getElementById("standard-gb").textContent = standardGB.toFixed(1);
+        document.getElementById("standard-cost").textContent = standardCost.toFixed(2);
+
+        document.getElementById("opt-gb").textContent = optGB.toFixed(1);
+        document.getElementById("opt-cost").textContent = optCost.toFixed(2);
+
+        document.getElementById("savings").textContent = (standardCost - optCost).toFixed(2);
+      };
+
+      [sizeInput, viewsInput, percentInput, costInput].forEach(el => {
+        el.addEventListener("input", calculate);
+      });
+
+      calculate();
+    });
+  </script>
+</Layout>

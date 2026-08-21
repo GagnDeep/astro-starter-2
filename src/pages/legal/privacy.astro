@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Privacy Policy for uDocumentViewer. We believe in zero-tracking document viewing.",
+  no_index: true
+};
+---
+
+<Layout title="Privacy Policy | uDocumentViewer" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 py-20 prose">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: {new Date().toISOString().split('T')[0]}</p>
+
+    <h2>1. The Zero-Tracking Guarantee</h2>
+    <p>uDocumentViewer is built for privacy. We do not track the end-users who view documents embedded via our service. We do not use third-party tracking cookies, and we do not sell data to advertisers.</p>
+
+    <h2>2. Data We Collect</h2>
+    <p>We only collect data necessary to provide the service to our developer customers:</p>
+    <ul>
+      <li><strong>Account Information:</strong> Email address and billing details when you sign up.</li>
+      <li><strong>Technical Logs:</strong> Standard web server logs (IP address, user agent, requested URL) for debugging and security purposes. These are retained for no longer than 30 days.</li>
+      <li><strong>Document Telemetry (Opt-in):</strong> If you enable analytics on your viewer, we collect anonymous page view counts. We do not track reader identities.</li>
+    </ul>
+
+    <h2>3. Document Privacy</h2>
+    <p>When documents are processed by our edge workers, they remain in memory only as long as required to serve the request. We do not store your documents permanently unless you specifically use our Hosted Storage feature.</p>
+
+    <h2>4. Contact Us</h2>
+    <p>If you have any questions about this privacy policy, please contact us via our <a href="/contact">contact page</a>.</p>
+  </div>
+</Layout>

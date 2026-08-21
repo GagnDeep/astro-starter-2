@@ -1,17 +1,26 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
-  "lang": "en",
+  "site_title": "uDocumentViewer",
+  "description": "The fastest, lightest, completely unbranded way to embed documents on any website.",
+  "tagline": "Embed documents without the bloat.",
+  "image": "/images/og/default.png",
+  "image_alt": "uDocumentViewer preview",
   "locale": "en_US",
-  "twitter_site": "",
-  "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "twitter_site": "@udocumentviewer",
+  "site": {
+    "title": "uDocumentViewer",
+    "description": "The fastest, lightest, completely unbranded way to embed documents on any website.",
+    "tagline": "Embed documents without the bloat."
+  },
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
-    "same_as": []
-  }
+    "name": "uDocumentViewer",
+    "url": "https://udocumentviewer.com",
+    "logo": "https://udocumentviewer.com/logo.png",
+    "same_as": [
+      "https://twitter.com/udocumentviewer",
+      "https://github.com/udocumentviewer"
+    ]
+  },
+  "default_author": "uDocumentViewer Team",
+  "lang": "en",
+  "theme_color": "#2563EB"
 }

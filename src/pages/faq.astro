@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Frequently asked questions about embedding documents, PDF viewer capabilities, and uDocumentViewer pricing.",
+};
+---
+
+<Layout title="Document Viewer FAQ | uDocumentViewer" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 py-20 prose">
+    <h1 class="text-center mb-12">Frequently Asked Questions</h1>
+
+    <div class="space-y-8">
+      <div>
+        <h3>Does it work on mobile devices?</h3>
+        <p>Yes. Unlike traditional <code>&lt;iframe&gt;</code> embeds which often fail to scale correctly on iOS Safari or Android, our viewer is fully responsive out of the box. It uses native touch events for zooming and panning.</p>
+      </div>
+
+      <div>
+        <h3>Can I prevent users from downloading the document?</h3>
+        <p>We offer basic DRM controls that hide the download and print buttons in the UI. However, as a rule of web architecture, if a browser can render it, a determined user can extract it. We prevent casual downloading, but do not claim military-grade encryption.</p>
+      </div>
+
+      <div>
+        <h3>What file types do you support?</h3>
+        <p>Currently, we support PDF (all versions), DOCX, and PPTX. We do not support legacy DOC/PPT formats, Excel spreadsheets (XLSX) yet, or ePub formats.</p>
+      </div>
+
+      <div>
+        <h3>Do I need to upload my documents to your servers?</h3>
+        <p>No. Our standard implementation fetches the document directly from your server (via URL) to the user's browser. It is processed in the browser. You only need to ensure your server has proper CORS headers configured (which we guide you through).</p>
+      </div>
+
+      <div>
+        <h3>How large is the payload?</h3>
+        <p>The core viewer script is approximately 12kb gzipped. It conditionally loads parsers only when needed (e.g., it won't load the Word document parser if you are only displaying a PDF).</p>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,28 @@
+---
+import siteData from "../../../data/site.json";
+---
+
+<header class="border-b border-border bg-surface sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <a href="/" class="flex items-center font-heading font-bold text-xl tracking-tight text-text">
+          {siteData.site_title}
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="/formats/pdf" class="text-text/80 hover:text-primary transition-colors text-sm font-medium">PDF</a>
+        <a href="/pricing" class="text-text/80 hover:text-primary transition-colors text-sm font-medium">Pricing</a>
+        <a href="/reference" class="text-text/80 hover:text-primary transition-colors text-sm font-medium">Reference</a>
+        <a href="/blog" class="text-text/80 hover:text-primary transition-colors text-sm font-medium">Blog</a>
+        <a href="/contact" class="btn text-sm py-2 px-4">Get Started</a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <div class="flex items-center md:hidden">
+        <a href="/contact" class="btn text-sm py-1.5 px-3">Start</a>
+      </div>
+    </div>
+  </div>
+</header>

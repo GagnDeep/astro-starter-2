@@ -1,0 +1,134 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "The fastest, lightest, completely unbranded way to embed PDFs, DOCX, and PPTX on any website. No iframes, no tracking, just your documents.",
+  no_index: false
+};
+---
+
+<Layout title="Best Document Viewer for Websites | Lightweight Embed" seo={seo}>
+  <!-- Hero Section -->
+  <section class="bg-bg py-20 border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-text mb-6">
+        Embed Documents Without the Bloat
+      </h1>
+      <p class="text-xl text-text/80 max-w-2xl mx-auto mb-10">
+        The fastest, completely unbranded way to display PDFs and Office documents on your website. No tracking. No third-party logos.
+      </p>
+
+      <div class="max-w-3xl mx-auto bg-surface p-8 rounded-lg border border-border shadow-sm">
+        <h2 class="text-xl font-semibold mb-4 text-left">Instant Demo</h2>
+        <div class="border-2 border-dashed border-border rounded-lg p-12 text-center bg-bg mb-4">
+          <p class="text-text/70 mb-4">Paste a PDF URL or upload a file to see it instantly.</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <input type="url" placeholder="https://example.com/document.pdf" class="flex-1 max-w-md rounded border border-border bg-surface px-4 py-2 text-text focus:border-primary focus:outline-none" />
+            <button class="btn">View Document</button>
+          </div>
+        </div>
+        <p class="text-sm text-text/60 text-left">No sign-up required. Documents are processed entirely in your browser.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-text">The "Loading..." Spinner of Death</h2>
+        <p class="mt-4 text-xl text-text/70">Why does showing a simple 100kb PDF require downloading 2MB of JavaScript?</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="bg-bg p-8 rounded-lg border border-border">
+          <h3 class="text-xl font-bold mb-4 flex items-center text-error">
+            <span class="mr-2">[X]</span> Standard Embedded Viewer
+          </h3>
+          <ul class="space-y-4 text-text/80">
+            <li>Heavy iframes that break on mobile screens</li>
+            <li>Forces users to accept third-party cookies</li>
+            <li>Injects competitor branding into your site</li>
+            <li>Inconsistent UI across different browsers</li>
+          </ul>
+        </div>
+
+        <div class="bg-primary/5 p-8 rounded-lg border border-primary/20">
+          <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
+            <span class="mr-2">[Check]</span> uDocumentViewer
+          </h3>
+          <ul class="space-y-4 text-text/80">
+            <li>12kb payload, loads instantly</li>
+            <li>Zero tracking, zero cookies</li>
+            <li>100% white-label, it looks like your app</li>
+            <li>Perfect responsive rendering everywhere</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Snippet -->
+  <section class="py-20 bg-text text-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-8">Two Lines of Code</h2>
+      <p class="text-xl text-surface/80 max-w-2xl mx-auto mb-8">
+        Implementation is trivial. Just include our lightweight script and add a data attribute to your links.
+      </p>
+
+      <div class="max-w-3xl mx-auto bg-bg rounded-lg overflow-hidden text-left shadow-lg">
+        <div class="flex items-center px-4 py-2 bg-text border-b border-surface/20">
+          <div class="flex space-x-2">
+            <div class="w-3 h-3 rounded-full bg-error"></div>
+            <div class="w-3 h-3 rounded-full bg-surface/50"></div>
+            <div class="w-3 h-3 rounded-full bg-surface/50"></div>
+          </div>
+          <div class="mx-auto text-xs text-surface/60 font-mono">index.html</div>
+        </div>
+        <pre class="p-6 text-sm font-mono overflow-x-auto text-text"><code><span class="text-text/50">&lt;!-- 1. Include the lightweight script --&gt;</span>
+&lt;script src="https://cdn.udocumentviewer.com/v1/viewer.js" defer&gt;&lt;/script&gt;
+
+<span class="text-text/50">&lt;!-- 2. Add the data attribute to your link --&gt;</span>
+&lt;a href="/reports/Q3.pdf" <span class="text-primary font-bold">data-udv="true"</span>&gt;View Q3 Report&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formats -->
+  <section class="py-20 bg-surface border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-16">Perfect Rendering for Standard Formats</h2>
+
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div class="p-6">
+          <div class="w-16 h-16 bg-error/10 text-error rounded-xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">PDF</div>
+          <h3 class="text-xl font-bold mb-2">PDF Documents</h3>
+          <p class="text-text/70">Crisp vector rendering, text selection, and fast web view (linearization) support.</p>
+        </div>
+        <div class="p-6">
+          <div class="w-16 h-16 bg-primary/10 text-primary rounded-xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">DOCX</div>
+          <h3 class="text-xl font-bold mb-2">Word Documents</h3>
+          <p class="text-text/70">Maintains complex formatting, tables, and typography without requiring Office 365.</p>
+        </div>
+        <div class="p-6">
+          <div class="w-16 h-16 bg-orange-500/10 text-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">PPTX</div>
+          <h3 class="text-xl font-bold mb-2">Presentations</h3>
+          <p class="text-text/70">Render slides accurately with support for standard slide transitions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof / Capture -->
+  <section class="py-24 bg-bg">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-4">Join 10,000+ developers making the web faster</h2>
+      <p class="text-xl text-text/70 mb-10">Get early access to our new API endpoints and white-label viewer.</p>
+
+      <div class="bg-surface p-8 rounded-lg border border-border shadow-sm max-w-xl mx-auto">
+        <CaptureForm form="waitlist" submitLabel="Get Early Access" />
+      </div>
+    </div>
+  </section>
+</Layout>
