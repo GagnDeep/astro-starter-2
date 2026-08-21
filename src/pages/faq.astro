@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Frequently Asked Questions about TrackAndLog.",
+};
+---
+<Layout seo={seo} title="FAQ | TrackAndLog">
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="prose">
+      <h1>Frequently Asked Questions</h1>
+
+      <h2>Is TrackAndLog really free?</h2>
+      <p>Yes. We don't charge a subscription for basic metric logging. If you need enterprise data integration, we may offer paid tiers in the future.</p>
+
+      <h2>Can I export my data?</h2>
+      <p>Absolutely. We strongly believe you should own your data. You can export all logs to CSV with one click.</p>
+
+      <h2>Do you have an iOS/Android app?</h2>
+      <p>We are a Progressive Web App (PWA). You can save us to your home screen for a fast, app-like experience without going through the app stores.</p>
+
+      <h2>How do I track custom metrics?</h2>
+      <p>Just type a name and start logging numbers. We don't restrict what you can measure.</p>
+    </div>
+  </main>
+</Layout>

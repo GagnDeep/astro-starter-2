@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+const seo = {
+  page_description: "Read the latest articles about quantified self and metric tracking.",
+};
+---
+
+<Layout seo={seo} title="Blog | TrackAndLog">
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-8">Blog</h1>
+    <div class="space-y-6">
+      {posts.map(post => (
+        <article class="border border-[var(--color-secondary)] p-6 rounded-lg bg-white">
+          <h2 class="text-2xl font-bold mb-2">
+            <a href={`/blog/${post.id}`} class="hover:text-[var(--color-primary)]">{post.data.title}</a>
+          </h2>
+          {post.data.seo?.page_description && <p class="text-gray-700">{post.data.seo.page_description}</p>}
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>

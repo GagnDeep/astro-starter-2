@@ -1,56 +1,70 @@
-import { defineCollection } from "astro:content";
-import { z } from 'astro/zod';
-import { glob } from 'astro/loaders';
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
-const seoSchema = z
-  .object({
-    page_description: z.string().nullable(),
-    canonical_url: z.string().nullable(),
-    featured_image: z.string().nullable(),
-    featured_image_alt: z.string().nullable(),
-    author_twitter_handle: z.string().nullable(),
-    open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
-  })
-  .optional();
-
-const blogCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
+const pages = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/pages" }),
   schema: z.object({
-    title: z.string(),
-    post_hero: z.object({
-      date: z.string().or(z.date()),
-      heading: z.string(),
-      tags: z.array(z.string()),
-      author: z.string(),
-      image: z.string(),
-      image_alt: z.string(),
-    }),
-    thumb_image_path: z.string(),
-    thumb_image_alt: z.string(),
-    seo: seoSchema,
-  }),
+    title: z.string().optional(),
+    seo: z.object({
+      page_description: z.string().optional(),
+      featured_image: z.string().optional(),
+      featured_image_alt: z.string().optional(),
+      canonical_url: z.string().optional(),
+      open_graph_type: z.string().optional(),
+      no_index: z.boolean().optional(),
+    }).optional(),
+  })
 });
 
-const pageSchema = z.object({
-  title: z.string(),
-  hero_block: z.any().optional(),
-  content_blocks: z.array(z.any()).optional(),
-  seo: seoSchema,
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+  schema: z.object({
+    title: z.string().optional(),
+    seo: z.object({
+      page_description: z.string().optional(),
+      featured_image: z.string().optional(),
+      featured_image_alt: z.string().optional(),
+      canonical_url: z.string().optional(),
+      open_graph_type: z.string().optional(),
+      no_index: z.boolean().optional(),
+    }).optional(),
+  }).passthrough()
 });
 
-const paginatedCollectionSchema = z.object({
-  title: z.string(),
-  page_size: z.number().positive(),
-  seo: seoSchema,
+const metrics = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/metrics" }),
+  schema: z.object({
+    title: z.string().optional(),
+    seo: z.object({
+      page_description: z.string().optional(),
+      open_graph_type: z.string().optional(),
+      no_index: z.boolean().optional(),
+    }).optional(),
+  }).passthrough()
 });
 
-const pagesCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,astro}', base: "./src/content/pages" }),
-  schema: z.union([paginatedCollectionSchema, pageSchema]),
+const features = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/features" }),
+  schema: z.object({
+    title: z.string().optional(),
+    seo: z.object({
+      page_description: z.string().optional(),
+      open_graph_type: z.string().optional(),
+      no_index: z.boolean().optional(),
+    }).optional(),
+  }).passthrough()
 });
 
-export const collections = {
-  blog: blogCollection,
-  pages: pagesCollection,
-};
+const glossary = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string().optional(),
+    seo: z.object({
+      page_description: z.string().optional(),
+      open_graph_type: z.string().optional(),
+      no_index: z.boolean().optional(),
+    }).optional(),
+  }).passthrough()
+});
+
+export const collections = { pages, blog, metrics, features, glossary };

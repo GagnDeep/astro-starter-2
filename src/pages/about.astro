@@ -1,5 +1,17 @@
 ---
-import AboutPage from "../content/pages/about.astro";
----
+import Layout from "../layouts/Layout.astro";
 
-<AboutPage />
+const seo = {
+  page_description: "About TrackAndLog: Built for pure metric tracking without the guilt.",
+};
+---
+<Layout seo={seo} title="About | TrackAndLog">
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="prose">
+      <h1>About Us</h1>
+      <p>TrackAndLog was born out of frustration. Every habit app we tried wanted to guilt-trip us into keeping a streak, gamify our lives with confetti, or lock our personal data behind an expensive subscription.</p>
+      <h2>Our Philosophy</h2>
+      <p>We believe in pure data. A missed day is just a missed day—it doesn't ruin your long-term trend. We built this tool to let you log a number quickly, see it on a chart, and export it whenever you want.</p>
+    </div>
+  </main>
+</Layout>

@@ -34,7 +34,7 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 const HeroComponent = props.hero_block?._name ? components[props.hero_block._name] : null;
 ---
 
-<Layout {...props}>
+<Layout {...props} title={props.title || "TrackAndLog"}>
   {HeroComponent && (
     <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
       <HeroComponent {...props.hero_block} />

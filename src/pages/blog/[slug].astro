@@ -1,22 +1,33 @@
 ---
-import PostLayout from "../../layouts/Post.astro";
-import { getCollection, getEntry, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+import CaptureForm from "../../components/forms/capture-form.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({ params: { slug: post.id } }));
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
 }
 
-if (!Astro.params.slug) {
-  throw new Error("Post slug is undefined");
-}
-const post = await getEntry("blog", Astro.params.slug);
+const { post } = Astro.props;
 if (!post) {
-  throw new Error("Failed to get post with slug: " + Astro.params.slug);
+  throw new Error("Failed to get post.");
 }
 const { Content } = await render(post);
 ---
 
-<PostLayout frontmatter={post.data} body={post.body}>
-  <Content />
-</PostLayout>
+<Layout seo={post.data.seo} title={post.data.title || "TrackAndLog"}>
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <article class="prose">
+      <Content />
+    </article>
+
+    <div class="mt-16 p-8 bg-[var(--color-bg-base)] rounded-lg border border-[var(--color-secondary)]">
+      <h3 class="text-2xl font-bold mb-4">Tired of streaks and gamification?</h3>
+      <p class="mb-6">Sign up for TrackAndLog to start recording pure data with one-click CSV exports.</p>
+      <CaptureForm form="signup" cta="Start Tracking" />
+    </div>
+  </main>
+</Layout>

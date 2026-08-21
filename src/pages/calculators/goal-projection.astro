@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GoalProjectionCalculator from "../../components/calculators/GoalProjectionCalculator";
+
+const seo = {
+  page_description: "Project when you will hit your target metric based on your current daily rate of change.",
+  open_graph_type: "website"
+};
+---
+<Layout seo={seo} title="Goal Projection Calculator | TrackAndLog">
+  <main class="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="prose">
+      <h1>Goal Projection Calculator</h1>
+      <p>Use your <a href="/calculators/rolling-average">rolling average</a> daily change rate to project exactly when you will hit a target metric. Useful for <a href="/metrics/weight">weight tracking</a> or savings goals.</p>
+
+      <noscript>
+        <div class="bg-gray-100 p-4 border border-gray-300 my-4">
+          <p><strong>JavaScript Required</strong></p>
+          <p>This calculator requires JavaScript. The formula is: <code>(Current - Goal) / Daily Rate = Days Required</code>.</p>
+        </div>
+      </noscript>
+
+      <GoalProjectionCalculator client:load />
+
+      <h2>Understanding the Projection</h2>
+      <p>Projections are linear. In reality, metrics often follow a curve (e.g., weight loss slows down as you get closer to your goal). Use this calculator for short-to-medium term estimates (30-90 days) rather than year-long projections.</p>
+    </div>
+  </main>
+</Layout>

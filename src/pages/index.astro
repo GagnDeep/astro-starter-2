@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "TrackAndLog is a fast, lightweight metric tracking app. Own your data with CSV exports.",
+};
+---
+<Layout seo={seo} title="TrackAndLog">
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-[var(--color-bg-base)] py-20 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-secondary)]">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl sm:text-6xl font-bold mb-6 text-[var(--color-text-base)]">Log your metrics. No confetti. No guilt.</h1>
+        <p class="text-xl sm:text-2xl mb-8 text-gray-700">A fast, lightweight tracker for habits and numbers. Own your data with one-click CSV exports.</p>
+
+        <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-sm border border-[var(--color-secondary)]">
+          <h2 class="text-lg font-bold mb-4">Start tracking for free</h2>
+          <CaptureForm form="signup" cta="Start Tracking" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">Spreadsheets are slow. Other apps want your bank login.</h2>
+        <p class="text-lg text-gray-700">You don't need a bloated 'life OS' just to log how many pushups you did or what your weight is today. TrackAndLog gets out of your way.</p>
+      </div>
+    </section>
+
+    <!-- Feature Grid -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg-base)] border-y border-[var(--color-secondary)]">
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-[var(--color-secondary)]">
+          <h3 class="text-2xl font-bold mb-3">Pure Data</h3>
+          <p>Track binary habits or continuous variables in seconds. Use our <a href="/calculators/rolling-average" class="text-[var(--color-primary)] underline">calculators</a> to smooth out the noise.</p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-[var(--color-secondary)]">
+          <h3 class="text-2xl font-bold mb-3">Data Ownership</h3>
+          <p>One-click <a href="/features/csv-export" class="text-[var(--color-primary)] underline">CSV exports</a>. Your data is yours. We never lock you in.</p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-[var(--color-secondary)]">
+          <h3 class="text-2xl font-bold mb-3">Privacy First</h3>
+          <p>We don't sell your data to third parties. We don't use AI to analyze your habits. See our <a href="/legal/privacy" class="text-[var(--color-primary)] underline">Privacy Policy</a>.</p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-[var(--color-secondary)]">
+          <h3 class="text-2xl font-bold mb-3">Fast Logging</h3>
+          <p>Optimized for mobile. Tap, enter a number, and you're done. No distractions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Metrics -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-10">What will you measure?</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/metrics/blood-pressure" class="px-4 py-2 border border-[var(--color-secondary)] rounded-full hover:bg-[var(--color-bg-base)]">Blood Pressure</a>
+          <a href="/metrics/weight" class="px-4 py-2 border border-[var(--color-secondary)] rounded-full hover:bg-[var(--color-bg-base)]">Weight</a>
+          <a href="/metrics/caffeine" class="px-4 py-2 border border-[var(--color-secondary)] rounded-full hover:bg-[var(--color-bg-base)]">Caffeine Intake</a>
+          <a href="/metrics/reading-pages" class="px-4 py-2 border border-[var(--color-secondary)] rounded-full hover:bg-[var(--color-bg-base)]">Pages Read</a>
+          <a href="/metrics/sleep-duration" class="px-4 py-2 border border-[var(--color-secondary)] rounded-full hover:bg-[var(--color-bg-base)]">Sleep</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
