@@ -1,0 +1,98 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Calculate stamp duty on Cayman Islands real estate. Understand rates for Caymanians vs non-Caymanians.",
+  canonical_url: "/tools/stamp-duty-calculator",
+  open_graph_type: "website"
+};
+---
+<Layout seo={seo} title="Cayman Islands Stamp Duty Calculator">
+  <div class="max-w-4xl mx-auto py-12 px-6">
+    <h1 class="text-3xl font-bold mb-6">Cayman Real Estate Stamp Duty Calculator</h1>
+    <p class="mb-8">Stamp duty is a one-time fee paid to the Cayman Islands Government on real estate purchases. The standard rate is 7.5%, but concessions exist for first-time Caymanian buyers.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+        <form id="sd-form" class="space-y-4">
+          <div>
+            <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Purchase Price (CI$)</label>
+            <input type="number" id="price" name="price" class="w-full rounded border border-gray-300 px-3 py-2" required placeholder="e.g. 500000" />
+            <p class="text-xs text-gray-500 mt-1">Note: Stamp duty is assessed on the purchase price or the market value, whichever is higher.</p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Buyer Status</label>
+            <select id="status" class="w-full rounded border border-gray-300 px-3 py-2">
+              <option value="standard">Non-Caymanian / Standard (7.5%)</option>
+              <option value="first_time_caymanian">First-Time Caymanian Buyer</option>
+            </select>
+          </div>
+          <button type="button" id="calc-btn" class="w-full bg-navy-900 text-white py-2 rounded font-medium hover:bg-navy-800 transition-colors">Calculate Duty</button>
+        </form>
+
+        <noscript>
+          <div class="mt-8 bg-brand-50 p-4 rounded-md border border-brand-100 text-sm">
+            <h3 class="font-bold mb-2">How to calculate manually:</h3>
+            <ul class="list-disc pl-4 space-y-2">
+              <li><strong>Standard Rate:</strong> Multiply purchase price by 0.075 (7.5%).</li>
+              <li><strong>First-Time Caymanian:</strong> CI$0 on first CI$400k. 2% on CI$400k - CI$500k. 7.5% if above CI$500k.</li>
+            </ul>
+          </div>
+        </noscript>
+
+        <div id="results" class="mt-8 hidden bg-gray-50 p-4 rounded-md border border-gray-200">
+          <h3 class="font-bold text-lg mb-4">Stamp Duty Due</h3>
+          <div class="flex justify-between font-bold text-red-700 text-2xl">
+            <span>Total:</span>
+            <span id="res-duty" class="font-mono"></span>
+          </div>
+          <p id="res-note" class="text-sm mt-2 text-gray-600"></p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold mb-4">Need help finding a property?</h3>
+        <p class="text-sm text-gray-600 mb-4">Our weekly newsletter covers the latest real estate trends and exclusive listings in the Cayman Islands.</p>
+        <CaptureForm form="newsletter" submitLabel="Subscribe">
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required class="w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" />
+          </div>
+        </CaptureForm>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.getElementById('calc-btn').addEventListener('click', () => {
+      const priceStr = document.getElementById('price').value;
+      const status = document.getElementById('status').value;
+      if(!priceStr) return;
+
+      const price = parseFloat(priceStr);
+      let duty = 0;
+      let note = "";
+
+      if (status === 'standard') {
+        duty = price * 0.075;
+        note = "Standard 7.5% rate applies.";
+      } else if (status === 'first_time_caymanian') {
+        if (price <= 400000) {
+          duty = 0;
+          note = "Fully exempt (Price ≤ CI$400,000 for first-time Caymanian).";
+        } else if (price <= 500000) {
+          duty = (price - 400000) * 0.02; // 2% on the difference
+          note = "2% concessionary rate applies on amount over CI$400k.";
+        } else {
+          duty = price * 0.075;
+          note = "No concession. Standard 7.5% rate applies as price exceeds CI$500,000.";
+        }
+      }
+
+      document.getElementById('res-duty').innerText = 'CI$' + duty.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById('res-note').innerText = note;
+      document.getElementById('results').classList.remove('hidden');
+    });
+  </script>
+</Layout>

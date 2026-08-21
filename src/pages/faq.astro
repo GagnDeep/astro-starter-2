@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Frequently asked questions regarding Cayman Islands business, finance, and expat living.",
+  canonical_url: "/faq/",
+  open_graph_type: "website"
+};
+
+const faqs = [
+  {
+    q: "Is there income tax in the Cayman Islands?",
+    a: "No. The Cayman Islands has no direct taxes. There is no income tax, no corporate tax, no capital gains tax, no wealth tax, and no withholding tax. The government generates revenue primarily through indirect taxes, such as import duties, stamp duty on real estate, and corporate registration fees."
+  },
+  {
+    q: "How long does it take to get a Cayman work permit?",
+    a: "Processing times vary significantly. A Temporary Work Permit (TWP) can often be processed in 2 to 4 weeks. A full grant of a Work Permit can take anywhere from 2 to 4 months, depending on the complexity of the application and the backlog at the Department of WORC."
+  },
+  {
+    q: "What is Economic Substance?",
+    a: "Economic Substance is a regulatory requirement that forces certain corporate entities registered in Cayman to prove they have adequate physical presence and conduct core income-generating activities on the island, rather than just being a 'shell' company."
+  },
+  {
+    q: "Can foreigners buy property in the Cayman Islands?",
+    a: "Yes. There are no restrictions on foreign ownership of real estate in the Cayman Islands. Buyers must pay a one-time stamp duty (typically 7.5%) on the purchase price."
+  }
+];
+---
+<Layout seo={seo} title="FAQ | The Cayman Journal">
+  <div class="max-w-3xl mx-auto py-16 px-6">
+    <h1 class="text-4xl font-bold mb-10 text-navy-900">Frequently Asked Questions</h1>
+
+    <div class="space-y-8">
+      {faqs.map(faq => (
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <h3 class="text-xl font-bold text-navy-900 mb-2">{faq.q}</h3>
+          <p class="text-gray-700">{faq.a}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 bg-brand-50 p-8 rounded-lg border border-brand-100">
+      <h3 class="text-xl font-bold mb-4 text-navy-900">Didn't find what you're looking for?</h3>
+      <p class="text-gray-700 mb-6">Ask us directly or subscribe to our newsletter for weekly insights.</p>
+      <CaptureForm form="enquiry" submitLabel="Submit Question">
+        <div class="space-y-4">
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="Your email" class="w-full rounded border border-gray-300 px-3 py-2" />
+          <textarea id="message" name="message" required placeholder="Your question" rows="3" class="w-full rounded border border-gray-300 px-3 py-2"></textarea>
+        </div>
+      </CaptureForm>
+    </div>
+  </div>
+</Layout>
