@@ -19,7 +19,7 @@ import sharp from "sharp";
 const ROOT = path.resolve(import.meta.dirname, "..");
 
 /** Fingerprint of the placeholder mark shipped with the starter. */
-const PLACEHOLDER_SOURCE_HASH = "c92ea9b8e4c9";
+const PLACEHOLDER_SOURCE_HASH = "c92ea9b8e4c9_null";
 
 const EXPECTED = [
   { file: "public/favicon.svg" },

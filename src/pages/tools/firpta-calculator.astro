@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FIRPTACalculator from "../../components/tools/FIRPTACalculator.tsx";
+
+const page = {
+  data: {
+    title: "FIRPTA Withholding Calculator | Dubai US Capital",
+    seo: {
+      page_description: "Calculate your estimated FIRPTA withholding tax when selling US real estate as a foreign national.",
+    }
+  }
+};
+---
+
+<Layout title={page.data.title} seo={page.data.seo}>
+  <div class="max-w-3xl mx-auto px-4 py-16 prose">
+    <h1>FIRPTA Withholding Calculator</h1>
+    <p>When a foreign person sells US real estate, the IRS requires the buyer to withhold a percentage of the gross sales price to ensure taxes on the capital gain are paid. This is known as FIRPTA.</p>
+
+    <FIRPTACalculator client:load />
+
+    <h3>Important Considerations</h3>
+    <ul>
+      <li>FIRPTA is a withholding, not the final tax. You must file a US tax return to claim a refund if your actual tax liability is lower.</li>
+      <li>The withholding is based on the <strong>gross sale price</strong>, not the profit. If you sell at a loss, the funds are still withheld until you file.</li>
+      <li>Proper structuring (e.g., using a domestic US LLC taxed as a corporation or specific treaty structures) can sometimes mitigate FIRPTA requirements.</li>
+    </ul>
+  </div>
+</Layout>

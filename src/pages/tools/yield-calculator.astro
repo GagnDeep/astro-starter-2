@@ -1,0 +1,28 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import YieldCalculator from "../../components/tools/YieldCalculator.tsx";
+
+const page = {
+  data: {
+    title: "US Real Estate Yield Calculator | Dubai US Capital",
+    seo: {
+      page_description: "Calculate Cap Rate, Cash-on-Cash return, and Net Cash Flow for US real estate investments.",
+    }
+  }
+};
+---
+
+<Layout title={page.data.title} seo={page.data.seo}>
+  <div class="max-w-3xl mx-auto px-4 py-16 prose">
+    <h1>Yield Calculator</h1>
+    <p>Analyze potential US real estate investments factoring in typical foreign national mortgage terms.</p>
+
+    <YieldCalculator client:load />
+
+    <h3>Understanding the Metrics</h3>
+    <ul>
+      <li><strong>Cap Rate (Capitalization Rate):</strong> The rate of return based on the income the property is expected to generate, assuming it was purchased for all cash. Useful for comparing properties irrespective of financing.</li>
+      <li><strong>Cash-on-Cash Return:</strong> The annual return on the actual cash invested (down payment). This measures the effect of leverage.</li>
+    </ul>
+  </div>
+</Layout>

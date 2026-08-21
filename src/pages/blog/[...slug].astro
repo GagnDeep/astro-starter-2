@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const layoutPage = {
+  data: {
+    title: `${post.data.title} | Dubai US Capital`,
+    seo: post.data.seo
+  }
+};
+---
+
+<Layout title={layoutPage.data.title} seo={layoutPage.data.seo}>
+  <article class="max-w-3xl mx-auto px-4 py-16">
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">{post.data.post_hero.heading}</h1>
+      <div class="text-slate-500">
+        By {post.data.post_hero.author} | {new Date(post.data.post_hero.date).toLocaleDateString()}
+      </div>
+    </header>
+
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </article>
+</Layout>

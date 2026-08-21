@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("library");
+  return pages.map((page) => ({
+    params: { slug: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+
+const layoutPage = {
+  data: {
+    title: `${page.data.title} | Dubai US Capital`,
+    seo: page.data.seo
+  }
+};
+---
+
+<Layout title={layoutPage.data.title} seo={layoutPage.data.seo}>
+  <article class="max-w-3xl mx-auto px-4 py-16 prose">
+    <h1>{page.data.title}</h1>
+    <Content />
+
+    <div class="mt-12 bg-slate-50 p-6 rounded-lg border border-slate-200">
+      <h3 class="mt-0">Ready to implement this?</h3>
+      <p>Download our complete guide or speak to an advisor about your specific situation.</p>
+      <a href="/contact/" class="inline-block bg-slate-900 text-white font-medium py-2 px-4 rounded-md no-underline hover:bg-slate-800">Speak to an Advisor</a>
+    </div>
+  </article>
+</Layout>

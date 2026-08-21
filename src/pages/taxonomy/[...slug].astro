@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("taxonomy");
+  return pages.map((page) => ({
+    params: { slug: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+
+const layoutPage = {
+  data: {
+    title: `${page.data.title} | Dubai US Capital`,
+    seo: page.data.seo
+  }
+};
+---
+
+<Layout title={layoutPage.data.title} seo={layoutPage.data.seo}>
+  <article class="max-w-3xl mx-auto px-4 py-16 prose">
+    <h1>{page.data.title}</h1>
+    <Content />
+
+    <div class="mt-12 p-6 bg-blue-50 rounded-lg border border-blue-100">
+      <h3 class="mt-0 text-blue-900">Explore specific assets in this class</h3>
+      <p class="text-blue-800">Our advisory team sources off-market opportunities specifically suited for Gulf capital.</p>
+      <a href="/contact/" class="inline-block mt-2 bg-blue-600 text-white font-medium py-2 px-4 rounded-md no-underline hover:bg-blue-700">Request Deal Flow</a>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const page = {
+  data: {
+    title: "US Real Estate Calculators | Dubai US Capital",
+    seo: {
+      page_description: "Interactive tools and calculators for UAE investors analyzing US real estate.",
+    }
+  }
+};
+---
+
+<Layout title={page.data.title} seo={page.data.seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-slate-900 mb-6">Tools & Calculators</h1>
+    <p class="text-lg text-slate-700 mb-12">
+      Model your investments and understand tax withholdings before committing capital.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <a href="/tools/firpta-calculator/" class="block bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:border-blue-500 transition-colors">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">FIRPTA Calculator</h2>
+        <p class="text-slate-600">Estimate the IRS withholding required when selling US property as a foreign national.</p>
+      </a>
+      <a href="/tools/yield-calculator/" class="block bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:border-blue-500 transition-colors">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">Yield Calculator</h2>
+        <p class="text-slate-600">Calculate cap rates, cash-on-cash returns, and model foreign national mortgages.</p>
+      </a>
+      <a href="/tools/mortgage-calculator/" class="block bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:border-blue-500 transition-colors">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">Mortgage Calculator</h2>
+        <p class="text-slate-600">Estimate your monthly payments using standard foreign national loan terms.</p>
+      </a>
+    </div>
+  </div>
+</Layout>

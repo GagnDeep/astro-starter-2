@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import MortgageCalculator from "../../components/tools/MortgageCalculator.tsx";
+
+const page = {
+  data: {
+    title: "Foreign National Mortgage Calculator | Dubai US Capital",
+    seo: {
+      page_description: "Calculate your monthly payments and DSCR for US real estate foreign national mortgages.",
+    }
+  }
+};
+---
+
+<Layout title={page.data.title} seo={page.data.seo}>
+  <div class="max-w-3xl mx-auto px-4 py-16 prose">
+    <h1>Foreign National Mortgage Calculator</h1>
+    <p>Estimate your monthly payments using standard foreign national loan terms (DSCR loans).</p>
+
+    <MortgageCalculator client:load />
+
+    <h3>About DSCR Loans</h3>
+    <p>Most UAE investors utilize DSCR (Debt Service Coverage Ratio) loans. These loans do not require a US credit score or W-2 income. The lender underwrites the loan based on the property's rental income covering the debt payments.</p>
+  </div>
+</Layout>

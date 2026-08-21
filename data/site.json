@@ -1,16 +1,16 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Dubai US Capital",
+  "description": "The authoritative, tax-aware, end-to-end US real estate partner for Gulf-based investors.",
+  "tagline": "Secure US Real Estate Investments for Gulf Residents",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
+  "image_alt": "Dubai US Capital",
+  "default_author": "Dubai US Capital",
   "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Dubai US Capital",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
   }

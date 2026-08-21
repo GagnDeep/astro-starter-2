@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const page = {
+  data: {
+    title: "Legal & Disclaimers | Dubai US Capital",
+    seo: {
+      page_description: "Legal information, disclaimers, and terms of service for Dubai US Capital.",
+      no_index: true
+    }
+  }
+};
+---
+
+<Layout title={page.data.title} seo={page.data.seo}>
+  <div class="max-w-3xl mx-auto px-4 py-16 prose">
+    <h1>Legal & Disclaimers</h1>
+
+    <h2>Not Financial or Legal Advice</h2>
+    <p>The information provided on this website (dubaiusacapital.com) does not, and is not intended to, constitute legal, financial, or tax advice. All information, content, and materials available on this site are for general informational purposes only.</p>
+
+    <p>Information on this website may not constitute the most up-to-date legal or other information. Readers of this website should contact their attorney or tax professional to obtain advice with respect to any particular legal or tax matter.</p>
+
+    <h2>No Attorney-Client Relationship</h2>
+    <p>No reader, user, or browser of this site should act or refrain from acting on the basis of information on this site without first seeking legal or tax advice from counsel in the relevant jurisdiction. Only your individual attorney or tax professional can provide assurances that the information contained herein – and your interpretation of it – is applicable or appropriate to your particular situation. Use of, and access to, this website or any of the links or resources contained within the site do not create an attorney-client or advisory-client relationship between the reader, user, or browser and Dubai US Capital.</p>
+
+    <h2>Calculators and Tools</h2>
+    <p>The calculators and tools provided on this site are for illustrative purposes only. They are based on assumptions and should not be relied upon as a guarantee of future performance, tax liabilities, or mortgage terms. Actual results will vary based on individual circumstances and changing market conditions.</p>
+  </div>
+</Layout>
