@@ -1,49 +1,60 @@
 {
-  "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "links": [
-      {
-        "link": "/about/",
-        "text": "About"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
-      }
-    ]
-  },
-  "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
-      }
-    ]
-  }
+  "header": [
+    {
+      "text": "Library",
+      "link": "/library/"
+    },
+    {
+      "text": "Tools",
+      "link": "/tools/"
+    },
+    {
+      "text": "Use Cases",
+      "link": "/use-cases/"
+    },
+    {
+      "text": "Blog",
+      "link": "/blog/"
+    }
+  ],
+  "footer": [
+    {
+      "text": "Resources",
+      "links": [
+        {
+          "text": "Reference Library",
+          "link": "/library/"
+        },
+        {
+          "text": "AI Calculators",
+          "link": "/tools/"
+        },
+        {
+          "text": "Glossary",
+          "link": "/glossary/"
+        }
+      ]
+    },
+    {
+      "text": "Company",
+      "links": [
+        {
+          "text": "About Us",
+          "link": "/about/"
+        },
+        {
+          "text": "Compare",
+          "link": "/compare/"
+        },
+        {
+          "text": "FAQ",
+          "link": "/faq/"
+        },
+        {
+          "text": "Contact",
+          "link": "/contact/"
+        }
+      ]
+    }
+  ]
 }

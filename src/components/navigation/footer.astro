@@ -1,27 +1,54 @@
 ---
-import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
+import site from "../../../data/site.json";
+import navigation from "../../../data/navigation.json";
+
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="mt-auto bg-slate-900 border-t border-slate-800 text-slate-400">
+  <div class="mx-auto max-w-5xl px-6 py-12 md:py-16">
+    <div class="grid gap-12 lg:grid-cols-3">
+      <!-- Brand & Capture -->
+      <div class="lg:col-span-1">
+        <a href="/" class="mb-4 inline-block font-bold text-xl text-white">World AI School</a>
+        <p class="mb-6 text-sm text-slate-400 max-w-sm">Practical AI workflows for modern professionals. No PhD required.</p>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+        <h4 class="font-semibold text-slate-300 mb-3 text-sm">Join our newsletter</h4>
+        <NewsletterForm form={capture.forms.newsletter} submitLabel="Join" class="max-w-xs" />
       </div>
+
+      <!-- Links -->
+      <div class="grid grid-cols-2 gap-8 lg:col-span-2">
+        {
+          navigation.footer.map((group) => (
+            <div>
+              <h3 class="mb-4 text-sm font-semibold text-slate-200">{group.text}</h3>
+              <ul class="space-y-3 text-sm">
+                {group.links.map((link) => (
+                  <li>
+                    <a href={link.link} class="hover:text-white transition-colors">
+                      {link.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+
+        <div>
+           <h3 class="mb-4 text-sm font-semibold text-slate-200">Legal</h3>
+           <ul class="space-y-3 text-sm">
+             <li><a href="/legal" class="hover:text-white transition-colors">Terms & Privacy</a></li>
+           </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-slate-800 pt-8 text-sm flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p>&copy; {currentYear} {site.organization.name}. All rights reserved.</p>
     </div>
   </div>
 </footer>

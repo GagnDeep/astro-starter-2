@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+import { capture } from "../../capture.config";
+import { getCollection } from "astro:content";
+
+const useCases = await getCollection("use-cases");
+const posts = await getCollection("blog");
+posts.sort((a, b) => new Date(b.data.post_hero.date).getTime() - new Date(a.data.post_hero.date).getTime());
+const latestPosts = posts.slice(0, 3);
+---
+
+<Layout title="World AI School | Practical AI Training" seo={{
+
+  page_description: "Master practical AI skills for your daily work. No PhD required. Automate workflows, build intuition, and save hours every week."
+}}>
+
+  <!-- 1. Hero (Capture/CTA) -->
+  <section class="bg-slate-900 text-white py-20 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-balance">Master Practical AI Skills for Your Daily Work.</h1>
+        <p class="text-xl text-slate-300 mb-8 max-w-lg">No theoretical math. No fluff. Learn how to automate workflows, write better prompts, and build intuition for how these models actually work.</p>
+        <div class="flex gap-4">
+          <a href="/pricing" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-3 rounded-lg font-semibold transition-colors">View Courses</a>
+          <a href="/library" class="bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors border border-slate-700">Read the Library</a>
+        </div>
+      </div>
+      <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 shadow-2xl">
+        <h3 class="text-xl font-bold mb-2">Get our 5-day email course</h3>
+        <p class="text-slate-400 mb-6 text-sm">One actionable prompt technique per day. Free.</p>
+        <NewsletterForm form={capture.forms.newsletter} submitLabel="Start Learning" class="w-full" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Problem/Agitation (TextBlock) -->
+  <section class="py-24 bg-white text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-slate-900">Falling behind the AI curve?</h2>
+      <p class="text-xl text-slate-600 leading-relaxed">The tools change daily, but the fundamentals of automation don't. While others waste time scrolling through "Top 10 AI Tools" lists, our students are building robust, repeatable systems that save them 5-10 hours every single week.</p>
+    </div>
+  </section>
+
+  <!-- 3. Core Library Categories (LeftRight conceptually via Cards) -->
+  <section class="py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Structured paths from beginner to builder.</h2>
+        <p class="text-xl text-slate-600">Access our open library of practical frameworks.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-lg flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Prompting</h3>
+          <p class="text-slate-600 mb-6">Stop treating AI like Google. Learn the CREATE framework for reliable outputs.</p>
+          <a href="/library/prompting" class="text-brand-600 font-semibold hover:text-brand-700">Read guides &rarr;</a>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-lg flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Automation</h3>
+          <p class="text-slate-600 mb-6">Connect LLMs to Zapier and Make. Automate routing, extraction, and drafting.</p>
+          <a href="/library/automation" class="text-brand-600 font-semibold hover:text-brand-700">Read guides &rarr;</a>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-lg flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Strategy</h3>
+          <p class="text-slate-600 mb-6">Understand token economics, evaluate model performance, and ensure data privacy.</p>
+          <a href="/library/strategy" class="text-brand-600 font-semibold hover:text-brand-700">Read guides &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Interactive Demo/Tool -->
+  <section class="py-24 bg-white border-y border-slate-200">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-slate-900">See the ROI immediately.</h2>
+      <p class="text-xl text-slate-600 mb-10">Stop guessing. Calculate exactly how much time and money AI workflows will save your team this quarter.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/tools/roi-calculator" class="bg-brand-50 text-brand-700 px-6 py-4 rounded-lg font-semibold hover:bg-brand-100 transition-colors border border-brand-200">Launch AI ROI Calculator</a>
+        <a href="/tools/time-saved" class="bg-white text-slate-700 px-6 py-4 rounded-lg font-semibold hover:bg-slate-50 transition-colors border border-slate-300">Launch Time Saved Tool</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Latest Applied Guides -->
+  <section class="py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex justify-between items-end mb-12 border-b border-slate-200 pb-6">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Learn from real-world workflows, not just theory.</h2>
+        </div>
+        <a href="/blog" class="text-brand-600 font-semibold hidden md:block hover:underline">View all posts &rarr;</a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {latestPosts.map(post => (
+          <a href={`/blog/${post.id}/`} class="group block">
+            <img src={post.data.thumb_image_path} alt={post.data.thumb_image_alt} class="w-full h-48 object-cover rounded-lg mb-4 border border-slate-200 group-hover:border-brand-500 transition-colors" />
+            <h3 class="text-xl font-bold mb-2 group-hover:text-brand-600 transition-colors">{post.data.title}</h3>
+            <p class="text-slate-600 text-sm line-clamp-2">{post.data.seo?.page_description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Use Cases by Industry -->
+  <section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-slate-900">How your peers are using AI today.</h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {useCases.slice(0, 10).map((uc) => (
+          <a href={`/use-cases/${uc.id}/`} class="block p-4 bg-slate-50 rounded-lg border border-slate-200 hover:border-brand-500 hover:shadow-sm transition-all text-sm font-semibold text-slate-800">
+            {uc.data.industry.charAt(0).toUpperCase() + uc.data.industry.slice(1)}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Bottom CTA (Capture) -->
+  <section class="py-24 bg-brand-600 text-white text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Start building your AI intuition today.</h2>
+      <p class="text-xl text-brand-100 mb-10">Join thousands of professionals receiving our weekly breakdown of practical AI workflows.</p>
+
+      <div class="bg-white/10 p-2 rounded-xl backdrop-blur-sm border border-white/20 max-w-lg mx-auto">
+        <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" class="w-full" />
+      </div>
+      <p class="text-brand-200 text-sm mt-4">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+</Layout>

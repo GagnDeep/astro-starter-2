@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_title: "Best AI Courses Compared",
+  page_description: "Compare World AI School with Coursera, DataCamp, and other platforms to find the right fit.",
+};
+
+const comparisons = [
+  {
+    feature: "Focus",
+    us: "Practical Workflows & Automation",
+    coursera: "Academic & Theoretical",
+    datacamp: "Data Science & Coding"
+  },
+  {
+    feature: "Pacing",
+    us: "Fast, self-paced, instantly applicable",
+    coursera: "Slow, multi-week academic structure",
+    datacamp: "Structured coding paths"
+  },
+  {
+    feature: "Target Audience",
+    us: "Non-technical Professionals",
+    coursera: "Students & Researchers",
+    datacamp: "Data Analysts & Engineers"
+  },
+  {
+    feature: "Pricing Model",
+    us: "Affordable, One-time access",
+    coursera: "Expensive Subscriptions",
+    datacamp: "Annual Subscriptions"
+  }
+];
+---
+
+<Layout title="Compare" seo={seo}>
+  <div class="max-w-5xl mx-auto px-6 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Comparing AI Training Platforms</h1>
+      <p class="text-xl text-slate-600 max-w-2xl mx-auto">Not all AI courses are built the same. See why professionals choose us over academic platforms.</p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-slate-100">
+            <th class="p-4 border-b border-slate-300 font-semibold text-slate-700">Feature</th>
+            <th class="p-4 border-b border-slate-300 font-bold text-brand-700 bg-brand-50">World AI School</th>
+            <th class="p-4 border-b border-slate-300 font-semibold text-slate-700">Coursera (Andrew Ng)</th>
+            <th class="p-4 border-b border-slate-300 font-semibold text-slate-700">DataCamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          {comparisons.map((row, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+              <td class="p-4 border-b border-slate-200 font-medium text-slate-900">{row.feature}</td>
+              <td class="p-4 border-b border-slate-200 font-semibold text-brand-600 bg-brand-50/50">{row.us}</td>
+              <td class="p-4 border-b border-slate-200 text-slate-600">{row.coursera}</td>
+              <td class="p-4 border-b border-slate-200 text-slate-600">{row.datacamp}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="/pricing" class="inline-block bg-brand-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-brand-700 transition-colors">See Our Pricing</a>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_title: "AI Course Pricing | World AI School",
+  page_description: "Simple, transparent pricing for practical AI skills training.",
+};
+---
+
+<Layout title="Pricing" seo={seo}>
+  <div class="max-w-5xl mx-auto px-6 py-16">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900">Simple, Transparent Pricing</h1>
+      <p class="text-xl text-slate-600 max-w-2xl mx-auto">Invest in skills that will save you hundreds of hours this year.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- Standard Plan -->
+      <div class="border border-slate-200 rounded-2xl p-8 bg-white flex flex-col">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Individual</h2>
+        <p class="text-slate-500 mb-6">For professionals looking to upskill.</p>
+        <div class="mb-6 flex items-baseline gap-2">
+          <span class="text-4xl font-extrabold text-slate-900">$149</span>
+          <span class="text-slate-500 font-medium">one-time</span>
+        </div>
+        <ul class="space-y-4 mb-8 flex-1">
+          <li class="flex items-start gap-3 text-slate-700">
+            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Lifetime access to all core curriculum
+          </li>
+          <li class="flex items-start gap-3 text-slate-700">
+            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Access to all future course updates
+          </li>
+          <li class="flex items-start gap-3 text-slate-700">
+            <svg class="w-6 h-6 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Certificate of completion
+          </li>
+        </ul>
+        <a href="#enroll" class="block w-full py-3 px-4 bg-slate-900 text-white text-center font-semibold rounded-lg hover:bg-slate-800 transition-colors">Enroll Now</a>
+      </div>
+
+      <!-- Team Plan -->
+      <div class="border-2 border-brand-500 rounded-2xl p-8 bg-brand-50 relative flex flex-col">
+        <div class="absolute top-0 right-8 -translate-y-1/2 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Most Popular</div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Team</h2>
+        <p class="text-slate-500 mb-6">For companies upgrading their workforce.</p>
+        <div class="mb-6 flex items-baseline gap-2">
+          <span class="text-4xl font-extrabold text-slate-900">$399</span>
+          <span class="text-slate-500 font-medium">/ user, one-time</span>
+        </div>
+        <ul class="space-y-4 mb-8 flex-1">
+          <li class="flex items-start gap-3 text-slate-700">
+            <svg class="w-6 h-6 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Everything in Individual
+          </li>
+          <li class="flex items-start gap-3 text-slate-700">
+            <svg class="w-6 h-6 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Admin dashboard for progress tracking
+          </li>
+          <li class="flex items-start gap-3 text-slate-700">
+            <svg class="w-6 h-6 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Dedicated onboarding session (10+ users)
+          </li>
+        </ul>
+        <a href="/contact" class="block w-full py-3 px-4 bg-brand-600 text-white text-center font-semibold rounded-lg hover:bg-brand-700 transition-colors">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</Layout>
