@@ -1,0 +1,31 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Freeze Dried - DogSnacking.com",
+  open_graph_type: "website" as const,
+};
+---
+
+<Layout title="Freeze Dried" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1 class="text-[var(--color-primary)]">Freeze Dried</h1>
+    <p>Here is an extensive, veterinary-reviewed breakdown of Freeze Dried. Always consult your veterinarian for medical advice.</p>
+
+    <h2>Nutritional Breakdown</h2>
+    <p>Every snack introduces new calories and nutrients that can either support or detract from a complete and balanced diet. The digestibility of these elements determines how much your dog truly absorbs versus what passes through.</p>
+
+    <h2>Risk Assessment</h2>
+    <p>We evaluate potential choking hazards, gastrointestinal obstruction risks, and any known toxicological data related to this subject. For example, some heavily processed chews can swell in the stomach and cause dangerous impactions. Other treats may contain high levels of sodium or un-rendered fats that can trigger pancreatitis in susceptible breeds.</p>
+
+    <h2>At a Glance</h2>
+    <ul>
+      <li>Veterinarian reviewed sources.</li>
+      <li>Data-driven analysis of caloric density.</li>
+      <li>Objective tradeoffs in cost versus value.</li>
+      <li>Clear guidance on appropriate sizing to prevent choking.</li>
+    </ul>
+
+    <p>For more detailed information, check our <a href="/tools/treat-allowance-calculator/">Treat Allowance Calculator</a> or <a href="/contact/">contact us</a>.</p>
+  </div>
+</Layout>
