@@ -1,14 +1,44 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CaptureForm from "../../components/forms/capture-form.astro";
-const seo = { page_description: "How to guide 2 for PDF workflows." };
+const seo = { page_description: "How to extract and share specific annotated pages from a large PDF document." };
 ---
-<Layout title="Guide 2" seo={seo}>
+<Layout title="How to Extract and Share Annotated Pages" seo={seo}>
   <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
-    <h1>Guide 2</h1>
-    <p>This is a detailed guide on how to complete a specific PDF workflow.</p>
+    <h1>How to Extract and Share Annotated Pages</h1>
+    <p>When dealing with a 500-page manual, you don't want to email the entire file just to show three pages you marked up. Extracting specific pages reduces file size (see our <a href="/calculators/calc-1">File Size Estimator</a>) and focuses the recipient's attention.</p>
+
+    <h2>Why Extract Pages?</h2>
+    <ul>
+      <li><strong>Email Limits:</strong> Most clients reject attachments over 25MB.</li>
+      <li><strong>Clarity:</strong> Sending only the relevant pages ensures your feedback isn't lost.</li>
+      <li><strong>Privacy:</strong> Prevent accidentally sharing confidential information located elsewhere in the document.</li>
+    </ul>
+
+    <h2>The Workflow</h2>
+    <ol>
+      <li><strong>Annotate:</strong> Use our <a href="/tools/annotate-pdf">online annotation tool</a> to mark up the necessary pages.</li>
+      <li><strong>Identify Page Numbers:</strong> Note the exact page numbers you've worked on.</li>
+      <li><strong>Print to PDF (The Trick):</strong> Most operating systems allow you to extract pages without dedicated software.
+        <ul>
+          <li>Open the annotated PDF in your browser or default viewer.</li>
+          <li>Hit <code>Ctrl+P</code> (Windows) or <code>Cmd+P</code> (Mac).</li>
+          <li>Change the destination to "Save as PDF".</li>
+          <li>Under "Pages", select "Custom" and enter your page numbers (e.g., <code>14, 22-25</code>).</li>
+          <li>Save the new, smaller file.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 my-6">
+      <p class="font-bold m-0">Warning: Flattening</p>
+      <p class="text-sm m-0 mt-1">Using the "Print to PDF" method will often "flatten" your annotations, meaning the recipient will see them, but won't be able to edit or delete them. This is usually desired for sharing, but is important to know regarding <a href="/reference/topic-1">PDF Specifications</a>.</p>
+    </div>
+
+    <p>For more advanced workflows, ensure your file is saved as a <a href="/glossary/term-2">Linearized PDF</a> for fast web viewing if you intend to host it online.</p>
+
     <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
-      <h3 class="text-lg font-bold mb-4">Subscribe for more guides</h3>
+      <h3 class="text-lg font-bold mb-4">Subscribe for more workflow guides</h3>
       <CaptureForm formLabel="newsletter" submitText="Subscribe" />
     </div>
   </div>

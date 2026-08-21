@@ -1,0 +1,28 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Technical reference on the PDF Document Catalog." };
+---
+<Layout title="Document Catalog" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>Document Catalog</h1>
+    <p>The Document Catalog is the root node of a PDF file's object graph. Every other element in the document—pages, outlines, form fields—is accessed by traversing references starting from the Catalog.</p>
+
+    <h2>Key Entries</h2>
+    <p>According to <a href="/reference/topic-1">ISO 32000</a>, the Catalog contains dictionaries for:</p>
+    <ul>
+      <li><strong>Pages:</strong> The root of the page tree.</li>
+      <li><strong>Outlines:</strong> The document's table of contents (bookmarks).</li>
+      <li><strong>AcroForm:</strong> The definition of all interactive <a href="/reference/topic-18">form fields</a>.</li>
+      <li><strong>Metadata:</strong> Usually a stream containing <a href="/glossary/term-1">XMP Metadata</a>.</li>
+    </ul>
+
+    <h2>Why it Matters for Tools</h2>
+    <p>If a PDF is corrupted and the link to the Catalog is broken in the <a href="/reference/topic-19">XRef table</a>, the document cannot be read, even if all the <a href="/reference/topic-17">Content Streams</a> are perfectly intact. When you <a href="/tools/annotate-pdf">annotate a document</a>, the software must carefully preserve the Catalog references during the save process.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Did this technical reference help?</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Feedback" />
+    </div>
+  </div>
+</Layout>

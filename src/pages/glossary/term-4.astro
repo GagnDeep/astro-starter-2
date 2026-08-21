@@ -1,10 +1,22 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-const seo = { page_description: "Definition of term 4 in the context of PDF." };
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Definition of FlateDecode compression in PDFs." };
 ---
-<Layout title="Term 4" seo={seo}>
+<Layout title="What is FlateDecode?" seo={seo}>
   <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
-    <h1>Term 4</h1>
-    <p>Definition of term 4.</p>
+    <h1>FlateDecode (Compression)</h1>
+    <p><strong>Definition:</strong> FlateDecode is a standard compression filter used in PDF files. It is based on the zlib/deflate compression algorithm, which is the same technology used in standard ZIP files.</p>
+
+    <h2>How it is Used</h2>
+    <p>In a PDF, almost all <a href="/reference/topic-17">Content Streams</a> (the text and drawing instructions) and many images (like PNGs) are compressed using FlateDecode to save space. Without it, PDF files would be massive text documents.</p>
+
+    <h2>Interaction with Tools</h2>
+    <p>When you use an <a href="/tools/annotate-pdf">online annotation tool</a>, the tool must <em>decode</em> the streams to render the page, allow you to add annotations, and then optionally re-encode the data when saving. This is why a file might change size slightly after saving, even if you only added one small note. Check expected sizes with our <a href="/calculators/calc-1">File Size Estimator</a>.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Suggest an edit to this term</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Suggestion" />
+    </div>
   </div>
 </Layout>

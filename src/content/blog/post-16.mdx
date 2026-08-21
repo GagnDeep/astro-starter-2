@@ -1,0 +1,51 @@
+---
+title: "How to fill a PDF form that isn't fillable"
+post_hero:
+  date: "2024-04-05"
+  heading: "How to fill a PDF form that isn't fillable"
+  tags: ["PDF", "Forms", "Tutorial"]
+  author: "uViewPDF Team"
+  image: "/src/assets/images/blog/featured-image-1.jpg"
+  image_alt: "Filling forms online"
+thumb_image_path: "/src/assets/images/blog/blog-thumb-1.jpg"
+thumb_image_alt: "Form filling"
+seo:
+  page_description: "Learn the easiest way to fill out flat, non-interactive PDF forms online without printing them."
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: "article"
+  no_index: false
+---
+
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+You receive an email from your doctor or a government agency with an attached PDF form. You open it, click the first line to type your name, and nothing happens. It's a "flat" PDF.
+
+## The Difference Between Flat and Interactive Forms
+
+An interactive form (known technically as an [AcroForm](/reference/topic-18)) has embedded logic that defines specific areas as text boxes, checkboxes, or dropdowns. A flat PDF is basically a digital photograph of a piece of paper.
+
+## How to Fill It Out
+
+You don't need to buy a printer just to fill out a form.
+
+1. Go to our [Add Text Tool](/tools/add-text-to-pdf).
+2. Upload the flat PDF.
+3. Select the Text icon.
+4. Click near the line you want to fill and start typing.
+5. Drag the text box into perfect alignment.
+
+### Adding Checkmarks and Signatures
+
+If the form has checkboxes, you can use the Text tool to type an "X", or use the Freehand Drawing tool to draw a checkmark.
+
+For signatures, select the Freehand tool, adjust the line thickness, and sign with your mouse or trackpad. When you save the document, all your additions are merged into the file's [Annots array](/reference/topic-1).
+
+For a more detailed walkthrough, see our [Non-Interactive Form Guide](/guides/guide-3).
+
+<div className="not-prose mt-12 p-8 bg-gray-50 border border-gray-200 rounded-lg">
+  <h3 className="text-xl font-bold mb-4">Never deal with watermarks again. Join our newsletter.</h3>
+  <CaptureForm formLabel="newsletter" submitText="Subscribe" />
+</div>

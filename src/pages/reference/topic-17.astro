@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Technical reference on PDF Content Streams." };
+---
+<Layout title="PDF Content Streams" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>PDF Content Streams</h1>
+    <p>A Content Stream is the heart of a PDF page. It contains the actual instructions that tell a PDF viewer how to draw text, graphics, and images on the screen.</p>
+
+    <h2>Structure of a Content Stream</h2>
+    <p>Content streams are written in a specific syntax that resembles PostScript. They are almost always compressed (usually with FlateDecode) to reduce file size. (You can calculate expected sizes with our <a href="/calculators/calc-1">Estimator</a>).</p>
+
+    <p>A typical uncompressed stream might look like this:</p>
+    <pre><code>BT
+/F1 12 Tf
+72 712 Td
+(Hello, World!) Tj
+ET</code></pre>
+    <p>This translates to: Begin Text (BT), set font to F1 at size 12, move to position 72,712, draw the string "Hello, World!", and End Text (ET).</p>
+
+    <h2>Content Streams vs. Annotations</h2>
+    <p>It is crucial to understand that <strong>annotations are not part of the content stream</strong>. When you use an <a href="/tools/annotate-pdf">online tool</a> to draw a highlight over text, you are not modifying the instructions shown above. Instead, you are adding an object to the <code>Annots</code> array of the page dictionary (as defined in <a href="/reference/topic-1">ISO 32000</a>), which tells the viewer to draw the highlight <em>on top</em> of the rendered content stream.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Did this technical reference help?</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Feedback" />
+    </div>
+  </div>
+</Layout>
