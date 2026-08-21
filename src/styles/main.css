@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-primary: #0ea5e9;
+  --color-brand-secondary: #0284c7;
+  --color-brand-background: #ffffff;
+  --color-brand-surface: #f0f9ff;
+  --color-brand-text-main: #0f172a;
+  --color-brand-text-muted: #64748b;
+  --color-brand-success: #10b981;
+}
+
+
 /*
  * CASCADE RULE — read before adding CSS to this file.
  *

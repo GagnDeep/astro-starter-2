@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Compare WaterTrackLog with other hydration apps.",
+  no_index: false,
+};
+---
+
+<Layout title="Compare WaterTrackLog" seo={seo}>
+  <div class="mx-auto max-w-4xl px-6 py-12">
+    <h1 class="text-4xl font-bold tracking-tight mb-8">How We Compare</h1>
+    <p class="text-lg text-gray-600 mb-12">
+      Tired of gamified apps, constant ads, and unnecessary push notifications? See how WaterTrackLog stacks up against the competition.
+    </p>
+
+    <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200">
+            <th class="p-4 font-semibold text-gray-900">Feature</th>
+            <th class="p-4 font-bold text-blue-600">WaterTrackLog</th>
+            <th class="p-4 font-semibold text-gray-600">WaterMinder</th>
+            <th class="p-4 font-semibold text-gray-600">Plant Nanny</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <tr>
+            <td class="p-4 text-gray-800">Interface</td>
+            <td class="p-4 text-gray-800 font-medium">Clean, Minimalist</td>
+            <td class="p-4 text-gray-600">Busy, Body filling animation</td>
+            <td class="p-4 text-gray-600">Gamified, Plant growing</td>
+          </tr>
+          <tr>
+            <td class="p-4 text-gray-800">Focus</td>
+            <td class="p-4 text-gray-800 font-medium">Data & Privacy</td>
+            <td class="p-4 text-gray-600">Visuals</td>
+            <td class="p-4 text-gray-600">Tamagotchi-style game</td>
+          </tr>
+          <tr>
+            <td class="p-4 text-gray-800">Ads</td>
+            <td class="p-4 text-green-600 font-medium">None</td>
+            <td class="p-4 text-red-600">In free tier</td>
+            <td class="p-4 text-red-600">In free tier</td>
+          </tr>
+          <tr>
+            <td class="p-4 text-gray-800">Educational Resources</td>
+            <td class="p-4 text-green-600 font-medium">Extensive Library</td>
+            <td class="p-4 text-gray-600">Basic tips</td>
+            <td class="p-4 text-gray-600">None</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-16 bg-blue-50 p-8 rounded-lg text-center">
+      <h3 class="text-2xl font-bold mb-4">Ready for a simpler hydration tracker?</h3>
+      <p class="text-gray-600 mb-6">Join the waitlist today and get early access.</p>
+      <div class="max-w-md mx-auto">
+        <CaptureForm form="waitlist" submitLabel="Join Waitlist" />
+      </div>
+    </div>
+  </div>
+</Layout>

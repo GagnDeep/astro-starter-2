@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CaptureForm from '../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "WaterTrackLog is a simple hydration and water-intake tracking web app with reminders.",
+  no_index: false,
+};
+---
+
+<Layout title="WaterTrackLog - Simple Hydration Tracking" seo={seo}>
+  <main>
+    {/* Hero Section */}
+    <section class="bg-blue-50 py-20 px-6 sm:py-32">
+      <div class="mx-auto max-w-5xl text-center">
+        <h1 class="text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl mb-6">
+          Simple hydration tracking <br class="hidden sm:block"/> without the gimmicks.
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg text-gray-600 mb-10">
+          No ads. No cartoon plants to water. Just a fast, privacy-first way to log your intake and get scientifically-backed hydration reminders.
+        </p>
+        <div class="mx-auto max-w-md bg-white p-6 rounded-lg shadow-md border border-gray-100">
+          <h2 class="text-lg font-semibold mb-4 text-left">Join the waitlist for early access</h2>
+          <CaptureForm form="waitlist" submitLabel="Join Waitlist" class="text-left" />
+        </div>
+      </div>
+    </section>
+
+    {/* Problem / Solution */}
+    <section class="py-20 px-6">
+      <div class="mx-auto max-w-5xl">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold mb-6">Desk workers forget to drink water.</h2>
+            <p class="text-lg text-gray-600 mb-4">
+              You're in deep focus. Hours go by. Suddenly you have a headache and realize you haven't had a sip of water since breakfast.
+            </p>
+            <p class="text-lg text-gray-600">
+              WaterTrackLog sends gentle, smart reminders based on your schedule, ensuring you stay hydrated without breaking your concentration.
+            </p>
+          </div>
+          <div class="bg-gray-100 p-8 rounded-2xl flex items-center justify-center min-h-[300px]">
+            <p class="text-gray-400 font-medium">[ UI Illustration: Smart Reminders ]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Features */}
+    <section class="bg-gray-50 py-20 px-6">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="text-3xl font-bold text-center mb-12">Why WaterTrackLog?</h2>
+        <div class="grid sm:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-xl font-bold text-blue-600 mb-3">Simple Logging</h3>
+            <p class="text-gray-600">One tap to log a drink. No complex menus or slow animations.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-xl font-bold text-blue-600 mb-3">Accurate Data</h3>
+            <p class="text-gray-600">Calculations based on U.S. National Academies of Sciences guidelines.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <h3 class="text-xl font-bold text-blue-600 mb-3">Privacy First</h3>
+            <p class="text-gray-600">Your data stays yours. No selling to third parties. Ever.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

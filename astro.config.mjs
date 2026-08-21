@@ -12,7 +12,7 @@ export default defineConfig({
   // The canonical origin of the production site. Everything SEO-related
   // (canonicals, Open Graph URLs, sitemap, robots.txt, RSS) derives from this,
   // so it is the single most important value to change for a new project.
-  site: "https://tiny-jackal.cloudvent.net/",
+  site: "https://watertracklog.com",
 
   // Emit /about/index.html -> URLs always end in a trailing slash. `canonical`
   // in src/lib/seo/meta.ts is built to match, so there is exactly one URL per
@@ -75,6 +75,11 @@ export default defineConfig({
         context: "client",
         access: "public",
         default: "development",
+      }),
+      PUBLIC_WCS_PK: envField.string({
+        context: "client",
+        access: "public",
+        default: "wcs_pk_47bxlyp54gjn_BR9Mhe51yJEkTuchPcpJnvAs7ZnZ98lM6zxfgBI-tbE",
       }),
       PUBLIC_OO_VERSION: envField.string({
         context: "client",

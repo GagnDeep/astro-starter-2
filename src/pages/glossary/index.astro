@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const glossaryEntries = await getCollection('glossary');
+
+const seo = {
+  page_description: "Hydration Glossary of Terms",
+  no_index: false,
+};
+---
+<Layout title="Glossary" seo={seo}>
+  <div class="mx-auto max-w-5xl px-6 py-12">
+    <h1 class="text-4xl font-bold tracking-tight mb-8">Hydration Glossary</h1>
+    <ul class="grid gap-6 md:grid-cols-3">
+      {
+        glossaryEntries.map((entry) => (
+          <li class="rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition">
+            <a href={`/glossary/${entry.id}/`} class="block">
+              <h2 class="text-lg font-semibold text-blue-600 mb-2">{entry.data.title}</h2>
+              <p class="text-sm text-gray-600">{entry.data.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-16 bg-blue-50 p-8 rounded-lg">
+      <h3 class="text-xl font-bold mb-4">Join our Waitlist</h3>
+      <CaptureForm form="waitlist" submitLabel="Join" />
+    </div>
+  </div>
+</Layout>

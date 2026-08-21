@@ -1,16 +1,16 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "WaterTrackLog",
+  "description": "Simple hydration and water-intake tracking web app with reminders.",
+  "tagline": "Simple hydration tracking without the gimmicks.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "WaterTrackLog — simple hydration tracking.",
+  "default_author": "WaterTrackLog",
+  "theme_color": "#0ea5e9",
   "organization": {
-    "name": "CloudCannon",
+    "name": "WaterTrackLog",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
   }
