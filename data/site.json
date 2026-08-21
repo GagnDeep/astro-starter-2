@@ -1,16 +1,16 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Most Private Phone",
+  "description": "The definitive, practical guide to reclaiming mobile privacy without losing usability. Reviews and guides on the most secure and private smartphones like GrapheneOS.",
+  "tagline": "Reclaim your mobile privacy.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
+  "image_alt": "Most Private Phone - Reclaim your mobile privacy.",
+  "default_author": "Most Private Phone Team",
   "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Most Private Phone",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
   }

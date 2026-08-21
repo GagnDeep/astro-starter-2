@@ -1,0 +1,53 @@
+---
+title: "Verified Boot"
+seo:
+  page_description: "Understand Verified Boot on Android and why it's critical for mobile security and custom ROMs like GrapheneOS."
+  no_index: false
+---
+
+# Verified Boot
+
+**Verified Boot** is a security process that ensures all executed code comes from a trusted source (usually the device manufacturer or the OS developer) rather than from an attacker or corruption.
+
+When you search for "most secure phone in the world," the devices that surface all rely heavily on Verified Boot. Without it, all other security measures are built on a foundation of sand.
+
+## How it Works: The Chain of Trust
+
+When a modern Android device powers on, it doesn't just blindly load the operating system. Instead, it follows a strict cryptographic chain of trust:
+
+1.  **Hardware Root of Trust:** The process begins in an unalterable piece of read-only memory (ROM) inside the System-on-Chip (SoC) or a dedicated security chip (like the Titan M2 on a Google Pixel). This hardware contains the public cryptographic keys of the manufacturer.
+2.  **Bootloader Verification:** The hardware uses those keys to verify the digital signature of the primary bootloader. If the signature matches, the bootloader is executed.
+3.  **OS Kernel Verification:** The bootloader then verifies the signature of the operating system kernel (e.g., Linux kernel for Android).
+4.  **System Partition Verification (dm-verity):** Once the kernel is running, it uses a feature called `dm-verity` to ensure that the entire system partition (where the core OS files live) hasn't been modified. It does this by checking a cryptographic hash tree; if even a single byte has been altered by malware, the read operation fails.
+
+If at any point the cryptographic signature does not match or a hash fails, the device will refuse to boot normally, typically displaying a red warning screen indicating the device is corrupt.
+
+## The Evil Maid Attack
+
+Why is this necessary? Consider the "Evil Maid" attack.
+
+Imagine you leave your phone in a hotel room. An attacker (the "evil maid") gains physical access to your device for 5 minutes. They plug it into a laptop, force it into fastboot mode, and flash a modified kernel that includes a persistent rootkit capable of logging your keystrokes and bypassing your lock screen.
+
+If Verified Boot is active, the attacker's modified kernel will not have the correct cryptographic signature. When you return and turn on your phone, Verified Boot will detect the tampering and refuse to boot, protecting your data.
+
+## Why Custom ROMs Often Break It
+
+Most traditional custom ROMs (like LineageOS or older versions of CyanogenMod) require you to leave the bootloader unlocked permanently.
+
+**An unlocked bootloader completely disables Verified Boot.**
+
+This means that while you might be gaining privacy from Google by running LineageOS, you are massively sacrificing security. An attacker with brief physical access can easily flash a persistent rootkit, and the device will boot it without complaint.
+
+## The GrapheneOS and CalyxOS Advantage
+
+GrapheneOS and CalyxOS are unique in the custom ROM space because they strictly support **re-locking the bootloader** with their own cryptographic keys.
+
+They provide you with an operating system signed by their development teams, and they instruct the hardware (via the bootloader) to trust *their* keys instead of Google's keys. Once you relock the bootloader, Verified Boot is fully re-enabled. This maintains the maximum hardware security posture while allowing you to run a de-googled, privacy-respecting operating system.
+
+This is the primary reason both projects strongly recommend (and officially only support) Google Pixel devices—they are the only mainstream Android phones that allow end-users to flash custom keys and relock the bootloader.
+
+## Related Topics
+* [GrapheneOS](/os/grapheneos/)
+* [Bootloader](/glossary/bootloader/)
+
+<CaptureForm />

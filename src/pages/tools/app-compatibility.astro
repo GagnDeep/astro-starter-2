@@ -1,0 +1,99 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+---
+<Layout title="Tool" seo={{ page_description: "Check which mainstream and banking apps work on GrapheneOS and CalyxOS." }}>
+  <div class="prose mx-auto px-4 py-8">
+    <h1>App Compatibility Checker</h1>
+    <p>Wondering if your favorite apps will work on a degoogled phone? Use our compatibility checker.</p>
+
+    <noscript>
+      <div class="bg-yellow-100 p-4 border-l-4 border-yellow-500 mb-8 text-black">
+        <p><strong>JavaScript is disabled.</strong> Here are general rules for app compatibility:</p>
+        <ul>
+          <li><strong>GrapheneOS (with Sandboxed Google Play):</strong> Almost all apps work, including most banking apps. Android Auto requires special setup.</li>
+          <li><strong>CalyxOS (with microG):</strong> Most apps work, but apps relying on strict SafetyNet/Play Integrity might fail.</li>
+          <li><strong>Pure Linux (PinePhone):</strong> Android apps require Waydroid. Compatibility is low for daily use.</li>
+        </ul>
+      </div>
+    </noscript>
+
+    <div id="checker-container" class="my-8 hidden border border-[var(--color-surface-highlight)] bg-[var(--color-surface)] p-6 rounded text-[var(--color-text)]">
+        <label for="app-search" class="block text-sm font-medium mb-1">Search for an App (e.g. WhatsApp, Uber, Bank of America)</label>
+        <input type="text" id="app-search" class="w-full rounded border border-[var(--color-surface-highlight)] bg-[var(--color-bg)] text-[var(--color-text)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] mb-4" placeholder="Type app name..." />
+
+        <div id="app-results" class="hidden p-4 border-t border-[var(--color-surface-highlight)] mt-4">
+            <h3 id="app-result-title" class="text-xl font-bold mb-2"></h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-[var(--color-bg)] p-3 rounded border border-[var(--color-surface-highlight)]">
+                    <strong class="text-[var(--color-primary)]">GrapheneOS (Sandboxed Play):</strong>
+                    <p id="app-result-graphene" class="text-sm mt-1"></p>
+                </div>
+                <div class="bg-[var(--color-bg)] p-3 rounded border border-[var(--color-surface-highlight)]">
+                    <strong class="text-[var(--color-secondary)]">CalyxOS (microG):</strong>
+                    <p id="app-result-calyx" class="text-sm mt-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Missing an App?</h2>
+    <p>Let us know which app you want us to test, and we'll send you the results.</p>
+    <CaptureForm>
+        <label class="block text-sm font-medium text-[var(--color-text)] mb-1">App Name</label>
+        <input type="text" name="app_name" required class="w-full rounded border border-[var(--color-surface-highlight)] bg-[var(--color-surface)] text-[var(--color-text)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] mb-4" />
+        <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Email Address</label>
+        <input type="email" name="email" required class="w-full rounded border border-[var(--color-surface-highlight)] bg-[var(--color-surface)] text-[var(--color-text)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] mb-4" />
+        <button type="submit" class="rounded bg-[var(--color-primary)] px-5 py-2.5 font-medium text-[var(--color-bg)] hover:opacity-90 disabled:opacity-60">Request Test</button>
+    </CaptureForm>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('checker-container');
+        if (container) container.classList.remove('hidden');
+
+        const searchInput = document.getElementById('app-search') as HTMLInputElement;
+        const resultsContainer = document.getElementById('app-results');
+        const title = document.getElementById('app-result-title');
+        const grapheneRes = document.getElementById('app-result-graphene');
+        const calyxRes = document.getElementById('app-result-calyx');
+
+        const db = {
+            "whatsapp": { g: "Works perfectly. Push notifications function identically to stock Android.", c: "Works perfectly via microG." },
+            "uber": { g: "Works. Requires Sandboxed Google Play Services to render maps and get location correctly.", c: "Works, though map rendering can sometimes be glitchy depending on the microG version." },
+            "bank of america": { g: "Works. Does not strictly enforce hardware-backed SafetyNet.", c: "Works for most basic features." },
+            "google pay": { g: "Does not work. Google Pay strictly requires certified stock OS to pass Play Integrity API for NFC payments.", c: "Does not work for NFC payments." },
+            "android auto": { g: "Works with special configuration. Must be installed as a system app and granted specific permissions via GrapheneOS settings.", c: "Not fully supported without significant workarounds." }
+        };
+
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+
+                if (query.length > 2) {
+                    let found = false;
+                    for (const [app, data] of Object.entries(db)) {
+                        if (app.includes(query)) {
+                            if (resultsContainer) resultsContainer.classList.remove('hidden');
+                            if (title) title.textContent = app.charAt(0).toUpperCase() + app.slice(1);
+                            if (grapheneRes) grapheneRes.textContent = data.g;
+                            if (calyxRes) calyxRes.textContent = data.c;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                         if (resultsContainer) resultsContainer.classList.remove('hidden');
+                         if (title) title.textContent = "Unknown App";
+                         if (grapheneRes) grapheneRes.textContent = "We haven't tested this app yet. Use the form below to request a test.";
+                         if (calyxRes) calyxRes.textContent = "We haven't tested this app yet.";
+                    }
+                } else {
+                    if (resultsContainer) resultsContainer.classList.add('hidden');
+                }
+            });
+        }
+    });
+  </script>
+</Layout>

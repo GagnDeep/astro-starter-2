@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const os = await getCollection('os');
+  return os.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+type Props = { entry: CollectionEntry<'os'> };
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Layout title={entry.data.title} seo={entry.data.seo}>
+  <article class="prose mx-auto px-4 py-8">
+    <Content components={{ CaptureForm }} />
+  </article>
+</Layout>

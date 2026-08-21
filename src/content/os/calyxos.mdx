@@ -1,0 +1,51 @@
+---
+title: "CalyxOS"
+seo:
+  page_description: "A comprehensive guide to CalyxOS, a privacy-focused Android operating system featuring microG."
+  no_index: false
+---
+
+# CalyxOS: Privacy by Default
+
+CalyxOS is an Android mobile operating system that puts privacy and security into the hands of everyday users. Founded and maintained by the Calyx Institute, a 501(c)(3) non-profit organization dedicated to privacy, education, and freedom of expression.
+
+While GrapheneOS caters to the highly technical or highly targeted user, CalyxOS aims for the middle ground: significantly better privacy than stock Android, but without the steep learning curve or harsh app compatibility limitations of a purely hardened OS.
+
+## Core Features and Philosophy
+
+The guiding principle of CalyxOS is "Usable Privacy." They achieve this through several key integrations:
+
+### 1. microG Integration (The De-Googling Engine)
+Instead of standard Google Play Services (which constantly vacuum up location data, app usage, and advertising IDs), CalyxOS utilizes **microG** deeply integrated into the system.
+
+microG is an open-source reimplementation of Google's proprietary APIs. It acts as a translation layer. When an app (like a messaging app or a ride-share app) asks for a push notification or a map tile, microG intercepts the request. It handles it locally or securely proxies it to Google, stripping out identifying telemetry. This allows you to use normal Android apps while drastically reducing the data sent to Mountain View.
+
+### 2. Datura Firewall
+CalyxOS includes a built-in system firewall called Datura. This gives users fine-grained, per-app control over network access.
+*   **Edge Case:** You download an offline flashlight app or a single-player game. Why does it need internet access? With Datura, you can instantly flip a switch to block Wi-Fi and Cellular data for that specific app, completely neutralizing its ability to serve ads or exfiltrate local data.
+
+### 3. Integrated Privacy Tools
+CalyxOS ships with a suite of privacy tools out-of-the-box, meaning less configuration for the end user:
+*   **Signal:** Pre-installed for encrypted messaging.
+*   **Tor Browser:** Pre-installed for anonymous web browsing.
+*   **Seedvault:** An encrypted backup solution integrated directly into the OS. You can back up your apps, settings, and files to a local USB-C thumb drive or a self-hosted Nextcloud server, ensuring your backups aren't sitting unencrypted on a corporate cloud.
+
+## Supported Devices: The Hardware Reality
+
+Like GrapheneOS, CalyxOS primarily supports Google Pixel devices (Pixel 6 through Pixel 8 series). This is due to the strict requirement of **Verified Boot**. Pixels allow users to install a custom OS and then relock the bootloader with custom cryptographic keys, securing the device against "Evil Maid" physical attacks.
+
+However, CalyxOS has recently expanded experimental support to a few other devices, such as the Fairphone 4 and Motorola Edge 30, attempting to broaden the hardware ecosystem for privacy phones.
+
+## Trade-offs vs. GrapheneOS
+
+When deciding between CalyxOS and GrapheneOS, the primary trade-off is Usability (microG) vs. Security (Sandboxing).
+
+Because microG is a reverse-engineered spoof, it cannot pass strict hardware-backed SafetyNet or Play Integrity checks.
+*   **The Result:** High-security banking apps, Google Pay (NFC payments), and some DRM-heavy streaming apps will often refuse to run on CalyxOS. If you rely on tapping your phone to pay at the grocery store, CalyxOS is likely not for you.
+
+## Related Topics
+* [CalyxOS vs GrapheneOS](/blog/calyxos-vs-grapheneos-battery-life/)
+* [What is microG?](/glossary/microg/)
+* [Verified Boot](/glossary/verified-boot/)
+
+<CaptureForm />
