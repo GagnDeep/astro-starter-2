@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+export async function getStaticPaths() {
+  const glossaryEntries = await getCollection('glossary');
+  return glossaryEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout {...entry.data}>
+  <div class="mx-auto max-w-4xl px-6 py-12">
+    <article class="prose lg:prose-lg max-w-none">
+      <h1>{entry.data.title}</h1>
+      <p class="lead text-xl text-gray-600 mb-8">{entry.data.description}</p>
+
+      <div class="mt-8">
+        <Content />
+      </div>
+    </article>
+
+    <div class="mt-16 bg-blue-50 p-8 rounded-lg">
+      <h3 class="text-xl font-bold mb-4">Join our Waitlist</h3>
+      <CaptureForm form="waitlist" submitLabel="Join" />
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  page_description: "Frequently Asked Questions about WaterTrackLog",
+  no_index: false,
+};
+---
+<Layout title="FAQ" seo={seo}>
+  <div class="mx-auto max-w-4xl px-6 py-12 prose">
+    <h1>Frequently Asked Questions</h1>
+    <h3>How do you calculate the recommended intake?</h3>
+    <p>We use guidelines from the U.S. National Academies of Sciences, Engineering, and Medicine.</p>
+    <h3>Is my data private?</h3>
+    <p>Yes. We use OpenObserve configured for privacy, and do not sell any data.</p>
+  </div>
+</Layout>

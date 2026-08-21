@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Calculate your daily water intake accurately based on your weight and activity level.",
+  no_index: false,
+};
+---
+
+<Layout title="Water Intake Calculator" seo={seo}>
+  <div class="mx-auto max-w-4xl px-6 py-12">
+    <h1 class="text-4xl font-bold tracking-tight mb-4">Water Intake Calculator</h1>
+    <p class="text-lg text-gray-600 mb-8">
+      Discover how much water you should drink daily. This calculator uses evidence-based guidelines from the U.S. National Academies of Sciences, Engineering, and Medicine.
+    </p>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <div>
+        <form class="space-y-4 rounded-lg border border-gray-200 p-6 shadow-sm bg-white">
+          <div>
+            <label for="weight" class="block text-sm font-medium text-gray-700">Weight (kg)</label>
+            <input type="number" id="weight" name="weight" value="70" class="mt-1 block w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" />
+          </div>
+          <div>
+            <label for="activity" class="block text-sm font-medium text-gray-700">Activity Level</label>
+            <select id="activity" name="activity" class="mt-1 block w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none">
+              <option value="sedentary">Sedentary (desk job)</option>
+              <option value="moderate">Moderate (light exercise)</option>
+              <option value="active">Active (heavy exercise)</option>
+            </select>
+          </div>
+          <button type="button" onclick="calculateIntake()" class="w-full rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700">
+            Calculate
+          </button>
+        </form>
+      </div>
+
+      <div>
+        <div id="results" class="rounded-lg bg-blue-50 p-6 h-full border border-blue-100 flex flex-col justify-center">
+          <h2 class="text-xl font-semibold mb-2 text-blue-900">Your Recommended Intake</h2>
+          <p id="result-text" class="text-4xl font-bold text-blue-600 mb-4">~2.5 Liters</p>
+          <p class="text-sm text-blue-800">
+            This is an estimate. Remember to adjust based on climate, pregnancy, or medical advice.
+          </p>
+
+          <div class="mt-8 border-t border-blue-200 pt-6">
+            <h3 class="text-lg font-semibold mb-2 text-blue-900">Email my results & plan</h3>
+            <CaptureForm form="results" submitLabel="Send me the plan" class="w-full" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How we calculate this</h2>
+      <p>
+        The base recommendation is roughly 30-35ml of fluid per kilogram of body weight.
+        For a 70kg person, that's roughly 2.1 to 2.45 liters. We then adjust this based on activity:
+      </p>
+      <ul>
+        <li><strong>Sedentary:</strong> Base intake.</li>
+        <li><strong>Moderate:</strong> Add 500ml.</li>
+        <li><strong>Active:</strong> Add 1000ml to 1500ml.</li>
+      </ul>
+      <p>
+        Note: The U.S. National Academies of Sciences, Engineering, and Medicine determined that an adequate daily fluid intake is:
+        About 15.5 cups (3.7 liters) of fluids a day for men.
+        About 11.5 cups (2.7 liters) of fluids a day for women.
+        These recommendations cover fluids from water, other beverages and food. About 20% of daily fluid intake usually comes from food and the rest from drinks.
+      </p>
+    </div>
+  </div>
+
+  <script is:inline>
+    function calculateIntake() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const activity = document.getElementById('activity').value;
+
+      let base = weight * 35; // ml
+
+      if (activity === 'moderate') {
+        base += 500;
+      } else if (activity === 'active') {
+        base += 1200;
+      }
+
+      const liters = (base / 1000).toFixed(1);
+      document.getElementById('result-text').textContent = `~${liters} Liters`;
+    }
+  </script>
+
+  <noscript>
+    <div class="mx-auto max-w-4xl px-6 py-4 bg-yellow-50 text-yellow-800 rounded mb-8">
+      <strong>Note:</strong> JavaScript is required for the interactive calculator. However, you can manually calculate your intake by multiplying your weight in kg by 35ml, and adding 500ml for moderate activity or 1200ml for heavy activity.
+    </div>
+  </noscript>
+</Layout>

@@ -1,5 +1,15 @@
 ---
-import AboutPage from "../content/pages/about.astro";
----
+import Layout from '../layouts/Layout.astro';
 
-<AboutPage />
+const seo = {
+  page_description: "About WaterTrackLog",
+  no_index: false,
+};
+---
+<Layout title="About Us" seo={seo}>
+  <div class="mx-auto max-w-4xl px-6 py-12 prose">
+    <h1>About WaterTrackLog</h1>
+    <p>WaterTrackLog was built to solve a simple problem: staying hydrated at work without being distracted by gamified apps or invasive ads.</p>
+    <p>Our mission is to provide science-backed hydration tracking that respects your privacy and your time.</p>
+  </div>
+</Layout>

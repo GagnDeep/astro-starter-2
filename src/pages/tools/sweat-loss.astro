@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Calculate your sweat loss rate to optimize hydration during workouts.",
+  no_index: false,
+};
+---
+
+<Layout title="Sweat Rate Calculator" seo={seo}>
+  <div class="mx-auto max-w-4xl px-6 py-12">
+    <h1 class="text-4xl font-bold tracking-tight mb-4">Sweat Rate Calculator</h1>
+    <p class="text-lg text-gray-600 mb-8">
+      Determine exactly how much fluid you lose during exercise to create a customized hydration plan. Essential for athletes and endurance training.
+    </p>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <div>
+        <form class="space-y-4 rounded-lg border border-gray-200 p-6 shadow-sm bg-white">
+          <div>
+            <label for="weight_before" class="block text-sm font-medium text-gray-700">Weight BEFORE workout (kg)</label>
+            <input type="number" id="weight_before" step="0.1" value="70.5" class="mt-1 block w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" />
+          </div>
+          <div>
+            <label for="weight_after" class="block text-sm font-medium text-gray-700">Weight AFTER workout (kg)</label>
+            <input type="number" id="weight_after" step="0.1" value="69.5" class="mt-1 block w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" />
+          </div>
+          <div>
+            <label for="fluid_intake" class="block text-sm font-medium text-gray-700">Fluid consumed during workout (ml)</label>
+            <input type="number" id="fluid_intake" value="500" class="mt-1 block w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" />
+          </div>
+          <div>
+            <label for="duration" class="block text-sm font-medium text-gray-700">Workout duration (minutes)</label>
+            <input type="number" id="duration" value="60" class="mt-1 block w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none" />
+          </div>
+          <button type="button" onclick="calculateSweat()" class="w-full rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700">
+            Calculate Sweat Rate
+          </button>
+        </form>
+      </div>
+
+      <div>
+        <div id="results" class="rounded-lg bg-blue-50 p-6 h-full border border-blue-100 flex flex-col justify-center">
+          <h2 class="text-xl font-semibold mb-2 text-blue-900">Your Sweat Rate</h2>
+          <p id="result-text" class="text-4xl font-bold text-blue-600 mb-4">-- ml / hour</p>
+          <p class="text-sm text-blue-800">
+            This is how much fluid you need to replace per hour of similar activity in similar conditions.
+          </p>
+
+          <div class="mt-8 border-t border-blue-200 pt-6">
+            <h3 class="text-lg font-semibold mb-2 text-blue-900">Get a full sports hydration guide</h3>
+            <CaptureForm form="results" submitLabel="Send me the guide" class="w-full" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>Understanding Sweat Rate</h2>
+      <p>
+        Sweat rate varies wildly between individuals—from 0.5L/hr to over 2.5L/hr. Calculating it ensures you don't over-drink (risking hyponatremia) or under-drink (risking dehydration).
+      </p>
+      <h3>The Formula</h3>
+      <p><code>Sweat Rate = (Weight Lost in kg * 1000) + Fluid Consumed in ml</code></p>
+      <p>We then adjust this to an hourly rate based on your workout duration.</p>
+    </div>
+  </div>
+
+  <script is:inline>
+    function calculateSweat() {
+      const before = parseFloat(document.getElementById('weight_before').value);
+      const after = parseFloat(document.getElementById('weight_after').value);
+      const intake = parseFloat(document.getElementById('fluid_intake').value);
+      const mins = parseFloat(document.getElementById('duration').value);
+
+      const weightLostKg = before - after;
+      const totalSweatMl = (weightLostKg * 1000) + intake;
+
+      const ratePerHour = (totalSweatMl / mins) * 60;
+
+      document.getElementById('result-text').textContent = `${Math.round(ratePerHour)} ml / hour`;
+    }
+  </script>
+</Layout>
