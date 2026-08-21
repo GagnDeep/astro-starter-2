@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const references = await getCollection('reference');
+
+const seo = {
+  page_description: "Deep dives into specific proteins and fibers.",
+  no_index: false
+};
+---
+
+<Layout title="Page" seo={seo}>
+  <div class="prose mx-auto py-12 px-4 max-w-4xl">
+    <h1>Reference Library</h1>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 list-none pl-0">
+      {references.map(ref => (
+        <li class="m-0 p-4 border border-slate-200 rounded-lg">
+          <a href={`/reference/${ref.id}`} class="font-bold text-lg no-underline hover:underline">{ref.data.title}</a>
+          <p class="text-sm text-slate-600 mt-2 mb-0">{ref.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

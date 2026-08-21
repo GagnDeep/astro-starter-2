@@ -12,14 +12,14 @@ export async function getStaticPaths({ paginate }: { paginate: Function }) {
   if (!page) return;
 
   for (const post of posts) {
-    for (const tag of post.data.post_hero.tags) {
+    for (const tag of post.data.post_hero?.tags || []) {
       tags[tag] = true;
     }
   }
 
   return Object.keys(tags).flatMap((tag) => {
     const filteredPosts = posts.filter(({ data }) =>
-      data.post_hero.tags.includes(tag),
+      (data.post_hero?.tags || []).includes(tag),
     );
     return paginate(filteredPosts, {
       params: { tag },

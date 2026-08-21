@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import NewsletterForm from '../../components/forms/newsletter-form.astro';
+import { capture } from "../../../capture.config";
+
+export async function getStaticPaths() {
+  const references = await getCollection('reference');
+  return references.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title="Page" seo={entry.data.seo}>
+  <article class="prose mx-auto py-12 px-4 max-w-4xl">
+    <Content />
+
+    <div class="mt-12 bg-slate-50 p-6 rounded-lg border border-slate-200">
+      <h2 class="text-xl font-bold mb-4">Want more insights?</h2>
+      <NewsletterForm form={capture.forms.newsletter} />
+    </div>
+  </article>
+</Layout>

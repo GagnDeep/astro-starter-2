@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import ProteinCalculator from '../../components/calculators/ProteinCalculator.astro';
+import FiberCalculator from '../../components/calculators/FiberCalculator.astro';
+
+const seo = {
+  page_description: "Calculators for optimizing your protein and fiber intake.",
+  no_index: false
+};
+---
+
+<Layout title="Page" seo={seo}>
+  <div class="prose mx-auto py-12 px-4 max-w-4xl">
+    <h1>Calculators & Tools</h1>
+    <p>Use our tools to dial in your macros based on clinical guidelines. Ensure you're eating enough protein to preserve muscle and enough fiber to maintain satiety.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+      <div>
+        <ProteinCalculator />
+      </div>
+      <div>
+        <FiberCalculator />
+      </div>
+    </div>
+  </div>
+</Layout>
