@@ -1,0 +1,126 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Check if your PDF is optimized for fast web view (linearized).",
+};
+---
+
+<Layout title="PDF Linearization Checker | uDocumentViewer" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-20">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Fast Web View Checker</h1>
+      <p class="text-xl text-text/80">Check if your PDF is linearized for instant loading on the web.</p>
+    </div>
+
+    <noscript>
+      <div class="bg-error/10 border border-error p-6 rounded-lg">
+        <h2 class="text-xl font-bold text-error mb-2">JavaScript Required</h2>
+        <p>This tool requires JavaScript to parse the PDF headers in your browser without uploading the file.</p>
+      </div>
+    </noscript>
+
+    <div id="checker-app" class="hidden" style="display: block;">
+      <div class="bg-surface border-2 border-dashed border-border rounded-xl p-12 text-center hover:bg-bg transition-colors cursor-pointer" id="dropzone">
+        <div class="text-4xl mb-4">[Doc]</div>
+        <h3 class="text-xl font-bold mb-2">Select a PDF</h3>
+        <p class="text-text/70 mb-4">We only read the first few bytes. The file never leaves your computer.</p>
+        <input type="file" id="file-input" accept=".pdf" class="hidden" />
+        <button class="btn" onclick="document.getElementById('file-input').click()">Browse Files</button>
+      </div>
+
+      <div id="result-area" class="hidden mt-8 p-6 rounded-lg border">
+        <h3 id="result-title" class="text-2xl font-bold mb-2"></h3>
+        <p id="result-desc" class="text-text/80 mb-4"></p>
+        <div class="bg-bg p-4 rounded text-sm font-mono text-text/60" id="result-log"></div>
+      </div>
+
+      <div class="prose max-w-none mt-16">
+        <h2>How does this work?</h2>
+        <p>A linearized PDF (Fast Web View) has a specific internal structure. The most obvious indicator is the presence of the word <code>Linearized</code> near the very beginning of the file, typically within the first 1024 bytes.</p>
+        <p>This tool uses the browser's FileReader API to read only the first kilobyte of your document and checks for this signature. It is completely secure because the file is never uploaded to a server.</p>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("checker-app").classList.remove("hidden");
+
+      const fileInput = document.getElementById("file-input");
+      const dropzone = document.getElementById("dropzone");
+      const resultArea = document.getElementById("result-area");
+      const resultTitle = document.getElementById("result-title");
+      const resultDesc = document.getElementById("result-desc");
+      const resultLog = document.getElementById("result-log");
+
+      const checkFile = (file) => {
+        if (!file || file.type !== "application/pdf") {
+          showResult(false, "Invalid File", "Please select a valid PDF file.");
+          return;
+        }
+
+        // Read first 1024 bytes
+        const blob = file.slice(0, 1024);
+        const reader = new FileReader();
+
+        reader.onloadend = (e) => {
+          if (e.target.readyState === FileReader.DONE) {
+            const text = e.target.result;
+            const isLinearized = text.includes("Linearized");
+
+            if (isLinearized) {
+              showResult(true, "[Check] Optimized for Web", `Great! ${file.name} is linearized. It will load instantly in modern viewers.`, text);
+            } else {
+              showResult(false, "[X] Not Optimized", `${file.name} is not linearized. Users must download the entire file before seeing page 1.`, text);
+            }
+          }
+        };
+
+        reader.readAsText(blob);
+      };
+
+      const showResult = (isGood, title, desc, log = "") => {
+        resultArea.classList.remove("hidden", "bg-primary/5", "border-primary/20", "bg-error/5", "border-error/20");
+
+        if (isGood) {
+          resultArea.classList.add("bg-primary/5", "border-primary/20");
+          resultTitle.classList.remove("text-error");
+          resultTitle.classList.add("text-primary");
+        } else {
+          resultArea.classList.add("bg-error/5", "border-error/20");
+          resultTitle.classList.remove("text-primary");
+          resultTitle.classList.add("text-error");
+        }
+
+        resultTitle.textContent = title;
+        resultDesc.textContent = desc;
+
+        if (log) {
+          // Clean up non-printable chars for display
+          const clean = log.replace(/[\x00-\x1F\x7F-\x9F]/g, '.');
+          resultLog.textContent = "Header sample: \n" + clean.substring(0, 150) + "...";
+        }
+      };
+
+      fileInput.addEventListener("change", (e) => {
+        if (e.target.files.length > 0) checkFile(e.target.files[0]);
+      });
+
+      dropzone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropzone.classList.add("border-primary");
+      });
+
+      dropzone.addEventListener("dragleave", () => {
+        dropzone.classList.remove("border-primary");
+      });
+
+      dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("border-primary");
+        if (e.dataTransfer.files.length > 0) checkFile(e.dataTransfer.files[0]);
+      });
+    });
+  </script>
+</Layout>

@@ -1,29 +1,22 @@
 ---
-/**
- * Inline email capture — newsletter sign-up or waitlist. Same wiring as
- * `capture-form.astro`, one field and a button on a single row.
- *
- * Pass `form={capture.forms.waitlist}` to file these under a different label.
- */
 import { capture } from "../../../capture.config";
 import { actionUrl } from "../../lib/capture";
 
 interface Props {
-  form?: string;
+  /** Submit button text. */
   submitLabel?: string;
-  placeholder?: string;
+  /** Inline message shown after a successful JavaScript submission. */
   successMessage?: string;
   class?: string;
 }
 
 const {
-  form = capture.forms.newsletter,
   submitLabel = "Subscribe",
-  placeholder = "you@example.com",
-  successMessage = "You're on the list — check your inbox.",
+  successMessage = "Thanks for subscribing.",
   class: className = "",
 } = Astro.props;
 
+const form = capture.forms.newsletter;
 const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
 ---
 
@@ -32,43 +25,47 @@ const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
   data-capture-success={successMessage}
   method="POST"
   action={actionUrl(form)}
-  class={className}
+  class={`flex flex-col sm:flex-row gap-2 ${className}`}
 >
   <input type="hidden" name="key" value={capture.publicKey} />
   <input type="hidden" name="redirect" value={thanks} />
   {
     capture.honeypotField && (
       <div class="hidden" aria-hidden="true">
-        <label for={`hp-${form}`}>Leave this field empty</label>
-        <input id={`hp-${form}`} name={capture.honeypotField} tabindex="-1" autocomplete="off" />
+        <label for={capture.honeypotField}>Leave this field empty</label>
+        <input
+          id={capture.honeypotField}
+          name={capture.honeypotField}
+          tabindex="-1"
+          autocomplete="off"
+        />
       </div>
     )
   }
 
-  <div class="flex flex-col gap-2 sm:flex-row">
-    <label for={`email-${form}`} class="sr-only">Email</label>
-    <input
-      id={`email-${form}`}
-      name="email"
-      type="email"
-      autocomplete="email"
-      required
-      placeholder={placeholder}
-      class="w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
-    />
-    <button
-      type="submit"
-      class="shrink-0 rounded bg-blue-600 px-5 py-2.5 font-medium text-white hover:bg-blue-700 disabled:opacity-60"
-    >
-      {submitLabel}
-    </button>
-  </div>
+  <label for="newsletter-email" class="sr-only">Email address</label>
+  <input
+    id="newsletter-email"
+    name="email"
+    type="email"
+    autocomplete="email"
+    required
+    placeholder="Enter your email"
+    class="flex-1 rounded border border-border bg-surface px-4 py-2.5 text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+  />
+
+  <button
+    type="submit"
+    class="btn whitespace-nowrap"
+  >
+    {submitLabel}
+  </button>
 
   <p
     data-capture-status
     role="status"
     aria-live="polite"
-    class="mt-2 text-sm text-gray-600 data-[state=error]:text-red-700 data-[state=success]:text-green-700"
+    class="text-sm text-text/80 data-[state=error]:text-error data-[state=success]:text-primary basis-full"
   >
   </p>
 </form>

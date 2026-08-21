@@ -1,0 +1,119 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Generate the exact HTML code needed to embed a document viewer on your website responsively.",
+};
+---
+
+<Layout title="Document Viewer Embed Code Generator | uDocumentViewer" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-20">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Embed Code Generator</h1>
+      <p class="text-xl text-text/80">Generate perfectly responsive, accessible iframe or script tags for your documents.</p>
+    </div>
+
+    <!-- No-JS Fallback Form for Calculator -->
+    <noscript>
+      <div class="bg-error/10 border border-error p-6 rounded-lg mb-8">
+        <h2 class="text-xl font-bold text-error mb-2">JavaScript Required for Generator</h2>
+        <p class="mb-4">The dynamic code generator requires JavaScript. Here is the standard implementation method:</p>
+        <pre class="bg-surface p-4 rounded border border-border overflow-x-auto text-sm"><code>&lt;!-- 1. Include script --&gt;
+&lt;script src="https://cdn.udocumentviewer.com/v1/viewer.js" defer&gt;&lt;/script&gt;
+&lt;!-- 2. Add link --&gt;
+&lt;a href="YOUR_DOCUMENT_URL.pdf" data-udv="true"&gt;View Document&lt;/a&gt;</code></pre>
+      </div>
+    </noscript>
+
+    <div id="generator-app" class="grid md:grid-cols-2 gap-8 hidden" style="display: block;">
+      <div class="bg-surface p-6 rounded-lg border border-border">
+        <h2 class="text-xl font-bold mb-6">Configuration</h2>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Document URL</label>
+            <input type="url" id="doc-url" placeholder="https://example.com/file.pdf" value="https://example.com/sample.pdf" class="w-full rounded border border-border px-3 py-2 bg-surface focus:border-primary focus:outline-none" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Integration Method</label>
+            <select id="method" class="w-full rounded border border-border px-3 py-2 bg-surface focus:border-primary focus:outline-none">
+              <option value="script">Script Tag + Link (Recommended)</option>
+              <option value="iframe">Standard Iframe</option>
+            </select>
+          </div>
+
+          <div id="iframe-options" class="hidden space-y-4 pt-4 border-t border-border mt-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Width</label>
+              <input type="text" id="width" value="100%" class="w-full rounded border border-border px-3 py-2 bg-surface focus:border-primary focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Height</label>
+              <input type="text" id="height" value="600px" class="w-full rounded border border-border px-3 py-2 bg-surface focus:border-primary focus:outline-none" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold mb-6">Generated Code</h2>
+        <div class="bg-text text-surface p-6 rounded-lg relative">
+          <button id="copy-btn" class="absolute top-4 right-4 text-xs bg-surface/20 hover:bg-surface/30 px-2 py-1 rounded transition-colors">Copy</button>
+          <pre id="output" class="text-sm font-mono overflow-x-auto whitespace-pre-wrap break-all"></pre>
+        </div>
+
+        <div class="mt-8 bg-primary/5 p-6 rounded-lg border border-primary/20">
+          <h3 class="font-bold mb-2 text-primary">Need this at scale?</h3>
+          <p class="text-sm mb-4">Automate this process for thousands of documents using our REST API.</p>
+          <a href="/pricing" class="btn text-sm py-2 px-4">View API Pricing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline type="module">
+    // Hydrate the generator
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlInput = document.getElementById("doc-url");
+      const methodSelect = document.getElementById("method");
+      const iframeOptions = document.getElementById("iframe-options");
+      const widthInput = document.getElementById("width");
+      const heightInput = document.getElementById("height");
+      const outputEl = document.getElementById("output");
+      const copyBtn = document.getElementById("copy-btn");
+
+      // Basic state
+      document.getElementById("generator-app").classList.remove("hidden");
+
+      const generate = () => {
+        const url = urlInput.value || "https://example.com/sample.pdf";
+        const method = methodSelect.value;
+
+        if (method === "script") {
+          iframeOptions.classList.add("hidden");
+          outputEl.textContent = `<!-- Include the lightweight script -->\n<script src="https://cdn.udocumentviewer.com/v1/viewer.js" defer><\/script>\n\n<!-- Add the data attribute to your link -->\n<a href="${url}" data-udv="true">View Document</a>`;
+        } else {
+          iframeOptions.classList.remove("hidden");
+          const w = widthInput.value || "100%";
+          const h = heightInput.value || "600px";
+          outputEl.textContent = `<iframe \n  src="https://view.udocumentviewer.com/?url=${encodeURIComponent(url)}"\n  width="${w}"\n  height="${h}"\n  style="border: none;"\n  loading="lazy"\n  title="Document Viewer"\n  allowfullscreen\n></iframe>`;
+        }
+      };
+
+      [urlInput, methodSelect, widthInput, heightInput].forEach(el => {
+        el.addEventListener("input", generate);
+        el.addEventListener("change", generate);
+      });
+
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(outputEl.textContent);
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => copyBtn.textContent = originalText, 2000);
+      });
+
+      generate();
+    });
+  </script>
+</Layout>

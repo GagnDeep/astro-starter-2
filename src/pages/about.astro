@@ -1,5 +1,30 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "About uDocumentViewer and our mission to rid the web of bloated, slow, and branded document viewers.",
+};
 ---
 
-<AboutPage />
+<Layout title="About uDocumentViewer" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 py-20 prose">
+    <h1>About uDocumentViewer</h1>
+    <p class="text-xl text-text/80">We build the document viewing tools we wished existed when we were working at agencies.</p>
+
+    <h2>The Origin Story</h2>
+    <p>In 2021, our founder was working on a city government website. The requirement was simple: display PDFs of city council minutes directly on the page so citizens didn't have to download them. The reality was a nightmare.</p>
+    <p>We tried Google Drive embeds (which blocked users without Google accounts on corporate networks). We tried PDF.js (which added 2.5MB to the page load and broke on older iPhones). We looked at enterprise solutions like Scribd and Issuu, but they wanted to plaster their own branding all over official government documents.</p>
+    <p>Why was showing a simple document so hard?</p>
+
+    <h2>Our Philosophy</h2>
+    <p>We built uDocumentViewer based on three core principles:</p>
+    <ol>
+      <li><strong>Speed is a feature.</strong> A viewer should never be larger than the document it's displaying.</li>
+      <li><strong>Your brand, not ours.</strong> When you embed a document on your site, it should look like your site. No watermarks, no "Powered by" links.</li>
+      <li><strong>Respect the user.</strong> Zero tracking. No cookies required to read a PDF.</li>
+    </ol>
+
+    <h2>The Team</h2>
+    <p>We are a small, independent, bootstrapped team of web performance enthusiasts. Because we don't have venture capital demanding 10x growth, we don't have to resort to dark patterns or aggressive upselling. We just write good code and charge a fair price for it.</p>
+  </div>
+</Layout>

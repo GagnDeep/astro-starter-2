@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Terms of Service for uDocumentViewer.",
+  no_index: true
+};
+---
+
+<Layout title="Terms of Service | uDocumentViewer" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 py-20 prose">
+    <h1>Terms of Service</h1>
+    <p>Last updated: {new Date().toISOString().split('T')[0]}</p>
+
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing and using uDocumentViewer, you accept and agree to be bound by the terms and provision of this agreement.</p>
+
+    <h2>2. Acceptable Use</h2>
+    <p>You agree not to use the service to host, display, or distribute illegal content, malware, or content that violates intellectual property rights. We reserve the right to terminate accounts that violate these terms.</p>
+
+    <h2>3. Service Availability</h2>
+    <p>While we strive for 99.99% uptime, the service is provided "as is". We are not liable for any damages arising from service interruptions or data loss.</p>
+
+    <h2>4. API Limits</h2>
+    <p>Free tier users are subject to rate limits as described on our pricing page. Attempting to bypass these limits may result in account suspension.</p>
+  </div>
+</Layout>

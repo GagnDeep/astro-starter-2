@@ -1,0 +1,98 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Simple, transparent pricing for document viewer API and embed tools. No enterprise bloat, no hidden fees.",
+};
+---
+
+<Layout title="Document Embed API Pricing | uDocumentViewer" seo={seo}>
+  <div class="bg-bg py-20 border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Simple, Transparent Pricing</h1>
+      <p class="text-xl text-text/80 max-w-2xl mx-auto">Pay only for what you use. No enterprise sales calls required to see a price.</p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 py-20">
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- Hobby -->
+      <div class="bg-surface p-8 rounded-lg border border-border flex flex-col">
+        <h2 class="text-2xl font-bold mb-2">Hobby</h2>
+        <p class="text-text/70 mb-6">Perfect for personal blogs and small projects.</p>
+        <div class="text-4xl font-bold mb-6">$0<span class="text-lg font-normal text-text/60">/mo</span></div>
+        <ul class="space-y-4 mb-8 flex-1">
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> Up to 10,000 views/mo</li>
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> PDF support only</li>
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> Standard community support</li>
+          <li class="flex items-start"><span class="mr-2 text-text/30">✗</span> White-labeling (Small watermark)</li>
+        </ul>
+        <a href="/contact" class="btn-outline w-full">Start Free</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="bg-surface p-8 rounded-lg border-2 border-primary relative flex flex-col shadow-lg transform md:-translate-y-4">
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-surface px-4 py-1 rounded-full text-sm font-bold">Most Popular</div>
+        <h2 class="text-2xl font-bold mb-2">Pro</h2>
+        <p class="text-text/70 mb-6">For agencies and growing businesses.</p>
+        <div class="text-4xl font-bold mb-6">$29<span class="text-lg font-normal text-text/60">/mo</span></div>
+        <ul class="space-y-4 mb-8 flex-1">
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> Up to 100,000 views/mo</li>
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> PDF, DOCX, PPTX support</li>
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> 100% White-labeled</li>
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> Priority email support</li>
+        </ul>
+        <a href="/contact" class="btn w-full">Get Pro</a>
+      </div>
+
+      <!-- API -->
+      <div class="bg-surface p-8 rounded-lg border border-border flex flex-col">
+        <h2 class="text-2xl font-bold mb-2">API</h2>
+        <p class="text-text/70 mb-6">For platforms embedding documents at scale.</p>
+        <div class="text-4xl font-bold mb-6">$99<span class="text-lg font-normal text-text/60">/mo</span></div>
+        <ul class="space-y-4 mb-8 flex-1">
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> 500,000 views/mo ($0.50/1k overage)</li>
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> Full API access</li>
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> Webhooks & Analytics</li>
+          <li class="flex items-start"><span class="mr-2 text-primary">✓</span> Custom domains (CNAME)</li>
+        </ul>
+        <a href="/contact" class="btn-outline w-full">Access API</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-surface border-t border-border py-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-8">Need something custom?</h2>
+      <p class="mb-8 text-text/80">If you have specific compliance requirements or massive volume, we can help.</p>
+      <div class="bg-bg p-8 rounded-lg border border-border text-left">
+        <CaptureForm form="quote" submitLabel="Request Quote">
+          <div>
+            <label for="quote-name" class="block text-sm font-medium text-text mb-1">Company Name</label>
+            <input id="quote-name" name="name" required class="w-full rounded border border-border px-3 py-2 bg-surface text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" />
+          </div>
+
+          <div>
+            <label for="quote-email" class="block text-sm font-medium text-text mb-1">Work Email</label>
+            <input id="quote-email" name="email" type="email" required class="w-full rounded border border-border px-3 py-2 bg-surface text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" />
+          </div>
+
+          <div>
+            <label for="volume" class="block text-sm font-medium text-text mb-1">Expected Monthly Views</label>
+            <select id="volume" name="volume" required class="w-full rounded border border-border px-3 py-2 bg-surface text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+              <option value="1M-5M">1M - 5M</option>
+              <option value="5M-20M">5M - 20M</option>
+              <option value="20M+">20M+</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="quote-message" class="block text-sm font-medium text-text mb-1">Requirements</label>
+            <textarea id="quote-message" name="message" rows="4" class="w-full rounded border border-border px-3 py-2 bg-surface text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"></textarea>
+          </div>
+        </CaptureForm>
+      </div>
+    </div>
+  </div>
+</Layout>

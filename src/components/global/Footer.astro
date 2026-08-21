@@ -1,0 +1,54 @@
+---
+import NewsletterForm from "../forms/newsletter-form.astro";
+import siteData from "../../../data/site.json";
+---
+
+<footer class="bg-bg border-t border-border pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div class="col-span-1 md:col-span-2">
+        <a href="/" class="font-heading font-bold text-xl tracking-tight text-text mb-4 block">
+          {siteData.site_title}
+        </a>
+        <p class="text-text/80 mb-6 max-w-sm">
+          {siteData.description}
+        </p>
+        <div class="max-w-sm">
+          <h3 class="text-sm font-semibold mb-3">Subscribe to updates</h3>
+          <NewsletterForm />
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-text uppercase tracking-wider mb-4">Product</h3>
+        <ul class="space-y-3">
+          <li><a href="/pricing" class="text-text/70 hover:text-primary">Pricing</a></li>
+          <li><a href="/compare/pdfjs" class="text-text/70 hover:text-primary">vs PDF.js</a></li>
+          <li><a href="/features/white-label" class="text-text/70 hover:text-primary">White Label</a></li>
+          <li><a href="/tools/embed-generator" class="text-text/70 hover:text-primary">Embed Generator</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-text uppercase tracking-wider mb-4">Resources</h3>
+        <ul class="space-y-3">
+          <li><a href="/reference" class="text-text/70 hover:text-primary">Reference Library</a></li>
+          <li><a href="/glossary" class="text-text/70 hover:text-primary">Glossary</a></li>
+          <li><a href="/blog" class="text-text/70 hover:text-primary">Blog</a></li>
+          <li><a href="/about" class="text-text/70 hover:text-primary">About Us</a></li>
+          <li><a href="/contact" class="text-text/70 hover:text-primary">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-text/60">
+        &copy; {new Date().getFullYear()} {siteData.organization.name}. All rights reserved.
+      </p>
+      <div class="flex space-x-6">
+        <a href="/legal/privacy" class="text-sm text-text/60 hover:text-text">Privacy Policy</a>
+        <a href="/legal/terms" class="text-sm text-text/60 hover:text-text">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>

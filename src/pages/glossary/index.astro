@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+// Filter pages collection for items in the glossary folder
+const pages = await getCollection("pages");
+const terms = pages.filter(page => page.id.startsWith("glossary/"));
+
+const seo = {
+  page_description: "The complete glossary of document viewer and embedding terminology.",
+};
+---
+
+<Layout title="Document Viewer Glossary | uDocumentViewer" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-20">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Glossary of Terms</h1>
+      <p class="text-xl text-text/80">Definitions and technical explanations for web document terminology.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {terms.map(t => (
+        <a href={`/${t.id}/`} class="block p-6 border border-border rounded-lg bg-surface hover:border-primary transition-colors">
+          <h2 class="text-xl font-bold text-primary mb-2">{t.data.title}</h2>
+          <p class="text-sm text-text/70">{t.data.seo?.page_description?.substring(0, 80)}...</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

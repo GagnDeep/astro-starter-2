@@ -1,22 +1,28 @@
 ---
-import PageLayout from "../layouts/Page.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
-
-export interface Props {
-  page: CollectionEntry<"pages">;
-}
+import { getCollection, render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
-  return pages.map((page) => {
-    const slug = page.id.replace(/index$/, "");
-    if (slug.length === 0)
-      return { params: { slug: undefined }, props: { page } };
-    return { params: { slug }, props: { page } };
+
+  const pagePaths = pages.map((page) => {
+    // Treat index as root, otherwise use the slug
+    const slug = page.id === "index" ? undefined : page.id;
+    return {
+      params: { slug },
+      props: { entry: page },
+    };
   });
+
+  return pagePaths;
 }
 
-const { page } = Astro.props;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
 
-<PageLayout frontmatter={page.data} />
+<Layout title={entry.data.title} seo={entry.data.seo}>
+  <div class="max-w-4xl mx-auto px-4 py-20 prose max-w-none">
+    <Content />
+  </div>
+</Layout>
