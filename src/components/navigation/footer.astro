@@ -1,5 +1,7 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
 ---
 
 <footer class="bg-gray-800 text-white">
@@ -19,8 +21,12 @@ import { footer } from "../../../data/navigation.json";
         ))}
       </ul>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <div class="text-center sm:text-end w-full">
+        <h4 class="font-semibold mb-2">Join our Newsletter</h4>
+        <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" class="max-w-xs ml-auto mb-4" />
+        <div class="text-sm text-gray-400 mt-4">
+          &copy; {new Date().getFullYear()} {footer.copyright}
+        </div>
       </div>
     </div>
   </div>

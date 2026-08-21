@@ -18,10 +18,9 @@ export const capture = {
 
   /**
    * This site's write-only public key. Per-site — swap it for a new domain.
-   * Deliberately committed rather than an env var: it is inlined into the
-   * browser bundle anyway, and a missing env var would silently break forms.
+   * Uses astro:env to pull from .env
    */
-  publicKey: "wcs_pk_47bxlyp54gjn_BR9Mhe51yJEkTuchPcpJnvAs7ZnZ98lM6zxfgBI-tbE",
+  publicKey: import.meta.env ? import.meta.env.PUBLIC_CAPTURE_KEY : "wcs_pk_47bxlyp54gjn_BR9Mhe51yJEkTuchPcpJnvAs7ZnZ98lM6zxfgBI-tbE",
 
   /**
    * Form labels — how submissions are grouped in the dashboard. Add one per

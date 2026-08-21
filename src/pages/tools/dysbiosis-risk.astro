@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Evaluate your risk factors for gut dysbiosis.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="Dysbiosis Risk Assessment" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>Microbiome Dysbiosis Risk Assessment</h1>
+    <p>Gut dysbiosis occurs when the delicate balance of your gut microbiome is disrupted. This usually means a loss of beneficial bacteria (like <em>Bifidobacterium</em>), an overgrowth of potentially harmful bacteria or yeasts (like <em>Candida albicans</em>), or a loss of overall microbial diversity.</p>
+
+    <h2>Primary Drivers of Dysbiosis</h2>
+    <p>The microbiome is highly sensitive to lifestyle and environmental factors. The most significant drivers include:</p>
+    <ul>
+      <li><strong>Antibiotic usage:</strong> Broad-spectrum antibiotics cannot differentiate between pathogenic and beneficial bacteria, effectively clear-cutting the microbial ecosystem.</li>
+      <li><strong>Standard American Diet (SAD):</strong> Diets high in refined sugars and ultra-processed foods feed opportunistic pathogens while starving beneficial microbes of the prebiotic fiber they need to survive.</li>
+      <li><strong>Chronic Stress:</strong> Cortisol and adrenaline alter gut motility and mucosal blood flow, changing the environment and altering the microbial composition.</li>
+    </ul>
+
+    <div class="bg-brand-secondary p-6 rounded-lg my-8 shadow-sm">
+      <h2 class="mt-0">Evaluate Your Risk Factors</h2>
+      <p>Select all the historical and lifestyle factors that apply to you. We'll generate a dysbiosis risk profile and send you targeted strategies for rebuilding a robust microbiome.</p>
+      <CaptureForm form="waitlist" submitLabel="Get Risk Profile">
+         <div class="mb-4 space-y-2">
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" name="history[]" value="antibiotics" />
+            <span>Recent or frequent antibiotic use</span>
+          </label>
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" name="history[]" value="high_sugar" />
+            <span>High sugar / processed food diet</span>
+          </label>
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" name="history[]" value="chronic_stress" />
+            <span>Chronic stress</span>
+          </label>
+        </div>
+        <label class="block mb-4">
+          <span class="text-sm font-medium">Email address:</span>
+          <input type="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" required />
+        </label>
+      </CaptureForm>
+    </div>
+  </main>
+</Layout>

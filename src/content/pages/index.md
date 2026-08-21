@@ -1,79 +1,46 @@
 ---
 _schema: default
-title: Astro Minimal Starter
+title: Digestine
 seo:
-  page_description: >-
-    A starting point for developers looking to build a website with Astro, using
-    Editable Regions in CloudCannon.
+  page_description: "Science-backed, zero-fluff digestive solutions for everyday balance."
   canonical_url:
   featured_image:
   featured_image_alt:
   author_twitter_handle:
-  open_graph_type:
+  open_graph_type: website
   no_index: false
 hero_block:
   _name: Hero
-  heading: Astro Minimal Starter
+  heading: Stop Guessing About Your Gut
   subheading: >-
-    A **minimal** starting point for developers looking to build a website with
-    Astro, using Editable Regions in CloudCannon. Create your own copy, and
-    start creating your own components to use in the Visual Editor. 
-
-
-    Once you've explored this minimal starter, consider  taking a look at the
-    [Astro Component
-    Starter](https://github.com/CloudCannon/astro-component-starter) to assist
-    in building out your components.
+    Take control with science-backed, zero-fluff digestive solutions for everyday balance. Start by checking your transit time.
   image:
     image_path: /src/assets/images/transparent-bg/undraw-online-test.svg
-    alt_text: An illustration of someone leaning against a desktop computer monitor.
+    alt_text: Abstract representation of a balanced gut.
   button:
-    text: Get Started
-    link: https://github.com/CloudCannon/astro-starter/
+    text: Digestion Assessment Tool
+    link: /tools/transit-time
 content_blocks:
   - _name: LeftRight
-    heading: Keep what you need. Delete the rest.
+    heading: The Three Pillars of Digestion
     text_content: >-
-      This starter aims to get developers building their own site quickly in
-      CloudCannon. It strikes a balance between minimal boilerplate and useful
-      features out of the box:
-
-
-      - Tailwind CSS v4
-
-      - Blog with pagination & tags
-
-      - Visual editing with Editable Regions
-
-      - Header and Footer controls
-
-      - Create and delete pages
-
-      - SEO controls
+      True digestive health relies on **Breakdown**, **Absorption**, and **Motility**. Our reference library explains the science behind it all. Average transit time should be 30-40 hours (Source: Mayo Clinic).
     image:
       image_path: /src/assets/images/transparent-bg/undraw-hello.svg
-      alt_text: An illustration of someone sitting at a desk with a monitor and books.
-    flipped: true
-    button: {}
-  - _name: LeftRight
-    heading: You choose your editing experience.
-    text_content: >-
-      A flexible git-backed CMS that specialises in editing markdown and data
-      files.
-
-
-      Visual editing allows you to preview your changes live before you save
-      them.
-
-
-      Git-backed means you can keep all your familiar git workflows, while
-      providing an easy-to-understand interface for non-technical editors to
-      collaborate via git.
-    image:
-      image_path: /src/assets/images/transparent-bg/undraw-startup.svg
-      alt_text: An illustration of someone sitting at a desk.
+      alt_text: Three pillars concept illustration.
     flipped: false
     button:
-      text: CloudCannon Docs
-      link: https://cloudcannon.com/documentation/
+      text: Learn About Gut Motility
+      link: /reference/gut-motility
+  - _name: LeftRight
+    heading: Targeted Support for Specific Needs
+    text_content: >-
+      We don't do "one size fits all." Whether you're dealing with slow motility, low stomach acid, or microbiome imbalance, find the right pathway.
+    image:
+      image_path: /src/assets/images/transparent-bg/undraw-startup.svg
+      alt_text: Pathways illustration.
+    flipped: true
+    button:
+      text: See Our Products
+      link: /pricing
 ---

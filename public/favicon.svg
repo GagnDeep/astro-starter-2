@@ -4,13 +4,14 @@
     `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
     Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
   -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
+  <rect width="512" height="512" rx="112" fill="#0F4C5C" />
   <path
-    d="M256 112 L384 368 H128 Z"
+    d="M256 112 C 160 112, 112 256, 112 368 C 112 420, 160 440, 256 440 C 352 440, 400 420, 400 368 C 400 256, 352 112, 256 112 Z"
     fill="none"
-    stroke="#ffffff"
+    stroke="#FFFFFF"
     stroke-width="36"
+    stroke-linecap="round"
     stroke-linejoin="round"
   />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+  <circle cx="256" cy="280" r="40" fill="#F59E0B" />
 </svg>

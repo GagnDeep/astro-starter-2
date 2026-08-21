@@ -1,5 +1,19 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "About Digestine.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  open_graph_type: "website",
+  no_index: false,
+};
 ---
 
-<AboutPage />
+<Layout title="About" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>About Digestine</h1>
+    <p>Science-backed, zero-fluff digestive solutions for everyday balance.</p>
+  </main>
+</Layout>

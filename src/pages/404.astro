@@ -1,13 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Page not found.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  open_graph_type: "website",
+  no_index: true,
+};
 ---
 
-<Layout title="404 - Not Found">
-  <section class="flex flex-col items-center justify-center min-h-[60vh] px-8">
-    <img src="/images/404.png" alt="Error illustration" class="max-w-sm mb-8" />
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">Page not found!</h1>
-    <a href="/" class="text-blue-600 hover:text-blue-800 font-medium text-lg">
-      &larr; Back home
-    </a>
-  </section>
+<Layout title="Page Not Found" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-32 text-center h-[50vh] flex flex-col justify-center items-center">
+    <h1 class="text-4xl font-bold mb-4">404 - Page Not Found</h1>
+    <p class="mb-8">We couldn't find the page you were looking for.</p>
+    <a href="/" class="text-brand-primary font-medium hover:underline">Return to homepage</a>
+  </main>
 </Layout>
