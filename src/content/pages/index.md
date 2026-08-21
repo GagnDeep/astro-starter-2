@@ -1,79 +1,48 @@
 ---
 _schema: default
-title: Astro Minimal Starter
+title: World AI School
 seo:
   page_description: >-
-    A starting point for developers looking to build a website with Astro, using
-    Editable Regions in CloudCannon.
+    Online course platform teaching practical AI skills to students worldwide. Learn prompting, fine-tuning, RAG, and AI automation.
   canonical_url:
   featured_image:
   featured_image_alt:
   author_twitter_handle:
-  open_graph_type:
+  open_graph_type: website
   no_index: false
 hero_block:
   _name: Hero
-  heading: Astro Minimal Starter
+  heading: Practical AI Skills for the Real World
   subheading: >-
-    A **minimal** starting point for developers looking to build a website with
-    Astro, using Editable Regions in CloudCannon. Create your own copy, and
-    start creating your own components to use in the Visual Editor. 
-
-
-    Once you've explored this minimal starter, consider  taking a look at the
-    [Astro Component
-    Starter](https://github.com/CloudCannon/astro-component-starter) to assist
-    in building out your components.
+    Learn how to build, automate, and scale with AI. From advanced prompt engineering to fine-tuning local LLMs.
   image:
     image_path: /src/assets/images/transparent-bg/undraw-online-test.svg
-    alt_text: An illustration of someone leaning against a desktop computer monitor.
+    alt_text: Abstract geometric shapes representing AI integration.
   button:
-    text: Get Started
-    link: https://github.com/CloudCannon/astro-starter/
+    text: Join the Waitlist
+    link: "#waitlist"
 content_blocks:
   - _name: LeftRight
-    heading: Keep what you need. Delete the rest.
+    heading: Skip the math, build the app.
     text_content: >-
-      This starter aims to get developers building their own site quickly in
-      CloudCannon. It strikes a balance between minimal boilerplate and useful
-      features out of the box:
+      Our courses are designed for developers, product managers, and founders who want to implement AI today.
 
+      - Master Prompt Engineering & Context Windows
 
-      - Tailwind CSS v4
+      - Build RAG (Retrieval-Augmented Generation) applications
 
-      - Blog with pagination & tags
+      - Automate workflows using AI Agents
 
-      - Visual editing with Editable Regions
-
-      - Header and Footer controls
-
-      - Create and delete pages
-
-      - SEO controls
+      - Evaluate and deploy models in production
     image:
       image_path: /src/assets/images/transparent-bg/undraw-hello.svg
-      alt_text: An illustration of someone sitting at a desk with a monitor and books.
+      alt_text: Developers collaborating on an AI project.
     flipped: true
-    button: {}
-  - _name: LeftRight
-    heading: You choose your editing experience.
-    text_content: >-
-      A flexible git-backed CMS that specialises in editing markdown and data
-      files.
-
-
-      Visual editing allows you to preview your changes live before you save
-      them.
-
-
-      Git-backed means you can keep all your familiar git workflows, while
-      providing an easy-to-understand interface for non-technical editors to
-      collaborate via git.
-    image:
-      image_path: /src/assets/images/transparent-bg/undraw-startup.svg
-      alt_text: An illustration of someone sitting at a desk.
-    flipped: false
     button:
-      text: CloudCannon Docs
-      link: https://cloudcannon.com/documentation/
+      text: Browse Courses
+      link: "/taxonomy/nlp"
+  - _name: TextBlock
+    heading: Start building your AI toolkit
+    text_content: >-
+      Ready to dive in? Check out our practical guides in the [Library](/library/prompt-engineering), or use our [Tools](/tools/cost-estimator) to plan your next AI project. Join our waitlist below to be notified when full courses launch.
 ---

@@ -1,17 +1,20 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "World AI School",
+  "description": "Online course platform teaching practical AI skills to students worldwide. Learn prompting, fine-tuning, RAG, and AI automation.",
+  "tagline": "Practical AI skills for the real world.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
+  "twitter_site": "@worldaischool",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "World AI School — Practical AI skills for the real world.",
+  "default_author": "World AI School",
+  "theme_color": "#4338ca",
   "organization": {
-    "name": "CloudCannon",
+    "name": "World AI School",
     "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "same_as": [
+      "https://twitter.com/worldaischool",
+      "https://www.linkedin.com/company/worldaischool"
+    ]
   }
 }

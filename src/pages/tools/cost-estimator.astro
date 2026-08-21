@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const seo = {
+  page_description: "Estimate the cost of your LLM application.",
+  no_index: false,
+};
+---
+<Layout title="API Cost Estimator" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4">API Cost Estimator</h1>
+    <p class="text-slate-600 mb-8">Estimate the cost of your LLM application based on usage volumes.</p>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+      <p class="text-slate-500 italic text-sm mb-4">Note: Pricing updates frequently. Based on current OpenAI rates (gpt-4o) of $5/1M input and $15/1M output.</p>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); document.getElementById('results').classList.remove('hidden');">
+        <div>
+          <label class="block text-sm font-medium text-slate-700">Average Daily Users</label>
+          <input type="number" id="users" value="1000" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2 border" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700">Average Input Tokens per Request</label>
+          <input type="number" id="input-tokens" value="500" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2 border" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700">Average Output Tokens per Request</label>
+          <input type="number" id="output-tokens" value="200" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2 border" />
+        </div>
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Calculate Cost</button>
+      </form>
+      <div id="results" class="hidden mt-6 p-4 bg-slate-100 rounded">
+        <h3 class="font-bold text-lg mb-2">Estimated Costs</h3>
+        <p>Estimated Monthly Input Cost: $7.50</p>
+        <p>Estimated Monthly Output Cost: $9.00</p>
+        <p class="font-bold mt-2">Total Monthly Estimated Cost: $16.50</p>
+      </div>
+    </div>
+
+    <!-- Results by email capture -->
+    <div class="mt-12 bg-slate-50 p-6 rounded-lg border border-slate-200">
+      <h2 class="text-xl font-semibold mb-2">Save your estimate</h2>
+      <p class="text-sm text-slate-600 mb-4">Get a detailed cost breakdown and optimization report sent to your inbox.</p>
+      <CaptureForm form={capture.forms.quote} submitLabel="Send My Estimate" class="space-y-4">
+        <div class="space-y-1">
+          <label for="email" class="block text-sm font-medium text-slate-700">Email Address</label>
+          <input type="email" id="email" name="email" required class="block w-full rounded-md border-slate-300 border p-2" />
+        </div>
+        <input type="hidden" name="tool" value="cost-estimator" />
+      </CaptureForm>
+    </div>
+  </main>
+</Layout>

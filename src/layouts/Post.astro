@@ -2,6 +2,8 @@
 import Layout from "./Layout.astro";
 import PostSummary from "../components/blog/summary.astro";
 import PostHero from "../components/blog/post-hero/post-hero.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+import { capture } from "../../capture.config";
 import { getCollection } from "astro:content";
 
 type Props = {
@@ -46,6 +48,13 @@ const filteredPosts = posts.filter(
         </editable-text>
       </div>
     </article>
+
+    <div class="mt-16 bg-slate-50 p-8 rounded-xl border border-slate-200">
+      <h3 class="font-semibold text-2xl text-slate-900 mb-2">Build AI apps that actually work</h3>
+      <p class="text-slate-600 text-sm mb-4">Join our waitlist for actionable courses covering full-stack AI development.</p>
+      <NewsletterForm form={capture.forms.waitlist} submitLabel="Join the Waitlist" />
+    </div>
+
   </div>
 
   {

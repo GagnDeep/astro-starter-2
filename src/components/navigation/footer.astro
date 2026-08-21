@@ -1,26 +1,56 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
 ---
 
-<footer class="bg-gray-800 text-white">
+<footer class="bg-slate-900 text-white">
   <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div class="col-span-1 lg:col-span-2">
+        <a class="flex justify-start mb-4" href={footer.logo_url}>
+          <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
+        </a>
+        <p class="text-slate-400 max-w-md mb-6">
+          Practical AI skills for the real world. Learn prompting, fine-tuning, RAG, and AI
+          automation to advance your career.
+        </p>
+      </div>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
+        <ul class="flex flex-col gap-2">
+          {
+            footer.links.map((link) => (
+              <li>
+                <a class="text-slate-400 hover:text-white transition-colors" href={link.link}>
+                  {link.text}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <div>
+        <h3 class="font-semibold text-lg mb-4">Join our Newsletter</h3>
+        <p class="text-slate-400 text-sm mb-4">
+          Get practical AI insights delivered to your inbox.
+        </p>
+        <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" />
+      </div>
+    </div>
+
+    <div
+      class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4"
+    >
+      <div class="text-sm text-slate-400">
+        &copy; {new Date().getFullYear()}
+        {footer.copyright}
+      </div>
+      <div class="flex gap-4 text-sm">
+        <a href="/legal" class="text-slate-400 hover:text-white">Terms & Privacy</a>
+        <a href="/contact" class="text-slate-400 hover:text-white">Contact</a>
       </div>
     </div>
   </div>

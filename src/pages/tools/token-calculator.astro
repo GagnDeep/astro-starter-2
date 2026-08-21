@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const seo = {
+  page_description: "Calculate API tokens for OpenAI models.",
+  no_index: false,
+};
+---
+<Layout title="Token Calculator" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4">Token Calculator</h1>
+    <p class="text-slate-600 mb-8">Estimate how many tokens a piece of text will consume.</p>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+      <p class="text-slate-500 italic text-sm mb-4">Note: This is an estimation (approx 4 chars = 1 token for English). Actual tokenization varies by model.</p>
+
+      <form class="space-y-4" onsubmit="event.preventDefault(); const text = document.getElementById('input-text').value; const tokens = Math.ceil(text.length / 4); document.getElementById('token-result').innerText = tokens; document.getElementById('token-results').classList.remove('hidden');">
+        <div>
+          <label class="block text-sm font-medium text-slate-700">Input Text</label>
+          <textarea id="input-text" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm p-2 border" rows="6" placeholder="Paste your prompt or document here..."></textarea>
+        </div>
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Calculate Tokens</button>
+      </form>
+      <div id="token-results" class="hidden mt-6 p-4 bg-slate-100 rounded text-center">
+        <h3 class="font-bold text-lg mb-2">Estimated Tokens</h3>
+        <p class="text-4xl font-bold text-indigo-600" id="token-result">0</p>
+      </div>
+    </div>
+
+    <!-- Results by email capture -->
+    <div class="mt-12 bg-slate-50 p-6 rounded-lg border border-slate-200">
+      <h2 class="text-xl font-semibold mb-2">Get our Token Optimization Guide</h2>
+      <p class="text-sm text-slate-600 mb-4">Learn how to shrink your prompts and reduce API costs by up to 40%.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Send Guide" class="space-y-4">
+        <div class="space-y-1">
+          <label for="email" class="block text-sm font-medium text-slate-700">Email Address</label>
+          <input type="email" id="email" name="email" required class="block w-full rounded-md border-slate-300 border p-2" />
+        </div>
+        <input type="hidden" name="tool" value="token-calculator" />
+      </CaptureForm>
+    </div>
+  </main>
+</Layout>
