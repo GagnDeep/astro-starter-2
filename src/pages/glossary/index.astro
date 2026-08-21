@@ -1,0 +1,34 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const terms = [
+  { term: "Audit Trail", def: "A digital record logging the steps of the signing process, including IP address, timestamp, and cryptographic hash." },
+  { term: "Certificate of Completion", def: "A document appended to a signed PDF providing proof of the audit trail." },
+  { term: "Digital Signature", def: "A specific type of e-signature backed by a digital certificate providing cryptographic proof of identity (PKI)." },
+  { term: "Electronic Signature", def: "A broad legal term referring to any electronic sound, symbol, or process attached to a contract indicating intent to sign." },
+  { term: "ESIGN Act", def: "The Electronic Signatures in Global and National Commerce Act (US, 2000) that grants e-signatures the same legal status as wet signatures." },
+  { term: "eIDAS", def: "EU regulation for electronic identification and trust services." },
+  { term: "Non-repudiation", def: "The assurance that someone cannot deny the validity of something (like their signature on a contract)." },
+  { term: "Wet Signature", def: "A traditional signature made with ink on physical paper." }
+];
+---
+
+<Layout
+  title="E-Signature Glossary | usignpdf"
+  seo={{
+    page_description: "Learn the common terms and definitions related to electronic signatures, compliance, and digital contracts.",
+    canonical_url: "https://usignpdf.com/glossary/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8">
+    <h1 class="text-4xl font-bold mb-12 text-center">E-Signature Glossary</h1>
+    <div class="space-y-8">
+      {terms.map(t => (
+        <div class="bg-surface p-6 rounded border border-border shadow-sm">
+            <h2 class="text-2xl font-semibold mb-2 text-primary" id={t.term.toLowerCase().replace(/ /g, '-')}>{t.term}</h2>
+            <p class="text-text-muted">{t.def}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

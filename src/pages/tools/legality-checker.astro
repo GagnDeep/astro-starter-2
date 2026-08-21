@@ -1,0 +1,115 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout
+  title="E-Signature Legality Checker | usignpdf"
+  seo={{
+    page_description: "Check if your document is legally binding when signed electronically based on your region and document type.",
+    canonical_url: "https://usignpdf.com/tools/legality-checker/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8">
+    <h1 class="text-4xl font-bold mb-4 text-center">E-Signature Legality Checker</h1>
+    <p class="text-xl text-text-muted mb-12 text-center">Find out if you can sign your specific document electronically.</p>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="bg-surface p-8 rounded-lg shadow border border-border">
+        <h2 class="text-2xl font-semibold mb-6">Document Details</h2>
+
+        <form id="legality-form" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium mb-2" for="region">Region</label>
+            <select id="region" class="w-full px-4 py-2 border border-border rounded focus:ring-2 focus:ring-accent outline-none bg-surface">
+                <option value="us">United States (ESIGN/UETA)</option>
+                <option value="eu">European Union (eIDAS)</option>
+                <option value="uk">United Kingdom (eIDAS/UK Law)</option>
+                <option value="ca">Canada (PIPEDA)</option>
+                <option value="au">Australia (ETA)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2" for="doc-type">Document Type</label>
+            <select id="doc-type" class="w-full px-4 py-2 border border-border rounded focus:ring-2 focus:ring-accent outline-none bg-surface">
+                <option value="b2b">B2B Contract (Service Agreement, NDA, etc.)</option>
+                <option value="hr">Employment / HR Document</option>
+                <option value="real_estate">Real Estate Purchase/Lease</option>
+                <option value="wills">Wills, Codicils, or Testamentary Trusts</option>
+                <option value="family">Family Law (Divorce, Adoption)</option>
+                <option value="notary">Document requiring Notarization</option>
+            </select>
+          </div>
+          <noscript>
+            <div class="p-4 bg-surface-alt border-l-4 border-accent mt-4">
+              <p class="text-sm font-semibold">Enable JavaScript to see results.</p>
+              <p class="text-xs mt-2">Generally, B2B and HR documents are valid globally. Wills and Family Law usually require physical wet signatures.</p>
+            </div>
+          </noscript>
+        </form>
+      </div>
+
+      <div class="bg-surface-alt p-8 rounded-lg shadow border border-border flex flex-col justify-center">
+        <div id="result-status" class="mb-4">
+            <!-- Populated by JS -->
+        </div>
+        <div id="result-explanation" class="text-text-main text-sm">
+            <!-- Populated by JS -->
+        </div>
+        <div class="mt-8 text-xs text-text-muted">
+            <em>Disclaimer: This tool provides general guidance, not legal advice. Consult a local attorney for complex legal situations.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkLegality() {
+      const region = (document.getElementById('region') as HTMLSelectElement).value;
+      const docType = (document.getElementById('doc-type') as HTMLSelectElement).value;
+
+      const statusEl = document.getElementById('result-status')!;
+      const explainEl = document.getElementById('result-explanation')!;
+
+      let isValid = true;
+      let title = "Yes, Legally Binding";
+      let colorClass = "text-success";
+      let explanation = "";
+
+      // Logic mapping based on standard e-sign laws
+      if (docType === 'wills' || docType === 'family') {
+          isValid = false;
+          title = "Likely Requires Wet Signature";
+          colorClass = "text-error";
+          explanation = "In almost all jurisdictions, documents related to wills, codicils, testamentary trusts, adoption, divorce, or family law explicitly require physical (wet) signatures and often witnesses.";
+      } else if (docType === 'notary') {
+           isValid = false;
+           title = "Requires Electronic Notary (RON)";
+           colorClass = "text-error";
+           explanation = "While the signature itself can be electronic, standard e-signature tools aren't enough. You must use a specialized Remote Online Notarization (RON) service.";
+      } else {
+          // General business docs
+          if (region === 'us') {
+              explanation = "Under the US ESIGN Act (2000) and UETA, electronic signatures on B2B, HR, and most Real Estate documents carry the exact same legal weight as handwritten signatures.";
+          } else if (region === 'eu') {
+              explanation = "Under EU eIDAS regulations, Standard Electronic Signatures (SES) are legally valid for most B2B and employment contracts.";
+          } else if (region === 'uk') {
+              explanation = "Under UK law, electronic signatures are valid for most commercial contracts, HR documents, and short-term leases.";
+          } else if (region === 'ca') {
+              explanation = "Under PIPEDA and provincial laws, electronic signatures are valid and enforceable for most business transactions in Canada.";
+          } else if (region === 'au') {
+              explanation = "Under the Electronic Transactions Act (ETA), electronic signatures are broadly accepted for business and employment agreements in Australia.";
+          }
+      }
+
+      statusEl.innerHTML = `<h2 class="text-3xl font-bold ${colorClass}">${title}</h2>`;
+      explainEl.innerHTML = `<p>${explanation}</p><p class="mt-4"><strong>Tip:</strong> Ensure you use a platform like usignpdf that provides a secure Audit Trail to prove intent and non-repudiation.</p>`;
+    }
+
+    ['region', 'doc-type'].forEach(id => {
+      document.getElementById(id)?.addEventListener('change', checkLegality);
+    });
+
+    checkLegality();
+  </script>
+</Layout>

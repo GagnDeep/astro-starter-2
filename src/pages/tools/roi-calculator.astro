@@ -1,0 +1,93 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout
+  title="Time Savings Calculator | usignpdf"
+  seo={{
+    page_description: "Calculate how much time and money you waste manually printing, signing, and scanning documents. Try our free ROI calculator.",
+    canonical_url: "https://usignpdf.com/tools/roi-calculator/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8">
+    <h1 class="text-4xl font-bold mb-4 text-center">Time Savings Calculator</h1>
+    <p class="text-xl text-text-muted mb-12 text-center">Find out exactly how much the "print, sign, scan" method is costing you.</p>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="bg-surface p-8 rounded-lg shadow border border-border">
+        <h2 class="text-2xl font-semibold mb-6">Your Details</h2>
+
+        <!-- No-JS Fallback / Progressive Enhancement Form -->
+        <form id="roi-form" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium mb-2" for="docs-per-month">Documents signed per month</label>
+            <input type="number" id="docs-per-month" value="10" min="1" class="w-full px-4 py-2 border border-border rounded focus:ring-2 focus:ring-accent outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2" for="hourly-rate">Your hourly rate ($)</label>
+            <input type="number" id="hourly-rate" value="50" min="1" class="w-full px-4 py-2 border border-border rounded focus:ring-2 focus:ring-accent outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2" for="mins-per-doc">Minutes spent per document (printing/scanning)</label>
+            <input type="number" id="mins-per-doc" value="15" min="1" class="w-full px-4 py-2 border border-border rounded focus:ring-2 focus:ring-accent outline-none" />
+            <p class="text-xs text-text-muted mt-1">Industry average is 15-20 minutes.</p>
+          </div>
+          <noscript>
+            <div class="p-4 bg-surface-alt border-l-4 border-accent mt-4">
+              <p class="text-sm font-semibold">Enable JavaScript to calculate automatically.</p>
+              <p class="text-sm mt-2">Manual formula: (Docs per month × 12) × (Mins per doc / 60) × Hourly rate = Annual cost.</p>
+            </div>
+          </noscript>
+        </form>
+      </div>
+
+      <div class="bg-primary text-surface p-8 rounded-lg shadow flex flex-col justify-center">
+        <h2 class="text-2xl font-semibold mb-6 text-surface-alt">Your Hidden Cost</h2>
+
+        <div class="mb-8">
+          <div class="text-sm text-surface-alt mb-1">Time wasted per year</div>
+          <div class="text-4xl font-bold font-mono" id="result-hours">30 Hours</div>
+        </div>
+
+        <div class="mb-8">
+          <div class="text-sm text-surface-alt mb-1">Money wasted per year</div>
+          <div class="text-5xl font-bold font-mono text-accent" id="result-cost">$1,500</div>
+        </div>
+
+        <div class="text-sm text-surface-alt p-4 bg-surface/10 rounded">
+          <strong>The Solution:</strong> switching to usignpdf cuts the time to ~1 minute per document.
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 bg-surface-alt p-8 rounded-lg text-center max-w-2xl mx-auto border border-border">
+        <h3 class="text-xl font-bold mb-4">Ready to stop wasting time?</h3>
+        <CaptureForm form="tools" submitLabel="Start Signing Free" />
+    </div>
+  </div>
+
+  <script>
+    function calculate() {
+      const docs = parseFloat((document.getElementById('docs-per-month') as HTMLInputElement).value) || 0;
+      const rate = parseFloat((document.getElementById('hourly-rate') as HTMLInputElement).value) || 0;
+      const mins = parseFloat((document.getElementById('mins-per-doc') as HTMLInputElement).value) || 0;
+
+      // Logic: docs per year * hours per doc
+      const hoursPerYear = (docs * 12) * (mins / 60);
+      const costPerYear = hoursPerYear * rate;
+
+      // Rounding edge cases: round to 1 decimal for hours, whole number for cost
+      document.getElementById('result-hours')!.textContent = hoursPerYear.toFixed(1) + ' Hours';
+      document.getElementById('result-cost')!.textContent = '$' + costPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    }
+
+    // Attach listeners
+    ['docs-per-month', 'hourly-rate', 'mins-per-doc'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', calculate);
+    });
+
+    // Initial calc
+    calculate();
+  </script>
+</Layout>

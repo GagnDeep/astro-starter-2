@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="US ESIGN Act & UETA | usignpdf"
+  seo={{
+    page_description: "Understand the ESIGN Act of 2000 and UETA, and how they make electronic signatures legally binding in the United States.",
+    canonical_url: "https://usignpdf.com/legality/us-esign-act/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose">
+    <a href="/legality" class="text-accent no-underline hover:underline">&larr; Back to Reference Library</a>
+    <h1 class="text-4xl font-bold mt-8 mb-8">US ESIGN Act & UETA</h1>
+
+    <h2>The Electronic Signatures in Global and National Commerce Act (ESIGN)</h2>
+    <p>Passed in 2000, the ESIGN Act is a federal law that grants electronic signatures and records the same legal status as traditional handwritten signatures and paper documents.</p>
+
+    <h2>Uniform Electronic Transactions Act (UETA)</h2>
+    <p>UETA was adopted by 49 states (New York has a similar law) to establish a uniform framework for electronic transactions at the state level.</p>
+
+    <h3>Key Requirements for Legality:</h3>
+    <ol>
+        <li><strong>Intent to sign:</strong> The signer must demonstrate clear intent to sign electronically (e.g., clicking an "I Agree" or "Sign" button).</li>
+        <li><strong>Consent to do business electronically:</strong> The parties must agree to conduct the transaction electronically.</li>
+        <li><strong>Association of signature with the record:</strong> The system used to capture the transaction must keep an associated record that reflects the process by which the signature was created, or generate a graphic statement (which usignpdf provides via our <a href="/glossary#audit-trail">Audit Trail</a>).</li>
+        <li><strong>Record retention:</strong> The system must securely store the document for future reference.</li>
+    </ol>
+  </div>
+</Layout>

@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Compare Alternatives | usignpdf"
+  seo={{
+    page_description: "See how usignpdf compares to DocuSign, Adobe Sign, and PandaDoc.",
+    canonical_url: "https://usignpdf.com/compare/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 text-center">
+    <h1 class="text-4xl font-bold mb-12">usignpdf vs The Rest</h1>
+    <div class="grid md:grid-cols-2 gap-8">
+      <a href="/compare/docusign" class="p-6 bg-surface border border-border rounded shadow">
+        <h2 class="text-2xl font-bold text-primary mb-2">usignpdf vs DocuSign</h2>
+        <p class="text-text-muted">Why pay $30/mo when you just need to sign a few PDFs?</p>
+      </a>
+      <a href="/compare/adobe-sign" class="p-6 bg-surface border border-border rounded shadow">
+        <h2 class="text-2xl font-bold text-primary mb-2">usignpdf vs Adobe Sign</h2>
+        <p class="text-text-muted">Escape the Adobe ecosystem lock-in.</p>
+      </a>
+    </div>
+  </div>
+</Layout>
