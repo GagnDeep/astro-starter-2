@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "uconvertfile.com is 100% free.",
+  no_index: false,
+};
+---
+
+<Layout title="Pricing" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose text-center">
+    <h1>Pricing</h1>
+    <p class="text-xl text-gray-700">We believe simple utilities should be free.</p>
+    <div class="mt-12 p-8 border border-gray-200 rounded-lg bg-white shadow-sm inline-block w-full max-w-md">
+      <h2 class="!mt-0">100% Free Forever</h2>
+      <p>No credit card required. No hidden fees. No ads.</p>
+      <ul class="text-left mt-6 space-y-2 inline-block">
+        <li>Unlimited conversions</li>
+        <li>Privacy first</li>
+        <li>Detailed format explanations</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

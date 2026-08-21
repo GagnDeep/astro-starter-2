@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "uconvertfile.com",
+  "short_name": "uconvertfile",
+  "description": "The cleanest, most transparent file format converter that explains what happens to your data and files.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#1b5e20",
+  "theme_color": "#1b5e20",
   "icons": [
     {
       "src": "/meta/icon-192.png",

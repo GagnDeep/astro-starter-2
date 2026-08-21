@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Compare uconvertfile.com with competitors like CloudConvert, Zamzar, and FreeConvert.",
+  no_index: false,
+};
+---
+
+<Layout title="Comparison" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Comparison</h1>
+    <p>
+      How does uconvertfile compare to other file conversion tools?
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>uconvertfile.com</th>
+          <th>CloudConvert</th>
+          <th>Zamzar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Focus</td>
+          <td>Standard Users, Education</td>
+          <td>Developers, APIs</td>
+          <td>General, Legacy UI</td>
+        </tr>
+        <tr>
+          <td>Ads</td>
+          <td>None</td>
+          <td>None</td>
+          <td>Many</td>
+        </tr>
+        <tr>
+          <td>Complexity</td>
+          <td>Simple, straightforward</td>
+          <td>High (lots of options)</td>
+          <td>Moderate</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</Layout>

@@ -1,0 +1,29 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Convert CSV to JSON online for free. Clean and format your data instantly.",
+  no_index: false,
+};
+---
+
+<Layout title="CSV to JSON Converter" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Convert CSV to JSON</h1>
+    <p>Easily convert comma-separated values into formatted JSON data.</p>
+
+    <div class="grid md:grid-cols-2 gap-8 my-8">
+      <div>
+        <h3 class="mt-0">Input (CSV)</h3>
+        <textarea class="w-full h-64 border p-2 font-mono text-sm" placeholder="id,name,age\n1,Alice,30\n2,Bob,25"></textarea>
+      </div>
+      <div>
+        <h3 class="mt-0">Output (JSON)</h3>
+        <textarea class="w-full h-64 border p-2 font-mono text-sm bg-gray-50" readonly placeholder="Result will appear here..."></textarea>
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary">Convert to JSON</button>
+    </div>
+  </div>
+</Layout>

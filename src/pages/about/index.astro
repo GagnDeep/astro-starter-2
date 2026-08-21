@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Learn more about uconvertfile.com and our mission.",
+  no_index: false,
+};
+---
+
+<Layout title="About Us" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>About uconvertfile.com</h1>
+    <p>
+      At uconvertfile, our mission is simple: provide the cleanest, most transparent file format
+      converter on the web. We noticed a major gap in the market — existing tools are either full
+      of ads, too complex, or completely opaque about what actually happens to your files and data.
+    </p>
+    <h2>Why we built this</h2>
+    <p>
+      Most users just want to convert a PDF to Word, or compress an image without losing quality.
+      They don't want to decipher developer-first API documentation or deal with pop-up ads. We built
+      uconvertfile to give you a fast, reliable, and straightforward conversion experience while explaining
+      the formats you're working with.
+    </p>
+    <h2>Privacy First</h2>
+    <p>
+      We believe in data transparency. Any file you process is kept secure, and our tools run as much as
+      possible directly in your browser. We don't hold on to your files longer than necessary.
+    </p>
+  </div>
+</Layout>

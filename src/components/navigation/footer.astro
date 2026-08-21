@@ -1,9 +1,20 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
 ---
 
 <footer class="bg-gray-800 text-white">
   <div class="mx-auto max-w-6xl px-8 py-12">
+
+    <!-- Capture Form Injection -->
+    <div class="mb-12 border-b border-gray-700 pb-12">
+      <h3 class="text-2xl font-bold mb-4">Join our Newsletter</h3>
+      <p class="mb-6 opacity-90 max-w-lg">Get the ultimate guide to file formats, compression, and conversion tips delivered straight to your inbox.</p>
+      <div class="max-w-md">
+        <NewsletterForm form="newsletter" />
+      </div>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
       <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
         <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
@@ -17,6 +28,7 @@ import { footer } from "../../../data/navigation.json";
             </a>
           </li>
         ))}
+        <li><a class="hover:text-gray-300 transition-colors" href="/contact/">Contact Us</a></li>
       </ul>
 
       <div class="text-center sm:text-end text-sm text-gray-400">

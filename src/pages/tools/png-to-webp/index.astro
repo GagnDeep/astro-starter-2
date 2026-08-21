@@ -1,0 +1,24 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Convert PNG to WebP online for free. Reduce file size without losing quality.",
+  no_index: false,
+};
+---
+
+<Layout title="PNG to WebP Converter" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Convert PNG to WebP</h1>
+    <p>Compress and convert your PNG images to next-gen WebP format.</p>
+
+    <div class="card my-8 text-center bg-gray-50">
+      <p class="text-gray-500 mb-4">Select a PNG image to upload.</p>
+      <input type="file" accept=".png" class="mb-4 block mx-auto border border-gray-300 p-2 rounded" />
+      <button class="btn btn-primary w-full max-w-xs">Convert to WebP</button>
+    </div>
+
+    <h2>Why WebP?</h2>
+    <p>WebP provides superior lossless and lossy compression for images on the web, often reducing sizes by 26% compared to PNGs, resulting in faster load times.</p>
+  </div>
+</Layout>

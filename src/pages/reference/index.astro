@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Deep reference guides for file formats.",
+  no_index: false,
+};
+---
+
+<Layout title="Reference Library" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Reference Library</h1>
+    <p>Deep dives into specific file formats, their history, structure, and best uses.</p>
+    <ul>
+      <li><a href="/reference/pdf/">PDF (Portable Document Format)</a></li>
+      <li><a href="/reference/png/">PNG (Portable Network Graphics)</a></li>
+      <li><a href="/reference/webp/">WebP</a></li>
+      <li><a href="/reference/csv/">CSV (Comma Separated Values)</a></li>
+    </ul>
+  </div>
+</Layout>

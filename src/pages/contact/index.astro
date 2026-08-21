@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Get in touch with the uconvertfile team for support and feedback.",
+  no_index: false,
+};
+---
+
+<Layout title="Contact Us" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Contact Us</h1>
+    <p>
+      Have questions, feedback, or need support? We'd love to hear from you.
+      Please fill out the form below and our team will get back to you as soon as possible.
+      Be sure to check our <a href="/faq/">FAQ</a> or <a href="/glossary/">Glossary</a> first, as your answer might already be there!
+    </p>
+
+    <div class="mt-8">
+      <CaptureForm form="contact" submitLabel="Send Message">
+        <label class="block mb-4">
+          <span class="block text-sm font-medium text-gray-700 mb-1">Name</span>
+          <input type="text" name="name" required class="w-full rounded border border-gray-300 px-3 py-2" />
+        </label>
+        <label class="block mb-4">
+          <span class="block text-sm font-medium text-gray-700 mb-1">Email</span>
+          <input type="email" name="email" required class="w-full rounded border border-gray-300 px-3 py-2" />
+        </label>
+        <label class="block mb-4">
+          <span class="block text-sm font-medium text-gray-700 mb-1">Message</span>
+          <textarea name="message" required rows="5" class="w-full rounded border border-gray-300 px-3 py-2"></textarea>
+        </label>
+      </CaptureForm>
+    </div>
+  </div>
+</Layout>

@@ -31,6 +31,7 @@ export const capture = {
     contact: "contact",
     newsletter: "newsletter",
     waitlist: "waitlist",
+    tools: "tools",
     quote: "quote",
   },
 

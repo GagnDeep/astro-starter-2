@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Browse file formats by category.",
+  no_index: false,
+};
+---
+
+<Layout title="Categories" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>File Categories</h1>
+    <p>Browse our extensive guides by category.</p>
+    <ul>
+      <li><a href="/categories/document/">Documents</a></li>
+      <li><a href="/categories/image/">Images</a></li>
+      <li><a href="/categories/video/">Video</a></li>
+    </ul>
+  </div>
+</Layout>

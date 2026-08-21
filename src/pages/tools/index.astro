@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Explore our free online file conversion tools.",
+  no_index: false,
+};
+---
+
+<Layout title="Tools" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Conversion Tools</h1>
+    <p>Select a tool below to get started.</p>
+    <ul>
+      <li><a href="/tools/pdf-to-word/">PDF to Word</a></li>
+      <li><a href="/tools/png-to-webp/">PNG to WebP</a></li>
+      <li><a href="/tools/csv-to-json/">CSV to JSON</a></li>
+    </ul>
+  </div>
+</Layout>
