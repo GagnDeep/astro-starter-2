@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "View Images Online | UViewDocument";
+const seo = {
+  page_description: "Securely view images online directly in your browser. Fast, free, and no registration required.",
+  open_graph_type: "website" as const,
+};
+---
+<Layout seo={seo} title={title}>
+  <main class="container mx-auto px-4 py-12 prose prose-slate max-w-4xl">
+    <h1 class="text-center">Images</h1>
+    <p class="text-center lead">We support a wide variety of formats for viewing images online.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-12 not-prose">
+      <a href="/reference/pdf" class="block p-6 border border-border rounded-lg bg-surface hover:border-primary transition-colors">
+        <h3 class="font-bold text-lg mb-2">PDF</h3>
+        <p class="text-sm text-gray-600">Universal document format</p>
+      </a>
+      <a href="/reference/docx" class="block p-6 border border-border rounded-lg bg-surface hover:border-primary transition-colors">
+        <h3 class="font-bold text-lg mb-2">DOCX</h3>
+        <p class="text-sm text-gray-600">Microsoft Word document</p>
+      </a>
+      <a href="/reference/txt" class="block p-6 border border-border rounded-lg bg-surface hover:border-primary transition-colors">
+        <h3 class="font-bold text-lg mb-2">TXT</h3>
+        <p class="text-sm text-gray-600">Plain text file</p>
+      </a>
+    </div>
+
+    <h2>How to open images without software</h2>
+    <p>Opening images typically requires expensive or bulky software. With UViewDocument, you simply drag and drop your file into the browser. We process the rendering locally or via secure ephemeral servers to display the content instantly.</p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12 not-prose">
+      <a href="/" class="bg-primary hover:bg-primary-hover text-bg px-6 py-3 rounded font-medium text-center transition-colors">Go to Viewer</a>
+      <a href="/tools/file-size-calculator" class="border border-border hover:bg-surface px-6 py-3 rounded font-medium text-center transition-colors">Check File Size</a>
+    </div>
+  </main>
+</Layout>

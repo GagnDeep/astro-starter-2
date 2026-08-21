@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ViewerPlaceholder from "../../components/viewer-placeholder.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const title = "ODT File Viewer - Open ODT Online";
+const seo = {
+  page_description: "Free online ODT viewer. Open and read ODT files directly in your browser without installing any software.",
+  open_graph_type: "website" as const,
+};
+---
+<Layout seo={seo} title={title}>
+  <main class="container mx-auto px-4 py-12 prose prose-slate max-w-4xl">
+    <h1 class="text-center">View ODT Files Online</h1>
+    <p class="text-center lead">Securely open and view <strong>.odt</strong> documents in your browser. No downloads, no sign-ups required.</p>
+
+    <ViewerPlaceholder documentType="ODT" />
+
+    <div class="my-12">
+      <h2>What is a ODT file?</h2>
+      <p>A ODT file is a standard document format used across various platforms. Our online viewer allows you to open these files instantly without needing specialized software like Microsoft Office, Adobe Acrobat, or other proprietary tools.</p>
+
+      <h3>Why view ODT online?</h3>
+      <ul>
+        <li><strong>Security:</strong> Prevent downloading potentially malicious files to your device.</li>
+        <li><strong>Convenience:</strong> Access your documents from any device (mobile, tablet, desktop) with a web browser.</li>
+        <li><strong>Speed:</strong> Instant viewing without waiting for heavy applications to load.</li>
+      </ul>
+    </div>
+
+    <div class="bg-surface p-8 rounded-xl border border-border my-12">
+      <h3 class="mt-0">Need more features?</h3>
+      <p>Let us know what you'd like to see in our document viewer.</p>
+      <CaptureForm form="contact" submitLabel="Send Feedback" />
+    </div>
+  </main>
+</Layout>

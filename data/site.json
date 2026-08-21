@@ -1,16 +1,16 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "UViewDocument",
+  "description": "The fastest, most secure way to view any document in your browser. No sign-ups, no tracking, just your file.",
+  "tagline": "Simple online document viewer for shared files.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "UViewDocument — online document viewer.",
+  "default_author": "UViewDocument",
+  "theme_color": "#ffffff",
   "organization": {
-    "name": "CloudCannon",
+    "name": "UViewDocument",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
   }

@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "What is Term 7? | Document Glossary";
+const seo = {
+  page_description: "Learn the definition and meaning of Term 7 in our comprehensive document viewer glossary.",
+  open_graph_type: "website" as const,
+};
+---
+<Layout seo={seo} title={title}>
+  <main class="container mx-auto px-4 py-12 prose prose-slate max-w-3xl">
+    <nav class="text-sm mb-8" aria-label="Breadcrumb">
+      <ol class="list-none p-0 flex gap-2">
+        <li class="m-0"><a href="/">Home</a> / </li>
+        <li class="m-0"><a href="/glossary">Glossary</a> / </li>
+        <li class="m-0 font-medium">Term 7</li>
+      </ol>
+    </nav>
+
+    <h1>Term 7</h1>
+    <p class="lead text-xl text-gray-600">In the context of document viewing and sharing, <strong>term 7</strong> refers to a standard component of digital file management.</p>
+
+    <h2>Detailed Definition</h2>
+    <p>Term 7 plays a crucial role when you attempt to open or view files online. Understanding this term helps in resolving common compatibility issues.</p>
+
+    <div class="bg-surface p-6 border border-border rounded my-8 not-prose">
+      <h3 class="font-bold mb-4">Related Terms</h3>
+      <ul class="flex flex-wrap gap-2">
+        <li><a href="/glossary/pdf" class="px-3 py-1 bg-white border border-border rounded-full text-sm hover:border-primary">PDF</a></li>
+        <li><a href="/glossary/mime-type" class="px-3 py-1 bg-white border border-border rounded-full text-sm hover:border-primary">MIME Type</a></li>
+        <li><a href="/glossary/metadata" class="px-3 py-1 bg-white border border-border rounded-full text-sm hover:border-primary">Metadata</a></li>
+      </ul>
+    </div>
+  </main>
+</Layout>

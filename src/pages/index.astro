@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ViewerPlaceholder from "../components/viewer-placeholder.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "The fastest, most secure way to view any document in your browser. No sign-ups, no tracking, just your file.",
+  open_graph_type: "website" as const,
+};
+---
+
+<Layout seo={seo} title="Online Document Viewer | UViewDocument">
+  <main class="container mx-auto px-4">
+    <div class="prose prose-slate max-w-4xl mx-auto py-16 text-center">
+      <h1>The fastest, most secure way to view any document in your browser.</h1>
+      <p class="lead text-xl mb-12">No sign-ups, no tracking, just your file. Select a document type below or try one of our reference files.</p>
+    </div>
+
+    <ViewerPlaceholder documentType="Any File" />
+
+    <div class="max-w-4xl mx-auto py-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center not-prose">
+        <div class="bg-surface border border-border p-6 rounded-lg">
+          <h3 class="font-bold text-xl mb-4 text-text">Fast</h3>
+          <p class="text-text">Instant viewing. No waiting for bulky software to load or cloud platforms to sync.</p>
+        </div>
+        <div class="bg-surface border border-border p-6 rounded-lg">
+          <h3 class="font-bold text-xl mb-4 text-text">Secure</h3>
+          <p class="text-text">Documents are rendered safely. We never store or track your sensitive data.</p>
+        </div>
+        <div class="bg-surface border border-border p-6 rounded-lg">
+          <h3 class="font-bold text-xl mb-4 text-text">Universal</h3>
+          <p class="text-text">PDF, DOCX, XLSX, PPTX, and more. Support for over 50 file formats out of the box.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-surface border-y border-border py-16 w-full -mx-4 px-4 sm:-mx-8 sm:px-8">
+      <div class="max-w-xl mx-auto text-center prose prose-slate">
+        <h2 class="mt-0">Join the Waitlist</h2>
+        <p>We're building advanced features for professional teams, including secure link sharing with expiring access, watermarking, and analytics.</p>
+
+        <div class="mt-8 not-prose text-left">
+          <CaptureForm form="waitlist" submitLabel="Join Waitlist" successMessage="Thanks! We'll notify you when advanced features are ready." />
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

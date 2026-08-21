@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import StorageCalculator from "../../components/tools/storage-calculator.astro";
+
+const seo = {
+  page_description: "Calculate how many documents you can store on your device.",
+  open_graph_type: "website" as const,
+};
+---
+
+<Layout seo={seo} title="Storage Capacity Calculator | UViewDocument">
+  <main class="container mx-auto px-4 py-12 prose prose-slate">
+    <h1 class="text-center">Document Storage Capacity Calculator</h1>
+    <p class="text-center max-w-2xl mx-auto mb-12">
+      Running out of space? Find out how many documents of various sizes you can store on your device or cloud drive.
+    </p>
+
+    <StorageCalculator />
+
+    <div class="mt-16 max-w-2xl mx-auto">
+      <h2>Managing Document Storage</h2>
+      <p>Storing thousands of PDFs, presentations, and spreadsheets can quickly eat up your available hard drive or cloud storage space.</p>
+      <p>By using a <strong>free online document viewer</strong>, you can access shared files directly in your browser without ever saving them to your device, preserving your storage for what matters most.</p>
+    </div>
+  </main>
+</Layout>
