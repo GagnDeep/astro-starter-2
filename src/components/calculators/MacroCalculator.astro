@@ -1,0 +1,105 @@
+---
+// Macro Calculator Component
+---
+
+<div class="bg-surface border border-border p-6 rounded-lg max-w-2xl mx-auto shadow-sm mt-8">
+  <h2 class="text-2xl font-bold mb-4 text-primary">Macronutrient Calculator</h2>
+  <p class="text-text-muted mb-6 text-sm">Distribute your daily calories into optimal protein, fat, and carbohydrate ratios based on your goals.</p>
+
+  <form id="macro-form" class="space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="target-calories" class="block text-sm font-medium text-text mb-1">Target Calories (kcal/day)</label>
+        <input type="number" id="target-calories" name="target-calories" min="1000" max="10000" step="10" required class="w-full rounded border border-border bg-background px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary font-mono" placeholder="e.g. 2500" />
+      </div>
+      <div>
+        <label for="goal" class="block text-sm font-medium text-text mb-1">Primary Goal</label>
+        <select id="goal" name="goal" required class="w-full rounded border border-border bg-background px-3 py-2 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+          <option value="balanced">Balanced / Maintenance</option>
+          <option value="fat-loss">Fat Loss (Higher Protein)</option>
+          <option value="muscle-gain">Muscle Gain (Higher Carb)</option>
+          <option value="keto">Ketogenic (Very Low Carb)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="w-full rounded bg-primary px-5 py-2.5 font-medium text-white hover:opacity-90">Calculate Macros</button>
+  </form>
+
+  <div id="macro-results" class="hidden mt-8 pt-6 border-t border-border">
+    <h3 class="text-xl font-bold mb-4">Your Macro Split</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-background p-4 rounded border border-border text-center">
+        <p class="text-sm text-text-muted font-medium mb-1">Protein</p>
+        <p class="text-3xl font-bold text-primary font-mono"><span id="protein-result">0</span><span class="text-base font-normal text-text-muted">g</span></p>
+        <p class="text-xs text-text-muted mt-1"><span id="protein-pct">0</span>% (<span id="protein-cals">0</span> kcal)</p>
+      </div>
+      <div class="bg-background p-4 rounded border border-border text-center">
+        <p class="text-sm text-text-muted font-medium mb-1">Fats</p>
+        <p class="text-3xl font-bold text-secondary font-mono"><span id="fat-result">0</span><span class="text-base font-normal text-text-muted">g</span></p>
+        <p class="text-xs text-text-muted mt-1"><span id="fat-pct">0</span>% (<span id="fat-cals">0</span> kcal)</p>
+      </div>
+      <div class="bg-background p-4 rounded border border-border text-center">
+        <p class="text-sm text-text-muted font-medium mb-1">Carbs</p>
+        <p class="text-3xl font-bold text-text font-mono"><span id="carb-result">0</span><span class="text-base font-normal text-text-muted">g</span></p>
+        <p class="text-xs text-text-muted mt-1"><span id="carb-pct">0</span>% (<span id="carb-cals">0</span> kcal)</p>
+      </div>
+    </div>
+
+    <div class="mt-6 p-4 bg-background border border-border rounded text-sm text-text-muted">
+      <p><strong>Constants used:</strong> Protein = 4 kcal/g, Carbs = 4 kcal/g, Fats = 9 kcal/g.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const macroForm = document.getElementById('macro-form') as HTMLFormElement;
+  const macroResults = document.getElementById('macro-results');
+
+  if (macroForm && macroResults) {
+    macroForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(macroForm);
+      const calories = parseFloat(formData.get('target-calories') as string);
+      const goal = formData.get('goal') as string;
+
+      if (!calories) return;
+
+      let pPct, fPct, cPct;
+
+      switch(goal) {
+        case 'fat-loss':
+          pPct = 0.40; fPct = 0.30; cPct = 0.30;
+          break;
+        case 'muscle-gain':
+          pPct = 0.30; fPct = 0.25; cPct = 0.45;
+          break;
+        case 'keto':
+          pPct = 0.20; fPct = 0.75; cPct = 0.05;
+          break;
+        case 'balanced':
+        default:
+          pPct = 0.30; fPct = 0.30; cPct = 0.40;
+          break;
+      }
+
+      const pCals = calories * pPct;
+      const fCals = calories * fPct;
+      const cCals = calories * cPct;
+
+      document.getElementById('protein-result')!.textContent = Math.round(pCals / 4).toString();
+      document.getElementById('protein-cals')!.textContent = Math.round(pCals).toString();
+      document.getElementById('protein-pct')!.textContent = (pPct * 100).toString();
+
+      document.getElementById('fat-result')!.textContent = Math.round(fCals / 9).toString();
+      document.getElementById('fat-cals')!.textContent = Math.round(fCals).toString();
+      document.getElementById('fat-pct')!.textContent = (fPct * 100).toString();
+
+      document.getElementById('carb-result')!.textContent = Math.round(cCals / 4).toString();
+      document.getElementById('carb-cals')!.textContent = Math.round(cCals).toString();
+      document.getElementById('carb-pct')!.textContent = (cPct * 100).toString();
+
+      macroResults.classList.remove('hidden');
+    });
+  }
+</script>

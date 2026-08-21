@@ -7,7 +7,7 @@ interface Props {
   heading: string;
   date: string | Date;
   author: string;
-  image: string;
+  image: string | any;
   image_alt: string;
   tags: Array<string>;
   bodyContent?: string;
@@ -32,7 +32,13 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif,svg,avif,webp}",
   { eager: true },
 );
-const imageSrc = images[image]?.default || image;
+
+let imageSrc: any = image;
+if (typeof image === "string") {
+    const assetPath = image.replace("/images/", "/src/assets/images/");
+    imageSrc = images[assetPath]?.default || image;
+}
+
 ---
 
 <div class="flex flex-col">
@@ -45,6 +51,7 @@ const imageSrc = images[image]?.default || image;
         class="w-full rounded-lg aspect-video object-cover"
         src={imageSrc}
         alt={image_alt}
+        inferSize={true}
         widths={[600, 800, 1200]}
         sizes="(max-width: 1200px) 100vw, 1200px"
         loading="eager"

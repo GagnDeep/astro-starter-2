@@ -11,6 +11,22 @@ commit_templates:
     template_string: '{message}'
 
 collections_config:
+  reference:
+    path: src/content/reference
+    url: '/reference/[full_slug]/'
+    icon: menu_book
+  foods:
+    path: src/content/foods
+    url: '/foods/[full_slug]/'
+    icon: restaurant
+  glossary:
+    path: src/content/glossary
+    url: '/glossary/[full_slug]/'
+    icon: sort_by_alpha
+  calculators:
+    path: src/content/calculators
+    url: '/calculators/[full_slug]/'
+    icon: calculate
   pages:
     path: src/content/pages
     glob:
@@ -166,6 +182,10 @@ collection_groups:
   - heading: Pages
     collections:
       - pages
+      - reference
+      - foods
+      - glossary
+      - calculators
       - blog
   - heading: Data
     collections:

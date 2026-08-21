@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TDEECalculator from "../components/calculators/TDEECalculator.astro";
+import MacroCalculator from "../components/calculators/MacroCalculator.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "Free, primary-sourced diet calculators and nutrition guides.",
+  no_index: false,
+};
+---
+
+<Layout title="FoodLogTrack" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-text mb-4 tracking-tight">Stop guessing. Start tracking.</h1>
+      <p class="text-xl text-text-muted max-w-2xl mx-auto">No subscriptions, no paywalls. Just primary-sourced calculators and guides to help you master your diet.</p>
+    </header>
+
+    <main class="space-y-12">
+      <section id="calculators">
+        <TDEECalculator />
+        <MacroCalculator />
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+        <div class="bg-surface p-8 rounded-lg border border-border">
+          <h2 class="text-2xl font-bold mb-4">Reference Library</h2>
+          <p class="text-text-muted mb-4">Master the science of tracking with our in-depth guides.</p>
+          <ul class="space-y-2">
+            <li><a href="/reference/how-to-track-calories/" class="text-primary hover:underline font-medium">How to Track Calories</a></li>
+            <li><a href="/reference/tracking-macros-for-beginners/" class="text-primary hover:underline font-medium">Tracking Macros for Beginners</a></li>
+            <li><a href="/reference/raw-vs-cooked-food-calories/" class="text-primary hover:underline font-medium">Raw vs. Cooked Food</a></li>
+            <li><a href="/reference/" class="text-text font-bold hover:underline mt-2 inline-block">View all 15+ guides &rarr;</a></li>
+          </ul>
+        </div>
+        <div class="bg-surface p-8 rounded-lg border border-border">
+          <h2 class="text-2xl font-bold mb-4">Food Database</h2>
+          <p class="text-text-muted mb-4">Detailed breakdowns of common food categories.</p>
+          <ul class="space-y-2">
+            <li><a href="/foods/proteins/" class="text-primary hover:underline font-medium">Best Protein Sources</a></li>
+            <li><a href="/foods/carbs/" class="text-primary hover:underline font-medium">Carbohydrate Guide</a></li>
+            <li><a href="/foods/fats/" class="text-primary hover:underline font-medium">Healthy Fats</a></li>
+            <li><a href="/foods/" class="text-text font-bold hover:underline mt-2 inline-block">Explore food categories &rarr;</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="bg-primary text-white p-8 rounded-lg mt-16 text-center">
+        <h2 class="text-2xl font-bold mb-4">Get our 7-Day Tracking Meal Plan</h2>
+        <p class="mb-6 opacity-90 max-w-lg mx-auto">Join our newsletter and receive a free meal plan designed to help you hit your macros without losing your mind.</p>
+        <div class="max-w-md mx-auto">
+          <NewsletterForm />
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
