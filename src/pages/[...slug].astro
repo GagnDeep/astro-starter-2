@@ -1,6 +1,6 @@
 ---
 import PageLayout from "../layouts/Page.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry, render } from "astro:content";
 
 export interface Props {
   page: CollectionEntry<"pages">;
@@ -17,6 +17,11 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props;
+const { Content } = await render(page);
 ---
 
-<PageLayout frontmatter={page.data} />
+<PageLayout frontmatter={page.data}>
+  <div class="mx-auto max-w-4xl px-8 py-12 prose">
+    <Content />
+  </div>
+</PageLayout>

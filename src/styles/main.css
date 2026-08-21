@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-base: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-text: #111827;
+  --color-text-muted: #4B5563;
+  --color-primary: #0369A1;
+  --color-primary-hover: #075985;
+  --color-secondary: #F59E0B;
+  --color-border: #E5E7EB;
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Roboto', sans-serif;
+}
+
 /*
  * CASCADE RULE — read before adding CSS to this file.
  *
@@ -24,7 +37,9 @@
 
 @layer base {
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background-color: var(--color-base);
   }
 
   main {

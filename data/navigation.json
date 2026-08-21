@@ -1,48 +1,60 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-blue.png",
+    "logo_alt_text": "Institute of Property",
     "logo_url": "/",
+    "links": [
+      {
+        "link": "/tools/",
+        "text": "Calculators"
+      },
+      {
+        "link": "/library/",
+        "text": "Library"
+      },
+      {
+        "link": "/glossary/",
+        "text": "Glossary"
+      },
+      {
+        "link": "/blog/",
+        "text": "Insights"
+      },
+      {
+        "link": "/pricing/",
+        "text": "Courses"
+      }
+    ]
+  },
+  "footer": {
+    "logo": "/images/logos/logo-blue.png",
+    "logo_alt_text": "Institute of Property",
+    "logo_url": "/",
+    "copyright": "Institute of Property. All rights reserved.",
     "links": [
       {
         "link": "/about/",
         "text": "About"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
+        "link": "/faq/",
+        "text": "FAQ"
       },
       {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
-      }
-    ]
-  },
-  "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
-      {
-        "link": "/contact/",
-        "text": "Contact"
+        "link": "/compare/",
+        "text": "Compare Strategies"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/legal/terms/",
+        "text": "Terms & Conditions"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/legal/privacy/",
+        "text": "Privacy Policy"
       }
     ]
   }

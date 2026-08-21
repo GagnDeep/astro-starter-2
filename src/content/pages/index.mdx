@@ -1,0 +1,57 @@
+---
+title: Home
+seo:
+  page_description: "Master property investing with data, not hype."
+  open_graph_type: website
+  no_index: false
+---
+import NewsletterForm from '../../components/forms/newsletter-form.astro';
+
+<div class="py-20 text-center">
+  <h1 class="text-5xl font-extrabold text-text mb-6">Master Property Investing with Data, Not Hype</h1>
+  <p class="text-xl text-text-muted mb-10 max-w-2xl mx-auto">Expert insights, objective analysis, and free calculators for the data-driven Australian investor.</p>
+  <div class="flex justify-center gap-4">
+    <a href="/tools" class="rounded bg-primary px-6 py-3 font-semibold text-surface hover:bg-primary-hover">Try our Calculators</a>
+    <a href="/library" class="rounded border border-border bg-base px-6 py-3 font-semibold text-text hover:bg-gray-100">Read the Library</a>
+  </div>
+</div>
+
+<div class="my-16">
+  <h2 class="text-3xl font-bold text-center mb-8">Learning Paths</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="p-6 border border-border rounded-lg bg-surface">
+      <h3 class="text-xl font-semibold mb-3">1. Beginner</h3>
+      <p class="text-text-muted mb-4">Just starting out? Learn the basics of finance and strategy.</p>
+      <a href="/library/property-investment-strategy" class="text-primary font-medium hover:underline">Start here &rarr;</a>
+    </div>
+    <div class="p-6 border border-border rounded-lg bg-surface">
+      <h3 class="text-xl font-semibold mb-3">2. Scaling</h3>
+      <p class="text-text-muted mb-4">Ready for property number two? Master equity and cashflow.</p>
+      <a href="/library/using-equity-to-buy" class="text-primary font-medium hover:underline">Learn how &rarr;</a>
+    </div>
+    <div class="p-6 border border-border rounded-lg bg-surface">
+      <h3 class="text-xl font-semibold mb-3">3. Portfolio Management</h3>
+      <p class="text-text-muted mb-4">Optimize your existing assets, handle taxes, and manage tenants.</p>
+      <a href="/library/property-management-guide" class="text-primary font-medium hover:underline">Optimize now &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="bg-gray-50 -mx-4 px-4 py-16 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 border-y border-border my-16">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-4">Download the 2024 Data Pack</h2>
+    <p class="text-text-muted mb-8">Get exclusive access to our latest yield maps, growth charts, and market commentary delivered straight to your inbox.</p>
+    <div class="max-w-md mx-auto">
+      <NewsletterForm form="leadgen" submitLabel="Get the Data Pack" />
+    </div>
+  </div>
+</div>
+
+<div class="my-16">
+  <h2 class="text-3xl font-bold mb-8">Recent Insights</h2>
+  <ul class="space-y-4">
+    <li><a href="/blog/is-it-a-good-time-to-buy-an-investment-property" class="text-lg font-medium text-primary hover:underline">Is It a Good Time to Buy an Investment Property?</a></li>
+    <li><a href="/blog/capital-growth-vs-rental-yield" class="text-lg font-medium text-primary hover:underline">Capital Growth vs Rental Yield: The Data</a></li>
+    <li><a href="/blog/hidden-costs-of-buying-investment-property" class="text-lg font-medium text-primary hover:underline">Hidden Costs of Buying Investment Property</a></li>
+  </ul>
+</div>

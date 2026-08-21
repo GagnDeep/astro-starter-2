@@ -1,0 +1,97 @@
+---
+/**
+ * Borrowing Power Calculator (Simplified for Investment)
+ *
+ * Logic:
+ * Total Income - (Living Expenses + Other Loan Repayments) = Surplus
+ * Assessable Surplus = Surplus * 0.70 (buffer)
+ * Borrowing Capacity = Assessable Surplus / Assessable Interest Rate
+ */
+---
+<div class="calculator-container my-8 rounded-lg border border-border bg-surface p-6 shadow-sm">
+  <h3 class="mb-4 text-xl font-semibold text-text">Investment Borrowing Power</h3>
+  <p class="mb-6 text-text-muted">A rough estimate of how much you can borrow for an investment property.</p>
+
+  <noscript>
+    <div class="rounded bg-gray-100 p-4 mb-4 border border-gray-300">
+      <h4 class="font-semibold mb-2">How it works (No-JS Fallback)</h4>
+      <p>Banks assess borrowing capacity by looking at your income (including estimated rental income), subtracting living expenses and existing debts, and applying a buffer rate (typically 2-3% above the actual interest rate) to ensure you can handle rate rises.</p>
+    </div>
+  </noscript>
+
+  <form id="bp-form" class="space-y-4" onsubmit="return false;">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="bpIncome">Annual Household Income ($)</label>
+        <input type="number" id="bpIncome" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="120000" min="0" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="bpRent">Estimated New Rental Income (Annual $)</label>
+        <input type="number" id="bpRent" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="25000" min="0" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="bpExpenses">Annual Living Expenses ($)</label>
+        <input type="number" id="bpExpenses" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="40000" min="0" required />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-text mb-1" for="bpDebts">Other Annual Loan Repayments ($)</label>
+        <input type="number" id="bpDebts" class="w-full rounded border border-border px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary" value="20000" min="0" required />
+      </div>
+    </div>
+    <button type="button" id="calcBpBtn" class="mt-4 rounded bg-primary px-5 py-2.5 font-medium text-surface hover:bg-primary-hover">Estimate Capacity</button>
+  </form>
+
+  <div id="bp-results" class="hidden mt-6 rounded bg-base p-5 border border-border">
+    <h4 class="mb-3 font-semibold text-lg">Results</h4>
+    <div class="p-4 bg-surface rounded border border-border text-center mb-4">
+      <span class="block text-sm text-text-muted">Estimated Borrowing Capacity</span>
+      <span id="bpResult" class="block text-3xl font-bold text-primary">--</span>
+    </div>
+    <p id="bpExplanation" class="text-sm text-text-muted"></p>
+  </div>
+</div>
+
+<script>
+  function calculateBorrowingPower() {
+    const bpIncomeEl = document.getElementById('bpIncome') as HTMLInputElement | null;
+    const bpRentEl = document.getElementById('bpRent') as HTMLInputElement | null;
+    const bpExpensesEl = document.getElementById('bpExpenses') as HTMLInputElement | null;
+    const bpDebtsEl = document.getElementById('bpDebts') as HTMLInputElement | null;
+
+    if (!bpIncomeEl || !bpRentEl || !bpExpensesEl || !bpDebtsEl) return;
+
+    const income = parseFloat(bpIncomeEl.value);
+    const rent = parseFloat(bpRentEl.value);
+    const expenses = parseFloat(bpExpensesEl.value);
+    const debts = parseFloat(bpDebtsEl.value);
+
+    if (isNaN(income) || isNaN(rent) || isNaN(expenses) || isNaN(debts)) return;
+
+    // Bank standard: only assess ~70% of rental income to account for vacancy
+    const assessableRent = rent * 0.7;
+    const totalIncome = income + assessableRent;
+    const totalOutgoings = expenses + debts;
+
+    const surplus = totalIncome - totalOutgoings;
+
+    // Very rough heuristic for borrowing capacity (assumes ~8.5% assessment rate over 30 yrs)
+    // A surplus of $1 annually roughly supports ~$11 of debt at 8.5% over 30 yrs
+    const factor = 11.5;
+    let capacity = surplus * factor;
+    if (capacity < 0) capacity = 0;
+
+    // Cap it slightly based on income multiples to be safe
+    const dtiCap = totalIncome * 6.5;
+    capacity = Math.min(capacity, dtiCap);
+
+    const bpResultEl = document.getElementById('bpResult');
+    const bpExplanationEl = document.getElementById('bpExplanation');
+    const bpResultsEl = document.getElementById('bp-results');
+
+    if (bpResultEl) bpResultEl.innerText = '$' + capacity.toLocaleString(undefined, {maximumFractionDigits: 0});
+    if (bpExplanationEl) bpExplanationEl.innerText = `This is a rough estimate. Lenders use a buffer rate (APRA recommends 3% above actual rates) and often heavily discount rental income to ensure you can afford repayments. Consult a mortgage broker for an exact figure.`;
+    if (bpResultsEl) bpResultsEl.classList.remove('hidden');
+  }
+
+  document.getElementById('calcBpBtn')?.addEventListener('click', calculateBorrowingPower);
+</script>
