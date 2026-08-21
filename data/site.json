@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Handpand.com",
+  "description": "The pragmatic, budget-conscious guide to handpans and steel tongue drums. Practical buying advice, maintenance, and music theory.",
+  "tagline": "Acoustic Truths, Not Mystical Myths.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Handpand.com — Practical guides, tools, and reviews for handpans and steel tongue drums.",
+  "default_author": "Handpand Editors",
+  "theme_color": "#f8fafc",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Handpand",
+    "logo": "/images/logos/logo.png",
     "same_as": []
   }
 }

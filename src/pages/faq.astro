@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Page.astro";
+
+const seo = {
+  page_description: "Frequently asked questions about handpans, tuning, and maintenance.",
+  canonical_url: "https://handpand.com/faq/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Handpand",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+};
+---
+<Layout frontmatter={{ title: "Faq", seo }}>
+  <div class="prose mx-auto max-w-4xl py-12 px-4">
+    <h1>Frequently Asked Questions</h1>
+    <h2>What is the best scale for a beginner?</h2>
+    <p>A minor scale like D Celtic Minor or Kurd is usually recommended due to its intuitive progression.</p>
+    <h2>How often should I tune my handpan?</h2>
+    <p>Typically every 1-2 years depending on usage and climate.</p>
+  </div>
+</Layout>

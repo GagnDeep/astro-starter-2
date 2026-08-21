@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Page.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Practical guide to shipping handpans for handpans and tongue drums.",
+  canonical_url: "https://handpand.com/guides/shipping-handpans/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Handpand",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+};
+---
+<Layout frontmatter={{ title: "Shipping Handpans", seo }}>
+  <div class="prose mx-auto max-w-4xl py-12 px-4">
+    <h1>Shipping Handpans Guide</h1>
+    <p>Everything you need to know about shipping handpans.</p>
+    <CaptureForm form="newsletter">
+      <div class="flex flex-col gap-4">
+        <label>
+          <span class="block text-sm font-medium mb-1">Email address</span>
+          <input type="email" name="email" required class="w-full border border-gray-300 p-2 rounded" />
+        </label>
+        <button type="submit" class="bg-primary text-white p-2 rounded">Subscribe</button>
+      </div>
+    </CaptureForm>
+  </div>
+</Layout>

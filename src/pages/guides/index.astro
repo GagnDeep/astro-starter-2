@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Page.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Practical buying guides for handpans, steel tongue drums, and accessories.",
+  canonical_url: "https://handpand.com/guides/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Handpand",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+};
+---
+<Layout frontmatter={{ title: "Guides", seo }}>
+  <div class="prose mx-auto max-w-4xl py-12 px-4">
+    <h1>Buying Guides</h1>
+    <p>Make informed decisions without the hype.</p>
+    <ul>
+      <li><a href="/guides/steel-tongue-drums/">Steel Tongue Drums Guide</a></li>
+<li><a href="/guides/amazon-handpans/">Amazon Handpans Guide</a></li>
+<li><a href="/guides/used-handpans/">Used Handpans Guide</a></li>
+<li><a href="/guides/cases/">Cases Guide</a></li>
+<li><a href="/guides/stands/">Stands Guide</a></li>
+<li><a href="/guides/mallets/">Mallets Guide</a></li>
+<li><a href="/guides/microphones/">Microphones Guide</a></li>
+<li><a href="/guides/rust-prevention/">Rust Prevention Guide</a></li>
+<li><a href="/guides/tuning-services/">Tuning Services Guide</a></li>
+<li><a href="/guides/shipping-handpans/">Shipping Handpans Guide</a></li>
+    </ul>
+    <CaptureForm form="newsletter">
+      <div class="flex flex-col gap-4">
+        <label>
+          <span class="block text-sm font-medium mb-1">Email address</span>
+          <input type="email" name="email" required class="w-full border border-gray-300 p-2 rounded" />
+        </label>
+        <button type="submit" class="bg-primary text-white p-2 rounded">Subscribe</button>
+      </div>
+    </CaptureForm>
+  </div>
+</Layout>

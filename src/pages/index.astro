@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Page.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "The pragmatic, budget-conscious guide to handpans and their cheaper alternatives.",
+  canonical_url: "https://handpand.com/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Handpand",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+};
+---
+<Layout frontmatter={{ title: "Pages", seo }}>
+  <main class="w-full">
+    {/* 1. Hero Block */}
+    <section class="bg-primary text-white py-20 px-4 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-5xl font-bold mb-4 text-[var(--color-bg-main)]">Acoustic Truths, Not Mystical Myths</h1>
+        <p class="text-xl mb-8">Practical guides, tools, and reviews for handpans and steel tongue drums.</p>
+        <a href="/tools/scale-matcher/" class="inline-block bg-secondary text-white font-semibold py-3 px-8 rounded-lg hover:bg-secondary-hover transition-colors">Find Your Scale</a>
+      </div>
+      <div class="max-w-md mx-auto mt-12 text-left bg-white text-black p-6 rounded-lg shadow-lg">
+         <h3 class="font-bold mb-2">Get our un-mystical maintenance checklist</h3>
+         <CaptureForm form="newsletter">
+            <div class="flex flex-col gap-3">
+              <input type="email" name="email" required placeholder="Email address" class="border border-gray-300 p-2 rounded w-full" />
+              <button type="submit" class="bg-secondary text-white p-2 rounded font-semibold w-full">Subscribe</button>
+            </div>
+         </CaptureForm>
+      </div>
+    </section>
+
+    {/* 2. Problem/Agitation Block */}
+    <section class="py-16 px-4 bg-white text-center">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-primary">Handpans cost $2,000+. Are they worth it?</h2>
+        <p class="mb-8">Compare real acoustic properties, scales, and materials without the marketing fluff.</p>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="border border-border p-6 rounded-lg text-left">
+                <h3 class="font-bold text-xl mb-2 text-primary">Read the Reviews</h3>
+                <p class="mb-4">We test cheap Amazon handpans and premium custom builds.</p>
+                <a href="/guides/amazon-handpans/" class="text-secondary underline">Are cheap handpans worth it?</a>
+            </div>
+            <div class="border border-border p-6 rounded-lg text-left">
+                <h3 class="font-bold text-xl mb-2 text-primary">Learn the Theory</h3>
+                <p class="mb-4">Understand scales like Kurd, Amara, and Celtic Minor.</p>
+                <a href="/reference/scales/" class="text-secondary underline">View the Scale Library</a>
+            </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
