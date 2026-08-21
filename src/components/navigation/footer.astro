@@ -1,26 +1,57 @@
 ---
-import { footer } from "../../../data/navigation.json";
+import { footer_sections } from "../../../data/navigation.json";
+import { site_title, organization } from "../../../data/site.json";
+import { Battery } from "@lucide/astro";
+
+
+const sections = footer_sections || [];
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-gray-900 text-gray-300 py-12 md:py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
+      <div class="lg:col-span-2">
+        <a class="flex items-center gap-2 font-semibold text-white mb-6 w-fit group" href="/" aria-label="Home">
+          <Battery class="h-8 w-8 text-blue-500 group-hover:scale-105 transition-transform" aria-hidden="true" />
+          <span class="tracking-tight text-xl">{site_title}</span>
+        </a>
+        <p class="text-gray-400 text-sm max-w-xs mb-6">
+          The definitive technical and legal reference for EU Battery Passport compliance.
+        </p>
+        <div class="flex space-x-4">
+          {organization.same_as.map((url) => {
+             const isTwitter = url.includes("twitter") || url.includes("x.com");
+             const isLinkedIn = url.includes("linkedin");
+             return (
+               <a href={url} class="text-gray-400 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                 {isTwitter ? "Twitter" : isLinkedIn ? "LinkedIn" : "Social"}
+               </a>
+             )
+          })}
+        </div>
+      </div>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {sections.map(section => (
+        <div>
+          <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">{section.title}</h3>
+          <ul class="space-y-3">
+            {section.links.map(link => (
+              <li>
+                <a href={link.href} class="text-sm text-gray-400 hover:text-white transition-colors">
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+    <div class="pt-8 border-t border-gray-800 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
+      <p>&copy; {new Date().getFullYear()} {organization.name}. All rights reserved.</p>
+      <div class="mt-4 md:mt-0 space-x-4">
+        <a href="/legal/privacy/" class="hover:text-gray-300">Privacy</a>
+        <a href="/legal/terms/" class="hover:text-gray-300">Terms</a>
       </div>
     </div>
   </div>

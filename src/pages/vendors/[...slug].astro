@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const vendors = await getCollection("vendors");
+  return vendors.map((vendor) => ({
+    params: { slug: vendor.id },
+    props: { vendor },
+  }));
+}
+
+const { vendor } = Astro.props;
+const { Content } = await render(vendor);
+---
+
+<Layout title={vendor.data.title} seo={{ page_description: vendor.data.description } }>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 prose">
+    <h1>{vendor.data.title}</h1>
+    <p class="lead">{vendor.data.description}</p>
+    {vendor.data.website && <p><a href={vendor.data.website} target="_blank" rel="noopener">Visit Website</a></p>}
+    <Content />
+  </div>
+</Layout>

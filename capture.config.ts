@@ -28,6 +28,9 @@ export const capture = {
    * form on the site; any string up to 64 chars works, no registration needed.
    */
   forms: {
+    checklist: "checklist",
+    checklist_sidebar: "checklist_sidebar",
+    tool_results: "tool_results",
     contact: "contact",
     newsletter: "newsletter",
     waitlist: "waitlist",

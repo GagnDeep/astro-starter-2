@@ -1,49 +1,42 @@
 {
-  "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "links": [
-      {
-        "link": "/about/",
-        "text": "About"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
-      }
-    ]
-  },
-  "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
-      }
-    ]
-  }
+  "header": [
+    { "text": "Library", "href": "/library/" },
+    { "text": "Tools", "href": "/tools/" },
+    { "text": "Vendors", "href": "/vendors/" },
+    { "text": "Glossary", "href": "/glossary/" },
+    { "text": "Blog", "href": "/blog/" }
+  ],
+  "footer_sections": [
+    {
+      "title": "Reference",
+      "links": [
+        { "text": "Requirements", "href": "/library/requirements/" },
+        { "text": "Data Model", "href": "/library/data-model/" },
+        { "text": "Timeline", "href": "/library/timeline/" }
+      ]
+    },
+    {
+      "title": "Tools",
+      "links": [
+        { "text": "Compliance Checker", "href": "/tools/compliance-checker/" },
+        { "text": "Timeline Calculator", "href": "/tools/timeline-calculator/" },
+        { "text": "Carbon Estimator", "href": "/tools/carbon-footprint-estimator/" }
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        { "text": "About", "href": "/about/" },
+        { "text": "Vendors", "href": "/vendors/" },
+        { "text": "Contact", "href": "/contact/" }
+      ]
+    },
+    {
+      "title": "Legal",
+      "links": [
+        { "text": "Privacy Policy", "href": "/legal/privacy/" },
+        { "text": "Terms of Service", "href": "/legal/terms/" }
+      ]
+    }
+  ]
 }

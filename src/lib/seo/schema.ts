@@ -31,7 +31,7 @@ function websiteNode(base: string): JsonLdNode {
     url: new URL("/", base).toString(),
     name: site.site_title,
     description: site.description,
-    inLanguage: site.lang,
+    inLanguage: site.locale,
     publisher: { "@id": id(base, "organization") },
   };
 }

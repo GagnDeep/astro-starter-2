@@ -1,5 +1,17 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<AboutPage />
+<Layout title="About" seo={{ page_description: "About the Battery Digital Passport Hub." } }>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 prose">
+    <h1>About Battery Digital Passport Hub</h1>
+    <p class="text-xl text-slate-600 mb-8">We demystify the EU Battery Regulation.</p>
+
+    <h2>The Mission</h2>
+    <p>By 2027, every EV and Light Means of Transport (LMT) battery sold in the EU needs a digital product passport. The technical requirements are dense, spreading across hundreds of pages of legal text, JRC methodologies, and impending Delegated Acts.</p>
+    <p>We built this hub to translate regulatory mandates into technical specs. If you are an engineer, a compliance officer, or a supply chain manager trying to figure out what data you actually need to collect, this site is for you.</p>
+
+    <h2>Independence</h2>
+    <p>While we cover various software vendors in our directory, this library is vendor-neutral. Our tools and guides are built from primary EU sources.</p>
+  </div>
+</Layout>

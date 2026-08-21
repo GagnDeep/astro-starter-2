@@ -1,0 +1,63 @@
+---
+title: "How to Calculate the Battery Carbon Footprint"
+post_hero:
+  date: 2024-08-22
+  heading: "How to Calculate the Battery Carbon Footprint"
+  author: "Compliance Team"
+  tags: ["carbon", "jrc", "methodology"]
+seo:
+  page_description: "A practical guide to calculating your battery carbon footprint using the JRC methodology."
+---
+
+# How to Calculate the Battery Carbon Footprint
+
+The Carbon Footprint Declaration is the first major hurdle of the EU Battery Regulation, arriving in February 2025 for EV batteries. Understanding the JRC (Joint Research Centre) methodology is no longer optional for battery engineers and compliance teams.
+
+## The Core Metric
+
+The universal metric you must arrive at is:
+**kg CO2 equivalent per 1 kWh of total energy provided over the battery's expected service life.**
+
+This normalizes the environmental impact, allowing a 100 kWh performance battery to be compared fairly against a 40 kWh economy battery.
+
+## Step-by-Step Calculation Guide
+
+### 1. Define the System Boundary
+
+The calculation must cover the "cradle-to-gate plus end-of-life" phases.
+
+*   **Included:** Raw material extraction, precursor manufacturing, cell production, pack assembly, distribution to the first customer, and recycling processes.
+*   **Excluded:** The use phase (charging the battery while driving) is currently excluded from the core passport declaration, as it depends on the local energy grid of the consumer, not the manufacturer.
+
+### 2. Gather Primary Data (Foreground Processes)
+
+The EU requires actual, measured data (Primary Data) for the most energy-intensive steps. You cannot simply use an industry average for:
+
+*   Active material manufacturing (cathode and anode).
+*   Cell manufacturing.
+*   Battery pack assembly.
+
+You must measure the total electricity, heat, and direct emissions at your facilities, and allocate them per kWh of battery capacity produced.
+
+### 3. Apply Secondary Data (Background Processes)
+
+For processes outside your direct control or lower-impact materials (e.g., standard copper foil, generic logistics), you may use Secondary Data. The European Commission will publish a specific database of acceptable secondary lifecycle inventory (LCI) datasets.
+
+*Warning: If you use secondary data where primary data is mandated, your declaration may be rejected by the Notified Body.*
+
+### 4. Calculate the Electricity Mix
+
+This is the most common area for errors. The emissions factor of your electricity heavily influences the final score.
+
+*   **Grid Average:** If you pull from the grid, you use the national or regional grid average emissions factor.
+*   **Direct Connection:** If you have a solar farm directly wired to your gigafactory (behind the meter), you can claim those zero-carbon electrons.
+*   **Power Purchase Agreements (PPAs):** You can use PPAs to lower your footprint, but they must adhere to strict temporal and geographical correlation rules. You cannot buy cheap solar credits from Spain to offset a coal-powered factory in Poland.
+
+## Common Mistakes
+
+-   **Ignoring the Bill of Materials (BoM):** If you switch from a synthetic graphite anode to natural graphite, your carbon footprint changes drastically. The declaration must be updated if the BoM changes.
+-   **Misallocating factory overhead:** Ensure non-manufacturing energy (office lighting, cafeteria) is either properly allocated to the product or justified for exclusion.
+
+## Tools to Help
+
+We have built a preliminary [Carbon Footprint Estimator](/tools/carbon-footprint-estimator/) based on standard NMC and LFP baselines. Use this to understand where your battery likely sits on the spectrum before commissioning a full €50,000 Lifecycle Assessment (LCA).

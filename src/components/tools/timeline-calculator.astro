@@ -1,0 +1,92 @@
+---
+import CaptureForm from "../forms/capture-form.astro";
+---
+
+<div class="timeline-calculator border border-slate-200 rounded-lg p-6 bg-slate-50 my-8">
+  <form id="timeline-form" class="space-y-4" method="GET">
+    <div>
+      <label for="battery-type" class="block text-sm font-medium text-slate-700 mb-1">Battery Type</label>
+      <select id="battery-type" name="type" class="w-full px-3 py-2 border border-slate-300 rounded-md bg-white">
+        <option value="ev">Electric Vehicle (EV)</option>
+        <option value="lmt">Light Means of Transport (LMT)</option>
+        <option value="industrial">Industrial (>2kWh)</option>
+        <option value="portable">Portable / General</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-full">Calculate Deadlines</button>
+  </form>
+
+  <!-- No-JS Fallback / Results Container -->
+  <div id="timeline-results" class="mt-6 hidden bg-white border border-slate-200 p-4 rounded-md">
+    <h3 class="text-lg font-semibold text-slate-900 mb-2">Key Deadlines:</h3>
+    <ul id="deadline-list" class="space-y-3 mb-6">
+       <!-- Populated by JS -->
+    </ul>
+
+    <div class="border-t border-slate-200 pt-4 mt-4">
+      <h4 class="text-sm font-medium text-slate-700 mb-2">Email me this compliance roadmap:</h4>
+      <CaptureForm form="tool_results" submitLabel="Send to Email" class="btn btn-secondary w-full text-sm">
+         <input type="hidden" name="tool" value="timeline-calculator" />
+         <input type="hidden" id="hidden-result-type" name="battery_type" value="" />
+         <label class="sr-only" for="timeline-email">Work Email</label>
+         <input type="email" id="timeline-email" name="email" required placeholder="name@company.com" class="w-full px-3 py-2 border border-slate-300 rounded mb-2 text-sm" />
+      </CaptureForm>
+    </div>
+  </div>
+
+  <noscript>
+    <div class="mt-6 bg-white border border-slate-200 p-4 rounded-md">
+      <h3 class="font-semibold text-slate-900">Reference Deadlines (JavaScript Disabled):</h3>
+      <ul class="list-disc pl-5 mt-2 text-sm text-slate-700 space-y-2">
+        <li><strong>Feb 2024:</strong> Regulation entry into force.</li>
+        <li><strong>Feb 2025:</strong> Carbon footprint declaration (EV).</li>
+        <li><strong>Feb 2026:</strong> Carbon footprint declaration (LMT & Industrial).</li>
+        <li><strong>Feb 2027:</strong> Digital Battery Passport mandatory for EV & LMT.</li>
+      </ul>
+    </div>
+  </noscript>
+</div>
+
+<script>
+  const form = document.getElementById('timeline-form');
+  const results = document.getElementById('timeline-results');
+  const list = document.getElementById('deadline-list');
+  const hiddenType = document.getElementById('hidden-result-type');
+
+  if (form && results && list && hiddenType) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const type = (document.getElementById('battery-type') as HTMLSelectElement).value;
+      hiddenType.setAttribute('value', type);
+
+      let items = '';
+      if (type === 'ev') {
+        items = `
+          <li class="flex flex-col"><span class="font-bold text-red-600">Feb 18, 2025</span><span class="text-sm text-slate-600">Carbon Footprint Declaration</span></li>
+          <li class="flex flex-col"><span class="font-bold text-red-600">Feb 18, 2027</span><span class="text-sm text-slate-600">Battery Passport Mandatory</span></li>
+          <li class="flex flex-col"><span class="font-bold text-red-600">Aug 18, 2028</span><span class="text-sm text-slate-600">Recycled Content Declaration</span></li>
+        `;
+      } else if (type === 'lmt') {
+         items = `
+          <li class="flex flex-col"><span class="font-bold text-red-600">Feb 18, 2026</span><span class="text-sm text-slate-600">Carbon Footprint Declaration</span></li>
+          <li class="flex flex-col"><span class="font-bold text-red-600">Feb 18, 2027</span><span class="text-sm text-slate-600">Battery Passport Mandatory</span></li>
+        `;
+      } else if (type === 'industrial') {
+         items = `
+          <li class="flex flex-col"><span class="font-bold text-red-600">Feb 18, 2026</span><span class="text-sm text-slate-600">Carbon Footprint Declaration (>2kWh)</span></li>
+          <li class="flex flex-col"><span class="font-bold text-red-600">Feb 18, 2027</span><span class="text-sm text-slate-600">Battery Passport Mandatory</span></li>
+          <li class="flex flex-col"><span class="font-bold text-red-600">Aug 18, 2033</span><span class="text-sm text-slate-600">Minimum Recycled Content Targets</span></li>
+        `;
+      } else {
+         items = `
+          <li class="flex flex-col"><span class="text-sm text-slate-600">General portable batteries do not currently require a full digital product passport under the 2027 mandate, though they face labeling and removability requirements.</span></li>
+        `;
+      }
+
+      list.innerHTML = items;
+      results.classList.remove('hidden');
+    });
+  }
+</script>

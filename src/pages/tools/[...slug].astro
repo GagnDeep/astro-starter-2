@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import TimelineCalculator from "../../components/tools/timeline-calculator.astro";
+import ComplianceChecker from "../../components/tools/compliance-checker.astro";
+import CarbonEstimator from "../../components/tools/carbon-estimator.astro";
+
+export async function getStaticPaths() {
+  const tools = await getCollection("tools");
+  return tools.map((tool) => ({
+    params: { slug: tool.id },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+const { Content } = await render(tool);
+---
+
+<Layout title={tool.data.title} seo={{ page_description: tool.data.description } }>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 prose">
+    <h1>{tool.data.title}</h1>
+    <Content components={{ TimelineCalculator, ComplianceChecker, CarbonEstimator }} />
+  </div>
+</Layout>

@@ -1,0 +1,75 @@
+---
+title: "Understanding LMT vs. EV Battery Requirements"
+post_hero:
+  date: 2024-09-02
+  heading: "Understanding LMT vs. EV Battery Requirements"
+  author: "Compliance Team"
+  tags: ["lmt", "ev", "compliance", "timeline"]
+seo:
+  page_description: "A detailed comparison of compliance obligations for Light Means of Transport (LMT) and Electric Vehicle (EV) batteries."
+---
+
+# Understanding LMT vs. EV Battery Requirements
+
+When the European Commission first drafted the Battery Regulation, the focus was overwhelmingly on massive Electric Vehicle (EV) batteries. However, intense lobbying during the legislative process led to the creation of a new, distinct category: the **Light Means of Transport (LMT) battery**.
+
+If your company manufactures e-bikes, e-scooters, or electric mopeds, understanding the nuanced differences between LMT and EV requirements is critical to avoiding non-compliance penalties.
+
+## Definitions
+
+*   **EV Battery:** A battery specifically designed to provide electric power for the traction of hybrid or fully electric vehicles (cars, trucks, buses) that are type-approved under specific EU motor vehicle frameworks.
+*   **LMT Battery:** A sealed battery weighing 25 kg or less, designed for the traction of wheeled vehicles that can be powered by the electric motor alone or by a combination of motor and human power (e.g., e-bikes).
+
+*Crucial Distinction:* If a battery powers a mobility scooter or a wheelchair, it is often classified as a medical device or a portable battery, *not* an LMT battery.
+
+## Timeline Variances
+
+The most immediate difference between the two categories is the implementation timeline. The European Commission recognized that the micromobility sector is heavily fragmented and granted LMT manufacturers an extra year for the most difficult hurdle: the carbon footprint declaration.
+
+| Requirement | EV Battery Deadline | LMT Battery Deadline |
+| :--- | :--- | :--- |
+| **Carbon Footprint Declaration** | February 18, 2025 | February 18, 2026 |
+| **Digital Battery Passport** | February 18, 2027 | February 18, 2027 |
+| **Recycled Content Declaration** | August 18, 2028 | August 18, 2028 |
+
+Notice that while the carbon footprint declaration is delayed for LMTs, the **Digital Battery Passport deadline (2027) is identical**. This means LMT manufacturers must implement their IT infrastructure at the exact same pace as massive automakers like Volkswagen or Tesla.
+
+## The Removability Mandate (LMT Specific)
+
+While EV batteries are designed to remain in the vehicle for a decade or more, LMT batteries face a unique and highly disruptive design requirement: **Removability and Replaceability**.
+
+Starting in February 2027, the regulation dictates that LMT batteries must be designed so that they can be easily removed and replaced by an **independent professional** using commonly available tools.
+
+### What this means for LMT manufacturers:
+1.  **No proprietary locks:** You cannot use software locks or specialized proprietary screws to prevent third-party repair shops from swapping a degraded battery.
+2.  **Dismantling manuals:** The Battery Passport for an LMT battery must include step-by-step instructions on how to safely remove the battery from the e-bike/scooter. This data will sit in the *Restricted Access* tier, available to registered repair professionals.
+3.  **Spare parts availability:** Manufacturers must ensure that replacement batteries and specific components are available to independent repairers for a minimum of 5 years after placing the last unit of the model on the market.
+
+EV batteries do not face this specific "independent professional" replaceability mandate in the same way, due to the extreme high-voltage safety risks involved in disassembling an 800V car pack.
+
+## Supply Chain Realities
+
+The biggest practical difference between EV and LMT compliance lies in supply chain leverage.
+
+An automotive OEM buying 50 GWh of cells has the leverage to force a cell manufacturer (like CATL or LG Chem) to provide primary Scope 3 emissions data.
+
+An e-bike manufacturer buying 50 MWh of cells has almost zero leverage. If the Tier-1 cell supplier refuses to provide JRC-compliant primary energy data, the e-bike manufacturer is in severe danger of failing their 2026 carbon footprint audit.
+
+### Strategy for LMT Operators
+
+Because of this lack of leverage, LMT economic operators must adopt a different strategy:
+1.  **Consortiums:** Join industry consortiums (like CONEBI) to pool purchasing power and demand standardized data from Asian cell suppliers.
+2.  **Secondary Data Fallbacks:** Thoroughly understand the JRC penalty factors for using secondary data. If you know your supplier won't provide primary data, calculate your estimated footprint using the worst-case secondary datasets *now* to see if you will exceed future maximum carbon thresholds.
+
+## Frequently Asked Questions
+
+**Are we considered the economic operator placing the battery on the market?**
+If you import e-bikes from Taiwan and sell them under your brand name in France, you are the economic operator (the importer). You must generate the passport.
+
+**Does the carbon footprint include the e-bike frame?**
+No. The functional unit for the calculation is strictly 1 kWh of battery capacity. The emissions of the bicycle frame, motor, and tires are excluded from the battery passport.
+
+## What to do next
+
+1.  **Use the Timeline Calculator:** Input "LMT" into our [Timeline Calculator](/tools/timeline-calculator/) to generate a specific roadmap.
+2.  **Engage Designers:** Instruct your hardware engineering team to review all 2025 product designs against the 2027 removability mandate. If a current prototype uses heavy potting compound to glue cells to the casing, it will likely be illegal to sell in 2027.
