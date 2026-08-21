@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+import RefundCalculator from '../../components/calculators/refund-calculator.astro';
+import SelfEmploymentCalculator from '../../components/calculators/self-employment-calculator.astro';
+import W4Calculator from '../../components/calculators/w4-calculator.astro';
+import CapitalGainsCalculator from '../../components/calculators/capital-gains-calculator.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('tools');
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const calcIdMap: Record<string, string> = {
+  "tax-refund-calculator": "refund-estimator",
+  "self-employment-tax-calculator": "self-employment",
+  "w4-withholding-calculator": "w4",
+  "capital-gains-calculator": "capital-gains"
+};
+
+const calcId = calcIdMap[entry.id];
+---
+
+<Layout title={entry.data.title} seo={entry.data.seo} breadcrumbs={[
+  { name: 'Home', url: '/' },
+  { name: 'Tools', url: '/tools/' },
+  { name: entry.data.title, url: `/tools/${entry.id}/` }
+]}>
+  <div class="mx-auto max-w-6xl px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2">
+        <article class="prose prose-lg max-w-none">
+          <Content />
+
+          {calcId === 'refund-estimator' && <RefundCalculator />}
+          {calcId === 'self-employment' && <SelfEmploymentCalculator />}
+          {calcId === 'w4' && <W4Calculator />}
+          {calcId === 'capital-gains' && <CapitalGainsCalculator />}
+
+        </article>
+      </div>
+
+      <div class="lg:col-span-1">
+        <div class="sticky top-24 p-6 bg-gray-50 border border-gray-200 rounded-xl">
+          <h3 class="text-xl font-heading font-bold mb-4 text-[var(--color-primary)]">Save Your Results</h3>
+          <p class="text-sm text-gray-600 mb-6">Enter your email and we'll send you a copy of your calculation summary along with tips to improve it.</p>
+          <CaptureForm form={capture.forms.newsletter} submitLabel="Email My Results" />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

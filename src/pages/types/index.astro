@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const types = await getCollection('types');
+---
+<Layout title="Taxpayer Types">
+  <div class="mx-auto max-w-6xl px-8 py-16">
+    <h1 class="text-4xl font-heading font-bold mb-8">Taxpayer Types</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {types.map(t => (
+        <a href={`/types/${t.id}/`} class="block p-6 bg-white border border-gray-200 rounded-xl hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-bold mb-2">{t.data.title}</h2>
+          <p class="text-gray-600 text-sm">{t.data.seo?.page_description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

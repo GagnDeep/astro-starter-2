@@ -1,0 +1,133 @@
+---
+import CalculatorWrapper from "./calculator-wrapper.astro";
+
+const methodology = `
+<p>This simplified estimator uses the 2024 standard deduction and tax brackets.</p>
+<ol>
+  <li><strong>Adjusted Gross Income (AGI):</strong> Total Income minus Deductions.</li>
+  <li><strong>Taxable Income:</strong> AGI minus Standard Deduction ($14,600 for Single, $29,200 for Married Filing Jointly).</li>
+  <li><strong>Estimated Tax:</strong> Calculated using 2024 marginal tax brackets.</li>
+  <li><strong>Estimated Refund/Owed:</strong> Total Withholding minus Estimated Tax. If positive, it's a refund. If negative, you owe.</li>
+</ol>
+<p><em>Note: This does not include credits like the Child Tax Credit or EITC, which could increase your refund.</em></p>
+`;
+---
+<CalculatorWrapper
+  id="refund-estimator"
+  title="Tax Refund Estimator"
+  description="Get a rough estimate of your potential tax refund or what you might owe based on 2024 standard deductions."
+  methodology={methodology}
+>
+  <div slot="inputs" class="space-y-4">
+    <div>
+      <label for="filingStatus" class="block text-sm font-medium text-gray-700 mb-1">Filing Status</label>
+      <select id="filingStatus" name="filingStatus" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]">
+        <option value="single">Single</option>
+        <option value="married">Married Filing Jointly</option>
+        <option value="hoh">Head of Household</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="income" class="block text-sm font-medium text-gray-700 mb-1">Total W-2 Income ($)</label>
+      <input type="number" id="income" name="income" min="0" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="60000" />
+    </div>
+
+    <div>
+      <label for="withheld" class="block text-sm font-medium text-gray-700 mb-1">Total Federal Taxes Withheld ($)</label>
+      <input type="number" id="withheld" name="withheld" min="0" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="5000" />
+    </div>
+  </div>
+
+  <div slot="results" class="space-y-4">
+    <div class="p-4 bg-gray-100 rounded border border-gray-200">
+      <p class="text-sm text-gray-600 mb-1">Estimated Taxable Income:</p>
+      <p class="text-xl font-bold text-gray-900" id="res-taxable-income">$0</p>
+    </div>
+    <div class="p-4 bg-gray-100 rounded border border-gray-200">
+      <p class="text-sm text-gray-600 mb-1">Estimated Tax Liability:</p>
+      <p class="text-xl font-bold text-gray-900" id="res-tax-liability">$0</p>
+    </div>
+    <div class="p-6 bg-green-50 rounded-lg border-2 border-[var(--color-secondary)]">
+      <p class="text-sm font-bold text-[var(--color-secondary)] mb-1 uppercase tracking-wider" id="res-outcome-label">Estimated Refund:</p>
+      <p class="text-3xl font-bold text-green-700" id="res-outcome-amount">$0</p>
+    </div>
+  </div>
+</CalculatorWrapper>
+
+<script>
+  // Simple client-side logic for the calculator
+  const form = document.getElementById('form-refund-estimator') as HTMLFormElement;
+  const resultsDiv = document.getElementById('results-refund-estimator');
+  const fallbackDiv = document.getElementById('fallback-refund-estimator');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const status = (document.getElementById('filingStatus') as HTMLSelectElement).value;
+      const income = parseFloat((document.getElementById('income') as HTMLInputElement).value) || 0;
+      const withheld = parseFloat((document.getElementById('withheld') as HTMLInputElement).value) || 0;
+
+      // 2024 Standard Deductions
+      let stdDeduction = 14600;
+      if (status === 'married') stdDeduction = 29200;
+      if (status === 'hoh') stdDeduction = 21900;
+
+      let taxableIncome = Math.max(0, income - stdDeduction);
+
+      // Extremely simplified 2024 tax brackets (Single)
+      let taxLiability = 0;
+      if (status === 'single') {
+        if (taxableIncome <= 11600) {
+          taxLiability = taxableIncome * 0.10;
+        } else if (taxableIncome <= 47150) {
+          taxLiability = 1160 + ((taxableIncome - 11600) * 0.12);
+        } else if (taxableIncome <= 100525) {
+          taxLiability = 5426 + ((taxableIncome - 47150) * 0.22);
+        } else {
+          taxLiability = 17168.50 + ((taxableIncome - 100525) * 0.24); // Cutoff for simplicity
+        }
+      } else if (status === 'married') {
+        if (taxableIncome <= 23200) {
+          taxLiability = taxableIncome * 0.10;
+        } else if (taxableIncome <= 94300) {
+          taxLiability = 2320 + ((taxableIncome - 23200) * 0.12);
+        } else if (taxableIncome <= 201050) {
+          taxLiability = 10852 + ((taxableIncome - 94300) * 0.22);
+        } else {
+          taxLiability = 34337 + ((taxableIncome - 201050) * 0.24);
+        }
+      } else {
+        // HOH approx
+        taxLiability = taxableIncome * 0.15;
+      }
+
+      const refund = withheld - taxLiability;
+
+      document.getElementById('res-taxable-income')!.textContent = `$${taxableIncome.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('res-tax-liability')!.textContent = `$${taxLiability.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+      const outcomeLabel = document.getElementById('res-outcome-label')!;
+      const outcomeAmount = document.getElementById('res-outcome-amount')!;
+      const outcomeBox = outcomeAmount.parentElement!;
+
+      if (refund >= 0) {
+        outcomeLabel.textContent = "Estimated Refund:";
+        outcomeAmount.textContent = `$${refund.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        outcomeAmount.className = "text-3xl font-bold text-green-700";
+        outcomeLabel.className = "text-sm font-bold text-[var(--color-secondary)] mb-1 uppercase tracking-wider";
+        outcomeBox.className = "p-6 bg-green-50 rounded-lg border-2 border-[var(--color-secondary)]";
+      } else {
+        outcomeLabel.textContent = "Estimated Amount Owed:";
+        outcomeAmount.textContent = `$${Math.abs(refund).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        outcomeAmount.className = "text-3xl font-bold text-red-700";
+        outcomeLabel.className = "text-sm font-bold text-red-600 mb-1 uppercase tracking-wider";
+        outcomeBox.className = "p-6 bg-red-50 rounded-lg border-2 border-red-500";
+      }
+
+      fallbackDiv!.classList.add('hidden');
+      resultsDiv!.classList.remove('hidden');
+    });
+  }
+</script>

@@ -1,0 +1,124 @@
+---
+import CalculatorWrapper from "./calculator-wrapper.astro";
+
+const methodology = `
+<p>This calculates estimated capital gains tax for 2024 (Single filer).</p>
+<ol>
+  <li><strong>Short-term vs Long-term:</strong> Assets held 1 year or less are short-term (taxed as ordinary income). Assets held &gt; 1 year are long-term (taxed at 0%, 15%, or 20%).</li>
+  <li><strong>Gain Calculation:</strong> Sale Price minus Purchase Price.</li>
+  <li><strong>Long-term Brackets (Single 2024):</strong>
+    <ul>
+      <li>$0 to $47,025: 0%</li>
+      <li>$47,026 to $518,900: 15%</li>
+      <li>Over $518,900: 20%</li>
+    </ul>
+  </li>
+</ol>
+<p><em>Note: This simplified calculator adds the gain to your regular income to determine the bracket, but doesn't include the Net Investment Income Tax (NIIT) or state taxes.</em></p>
+`;
+---
+<CalculatorWrapper
+  id="capital-gains"
+  title="Capital Gains Tax Calculator"
+  description="Estimate your tax liability from selling stocks, crypto, or real estate."
+  methodology={methodology}
+>
+  <div slot="inputs" class="space-y-4">
+    <div>
+      <label for="cg-income" class="block text-sm font-medium text-gray-700 mb-1">Regular Annual Income ($)</label>
+      <input type="number" id="cg-income" name="cg-income" min="0" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="60000" />
+    </div>
+
+    <div>
+      <label for="cg-purchase" class="block text-sm font-medium text-gray-700 mb-1">Purchase Price ($)</label>
+      <input type="number" id="cg-purchase" name="cg-purchase" min="0" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="5000" />
+    </div>
+
+    <div>
+      <label for="cg-sale" class="block text-sm font-medium text-gray-700 mb-1">Sale Price ($)</label>
+      <input type="number" id="cg-sale" name="cg-sale" min="0" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="15000" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Time Held</label>
+      <div class="flex gap-4">
+        <label class="flex items-center">
+          <input type="radio" name="cg-duration" value="short" class="mr-2 text-[var(--color-primary)] focus:ring-[var(--color-primary)]" checked>
+          1 Year or Less (Short-term)
+        </label>
+        <label class="flex items-center">
+          <input type="radio" name="cg-duration" value="long" class="mr-2 text-[var(--color-primary)] focus:ring-[var(--color-primary)]">
+          More than 1 Year (Long-term)
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div slot="results" class="space-y-4">
+    <div class="p-4 bg-gray-100 rounded border border-gray-200">
+      <p class="text-sm text-gray-600 mb-1">Net Gain:</p>
+      <p class="text-xl font-bold text-gray-900" id="res-cg-gain">$0</p>
+    </div>
+    <div class="p-6 bg-purple-50 rounded-lg border-2 border-purple-500">
+      <p class="text-sm font-bold text-purple-800 mb-1 uppercase tracking-wider" id="res-cg-label">Estimated Tax:</p>
+      <p class="text-3xl font-bold text-purple-700" id="res-cg-tax">$0</p>
+      <p class="text-xs text-purple-600 mt-2" id="res-cg-rate">Marginal Rate: 0%</p>
+    </div>
+  </div>
+</CalculatorWrapper>
+
+<script>
+  const form = document.getElementById('form-capital-gains') as HTMLFormElement;
+  const resultsDiv = document.getElementById('results-capital-gains');
+  const fallbackDiv = document.getElementById('fallback-capital-gains');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const income = parseFloat((document.getElementById('cg-income') as HTMLInputElement).value) || 0;
+      const purchase = parseFloat((document.getElementById('cg-purchase') as HTMLInputElement).value) || 0;
+      const sale = parseFloat((document.getElementById('cg-sale') as HTMLInputElement).value) || 0;
+      const duration = (document.querySelector('input[name="cg-duration"]:checked') as HTMLInputElement).value;
+
+      const gain = Math.max(0, sale - purchase);
+      let tax = 0;
+      let rate = "";
+
+      if (gain > 0) {
+        if (duration === 'short') {
+          // Simplify short term by just estimating the regular bracket based on income + gain
+          const totalIncome = income + gain;
+          let marginalRate = 0.10;
+          if (totalIncome > 11600) marginalRate = 0.12;
+          if (totalIncome > 47150) marginalRate = 0.22;
+          if (totalIncome > 100525) marginalRate = 0.24;
+          if (totalIncome > 191950) marginalRate = 0.32;
+
+          tax = gain * marginalRate;
+          rate = `Short-term rate (Ordinary Income): ${(marginalRate*100).toFixed(0)}%`;
+        } else {
+          // Long term brackets
+          const taxableTotal = income + gain;
+          if (taxableTotal <= 47025) {
+            tax = 0;
+            rate = "Long-term rate: 0%";
+          } else if (taxableTotal <= 518900) {
+            tax = gain * 0.15;
+            rate = "Long-term rate: 15%";
+          } else {
+            tax = gain * 0.20;
+            rate = "Long-term rate: 20%";
+          }
+        }
+      }
+
+      document.getElementById('res-cg-gain')!.textContent = `$${gain.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('res-cg-tax')!.textContent = `$${tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('res-cg-rate')!.textContent = rate;
+
+      fallbackDiv!.classList.add('hidden');
+      resultsDiv!.classList.remove('hidden');
+    });
+  }
+</script>

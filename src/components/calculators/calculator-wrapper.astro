@@ -1,0 +1,45 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  methodology: string;
+}
+
+const { id, title, description, methodology } = Astro.props;
+---
+<div class="calculator-container bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden my-8" id={`calc-${id}`}>
+  <div class="bg-[var(--color-primary)] text-white p-6">
+    <h3 class="text-2xl font-heading font-bold mb-2">{title}</h3>
+    <p class="text-gray-200 text-sm">{description}</p>
+  </div>
+
+  <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8">
+    <div class="flex-1 w-full">
+      <form id={`form-${id}`} class="space-y-6">
+        <slot name="inputs" />
+        <button type="submit" class="w-full bg-[var(--color-secondary)] hover:bg-green-800 text-white font-bold py-3 px-4 rounded transition-colors">
+          Calculate
+        </button>
+      </form>
+    </div>
+
+    <div class="flex-1 w-full bg-gray-50 p-6 rounded-lg border border-gray-200">
+      <h4 class="text-lg font-heading font-semibold mb-4 text-gray-800">Results</h4>
+
+      <!-- JavaScript Results Area -->
+      <div id={`results-${id}`} class="hidden" aria-live="polite">
+        <slot name="results" />
+      </div>
+
+      <!-- No-JS Fallback / Initial State -->
+      <div id={`fallback-${id}`} class="text-gray-600">
+        <p class="mb-4">Enter your details and submit to see your calculation.</p>
+        <div class="prose prose-sm border-t border-gray-200 pt-4 mt-4">
+          <h5 class="text-sm font-bold text-gray-700">How this is calculated (Methodology):</h5>
+          <Fragment set:html={methodology} />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('types');
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title} seo={entry.data.seo} breadcrumbs={[
+  { name: 'Home', url: '/' },
+  { name: 'Taxpayer Types', url: '/types/' },
+  { name: entry.data.title, url: `/types/${entry.id}/` }
+]}>
+  <div class="mx-auto max-w-4xl px-8 py-16">
+    <article class="prose prose-lg max-w-none">
+      <Content />
+    </article>
+
+    <div class="mt-16 p-8 bg-gray-50 border border-gray-200 rounded-xl">
+      <h3 class="text-2xl font-heading font-bold mb-4">Stay updated on {entry.data.title} tax rules</h3>
+      <p class="text-gray-600 mb-6">Tax laws change every year. Subscribe to get alerts relevant to your situation.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Subscribe" class="max-w-md" />
+    </div>
+  </div>
+</Layout>

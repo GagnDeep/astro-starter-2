@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+import { capture } from "../../capture.config";
+---
+<Layout title="Frequently Asked Questions" seo={{ page_description: "Answers to common questions about free tax filing." }}>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-12 text-3xl font-bold font-heading text-[var(--color-primary)] md:text-5xl">Frequently Asked Questions</h1>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-bold mb-2">Is free tax filing really free?</h3>
+          <p class="text-gray-700">Yes, but you must read the fine print. Programs like IRS Free File are mandated to be completely free for qualifying taxpayers (usually based on AGI). Commercial "Free Editions" often charge for state returns or for processing forms beyond a simple W-2.</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-2">Who qualifies for IRS Free File?</h3>
+          <p class="text-gray-700">For the 2023 tax year, taxpayers with an Adjusted Gross Income (AGI) of $79,000 or less qualified. Always check the official IRS website for the most current limits.</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-2">Can I file state taxes for free?</h3>
+          <p class="text-gray-700">It depends. Some Free File Alliance partners include free state filing. Some states also have their own direct-file portals. However, many commercial "free" federal tools will charge you to file your state return.</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-2">Do you provide tax advice?</h3>
+          <p class="text-gray-700">No. FreeFileForm is for informational and educational purposes only. We are not CPAs. You should consult a tax professional for advice specific to your situation.</p>
+        </div>
+      </div>
+
+      <div class="mt-16 p-8 bg-gray-50 border border-gray-200 rounded-xl">
+        <h3 class="text-2xl font-heading font-bold mb-4">Still have questions?</h3>
+        <p class="text-gray-600 mb-6">Ask us directly and we'll do our best to point you in the right direction.</p>
+        <CaptureForm form={capture.forms.contact} submitLabel="Ask a Question" />
+      </div>
+    </div>
+  </section>
+</Layout>

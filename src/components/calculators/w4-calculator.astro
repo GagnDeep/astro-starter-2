@@ -1,0 +1,132 @@
+---
+import CalculatorWrapper from "./calculator-wrapper.astro";
+
+const methodology = `
+<p>This basic W-4 estimator helps determine if your current withholding is on track.</p>
+<ol>
+  <li><strong>Estimated Tax Liability:</strong> Calculated using your projected annual income and filing status (2024 standard deduction).</li>
+  <li><strong>Projected Total Withholding:</strong> Calculated by multiplying your withholding per paycheck by the number of pay periods in a year.</li>
+  <li><strong>Result:</strong> Compares expected liability vs expected total withholding to tell you if you are over-withholding (getting a refund) or under-withholding (will owe money).</li>
+</ol>
+`;
+---
+<CalculatorWrapper
+  id="w4"
+  title="W-4 Withholding Estimator"
+  description="Check if you are withholding enough taxes from your paycheck to avoid a surprise bill at tax time."
+  methodology={methodology}
+>
+  <div slot="inputs" class="space-y-4">
+    <div>
+      <label for="w4-status" class="block text-sm font-medium text-gray-700 mb-1">Filing Status</label>
+      <select id="w4-status" name="w4-status" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]">
+        <option value="single">Single</option>
+        <option value="married">Married Filing Jointly</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="w4-salary" class="block text-sm font-medium text-gray-700 mb-1">Annual Salary ($)</label>
+      <input type="number" id="w4-salary" name="w4-salary" min="0" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="75000" />
+    </div>
+
+    <div>
+      <label for="w4-paycheck" class="block text-sm font-medium text-gray-700 mb-1">Federal Tax Withheld Per Paycheck ($)</label>
+      <input type="number" id="w4-paycheck" name="w4-paycheck" min="0" required class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="300" />
+    </div>
+
+    <div>
+      <label for="w4-frequency" class="block text-sm font-medium text-gray-700 mb-1">Pay Frequency</label>
+      <select id="w4-frequency" name="w4-frequency" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-[var(--color-primary)]">
+        <option value="26">Bi-weekly (26/yr)</option>
+        <option value="24">Semi-monthly (24/yr)</option>
+        <option value="12">Monthly (12/yr)</option>
+        <option value="52">Weekly (52/yr)</option>
+      </select>
+    </div>
+  </div>
+
+  <div slot="results" class="space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="p-4 bg-gray-100 rounded border border-gray-200">
+        <p class="text-sm text-gray-600 mb-1">Est. Tax Liability:</p>
+        <p class="text-lg font-bold text-gray-900" id="res-w4-liability">$0</p>
+      </div>
+      <div class="p-4 bg-gray-100 rounded border border-gray-200">
+        <p class="text-sm text-gray-600 mb-1">Proj. Withholding:</p>
+        <p class="text-lg font-bold text-gray-900" id="res-w4-proj">$0</p>
+      </div>
+    </div>
+
+    <div class="p-6 bg-blue-50 rounded-lg border-2 border-blue-500" id="res-w4-box">
+      <p class="text-sm font-bold text-blue-800 mb-1 uppercase tracking-wider" id="res-w4-label">Status:</p>
+      <p class="text-2xl font-bold text-blue-900" id="res-w4-message">Looking good.</p>
+    </div>
+  </div>
+</CalculatorWrapper>
+
+<script>
+  const form = document.getElementById('form-w4') as HTMLFormElement;
+  const resultsDiv = document.getElementById('results-w4');
+  const fallbackDiv = document.getElementById('fallback-w4');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const status = (document.getElementById('w4-status') as HTMLSelectElement).value;
+      const salary = parseFloat((document.getElementById('w4-salary') as HTMLInputElement).value) || 0;
+      const paycheckWithheld = parseFloat((document.getElementById('w4-paycheck') as HTMLInputElement).value) || 0;
+      const frequency = parseInt((document.getElementById('w4-frequency') as HTMLSelectElement).value) || 26;
+
+      const stdDeduction = status === 'married' ? 29200 : 14600;
+      const taxableIncome = Math.max(0, salary - stdDeduction);
+
+      let taxLiability = 0;
+      if (status === 'single') {
+        if (taxableIncome <= 11600) taxLiability = taxableIncome * 0.10;
+        else if (taxableIncome <= 47150) taxLiability = 1160 + ((taxableIncome - 11600) * 0.12);
+        else if (taxableIncome <= 100525) taxLiability = 5426 + ((taxableIncome - 47150) * 0.22);
+        else taxLiability = 17168.50 + ((taxableIncome - 100525) * 0.24);
+      } else {
+        if (taxableIncome <= 23200) taxLiability = taxableIncome * 0.10;
+        else if (taxableIncome <= 94300) taxLiability = 2320 + ((taxableIncome - 23200) * 0.12);
+        else if (taxableIncome <= 201050) taxLiability = 10852 + ((taxableIncome - 94300) * 0.22);
+        else taxLiability = 34337 + ((taxableIncome - 201050) * 0.24);
+      }
+
+      const projectedWithholding = paycheckWithheld * frequency;
+      const difference = projectedWithholding - taxLiability;
+
+      document.getElementById('res-w4-liability')!.textContent = `$${taxLiability.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+      document.getElementById('res-w4-proj')!.textContent = `$${projectedWithholding.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+
+      const label = document.getElementById('res-w4-label')!;
+      const message = document.getElementById('res-w4-message')!;
+      const box = document.getElementById('res-w4-box')!;
+
+      if (Math.abs(difference) < 500) {
+        label.textContent = "Perfectly Balanced";
+        message.textContent = "You are right on track. Expect a small refund or balance near $0.";
+        box.className = "p-6 bg-green-50 rounded-lg border-2 border-[var(--color-secondary)]";
+        label.className = "text-sm font-bold text-[var(--color-secondary)] mb-1 uppercase tracking-wider";
+        message.className = "text-2xl font-bold text-green-900";
+      } else if (difference > 0) {
+        label.textContent = "Over-Withholding";
+        message.textContent = `You are on track for a refund of ~ $${difference.toLocaleString(undefined, {maximumFractionDigits: 0})}. You could adjust W-4 to keep more money per paycheck.`;
+        box.className = "p-6 bg-blue-50 rounded-lg border-2 border-blue-500";
+        label.className = "text-sm font-bold text-blue-800 mb-1 uppercase tracking-wider";
+        message.className = "text-xl font-bold text-blue-900 leading-tight";
+      } else {
+        label.textContent = "Under-Withholding (Warning)";
+        message.textContent = `You may owe ~ $${Math.abs(difference).toLocaleString(undefined, {maximumFractionDigits: 0})} at tax time. Consider increasing your W-4 withholding.`;
+        box.className = "p-6 bg-red-50 rounded-lg border-2 border-red-500";
+        label.className = "text-sm font-bold text-red-800 mb-1 uppercase tracking-wider";
+        message.className = "text-xl font-bold text-red-900 leading-tight";
+      }
+
+      fallbackDiv!.classList.add('hidden');
+      resultsDiv!.classList.remove('hidden');
+    });
+  }
+</script>

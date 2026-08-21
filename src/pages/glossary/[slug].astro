@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('glossary');
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title} seo={entry.data.seo} breadcrumbs={[
+  { name: 'Home', url: '/' },
+  { name: 'Glossary', url: '/glossary/' },
+  { name: entry.data.title, url: `/glossary/${entry.id}/` }
+]}>
+  <div class="mx-auto max-w-4xl px-8 py-16">
+    <article class="prose prose-lg max-w-none">
+      <Content />
+    </article>
+
+    <div class="mt-16 p-8 bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-between gap-8 flex-col sm:flex-row">
+      <div>
+        <h3 class="text-xl font-heading font-bold mb-2">Confused by tax jargon?</h3>
+        <p class="text-gray-600 text-sm">Get our plain-English guide to taxes delivered to your inbox.</p>
+      </div>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Send Guide" class="w-full max-w-sm" />
+    </div>
+  </div>
+</Layout>
