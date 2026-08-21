@@ -1,0 +1,47 @@
+---
+title: "The Right Way to Share Secure Documents Online"
+date: 2024-01-04
+seo:
+  page_description: "Stop emailing sensitive contracts as unsecured attachments. Learn the right way to share and sign documents online."
+---
+
+Email was invented in the 1970s. It was designed to send plain text between researchers. It was *not* designed to securely transmit confidential business contracts, [NDAs](/templates/nda), or tax documents like [W-9s](/templates/w9).
+
+Yet, every day, millions of small businesses attach highly sensitive PDFs to emails and hit send, hoping for the best.
+
+In this post, we'll explain why emailing unsecured attachments is dangerous, and how to handle document sharing correctly.
+
+## The Problem with Email Attachments
+
+1. **Interception:** Standard email is often sent in plain text. If intercepted, anyone can read the attachment.
+2. **Permanent Storage:** Once you email a PDF, it lives in the recipient's inbox (and their email provider's servers) forever. You lose all control over it.
+3. **No Integrity:** If you email a contract for someone to sign, they can easily edit the text of the PDF before signing it, and you might not notice.
+
+## The Solution: Link-Based Sharing with Encryption
+
+Instead of sending the document *itself*, you should send a *secure link* to the document hosted on an encrypted platform.
+
+This is exactly how [usignpdf](/) operates.
+
+### How usignpdf protects your documents:
+
+1. **Encryption at Rest:** When you upload a document to usignpdf, it is immediately encrypted using AES-256 (the same standard used by the military).
+2. **Encryption in Transit:** When the recipient clicks the link, the document is transmitted to their browser over TLS 1.3. (Read more on our [Encryption page](/security/encryption)).
+3. **Document Integrity:** Because the document is hosted on our servers, the recipient cannot edit the underlying text. They can only place their signature where allowed.
+4. **Tracking:** You get a full [Audit Trail](/security/audit-trails) showing exactly when the document was opened and signed (see [How to track document opens](/blog/how-to-track-document-opens)).
+
+## What about Enterprise Tools?
+
+Tools like [DocuSign](/compare/docusign) and [HelloSign](/compare/hellosign) also use secure link sharing. However, they often force the recipient to create an account, verify their email, and jump through hoops before they can even read the document.
+
+For [freelancers](/use-cases/freelancers) and small agencies, this creates massive friction during client onboarding.
+
+usignpdf offers the same AES-256 security and cryptographic hashing as the enterprise tools, but removes the login barrier for the signer.
+
+## Best Practices for Sharing Sensitive Docs
+
+- **Never email passwords.** Use a tool like 1Password.
+- **Never email unencrypted tax forms.** A W-9 contains a Social Security Number or EIN.
+- **Always use a dedicated e-signature platform** to capture intent and maintain compliance with laws like the [ESIGN Act](/legality/us-esign-act) and [GDPR](/compliance/gdpr).
+
+Stop sending attachments into the void. Use [usignpdf](/) to secure your workflow.

@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout
+  title="How to Sign a PDF on a Mac | usignpdf"
+  seo={{
+    page_description: "Learn how to sign a PDF on your Mac using Preview, and why you might want a more secure alternative for business contracts.",
+    canonical_url: "https://usignpdf.com/guide/mac/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose max-w-none">
+    <a href="/guide" class="text-accent no-underline hover:underline">&larr; Back to Guides</a>
+    <h1 class="text-4xl font-bold mt-8 mb-4">How to Sign a PDF on a Mac</h1>
+
+    <p>If you own a Mac, you already have a built-in tool for placing an image of your signature onto a PDF. It's called Preview.</p>
+
+    <h2>Method 1: Using Apple Preview (Free, but basic)</h2>
+    <ol>
+        <li>Open the PDF document in <strong>Preview</strong> (this is usually the default app).</li>
+        <li>Click the <strong>Show Markup Toolbar</strong> button (it looks like a pencil tip near the search bar).</li>
+        <li>Click the <strong>Sign</strong> button.</li>
+        <li>If you haven't saved a signature yet, you can create one using your trackpad or by holding a signed piece of paper up to your Mac's camera.</li>
+        <li>Click the signature to insert it into the document, then drag it to the correct line and resize it.</li>
+        <li>Save the document.</li>
+    </ol>
+
+    <h3>The Problem with Preview for Business</h3>
+    <p>While Preview is incredibly convenient for casual forms (like a permission slip), it is <strong>not recommended for B2B contracts</strong> like an <a href="/templates/nda">NDA</a> or a <a href="/blog/independent-contractor-agreement-guide">contractor agreement</a>.</p>
+
+    <p>Why? Because it lacks an <a href="/security/audit-trails">Audit Trail</a>. Preview simply flattens an image of your signature onto the PDF. It offers no cryptographic proof that the document hasn't been tampered with, and no metadata proving <em>you</em> were the one who placed the signature there. In a legal dispute, this can fail the test of <a href="/glossary#non-repudiation">non-repudiation</a> under the <a href="/legality/us-esign-act">ESIGN Act</a>.</p>
+
+    <h2>Method 2: The usignpdf Way (Secure & Legally Binding)</h2>
+    <p>For business documents, you need a system that tracks the signing event.</p>
+    <ol>
+        <li>Open your browser and go to <a href="/">usignpdf.com</a>.</li>
+        <li>Drag and drop your PDF into the upload zone.</li>
+        <li>Click where you want to sign.</li>
+        <li>Type or draw your signature (using our <a href="/tools/signature-generator">Signature Generator</a>).</li>
+        <li>Click complete.</li>
+    </ol>
+
+    <p>We instantly generate a Certificate of Completion, lock the document with AES-256 <a href="/security/encryption">encryption</a>, and provide you with a legally binding PDF.</p>
+
+    <div class="bg-surface-alt p-8 rounded-lg border border-border text-center not-prose mt-12">
+        <h3 class="text-2xl font-bold mb-4">Sign your first document securely</h3>
+        <CaptureForm form="reference" submitLabel="Start Signing Free" />
+    </div>
+  </div>
+</Layout>
