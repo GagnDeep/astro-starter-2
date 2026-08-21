@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Legal - Terms & Privacy"
+  seo={{
+    page_description: "Terms of Service and Privacy Policy for usignpdf.",
+    canonical_url: "https://usignpdf.com/legal/"
+  }}
+>
+  <div class="max-w-3xl mx-auto py-20 px-4 md:px-8 prose">
+    <h1>Legal</h1>
+
+    <h2>Terms of Service</h2>
+    <p>By using usignpdf, you agree to our Terms of Service. We provide a platform for electronic signatures, but we are not providing legal advice. It is your responsibility to ensure that electronic signatures are valid for your specific legal use case in your jurisdiction.</p>
+
+    <h2>Privacy Policy</h2>
+    <p>We respect your privacy. We process documents solely for the purpose of facilitating electronic signatures. Documents are encrypted at rest and in transit.</p>
+
+    <h3>Data Collection</h3>
+    <ul>
+      <li><strong>Forms:</strong> We collect information submitted through forms via our secure capture API.</li>
+      <li><strong>Telemetry:</strong> We use OpenObserve for RUM and error tracking, honoring Do Not Track (DNT) headers.</li>
+    </ul>
+
+    <h2>Data Retention</h2>
+    <p>Signed documents are <a href="/security/encryption">stored securely</a> and can be deleted upon user request. <a href="/security/audit-trails">Audit trails</a> are maintained as required to ensure non-repudiation of the signature process, in line with <a href="/compliance/gdpr">GDPR</a> requests.</p>
+  </div>
+</Layout>

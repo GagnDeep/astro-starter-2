@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Document Encryption Standards | usignpdf"
+  seo={{
+    page_description: "Understand how usignpdf protects your sensitive contracts with AES-256 encryption at rest and TLS in transit.",
+    canonical_url: "https://usignpdf.com/security/encryption/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose">
+    <a href="/security" class="text-accent no-underline hover:underline">&larr; Back to Security</a>
+    <h1 class="text-4xl font-bold mt-8 mb-8">Encryption & Data Protection</h1>
+
+    <p>Your contracts contain sensitive business information. We treat them accordingly.</p>
+
+    <h2>Encryption in Transit</h2>
+    <p>All data sent between your browser, your clients' browsers, and our servers is encrypted using <strong>TLS 1.3</strong> (Transport Layer Security). This prevents man-in-the-middle attacks and ensures data privacy during transfer.</p>
+
+    <h2>Encryption at Rest</h2>
+    <p>When your documents are stored on our servers waiting to be signed, they are encrypted using <strong>AES-256</strong> (Advanced Encryption Standard). This is the same encryption standard used by banks and the US government for top-secret information.</p>
+
+    <h2>Document Deletion</h2>
+    <p>We are not a permanent file storage service. We recommend downloading your completed PDFs. You can request immediate deletion of your documents from our servers at any time.</p>
+
+    <h2>Encryption Standards Comparison</h2>
+    <table class="w-full text-left border-collapse bg-surface rounded border border-border my-8">
+      <thead class="bg-surface-alt">
+        <tr>
+          <th class="p-3 border-b border-border">Standard</th>
+          <th class="p-3 border-b border-border">Bit Length</th>
+          <th class="p-3 border-b border-border">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-3 border-b border-border">DES</td>
+          <td class="p-3 border-b border-border">56-bit</td>
+          <td class="p-3 border-b border-border text-error">Obsolete / Insecure</td>
+        </tr>
+        <tr>
+          <td class="p-3 border-b border-border">AES-128</td>
+          <td class="p-3 border-b border-border">128-bit</td>
+          <td class="p-3 border-b border-border text-text-muted">Secure (Standard)</td>
+        </tr>
+        <tr class="bg-primary text-surface">
+          <td class="p-3 font-bold">AES-256 (usignpdf)</td>
+          <td class="p-3 font-bold">256-bit</td>
+          <td class="p-3 font-bold text-success">Military/Bank Grade</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Key Rotation and Management</h2>
+    <p>We employ automated key rotation policies to ensure that even in the highly unlikely event of a key compromise, historical documents remain secure through perfect forward secrecy principles.</p>
+  </div>
+</Layout>

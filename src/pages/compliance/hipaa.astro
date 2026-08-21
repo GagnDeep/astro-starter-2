@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="HIPAA Compliant E-Signatures | usignpdf"
+  seo={{
+    page_description: "Information regarding HIPAA compliance for healthcare providers using usignpdf.",
+    canonical_url: "https://usignpdf.com/compliance/hipaa/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose">
+    <a href="/compliance" class="text-accent no-underline hover:underline">&larr; Back to Compliance</a>
+    <h1 class="text-4xl font-bold mt-8 mb-8">HIPAA Compliance</h1>
+
+    <p>For healthcare providers in the United States, the Health Insurance Portability and Accountability Act (HIPAA) sets strict standards for protecting sensitive patient data (ePHI).</p>
+
+    <h2>Using usignpdf for Healthcare</h2>
+    <p>While our platform utilizes bank-level encryption (AES-256 at rest, TLS 1.3 in transit) and robust audit trails, <strong>usignpdf does not currently offer Business Associate Agreements (BAAs) on our standard or free plans.</strong></p>
+
+    <p>If you are a Covered Entity required to comply with HIPAA, you must not use the standard usignpdf service to transmit or store Protected Health Information (PHI). We recommend seeking an enterprise provider (like DocuSign's Healthcare plan) that will sign a BAA.</p>
+  </div>
+</Layout>

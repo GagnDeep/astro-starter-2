@@ -1,7 +1,7 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "usignpdf",
+  "short_name": "usignpdf",
+  "description": "Sign any PDF instantly. The frictionless, legally binding e-signature tool that just works for small businesses. Zero signup for your clients.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",

@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout
+  title="usignpdf vs Adobe Acrobat Sign | E-Signature Alternative"
+  seo={{
+    page_description: "Compare usignpdf and Adobe Sign. Find out which e-signature tool is best for your small business.",
+    canonical_url: "https://usignpdf.com/compare/adobe-sign/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8">
+    <a href="/compare" class="text-accent no-underline hover:underline">&larr; Back to Comparisons</a>
+    <h1 class="text-4xl font-bold mt-8 mb-4">usignpdf vs Adobe Sign</h1>
+    <p class="text-xl text-text-muted mb-12">Escaping the ecosystem lock-in.</p>
+
+    <div class="prose max-w-none mb-12">
+        <h2>The Adobe Ecosystem</h2>
+        <p>Adobe Acrobat Sign is a heavy, robust tool that works best if you are already deeply entrenched in the Adobe Creative Cloud or Document Cloud ecosystem. However, it often suffers from slow load times and forces users to navigate a complex, legacy UI.</p>
+
+        <h2>The usignpdf Difference</h2>
+        <p>usignpdf is built for speed. There is no software to install, no ecosystem to buy into, and no bloated interfaces. You drop a PDF, place a signature field, and send a link. Your client signs it in their browser (mobile or desktop) in seconds.</p>
+
+        <h3>Key differences:</h3>
+        <ul>
+            <li><strong>Speed:</strong> usignpdf loads instantly; Acrobat often requires heavy client-side processing.</li>
+            <li><strong>Pricing:</strong> Adobe requires a monthly subscription; usignpdf has a generous free tier.</li>
+            <li><strong>Focus:</strong> Adobe tries to do everything (editing, OCR, forms). We just do signatures perfectly.</li>
+        </ul>
+    </div>
+
+    <div class="bg-surface-alt p-8 rounded-lg border border-border text-center">
+        <h3 class="text-2xl font-bold mb-4">Try the faster alternative</h3>
+        <CaptureForm form="reference" submitLabel="Start Signing Free" />
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+---
+
+<Layout
+  title="usignpdf - Sign any PDF instantly"
+  seo={{
+    page_description: "The frictionless, legally binding e-signature tool that just works for small businesses. Zero signup for your clients.",
+    canonical_url: "https://usignpdf.com/"
+  }}
+>
+  <!-- Hero Section -->
+  <section class="bg-primary text-surface py-20 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 font-sans">Sign any PDF instantly. Legally binding, zero friction.</h1>
+      <p class="text-xl md:text-2xl mb-10 text-surface-alt font-sans">The fastest way for small businesses to get documents signed. Don't make your clients create another password.</p>
+
+      <div class="bg-surface text-text-main p-8 rounded-lg shadow-xl max-w-2xl mx-auto border border-border">
+        <h2 class="text-2xl font-semibold mb-4">Start Signing Now</h2>
+        <CaptureForm form="hero">
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1" for="hero-email">Your Email</label>
+            <input type="email" id="hero-email" name="email" required class="w-full px-4 py-2 border border-border rounded focus:outline-none focus:ring-2 focus:ring-focus" placeholder="you@example.com" />
+          </div>
+          <button type="submit" class="w-full bg-accent hover:bg-accent-hover text-surface font-semibold py-3 px-6 rounded transition-colors">
+            Drop PDF to Sign (Mock)
+          </button>
+        </CaptureForm>
+        <p class="text-sm text-text-muted mt-4">By signing, you agree to our Terms & Privacy Policy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reality Check Table -->
+  <section class="py-20 px-4 md:px-8 bg-surface-alt">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">The Reality Check</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse bg-surface rounded-lg overflow-hidden shadow-sm">
+          <thead>
+            <tr class="bg-primary text-surface">
+              <th class="p-4 font-semibold border-b border-primary">Feature</th>
+              <th class="p-4 font-semibold border-b border-primary">The Old Way (Print/Scan)</th>
+              <th class="p-4 font-semibold border-b border-primary">Enterprise Tool (DocuSign)</th>
+              <th class="p-4 font-semibold border-b border-primary bg-accent text-surface">usignpdf</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-4 border-b border-border font-medium">Cost</td>
+              <td class="p-4 border-b border-border">Free (but costs time/paper)</td>
+              <td class="p-4 border-b border-border">$30+/mo</td>
+              <td class="p-4 border-b border-border font-semibold text-accent">Free tier available</td>
+            </tr>
+            <tr>
+              <td class="p-4 border-b border-border font-medium">Client Account Needed?</td>
+              <td class="p-4 border-b border-border">No</td>
+              <td class="p-4 border-b border-border text-error">Yes (Often)</td>
+              <td class="p-4 border-b border-border font-semibold text-success">Never</td>
+            </tr>
+            <tr>
+              <td class="p-4 border-b border-border font-medium">Legally Binding</td>
+              <td class="p-4 border-b border-border">Yes (Wet signature)</td>
+              <td class="p-4 border-b border-border">Yes</td>
+              <td class="p-4 border-b border-border font-semibold text-success">Yes (ESIGN & eIDAS compliant)</td>
+            </tr>
+            <tr>
+              <td class="p-4 border-b border-border font-medium">Time to send</td>
+              <td class="p-4 border-b border-border text-error">Days</td>
+              <td class="p-4 border-b border-border">Minutes</td>
+              <td class="p-4 border-b border-border font-semibold text-success">Seconds</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audit Trail & Legality -->
+  <section class="py-20 px-4 md:px-8 bg-surface">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      <div class="md:w-1/2">
+        <h2 class="text-3xl font-bold mb-4">Ironclad legality, baked right in.</h2>
+        <p class="text-lg text-text-muted mb-6">Every signature comes with a comprehensive Certificate of Completion, detailing IP addresses, timestamps, and cryptographic hashes to ensure non-repudiation.</p>
+        <ul class="space-y-4">
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-success mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>ESIGN Act & UETA Compliant (US)</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-success mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>eIDAS Compliant (EU)</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-success mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Cryptographic Document Hashing</span>
+          </li>
+        </ul>
+        <div class="mt-8">
+            <a href="/legality" class="text-accent font-semibold hover:underline">Learn more about our legal standards →</a>
+        </div>
+      </div>
+      <div class="md:w-1/2 bg-surface-alt p-6 rounded-lg border border-border shadow-sm">
+        <div class="text-sm font-mono text-text-muted space-y-2">
+            <div class="font-bold text-text-main mb-4 border-b border-border pb-2">Certificate of Completion</div>
+            <p><strong>Document ID:</strong> a1b2c3d4-e5f6-7890</p>
+            <p><strong>Signer:</strong> client@example.com</p>
+            <p><strong>IP Address:</strong> 192.168.1.1</p>
+            <p><strong>Timestamp:</strong> 2023-10-27 14:32:00 UTC</p>
+            <p><strong>Hash:</strong> 9f86d081884c7d659a2feaa0c55ad015</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Teaser -->
+  <section class="py-20 px-4 md:px-8 bg-surface-alt">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-12">Calculate Your Savings</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <a href="/tools/roi-calculator" class="block bg-surface p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-border text-left">
+          <h3 class="text-xl font-semibold text-accent mb-2">Time Savings Calculator</h3>
+          <p class="text-text-muted">See exactly how many hours you lose per year to manual printing, signing, and scanning.</p>
+        </a>
+        <a href="/tools/paper-cost-calculator" class="block bg-surface p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-border text-left">
+          <h3 class="text-xl font-semibold text-accent mb-2">Paper Cost Calculator</h3>
+          <p class="text-text-muted">Calculate the hidden costs of ink, paper, and physical storage for your contracts.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="py-20 px-4 md:px-8 bg-primary text-surface text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6">Stop waiting for signatures.</h2>
+      <p class="text-xl mb-8 text-surface-alt">Join thousands of small businesses closing deals faster.</p>
+      <div class="bg-surface text-text-main p-6 rounded-lg max-w-md mx-auto text-left">
+        <CaptureForm form="footer">
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1" for="bottom-email">Get our free guide to client onboarding</label>
+            <input type="email" id="bottom-email" name="email" required class="w-full px-4 py-2 border border-border rounded focus:outline-none focus:ring-2 focus:ring-focus" placeholder="you@example.com" />
+          </div>
+          <button type="submit" class="w-full bg-accent hover:bg-accent-hover text-surface font-semibold py-2 px-4 rounded transition-colors">
+            Get the Guide
+          </button>
+        </CaptureForm>
+      </div>
+    </div>
+  </section>
+</Layout>

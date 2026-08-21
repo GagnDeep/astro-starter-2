@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "usignpdf",
+  "description": "Sign any PDF instantly. The frictionless, legally binding e-signature tool that just works for small businesses. Zero signup for your clients.",
+  "tagline": "Sign any PDF instantly. Legally binding, zero friction.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
+  "twitter_site": "@usignpdf",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
+  "image_alt": "usignpdf - Sign any PDF instantly",
+  "default_author": "usignpdf team",
   "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "usignpdf",
+    "logo": "/images/brand/icon.svg",
     "same_as": []
   }
 }

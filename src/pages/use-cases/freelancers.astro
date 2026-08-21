@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout
+  title="E-Signatures for Freelancers | usignpdf"
+  seo={{
+    page_description: "The perfect e-signature tool for freelancers. Get SOWs and contracts signed instantly without forcing clients to create accounts.",
+    canonical_url: "https://usignpdf.com/use-cases/freelancers/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose max-w-none">
+    <a href="/use-cases" class="text-accent no-underline hover:underline">&larr; Back to Use Cases</a>
+    <h1 class="text-4xl font-bold mt-8 mb-4">E-Signatures for Freelancers</h1>
+
+    <p>As a freelancer, you don't need a heavy enterprise tool like <a href="/compare/docusign">DocuSign</a> just to get a Statement of Work (SOW) or a Non-Disclosure Agreement (NDA) signed. You need speed, simplicity, and low cost.</p>
+
+    <h2>Why freelancers love usignpdf</h2>
+    <ul>
+        <li><strong>Zero friction for clients:</strong> Your clients don't want to create a new password just to sign your <a href="/blog/how-to-write-freelance-contract">freelance contract</a>. With usignpdf, they click a link, type their name, and they're done.</li>
+        <li><strong>Affordable (Free):</strong> Our <a href="/pricing">free tier</a> gives you 3 documents a month, which is perfect for solo operators.</li>
+        <li><strong>Legally Binding:</strong> Every signature comes with a full cryptographic <a href="/security/audit-trails">Audit Trail</a>.</li>
+    </ul>
+
+    <div class="bg-surface-alt p-8 rounded-lg border border-border text-center not-prose mt-12">
+        <h3 class="text-2xl font-bold mb-4">Start signing your contracts today</h3>
+        <CaptureForm form="reference" submitLabel="Start Signing Free" />
+    </div>
+  </div>
+</Layout>

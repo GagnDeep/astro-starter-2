@@ -1,0 +1,70 @@
+---
+title: "How to Sign a PDF on an iPhone (The Fast Way)"
+date: 2024-01-09
+seo:
+  page_description: "Learn the quickest way to sign a PDF on your iPhone for free, without downloading clunky apps or paying subscriptions."
+---
+
+We've all been there. You're waiting in line for coffee, and an urgent email comes in: *"Can you sign and return this NDA right now so we can kick off the project?"*
+
+Historically, this meant rushing back to your laptop, opening preview, or worse—finding a printer. Today, signing a PDF on your iPhone should take less than 30 seconds.
+
+In this guide, we'll cover the built-in iOS method, its limitations, and the better, legally robust way to do it.
+
+## Method 1: The Built-in iOS Markup Tool (Quick, but risky)
+
+Apple has built a markup tool directly into the Mail and Files apps.
+
+**How to do it:**
+1. Open the email containing the PDF.
+2. Tap the PDF attachment to open it.
+3. Tap the **Markup icon** (a small pen tip in the top right corner).
+4. Tap the **"+" button** in the bottom right corner.
+5. Select **Signature**.
+6. If you've previously saved a signature, tap it. Otherwise, use your finger to draw one.
+7. Drag the signature to the correct line, resize it, and tap **Done**.
+8. Select "Reply All" to send it back.
+
+### The Problem with iOS Markup
+
+While convenient, this method has a massive flaw for B2B contracts: **It has no Audit Trail.**
+
+When you use iOS Markup, you are simply flattening an image of your signature onto the PDF. If a dispute arises, there is no cryptographic proof that *you* were the one who placed it there. It lacks [non-repudiation](/glossary#non-repudiation). Furthermore, it provides no [document integrity](/glossary#document-integrity)—the recipient could easily alter the text of the PDF after you send it back.
+
+## Method 2: The usignpdf Way (Fast AND Legally Binding)
+
+If you are signing anything that involves money, liability, or intellectual property (like a [freelance contract](/templates/freelance-contract) or an [NDA](/templates/nda)), you need an [Audit Trail](/security/audit-trails).
+
+Here is how you do it on your iPhone using [usignpdf](/):
+
+1. Save the PDF from your email to your iPhone's **Files** app.
+2. Open Safari and go to **usignpdf.com**.
+3. Tap **Upload Document** and select the PDF from your Files.
+4. Tap where you want to sign.
+5. Draw your signature or type it.
+6. Tap **Complete**.
+
+**Why is this better?**
+Because usignpdf appends a [Certificate of Completion](/glossary#certificate-of-completion) to the final document. This locks the PDF with a [Cryptographic Hash](/glossary#cryptographic-hash) and logs the IP address and timestamp of the signing event.
+
+If the document is challenged in court under the [ESIGN Act](/legality/us-esign-act), you have mathematical proof of validity.
+
+## Cost Comparison
+
+| Method | Time | Legal Protection | Cost |
+| :--- | :--- | :--- | :--- |
+| **iOS Markup** | 30 seconds | Very Low | Free |
+| **DocuSign App** | 3 minutes (requires login) | High | $30/mo |
+| **usignpdf** | 45 seconds | High | [Free tier available](/pricing) |
+
+## FAQ
+
+**Q: Can I save my signature in usignpdf on my phone?**
+A: Yes. If you use our tool regularly, it remembers your preferred signature style across sessions on that device.
+
+**Q: What if someone sends me a DocuSign link?**
+A: If a client sends you a DocuSign link, you have to use their system. But when *you* are in control of sending the contract, you should use the tool that causes the least friction. (See our [usignpdf vs DocuSign comparison](/compare/docusign)).
+
+## Stop risking your contracts
+
+Don't rely on flat image markups for your business agreements. Use a tool built for speed and security. Try the mobile-optimized [usignpdf signing flow](/) today.

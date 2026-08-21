@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="E-Signature Audit Trails | usignpdf"
+  seo={{
+    page_description: "Learn how usignpdf's cryptographic audit trails ensure non-repudiation and document integrity.",
+    canonical_url: "https://usignpdf.com/security/audit-trails/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose">
+    <a href="/security" class="text-accent no-underline hover:underline">&larr; Back to Security</a>
+    <h1 class="text-4xl font-bold mt-8 mb-8">Audit Trails & Certificates of Completion</h1>
+
+    <h2>What is an Audit Trail?</h2>
+    <p>An audit trail is the digital footprint left behind during the signing process. While a signature image on a PDF looks nice, it is the audit trail that actually provides the legal weight to an electronic contract.</p>
+
+    <h2>What's inside a usignpdf Certificate of Completion?</h2>
+    <p>When a document is completed on usignpdf, we append a Certificate of Completion to the final PDF. This contains:</p>
+    <ul>
+        <li><strong>Unique Document ID:</strong> A UUID tracking the transaction.</li>
+        <li><strong>Signer Details:</strong> Email addresses and names of all parties.</li>
+        <li><strong>IP Addresses:</strong> The IP address from which the document was viewed and signed.</li>
+        <li><strong>Timestamps:</strong> UTC timestamps for creation, viewing, and signing events.</li>
+        <li><strong>Cryptographic Hash:</strong> A SHA-256 hash of the final document. If even a single comma is changed in the PDF after it is signed, the hash will no longer match, proving tampering.</li>
+    </ul>
+
+    <p>This comprehensive tracking ensures <em>non-repudiation</em>—meaning a signer cannot easily deny that they signed the document.</p>
+
+    <h2>Example: Detecting Document Tampering</h2>
+    <p>Consider a scenario where a freelancer signs a <a href="/templates/freelance-contract">contract</a> for $5,000. After the contract is signed, the client attempts to alter the PDF locally to say $3,000.</p>
+    <p>Because usignpdf calculates a SHA-256 hash of the document at the exact moment of signing, any subsequent modification—even changing a single pixel in the PDF—will result in a completely different hash when the file is run through a verification tool. The Certificate of Completion acts as a mathematical anchor to the original, unaltered agreement.</p>
+
+    <h2>Edge Cases: What if someone else signs on my computer?</h2>
+    <p>A common legal challenge is: <em>"That's my IP address, but my assistant clicked the button."</em> To defend against this, an Audit Trail relies on the broader context of <a href="/glossary#authentication">Authentication</a> (e.g., the unique link was sent to a specific email address that only the signer controls) combined with the IP logging to build a preponderance of evidence.</p>
+  </div>
+</Layout>
