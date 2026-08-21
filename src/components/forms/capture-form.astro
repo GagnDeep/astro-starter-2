@@ -35,7 +35,7 @@ const {
 const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
 
 const field =
-  "w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600";
+  "w-full rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-[rgb(var(--color-primary))] focus:outline-none focus:ring-1 focus:ring-[rgb(var(--color-primary))]";
 const label = "block text-sm font-medium text-gray-700 mb-1";
 ---
 
@@ -81,7 +81,7 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
 
   <button
     type="submit"
-    class="rounded bg-blue-600 px-5 py-2.5 font-medium text-white hover:bg-blue-700 disabled:opacity-60"
+    class="rounded bg-[rgb(var(--color-secondary))] px-5 py-2.5 font-medium text-white hover:opacity-90 disabled:opacity-60"
   >
     {submitLabel}
   </button>
@@ -90,7 +90,7 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
     data-capture-status
     role="status"
     aria-live="polite"
-    class="text-sm text-gray-600 data-[state=error]:text-red-700 data-[state=success]:text-green-700"
+    class="text-sm text-gray-600 data-[state=error]:text-red-500 data-[state=success]:text-green-500"
   >
   </p>
 </form>

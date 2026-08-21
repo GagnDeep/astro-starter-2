@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: rgb(6 78 59);
+  --color-primary-light: rgb(16 185 129);
+  --color-secondary: rgb(234 88 12);
+  --color-bg: rgb(250 250 249);
+  --color-surface: rgb(255 255 255);
+  --color-text: rgb(30 41 59);
+  --color-text-muted: rgb(100 116 139);
+  --color-border: rgb(226 232 240);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
 /*
  * CASCADE RULE — read before adding CSS to this file.
  *
@@ -23,8 +37,21 @@
  */
 
 @layer base {
+  :root {
+    --color-primary: 6 78 59;
+    --color-primary-light: 16 185 129;
+    --color-secondary: 234 88 12;
+    --color-bg: 250 250 249;
+    --color-surface: 255 255 255;
+    --color-text: 30 41 59;
+    --color-text-muted: 100 116 139;
+    --color-border: 226 232 240;
+  }
+
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    background-color: var(--color-bg);
+    color: var(--color-text);
   }
 
   main {

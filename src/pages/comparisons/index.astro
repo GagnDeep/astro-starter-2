@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const pages = await getCollection("pages", (entry) => entry.id.startsWith("comparisons/"));
+---
+<Layout title="Comparisons" seo={{ page_description: "Honest comparisons of tax software." }}>
+  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-8">Software Comparisons</h1>
+    <ul class="space-y-4">
+      {pages.map((page) => (
+        <li>
+          <a href={`/${page.id.replace(/\/index$/, "")}/`} class="text-xl text-[rgb(var(--color-primary))] hover:underline font-semibold">
+            {page.data.title}
+          </a>
+          {page.data.seo?.page_description && <p class="text-gray-600">{page.data.seo.page_description}</p>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

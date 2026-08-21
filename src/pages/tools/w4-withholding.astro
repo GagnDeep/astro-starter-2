@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const field = "w-full rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-[rgb(var(--color-primary))] focus:outline-none focus:ring-1 focus:ring-[rgb(var(--color-primary))]";
+const label = "block text-sm font-medium text-gray-700 mb-1";
+---
+<Layout title="W-4 Withholding Tool" seo={{ page_description: "Calculate your optimal W-4 withholding so you don't give the IRS an interest-free loan." }}>
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-4">W-4 Withholding Estimator</h1>
+    <p class="mb-8 text-gray-700">A massive refund means you gave the government a 0% loan. Owing money means penalties. Find your perfect balance.</p>
+
+    <div class="bg-gray-50 p-6 rounded-lg border">
+      <form class="space-y-4" onsubmit="event.preventDefault(); window.calculateW4();">
+        <div>
+          <label for="salary" class={label}>Annual Salary ($)</label>
+          <input id="salary" type="number" min="0" step="1000" class={field} required />
+        </div>
+        <div>
+          <label for="payPeriods" class={label}>Pay Periods Per Year</label>
+          <select id="payPeriods" class={field}>
+            <option value="26">Every two weeks (26)</option>
+            <option value="24">Twice a month (24)</option>
+            <option value="12">Monthly (12)</option>
+            <option value="52">Weekly (52)</option>
+          </select>
+        </div>
+        <div>
+          <label for="dependents" class={label}>Number of Dependents (under 17)</label>
+          <input id="dependents" type="number" min="0" max="10" step="1" class={field} value="0" required />
+        </div>
+        <button type="submit" class="rounded bg-[rgb(var(--color-secondary))] px-5 py-2.5 font-medium text-white hover:opacity-90">Calculate Withholding</button>
+      </form>
+
+      <noscript>
+        <div class="mt-4 text-red-600">
+          <strong>Note:</strong> JavaScript is required for the interactive W-4 calculator. Without JS, you can use the IRS's official paper W-4 worksheet which divides your total estimated tax by your number of pay periods.
+        </div>
+      </noscript>
+
+      <div id="results" class="hidden mt-6 pt-6 border-t">
+        <h3 class="text-xl font-bold mb-2">Results (Single/Married Filing Separately default)</h3>
+        <p class="mb-2"><strong>Estimated Tax Liability (Annual):</strong> <span id="annualtax"></span></p>
+        <p class="mb-2"><strong>Child Tax Credits:</strong> <span id="credits"></span></p>
+        <p class="mb-4"><strong>Target Withholding Per Paycheck:</strong> <span id="perpaycheck" class="font-bold text-[rgb(var(--color-primary))]"></span></p>
+        <p class="text-sm text-gray-600 mb-4">Enter this amount or adjust your Step 4(c) on your W-4 form to match this target.</p>
+
+        <div class="mt-4 p-4 bg-white border rounded">
+          <p class="text-sm font-semibold mb-2">Email me this estimate:</p>
+          <CaptureForm form={capture.forms.quote} submitLabel="Send">
+             <input type="hidden" name="tool" value="w4-withholding" />
+             <input type="hidden" name="calculated_withholding" id="capture-withholding" value="" />
+             <input type="email" name="email" placeholder="you@example.com" required class={field} />
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  window.calculateW4 = function() {
+    const salary = parseFloat(document.getElementById('salary').value);
+    const periods = parseInt(document.getElementById('payPeriods').value);
+    const dependents = parseInt(document.getElementById('dependents').value);
+
+    // Simplified 2024 Single Tax Bracket Math
+    const stdDeduction = 14600;
+    let taxable = salary - stdDeduction;
+    if (taxable < 0) taxable = 0;
+
+    let tax = 0;
+    if (taxable <= 11600) {
+        tax = taxable * 0.1;
+    }
+    else if (taxable <= 47150) {
+        tax = 1160 + ((taxable - 11600) * 0.12);
+    }
+    else if (taxable <= 100525) {
+        tax = 5426 + ((taxable - 47150) * 0.22);
+    }
+    else {
+        tax = 17168.5 + ((taxable - 100525) * 0.24); // Cap for simple estimation
+    }
+
+    // Credits ($2,000 per qualifying child under 17)
+    const totalCredits = dependents * 2000;
+    let finalTax = tax - totalCredits;
+    if (finalTax < 0) finalTax = 0; // ignoring refundable portion for simple W-4 math
+
+    const perPaycheck = finalTax / periods;
+
+    document.getElementById('annualtax').innerText = '$' + tax.toFixed(2);
+    document.getElementById('credits').innerText = '-$' + totalCredits.toFixed(2);
+    document.getElementById('perpaycheck').innerText = '$' + perPaycheck.toFixed(2);
+    document.getElementById('capture-withholding').value = perPaycheck.toFixed(2);
+    document.getElementById('results').classList.remove('hidden');
+  };
+</script>

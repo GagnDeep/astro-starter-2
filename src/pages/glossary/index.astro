@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const pages = await getCollection("pages", (entry) => entry.id.startsWith("glossary/"));
+---
+<Layout title="Glossary" seo={{ page_description: "Tax terms explained simply." }}>
+  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-8">Tax Glossary</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {pages.map((page) => (
+        <div class="border rounded p-4">
+          <a href={`/${page.id.replace(/\/index$/, "")}/`} class="text-lg text-[rgb(var(--color-primary))] hover:underline font-bold">
+            {page.data.title}
+          </a>
+          {page.data.seo?.page_description && <p class="text-gray-600 text-sm mt-2">{page.data.seo.page_description}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

@@ -80,5 +80,40 @@ const resolvedArticle: ArticleMeta | undefined =
         });
       }
     </script>
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-white">FreeFileForm</h3>
+          <p class="text-gray-400 text-sm">The brutally honest, no-B.S. guide to not paying to file your taxes. Find the actually free option.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-white">Resources</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/tools" class="hover:text-white">Tax Tools & Calculators</a></li>
+            <li><a href="/reference" class="hover:text-white">Reference Guides</a></li>
+            <li><a href="/comparisons" class="hover:text-white">Software Comparisons</a></li>
+            <li><a href="/blog" class="hover:text-white">Tax Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-white">Stay Updated</h3>
+          <p class="text-gray-400 text-sm mb-4">Get the 2025 Tax Cheat Sheet.</p>
+          <form data-capture="waitlist" method="POST" action="https://api.markremover.com/v1/collect/waitlist" class="flex flex-col gap-2">
+            <input type="hidden" name="key" value="wcs_pk_freefileform_placeholder_key" />
+            <input type="hidden" name="redirect" value="/thanks/" />
+            <input type="email" name="email" required placeholder="you@example.com" class="px-3 py-2 text-gray-900 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))]" />
+            <button type="submit" class="bg-[rgb(var(--color-primary))] text-white px-4 py-2 rounded hover:opacity-90 transition font-medium">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="max-w-5xl mx-auto px-4 md:px-8 mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2024 FreeFileForm. All rights reserved.</p>
+        <div class="space-x-4 mt-4 md:mt-0">
+          <a href="/privacy" class="hover:text-white">Privacy Policy</a>
+          <a href="/terms" class="hover:text-white">Terms of Service</a>
+          <a href="/contact" class="hover:text-white">Contact Us</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
