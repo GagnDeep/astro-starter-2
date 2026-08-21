@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+---
+<Layout title="Pricing" seo={{ page_description: "Simple, honest pricing for video hosting." }}>
+  <section class="py-16 md:py-24 max-w-3xl mx-auto px-8">
+    <h1 class="text-4xl font-bold mb-6">Simple Pricing</h1>
+    <p class="text-xl text-[var(--color-text-muted)] mb-8">One plan. Unlimited possibilities. Just pay for what you use.</p>
+
+    <div class="border border-[var(--color-border)] rounded-lg p-8 bg-white shadow-sm mb-12">
+      <h2 class="text-2xl font-bold mb-4">Pay as you go</h2>
+      <p class="text-4xl font-bold text-[var(--color-primary)] mb-6">$5<span class="text-lg text-[var(--color-text-muted)] font-normal">/month base</span> + $0.02<span class="text-lg text-[var(--color-text-muted)] font-normal">/GB</span></p>
+      <ul class="space-y-3 mb-8 text-[var(--color-text-muted)] list-disc pl-5">
+        <li>Unlimited videos</li>
+        <li>Unbranded player</li>
+        <li>Custom colors</li>
+        <li>Global CDN</li>
+      </ul>
+      <a href="/contact/" class="block w-full text-center rounded bg-[var(--color-primary)] px-5 py-3 font-medium text-white hover:bg-[var(--color-primary-dark)]">Start free trial</a>
+    </div>
+
+    <div class="bg-gray-50 rounded-lg p-8 text-center">
+      <h3 class="text-xl font-bold mb-4">Enterprise needs?</h3>
+      <p class="mb-6 text-[var(--color-text-muted)]">We offer volume discounts for high-traffic sites.</p>
+      <CaptureForm form={capture.forms.quote} submitLabel="Request a quote" />
+    </div>
+  </section>
+</Layout>

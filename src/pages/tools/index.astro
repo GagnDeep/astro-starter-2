@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+<Layout title="Creator Tools" seo={{ page_description: "Free tools and calculators for video creators and developers." }}>
+  <section class="py-16 md:py-24 max-w-4xl mx-auto px-8">
+    <h1 class="text-4xl font-bold mb-6">Video Tools for Creators</h1>
+    <p class="text-xl text-[var(--color-text-muted)] mb-12">Free calculators and utilities to help you manage your web video.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="/tools/video-bandwidth-calculator/" class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-primary)] transition-colors">
+        <h2 class="text-xl font-bold mb-2">Video Bandwidth Calculator</h2>
+        <p class="text-[var(--color-text-muted)] mb-4">Estimate your monthly video hosting costs based on views, duration, and resolution.</p>
+        <span class="text-sm font-medium text-[var(--color-primary)]">Use tool &rarr;</span>
+      </a>
+
+      <a href="/tools/embed-code-generator/" class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-primary)] transition-colors">
+        <h2 class="text-xl font-bold mb-2">HTML5 Video Embed Generator</h2>
+        <p class="text-[var(--color-text-muted)] mb-4">Generate responsive, accessible HTML5 video embed codes with fallback support.</p>
+        <span class="text-sm font-medium text-[var(--color-primary)]">Use tool &rarr;</span>
+      </a>
+
+      <a href="/tools/video-compression-calculator/" class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-primary)] transition-colors">
+        <h2 class="text-xl font-bold mb-2">Video File Size Calculator</h2>
+        <p class="text-[var(--color-text-muted)] mb-4">Calculate estimated file sizes based on bitrate and duration.</p>
+        <span class="text-sm font-medium text-[var(--color-primary)]">Use tool &rarr;</span>
+      </a>
+    </div>
+  </section>
+</Layout>

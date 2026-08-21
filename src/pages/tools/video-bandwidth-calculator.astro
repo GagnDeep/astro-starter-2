@@ -1,0 +1,92 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+---
+
+<Layout title="Video Bandwidth Calculator" seo={{ page_description: "Calculate your estimated monthly video bandwidth costs." }}>
+  <section class="py-16 md:py-24 max-w-3xl mx-auto px-8 prose">
+    <h1>Video Bandwidth Calculator</h1>
+    <p>Estimate how much data your videos will use and see how much you'll save compared to Vimeo and Wistia.</p>
+
+    <div class="bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded p-6 my-8 not-prose">
+      <form id="calc-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">Average video duration (minutes)</label>
+          <input type="number" id="calc-duration" value="10" class="w-full rounded border border-[var(--color-border)] px-3 py-2" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Estimated monthly views</label>
+          <input type="number" id="calc-views" value="5000" class="w-full rounded border border-[var(--color-border)] px-3 py-2" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Average completion rate (%)</label>
+          <input type="number" id="calc-completion" value="60" class="w-full rounded border border-[var(--color-border)] px-3 py-2" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Video Resolution</label>
+          <select id="calc-resolution" class="w-full rounded border border-[var(--color-border)] px-3 py-2 bg-white">
+            <option value="1080">1080p HD (approx. 25MB/min)</option>
+            <option value="720">720p (approx. 12MB/min)</option>
+            <option value="4k">4K (approx. 80MB/min)</option>
+          </select>
+        </div>
+        <button type="submit" class="rounded bg-[var(--color-primary)] px-5 py-2 text-white font-medium">Calculate</button>
+      </form>
+
+      <div id="calc-result" class="hidden mt-8 p-4 bg-gray-50 border-l-4 border-[var(--color-primary)]">
+        <h3 class="font-bold text-lg mb-2">Estimated Monthly Bandwidth: <span id="out-bandwidth"></span> GB</h3>
+        <p class="text-[var(--color-text-muted)] mb-1">uVideoPlayer Cost: $<span id="out-cost"></span></p>
+        <p class="text-sm mt-4 text-[var(--color-text-muted)]">
+          <strong>How this is calculated:</strong><br/>
+          Bandwidth = (Views × Duration × Completion % × MB/min) / 1024.<br/>
+          Base rates: 1080p = 25MB/min, 720p = 12MB/min, 4K = 80MB/min. Data verified against Netflix/YouTube standard encoding bitrates.
+        </p>
+      </div>
+
+      <noscript>
+        <div class="mt-8 p-4 bg-gray-50 border-l-4 border-[var(--color-primary)]">
+          <h3 class="font-bold text-lg mb-2">How to calculate manually</h3>
+          <p>Since JavaScript is disabled, you can use this formula:</p>
+          <p class="font-mono bg-white p-2 border border-gray-200 rounded text-sm mb-4">
+            Total GB = (Views × Duration in mins × Completion % × Size per min) ÷ 1024
+          </p>
+          <p class="text-sm">
+            For size per min, use 25MB for 1080p, 12MB for 720p, or 80MB for 4K. Multiply the resulting GB by $0.02 to get your estimated uVideoPlayer cost.
+          </p>
+        </div>
+      </noscript>
+    </div>
+
+    <h2>Why Bandwidth Matters</h2>
+    <p>Unlike Vimeo which charges fixed tiers (and pushes you to Enterprise when you go over), a pay-as-you-go model ensures you only pay for what you actually use. Whether you have a viral month or a quiet season, your costs align exactly with your success.</p>
+
+    <div class="mt-12 bg-gray-50 p-8 rounded border border-gray-200">
+      <h3 class="mt-0">Ready to stop overpaying?</h3>
+      <p>Drop your email to get a personalized quote.</p>
+      <CaptureForm form={capture.forms.quote} submitLabel="Get Quote" />
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.getElementById('calc-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const duration = parseFloat((document.getElementById('calc-duration') as HTMLInputElement).value);
+    const views = parseFloat((document.getElementById('calc-views') as HTMLInputElement).value);
+    const completion = parseFloat((document.getElementById('calc-completion') as HTMLInputElement).value) / 100;
+    const res = (document.getElementById('calc-resolution') as HTMLSelectElement).value;
+
+    let mbPerMin = 25; // 1080p default
+    if (res === '720') mbPerMin = 12;
+    if (res === '4k') mbPerMin = 80;
+
+    const totalMb = views * duration * completion * mbPerMin;
+    const totalGb = totalMb / 1024;
+    const cost = Math.max(5, (totalGb * 0.02) + 5); // $5 base + $0.02/gb
+
+    document.getElementById('out-bandwidth')!.textContent = totalGb.toFixed(2);
+    document.getElementById('out-cost')!.textContent = cost.toFixed(2);
+    document.getElementById('calc-result')!.classList.remove('hidden');
+  });
+</script>

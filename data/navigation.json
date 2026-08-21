@@ -1,7 +1,7 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "",
+    "logo_alt_text": "uVideoPlayer",
     "logo_url": "/",
     "links": [
       {
@@ -9,40 +9,64 @@
         "text": "About"
       },
       {
+        "link": "/pricing/",
+        "text": "Pricing"
+      },
+      {
+        "link": "/tools/",
+        "text": "Tools"
+      },
+      {
+        "link": "/glossary/",
+        "text": "Glossary"
+      },
+      {
+        "link": "/reference/",
+        "text": "Reference"
+      },
+      {
         "link": "/blog/",
         "text": "Blog"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "",
+    "logo_alt_text": "uVideoPlayer",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "uVideoPlayer. All rights reserved.",
     "links": [
       {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/pricing/",
+        "text": "Pricing"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/tools/",
+        "text": "Tools"
+      },
+      {
+        "link": "/compare/vimeo-alternative/",
+        "text": "Vimeo Alternative"
+      },
+      {
+        "link": "/compare/wistia-alternative/",
+        "text": "Wistia Alternative"
+      },
+      {
+        "link": "/compare/youtube-embed-alternative/",
+        "text": "YouTube Embed Alternative"
+      },
+      {
+        "link": "/blog/",
+        "text": "Blog"
       }
     ]
   }

@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const topics = [
+  "Optimal H.264 Export Settings for Web",
+  "Understanding Content Delivery Networks (CDNs)",
+  "How to properly format an HTML5 <video> tag",
+  "Autoplay Policies Across Major Browsers",
+  "Accessibility: Adding VTT Subtitles",
+  "How to protect videos from right-click downloads",
+  "The impact of video on Core Web Vitals",
+  "Calculating Video Storage vs Bandwidth Costs",
+  "Why HLS is the standard for VOD",
+  "VP9 vs HEVC vs AV1: The Future of Web Video",
+  "Using Poster Images for Faster Page Loads",
+  "Mobile vs Desktop Video Encoding Profiles",
+  "Understanding Keyframes and GOP size",
+  "Resolving Video CORS errors",
+  "How to preload video metadata"
+];
+---
+<Layout title="Web Video Reference Library" seo={{ page_description: "Expert guides on video encoding, streaming, and embedding for web developers." }}>
+  <section class="py-16 md:py-24 max-w-4xl mx-auto px-8">
+    <h1 class="text-4xl font-bold mb-6">Web Video Reference Library</h1>
+    <p class="text-xl text-[var(--color-text-muted)] mb-12 max-w-2xl">Deep dives and technical documentation on everything you need to know about hosting, encoding, and delivering video on the web.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topics.map(t => (
+        <a href="#" class="block p-6 border border-[var(--color-border)] rounded-lg hover:border-[var(--color-primary)] transition-colors">
+          <h2 class="text-lg font-bold mb-2">{t}</h2>
+          <p class="text-sm text-[var(--color-text-muted)]">Read the guide &rarr;</p>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-16 bg-gray-50 p-8 rounded-lg">
+      <h3 class="text-2xl font-bold mb-4">Don't want to learn the hard way?</h3>
+      <p class="mb-6">uVideoPlayer handles transcoding, HLS packaging, and global CDN delivery automatically. Focus on your content, not codecs.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Get product updates" class="max-w-md" />
+    </div>
+  </section>
+</Layout>
