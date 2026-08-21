@@ -1,0 +1,96 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Estimate your In-Country Value (ICV) and Local Content score for UAE defense procurement.",
+  canonical_url: "/tools/local-content-estimator"
+};
+---
+
+<Layout title="Local Content Estimator" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-6">Local Content (ICV) Estimator</h1>
+    <p class="text-slate-600 mb-8">
+      A strong National In-Country Value (ICV) score is mandatory for prime defense contracts in the UAE.
+      Use this estimator to understand how your local spend impacts your score.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <div class="card bg-brand-bg-subtle">
+           <noscript>
+            <div class="bg-amber-100 border border-amber-400 text-amber-700 px-4 py-3 rounded mb-4">
+              <strong>Note:</strong> JavaScript is required for live calculation.
+            </div>
+          </noscript>
+
+          <form id="icv-form" class="space-y-4">
+            <div>
+              <label for="revenue" class="label-field">Total UAE Revenue (AED Millions)</label>
+              <input type="number" id="revenue" min="1" value="50" class="input-field" required />
+            </div>
+
+            <div>
+              <label for="local_procurement" class="label-field">Local Procurement Spend (AED Millions)</label>
+              <input type="number" id="local_procurement" min="0" value="10" class="input-field" required />
+            </div>
+
+             <div>
+              <label for="emiratization" class="label-field">Emiratization (Number of UAE Nationals employed)</label>
+              <input type="number" id="emiratization" min="0" value="2" class="input-field" required />
+            </div>
+
+            <button type="button" id="calc-icv-btn" class="btn-primary w-full">Estimate ICV Score</button>
+          </form>
+
+          <div id="icv-result-box" class="mt-6 p-4 bg-white border border-brand-primary rounded-md hidden text-center">
+            <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wide">Estimated ICV Score</h3>
+            <p class="text-3xl font-bold text-brand-primary mt-2 font-mono" id="icv-result-val">0%</p>
+          </div>
+        </div>
+      </div>
+
+       <div>
+        <div class="card border-brand-secondary">
+          <h3 class="text-xl font-bold mb-2">Need Help Improving ICV?</h3>
+          <p class="text-sm text-slate-600 mb-4">Connect with our consulting partners to audit and improve your score before bidding.</p>
+          <CaptureForm form="contact">
+            <input type="hidden" name="tool" value="icv-estimator" />
+            <div class="space-y-4">
+              <div>
+                <label for="icv_email" class="label-field">Work Email</label>
+                <input type="email" id="icv_email" name="email" required class="input-field" />
+              </div>
+              <button type="submit" class="w-full btn-secondary">Get Expert Help</button>
+            </div>
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('calc-icv-btn');
+    const resultBox = document.getElementById('icv-result-box');
+    const resultVal = document.getElementById('icv-result-val');
+
+    if (btn && resultBox && resultVal) {
+      btn.addEventListener('click', () => {
+        const rev = parseFloat((document.getElementById('revenue') as HTMLInputElement).value) || 1;
+        const proc = parseFloat((document.getElementById('local_procurement') as HTMLInputElement).value) || 0;
+        const emirati = parseFloat((document.getElementById('emiratization') as HTMLInputElement).value) || 0;
+
+        // Simplified mock logic for estimator
+        let score = (proc / rev) * 50; // Max 50% from procurement
+        score += Math.min(emirati * 2, 25); // Max 25% from Emiratization (mock: 2% per employee)
+        score += 5; // Base points for operation
+
+        if(score > 100) score = 100;
+
+        resultVal.textContent = `${score.toFixed(1)}%`;
+        resultBox.classList.remove('hidden');
+      });
+    }
+  </script>
+</Layout>

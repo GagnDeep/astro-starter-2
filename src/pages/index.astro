@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CaptureForm from '../components/forms/capture-form.astro';
+import NewsletterForm from '../components/forms/newsletter-form.astro';
+
+const seo = {
+  page_description: "Aerospace UAE - Connect with verified tier-1s, manufacturers, and defense procurement."
+};
+---
+
+<Layout title="Aerospace UAE B2B Directory" seo={seo}>
+  <div class="bg-brand-primary text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-12">
+      <div class="md:w-1/2">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">The Definitive UAE Aerospace & Defense Supply Chain</h1>
+        <p class="text-lg text-slate-300 mb-8">Access verified tier-1 suppliers, track Tawazun offsets, and connect with procurement officers across the UAE.</p>
+        <div class="flex gap-4">
+          <a href="/directory" class="btn-secondary">Search Directory</a>
+          <a href="/tools/offset-calculator" class="px-4 py-2 bg-transparent border border-white text-white font-medium rounded-md hover:bg-white hover:text-brand-primary transition-colors">Offset Calculator</a>
+        </div>
+      </div>
+      <div class="md:w-1/2 bg-white/10 p-8 rounded-lg backdrop-blur-sm border border-white/20">
+        <h3 class="text-xl font-bold mb-4">Join the Waitlist</h3>
+        <p class="text-sm text-slate-300 mb-6">Register your company profile to be matched with prime defense contracts.</p>
+        <CaptureForm form="waitlist">
+          <div class="space-y-4">
+            <div>
+              <label for="company_name" class="label-field text-white">Company Name</label>
+              <input type="text" id="company_name" name="company_name" required class="input-field text-brand-text" />
+            </div>
+            <div>
+              <label for="email" class="label-field text-white">Work Email</label>
+              <input type="email" id="email" name="email" required class="input-field text-brand-text" />
+            </div>
+            <button type="submit" class="w-full btn-secondary mt-2">Request Access</button>
+          </div>
+        </CaptureForm>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 bg-brand-bg-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12">Essential B2B Tools & Resources</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <a href="/directory" class="card hover:border-brand-primary transition-colors">
+          <h3 class="text-xl font-bold mb-2">Supplier Directory</h3>
+          <p class="text-slate-600">Search 100+ verified local suppliers by certification (AS9100D, GCAA) and capabilities.</p>
+        </a>
+        <a href="/news" class="card hover:border-brand-primary transition-colors">
+          <h3 class="text-xl font-bold mb-2">Market Intelligence</h3>
+          <p class="text-slate-600">Actionable news on UAE defense budgets, EDGE group contracts, and IDEX preparations.</p>
+        </a>
+        <a href="/tools/offset-calculator" class="card hover:border-brand-primary transition-colors">
+          <h3 class="text-xl font-bold mb-2">Offset Calculator</h3>
+          <p class="text-slate-600">Estimate Tawazun offset credits based on investment tiers and local manufacturing multipliers.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 bg-white border-t border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-bold mb-4">Stay Ahead of UAE Procurement</h2>
+      <p class="text-slate-600 mb-8">Get weekly B2B intelligence and supply chain updates straight to your inbox.</p>
+      <div class="max-w-md mx-auto">
+        <NewsletterForm />
+      </div>
+    </div>
+  </div>
+</Layout>

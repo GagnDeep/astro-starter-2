@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CaptureForm from '../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Directory listing and advertising pricing for Aerospace UAE.",
+  canonical_url: "/pricing"
+};
+---
+
+<Layout title="Pricing & Listing Options" seo={seo}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl font-bold mb-4">Directory & Advertising Pricing</h1>
+      <p class="text-slate-600">Get your capabilities in front of defense procurement officers.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div class="card flex flex-col">
+        <h2 class="text-2xl font-bold mb-2">Basic Listing</h2>
+        <p class="text-3xl font-bold text-brand-primary mb-6">Free</p>
+        <ul class="space-y-3 mb-8 flex-grow text-slate-700">
+          <li>✓ Standard directory inclusion</li>
+          <li>✓ Basic company profile</li>
+          <li>✓ Verification of AS9100/ISO certs</li>
+          <li>✗ Featured placement</li>
+          <li>✗ Lead capture on profile</li>
+        </ul>
+        <a href="/contact" class="btn-secondary w-full text-center">Claim Profile</a>
+      </div>
+
+      <div class="card border-brand-primary flex flex-col relative overflow-hidden">
+        <div class="absolute top-0 right-0 bg-brand-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+        <h2 class="text-2xl font-bold mb-2">Premium Partner</h2>
+        <p class="text-3xl font-bold text-brand-primary mb-6">$5,000 <span class="text-sm font-normal text-slate-500">/year</span></p>
+        <ul class="space-y-3 mb-8 flex-grow text-slate-700">
+          <li>✓ Full detailed directory profile</li>
+          <li>✓ Featured placement in category</li>
+          <li>✓ Direct lead capture form on your page</li>
+          <li>✓ Mention in monthly intelligence newsletter</li>
+          <li>✓ Account manager</li>
+        </ul>
+        <a href="#inquire" class="btn-primary w-full text-center">Inquire Now</a>
+      </div>
+    </div>
+
+    <div id="inquire" class="max-w-2xl mx-auto card bg-brand-bg-subtle">
+      <h3 class="text-xl font-bold mb-4">Inquire about Premium</h3>
+      <CaptureForm form="quote">
+        <div class="space-y-4">
+          <div>
+            <label for="premium_email" class="label-field">Work Email</label>
+            <input type="email" id="premium_email" name="email" required class="input-field" />
+          </div>
+          <div>
+            <label for="company_name" class="label-field">Company Name</label>
+            <input type="text" id="company_name" name="company_name" required class="input-field" />
+          </div>
+          <button type="submit" class="btn-primary w-full">Request Details</button>
+        </div>
+      </CaptureForm>
+    </div>
+  </div>
+</Layout>

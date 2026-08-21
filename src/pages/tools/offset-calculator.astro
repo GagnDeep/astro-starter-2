@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Calculate potential Tawazun offset credits for defense investments in the UAE.",
+  canonical_url: "/tools/offset-calculator"
+};
+---
+
+<Layout title="Tawazun Offset Calculator" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-6">Tawazun Offset Credit Estimator</h1>
+    <p class="text-slate-600 mb-8">
+      Use this tool to estimate your potential offset credits under the Tawazun program based on your projected defense investment in the UAE.
+      <em>Note: Multipliers are based on 2024 guidance estimates (e.g., local manufacturing = 1.5x).</em>
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <div class="card bg-brand-bg-subtle">
+          <noscript>
+            <div class="bg-amber-100 border border-amber-400 text-amber-700 px-4 py-3 rounded mb-4">
+              <strong>Note:</strong> JavaScript is required for live calculation.
+              <br/>Method: (Investment Value) &times; (Multiplier) = Offset Credit.
+              <br/>Direct Import = 0.5x, Local Assembly = 1.0x, Local Manufacturing = 1.5x.
+            </div>
+          </noscript>
+
+          <form id="calculator-form" class="space-y-4">
+            <div>
+              <label for="investment" class="label-field">Investment Value (USD Millions)</label>
+              <input type="number" id="investment" min="1" step="0.1" value="10" class="input-field" required />
+            </div>
+
+            <div>
+              <label for="tier" class="label-field">Investment Type</label>
+              <select id="tier" class="input-field" required>
+                <option value="0.5">Direct Import (0.5x)</option>
+                <option value="1.0" selected>Local Assembly (1.0x)</option>
+                <option value="1.5">Local Manufacturing (1.5x)</option>
+              </select>
+            </div>
+
+            <button type="button" id="calculate-btn" class="btn-primary w-full">Calculate Credits</button>
+          </form>
+
+          <div id="result-box" class="mt-6 p-4 bg-white border border-brand-primary rounded-md hidden text-center">
+            <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wide">Estimated Credits</h3>
+            <p class="text-3xl font-bold text-brand-primary mt-2 font-mono" id="result-val">$0M</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card border-brand-secondary">
+          <h3 class="text-xl font-bold mb-2">Request Detailed Report</h3>
+          <p class="text-sm text-slate-600 mb-4">Need a formal breakdown? Email me a compliance report for this scenario.</p>
+          <CaptureForm form="report">
+            <input type="hidden" name="tool" value="offset-calculator" />
+            <div class="space-y-4">
+              <div>
+                <label for="report_email" class="label-field">Work Email</label>
+                <input type="email" id="report_email" name="email" required class="input-field" />
+              </div>
+              <button type="submit" class="w-full btn-secondary">Email me this report</button>
+            </div>
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('calculate-btn');
+    const resultBox = document.getElementById('result-box');
+    const resultVal = document.getElementById('result-val');
+
+    if (btn && resultBox && resultVal) {
+      btn.addEventListener('click', () => {
+        const invInput = document.getElementById('investment') as HTMLInputElement;
+        const tierSelect = document.getElementById('tier') as HTMLSelectElement;
+
+        const inv = parseFloat(invInput.value) || 0;
+        const mult = parseFloat(tierSelect.value) || 1;
+
+        const res = (inv * mult).toFixed(1);
+
+        resultVal.textContent = `$${res}M`;
+        resultBox.classList.remove('hidden');
+      });
+    }
+  </script>
+</Layout>

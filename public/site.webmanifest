@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "Aerospace UAE",
+  "short_name": "Aerospace UAE",
+  "description": "The definitive B2B directory and news portal for UAE aerospace and defense suppliers.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a",
   "icons": [
     {
       "src": "/meta/icon-192.png",

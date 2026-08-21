@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const suppliers = await getCollection('suppliers');
+const categories = [...new Set(suppliers.map(s => s.data.category))];
+
+const seo = {
+  page_description: "Browse the complete directory of verified UAE aerospace and defense suppliers.",
+  canonical_url: "/directory"
+};
+---
+
+<Layout title="Supplier Directory" seo={seo}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-8">UAE Aerospace & Defense Directory</h1>
+
+    <div class="mb-12">
+      <h2 class="text-xl font-bold mb-4">Browse by Category</h2>
+      <div class="flex flex-wrap gap-4">
+        {categories.map(cat => (
+          <a href={`/directory/${cat}`} class="px-4 py-2 bg-slate-100 rounded-md hover:bg-slate-200 border border-slate-200 capitalize">
+            {cat}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold mb-4">All Suppliers</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {suppliers.map(supplier => (
+          <div class="card">
+            <h3 class="font-bold text-lg mb-2">
+              <a href={`/suppliers/${supplier.id.replace(/\.mdx?$/, '')}`}>{supplier.data.title}</a>
+            </h3>
+            <p class="text-sm text-slate-600 mb-2 capitalize">{supplier.data.category} | {supplier.data.location}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              {supplier.data.certifications.map((cert: string) => (
+                <span class="text-xs bg-brand-primary text-white px-2 py-1 rounded">{cert}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,17 +1,20 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
-  "lang": "en",
-  "locale": "en_US",
-  "twitter_site": "",
+  "site_title": "Aerospace UAE",
+  "description": "The definitive B2B directory and news portal for UAE aerospace and defense suppliers.",
+  "tagline": "Connect with verified tier-1s, manufacturers, and defense procurement.",
+  "image_alt": "Aerospace UAE Logo",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "theme_color": "#1e3a8a",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
-    "same_as": []
-  }
+    "name": "Aerospace UAE",
+    "logo": "/siteicon.png",
+    "same_as": [
+      "https://linkedin.com/company/aerospaceuae",
+      "https://twitter.com/aerospaceuae"
+    ]
+  },
+  "locale": "en_AE",
+  "lang": "en",
+  "default_author": "Aerospace UAE Editorial",
+  "twitter_site": "@aerospaceuae"
 }

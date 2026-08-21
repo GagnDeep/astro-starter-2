@@ -1,32 +1,21 @@
 ---
-/**
- * Where a no-JavaScript submission lands (`capture.thanksUrl`).
- *
- * The capture server 303s here and appends `?wcs_id=…&wcs_outcome=…`, so the
- * page can show a reference number. Kept out of the index and the sitemap —
- * a thank-you page has no business ranking.
- */
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  no_index: true,
+  page_description: "Thank you for contacting Aerospace UAE."
+};
 ---
 
-<Layout
-  title="Thanks"
-  seo={{ no_index: true, page_description: "Your message has been received." }}
->
-  <section class="flex min-h-[60vh] flex-col items-center justify-center px-8 text-center">
-    <h1 class="mb-4 text-3xl font-bold md:text-4xl">Thanks — we've got it.</h1>
-    <p class="mb-6 text-lg text-gray-600">Your message is in. We'll be in touch shortly.</p>
-    <p data-reference class="mb-6 hidden text-sm text-gray-500"></p>
-    <a href="/" class="text-lg font-medium text-blue-600 hover:text-blue-800"> &larr; Back home </a>
-  </section>
+<Layout title="Thank You" seo={seo}>
+  <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <div class="bg-green-100 text-green-800 p-4 rounded-full inline-block mb-6">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+    </div>
+    <h1 class="text-3xl font-bold mb-4">Request Received</h1>
+    <p class="text-slate-600 mb-8">
+      Thank you for your submission. Our team will review your details and get back to you shortly.
+    </p>
+    <a href="/" class="btn-primary">Return to Homepage</a>
+  </div>
 </Layout>
-
-<script>
-  // `wcs_id` is a UUIDv7 the visitor can quote back to us; nothing sensitive.
-  const id = new URLSearchParams(window.location.search).get("wcs_id");
-  const target = document.querySelector<HTMLElement>("[data-reference]");
-  if (id && target) {
-    target.textContent = `Reference: ${id}`;
-    target.classList.remove("hidden");
-  }
-</script>

@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import NewsletterForm from '../../components/forms/newsletter-form.astro';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => new Date(b.data.post_hero.date).valueOf() - new Date(a.data.post_hero.date).valueOf());
+
+const seo = {
+  page_description: "Actionable news and intelligence for the UAE aerospace and defense B2B sector.",
+  canonical_url: "/news"
+};
+---
+
+<Layout title="Defense & Aerospace News UAE" seo={seo}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-8">B2B Intelligence & News</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      {posts.map(post => (
+        <article class="card flex flex-col h-full">
+          <div class="flex-grow">
+            <p class="text-xs text-brand-text-muted mb-2 font-mono">
+              {new Date(post.data.post_hero.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+            <h2 class="text-xl font-bold mb-3 hover:text-brand-primary">
+              <a href={`/news/${post.id.replace(/\.mdx?$/, '')}`}>{post.data.title}</a>
+            </h2>
+            <p class="text-sm text-slate-600 line-clamp-3">
+              {post.data.seo?.page_description || post.data.title}
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100">
+            <a href={`/news/${post.id.replace(/\.mdx?$/, '')}`} class="text-sm font-medium text-brand-primary">Read Analysis &rarr;</a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="bg-brand-bg-subtle border border-brand-border p-8 rounded-lg text-center max-w-2xl mx-auto">
+      <h3 class="text-xl font-bold mb-2">Subscribe to our defense intel newsletter.</h3>
+      <p class="text-slate-600 text-sm mb-6">No fluff, just B2B procurement updates.</p>
+      <NewsletterForm />
+    </div>
+  </div>
+</Layout>

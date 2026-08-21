@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const terms = await getCollection('glossary');
+terms.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const seo = {
+  page_description: "A comprehensive glossary of aerospace and defense terms used in the UAE B2B supply chain.",
+  canonical_url: "/glossary"
+};
+---
+
+<Layout title="Aerospace & Defense Glossary UAE" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-8">Aerospace & Defense Glossary</h1>
+    <p class="text-slate-600 mb-8">Definitions for crucial acronyms and programs in the UAE defense procurement ecosystem.</p>
+
+    <div class="space-y-6">
+      {terms.map(term => (
+        <div class="card" id={term.id.replace(/\.mdx?$/, '')}>
+          <h2 class="text-xl font-bold mb-2">
+            <a href={`/glossary/${term.id.replace(/\.mdx?$/, '')}`} class="text-brand-text hover:text-brand-primary">
+              {term.data.title}
+            </a>
+          </h2>
+          <p class="text-slate-700">{term.data.definition}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
