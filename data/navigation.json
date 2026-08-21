@@ -1,56 +1,48 @@
 {
   "header": {
-    "logo": "/images/logos/logo.png",
-    "logo_alt_text": "uDocumentView",
+    "logo": "/images/logos/logo-wordmark-blue.png",
+    "logo_alt_text": "CloudCannon logo",
     "logo_url": "/",
     "links": [
       {
-        "text": "Tools",
-        "link": "/calculators/"
+        "link": "/about/",
+        "text": "About"
       },
       {
-        "text": "Reference",
-        "link": "/reference/"
+        "link": "/blog/",
+        "text": "Blog"
       },
       {
-        "text": "Blog",
-        "link": "/blog/"
+        "link": "/contact/",
+        "text": "Contact"
       },
       {
-        "text": "Pricing",
-        "link": "/pricing/"
+        "link": "https://github.com/CloudCannon/astro-starter/",
+        "text": "GitHub"
+      },
+      {
+        "link": "https://cloudcannon.com/",
+        "text": "CloudCannon"
       }
-    ],
-    "button": {
-      "text": "Contact",
-      "link": "/contact/"
-    }
+    ]
   },
   "footer": {
-    "logo": "/images/logos/logo.png",
-    "logo_alt_text": "uDocumentView",
+    "logo": "/images/logos/logo-wordmark-white.png",
+    "logo_alt_text": "CloudCannon logo",
     "logo_url": "/",
-    "copyright": "uDocumentView",
+    "copyright": "MyCompany. All rights reserved.",
     "links": [
       {
-        "text": "About",
-        "link": "/about/"
+        "link": "/contact/",
+        "text": "Contact"
       },
       {
-        "text": "FAQ",
-        "link": "/faq/"
+        "link": "/blog/",
+        "text": "Blog"
       },
       {
-        "text": "Glossary",
-        "link": "/glossary/"
-      },
-      {
-        "text": "Privacy Policy",
-        "link": "/legal/privacy/"
-      },
-      {
-        "text": "Terms of Service",
-        "link": "/legal/terms/"
+        "link": "/feed.xml",
+        "text": "RSS Feed"
       }
     ]
   }

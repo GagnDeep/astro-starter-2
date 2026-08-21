@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Looking for an alternative to Google Docs Viewer? See how uDocumentView compares for secure, zero-footprint document viewing.",
+  open_graph_type: "article"
+};
+---
+<Layout title="Google Docs Viewer Alternative | uDocumentView" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold mb-6">uDocumentView vs. Google Docs Viewer</h1>
+    <p class="text-xl text-slate-600 mb-12">A direct comparison of features, privacy, and speed.</p>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-slate-100">
+            <th class="p-4 border border-slate-300 font-bold">Feature</th>
+            <th class="p-4 border border-slate-300 font-bold text-blue-700">uDocumentView</th>
+            <th class="p-4 border border-slate-300 font-bold">Google Docs Viewer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-4 border border-slate-300 font-medium">Privacy</td>
+            <td class="p-4 border border-slate-300 text-green-600 font-medium">Zero-footprint (Local parsing / Ephemeral RAM)</td>
+            <td class="p-4 border border-slate-300 text-red-500">Processed on Google servers, subject to Google ToS</td>
+          </tr>
+          <tr class="bg-slate-50">
+            <td class="p-4 border border-slate-300 font-medium">Account Required</td>
+            <td class="p-4 border border-slate-300 text-green-600 font-medium">No</td>
+            <td class="p-4 border border-slate-300 text-red-500">Often prompts for Google Account</td>
+          </tr>
+          <tr>
+            <td class="p-4 border border-slate-300 font-medium">Speed</td>
+            <td class="p-4 border border-slate-300">Instant (Client-side)</td>
+            <td class="p-4 border border-slate-300">Fast (Server-side rendering)</td>
+          </tr>
+          <tr class="bg-slate-50">
+            <td class="p-4 border border-slate-300 font-medium">Editing</td>
+            <td class="p-4 border border-slate-300">No (Viewing only)</td>
+            <td class="p-4 border border-slate-300">Yes (Full editor)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="/" class="inline-block bg-blue-600 text-white font-medium px-8 py-3 rounded-md hover:bg-blue-700">Try uDocumentView Now</a>
+    </div>
+  </main>
+</Layout>

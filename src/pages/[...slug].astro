@@ -1,26 +1,22 @@
 ---
-import { getCollection, render } from "astro:content";
 import PageLayout from "../layouts/Page.astro";
-import PaginatedLayout from "../layouts/Paginated.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export interface Props {
+  page: CollectionEntry<"pages">;
+}
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
-  return pages.map((page) => ({
-    params: { slug: page.id === "index" ? undefined : page.id },
-    props: { page },
-  }));
+  return pages.map((page) => {
+    const slug = page.id.replace(/index$/, "");
+    if (slug.length === 0)
+      return { params: { slug: undefined }, props: { page } };
+    return { params: { slug }, props: { page } };
+  });
 }
 
 const { page } = Astro.props;
-const { Content } = await render(page);
 ---
 
-{
-  "page_size" in page.data ? (
-    <PaginatedLayout frontmatter={page.data as any} />
-  ) : (
-    <PageLayout frontmatter={page.data as any}>
-      <Content />
-    </PageLayout>
-  )
-}
+<PageLayout frontmatter={page.data} />

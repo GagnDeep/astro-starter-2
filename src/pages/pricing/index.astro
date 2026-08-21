@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "uDocumentView is completely free for individual use. Explore our zero-cost, zero-footprint document viewer.",
+  open_graph_type: "website"
+};
+---
+<Layout title="Pricing | uDocumentView" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-16">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold mb-4">Simple, Transparent Pricing</h1>
+      <p class="text-xl text-slate-600">Privacy shouldn't be a premium feature.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      <div class="bg-white border-2 border-blue-600 rounded-lg shadow-md p-8 relative">
+        <div class="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 text-sm font-semibold rounded-bl-lg rounded-tr-md">Current Plan</div>
+        <h2 class="text-2xl font-bold mb-2">Free Viewer</h2>
+        <div class="text-4xl font-bold mb-6">$0 <span class="text-lg text-slate-500 font-normal">/ forever</span></div>
+        <ul class="space-y-4 mb-8">
+          <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> View all supported formats</li>
+          <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Zero footprint processing</li>
+          <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Up to 50MB per file</li>
+          <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> No account required</li>
+        </ul>
+        <a href="/" class="block w-full text-center bg-blue-600 text-white font-medium py-3 rounded-md hover:bg-blue-700">Start Viewing</a>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-8">
+        <h2 class="text-2xl font-bold mb-2 text-slate-700">API Access</h2>
+        <div class="text-4xl font-bold text-slate-700 mb-6">Coming Soon</div>
+        <ul class="space-y-4 mb-8 text-slate-600">
+          <li class="flex items-center"><svg class="w-5 h-5 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Embed in your own app</li>
+          <li class="flex items-center"><svg class="w-5 h-5 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Dedicated processing nodes</li>
+          <li class="flex items-center"><svg class="w-5 h-5 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Higher file size limits</li>
+        </ul>
+        <button disabled class="w-full text-center bg-slate-200 text-slate-500 font-medium py-3 rounded-md cursor-not-allowed">Join Waitlist</button>
+      </div>
+    </div>
+  </main>
+</Layout>

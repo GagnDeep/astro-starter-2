@@ -1,17 +1,17 @@
 {
-  "site_title": "uDocumentView",
-  "description": "The fastest, safest way to view any document in your browser—no downloads, no accounts, no trace left behind.",
-  "tagline": "View documents instantly, securely, and purely in your browser.",
+  "site_title": "Astro Starter",
+  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "tagline": "Build fast, editable websites with Astro.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "uDocumentView — view any document in your browser.",
-  "default_author": "uDocumentView Team",
-  "theme_color": "#ffffff",
+  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
+  "default_author": "CloudCannon",
+  "theme_color": "#0f172a",
   "organization": {
-    "name": "uDocumentView",
-    "logo": "/images/logos/logo.png",
+    "name": "CloudCannon",
+    "logo": "/images/logos/logo-blue.png",
     "same_as": []
   }
 }

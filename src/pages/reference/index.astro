@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+
+const pages = await getCollection('reference');
+
+const seo = {
+  page_description: "Reference library for document formats and security concepts.",
+  open_graph_type: "website"
+};
+---
+<Layout title="Reference Library | uDocumentView" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold mb-8">Reference Library</h1>
+    <ul class="space-y-4">
+      {pages.map(page => (
+        <li>
+          <a href={`/reference/${page.id.replace('-', '/')}/`} class="text-xl text-blue-600 hover:underline">{page.data.title}</a>
+          <p class="text-slate-600">{page.data.description || page.data.seo?.page_description}</p>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>
