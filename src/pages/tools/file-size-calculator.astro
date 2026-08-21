@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BandwidthCalculator from "../../components/tools/bandwidth-calculator.astro";
+
+const seo = {
+  page_description: "Calculate file transfer times based on file size and connection speed.",
+  open_graph_type: "website" as const,
+};
+---
+
+<Layout seo={seo} title="File Transfer Time Calculator | UViewDocument">
+  <main class="container mx-auto px-4 py-12 prose prose-slate">
+    <h1 class="text-center">File Transfer Time Calculator</h1>
+    <p class="text-center max-w-2xl mx-auto mb-12">
+      Need to know how long it will take to send or receive a document? Use our simple calculator to estimate transfer times based on your connection speed.
+    </p>
+
+    <BandwidthCalculator />
+
+    <div class="mt-16 max-w-2xl mx-auto">
+      <h2>Understanding File Transfer Speeds</h2>
+      <p>When sharing documents online, it's important to understand the difference between Megabytes (MB) and Megabits (Mb). File sizes are typically measured in Bytes, while connection speeds are measured in bits per second.</p>
+      <ul>
+        <li>1 Byte = 8 bits</li>
+        <li>A 100 Megabyte (MB) file equals 800 Megabits (Mb)</li>
+        <li>On a 100 Mbps connection, transferring a 100 MB file takes at least 8 seconds theoretically.</li>
+      </ul>
+      <p>Our online document viewer removes the need to download large files entirely, saving you bandwidth and time.</p>
+    </div>
+  </main>
+</Layout>

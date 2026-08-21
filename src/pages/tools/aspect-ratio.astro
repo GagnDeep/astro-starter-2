@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AspectRatioCalculator from "../../components/tools/aspect-ratio-calculator.astro";
+
+const seo = {
+  page_description: "Calculate exact dimensions to maintain specific aspect ratios for viewing or embedding documents.",
+  open_graph_type: "website" as const,
+};
+---
+
+<Layout seo={seo} title="Aspect Ratio Calculator | UViewDocument">
+  <main class="container mx-auto px-4 py-12 prose prose-slate">
+    <h1 class="text-center">Aspect Ratio Calculator</h1>
+    <p class="text-center max-w-2xl mx-auto mb-12">
+      Calculate the exact pixel dimensions needed to maintain a document or image's original aspect ratio.
+    </p>
+
+    <AspectRatioCalculator />
+
+    <div class="mt-16 max-w-2xl mx-auto">
+      <h2>Why Aspect Ratios Matter for Documents</h2>
+      <p>When embedding a document viewer into a website or resizing a presentation for a different screen, maintaining the correct aspect ratio ensures your content doesn't look stretched or squashed.</p>
+      <ul>
+        <li><strong>Standard Presentations:</strong> Often use a 16:9 or 4:3 aspect ratio.</li>
+        <li><strong>A4 Documents:</strong> Typically have a 1:1.414 aspect ratio.</li>
+        <li><strong>US Letter Documents:</strong> Typically have an 8.5:11 aspect ratio (approx 1:1.29).</li>
+      </ul>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,58 @@
+---
+---
+<div class="bg-surface border border-border rounded-lg p-6 max-w-lg mx-auto">
+  <h2 class="text-xl font-bold mb-4">Storage Capacity Calculator</h2>
+  <p class="text-sm mb-4">Find out how many documents you can store on your device.</p>
+
+  <form id="storage-calc" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium mb-1" for="storage-size">Available Storage (GB)</label>
+      <input type="number" id="storage-size" class="w-full border border-border rounded p-2 bg-bg text-text" value="10" min="0" step="any" required>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1" for="doc-type">Average Document Type</label>
+      <select id="doc-type" class="w-full border border-border rounded p-2 bg-bg text-text">
+        <option value="0.05">Simple Text Document (50 KB)</option>
+        <option value="1">Standard PDF / Word Doc (1 MB)</option>
+        <option value="5">Heavy Presentation / Graphics PDF (5 MB)</option>
+        <option value="25">Large Scanned Document (25 MB)</option>
+      </select>
+    </div>
+
+    <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-bg py-2 px-4 rounded font-medium transition-colors">Calculate Capacity</button>
+  </form>
+
+  <div id="storage-result" class="mt-6 hidden">
+    <h3 class="font-bold border-t border-border pt-4">Estimated Capacity:</h3>
+    <p id="storage-count" class="text-2xl font-bold text-primary mt-2">--</p>
+    <div class="mt-4 text-sm bg-bg border border-border p-3 rounded">
+      <p class="font-semibold mb-1">How this is calculated:</p>
+      <p>Documents = (Storage Size in GB × 1024 MB) ÷ Average Document Size in MB.</p>
+      <p class="mt-1 text-xs opacity-80">Note: Actual capacity will be slightly lower due to file system overhead and metadata.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sForm = document.getElementById('storage-calc');
+  const sResultDiv = document.getElementById('storage-result');
+  const sCountEl = document.getElementById('storage-count');
+
+  if (sForm && sResultDiv && sCountEl) {
+    sForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const storageGb = parseFloat((document.getElementById('storage-size') as HTMLInputElement).value);
+      const docMb = parseFloat((document.getElementById('doc-type') as HTMLSelectElement).value);
+
+      if (docMb <= 0) return;
+
+      const storageMb = storageGb * 1024;
+      const count = Math.floor(storageMb / docMb);
+
+      sCountEl.textContent = `${count.toLocaleString()} documents`;
+      sResultDiv.classList.remove('hidden');
+    });
+  }
+</script>

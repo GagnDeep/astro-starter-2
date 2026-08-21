@@ -1,0 +1,51 @@
+---
+interface Props {
+  documentType?: string;
+}
+
+const { documentType = "PDF" } = Astro.props;
+---
+<div class="border border-border bg-surface rounded-xl overflow-hidden max-w-4xl mx-auto shadow-sm my-8">
+  <div class="bg-bg border-b border-border px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded bg-primary text-white flex items-center justify-center font-bold text-xs">
+        {documentType}
+      </div>
+      <span class="font-medium text-sm">Example_Document.{documentType.toLowerCase()}</span>
+    </div>
+    <div class="flex gap-2">
+      <button class="px-3 py-1 bg-surface border border-border rounded text-sm hover:bg-bg" aria-label="Zoom out">-</button>
+      <span class="px-2 py-1 text-sm text-center min-w-[60px]">100%</span>
+      <button class="px-3 py-1 bg-surface border border-border rounded text-sm hover:bg-bg" aria-label="Zoom in">+</button>
+    </div>
+  </div>
+
+  <div class="bg-gray-100 min-h-[500px] p-8 flex items-center justify-center overflow-auto relative">
+    <!-- Simulated document page -->
+    <div class="bg-white w-full max-w-2xl min-h-[600px] shadow-sm border border-gray-200 p-12">
+      <div class="h-8 bg-gray-200 w-3/4 mb-8 rounded"></div>
+      <div class="space-y-4">
+        <div class="h-4 bg-gray-100 w-full rounded"></div>
+        <div class="h-4 bg-gray-100 w-full rounded"></div>
+        <div class="h-4 bg-gray-100 w-11/12 rounded"></div>
+        <div class="h-4 bg-gray-100 w-full rounded"></div>
+        <div class="h-4 bg-gray-100 w-4/5 rounded"></div>
+      </div>
+
+      <div class="mt-12 h-48 bg-gray-100 w-full rounded flex items-center justify-center">
+        <span class="text-gray-400 font-medium">Illustration</span>
+      </div>
+
+      <div class="space-y-4 mt-12">
+        <div class="h-4 bg-gray-100 w-full rounded"></div>
+        <div class="h-4 bg-gray-100 w-9/10 rounded"></div>
+        <div class="h-4 bg-gray-100 w-full rounded"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-bg border-t border-border px-4 py-2 flex justify-between items-center text-xs text-gray-500">
+    <span>Page 1 of 1</span>
+    <span>Viewed securely with UViewDocument</span>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+---
+---
+<div class="bg-surface border border-border rounded-lg p-6 max-w-lg mx-auto">
+  <h2 class="text-xl font-bold mb-4">File Transfer Time Calculator</h2>
+  <p class="text-sm mb-4">Calculate how long it takes to transfer a file based on your connection speed.</p>
+
+  <form id="bw-calc" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium mb-1" for="file-size">File Size</label>
+      <div class="flex gap-2">
+        <input type="number" id="file-size" class="flex-1 border border-border rounded p-2 bg-bg text-text" value="100" min="0" step="any" required>
+        <select id="size-unit" class="border border-border rounded p-2 bg-bg text-text">
+          <option value="1">MB</option>
+          <option value="1024">GB</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1" for="speed">Connection Speed</label>
+      <div class="flex gap-2">
+        <input type="number" id="speed" class="flex-1 border border-border rounded p-2 bg-bg text-text" value="100" min="0" step="any" required>
+        <select id="speed-unit" class="border border-border rounded p-2 bg-bg text-text">
+          <option value="1">Mbps</option>
+          <option value="1000">Gbps</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-bg py-2 px-4 rounded font-medium transition-colors">Calculate Time</button>
+  </form>
+
+  <div id="bw-result" class="mt-6 hidden">
+    <h3 class="font-bold border-t border-border pt-4">Estimated Transfer Time:</h3>
+    <p id="bw-time" class="text-2xl font-bold text-primary mt-2">--</p>
+    <div class="mt-4 text-sm bg-bg border border-border p-3 rounded">
+      <p class="font-semibold mb-1">How this is calculated:</p>
+      <p>Time (seconds) = (File Size in Megabytes × 8) ÷ Speed in Megabits per second.</p>
+      <p class="mt-1 text-xs opacity-80">Note: Actual transfer speeds may vary due to network overhead, congestion, and protocol efficiency (typically around 10-20% slower than theoretical maximums).</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('bw-calc');
+  const resultDiv = document.getElementById('bw-result');
+  const timeEl = document.getElementById('bw-time');
+
+  if (form && resultDiv && timeEl) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const sizeInput = parseFloat((document.getElementById('file-size') as HTMLInputElement).value);
+      const sizeUnit = parseFloat((document.getElementById('size-unit') as HTMLSelectElement).value);
+      const speedInput = parseFloat((document.getElementById('speed') as HTMLInputElement).value);
+      const speedUnit = parseFloat((document.getElementById('speed-unit') as HTMLSelectElement).value);
+
+      // Calculate:
+      // size in MB = sizeInput * sizeUnit
+      // size in Megabits = size in MB * 8
+      // speed in Mbps = speedInput * speedUnit
+
+      const sizeMb = sizeInput * sizeUnit;
+      const sizeMbits = sizeMb * 8;
+      const speedMbps = speedInput * speedUnit;
+
+      if (speedMbps <= 0) {
+        timeEl.textContent = "Speed must be greater than 0";
+        resultDiv.classList.remove('hidden');
+        return;
+      }
+
+      const seconds = sizeMbits / speedMbps;
+
+      let displayTime = '';
+      if (seconds < 60) {
+        displayTime = `${seconds.toFixed(1)} seconds`;
+      } else if (seconds < 3600) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.round(seconds % 60);
+        displayTime = `${mins} min ${secs} sec`;
+      } else {
+        const hours = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        displayTime = `${hours} hr ${mins} min`;
+      }
+
+      timeEl.textContent = displayTime;
+      resultDiv.classList.remove('hidden');
+    });
+  }
+</script>

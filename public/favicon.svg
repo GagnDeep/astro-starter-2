@@ -1,16 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
-  <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
-  -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
+  <rect width="512" height="512" rx="112" fill="#ffffff" />
   <path
-    d="M256 112 L384 368 H128 Z"
+    d="M128 128 L384 128 L384 384 L128 384 Z"
     fill="none"
-    stroke="#ffffff"
+    stroke="#2563eb"
     stroke-width="36"
     stroke-linejoin="round"
   />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+  <path
+    d="M200 200 L312 200 M200 256 L312 256 M200 312 L280 312"
+    fill="none"
+    stroke="#2563eb"
+    stroke-width="24"
+    stroke-linecap="round"
+  />
 </svg>
