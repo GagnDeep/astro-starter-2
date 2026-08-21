@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+---
+<Layout title="Recipe Converter" seo={{ page_description: "Scale recipes up or down accurately with precise multipliers." }}>
+  <div class="max-w-3xl mx-auto py-12 px-4">
+    <h1 class="text-4xl font-bold mb-4">Recipe Converter</h1>
+    <p class="text-lg text-text-muted mb-8">
+      Scaling a recipe requires a precise multiplier. Determine your desired yield and divide it by the original yield to find your conversion factor.
+    </p>
+
+    <div class="bg-surface-alt p-6 border border-border rounded mb-8 shadow-sm">
+      <noscript>
+        <p class="text-accent mb-4 font-semibold">JavaScript is required for interactive calculation.</p>
+        <div class="prose max-w-none">
+          <h3>The Method</h3>
+          <p>To scale manually:</p>
+          <ol>
+            <li>Divide Desired Yield by Original Yield (e.g., 12 portions / 4 portions = 3.0 multiplier).</li>
+            <li>Multiply every ingredient quantity by the multiplier.</li>
+            <li>Note: Spices and leavening agents may not scale perfectly linearly at extreme ends.</li>
+          </ol>
+        </div>
+      </noscript>
+
+      <form id="converter-form" class="space-y-4 hidden">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-medium mb-1" for="orig-yield">Original Yield</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="orig-yield" value="4" min="1" required />
+          </div>
+          <div>
+            <label class="block font-medium mb-1" for="new-yield">Desired Yield</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="new-yield" value="12" min="1" required />
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-border mt-6">
+          <h3 class="text-xl font-bold mb-4">Results</h3>
+          <p class="mb-4">Multiplier: <strong id="multiplier" class="font-mono text-xl">3.00</strong>x</p>
+          <div class="flex gap-2 mb-4">
+            <input type="number" id="ing-amt" class="w-1/3 rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" placeholder="Amount (e.g. 100)" />
+            <input type="text" id="ing-name" class="w-2/3 rounded border border-border px-3 py-2 focus:ring-1 focus:ring-primary" placeholder="Ingredient name" />
+            <button type="button" id="add-btn" class="btn-primary">Add</button>
+          </div>
+          <table class="w-full text-left font-mono text-sm">
+            <thead>
+              <tr>
+                <th class="p-2 border-b">Ingredient</th>
+                <th class="p-2 border-b">Original</th>
+                <th class="p-2 border-b">Scaled</th>
+              </tr>
+            </thead>
+            <tbody id="ingredients-body">
+              <tr><td class="p-2 border-b" colspan="3">Add ingredients above to see them scaled.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+
+    <div class="bg-surface-alt p-6 border border-border rounded mt-12 hidden" id="calc-capture">
+      <h3 class="text-xl font-bold mb-2">Want to save your conversions?</h3>
+      <p class="mb-4">Sign up for our newsletter to get more tools and kitchen cheatsheets.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Subscribe" />
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('converter-form');
+        const captureBox = document.getElementById('calc-capture');
+        if (!form) return;
+
+        form.classList.remove('hidden');
+        if (captureBox) captureBox.classList.remove('hidden');
+
+        const origYield = document.getElementById('orig-yield') as HTMLInputElement;
+        const newYield = document.getElementById('new-yield') as HTMLInputElement;
+        const multiplierEl = document.getElementById('multiplier');
+        const ingAmt = document.getElementById('ing-amt') as HTMLInputElement;
+        const ingName = document.getElementById('ing-name') as HTMLInputElement;
+        const addBtn = document.getElementById('add-btn');
+        const tbody = document.getElementById('ingredients-body');
+
+        const ingredients: {name: string, amt: number}[] = [];
+
+        function update() {
+          const o = parseFloat(origYield.value) || 1;
+          const n = parseFloat(newYield.value) || 1;
+          const mult = n / o;
+          if (multiplierEl) multiplierEl.textContent = mult.toFixed(2);
+
+          if (!tbody) return;
+          if (ingredients.length === 0) {
+            tbody.innerHTML = '<tr><td class="p-2 border-b" colspan="3">Add ingredients above to see them scaled.</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = ingredients.map(ing => `
+            <tr>
+              <td class="p-2 border-b">${ing.name}</td>
+              <td class="p-2 border-b">${ing.amt}</td>
+              <td class="p-2 border-b font-bold">${(ing.amt * mult).toFixed(2)}</td>
+            </tr>
+          `).join('');
+        }
+
+        origYield.addEventListener('input', update);
+        newYield.addEventListener('input', update);
+
+        addBtn?.addEventListener('click', () => {
+          const amt = parseFloat(ingAmt.value);
+          const name = ingName.value.trim();
+          if (isNaN(amt) || !name) return;
+          ingredients.push({ name, amt });
+          ingAmt.value = '';
+          ingName.value = '';
+          ingName.focus();
+          update();
+        });
+
+        update();
+      });
+    </script>
+  </div>
+</Layout>

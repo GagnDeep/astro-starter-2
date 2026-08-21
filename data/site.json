@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Cooking",
+  "description": "The analytical, rigorous guide for serious home cooks bridging the gap to professional techniques.",
+  "tagline": "Master professional culinary techniques.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Cooking — bridging the gap to professional techniques.",
+  "default_author": "Institute of Cooking",
+  "theme_color": "#1e293b",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Cooking",
+    "logo": "/images/logos/logo.png",
     "same_as": []
   }
 }

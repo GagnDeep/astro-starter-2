@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+---
+<Layout title="Baker's Percentage Calculator" seo={{ page_description: "Calculate accurate recipe weights using baker's percentage methodology where flour is 100%." }}>
+  <div class="max-w-3xl mx-auto py-12 px-4">
+    <h1 class="text-4xl font-bold mb-4">Baker's Percentage Calculator</h1>
+    <p class="text-lg text-text-muted mb-8">
+      In professional baking, formulas use Baker's Percentage where the total weight of flour represents 100%. All other ingredients are calculated as a percentage of that flour weight. This ensures consistent hydration and structure regardless of batch size.
+    </p>
+
+    <div class="bg-surface-alt p-6 border border-border rounded mb-8 shadow-sm" id="calc-container">
+      <noscript>
+        <p class="text-accent mb-4 font-semibold">JavaScript is required for interactive calculation.</p>
+        <div class="prose max-w-none">
+          <h3>The Method</h3>
+          <p>To calculate manually:</p>
+          <ol>
+            <li>Determine total flour weight (e.g., 500g). This is 100%.</li>
+            <li>For hydration (water), multiply flour weight by percentage (e.g., 500g &times; 0.70 = 350g water).</li>
+            <li>For salt, typically 2%, multiply flour weight by 0.02 (e.g., 500g &times; 0.02 = 10g salt).</li>
+            <li>For yeast, typically 1%, multiply flour weight by 0.01 (e.g., 500g &times; 0.01 = 5g yeast).</li>
+          </ol>
+        </div>
+      </noscript>
+
+      <form id="bakers-form" class="space-y-4 hidden">
+        <div>
+          <label class="block font-medium mb-1" for="flour">Total Flour Weight (g)</label>
+          <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="flour" value="1000" min="1" required />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-medium mb-1" for="water-pct">Hydration / Water (%)</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="water-pct" value="70" step="0.1" min="0" required />
+          </div>
+          <div>
+            <label class="block font-medium mb-1" for="salt-pct">Salt (%)</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="salt-pct" value="2" step="0.1" min="0" required />
+          </div>
+          <div>
+            <label class="block font-medium mb-1" for="yeast-pct">Yeast (%)</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="yeast-pct" value="1" step="0.1" min="0" required />
+          </div>
+        </div>
+        <div class="pt-4 border-t border-border mt-6">
+          <h3 class="text-xl font-bold mb-4">Results</h3>
+          <table class="w-full text-left font-mono text-sm">
+            <thead>
+              <tr>
+                <th class="p-2 border-b">Ingredient</th>
+                <th class="p-2 border-b">%</th>
+                <th class="p-2 border-b">Weight (g)</th>
+              </tr>
+            </thead>
+            <tbody id="results-body">
+              <!-- Populated by JS -->
+            </tbody>
+            <tfoot>
+              <tr class="font-bold bg-border">
+                <td class="p-2">Total Dough Weight</td>
+                <td class="p-2" id="total-pct">173%</td>
+                <td class="p-2" id="total-weight">1730g</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </form>
+    </div>
+
+    <div class="bg-surface-alt p-6 border border-border rounded mt-12 hidden" id="calc-capture">
+      <h3 class="text-xl font-bold mb-2">Master the Fundamentals</h3>
+      <p class="mb-4">Get professional baking formulas and scaling worksheets delivered to your inbox.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Send me the worksheets" />
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('bakers-form') as HTMLFormElement;
+        const captureBox = document.getElementById('calc-capture');
+        if (!form) return;
+
+        form.classList.remove('hidden');
+        if (captureBox) captureBox.classList.remove('hidden');
+
+        const inputs = form.querySelectorAll('input');
+        const resultsBody = document.getElementById('results-body');
+        const totalPctEl = document.getElementById('total-pct');
+        const totalWeightEl = document.getElementById('total-weight');
+
+        function calculate() {
+          const flour = parseFloat((document.getElementById('flour') as HTMLInputElement).value) || 0;
+          const waterPct = parseFloat((document.getElementById('water-pct') as HTMLInputElement).value) || 0;
+          const saltPct = parseFloat((document.getElementById('salt-pct') as HTMLInputElement).value) || 0;
+          const yeastPct = parseFloat((document.getElementById('yeast-pct') as HTMLInputElement).value) || 0;
+
+          const waterWeight = (flour * waterPct) / 100;
+          const saltWeight = (flour * saltPct) / 100;
+          const yeastWeight = (flour * yeastPct) / 100;
+
+          const totalPct = 100 + waterPct + saltPct + yeastPct;
+          const totalWeight = flour + waterWeight + saltWeight + yeastWeight;
+
+          if (resultsBody) {
+            resultsBody.innerHTML = `
+              <tr><td class="p-2 border-b">Flour</td><td class="p-2 border-b">100%</td><td class="p-2 border-b">${flour.toFixed(0)}g</td></tr>
+              <tr><td class="p-2 border-b">Water</td><td class="p-2 border-b">${waterPct}%</td><td class="p-2 border-b">${waterWeight.toFixed(1)}g</td></tr>
+              <tr><td class="p-2 border-b">Salt</td><td class="p-2 border-b">${saltPct}%</td><td class="p-2 border-b">${saltWeight.toFixed(1)}g</td></tr>
+              <tr><td class="p-2 border-b">Yeast</td><td class="p-2 border-b">${yeastPct}%</td><td class="p-2 border-b">${yeastWeight.toFixed(1)}g</td></tr>
+            `;
+          }
+          if (totalPctEl) totalPctEl.textContent = `${totalPct.toFixed(1)}%`;
+          if (totalWeightEl) totalWeightEl.textContent = `${totalWeight.toFixed(0)}g`;
+        }
+
+        inputs.forEach(input => input.addEventListener('input', calculate));
+        calculate();
+      });
+    </script>
+  </div>
+</Layout>

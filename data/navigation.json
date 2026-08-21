@@ -1,49 +1,73 @@
 {
+  "main": [
+    {
+      "label": "Reference",
+      "url": "/reference/"
+    },
+    {
+      "label": "Equipment",
+      "url": "/equipment/"
+    },
+    {
+      "label": "Calculators",
+      "url": "/calculators/"
+    },
+    {
+      "label": "Glossary",
+      "url": "/glossary/"
+    },
+    {
+      "label": "Blog",
+      "url": "/blog/"
+    }
+  ],
+  "footer": [
+    {
+      "label": "About",
+      "url": "/about/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    },
+    {
+      "label": "FAQ",
+      "url": "/faq/"
+    },
+    {
+      "label": "Legal",
+      "url": "/legal/"
+    }
+  ],
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
     "logo_url": "/",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Institute of Cooking Logo",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "label": "Reference",
+        "url": "/reference/"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "label": "Equipment",
+        "url": "/equipment/"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "label": "Calculators",
+        "url": "/calculators/"
       },
       {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
+        "label": "Glossary",
+        "url": "/glossary/"
       },
       {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "label": "Blog",
+        "url": "/blog/"
       }
-    ]
-  },
-  "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
-      }
-    ]
+    ],
+    "button": {
+      "label": "Subscribe",
+      "url": "/contact/"
+    }
   }
 }

@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const glossaryEntries = await getCollection('glossary');
+---
+<Layout title="Glossary" seo={{ page_description: "Core culinary techniques and glossary library." }}>
+  <div class="max-w-4xl mx-auto py-12 px-4">
+    <h1 class="text-4xl mb-8">Glossary</h1>
+    <ul class="space-y-4">
+      {glossaryEntries.map(entry => (
+        <li>
+          <a href={`/glossary/${entry.id}/`} class="text-xl font-bold">{entry.data.title}</a>
+          <p class="text-text-muted">{entry.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

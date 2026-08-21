@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+---
+<Layout title="Brine Ratio Calculator" seo={{ page_description: "Calculate the exact salt required for equilibrium brining." }}>
+  <div class="max-w-3xl mx-auto py-12 px-4">
+    <h1 class="text-4xl font-bold mb-4">Brine Ratio Calculator</h1>
+    <p class="text-lg text-text-muted mb-8">
+      Equilibrium brining ensures your meat never gets too salty. You calculate the total weight of meat and water, then apply a precise salt percentage (usually 1.5% - 2%).
+    </p>
+
+    <div class="bg-surface-alt p-6 border border-border rounded mb-8 shadow-sm">
+      <noscript>
+        <p class="text-accent mb-4 font-semibold">JavaScript is required for interactive calculation.</p>
+        <div class="prose max-w-none">
+          <h3>The Method</h3>
+          <p>To calculate manually:</p>
+          <ol>
+            <li>Weigh your meat in grams.</li>
+            <li>Weigh the water needed to submerge it in grams.</li>
+            <li>Add meat weight and water weight together for Total Weight.</li>
+            <li>Multiply Total Weight by your desired salt percentage (e.g. 0.015 for 1.5%).</li>
+          </ol>
+        </div>
+      </noscript>
+
+      <form id="brine-form" class="space-y-4 hidden">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-medium mb-1" for="meat-w">Meat Weight (g)</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="meat-w" value="1000" min="1" required />
+          </div>
+          <div>
+            <label class="block font-medium mb-1" for="water-w">Water Weight (g)</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="water-w" value="1500" min="1" required />
+          </div>
+          <div class="col-span-2">
+            <label class="block font-medium mb-1" for="salt-pct">Desired Salt (%)</label>
+            <input class="w-full rounded border border-border px-3 py-2 font-mono focus:ring-1 focus:ring-primary" type="number" id="salt-pct" value="1.5" step="0.1" min="0" required />
+            <p class="text-sm text-text-muted mt-1">1.5% is standard. Go up to 2.0% for thicker cuts.</p>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-border mt-6">
+          <h3 class="text-xl font-bold mb-4">Results</h3>
+          <p class="text-lg">You need <strong id="salt-result" class="font-mono text-2xl text-accent">37.5g</strong> of salt.</p>
+          <p class="text-sm mt-2 text-text-muted">Total system weight: <span id="total-result" class="font-mono">2500g</span></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="bg-surface-alt p-6 border border-border rounded mt-12 hidden" id="calc-capture">
+      <h3 class="text-xl font-bold mb-2">Want to learn more meat science?</h3>
+      <p class="mb-4">Get our free guide to perfect roasting temperatures.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Get the guide" />
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('brine-form');
+        const captureBox = document.getElementById('calc-capture');
+        if (!form) return;
+
+        form.classList.remove('hidden');
+        if (captureBox) captureBox.classList.remove('hidden');
+
+        const inputs = form.querySelectorAll('input');
+        const saltResult = document.getElementById('salt-result');
+        const totalResult = document.getElementById('total-result');
+
+        function calculate() {
+          const m = parseFloat((document.getElementById('meat-w') as HTMLInputElement).value) || 0;
+          const w = parseFloat((document.getElementById('water-w') as HTMLInputElement).value) || 0;
+          const s = parseFloat((document.getElementById('salt-pct') as HTMLInputElement).value) || 0;
+
+          const total = m + w;
+          const salt = total * (s / 100);
+
+          if (saltResult) saltResult.textContent = `${salt.toFixed(1)}g`;
+          if (totalResult) totalResult.textContent = `${total.toFixed(0)}g`;
+        }
+
+        inputs.forEach(input => input.addEventListener('input', calculate));
+        calculate();
+      });
+    </script>
+  </div>
+</Layout>
