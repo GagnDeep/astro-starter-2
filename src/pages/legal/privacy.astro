@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Privacy Policy for DogSnacker.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="Privacy Policy - DogSnacker" seo={seo}>
+  <div class="max-w-3xl mx-auto py-16 px-4 prose max-w-none">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: March 15, 2024</p>
+
+    <h2>1. Information We Collect</h2>
+    <p>We collect information you provide directly to us when you fill out forms, such as your email address when joining our waitlist or subscribing to our newsletter. We use a secure capture service to handle these submissions.</p>
+
+    <h2>2. Telemetry and Analytics</h2>
+    <p>We use privacy-friendly analytics to understand how our website is used. We honor Do Not Track (DNT) signals. Our forms are configured to mask sensitive user input during session replays.</p>
+
+    <h2>3. How We Use Your Information</h2>
+    <p>We use the information we collect to communicate with you about your subscription, send you requested materials, and improve our services.</p>
+
+    <h2>4. Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us via our <a href="/contact">contact form</a>.</p>
+  </div>
+</Layout>

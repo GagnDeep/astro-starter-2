@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "The complete guide to dog treat ingredients, chews, and healthy snacking habits.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="Treat Library - DogSnacker" seo={seo}>
+  <div class="max-w-4xl mx-auto py-16 px-4">
+    <h1 class="text-4xl font-bold mb-6">The Treat Library</h1>
+    <p class="text-xl text-gray-700 mb-12">
+      Everything you need to know about what you are feeding your dog. Science-backed, no-nonsense guides.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <h2 class="text-2xl font-bold mb-2"><a href="/library/ingredients/liver" class="hover:text-primary transition-colors">Is Beef Liver Good for Dogs?</a></h2>
+        <p class="text-gray-600 mb-4">Nature's multivitamin. How to feed it safely without causing Vitamin A toxicity.</p>
+        <a href="/library/ingredients/liver" class="text-primary font-medium hover:underline">Read the guide →</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <h2 class="text-2xl font-bold mb-2"><a href="/library/ingredients/sweet-potato" class="hover:text-primary transition-colors">Sweet Potato Chews</a></h2>
+        <p class="text-gray-600 mb-4">A low-fat, high-fiber alternative to meat chews. Great for sensitive stomachs.</p>
+        <a href="/library/ingredients/sweet-potato" class="text-primary font-medium hover:underline">Read the guide →</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <h2 class="text-2xl font-bold mb-2"><a href="/blog/no-hide-vs-rawhide" class="hover:text-primary transition-colors">No Hide vs Rawhide</a></h2>
+        <p class="text-gray-600 mb-4">Understand the differences between No Hide and Rawhide dog chews. Digestion rates and safety tradeoffs.</p>
+        <a href="/blog/no-hide-vs-rawhide" class="text-primary font-medium hover:underline">Read the guide →</a>
+      </div>
+    </div>
+  </div>
+</Layout>

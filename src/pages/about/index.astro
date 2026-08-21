@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "About DogSnacker. We believe dogs deserve real treats without the junk.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="About Us - DogSnacker" seo={seo}>
+  <div class="max-w-3xl mx-auto py-16 px-4 prose max-w-none">
+    <h1>About DogSnacker</h1>
+    <p class="lead text-xl">We started DogSnacker because we were tired of buying boxes full of cheap toys our dogs destroyed in five minutes, accompanied by treats we couldn't pronounce.</p>
+
+    <p>Look at the back of a typical commercial dog treat bag. You'll see glycerin, natural flavorings, food coloring, and cheap fillers like corn and soy. Dogs don't care what color a treat is, and they certainly don't need corn syrup.</p>
+
+    <h2>Our Philosophy</h2>
+    <p>We believe in a few simple rules:</p>
+    <ul>
+      <li><strong>Meat first, meat only:</strong> Dogs are carnivores at heart. Their high-value rewards should reflect that.</li>
+      <li><strong>No fillers:</strong> If it doesn't provide nutritional value, it doesn't go in the bag.</li>
+      <li><strong>Transparency:</strong> You should know exactly what you are handing your dog.</li>
+    </ul>
+
+    <h2>Why Subscription?</h2>
+    <p>Because consistency matters in training and routine. Having a reliable supply of high-value treats means you're never caught empty-handed when it's time to reinforce good behavior.</p>
+
+    <div class="bg-gray-50 p-8 rounded-lg mt-12 text-center">
+      <h3 class="mt-0">Ready to feed better treats?</h3>
+      <p>Join the waitlist to secure your spot for our next batch.</p>
+      <a href="/subscribe" class="btn-primary inline-flex mt-4 no-underline">Join the Waitlist</a>
+    </div>
+  </div>
+</Layout>
