@@ -1,0 +1,33 @@
+---
+import Layout from "../../../layouts/Page.astro";
+import CaptureForm from "../../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Deep dive into the kurd handpan scale. Notes, theory, and examples.",
+  canonical_url: "https://handpand.com/reference/scales/kurd/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Handpand",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+};
+---
+<Layout frontmatter={{ title: "Kurd", seo }}>
+  <div class="prose mx-auto max-w-4xl py-12 px-4">
+    <h1>The Kurd Scale</h1>
+    <p>The kurd scale is one of the foundational tunings for handpans and steel tongue drums.</p>
+    <h2>Notes and Layout</h2>
+    <p>A typical kurd scale layout involves...</p>
+    <h2>Examples and Progression</h2>
+    <p>Here is an example progression using the kurd scale.</p>
+    <CaptureForm form="newsletter">
+      <div class="flex flex-col gap-4">
+        <label>
+          <span class="block text-sm font-medium mb-1">Email address</span>
+          <input type="email" name="email" required class="w-full border border-gray-300 p-2 rounded" />
+        </label>
+        <button type="submit" class="bg-primary text-white p-2 rounded">Get Scale Updates</button>
+      </div>
+    </CaptureForm>
+  </div>
+</Layout>

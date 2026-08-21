@@ -1,3 +1,4 @@
+import icon from 'astro-icon';
 import { defineConfig, envField } from "astro/config";
 import react from "@astrojs/react";
 import editableRegions from "@cloudcannon/editable-regions/astro-integration";
@@ -12,7 +13,7 @@ export default defineConfig({
   // The canonical origin of the production site. Everything SEO-related
   // (canonicals, Open Graph URLs, sitemap, robots.txt, RSS) derives from this,
   // so it is the single most important value to change for a new project.
-  site: "https://tiny-jackal.cloudvent.net/",
+  site: "https://handpand.com/",
 
   // Emit /about/index.html -> URLs always end in a trailing slash. `canonical`
   // in src/lib/seo/meta.ts is built to match, so there is exactly one URL per
@@ -24,6 +25,7 @@ export default defineConfig({
   prefetch: { prefetchAll: true, defaultStrategy: "hover" },
 
   integrations: [
+    icon(),
     react(),
     editableRegions(),
     mdx(),

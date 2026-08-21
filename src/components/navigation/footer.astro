@@ -1,27 +1,57 @@
 ---
-import { footer } from "../../../data/navigation.json";
+import { Icon } from "astro-icon/components";
+import navigation from "../../../data/navigation.json";
+import site from "../../../data/site.json";
+import CaptureForm from "../forms/capture-form.astro";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-primary text-white border-t border-gray-800 py-12 px-6 mt-16">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="col-span-1 md:col-span-2">
+      <h3 class="text-xl font-bold mb-4">{site.site_title}</h3>
+      <p class="text-gray-300 mb-6 max-w-sm">{site.description}</p>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <div class="bg-gray-800 p-4 rounded-lg">
+        <h4 class="font-bold mb-2">Subscribe to the un-mystical newsletter</h4>
+        <CaptureForm form="newsletter">
+          <div class="flex gap-2">
+            <input type="email" name="email" required placeholder="Email address" class="bg-gray-700 text-white border border-gray-600 p-2 rounded flex-1" />
+            <button type="submit" class="bg-secondary hover:bg-secondary-hover text-white px-4 py-2 rounded">Join</button>
+          </div>
+        </CaptureForm>
       </div>
+    </div>
+
+    <div>
+      <h4 class="font-bold mb-4">Library</h4>
+      <ul class="space-y-2">
+        <li><a href="/reference/scales/" class="text-gray-300 hover:text-white transition-colors">Scales Reference</a></li>
+        <li><a href="/guides/" class="text-gray-300 hover:text-white transition-colors">Buying Guides</a></li>
+        <li><a href="/glossary/" class="text-gray-300 hover:text-white transition-colors">Glossary</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-bold mb-4">Tools & Legal</h4>
+      <ul class="space-y-2">
+        <li><a href="/tools/frequency-converter/" class="text-gray-300 hover:text-white transition-colors">Frequency Converter</a></li>
+        <li><a href="/tools/cost-calculator/" class="text-gray-300 hover:text-white transition-colors">Cost Calculator</a></li>
+        <li><a href="/about/" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+        <li><a href="/contact/" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+        <li><a href="/legal/" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between">
+    <p class="text-gray-400 text-sm">© {new Date().getFullYear()} {site.organization.name}. All rights reserved.</p>
+    <div class="flex space-x-4 mt-4 md:mt-0">
+      <a href="#" class="text-gray-400 hover:text-white" aria-label="Twitter">
+        <Icon name="lucide:twitter" class="w-5 h-5" />
+      </a>
+      <a href="#" class="text-gray-400 hover:text-white" aria-label="GitHub">
+        <Icon name="lucide:github" class="w-5 h-5" />
+      </a>
     </div>
   </div>
 </footer>

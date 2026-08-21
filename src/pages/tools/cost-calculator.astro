@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Page.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Calculate the true cost of owning a handpan including cases, shipping, and maintenance.",
+  canonical_url: "https://handpand.com/tools/cost-calculator/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Handpand",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+};
+---
+<Layout frontmatter={{ title: "Cost Calculator", seo }}>
+  <div class="mx-auto max-w-4xl py-12 px-4">
+    <div class="prose mb-8">
+      <h1>True Cost Calculator</h1>
+      <p>A handpan often costs more than just the instrument itself. Factor in the case, shipping, import duties, and initial tuning gear.</p>
+
+      <noscript>
+        <div class="bg-gray-100 p-4 border border-gray-300 rounded">
+          <strong>No-JS Fallback:</strong> The total cost equals: <code>Instrument Price + Case Price + Shipping + Import Duty + Maintenance Gear</code>. A typical breakdown is: Instrument ($1500), Evatek Case ($200), Shipping ($150), Duty ($50), Froglube ($15) = Total $1915.
+        </div>
+      </noscript>
+    </div>
+
+    <cost-island>
+      <form class="bg-white p-6 border border-border rounded shadow-sm mb-8 max-w-md">
+        <label class="block mb-3">
+          <span class="text-sm font-bold text-primary block mb-1">Instrument Price ($)</span>
+          <input type="number" id="cost-base" value="1500" class="border border-border p-2 w-full rounded" />
+        </label>
+        <label class="block mb-3">
+          <span class="text-sm font-bold text-primary block mb-1">Case Price ($)</span>
+          <input type="number" id="cost-case" value="200" class="border border-border p-2 w-full rounded" />
+        </label>
+        <label class="block mb-3">
+          <span class="text-sm font-bold text-primary block mb-1">Shipping ($)</span>
+          <input type="number" id="cost-shipping" value="150" class="border border-border p-2 w-full rounded" />
+        </label>
+        <label class="block mb-4">
+          <span class="text-sm font-bold text-primary block mb-1">Tuning/Maintenance Gear ($)</span>
+          <input type="number" id="cost-maint" value="20" class="border border-border p-2 w-full rounded" />
+        </label>
+        <button type="button" id="calc-cost-btn" class="bg-primary text-white py-2 px-4 rounded hover:bg-primary-hover w-full">Calculate Total Cost</button>
+
+        <div id="cost-result" class="mt-6 p-4 bg-gray-50 border border-border rounded hidden">
+          <h3 class="font-bold text-lg mb-2">Total Estimated Cost:</h3>
+          <p class="text-2xl"><span id="cost-total-val" class="font-bold text-secondary"></span></p>
+          <div class="mt-4">
+             <h4 class="font-bold text-sm">Need help budgeting?</h4>
+             <CaptureForm form="newsletter">
+                <div class="flex gap-2 mt-2">
+                   <input type="email" name="email" required placeholder="Email address" class="border border-gray-300 p-2 rounded flex-1" />
+                   <button type="submit" class="bg-secondary text-white px-4 py-2 rounded">Get Cost Breakdown PDF</button>
+                </div>
+             </CaptureForm>
+          </div>
+        </div>
+      </form>
+    </cost-island>
+  </div>
+
+  <script>
+    class CostIsland extends HTMLElement {
+      connectedCallback() {
+        const btn = this.querySelector('#calc-cost-btn');
+        const iBase = this.querySelector('#cost-base') as HTMLInputElement;
+        const iCase = this.querySelector('#cost-case') as HTMLInputElement;
+        const iShip = this.querySelector('#cost-shipping') as HTMLInputElement;
+        const iMaint = this.querySelector('#cost-maint') as HTMLInputElement;
+        const resBox = this.querySelector('#cost-result');
+        const resVal = this.querySelector('#cost-total-val');
+
+        if(btn && resBox && resVal) {
+          btn.addEventListener('click', () => {
+            const total = (parseFloat(iBase.value)||0) + (parseFloat(iCase.value)||0) + (parseFloat(iShip.value)||0) + (parseFloat(iMaint.value)||0);
+            resVal.textContent = "$" + total.toFixed(2);
+            resBox.classList.remove('hidden');
+          });
+        }
+      }
+    }
+    customElements.define('cost-island', CostIsland);
+  </script>
+</Layout>

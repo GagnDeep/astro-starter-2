@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Page.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Convert handpan frequencies between 432Hz and 440Hz standard tunings.",
+  canonical_url: "https://handpand.com/tools/frequency-converter/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Handpand",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+};
+---
+<Layout frontmatter={{ title: "Frequency Converter", seo }}>
+  <div class="mx-auto max-w-4xl py-12 px-4">
+    <div class="prose mb-8">
+      <h1>Frequency Converter (432Hz vs 440Hz)</h1>
+      <p>Calculate exact frequency shifts when comparing standard 440Hz tuning against 432Hz tuning for specific notes.</p>
+
+      <noscript>
+        <div class="bg-gray-100 p-4 border border-gray-300 rounded">
+          <strong>No-JS Fallback:</strong> The formula to convert a frequency from 440Hz tuning to 432Hz tuning is: <code>f_432 = f_440 * (432 / 440)</code>. For example, A4 = 440Hz becomes A4 = 432Hz. C5 (523.25Hz at A=440) becomes 513.74Hz (at A=432).
+        </div>
+      </noscript>
+    </div>
+
+    <form-island>
+      <form id="freq-form" class="bg-white p-6 border border-border rounded shadow-sm mb-8 max-w-md">
+        <label class="block mb-4">
+          <span class="text-sm font-bold text-primary block mb-1">Input Frequency (Hz) at A=440Hz</span>
+          <input type="number" id="freq-input" step="0.01" value="440" class="border border-border p-2 w-full rounded" />
+        </label>
+        <button type="button" id="calc-btn" class="bg-primary text-white py-2 px-4 rounded hover:bg-primary-hover w-full">Calculate 432Hz Equivalent</button>
+        <div id="result-box" class="mt-6 p-4 bg-gray-50 border border-border rounded hidden">
+          <h3 class="font-bold text-lg mb-2">Result:</h3>
+          <p class="text-xl"><span id="result-val" class="font-bold text-secondary"></span> Hz</p>
+          <p class="text-sm text-gray-600 mt-2">Formula: Frequency * (432 / 440)</p>
+          <div class="mt-4">
+            <h4 class="font-bold text-sm">Save your calculation history:</h4>
+            <CaptureForm form="newsletter">
+              <div class="flex gap-2 mt-2">
+                 <input type="email" name="email" required placeholder="Email address" class="border border-gray-300 p-2 rounded flex-1" />
+                 <button type="submit" class="bg-secondary text-white px-4 py-2 rounded">Send to me</button>
+              </div>
+            </CaptureForm>
+          </div>
+        </div>
+      </form>
+    </form-island>
+
+  </div>
+
+  <script>
+    class FormIsland extends HTMLElement {
+      connectedCallback() {
+        const btn = this.querySelector('#calc-btn');
+        const input = this.querySelector('#freq-input') as HTMLInputElement;
+        const resBox = this.querySelector('#result-box');
+        const resVal = this.querySelector('#result-val');
+
+        if(btn && input && resBox && resVal) {
+          btn.addEventListener('click', () => {
+            const val = parseFloat(input.value);
+            if(!isNaN(val)) {
+              const res = val * (432 / 440);
+              resVal.textContent = res.toFixed(2);
+              resBox.classList.remove('hidden');
+            }
+          });
+        }
+      }
+    }
+    customElements.define('form-island', FormIsland);
+  </script>
+</Layout>

@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "Handpand.com",
+  "short_name": "Handpand",
+  "description": "The pragmatic, budget-conscious guide to handpans and steel tongue drums. Practical buying advice, maintenance, and music theory.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#f8fafc",
+  "theme_color": "#f8fafc",
   "icons": [
     {
       "src": "/meta/icon-192.png",

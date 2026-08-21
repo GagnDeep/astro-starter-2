@@ -1,0 +1,38 @@
+---
+import Layout from "../../../layouts/Page.astro";
+import CaptureForm from "../../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "A complete guide to handpan scales. Learn about Kurd, Amara, Celtic Minor, and more.",
+  canonical_url: "https://handpand.com/reference/scales/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Handpand",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+};
+---
+<Layout frontmatter={{ title: "Scales", seo }}>
+  <div class="prose mx-auto max-w-4xl py-12 px-4">
+    <h1>Handpan Scales Reference</h1>
+    <p>Understanding handpan scales is the first step to choosing the right instrument.</p>
+    <ul>
+      <li><a href="/reference/scales/kurd/">Kurd Scale</a></li>
+<li><a href="/reference/scales/amara/">Amara Scale</a></li>
+<li><a href="/reference/scales/celtic-minor/">Celtic-minor Scale</a></li>
+<li><a href="/reference/scales/pygmy/">Pygmy Scale</a></li>
+<li><a href="/reference/scales/hijaz/">Hijaz Scale</a></li>
+<li><a href="/reference/scales/aeolian/">Aeolian Scale</a></li>
+<li><a href="/reference/scales/mixolydian/">Mixolydian Scale</a></li>
+    </ul>
+    <CaptureForm form="newsletter">
+      <div class="flex flex-col gap-4">
+        <label>
+          <span class="block text-sm font-medium mb-1">Email address</span>
+          <input type="email" name="email" required class="w-full border border-gray-300 p-2 rounded" />
+        </label>
+        <button type="submit" class="bg-primary text-white p-2 rounded">Subscribe for more guides</button>
+      </div>
+    </CaptureForm>
+  </div>
+</Layout>
