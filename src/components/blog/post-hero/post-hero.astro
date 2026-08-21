@@ -7,7 +7,7 @@ interface Props {
   heading: string;
   date: string | Date;
   author: string;
-  image: string;
+  image: { src: string; width: number; height: number; format: string } | string;
   image_alt: string;
   tags: Array<string>;
   bodyContent?: string;
@@ -32,7 +32,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif,svg,avif,webp}",
   { eager: true },
 );
-const imageSrc = images[image]?.default || image;
+
+let imageSrc: any = image;
+if (typeof image === 'string') {
+  imageSrc = images[image]?.default || image;
+}
 ---
 
 <div class="flex flex-col">
