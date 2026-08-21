@@ -1,0 +1,130 @@
+---
+---
+<div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 md:p-8 my-8 max-w-2xl mx-auto">
+  <div class="flex items-center gap-3 mb-6">
+    <div class="p-3 bg-blue-50 text-blue-600 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+    </div>
+    <h3 class="text-xl font-bold m-0">Document Print Cost Calculator</h3>
+  </div>
+
+  <p class="text-slate-600 mb-6">Estimate the commercial or home printing cost of your document based on page count, color, and paper type.</p>
+
+  <form id="print-cost-calc" class="space-y-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="pages" class="block text-sm font-medium text-slate-700 mb-1">Number of Pages</label>
+        <input type="number" id="pages" min="1" value="50" class="block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border px-3 py-2">
+      </div>
+      <div>
+        <label for="copies" class="block text-sm font-medium text-slate-700 mb-1">Number of Copies</label>
+        <input type="number" id="copies" min="1" value="1" class="block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border px-3 py-2">
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-slate-700 mb-2">Color Setup</label>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <label class="border border-slate-200 rounded-md p-3 flex items-start cursor-pointer hover:bg-slate-50 [&:has(input:checked)]:border-blue-500 [&:has(input:checked)]:bg-blue-50">
+          <input type="radio" name="color-type" value="bw" checked class="mt-1 border-slate-300 text-blue-600 focus:ring-blue-500">
+          <div class="ml-2">
+            <span class="block text-sm font-medium text-slate-900">Black & White</span>
+            <span class="block text-xs text-slate-500">~ $0.15 / page</span>
+          </div>
+        </label>
+        <label class="border border-slate-200 rounded-md p-3 flex items-start cursor-pointer hover:bg-slate-50 [&:has(input:checked)]:border-blue-500 [&:has(input:checked)]:bg-blue-50">
+          <input type="radio" name="color-type" value="mixed" class="mt-1 border-slate-300 text-blue-600 focus:ring-blue-500">
+          <div class="ml-2">
+            <span class="block text-sm font-medium text-slate-900">Mixed Color</span>
+            <span class="block text-xs text-slate-500">~ $0.45 / page</span>
+          </div>
+        </label>
+        <label class="border border-slate-200 rounded-md p-3 flex items-start cursor-pointer hover:bg-slate-50 [&:has(input:checked)]:border-blue-500 [&:has(input:checked)]:bg-blue-50">
+          <input type="radio" name="color-type" value="full-color" class="mt-1 border-slate-300 text-blue-600 focus:ring-blue-500">
+          <div class="ml-2">
+            <span class="block text-sm font-medium text-slate-900">Full Color</span>
+            <span class="block text-xs text-slate-500">~ $0.65 / page</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <label class="flex items-center">
+        <input type="checkbox" id="double-sided" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+        <span class="ml-2 text-sm text-slate-700">Print double-sided (Saves on paper costs)</span>
+      </label>
+    </div>
+
+    <button type="submit" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer">
+      Calculate Cost
+    </button>
+  </form>
+
+  <div id="print-cost-result" class="mt-8 hidden p-5 bg-slate-50 border border-slate-200 rounded-md">
+    <h4 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2">Estimated Print Cost</h4>
+    <div class="text-3xl font-bold text-slate-900 mb-2" id="estimated-cost">$0.00</div>
+    <p class="text-sm text-slate-600" id="cost-explanation"></p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('print-cost-calc');
+    const resultDiv = document.getElementById('print-cost-result');
+    const costDisplay = document.getElementById('estimated-cost');
+    const explanationDisplay = document.getElementById('cost-explanation');
+
+    if (!form || !resultDiv || !costDisplay || !explanationDisplay) return;
+
+    // Average commercial printing costs per page (ink/toner + standard 20lb paper)
+    const RATES: Record<string, number> = {
+      'bw': 0.15,
+      'mixed': 0.45,
+      'full-color': 0.65
+    };
+
+    const PAPER_DISCOUNT_PER_SHEET = 0.02; // Savings per sheet when printing double-sided
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const pagesElement = document.getElementById('pages') as HTMLInputElement | null;
+      const pages = pagesElement ? parseInt(pagesElement.value, 10) || 1 : 1;
+
+      const copiesElement = document.getElementById('copies') as HTMLInputElement | null;
+      const copies = copiesElement ? parseInt(copiesElement.value, 10) || 1 : 1;
+
+      const colorTypeElement = document.querySelector('input[name="color-type"]:checked') as HTMLInputElement | null;
+      const colorType = colorTypeElement ? colorTypeElement.value : 'bw';
+
+      const doubleSidedElement = document.getElementById('double-sided') as HTMLInputElement | null;
+      const doubleSided = doubleSidedElement ? doubleSidedElement.checked : false;
+
+      const totalPages = pages * copies;
+      const baseRate = RATES[colorType] || 0.15;
+
+      let totalCost = totalPages * baseRate;
+
+      // If double sided, we use half the paper. Subtract the paper cost savings for the sheets not used.
+      let sheetsSaved = 0;
+      if (doubleSided) {
+        // Calculate sheets used: round up (pages/2) * copies
+        const totalSheets = Math.ceil(pages / 2) * copies;
+        sheetsSaved = totalPages - totalSheets;
+        totalCost -= (sheetsSaved * PAPER_DISCOUNT_PER_SHEET);
+      }
+
+      // Formatting
+      costDisplay.textContent = `$${totalCost.toFixed(2)}`;
+
+      let explanation = `Calculated for ${totalPages} total pages (${copies} copies of ${pages} pages) at ~$${baseRate.toFixed(2)} per page.`;
+      if (doubleSided && sheetsSaved > 0) {
+        explanation += ` Double-sided printing saved ~$${(sheetsSaved * PAPER_DISCOUNT_PER_SHEET).toFixed(2)} on paper costs.`;
+      }
+
+      explanationDisplay.textContent = explanation;
+      resultDiv.classList.remove('hidden');
+    });
+  });
+</script>

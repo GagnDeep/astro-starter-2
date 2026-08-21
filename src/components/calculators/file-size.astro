@@ -1,0 +1,108 @@
+---
+---
+<div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 md:p-8 my-8 max-w-2xl mx-auto">
+  <div class="flex items-center gap-3 mb-6">
+    <div class="p-3 bg-blue-50 text-blue-600 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/><path d="M16 18h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/></svg>
+    </div>
+    <h3 class="text-xl font-bold m-0">PDF File Size Estimator</h3>
+  </div>
+
+  <p class="text-slate-600 mb-6">Estimate the final size of a PDF before you generate it based on pages and contents.</p>
+
+  <form id="file-size-calc" class="space-y-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="pages" class="block text-sm font-medium text-slate-700 mb-1">Number of Pages</label>
+        <input type="number" id="pages" min="1" value="10" class="block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border px-3 py-2">
+      </div>
+
+      <div>
+        <label for="density" class="block text-sm font-medium text-slate-700 mb-1">Content Density</label>
+        <select id="density" class="block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border px-3 py-2 bg-white">
+          <option value="text-only">Text Only (Light)</option>
+          <option value="mixed" selected>Mixed (Text & Some Images)</option>
+          <option value="heavy-images">Heavy Images (Photos/Charts)</option>
+          <option value="scanned">Scanned Document</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label class="flex items-center">
+        <input type="checkbox" id="embedded-fonts" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500" checked>
+        <span class="ml-2 text-sm text-slate-700">Embed fonts (Recommended for consistency)</span>
+      </label>
+    </div>
+
+    <button type="submit" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer">
+      Calculate Size
+    </button>
+  </form>
+
+  <div id="file-size-result" class="mt-8 hidden p-5 bg-slate-50 border border-slate-200 rounded-md">
+    <h4 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2">Estimated File Size</h4>
+    <div class="text-3xl font-bold text-slate-900 mb-2" id="estimated-size">0 MB</div>
+    <p class="text-sm text-slate-600" id="size-explanation"></p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('file-size-calc');
+    const resultDiv = document.getElementById('file-size-result');
+    const sizeDisplay = document.getElementById('estimated-size');
+    const explanationDisplay = document.getElementById('size-explanation');
+
+    if (!form || !resultDiv || !sizeDisplay || !explanationDisplay) return;
+
+    // Constants sourced from average PDF block sizes
+    const BASE_PDF_OVERHEAD_KB = 15;
+    const EMBEDDED_FONT_AVERAGE_KB = 300; // Average subset font payload
+
+    const PAGE_WEIGHTS: Record<string, number> = {
+      'text-only': 5, // 5KB per page
+      'mixed': 150, // 150KB per page
+      'heavy-images': 800, // 800KB per page
+      'scanned': 2000 // 2MB per scanned page
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const pagesElement = document.getElementById('pages') as HTMLInputElement | null;
+      const pages = pagesElement ? parseInt(pagesElement.value, 10) || 1 : 1;
+
+      const densityElement = document.getElementById('density') as HTMLSelectElement | null;
+      const density = densityElement ? densityElement.value : 'mixed';
+
+      const embedFontsElement = document.getElementById('embedded-fonts') as HTMLInputElement | null;
+      const embedFonts = embedFontsElement ? embedFontsElement.checked : false;
+
+      let totalKb = BASE_PDF_OVERHEAD_KB;
+
+      if (embedFonts) {
+        totalKb += EMBEDDED_FONT_AVERAGE_KB;
+      }
+
+      totalKb += (pages * (PAGE_WEIGHTS[density] || 0));
+
+      // Formatting
+      let formattedSize;
+      if (totalKb < 1024) {
+        formattedSize = `${Math.round(totalKb)} KB`;
+      } else {
+        formattedSize = `${(totalKb / 1024).toFixed(2)} MB`;
+      }
+
+      sizeDisplay.textContent = formattedSize;
+
+      let explanation = `Calculated base overhead (15KB) + ${pages} pages at ~${PAGE_WEIGHTS[density]}KB each.`;
+      if (embedFonts) explanation += " Includes ~300KB for embedded font subsets.";
+      if (density === 'scanned') explanation += " Scanned documents are rasterized images and cannot be easily compressed without quality loss.";
+
+      explanationDisplay.textContent = explanation;
+      resultDiv.classList.remove('hidden');
+    });
+  });
+</script>
