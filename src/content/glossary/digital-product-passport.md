@@ -3,11 +3,11 @@ title: "Digital Product Passport"
 
 seo:
   page_description: "Expert guide on Digital Product Passport. Compliance, testing, and lifecycle."
-  canonical_url: null
+  canonical_url: "https://cablepassport.com/glossary/digital-product-passport/"
   featured_image: null
   featured_image_alt: null
   author_twitter_handle: null
-  open_graph_type: null
+  open_graph_type: "article"
   no_index: false
 
 ---

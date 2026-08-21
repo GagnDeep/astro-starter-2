@@ -3,11 +3,11 @@ title: "Recycled Content"
 
 seo:
   page_description: "Expert guide on Recycled Content. Compliance, testing, and lifecycle."
-  canonical_url: null
+  canonical_url: "https://cablepassport.com/glossary/recycled-content/"
   featured_image: null
   featured_image_alt: null
   author_twitter_handle: null
-  open_graph_type: null
+  open_graph_type: "article"
   no_index: false
 
 ---

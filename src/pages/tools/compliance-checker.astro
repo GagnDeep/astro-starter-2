@@ -78,13 +78,13 @@ const seo = {
     if (resultBlock && resultText) {
       resultBlock.classList.remove('hidden');
       if (volume < 500) {
-        resultText.innerText = `Exempt: At ${volume}kg, your volume is currently below the general threshold for mandatory DPP.`;
+        resultText.innerText = `Exempt (Monitor): At ${volume}kg, your volume is currently below the general threshold (500kg). However, if you supply a regulated OEM (e.g., automotive), they may force you to provide DPP data regardless of volume.`;
         resultText.className = "font-bold text-lg text-green-700";
       } else if (category === 'power-high') {
-        resultText.innerText = "Mandatory (High Priority): High Voltage Power cables require a full LCA-backed DPP in the first wave.";
+        resultText.innerText = "Mandatory (High Priority): High Voltage Power cables require a full LCA-backed DPP in the first wave (est. 2026). Ensure you are tracing copper/aluminum back to the smelter.";
         resultText.className = "font-bold text-lg text-[var(--color-primary)]";
       } else {
-        resultText.innerText = "Mandatory: Your product category is slated for mandatory DPP compliance (Estimated 2027). Start mapping your supply chain data now.";
+        resultText.innerText = "Mandatory (Wave 2): Your product category is slated for mandatory DPP compliance (Estimated 2027). Start mapping your Tier 2 supply chain data (insulation, sheathing) now.";
         resultText.className = "font-bold text-lg text-[var(--color-accent)]";
       }
     }
