@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const seo = {
+  page_description: "Free investing calculators to help you plan your financial future.",
+};
+---
+
+<Layout title="Investing Calculators & Tools | Institute of Investing" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4">Calculators & Tools</h1>
+    <p class="text-xl text-gray-600 mb-12">See the math behind the strategies. No sign-up required.</p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <a href="/tools/compound-interest" class="block border p-6 rounded-lg hover:border-blue-600 hover:shadow-md transition">
+        <h2 class="text-2xl font-bold mb-2">Compound Interest Calculator</h2>
+        <p class="text-gray-700">See how your money grows exponentially over time. The most important concept in investing.</p>
+      </a>
+      <a href="/tools/expense-ratio" class="block border p-6 rounded-lg hover:border-blue-600 hover:shadow-md transition">
+        <h2 class="text-2xl font-bold mb-2">Expense Ratio Calculator</h2>
+        <p class="text-gray-700">Calculate exactly how much a fund's fees will cost you over 10, 20, or 30 years.</p>
+      </a>
+      <a href="/tools/dca" class="block border p-6 rounded-lg hover:border-blue-600 hover:shadow-md transition">
+        <h2 class="text-2xl font-bold mb-2">Dollar Cost Averaging</h2>
+        <p class="text-gray-700">Compare buying all at once versus spreading your investments out over time.</p>
+      </a>
+    </div>
+  </main>
+</Layout>

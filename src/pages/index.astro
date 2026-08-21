@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NewsletterForm from '../components/forms/newsletter-form.astro';
+
+
+const seo = {
+  page_description: "The calm, objective classroom for the first-time investor.",
+};
+---
+
+<Layout title="Institute of Investing" seo={seo}>
+  <main class="max-w-6xl mx-auto px-4 py-12 space-y-24">
+    <!-- 1. Hero -->
+    <section class="text-center space-y-6">
+      <h1 class="text-5xl font-bold text-blue-900">Investing doesn't have to be a gamble.</h1>
+      <p class="text-xl max-w-2xl mx-auto">Learn to invest with confidence. No hype, no stock picks. Just structural understanding.</p>
+      <div class="max-w-md mx-auto p-6 bg-blue-50 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4">Get the Free Starter Guide</h2>
+        <NewsletterForm form="newsletter" submitLabel="Send it to me" placeholder="your@email.com" />
+      </div>
+    </section>
+
+    <!-- 2. The "Where are you starting?" segment -->
+    <section class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 border rounded-lg hover:shadow-md">
+        <h3 class="text-xl font-bold mb-2">I have $100</h3>
+        <p class="mb-4">Start small with fractional shares and index funds.</p>
+        <a href="/blog/how-to-start-investing-with-100" class="text-blue-600 font-semibold hover:underline">Read the guide &rarr;</a>
+      </div>
+      <div class="p-6 border rounded-lg hover:shadow-md">
+        <h3 class="text-xl font-bold mb-2">I have $1,000</h3>
+        <p class="mb-4">Build a simple, diversified core portfolio.</p>
+        <a href="/taxonomy/indexing" class="text-blue-600 font-semibold hover:underline">Read the guide &rarr;</a>
+      </div>
+      <div class="p-6 border rounded-lg hover:shadow-md">
+        <h3 class="text-xl font-bold mb-2">I have $10,000+</h3>
+        <p class="mb-4">Optimize for tax efficiency and long-term growth.</p>
+        <a href="/blog/what-is-a-roth-ira" class="text-blue-600 font-semibold hover:underline">Read the guide &rarr;</a>
+      </div>
+    </section>
+
+    <!-- 3. Tool feature: Interactive Compound Interest mini-calculator -->
+    <section class="bg-gray-50 p-8 rounded-lg">
+      <h2 class="text-3xl font-bold mb-6 text-center">See the Math: Compound Interest</h2>
+      <div class="max-w-2xl mx-auto">
+        <p class="text-center mb-6">Discover how time is your biggest asset in investing.</p>
+        <a href="/tools/compound-interest" class="block w-full text-center bg-blue-600 text-white py-3 rounded font-bold hover:bg-blue-700">Try the Calculator</a>
+      </div>
+    </section>
+
+    <!-- 4. Broker Matchmaker -->
+    <section class="text-center">
+      <h2 class="text-3xl font-bold mb-6">Find Your First Broker</h2>
+      <p class="mb-8">Answer three questions to find a broker that fits your needs. No jargon, just clear recommendations.</p>
+      <a href="/blog/fidelity-vs-vanguard" class="inline-block bg-blue-100 text-blue-900 font-bold py-3 px-8 rounded-lg hover:bg-blue-200">See Broker Reviews</a>
+    </section>
+
+    <!-- 5. The Library -->
+    <section>
+      <h2 class="text-3xl font-bold mb-8 text-center">Beginner Reference Guides</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="/reference/what-is-an-etf" class="p-6 border border-gray-200 rounded block hover:border-blue-500">
+          <h3 class="font-bold text-lg mb-2">What is an ETF?</h3>
+          <p class="text-gray-600 text-sm">The foundation of modern, passive investing explained simply.</p>
+        </a>
+        <a href="/blog/index-funds-vs-mutual-funds" class="p-6 border border-gray-200 rounded block hover:border-blue-500">
+          <h3 class="font-bold text-lg mb-2">Index Funds vs Mutual Funds</h3>
+          <p class="text-gray-600 text-sm">Why the boring option usually wins over the long run.</p>
+        </a>
+        <a href="/blog/are-index-funds-actually-safe" class="p-6 border border-gray-200 rounded block hover:border-blue-500">
+          <h3 class="font-bold text-lg mb-2">Are Index Funds Safe?</h3>
+          <p class="text-gray-600 text-sm">Understanding risk and historical market recoveries.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- 6. Course Upsell -->
+    <section class="bg-blue-900 text-white p-12 rounded-lg text-center">
+      <h2 class="text-3xl font-bold mb-4">The 7-Day First Investment Sprint</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">Stop overthinking. In one week, we'll guide you step-by-step to opening an account, funding it, and buying your first index fund.</p>
+      <a href="/pricing" class="inline-block bg-white text-blue-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">See Course Details</a>
+    </section>
+
+    <!-- 7. Trust & Ethics -->
+    <section class="max-w-3xl mx-auto text-center border-t pt-12">
+      <h2 class="text-2xl font-bold mb-4">Why We Don't Pick Stocks</h2>
+      <p class="text-gray-700">The data is clear: over a 15-year period, more than 90% of actively managed funds underperform the market. If Wall Street professionals can't consistently beat the index, beginners shouldn't try. We teach you how to capture the market's return safely, steadily, and with minimal fees.</p>
+    </section>
+  </main>
+</Layout>

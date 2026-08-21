@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  page_description: "Answers to the most common questions beginners have about investing in the stock market.",
+};
+---
+
+<Layout title="Frequently Asked Questions | Institute of Investing" seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8">Frequently Asked Questions</h1>
+
+    <div class="space-y-8">
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">How much money do I need to start investing?</h2>
+        <p class="text-gray-700">You can start with as little as $1. Many modern brokerages offer "fractional shares," which allow you to buy a piece of a stock or ETF regardless of its share price. The most important thing is to start building the habit of investing, not the initial amount.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">Is it too late to start investing at 35 (or 40, or 50)?</h2>
+        <p class="text-gray-700">No. While starting earlier gives compound interest more time to work, starting later is always better than never starting at all. If you start at 35 and plan to retire at 65, your money still has 30 years to grow. You may need to save a larger percentage of your income than someone starting at 25, but the fundamental principles of investing remain the same.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">What happens if my broker goes bankrupt?</h2>
+        <p class="text-gray-700">In the US, brokerage accounts are protected by SIPC (Securities Investor Protection Corporation) up to $500,000 (including a $250,000 limit for cash). Furthermore, the broker doesn't actually own your assets; you do. The broker simply holds them in "street name" on your behalf. If a broker fails, your assets are typically transferred to another healthy brokerage firm.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">Do I have to pay taxes on my investments every year?</h2>
+        <p class="text-gray-700">It depends on the type of account and your activity. If you invest in a tax-advantaged retirement account (like a Roth IRA), you do not pay taxes on capital gains or dividends year-to-year. If you invest in a standard, taxable brokerage account, you will owe taxes on any dividends received that year, and on any profits ("capital gains") if you sold investments for more than you paid for them. If you buy a stock and just hold it, you don't pay taxes on its increased value until you sell it.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">Are index funds actually safe?</h2>
+        <p class="text-gray-700">"Safe" is a relative term. Index funds are subject to market risk—if the overall stock market goes down, the index fund goes down. However, they are highly diversified, which eliminates "single-company risk" (the risk that one specific company goes bankrupt). Historically, the broad US stock market has always recovered from crashes and trended upward over long periods, making broad market index funds one of the safest ways to invest in equities for the long term.</p>
+      </div>
+    </div>
+  </main>
+</Layout>

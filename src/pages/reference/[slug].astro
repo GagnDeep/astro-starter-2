@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import NewsletterForm from '../../components/forms/newsletter-form.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('reference');
+  return docs.map(doc => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+
+const seo = doc.data.seo || {};
+---
+
+<Layout title={`${doc.data.title} | Institute of Investing`} seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <a href="/reference" class="text-blue-600 hover:underline mb-8 inline-block">&larr; Back to Library</a>
+    <article class="prose prose-blue max-w-none">
+      <h1 class="text-4xl font-bold mb-4">{doc.data.title}</h1>
+      <p class="text-xl text-gray-600 mb-8">{doc.data.description}</p>
+      <Content />
+    </article>
+
+    <div class="bg-blue-50 p-8 rounded-lg mt-12 text-center">
+      <h3 class="text-2xl font-bold mb-2">Want more clear explanations?</h3>
+      <p class="text-gray-700 mb-6">Join our free newsletter for a new lesson every week.</p>
+      <div class="max-w-md mx-auto">
+        <NewsletterForm form="newsletter" submitLabel="Subscribe" placeholder="your@email.com" />
+      </div>
+    </div>
+  </main>
+</Layout>

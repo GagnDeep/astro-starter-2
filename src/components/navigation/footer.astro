@@ -1,27 +1,51 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
-
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+<footer class="bg-gray-800 text-white mt-auto">
+  <div class="mx-auto max-w-6xl px-4 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-gray-700 pb-12">
+      <div class="md:col-span-2">
+        <a class="inline-block mb-4" href={footer.logo_url}>
+          <img class="h-10" src={footer.logo} alt={footer.logo_alt_text} />
+        </a>
+        <p class="text-gray-400 mb-6 max-w-md">The calm, objective classroom for the first-time investor. No stock picks, no hype, just the math behind building long-term wealth.</p>
+        <div class="max-w-sm">
+          <p class="font-bold mb-2">Get our free weekly lesson</p>
+          <NewsletterForm />
+        </div>
       </div>
+
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-gray-200">Learn</h3>
+        <ul class="space-y-3">
+          <li><a href="/reference" class="text-gray-400 hover:text-white transition">Basics Library</a></li>
+          <li><a href="/taxonomy" class="text-gray-400 hover:text-white transition">Investing Strategies</a></li>
+          <li><a href="/glossary" class="text-gray-400 hover:text-white transition">Jargon Glossary</a></li>
+          <li><a href="/blog" class="text-gray-400 hover:text-white transition">Articles & Guides</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-gray-200">Tools & More</h3>
+        <ul class="space-y-3">
+          <li><a href="/tools" class="text-gray-400 hover:text-white transition">All Calculators</a></li>
+          <li><a href="/pricing" class="text-gray-400 hover:text-white transition">Structured Courses</a></li>
+          {footer.links.map((link) => (
+            <li>
+              <a class="text-gray-400 hover:text-white transition" href={link.link}>
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-sm text-gray-500 text-center">
+      <p class="mb-2">Disclaimer: The content on this site is for educational purposes only and does not constitute financial advice. Past performance is not indicative of future results.</p>
+      &copy; {new Date().getFullYear()} {footer.copyright}
     </div>
   </div>
 </footer>
