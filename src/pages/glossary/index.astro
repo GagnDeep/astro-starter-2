@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const terms = await getCollection("glossary");
+
+const seo = {
+  page_description: "Glossary of terms related to documents, parsing, and rendering.",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="Glossary | uDocumentView" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold mb-8">Document Glossary</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {
+        terms.map((term) => (
+          <a
+            href={`/glossary/${term.id}/`}
+            class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <h2 class="text-xl font-bold text-blue-600 mb-2">{term.data.title}</h2>
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

@@ -133,6 +133,72 @@ collections_config:
         options:
           values: data.tags
           empty_type: array
+  reference:
+    path: src/content/reference
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/reference/[full_slug]/'
+    icon: library_books
+    _enabled_editors:
+      - visual
+      - content
+    add_options:
+      - name: Add New Reference Page
+        schema: default
+        icon: library_add
+    schemas:
+      default:
+        path: '.cloudcannon/schemas/reference.md'
+    create:
+      path: '[relative_base_path]/{filename|slugify|lowercase}.md'
+    _inputs:
+      title:
+        type: text
+  glossary:
+    path: src/content/glossary
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/glossary/[full_slug]/'
+    icon: spellcheck
+    _enabled_editors:
+      - visual
+      - content
+    add_options:
+      - name: Add New Glossary Term
+        schema: default
+        icon: spellcheck
+    schemas:
+      default:
+        path: '.cloudcannon/schemas/glossary.md'
+    create:
+      path: '[relative_base_path]/{filename|slugify|lowercase}.md'
+    _inputs:
+      title:
+        type: text
+  calculators:
+    path: src/content/calculators
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/calculators/[full_slug]/'
+    icon: calculate
+    _enabled_editors:
+      - visual
+      - content
+    add_options:
+      - name: Add New Calculator
+        schema: default
+        icon: calculate
+    schemas:
+      default:
+        path: '.cloudcannon/schemas/calculator.md'
+    create:
+      path: '[relative_base_path]/{filename|slugify|lowercase}.md'
+    _inputs:
+      title:
+        type: text
   data:
     path: data
     disable_url: true
@@ -167,6 +233,9 @@ collection_groups:
     collections:
       - pages
       - blog
+      - reference
+      - glossary
+      - calculators
   - heading: Data
     collections:
       - data

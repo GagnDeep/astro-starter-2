@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Privacy Policy for uDocumentView. We believe in zero-footprint viewing.",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="Privacy Policy | uDocumentView" seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-16 prose prose-slate">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: [NEEDS CONFIRMATION - Date]</p>
+
+    <h2>Zero Footprint Guarantee</h2>
+    <p>
+      Our core philosophy is that we do not want your data. uDocumentView is designed to process
+      documents locally in your browser whenever technically feasible. When server-side processing
+      is necessary, it is done in memory (RAM) and the data is immediately discarded after
+      rendering. We do not write your documents to disk.
+    </p>
+
+    <h2>Information We Do Not Collect</h2>
+    <ul>
+      <li>We do not store the contents of your documents.</li>
+      <li>We do not log the filenames of your documents.</li>
+      <li>We do not require account creation, so we have no user profiles.</li>
+    </ul>
+
+    <h2>Analytics and Telemetry</h2>
+    <p>
+      We use minimal, privacy-respecting telemetry to monitor server health and application errors.
+      We respect Do Not Track (DNT) and Global Privacy Control (GPC) signals.
+    </p>
+
+    <h2>Forms</h2>
+    <p>
+      Information submitted via our contact or newsletter forms is securely captured for the
+      explicit purpose of responding to your inquiry or sending updates you requested.
+    </p>
+  </main>
+</Layout>

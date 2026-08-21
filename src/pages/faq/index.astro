@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description:
+    "Frequently asked questions about uDocumentView, file formats, privacy, and security.",
+  open_graph_type: "website",
+};
+
+const faqs = [
+  {
+    q: "Do you store my documents?",
+    a: "No. We parse documents locally in your browser whenever possible. If server processing is required, it happens entirely in ephemeral memory and is instantly destroyed. We do not store, log, or index your files.",
+  },
+  {
+    q: "Is there a file size limit?",
+    a: "Yes, currently we support files up to 50MB to ensure stable browser performance.",
+  },
+  {
+    q: "Why does my document look slightly different?",
+    a: "To render documents without native software (like Microsoft Word), we convert proprietary formatting into web-standards. While we aim for 100% accuracy, complex layouts with rare fonts may shift slightly.",
+  },
+  {
+    q: "Can I edit the document?",
+    a: "No. uDocumentView is strictly a document viewer. We believe editing introduces complexity and security risks that distract from our core mission of fast, safe viewing.",
+  },
+  {
+    q: "What formats do you support?",
+    a: "We support PDF, DOCX, XLSX, PPTX, CSV, TXT, RTF, and ODT. We are constantly working on adding more formats.",
+  },
+];
+---
+
+<Layout title="FAQ | uDocumentView" seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold mb-8 text-center">Frequently Asked Questions</h1>
+
+    <div class="space-y-6">
+      {
+        faqs.map((faq) => (
+          <div class="bg-white border border-slate-200 p-6 rounded-lg shadow-sm">
+            <h3 class="text-xl font-bold text-slate-900 mb-2">{faq.q}</h3>
+            <p class="text-slate-600">{faq.a}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-slate-600">
+        Still have questions? <a href="/contact/" class="text-blue-600 hover:underline"
+          >Contact us</a
+        >.
+      </p>
+    </div>
+  </main>
+</Layout>

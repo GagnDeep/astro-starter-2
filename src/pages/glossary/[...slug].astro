@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const terms = await getCollection("glossary");
+  return terms.map((term) => ({
+    params: { slug: term.id },
+    props: { term },
+  }));
+}
+
+const { term } = Astro.props;
+const { Content } = await render(term);
+---
+
+<Layout title={`${term.data.title} | uDocumentView Glossary`} seo={term.data.seo}>
+  <main class="max-w-3xl mx-auto px-4 py-16 prose prose-slate max-w-none">
+    <Content />
+    <div class="mt-8 pt-8 border-t">
+      <a href="/glossary/" class="text-blue-600">← Back to Glossary</a>
+    </div>
+  </main>
+</Layout>

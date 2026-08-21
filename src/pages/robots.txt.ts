@@ -1,25 +1,20 @@
 import type { APIRoute } from "astro";
 
-/**
- * /robots.txt
- *
- * Allows everything, points crawlers at the sitemap index emitted by
- * `@astrojs/sitemap`, and keeps CloudCannon preview/editor artefacts out of
- * the index. Add `Disallow:` lines here rather than in individual pages.
- */
-export const GET: APIRoute = ({ site }) => {
-  const sitemapUrl = new URL("/sitemap-index.xml", site ?? "http://localhost:4321").toString();
-
-  const body = `# https://www.robotstxt.org/robotstxt.html
+const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
 Allow: /
-Disallow: /_cloudcannon/
-Disallow: /404
 
-Sitemap: ${sitemapUrl}
+Sitemap: ${sitemapURL.href}
 `;
 
-  return new Response(body, {
-    headers: { "Content-Type": "text/plain; charset=utf-8" },
+export const GET: APIRoute = ({ site }) => {
+  if (!site) {
+    throw new Error("site is required in astro.config.mjs");
+  }
+  const sitemapURL = new URL("sitemap-index.xml", site);
+  return new Response(getRobotsTxt(sitemapURL), {
+    headers: {
+      "Content-Type": "text/plain",
+    },
   });
 };
