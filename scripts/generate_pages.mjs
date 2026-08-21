@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-// Tax forms
 const taxForms = [
   { slug: 'w9', keyword: 'w9 fillable 2024', desc: 'Fill out a W-9 form for 2024 online.', title: 'W-9 Fillable Form (2024)' },
   { slug: 'w4', keyword: 'w4 fillable', desc: 'Fill out a W-4 form online.', title: 'W-4 Fillable Form' },
@@ -23,14 +22,6 @@ const taxForms = [
 const taxFormsDir = path.join('src', 'content', 'pages', 'library', 'tax-forms');
 
 taxForms.forEach(form => {
-  const isW9 = form.slug === 'w9';
-  const customW9Content = `
-      ### Edge Cases for W-9
-      If you are a single-member LLC, you should typically use your personal name on line 1, and your LLC name on line 2. Always confirm with a tax professional.
-
-      [Learn more about digital signatures vs electronic signatures](/blog/what-is-a-digital-signature).
-  `;
-
   const content = `---
 _schema: default
 title: ${form.title}
@@ -56,7 +47,10 @@ content_blocks:
       2. Upload your existing blank form, or we will load the official IRS template if available.
       3. Type your details into the highlighted boxes.
       4. Download your completed PDF securely.
-      ${isW9 ? customW9Content : ''}
+
+      ### Edge Cases & What to Do Next
+      Ensure you have checked your document thoroughly before hitting export. Once the document is generated, you may want to <a href="/tools/compress-pdf">compress the PDF file</a> before emailing it to your employer, or <a href="/tools/merge-pdf">merge it with other tax documents</a> to keep a clean digital record. If you are asked to provide a secure signature, read up on the legality of <a href="/blog/esignature-legality-explained">e-signatures</a>.
+
   - _name: LeftRight
     heading: Ready to begin?
     text_content: Start filling out your ${form.title} now.
