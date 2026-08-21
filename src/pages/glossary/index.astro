@@ -2,13 +2,25 @@
 import Layout from "../../layouts/Layout.astro";
 
 const terms = [
-  { term: "Audit Trail", def: "A digital record logging the steps of the signing process, including IP address, timestamp, and cryptographic hash." },
-  { term: "Certificate of Completion", def: "A document appended to a signed PDF providing proof of the audit trail." },
+  { term: "Audit Trail", def: "A digital record logging the steps of the signing process, including IP address, timestamp, and cryptographic hash.", link: "/security/audit-trails" },
+  { term: "Authentication", def: "The process of verifying the identity of a signer, often through email links, SMS codes, or login credentials." },
+  { term: "Biometric Signature", def: "A signature that relies on physical characteristics, such as a fingerprint or a stylometric analysis of how someone signs their name on a touchscreen." },
+  { term: "Certificate of Completion", def: "A document appended to a signed PDF providing proof of the audit trail.", link: "/security/audit-trails" },
+  { term: "Clickwrap Agreement", def: "A digital prompt that requires the user to click an 'I agree' box or button to consent to terms and conditions." },
+  { term: "Cryptographic Hash", def: "A mathematical algorithm that maps data of arbitrary size to a bit array of a fixed size. Used to prove a document hasn't been tampered with." },
   { term: "Digital Signature", def: "A specific type of e-signature backed by a digital certificate providing cryptographic proof of identity (PKI)." },
+  { term: "Document Integrity", def: "The assurance that a document has not been altered or tampered with since it was signed." },
+  { term: "Electronic Record", def: "A contract or other record created, generated, sent, communicated, received, or stored by electronic means." },
   { term: "Electronic Signature", def: "A broad legal term referring to any electronic sound, symbol, or process attached to a contract indicating intent to sign." },
-  { term: "ESIGN Act", def: "The Electronic Signatures in Global and National Commerce Act (US, 2000) that grants e-signatures the same legal status as wet signatures." },
-  { term: "eIDAS", def: "EU regulation for electronic identification and trust services." },
+  { term: "ESIGN Act", def: "The Electronic Signatures in Global and National Commerce Act (US, 2000) that grants e-signatures the same legal status as wet signatures.", link: "/legality/us-esign-act" },
+  { term: "eIDAS", def: "EU regulation for electronic identification and trust services.", link: "/legality/eu-eidas" },
+  { term: "Identity Verification", def: "The process of ensuring a person is who they claim to be before they can access or sign a document." },
+  { term: "Intent to Sign", def: "A legal requirement that a signer must show clear intent to be bound by the terms of the document they are electronically signing." },
   { term: "Non-repudiation", def: "The assurance that someone cannot deny the validity of something (like their signature on a contract)." },
+  { term: "Public Key Infrastructure (PKI)", def: "A set of roles, policies, hardware, software and procedures needed to create, manage, distribute, use, store and revoke digital certificates and manage public-key encryption." },
+  { term: "Remote Online Notarization (RON)", def: "A process that allows a notary public to perform notarizations digitally using audio-visual technology." },
+  { term: "Standard Electronic Signature (SES)", def: "The most basic level of e-signature under eIDAS, not requiring ID verification. Sufficient for most B2B contracts." },
+  { term: "UETA", def: "Uniform Electronic Transactions Act, adopted by most US states to establish the legal validity of electronic records and signatures.", link: "/legality/us-esign-act" },
   { term: "Wet Signature", def: "A traditional signature made with ink on physical paper." }
 ];
 ---
@@ -25,8 +37,9 @@ const terms = [
     <div class="space-y-8">
       {terms.map(t => (
         <div class="bg-surface p-6 rounded border border-border shadow-sm">
-            <h2 class="text-2xl font-semibold mb-2 text-primary" id={t.term.toLowerCase().replace(/ /g, '-')}>{t.term}</h2>
-            <p class="text-text-muted">{t.def}</p>
+            <h2 class="text-2xl font-semibold mb-2 text-primary" id={t.term.toLowerCase().replace(/[^a-z0-9]+/g, '-')}>{t.term}</h2>
+            <p class="text-text-muted mb-4">{t.def}</p>
+            {t.link && <a href={t.link} class="text-sm font-medium text-accent hover:underline">Read more about {t.term} &rarr;</a>}
         </div>
       ))}
     </div>

@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="E-Signature Audit Trails | usignpdf"
+  seo={{
+    page_description: "Learn how usignpdf's cryptographic audit trails ensure non-repudiation and document integrity.",
+    canonical_url: "https://usignpdf.com/security/audit-trails/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose">
+    <a href="/security" class="text-accent no-underline hover:underline">&larr; Back to Security</a>
+    <h1 class="text-4xl font-bold mt-8 mb-8">Audit Trails & Certificates of Completion</h1>
+
+    <h2>What is an Audit Trail?</h2>
+    <p>An audit trail is the digital footprint left behind during the signing process. While a signature image on a PDF looks nice, it is the audit trail that actually provides the legal weight to an electronic contract.</p>
+
+    <h2>What's inside a usignpdf Certificate of Completion?</h2>
+    <p>When a document is completed on usignpdf, we append a Certificate of Completion to the final PDF. This contains:</p>
+    <ul>
+        <li><strong>Unique Document ID:</strong> A UUID tracking the transaction.</li>
+        <li><strong>Signer Details:</strong> Email addresses and names of all parties.</li>
+        <li><strong>IP Addresses:</strong> The IP address from which the document was viewed and signed.</li>
+        <li><strong>Timestamps:</strong> UTC timestamps for creation, viewing, and signing events.</li>
+        <li><strong>Cryptographic Hash:</strong> A SHA-256 hash of the final document. If even a single comma is changed in the PDF after it is signed, the hash will no longer match, proving tampering.</li>
+    </ul>
+
+    <p>This comprehensive tracking ensures <em>non-repudiation</em>—meaning a signer cannot easily deny that they signed the document.</p>
+  </div>
+</Layout>

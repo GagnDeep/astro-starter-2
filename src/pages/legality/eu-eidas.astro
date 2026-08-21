@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout
+  title="EU eIDAS Regulation | usignpdf"
+  seo={{
+    page_description: "Understand the EU eIDAS regulation for electronic signatures and how it applies to your business.",
+    canonical_url: "https://usignpdf.com/legality/eu-eidas/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose">
+    <a href="/legality" class="text-accent no-underline hover:underline">&larr; Back to Reference Library</a>
+    <h1 class="text-4xl font-bold mt-8 mb-8">EU eIDAS Regulation</h1>
+
+    <h2>What is eIDAS?</h2>
+    <p>eIDAS (Electronic Identification, Authentication and Trust Services) is an EU regulation that establishes a standard framework for electronic signatures across the European Union, adopted in 2014 and effective since 2016.</p>
+
+    <h2>Types of Electronic Signatures under eIDAS</h2>
+    <ol>
+        <li><strong>Standard Electronic Signature (SES):</strong> Broadly defined as data in electronic form which is attached to or logically associated with other data in electronic form and which is used by the signatory to sign. Suitable for most B2B and B2C transactions.</li>
+        <li><strong>Advanced Electronic Signature (AES):</strong> Must be uniquely linked to the signatory, capable of identifying them, created using electronic signature creation data that the signatory can use under their sole control, and linked to the data signed in such a way that any subsequent change in the data is detectable.</li>
+        <li><strong>Qualified Electronic Signature (QES):</strong> An AES that is created by a qualified electronic signature creation device, and which is based on a qualified certificate for electronic signatures. It carries the exact same legal effect as a handwritten signature across all EU member states.</li>
+    </ol>
+
+    <h2>How usignpdf complies</h2>
+    <p>usignpdf provides Standard Electronic Signatures (SES) which are legally valid for the vast majority of commercial agreements, employment contracts, and NDAs in the EU. Our robust <a href="/glossary#audit-trail">Audit Trail</a> helps prove intent and document integrity, bolstering the enforceability of the SES.</p>
+
+    <div class="not-prose bg-surface-alt p-6 mt-8 rounded border border-border">
+      <h3 class="text-lg font-bold mb-2">Need to get an EU contract signed?</h3>
+      <CaptureForm form="reference" submitLabel="Get Started Free" />
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="GDPR Compliant E-Signatures | usignpdf"
+  seo={{
+    page_description: "How usignpdf complies with the General Data Protection Regulation (GDPR).",
+    canonical_url: "https://usignpdf.com/compliance/gdpr/"
+  }}
+>
+  <div class="max-w-4xl mx-auto py-20 px-4 md:px-8 prose">
+    <a href="/compliance" class="text-accent no-underline hover:underline">&larr; Back to Compliance</a>
+    <h1 class="text-4xl font-bold mt-8 mb-8">GDPR Compliance</h1>
+
+    <p>The General Data Protection Regulation (GDPR) is a comprehensive privacy law that protects the personal data of EU residents.</p>
+
+    <h2>Data Processing</h2>
+    <p>As an e-signature provider, usignpdf acts as a Data Processor for the documents you upload. We process personal data (like names, IP addresses, and emails required for the <a href="/security/audit-trails">Audit Trail</a>) strictly on your behalf.</p>
+
+    <h2>Data Rights</h2>
+    <p>We fully support the rights granted under GDPR, including:</p>
+    <ul>
+        <li><strong>Right to Erasure (Right to be Forgotten):</strong> You can delete documents and associated data from our systems. Note that deleting a document invalidates the ability to verify its audit trail in the future.</li>
+        <li><strong>Right of Access:</strong> You can request a copy of all data we hold on you.</li>
+    </ul>
+
+    <h2>Data Residency</h2>
+    <p>For enterprise customers, we offer the option to restrict data processing and storage entirely within EU datacenters (Frankfurt, Germany) to simplify compliance.</p>
+  </div>
+</Layout>
