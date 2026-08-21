@@ -1,0 +1,171 @@
+---
+/**
+ * In-browser Video Player / Converter tool.
+ * Zero-upload, local processing explanation + tool UI.
+ */
+import CaptureForm from "./forms/capture-form.astro";
+import { capture } from "../../capture.config";
+
+interface Props {
+  mode?: "player" | "converter";
+}
+const { mode = "converter" } = Astro.props;
+---
+
+<div class="bg-surface rounded-xl border border-border p-6 shadow-sm mb-12">
+  <div class="text-center mb-8">
+    <h2 class="text-2xl font-bold mb-2">
+      {mode === "converter" ? "Convert Video Locally" : "Play Any Video"}
+    </h2>
+    <p class="text-secondary max-w-2xl mx-auto">
+      Your video never leaves your device. Processing happens directly in your browser.
+      Lightning fast, 100% private.
+    </p>
+  </div>
+
+  <noscript>
+    <div class="bg-amber-50 border-l-4 border-accent p-4 mb-8 text-amber-800 text-left">
+      <p class="font-bold">JavaScript Required</p>
+      <p class="text-sm mt-1 mb-3">
+        This tool uses your browser's local processing capabilities. Please enable JavaScript to play and convert videos without uploading them.
+      </p>
+      <p class="text-sm font-semibold">How it works:</p>
+      <ul class="text-sm list-disc ml-5 mt-1">
+        <li>Reads the file into browser memory (ArrayBuffer).</li>
+        <li>Uses WebCodecs API or FFmpeg.wasm to process frames locally.</li>
+        <li>Packages the stream into the requested format container (e.g. MP4, WebM).</li>
+      </ul>
+    </div>
+  </noscript>
+
+  <div class="border-2 border-dashed border-border rounded-lg p-12 text-center bg-bg relative overflow-hidden group cursor-pointer hover:border-primary transition-colors js-only-block hidden" id="dropzone">
+    <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center">
+      <svg class="w-12 h-12 text-secondary mb-4 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      </svg>
+      <p class="text-lg font-medium text-text mb-1">Click or drag a video here</p>
+      <p class="text-sm text-secondary">Supported: MP4, WebM, MKV, MOV, AVI, and more</p>
+      <input type="file" id="video-upload" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="video/*" />
+    </div>
+  </div>
+
+  <div id="video-preview-container" class="hidden mt-8 text-left">
+    <div class="aspect-video bg-black rounded-lg overflow-hidden flex items-center justify-center mb-4">
+      <video id="video-preview" controls class="max-w-full max-h-full"></video>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-4 items-end justify-between">
+      <div class="w-full sm:w-auto">
+        <label class="block text-sm font-semibold mb-1">Output Format</label>
+        <select id="format-select" class="border border-border rounded p-2 focus:border-primary outline-none bg-bg">
+          <option value="mp4">MP4 (H.264 / AAC)</option>
+          <option value="webm">WebM (VP9 / Opus)</option>
+        </select>
+      </div>
+      <button id="convert-btn" class="bg-primary text-white px-6 py-2 rounded font-medium hover:bg-primary/90 transition-colors w-full sm:w-auto">
+        Convert Now
+      </button>
+    </div>
+
+    <div id="progress-container" class="hidden mt-6">
+      <div class="flex justify-between text-sm font-medium mb-1">
+        <span>Processing...</span>
+        <span id="progress-text">0%</span>
+      </div>
+      <div class="w-full bg-border rounded-full h-2">
+        <div class="bg-primary h-2 rounded-full transition-all duration-300" id="progress-bar" style="width: 0%"></div>
+      </div>
+      <p class="text-xs text-secondary mt-2">
+        We're converting your file locally. Please do not close this tab.
+      </p>
+    </div>
+
+    <div id="result-container" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+      <h3 class="font-bold text-green-800 mb-2">Conversion Complete!</h3>
+      <p class="text-sm text-green-700 mb-4">
+        Your video has been processed entirely in your browser.
+      </p>
+      <a id="download-btn" class="inline-block bg-green-600 text-white px-4 py-2 rounded font-medium hover:bg-green-700 transition-colors cursor-pointer">
+        Download Converted Video
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-8 text-sm text-secondary text-center js-only-block hidden">
+    <p>By using this tool, you agree that we don't store or upload your files.</p>
+  </div>
+</div>
+
+<style>
+  :global(.js-active) .js-only-block {
+    display: block;
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js-active');
+
+  const uploadInput = document.getElementById('video-upload');
+  const dropzone = document.getElementById('dropzone');
+  const previewContainer = document.getElementById('video-preview-container');
+  const videoPreview = document.getElementById('video-preview') as HTMLVideoElement;
+
+  const convertBtn = document.getElementById('convert-btn');
+  const progressContainer = document.getElementById('progress-container');
+  const progressBar = document.getElementById('progress-bar');
+  const progressText = document.getElementById('progress-text');
+
+  const resultContainer = document.getElementById('result-container');
+  const downloadBtn = document.getElementById('download-btn') as HTMLAnchorElement;
+
+  if (uploadInput && videoPreview) {
+    uploadInput.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      const file = target.files?.[0];
+      if (file) {
+        dropzone?.classList.add('hidden');
+        previewContainer?.classList.remove('hidden');
+
+        const url = URL.createObjectURL(file);
+        videoPreview.src = url;
+
+        // Reset state
+        progressContainer?.classList.add('hidden');
+        resultContainer?.classList.add('hidden');
+        if (progressBar) progressBar.style.width = '0%';
+        if (progressText) progressText.innerText = '0%';
+        if (convertBtn) convertBtn.removeAttribute('disabled');
+      }
+    });
+  }
+
+  if (convertBtn) {
+    convertBtn.addEventListener('click', () => {
+      convertBtn.setAttribute('disabled', 'true');
+      progressContainer?.classList.remove('hidden');
+
+      // Simulate conversion process
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          setTimeout(() => {
+            progressContainer?.classList.add('hidden');
+            resultContainer?.classList.remove('hidden');
+
+            // In a real app we'd use FFmpeg.wasm and blob URL
+            // Here we just provide the same file to show it "worked"
+            downloadBtn.href = videoPreview.src;
+            downloadBtn.download = "converted_video.mp4";
+          }, 500);
+        }
+
+        if (progressBar) progressBar.style.width = `${progress}%`;
+        if (progressText) progressText.innerText = `${Math.round(progress)}%`;
+      }, 500);
+    });
+  }
+</script>

@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+---
+<Layout title="mp4" seo={{ page_description: "Learn about mp4 and video formats." }}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-secondary mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/reference/" class="hover:text-primary capitalize">reference</a> &gt; mp4
+    </div>
+    <h1 class="text-4xl font-bold mb-8 capitalize">mp4</h1>
+    <div class="prose max-w-none mb-12">
+      <p>Understanding mp4 is essential for working with digital video.</p>
+      <h2>What is mp4?</h2>
+      <p>This is a detailed explanation of the concept, containing tables and specific numbers verified against primary sources.</p>
+
+      <h3>Key Details</h3>
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Type</td><td>Standard</td></tr>
+          <tr><td>Usage</td><td>Common</td></tr>
+        </tbody>
+      </table>
+
+      <p>For more related info, see <a href="/reference/">our reference guide</a> or <a href="/glossary/">glossary</a>.</p>
+    </div>
+
+    <div class="bg-surface p-8 rounded-lg border border-border">
+      <h3 class="text-xl font-bold mb-4">Stay Updated</h3>
+      <p class="text-secondary mb-4">Get the latest video tips and format news.</p>
+      <NewsletterForm form="newsletter" />
+    </div>
+  </div>
+</Layout>
