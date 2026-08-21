@@ -1,13 +1,7 @@
 ---
-_schema: paginated
+_name: blog
 title: Blog
+page_size: 10
 seo:
-  page_description: A blog template with tags.
-  canonical_url:
-  featured_image:
-  featured_image_alt:
-  author_twitter_handle:
-  open_graph_type: website
-  no_index: false
-page_size: 6
+  page_description: E-signature guides, legal tips, and best practices for small businesses.
 ---

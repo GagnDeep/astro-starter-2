@@ -1,0 +1,86 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const props = {
+  title: "Paper Cost Calculator",
+  seo: {
+    page_description: "Calculate the real environmental and financial cost of printing contracts for wet signatures."
+  }
+};
+---
+
+<Layout {...props}>
+  <div class="max-w-4xl mx-auto px-4 py-20">
+    <h1 class="text-4xl font-bold mb-4">Paper Cost Calculator</h1>
+    <p class="text-xl text-slate-600 mb-12">See how much you are spending on toner and paper just to get a signature.</p>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <form id="paper-form" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Contracts printed per month</label>
+            <input type="number" id="contracts-printed" value="50" class="input-field" min="1" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Pages per contract</label>
+            <input type="number" id="pages-printed" value="10" class="input-field" min="1" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Cost of toner cartridge ($)</label>
+            <input type="number" id="toner-cost" value="80" class="input-field" min="1" />
+          </div>
+        </form>
+      </div>
+
+      <div class="bg-slate-50 p-8 rounded-xl border border-slate-200">
+        <h3 class="text-xl font-bold mb-6">Your Printing Costs</h3>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex justify-between border-b pb-2">
+            <span class="text-slate-600">Pages printed annually</span>
+            <span id="annual-pages" class="font-bold">0</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span class="text-slate-600">Annual Toner Cost</span>
+            <span id="annual-toner" class="font-bold">$0.00</span>
+          </div>
+          <div class="flex justify-between pt-2 text-xl">
+            <span class="font-bold">Total Annual Cost</span>
+            <span id="annual-total" class="font-bold text-red-600">$0.00</span>
+          </div>
+        </div>
+
+        <div class="text-sm text-slate-500">
+          <p>Assumptions: A standard toner cartridge yields 2,500 pages. A ream of paper (500 sheets) costs $8.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calculatePaper() {
+      const contracts = parseFloat((document.getElementById('contracts-printed') as HTMLInputElement).value) || 0;
+      const pages = parseFloat((document.getElementById('pages-printed') as HTMLInputElement).value) || 0;
+      const tonerCost = parseFloat((document.getElementById('toner-cost') as HTMLInputElement).value) || 0;
+
+      const monthlyPages = contracts * pages;
+      const annualPages = monthlyPages * 12;
+
+      const tonerYield = 2500;
+      const costPerPageToner = tonerCost / tonerYield;
+      const costPerPagePaper = 8 / 500;
+
+      const annualTonerCost = annualPages * costPerPageToner;
+      const annualPaperCost = annualPages * costPerPagePaper;
+
+      const annualTotal = annualTonerCost + annualPaperCost;
+
+      document.getElementById('annual-pages')!.innerText = annualPages.toLocaleString();
+      document.getElementById('annual-toner')!.innerText = '$' + annualTonerCost.toFixed(2);
+      document.getElementById('annual-total')!.innerText = '$' + annualTotal.toFixed(2);
+    }
+
+    document.getElementById('paper-form')?.addEventListener('input', calculatePaper);
+    calculatePaper();
+  </script>
+</Layout>

@@ -1,141 +1,48 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-/*
- * CASCADE RULE — read before adding CSS to this file.
- *
- * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
- * beats *any* cascade layer regardless of specificity or source order, so a
- * bare reset like
- *
- *   * { margin: 0; padding: 0; }        <-- outside any @layer
- *
- * silently kills every `p-*`, `px-*`, `m-*`, `mx-auto` and `space-y-*` on the
- * site, while colours, flex and grid keep working — which makes it look like
- * "Tailwind is half broken" rather than a cascade problem.
- *
- * Therefore: every rule in this file stays inside `@layer base` or
- * `@layer components`. No element/reset rule may be written at the top level.
- * `pnpm build` warns if an unlayered spacing reset reaches the output.
- *
- * A `*` reset is not needed anyway: Tailwind's preflight (in `@layer base`)
- * already sets `margin: 0; padding: 0; box-sizing: border-box` on
- * `*, ::before, ::after, ::backdrop`.
- */
+@theme {
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-accent: #10b981;
+  --color-bg: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-dark: #0f172a;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
 @layer base {
-  html {
-    font-family: system-ui, -apple-system, sans-serif;
+  body {
+    @apply text-[var(--color-text)] bg-[var(--color-bg)] font-sans antialiased;
   }
 
-  main {
-    min-height: 100vh;
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[var(--color-text)] font-bold tracking-tight;
   }
 
-  img {
-    object-fit: cover;
+  a {
+    @apply text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition-colors;
   }
 }
 
 @layer components {
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4 {
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-wrap: balance;
-    line-height: 1.2;
-    max-width: 72ch;
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] transition-colors shadow-sm min-h-[44px];
   }
-  .prose h1 { font-size: 2rem; }
-  .prose h2 { font-size: 1.75rem; }
-  .prose h3 { font-size: 1.5rem; }
-  .prose h4 { font-size: 1.25rem; }
 
-  .prose p,
-  .prose a,
-  .prose ol li,
-  .prose ul li {
-    line-height: 1.75;
-    max-width: 72ch;
-    text-wrap: pretty;
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-[var(--color-border)] text-base font-medium rounded-md text-[var(--color-text)] bg-white hover:bg-[var(--color-surface)] transition-colors shadow-sm min-h-[44px];
   }
-  .prose p,
-  .prose ol,
-  .prose ul {
-    margin-bottom: 1.5rem;
-  }
-  .prose li p {
-    margin-bottom: 0.125rem;
-  }
-  .prose li {
-    margin-bottom: 0.25rem;
-    max-width: fit-content;
-  }
-  .prose blockquote {
-    font-style: italic;
-    border-left: 5px solid #000;
-    padding-inline: 1rem;
-    margin-inline: 0;
-    margin-block: 1rem;
-  }
-  .prose ul li {
-    margin-inline: 1rem;
-    padding-block: 0.125rem;
-    list-style: disc;
-  }
-  .prose ol li {
-    list-style-type: decimal;
-    padding-block: 0.125rem;
-    margin-inline: 1rem;
-  }
-  .prose a {
-    color: #034ad8;
-    text-decoration: underline;
-    text-underline-offset: 0.1rem;
-    cursor: pointer;
-  }
-  .prose sup { vertical-align: super; font-size: smaller; }
-  .prose sub { vertical-align: sub; font-size: smaller; }
-  .prose table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1.5rem;
-  }
-  .prose table p { margin-bottom: 0; padding-block: 0.5rem; }
-  .prose th,
-  .prose td {
-    border: 1px solid #e5e5e5;
-    padding: 0.5rem;
-  }
-  .prose thead { background-color: #f5f5f5; }
-  .prose img {
-    max-width: 100%;
-    height: auto;
-    margin: 1rem auto;
-  }
-  .prose hr {
-    border: 0;
-    border-top: 1px solid #d4d4d4;
-    margin: 1.5rem 0;
-  }
-  .prose pre {
-    margin-block: 1.5rem;
-    padding: 1rem;
-  }
-  .prose p > code,
-  .prose li > code {
-    background-color: #f5f5f5;
-    color: inherit;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-  }
-}
 
-@layer components {
-  /* CloudCannon content editor alignment classes */
-  .align-left { text-align: left; }
-  .align-center { text-align: center; }
-  .align-right { text-align: right; }
-  .align-justify { text-align: justify; }
+  .input-field {
+    @apply block w-full rounded-md border-[var(--color-border)] border px-4 py-3 shadow-sm focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)] sm:text-sm bg-white min-h-[44px];
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-[var(--color-border)] p-6 md:p-8;
+  }
 }

@@ -1,0 +1,65 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/ui/button.astro";
+
+const props = {
+  title: "Simple, Transparent Pricing",
+  seo: {
+    page_description: "Freemium e-signature pricing that makes sense for small businesses. Stop paying for enterprise bloat."
+  }
+};
+---
+
+<Layout {...props}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <h1 class="text-4xl font-bold text-slate-900 mb-4">Pricing that actually makes sense</h1>
+    <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-16">Stop paying for enterprise features you never use. Start for free, upgrade only when you need to.</p>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="card flex flex-col h-full border-blue-600 border-2 relative">
+        <div class="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 text-sm font-bold rounded-bl-lg rounded-tr-lg">Most Popular</div>
+        <h2 class="text-2xl font-bold mb-2">Free</h2>
+        <div class="text-4xl font-bold mb-6">$0<span class="text-lg font-normal text-slate-500">/mo</span></div>
+        <ul class="text-left space-y-4 mb-8 flex-1">
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Up to 3 documents per month
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Legally binding ESIGN compliant
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Full audit trails
+          </li>
+        </ul>
+        <Button class="w-full">Get Started Free</Button>
+      </div>
+
+      <div class="card flex flex-col h-full">
+        <h2 class="text-2xl font-bold mb-2">Pro</h2>
+        <div class="text-4xl font-bold mb-6">$8<span class="text-lg font-normal text-slate-500">/mo</span></div>
+        <ul class="text-left space-y-4 mb-8 flex-1">
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Unlimited documents
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Custom branding
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Save reusable templates
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Request attachments (IDs, etc)
+          </li>
+        </ul>
+        <Button variant="secondary" class="w-full">Upgrade to Pro</Button>
+      </div>
+    </div>
+  </div>
+</Layout>
