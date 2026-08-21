@@ -1,77 +1,20 @@
 ---
-import { header } from "../../../data/navigation.json";
-// Icons: @lucide/astro renders inline SVG at build time — zero client JS,
-// tree-shaken per import. See AGENTS.md → "Icons".
-import { Menu, X } from "@lucide/astro";
 ---
-
-<header class="bg-white">
-  <div class="mx-auto max-w-6xl px-8">
-    <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-      </a>
-
-      <ul class="hidden sm:flex items-center gap-6">
-        {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        class="sm:hidden p-2"
-        aria-label="Open navigation menu"
-        popovertarget="mobile-menu"
-        popovertargetaction="show"
-      >
-        <Menu class="w-6 h-6" aria-hidden="true" />
-      </button>
-
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-        </div>
+<header class="bg-brand-primary text-white sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex-shrink-0 flex items-center">
+        <a href="/" class="font-bold text-xl tracking-tight">Aerospace UAE</a>
       </div>
-    </nav>
+      <nav class="hidden md:flex space-x-8">
+        <a href="/directory" class="text-sm font-medium hover:text-brand-secondary transition-colors">Directory</a>
+        <a href="/news" class="text-sm font-medium hover:text-brand-secondary transition-colors">News</a>
+        <a href="/tools/offset-calculator" class="text-sm font-medium hover:text-brand-secondary transition-colors">Tools</a>
+        <a href="/glossary" class="text-sm font-medium hover:text-brand-secondary transition-colors">Glossary</a>
+      </nav>
+      <div class="hidden md:flex">
+        <a href="/contact" class="btn-secondary text-sm px-3 py-1.5">List Company</a>
+      </div>
+    </div>
   </div>
 </header>
-
-<style>
-  #mobile-menu {
-    opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
-  }
-  #mobile-menu:popover-open {
-    opacity: 1;
-  }
-  @starting-style {
-    #mobile-menu:popover-open {
-      opacity: 0;
-    }
-  }
-</style>

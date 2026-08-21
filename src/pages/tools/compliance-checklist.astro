@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+
+const seo = {
+  page_description: "Check your readiness for UAE defense procurement with our compliance checklist.",
+  canonical_url: "/tools/compliance-checklist"
+};
+---
+
+<Layout title="Defense Compliance Checklist" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-6">Defense Supplier Compliance Checklist</h1>
+    <p class="text-slate-600 mb-8">
+      Use this interactive checklist to verify if you meet the baseline requirements for entering the UAE aerospace and defense supply chain.
+    </p>
+
+    <div class="card mb-8">
+      <form id="checklist-form" class="space-y-6">
+        <div>
+          <h3 class="font-bold text-lg mb-3">1. Quality & Standards</h3>
+          <label class="flex items-start space-x-3 mb-2">
+            <input type="checkbox" class="mt-1" />
+            <span class="text-sm">We hold ISO 9001 certification or equivalent.</span>
+          </label>
+          <label class="flex items-start space-x-3 mb-2">
+            <input type="checkbox" class="mt-1" />
+            <span class="text-sm">We hold AS9100D certification (for aerospace manufacturing).</span>
+          </label>
+           <label class="flex items-start space-x-3 mb-2">
+            <input type="checkbox" class="mt-1" />
+            <span class="text-sm">We are compliant with ISO 27001 (Cybersecurity standard).</span>
+          </label>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg mb-3">2. Local Presence</h3>
+           <label class="flex items-start space-x-3 mb-2">
+            <input type="checkbox" class="mt-1" />
+            <span class="text-sm">We have a registered entity in a UAE Free Zone or Mainland.</span>
+          </label>
+          <label class="flex items-start space-x-3 mb-2">
+            <input type="checkbox" class="mt-1" />
+            <span class="text-sm">We have calculated our baseline ICV (In-Country Value) score.</span>
+          </label>
+        </div>
+
+         <div>
+          <h3 class="font-bold text-lg mb-3">3. Export Control</h3>
+           <label class="flex items-start space-x-3 mb-2">
+            <input type="checkbox" class="mt-1" />
+            <span class="text-sm">We understand ITAR implications for any US-origin technology we use.</span>
+          </label>
+          <label class="flex items-start space-x-3 mb-2">
+            <input type="checkbox" class="mt-1" />
+            <span class="text-sm">We have end-user certificate protocols in place.</span>
+          </label>
+        </div>
+      </form>
+    </div>
+
+    <div class="bg-brand-bg-subtle p-6 rounded-lg border border-brand-border">
+      <h3 class="text-xl font-bold mb-2">Get Your Readiness Report</h3>
+      <p class="text-sm text-slate-600 mb-4">Submit your details to receive a comprehensive guide on bridging compliance gaps.</p>
+      <CaptureForm form="report">
+        <input type="hidden" name="tool" value="compliance-checklist" />
+        <div class="space-y-4">
+          <div>
+            <label for="check_email" class="label-field">Work Email</label>
+            <input type="email" id="check_email" name="email" required class="input-field" />
+          </div>
+          <button type="submit" class="w-full btn-secondary">Email me the guide</button>
+        </div>
+      </CaptureForm>
+    </div>
+  </div>
+</Layout>

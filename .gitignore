@@ -18,4 +18,8 @@ pnpm-debug.log*
 .env.production
 
 # macOS-specific files
-.DS_Store
+.DS_Storescreenshot*
+node_modules
+dist
+screenshot*.png
+screenshot*.cjs

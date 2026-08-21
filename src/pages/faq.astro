@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  page_description: "Frequently asked questions about the UAE aerospace and defense directory.",
+  canonical_url: "/faq"
+};
+
+const faqs = [
+  {
+    q: "How are suppliers verified in the directory?",
+    a: "We cross-reference submissions with public records and require proof of certifications (like AS9100D or ISO 27001) before listing them under specific capability categories."
+  },
+  {
+    q: "Is this an official government directory?",
+    a: "No. Aerospace UAE is an independent B2B platform designed to facilitate supply chain matching. For official Tawazun or EDGE Group portals, refer to their respective government sites."
+  },
+  {
+    q: "How accurate is the Offset Calculator?",
+    a: "The calculator provides estimations based on publicly discussed multipliers (e.g., 2024 guidance). It is intended for initial scenario planning, not official compliance. Always consult with a Tawazun-approved auditor."
+  },
+  {
+    q: "Can international companies list in the directory?",
+    a: "Yes, provided you have a local entity, joint venture, or a registered agent in the UAE. We focus strictly on the UAE supply chain."
+  }
+];
+---
+
+<Layout title="FAQ" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-8">Frequently Asked Questions</h1>
+    <div class="space-y-6">
+      {faqs.map(faq => (
+        <div class="card">
+          <h3 class="text-lg font-bold mb-2">{faq.q}</h3>
+          <p class="text-slate-700">{faq.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

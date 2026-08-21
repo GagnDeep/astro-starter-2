@@ -1,0 +1,13 @@
+export const captureConfig = {
+  endpoint: "https://api.markremover.com/v1/collect",
+  publicKey: "wcs_pk_demo_aerospace_123", // Placeholder, as per instructions use what's available or demo
+  thanksUrl: "/thanks",
+  honeypotField: "website_url",
+  forms: {
+    waitlist: "waitlist",
+    newsletter: "newsletter",
+    contact: "contact",
+    quote: "quote",
+    report: "report"
+  }
+};

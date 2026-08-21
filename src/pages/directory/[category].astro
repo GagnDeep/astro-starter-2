@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const suppliers = await getCollection('suppliers');
+  const categories = [...new Set(suppliers.map(s => s.data.category))];
+
+  return categories.map(category => {
+    return {
+      params: { category },
+      props: {
+        suppliers: suppliers.filter(s => s.data.category === category)
+      }
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { suppliers } = Astro.props;
+
+const seo = {
+  page_description: `Browse verified ${category} suppliers for UAE aerospace and defense.`,
+  canonical_url: `/directory/${category}`
+};
+---
+
+<Layout title={`${category.toUpperCase()} Suppliers in UAE`} seo={seo}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <a href="/directory" class="text-brand-primary hover:underline">&larr; Back to Directory</a>
+    </div>
+    <h1 class="text-3xl font-bold mb-8 capitalize">{category} Suppliers</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {suppliers.map((supplier: any) => (
+        <div class="card">
+          <h3 class="font-bold text-lg mb-2">
+            <a href={`/suppliers/${supplier.id.replace(/\.mdx?$/, '')}`}>{supplier.data.title}</a>
+          </h3>
+          <p class="text-sm text-slate-600 mb-2">{supplier.data.location}</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            {supplier.data.certifications.map((cert: string) => (
+              <span class="text-xs bg-brand-primary text-white px-2 py-1 rounded">{cert}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

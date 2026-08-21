@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+import NewsletterForm from '../../components/forms/newsletter-form.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id.replace(/\.mdx?$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const seo = post.data.seo || {};
+---
+
+<Layout title={post.data.title} seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <a href="/news" class="text-brand-primary hover:underline">&larr; Back to News</a>
+    </div>
+    <div class="prose prose-slate lg:prose-lg max-w-none">
+      <Content />
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-slate-200">
+      <div class="bg-brand-bg-subtle p-6 rounded-lg">
+        <h3 class="text-lg font-bold mb-2">Subscribe to our defense intel newsletter.</h3>
+        <p class="text-sm text-slate-600 mb-4">Get the latest B2B updates in your inbox.</p>
+        <NewsletterForm />
+      </div>
+    </div>
+  </div>
+</Layout>

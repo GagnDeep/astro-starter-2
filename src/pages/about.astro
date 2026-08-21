@@ -1,5 +1,33 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from '../layouts/Layout.astro';
+
+const seo = {
+  page_description: "About Aerospace UAE - The leading directory for the UAE defense and aerospace supply chain.",
+  canonical_url: "/about"
+};
 ---
 
-<AboutPage />
+<Layout title="About Aerospace UAE" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-slate">
+    <h1>About Aerospace UAE</h1>
+    <p>
+      Aerospace UAE is the definitive B2B directory and news portal for the United Arab Emirates aerospace and defense supply chain.
+    </p>
+    <p>
+      We bridge the gap between global tier-1 contractors, local UAE manufacturers, and defense procurement officers. By providing a curated, verified directory of suppliers categorized by capability and certification (such as AS9100, GCAA, and ISO 27001), we reduce the friction of finding compliant partners in the region.
+    </p>
+    <h2>Our Mission</h2>
+    <p>
+      To accelerate the localization of the UAE's defense industry by providing accurate, actionable B2B intelligence and transparent vendor discovery.
+    </p>
+    <h2>Who Uses Our Platform?</h2>
+    <ul>
+      <li><strong>Procurement Officers:</strong> Seeking local vendors with verified credentials to fulfill ICV and Tawazun offset requirements.</li>
+      <li><strong>Local Suppliers:</strong> Marketing their machining, MRO, and engineering capabilities to global primes.</li>
+      <li><strong>Global OEMs:</strong> Identifying reliable joint venture partners in Abu Dhabi and Dubai.</li>
+    </ul>
+    <div class="mt-8">
+      <a href="/directory" class="btn-primary no-underline text-white">Search the Directory</a>
+    </div>
+  </div>
+</Layout>
