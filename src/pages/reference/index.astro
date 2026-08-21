@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const references = await getCollection('reference');
+
+const seo = {
+  page_description: "Reference library for EU Ecodesign for Sustainable Products Regulation (ESPR) for cables.",
+};
+---
+
+<Layout title="ESPR Reference Library" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>ESPR Reference Library</h1>
+    <p>Detailed analysis of the ESPR regulatory framework for cables.</p>
+
+    <ul>
+      {references.map((ref) => (
+        <li>
+          <a href={`/reference/${ref.id}`}>{ref.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>

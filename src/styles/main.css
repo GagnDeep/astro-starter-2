@@ -1,30 +1,23 @@
 @import "tailwindcss";
 
-/*
- * CASCADE RULE — read before adding CSS to this file.
- *
- * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
- * beats *any* cascade layer regardless of specificity or source order, so a
- * bare reset like
- *
- *   * { margin: 0; padding: 0; }        <-- outside any @layer
- *
- * silently kills every `p-*`, `px-*`, `m-*`, `mx-auto` and `space-y-*` on the
- * site, while colours, flex and grid keep working — which makes it look like
- * "Tailwind is half broken" rather than a cascade problem.
- *
- * Therefore: every rule in this file stays inside `@layer base` or
- * `@layer components`. No element/reset rule may be written at the top level.
- * `pnpm build` warns if an unlayered spacing reset reaches the output.
- *
- * A `*` reset is not needed anyway: Tailwind's preflight (in `@layer base`)
- * already sets `margin: 0; padding: 0; box-sizing: border-box` on
- * `*, ::before, ::after, ::backdrop`.
- */
+@theme {
+  --color-bg: #FAFAFA;
+  --color-text: #111111;
+  --color-primary: #D9381E;
+  --color-secondary: #2B4C3B;
+  --color-accent: #F2A900;
+  --color-border: #E5E5E5;
+
+  --font-display: "Merriweather", serif;
+  --font-body: "Roboto", system-ui, sans-serif;
+  --font-mono: "Fira Code", monospace;
+}
 
 @layer base {
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
   }
 
   main {
@@ -33,6 +26,10 @@
 
   img {
     object-fit: cover;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 }
 
@@ -74,7 +71,7 @@
   }
   .prose blockquote {
     font-style: italic;
-    border-left: 5px solid #000;
+    border-left: 5px solid var(--color-text);
     padding-inline: 1rem;
     margin-inline: 0;
     margin-block: 1rem;
@@ -90,7 +87,7 @@
     margin-inline: 1rem;
   }
   .prose a {
-    color: #034ad8;
+    color: var(--color-primary);
     text-decoration: underline;
     text-underline-offset: 0.1rem;
     cursor: pointer;
@@ -105,10 +102,10 @@
   .prose table p { margin-bottom: 0; padding-block: 0.5rem; }
   .prose th,
   .prose td {
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--color-border);
     padding: 0.5rem;
   }
-  .prose thead { background-color: #f5f5f5; }
+  .prose thead { background-color: var(--color-border); }
   .prose img {
     max-width: 100%;
     height: auto;
@@ -116,7 +113,7 @@
   }
   .prose hr {
     border: 0;
-    border-top: 1px solid #d4d4d4;
+    border-top: 1px solid var(--color-border);
     margin: 1.5rem 0;
   }
   .prose pre {
@@ -125,7 +122,7 @@
   }
   .prose p > code,
   .prose li > code {
-    background-color: #f5f5f5;
+    background-color: var(--color-border);
     color: inherit;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;

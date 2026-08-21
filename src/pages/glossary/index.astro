@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const glossary = await getCollection('glossary');
+// Sort alphabetically
+glossary.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const seo = {
+  page_description: "Definitions of key terms related to ESPR and Digital Product Passports.",
+};
+---
+
+<Layout title="Glossary of Terms" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Glossary of Terms</h1>
+    <p>Definitions of key terms related to ESPR and Digital Product Passports.</p>
+
+    <ul>
+      {glossary.map((term) => (
+        <li>
+          <a href={`/glossary/${term.id}`}>{term.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>

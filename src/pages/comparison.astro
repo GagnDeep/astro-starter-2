@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Compare CablePassport against generic Digital Product Passport platforms.",
+};
+---
+
+<Layout title="Comparison" {seo}>
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>CablePassport vs. Generic DPPs</h1>
+    <p>Why choose a specialized platform over a generic blockchain tool?</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>CablePassport</th>
+          <th>Generic DPPs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Built for EN 50575</td>
+          <td>✅ Yes</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td>Pre-loaded Cable LCA Factors</td>
+          <td>✅ Yes</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td>Focus</td>
+          <td>Compliance & Audits</td>
+          <td>Web3 Marketing</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</Layout>
