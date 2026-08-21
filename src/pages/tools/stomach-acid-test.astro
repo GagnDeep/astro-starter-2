@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Assess signs of low stomach acid with this simple at-home method overview.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="Low Stomach Acid Test" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>Low Stomach Acid Assessment</h1>
+    <p>Normal stomach pH is between 1.5 - 3.5 (Source: NIH). Low stomach acid (hypochlorhydria) can lead to poor digestion and nutrient absorption.</p>
+
+    <div class="bg-brand-secondary p-6 rounded-lg my-8">
+      <h2>Symptoms Checklist</h2>
+      <CaptureForm form="waitlist" submitLabel="Send me my assessment">
+        <div class="mb-4 space-y-2">
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" name="symptoms[]" value="bloating_after_meals" />
+            <span>Bloating shortly after meals</span>
+          </label>
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" name="symptoms[]" value="undigested_food" />
+            <span>Undigested food in stool</span>
+          </label>
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" name="symptoms[]" value="heartburn" />
+            <span>Heartburn (can be a sign of too little acid!)</span>
+          </label>
+        </div>
+        <label class="block mb-4">
+          <span class="text-sm font-medium">Email address:</span>
+          <input type="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" required />
+        </label>
+      </CaptureForm>
+    </div>
+  </main>
+</Layout>

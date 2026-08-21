@@ -22,9 +22,35 @@
  * `*, ::before, ::after, ::backdrop`.
  */
 
+@theme {
+  --color-brand-primary: var(--color-deep-teal);
+  --color-brand-secondary: var(--color-soft-sage);
+  --color-brand-background: var(--color-off-white);
+  --color-brand-surface: var(--color-white);
+  --color-brand-text: var(--color-dark-charcoal);
+  --color-brand-text-muted: var(--color-slate-gray);
+  --color-brand-accent: var(--color-warm-amber);
+  --color-brand-error: var(--color-muted-red);
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 @layer base {
+  :root {
+    --color-deep-teal: #0F4C5C;
+    --color-soft-sage: #E2E8F0;
+    --color-off-white: #F8F9FA;
+    --color-white: #FFFFFF;
+    --color-dark-charcoal: #1F2937;
+    --color-slate-gray: #475569;
+    --color-warm-amber: #F59E0B;
+    --color-muted-red: #EF4444;
+  }
+
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
+    background-color: var(--color-brand-background);
+    color: var(--color-brand-text);
   }
 
   main {

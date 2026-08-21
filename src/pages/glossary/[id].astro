@@ -1,0 +1,21 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const glossary = await getCollection("glossary");
+  return glossary.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title} seo={entry.data.seo}>
+  <main class="max-w-3xl mx-auto px-4 py-16 prose">
+    <Content />
+  </main>
+</Layout>

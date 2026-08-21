@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = await getCollection("blog");
+posts.sort((a, b) => new Date(b.data.post_hero.date).valueOf() - new Date(a.data.post_hero.date).valueOf());
+
+const seo = {
+  page_description: "Articles and deep-dives on digestive health.",
+  canonical_url: null,
+  featured_image: null,
+  featured_image_alt: null,
+  open_graph_type: "website",
+  no_index: false,
+};
+---
+
+<Layout title="Articles" seo={seo}>
+  <main class="max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold mb-8">Articles</h1>
+    <div class="grid md:grid-cols-2 gap-8">
+      {posts.map((post) => (
+        <a href={`/blog/${post.id}`} class="block bg-white shadow rounded-lg overflow-hidden border border-gray-100 hover:shadow-md transition">
+          <div class="p-6">
+            <h2 class="text-xl font-semibold mb-2">{post.data.title}</h2>
+            <p class="text-gray-600 text-sm">{new Date(post.data.post_hero.date).toLocaleDateString()}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
