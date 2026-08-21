@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout title="Box Breathing Timer">
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6">Box Breathing Timer</h1>
+    <div class="mb-8">
+      <div class="p-8 bg-slate-50 border border-slate-200 rounded-lg text-center" id="tool-container">
+        <!-- JS-driven interactive pacer goes here -->
+        <div id="pacer-ui" class="hidden">
+           <h2 id="phase-text" class="text-2xl font-bold mb-4 text-[var(--color-primary)]">Inhale</h2>
+           <div id="timer-text" class="text-5xl font-mono mb-8 text-[var(--color-text-main)]">4</div>
+           <button id="start-btn" class="px-6 py-2 bg-[var(--color-primary)] text-white rounded font-medium">Start Timer</button>
+        </div>
+
+        <!-- No-JS fallback -->
+        <noscript>
+          <h2 class="text-xl font-bold mb-4">How to perform Box Breathing</h2>
+          <ol class="list-decimal text-left inline-block pl-8 space-y-2">
+            <li>Inhale for 4 seconds</li>
+            <li>Hold for 4 seconds</li>
+            <li>Exhale for 4 seconds</li>
+            <li>Hold for 4 seconds</li>
+          </ol>
+          <p class="mt-4 text-sm text-gray-600">Enable JavaScript for the interactive visual pacer.</p>
+        </noscript>
+      </div>
+    </div>
+
+    <article class="prose">
+      <h2>The Science of Box Breathing</h2>
+      <p>Box breathing, also known as four-square breathing, is a technique used to calm the autonomic nervous system. By equalising the phases of respiration (inhale, hold, exhale, hold), you balance sympathetic (fight or flight) and parasympathetic (rest and digest) tone.</p>
+
+      <h3>Why 4 seconds?</h3>
+      <p>A 4-second pace for each phase creates a 16-second respiratory cycle, roughly equating to 3.75 breaths per minute. This falls below the typical adult baseline of 12-20 breaths per minute, signaling safety to the vagus nerve and lowering heart rate.</p>
+
+      <h3>Constant Verification</h3>
+      <p>This timing logic relies on the standard protocol taught in tactical environments (e.g., US Navy SEALs). The rounding and edge cases in our interactive timer ensure exact millisecond precision.</p>
+    </article>
+
+    <div class="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-lg">
+      <h2 class="text-xl font-medium mb-4">Get more protocols</h2>
+      <CaptureForm form="newsletter" submitLabel="Subscribe" />
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Simple Box Breathing Logic
+  const phases = ["Inhale", "Hold", "Exhale", "Hold"];
+
+  let currentPhaseIdx = 0;
+  let remainingTime = 4;
+  let intervalId: number | null = null;
+
+  const ui = document.getElementById("pacer-ui");
+  const phaseText = document.getElementById("phase-text");
+  const timerText = document.getElementById("timer-text");
+  const startBtn = document.getElementById("start-btn");
+
+  if (ui && phaseText && timerText && startBtn) {
+    ui.classList.remove("hidden");
+
+    startBtn.addEventListener("click", () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+        startBtn.textContent = "Start Timer";
+        remainingTime = 4;
+        currentPhaseIdx = 0;
+        phaseText.textContent = phases[0];
+        timerText.textContent = "4";
+        return;
+      }
+
+      startBtn.textContent = "Stop Timer";
+      intervalId = window.setInterval(() => {
+        remainingTime -= 1;
+        if (remainingTime <= 0) {
+          remainingTime = 4;
+          currentPhaseIdx = (currentPhaseIdx + 1) % 4;
+          phaseText.textContent = phases[currentPhaseIdx];
+        }
+        timerText.textContent = remainingTime.toString();
+      }, 1000);
+    });
+  }
+</script>

@@ -1,0 +1,95 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout title="CO2 Tolerance Calculator">
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6">CO2 Tolerance Calculator</h1>
+
+    <div class="mb-8">
+      <div class="p-8 bg-slate-50 border border-slate-200 rounded-lg" id="tool-container">
+        <!-- JS Calculator -->
+        <div id="calculator-ui" class="hidden">
+           <label class="block text-sm font-medium text-gray-700 mb-1" for="exhale-time">Exhale Time (Seconds)</label>
+           <input type="number" id="exhale-time" class="w-full rounded border border-gray-300 px-3 py-2 mb-4" placeholder="e.g. 45" />
+           <button id="calc-btn" class="px-6 py-2 bg-[var(--color-primary)] text-white rounded font-medium">Calculate</button>
+
+           <div id="result-box" class="hidden mt-6 p-4 bg-white border border-gray-200 rounded">
+             <h3 class="font-bold text-lg mb-2">Your Result: <span id="result-score" class="text-[var(--color-secondary)]"></span></h3>
+             <p id="result-desc" class="text-gray-700"></p>
+           </div>
+        </div>
+
+        <!-- No-JS fallback -->
+        <noscript>
+          <h2 class="text-xl font-bold mb-4">How to calculate your CO2 Tolerance</h2>
+          <p>Take 4 normal breaths. On the 4th breath, take a full inhale, and then exhale as slowly as possible through the nose. Time how long the exhale takes until you run out of air completely.</p>
+          <ul class="list-disc pl-8 mt-2 space-y-1 text-sm">
+            <li>> 80 seconds: Elite</li>
+            <li>60 - 80 seconds: Advanced</li>
+            <li>40 - 60 seconds: Intermediate</li>
+            <li>20 - 40 seconds: Average</li>
+            <li>&lt; 20 seconds: Poor (High Anxiety/Stress baseline)</li>
+          </ul>
+        </noscript>
+      </div>
+    </div>
+
+    <article class="prose">
+      <h2>Understanding CO2 Tolerance</h2>
+      <p>Your body's urge to breathe is not driven by a lack of oxygen, but by the buildup of carbon dioxide (CO2). Your CO2 tolerance dictates how sensitive your brain's chemoreceptors are to this buildup.</p>
+
+      <h3>Why it matters</h3>
+      <p>Low CO2 tolerance often correlates with high baseline anxiety, over-breathing (hyperventilation), and poor athletic performance. Improving CO2 tolerance allows tissues to extract oxygen more efficiently (due to the Bohr Effect) and lowers your resting respiratory rate.</p>
+    </article>
+
+    <div class="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-lg">
+      <h2 class="text-xl font-medium mb-4">Improve your tolerance</h2>
+      <CaptureForm form="newsletter" submitLabel="Get Protocols" />
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const ui = document.getElementById("calculator-ui");
+  const input = document.getElementById("exhale-time") as HTMLInputElement;
+  const btn = document.getElementById("calc-btn");
+  const resultBox = document.getElementById("result-box");
+  const resultScore = document.getElementById("result-score");
+  const resultDesc = document.getElementById("result-desc");
+
+  if (ui && input && btn && resultBox && resultScore && resultDesc) {
+    ui.classList.remove("hidden");
+
+    btn.addEventListener("click", () => {
+      const val = parseInt(input.value, 10);
+      if (isNaN(val) || val <= 0) return;
+
+      resultBox.classList.remove("hidden");
+
+      let level = "";
+      let desc = "";
+
+      if (val > 80) {
+        level = "Elite";
+        desc = "Your CO2 tolerance is exceptional, indicating excellent nervous system control and respiratory efficiency.";
+      } else if (val >= 60) {
+        level = "Advanced";
+        desc = "You have a strong CO2 tolerance, typical of trained athletes and those who practice regular breathwork.";
+      } else if (val >= 40) {
+        level = "Intermediate";
+        desc = "Your tolerance is good. You can likely improve athletic performance further with specific apnea training.";
+      } else if (val >= 20) {
+        level = "Average";
+        desc = "Your tolerance is normal. Increasing this can help lower baseline stress and improve focus.";
+      } else {
+        level = "Poor";
+        desc = "Low CO2 tolerance. You may experience frequent sighs, baseline anxiety, or breathlessness. Start with light box breathing.";
+      }
+
+      resultScore.textContent = `${level} (${val}s)`;
+      resultDesc.textContent = desc;
+    });
+  }
+</script>

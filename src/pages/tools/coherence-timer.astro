@@ -1,0 +1,96 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+---
+
+<Layout title="Coherence Breathing Timer">
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6">Coherence Breathing Timer</h1>
+    <div class="mb-8">
+      <div class="p-8 bg-slate-50 border border-slate-200 rounded-lg text-center" id="tool-container">
+        <!-- JS-driven interactive pacer goes here -->
+        <div id="pacer-ui" class="hidden">
+           <h2 id="phase-text" class="text-2xl font-bold mb-4 text-[var(--color-primary)]">Inhale</h2>
+           <div id="timer-text" class="text-5xl font-mono mb-8 text-[var(--color-text-main)]">5.5</div>
+           <button id="start-btn" class="px-6 py-2 bg-[var(--color-primary)] text-white rounded font-medium">Start Timer</button>
+        </div>
+
+        <!-- No-JS fallback -->
+        <noscript>
+          <h2 class="text-xl font-bold mb-4">How to perform Coherence Breathing</h2>
+          <ol class="list-decimal text-left inline-block pl-8 space-y-2">
+            <li>Inhale for 5.5 seconds</li>
+            <li>Exhale for 5.5 seconds</li>
+            <li>No pausing or breath holding</li>
+          </ol>
+          <p class="mt-4 text-sm text-gray-600">Enable JavaScript for the interactive visual pacer.</p>
+        </noscript>
+      </div>
+    </div>
+
+    <article class="prose">
+      <h2>The Science of Coherence (Resonance) Breathing</h2>
+      <p>Coherence breathing, or resonance frequency breathing, typically centers around a rate of 5.5 breaths per minute (bpm). This specific pace aligns the rhythm of the breath with the heart's natural rhythm.</p>
+
+      <h3>Heart Rate Variability (HRV)</h3>
+      <p>Breathing at 5.5 bpm maximizes Heart Rate Variability (HRV) by syncing the respiratory sinus arrhythmia (RSA) with the baroreflex. As you inhale, heart rate speeds up; as you exhale, it slows down. This 11-second cycle (5.5s in, 5.5s out) creates massive sinusoidal waves in heart rate, highly correlated with resilience and recovery.</p>
+    </article>
+
+    <div class="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-lg">
+      <h2 class="text-xl font-medium mb-4">Get HRV insights</h2>
+      <CaptureForm form="newsletter" submitLabel="Subscribe" />
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Coherence Breathing Logic (5.5s in, 5.5s out)
+  const phaseDurationMs = 5500;
+
+  let isExhale = false;
+  let remainingMs = phaseDurationMs;
+  let intervalId: number | null = null;
+  let lastTick = 0;
+
+  const ui = document.getElementById("pacer-ui");
+  const phaseText = document.getElementById("phase-text");
+  const timerText = document.getElementById("timer-text");
+  const startBtn = document.getElementById("start-btn");
+
+  if (ui && phaseText && timerText && startBtn) {
+    ui.classList.remove("hidden");
+
+    startBtn.addEventListener("click", () => {
+      if (intervalId) {
+        cancelAnimationFrame(intervalId);
+        intervalId = null;
+        startBtn.textContent = "Start Timer";
+        isExhale = false;
+        remainingMs = phaseDurationMs;
+        phaseText.textContent = "Inhale";
+        timerText.textContent = "5.5";
+        return;
+      }
+
+      startBtn.textContent = "Stop Timer";
+      lastTick = performance.now();
+
+      const tick = (now: number) => {
+        const delta = now - lastTick;
+        lastTick = now;
+        remainingMs -= delta;
+
+        if (remainingMs <= 0) {
+          remainingMs += phaseDurationMs; // carry over negative
+          isExhale = !isExhale;
+          phaseText.textContent = isExhale ? "Exhale" : "Inhale";
+        }
+
+        timerText.textContent = (remainingMs / 1000).toFixed(1);
+        intervalId = requestAnimationFrame(tick);
+      };
+
+      intervalId = requestAnimationFrame(tick);
+    });
+  }
+</script>
