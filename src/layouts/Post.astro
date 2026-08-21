@@ -2,6 +2,7 @@
 import Layout from "./Layout.astro";
 import PostSummary from "../components/blog/summary.astro";
 import PostHero from "../components/blog/post-hero/post-hero.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
 import { getCollection } from "astro:content";
 
 type Props = {
@@ -46,6 +47,12 @@ const filteredPosts = posts.filter(
         </editable-text>
       </div>
     </article>
+
+    <div class="mt-12 p-6 bg-[var(--color-surface-alt)] border border-[var(--color-border-subtle)] rounded-lg">
+      <h3 class="text-lg font-bold mb-2 text-[var(--color-text-primary)]">Get Regulatory Updates</h3>
+      <p class="text-sm text-[var(--color-text-muted)] mb-4">Join 5,000+ engineers receiving practical battery passport implementation advice.</p>
+      <NewsletterForm form="newsletter" submitLabel="Subscribe" placeholder="compliance@example.com" class="flex flex-col gap-2" />
+    </div>
   </div>
 
   {

@@ -1,5 +1,6 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
 ---
 
 <footer class="bg-gray-800 text-white">
@@ -22,6 +23,11 @@ import { footer } from "../../../data/navigation.json";
       <div class="text-center sm:text-end text-sm text-gray-400">
         &copy; {new Date().getFullYear()} {footer.copyright}
       </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-gray-700 max-w-md mx-auto">
+      <h3 class="text-sm font-semibold mb-4 text-center">Subscribe to Battery Passport Updates</h3>
+      <NewsletterForm form="newsletter" class="flex flex-col gap-2" submitLabel="Subscribe" placeholder="compliance@example.com" />
     </div>
   </div>
 </footer>

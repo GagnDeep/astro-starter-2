@@ -1,79 +1,44 @@
 ---
 _schema: default
-title: Astro Minimal Starter
+title: The Engineering Guide to the EU Battery Product Passport
 seo:
-  page_description: >-
-    A starting point for developers looking to build a website with Astro, using
-    Editable Regions in CloudCannon.
-  canonical_url:
-  featured_image:
-  featured_image_alt:
-  author_twitter_handle:
-  open_graph_type:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: "website"
   no_index: false
+  page_description: The definitive, engineering-grade compliance authority for EU Battery Regulation (2023/1542) implementation. Guides, calculators, and a verified provider directory.
 hero_block:
   _name: Hero
-  heading: Astro Minimal Starter
-  subheading: >-
-    A **minimal** starting point for developers looking to build a website with
-    Astro, using Editable Regions in CloudCannon. Create your own copy, and
-    start creating your own components to use in the Visual Editor. 
-
-
-    Once you've explored this minimal starter, consider  taking a look at the
-    [Astro Component
-    Starter](https://github.com/CloudCannon/astro-component-starter) to assist
-    in building out your components.
-  image:
-    image_path: /src/assets/images/transparent-bg/undraw-online-test.svg
-    alt_text: An illustration of someone leaning against a desktop computer monitor.
+  heading: The Engineering Guide to the EU Battery Product Passport
+  subheading: Deterministic guides, calculators, and a verified provider directory for technical teams and compliance officers who need to build or buy a passport solution without marketing fluff.
   button:
-    text: Get Started
-    link: https://github.com/CloudCannon/astro-starter/
+    text: Carbon Footprint Calculator
+    link: /tools/carbon-footprint/
 content_blocks:
-  - _name: LeftRight
-    heading: Keep what you need. Delete the rest.
+  - _name: TextBlock
+    heading: 2027 Deadline Breakdown
     text_content: >-
-      This starter aims to get developers building their own site quickly in
-      CloudCannon. It strikes a balance between minimal boilerplate and useful
-      features out of the box:
-
-
-      - Tailwind CSS v4
-
-      - Blog with pagination & tags
-
-      - Visual editing with Editable Regions
-
-      - Header and Footer controls
-
-      - Create and delete pages
-
-      - SEO controls
-    image:
-      image_path: /src/assets/images/transparent-bg/undraw-hello.svg
-      alt_text: An illustration of someone sitting at a desk with a monitor and books.
-    flipped: true
-    button: {}
+      By **18 February 2027**, every LMT battery, industrial battery > 2 kWh, and EV battery requires a digital product passport (DPP). See the [deadline breakdown](/reference/deadlines/) for enforcement dates.
   - _name: LeftRight
-    heading: You choose your editing experience.
+    heading: Technical Requirements and Data Models
     text_content: >-
-      A flexible git-backed CMS that specialises in editing markdown and data
-      files.
-
-
-      Visual editing allows you to preview your changes live before you save
-      them.
-
-
-      Git-backed means you can keep all your familiar git workflows, while
-      providing an easy-to-understand interface for non-technical editors to
-      collaborate via git.
-    image:
-      image_path: /src/assets/images/transparent-bg/undraw-startup.svg
-      alt_text: An illustration of someone sitting at a desk.
+      A dense, interactive guide showing exactly which data fields are public vs restricted, immediately answering the top technical question for engineers. Explore the [Battery Passport Data Model](/reference/data-model/).
     flipped: false
     button:
-      text: CloudCannon Docs
-      link: https://cloudcannon.com/documentation/
+      text: View Data Model
+      link: /reference/data-model/
+  - _name: LeftRight
+    heading: Certified Software Providers
+    text_content: >-
+      A neutral list of certified software vendors and notified bodies. No pay-to-play bias. We review architecture, APIs, and true compliance.
+    flipped: true
+    button:
+      text: Browse Directory
+      link: /directory/software/
 ---
+<div class="prose max-w-none my-12">
+  <h2>Compliance Gap Analysis</h2>
+  <p>Get a tailored compliance gap analysis for your organization.</p>
+</div>

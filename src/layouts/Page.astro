@@ -1,5 +1,6 @@
 ---
 import Layout from "./Layout.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
 import type { CollectionEntry } from "astro:content";
 
 type Props = {
@@ -52,6 +53,16 @@ const HeroComponent = props.hero_block?._name ? components[props.hero_block._nam
           </section>
         );
       })}
+    </div>
+  )}
+
+  {Astro.url.pathname.startsWith('/reference/') && (
+    <div class="max-w-4xl mx-auto px-8 py-12">
+      <div class="p-8 bg-[var(--color-surface-alt)] border border-[var(--color-border-subtle)] rounded-lg">
+        <h3 class="text-xl font-bold mb-3">Download the Full Compliance Checklist</h3>
+        <p class="text-[var(--color-text-muted)] mb-6">Get our comprehensive engineering checklist for battery passport compliance.</p>
+        <NewsletterForm form="compliance_gap" submitLabel="Get Checklist" class="flex flex-col gap-2 max-w-md" />
+      </div>
     </div>
   )}
 </Layout>
