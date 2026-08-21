@@ -1,0 +1,56 @@
+---
+---
+<div class="calculator bg-blue-50 p-6 rounded-lg border border-blue-100 my-8">
+  <h3 class="text-xl font-bold mb-4">PTE Study Time Estimator</h3>
+  <noscript>
+    <div class="bg-yellow-100 p-4 rounded mb-4 text-yellow-800">
+      <p><strong>JavaScript is disabled.</strong> Here is the estimation logic:</p>
+      <p>It takes roughly 20-25 hours of focused study to increase your overall PTE score by 10 points. If your current mock score is 50, and you aim for 79+, you need a 29-point increase. 2.9 x 25 = roughly 72.5 hours of study.</p>
+    </div>
+  </noscript>
+  <div class="js-enabled-only">
+    <div class="mb-4">
+      <label for="current-score" class="block text-sm font-medium text-gray-700">Current Mock Test Score (10-90):</label>
+      <input type="number" id="current-score" min="10" max="90" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+    </div>
+    <div class="mb-4">
+      <label for="target-score" class="block text-sm font-medium text-gray-700">Target Score (10-90):</label>
+      <input type="number" id="target-score" min="10" max="90" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+    </div>
+    <div class="mt-4" id="study-result" aria-live="polite">
+      <!-- Result goes here -->
+    </div>
+  </div>
+</div>
+<script>
+  function estimateTime(current: number, target: number) {
+    if (target <= current) return "0 hours (You are already there!)";
+    const gap = target - current;
+    const hours = (gap / 10) * 25;
+    return `${Math.ceil(hours)} hours of focused study`;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentInput = document.getElementById('current-score') as HTMLInputElement;
+    const targetInput = document.getElementById('target-score') as HTMLInputElement;
+    const resultDiv = document.getElementById('study-result') as HTMLDivElement;
+
+    function updateResult() {
+      const current = parseInt(currentInput.value);
+      const target = parseInt(targetInput.value);
+      if(!isNaN(current) && !isNaN(target) && current >= 10 && target >= 10) {
+        resultDiv.innerHTML = `<p class="text-lg">Estimated Time: <strong class="text-blue-700 text-2xl">${estimateTime(current, target)}</strong></p><p class="text-xs text-gray-500 mt-2">*Based on an average of 25 hours per 10-point increase.</p>`;
+      } else {
+        resultDiv.innerHTML = '';
+      }
+    }
+
+    if(currentInput && targetInput) {
+      currentInput.addEventListener('input', updateResult);
+      targetInput.addEventListener('input', updateResult);
+    }
+  });
+</script>
+<style>
+  noscript + .js-enabled-only { display: none; }
+</style>

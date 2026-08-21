@@ -1,79 +1,40 @@
 ---
 _schema: default
-title: Astro Minimal Starter
+title: "PTE Trainer - AI-powered PTE Speaking and Writing Practice"
 seo:
-  page_description: >-
-    A starting point for developers looking to build a website with Astro, using
-    Editable Regions in CloudCannon.
-  canonical_url:
-  featured_image:
-  featured_image_alt:
-  author_twitter_handle:
-  open_graph_type:
+  page_description: "Achieve your 79+ score with instant AI feedback on PTE speaking and writing. Practice with accurate mock tests for immigration."
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: website
   no_index: false
 hero_block:
   _name: Hero
-  heading: Astro Minimal Starter
-  subheading: >-
-    A **minimal** starting point for developers looking to build a website with
-    Astro, using Editable Regions in CloudCannon. Create your own copy, and
-    start creating your own components to use in the Visual Editor. 
-
-
-    Once you've explored this minimal starter, consider  taking a look at the
-    [Astro Component
-    Starter](https://github.com/CloudCannon/astro-component-starter) to assist
-    in building out your components.
+  heading: "AI-powered PTE speaking and writing practice"
+  subheading: "Achieve your 79+ score with instant AI feedback. Master Describe Image, Retell Lecture, and Write Essay with real mock tests for immigration test-takers."
   image:
-    image_path: /src/assets/images/transparent-bg/undraw-online-test.svg
-    alt_text: An illustration of someone leaning against a desktop computer monitor.
+    image_path: /src/assets/images/hero-pte.svg
+    alt_text: AI analyzing a PTE speaking test
   button:
-    text: Get Started
-    link: https://github.com/CloudCannon/astro-starter/
+    text: Start Practicing Free
+    link: "/pricing/"
 content_blocks:
   - _name: LeftRight
-    heading: Keep what you need. Delete the rest.
+    heading: "Understand your Communicative Skills score"
     text_content: >-
-      This starter aims to get developers building their own site quickly in
-      CloudCannon. It strikes a balance between minimal boilerplate and useful
-      features out of the box:
-
-
-      - Tailwind CSS v4
-
-      - Blog with pagination & tags
-
-      - Visual editing with Editable Regions
-
-      - Header and Footer controls
-
-      - Create and delete pages
-
-      - SEO controls
+      Stop guessing why your oral fluency and pronunciation are low.
+      Our AI accurately models the Pearson algorithm to give you instant feedback on pitch, speed, and pauses.
     image:
-      image_path: /src/assets/images/transparent-bg/undraw-hello.svg
-      alt_text: An illustration of someone sitting at a desk with a monitor and books.
-    flipped: true
-    button: {}
-  - _name: LeftRight
-    heading: You choose your editing experience.
-    text_content: >-
-      A flexible git-backed CMS that specialises in editing markdown and data
-      files.
-
-
-      Visual editing allows you to preview your changes live before you save
-      them.
-
-
-      Git-backed means you can keep all your familiar git workflows, while
-      providing an easy-to-understand interface for non-technical editors to
-      collaborate via git.
-    image:
-      image_path: /src/assets/images/transparent-bg/undraw-startup.svg
-      alt_text: An illustration of someone sitting at a desk.
+      image_path: /src/assets/images/score-breakdown.svg
+      alt_text: A breakdown of PTE oral fluency and pronunciation scores
     flipped: false
     button:
-      text: CloudCannon Docs
-      link: https://cloudcannon.com/documentation/
+      text: Learn how we score
+      link: "/guides/scoring/"
+  - _name: TextBlock
+    heading: "Practice all 20 item types"
+    text_content: >-
+      From Read Aloud to Summarize Spoken Text, we provide realistic practice questions mimicking the real PTE Academic test.
+      Get access to proven templates for the most challenging tasks.
 ---

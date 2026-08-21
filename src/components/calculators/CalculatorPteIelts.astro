@@ -1,0 +1,66 @@
+---
+---
+<div class="calculator bg-blue-50 p-6 rounded-lg border border-blue-100 my-8">
+  <h3 class="text-xl font-bold mb-4">PTE to IELTS Converter</h3>
+  <noscript>
+    <div class="bg-yellow-100 p-4 rounded mb-4 text-yellow-800">
+      <p><strong>JavaScript is disabled.</strong> Here is the conversion logic:</p>
+      <ul class="list-disc pl-5 mt-2">
+        <li>PTE 86+ = IELTS 9.0</li>
+        <li>PTE 83-85 = IELTS 8.5</li>
+        <li>PTE 79-82 = IELTS 8.0</li>
+        <li>PTE 73-78 = IELTS 7.5</li>
+        <li>PTE 65-72 = IELTS 7.0</li>
+        <li>PTE 58-64 = IELTS 6.5</li>
+        <li>PTE 50-57 = IELTS 6.0</li>
+        <li>PTE 42-49 = IELTS 5.5</li>
+        <li>PTE 36-41 = IELTS 5.0</li>
+        <li>PTE 29-35 = IELTS 4.5</li>
+      </ul>
+      <p class="mt-2 text-sm">*Based on the 2020 Pearson Concordance Report.</p>
+    </div>
+  </noscript>
+  <div class="js-enabled-only">
+    <label for="pte-score" class="block text-sm font-medium text-gray-700">Enter PTE Score (10-90):</label>
+    <input type="number" id="pte-score" min="10" max="90" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+    <div class="mt-4" id="ielts-result" aria-live="polite">
+      <!-- Result goes here -->
+    </div>
+  </div>
+</div>
+<script>
+  function convertPTEtoIELTS(score: number) {
+    if (score >= 86) return "9.0";
+    if (score >= 83) return "8.5";
+    if (score >= 79) return "8.0";
+    if (score >= 73) return "7.5";
+    if (score >= 65) return "7.0";
+    if (score >= 58) return "6.5";
+    if (score >= 50) return "6.0";
+    if (score >= 42) return "5.5";
+    if (score >= 36) return "5.0";
+    if (score >= 29) return "4.5";
+    return "Below 4.5";
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const jsEnabled = document.querySelector('.js-enabled-only') as HTMLElement;
+    if(jsEnabled) jsEnabled.style.display = 'block';
+
+    const input = document.getElementById('pte-score');
+    const resultDiv = document.getElementById('ielts-result');
+    if(input && resultDiv) {
+      input.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement; const val = parseInt(target.value);
+        if(!isNaN(val) && val >= 10 && val <= 90) {
+          resultDiv.innerHTML = `<p class="text-lg">Equivalent IELTS Score: <strong class="text-blue-700 text-2xl">${convertPTEtoIELTS(val)}</strong></p><p class="text-xs text-gray-500 mt-2">*Based on the 2020 Pearson Concordance Report.</p>`;
+        } else {
+          resultDiv.innerHTML = '';
+        }
+      });
+    }
+  });
+</script>
+<style>
+  noscript + .js-enabled-only { display: none; }
+</style>
