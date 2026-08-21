@@ -2,29 +2,48 @@
 import Layout from "../../layouts/Layout.astro";
 import NewsletterForm from "../../components/forms/newsletter-form.astro";
 ---
-<Layout title="mkv" seo={{ page_description: "Learn about mkv and video formats." }}>
+<Layout title="MKV Reference Guide" seo={{
+  page_description: "Technical reference for the Matroska (MKV) container. Understand why it's the standard for high-quality archiving and how to play it on Apple devices.",
+  open_graph_type: "article"
+}}>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="text-sm text-secondary mb-4">
-      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/reference/" class="hover:text-primary capitalize">reference</a> &gt; mkv
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/reference/" class="hover:text-primary">Reference</a> &gt; MKV
     </div>
-    <h1 class="text-4xl font-bold mb-8 capitalize">mkv</h1>
+    <h1 class="text-4xl font-bold mb-8">MKV (Matroska)</h1>
     <div class="prose max-w-none mb-12">
-      <p>Understanding mkv is essential for working with digital video.</p>
-      <h2>What is mkv?</h2>
-      <p>This is a detailed explanation of the concept, containing tables and specific numbers verified against primary sources.</p>
+      <p class="lead text-xl text-secondary">
+        MKV is an open-standard, highly flexible <a href="/reference/containers">container format</a> widely used by enthusiasts for archiving high-quality movies, anime, and Blu-ray rips.
+      </p>
 
-      <h3>Key Details</h3>
-      <table>
-        <thead>
-          <tr><th>Feature</th><th>Value</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Type</td><td>Standard</td></tr>
-          <tr><td>Usage</td><td>Common</td></tr>
-        </tbody>
-      </table>
+      <h2>Why use MKV instead of MP4?</h2>
+      <p>
+        While <a href="/reference/mp4">MP4</a> is designed for broad compatibility, MKV is designed for maximum capability. An MP4 is generally restricted to a single video track and a few common audio tracks.
+      </p>
+      <p>An MKV file, on the other hand, can hold an unlimited number of video, audio, picture, and subtitle tracks in one file. A single MKV might contain:</p>
+      <ul>
+        <li>A 4K <a href="/reference/h265">H.265</a> video stream.</li>
+        <li>An English 5.1 Surround Sound track.</li>
+        <li>A Japanese Stereo track.</li>
+        <li>A Directors Commentary audio track.</li>
+        <li>Five different subtitle languages in advanced SSA/ASS format.</li>
+      </ul>
 
-      <p>For more related info, see <a href="/reference/">our reference guide</a> or <a href="/glossary/">glossary</a>.</p>
+      <h2>The Playback Problem</h2>
+      <p>
+        Because MKV is an open standard, major corporations like Apple historically refused to support it natively in their operating systems. If you try to open an MKV on a Mac using QuickTime, or sync it to an iPhone, it will fail.
+      </p>
+      <p>
+        To play MKV files on macOS or Windows without converting them, you need a third-party media player like VLC or IINA. Alternatively, you can read our guide on <a href="/blog/play-mkv-mac">how to play MKV files on Mac</a>.
+      </p>
+
+      <h2>Remuxing vs Transcoding</h2>
+      <p>
+        If you have an MKV file that you need to play on an Apple TV or upload to a website, you don't necessarily have to re-encode the video (which degrades quality). If the video inside the MKV is already <a href="/reference/h264">H.264</a>, you can simply "Remux" it—extracting the video stream from the MKV box and putting it into an MP4 box. This process takes seconds and preserves 100% of the quality.
+      </p>
+      <p>
+        You can test converting MKV to MP4 using our <a href="/">local video converter</a>.
+      </p>
     </div>
 
     <div class="bg-surface p-8 rounded-lg border border-border">

@@ -2,34 +2,57 @@
 import Layout from "../../layouts/Layout.astro";
 import NewsletterForm from "../../components/forms/newsletter-form.astro";
 ---
-<Layout title="mp4" seo={{ page_description: "Learn about mp4 and video formats." }}>
+<Layout title="MP4 Reference Guide" seo={{
+  page_description: "A comprehensive technical reference for the MP4 container format. Learn about codec compatibility, metadata structure, and web delivery optimization.",
+  open_graph_type: "article"
+}}>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <div class="text-sm text-secondary mb-4">
-      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/reference/" class="hover:text-primary capitalize">reference</a> &gt; mp4
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/reference/" class="hover:text-primary">Reference</a> &gt; MP4
     </div>
-    <h1 class="text-4xl font-bold mb-8 capitalize">mp4</h1>
+    <h1 class="text-4xl font-bold mb-8">MP4 (MPEG-4 Part 14)</h1>
     <div class="prose max-w-none mb-12">
-      <p>Understanding mp4 is essential for working with digital video.</p>
-      <h2>What is mp4?</h2>
-      <p>This is a detailed explanation of the concept, containing tables and specific numbers verified against primary sources.</p>
+      <p class="lead text-xl text-secondary">
+        MP4 is the undisputed king of digital video containers. It is supported by nearly every device, browser, and platform in existence.
+      </p>
 
-      <h3>Key Details</h3>
+      <h2>What is an MP4?</h2>
+      <p>
+        A common misconception is that MP4 is a <a href="/glossary/codec">codec</a>. It is not. MP4 is a <a href="/reference/containers">container format</a>. Think of it as a digital cardboard box. Inside the box, you place a video stream, an audio stream, and sometimes subtitles.
+      </p>
+
+      <h3>Supported Codecs inside MP4</h3>
+      <p>While an MP4 can technically hold various streams, the industry has standardized around a few specific combinations to ensure maximum compatibility:</p>
       <table>
         <thead>
-          <tr><th>Feature</th><th>Value</th></tr>
+          <tr><th>Stream Type</th><th>Primary Standard</th><th>Modern Alternative</th></tr>
         </thead>
         <tbody>
-          <tr><td>Type</td><td>Standard</td></tr>
-          <tr><td>Usage</td><td>Common</td></tr>
+          <tr><td>Video</td><td><a href="/reference/h264">H.264 (AVC)</a></td><td><a href="/reference/h265">H.265 (HEVC)</a> or <a href="/reference/av1">AV1</a></td></tr>
+          <tr><td>Audio</td><td><a href="/reference/aac">AAC</a></td><td>MP3 or ALAC (rare)</td></tr>
         </tbody>
       </table>
 
-      <p>For more related info, see <a href="/reference/">our reference guide</a> or <a href="/glossary/">glossary</a>.</p>
+      <h2>Web Delivery and the "moov" atom (Fast Start)</h2>
+      <p>
+        If you are hosting an MP4 file on a standard web server, you must ensure the file is optimized for "Fast Start" (sometimes called Web Optimized).
+      </p>
+      <p>
+        MP4 files store metadata (duration, framerate, resolution) in a chunk of data called the <strong>moov atom</strong>. By default, many encoders place the moov atom at the <em>very end</em> of the file. If a user tries to stream a video where the moov atom is at the end, the browser must download the entire file before it can begin playback.
+      </p>
+      <p>
+        Optimizing an MP4 simply moves the moov atom to the front of the file, allowing playback to begin instantly.
+      </p>
+
+      <h2>Conversion and Tools</h2>
+      <p>
+        Need to convert an obscure format like <a href="/reference/mkv">MKV</a> or <a href="/reference/avi">AVI</a> into a web-safe MP4? You can use our <a href="/">free in-browser converter</a>. If you need to estimate how large your final MP4 will be before you render it, use the <a href="/calculators/video-file-size">file size calculator</a>.
+      </p>
     </div>
 
     <div class="bg-surface p-8 rounded-lg border border-border">
-      <h3 class="text-xl font-bold mb-4">Stay Updated</h3>
-      <p class="text-secondary mb-4">Get the latest video tips and format news.</p>
+      <h3 class="text-xl font-bold mb-4">Master video formats</h3>
+      <p class="text-secondary mb-4">Get the latest technical reference updates.</p>
       <NewsletterForm form="newsletter" />
     </div>
   </div>

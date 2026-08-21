@@ -1,0 +1,160 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
+---
+<Layout title="Video Storage Needs Calculator">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-sm text-secondary mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; <a href="/calculators/" class="hover:text-primary">Calculators</a> &gt; Storage Needs
+    </div>
+    <h1 class="text-4xl font-bold mb-4">Storage Needs Calculator</h1>
+    <p class="text-lg text-secondary mb-8">
+      Plan your hard drive space for long-term video archiving, event shooting, or continuous CCTV recording.
+    </p>
+
+    <div class="bg-surface border border-border rounded-lg p-6 mb-12 shadow-sm">
+      <noscript>
+        <div class="bg-amber-50 text-amber-800 p-4 rounded mb-6 text-sm border-l-4 border-accent">
+          <strong>JavaScript Required:</strong> This calculator requires JavaScript to multiply bitrate by time over long periods (days/months).
+        </div>
+      </noscript>
+
+      <form id="storage-calc-form" class="space-y-6 js-only-block hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="md:col-span-2 p-4 bg-bg rounded border border-border">
+            <label class="block text-sm font-semibold mb-2">Select a common preset or enter custom:</label>
+            <div class="flex flex-wrap gap-2 mb-4" id="presets">
+              <button type="button" data-v="5000" data-a="128" class="text-xs bg-surface border border-border px-3 py-1.5 rounded hover:border-primary">1080p Web (5Mbps)</button>
+              <button type="button" data-v="35000" data-a="320" class="text-xs bg-surface border border-border px-3 py-1.5 rounded hover:border-primary">4K High Qual (35Mbps)</button>
+              <button type="button" data-v="100000" data-a="1536" class="text-xs bg-surface border border-border px-3 py-1.5 rounded hover:border-primary">ProRes Proxy (100Mbps)</button>
+              <button type="button" data-v="2000" data-a="64" class="text-xs bg-surface border border-border px-3 py-1.5 rounded hover:border-primary">Security Cam (2Mbps)</button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-secondary mb-1">Video Bitrate (kbps)</label>
+                <input type="number" id="v-bitrate-s" value="35000" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-secondary mb-1">Audio Bitrate (kbps)</label>
+                <input type="number" id="a-bitrate-s" value="320" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-1">Number of Cameras / Sources</label>
+            <input type="number" id="cam-count" value="1" min="1" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-1">Recording Hours per Day</label>
+            <input type="number" id="hours-day" value="24" min="1" max="24" class="w-full border border-border rounded p-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-border mt-6">
+          <p class="text-sm font-semibold text-secondary uppercase tracking-wider mb-4 text-center">Estimated Storage Required</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-4 bg-bg border border-border rounded-lg text-center">
+              <div class="text-sm text-secondary mb-1 font-medium">Per Day</div>
+              <div id="res-day" class="text-2xl font-bold text-text">--</div>
+            </div>
+            <div class="p-4 bg-bg border border-primary ring-1 ring-primary rounded-lg text-center shadow-sm">
+              <div class="text-sm text-secondary mb-1 font-medium">Per Month (30d)</div>
+              <div id="res-month" class="text-3xl font-bold text-primary">--</div>
+            </div>
+            <div class="p-4 bg-bg border border-border rounded-lg text-center">
+              <div class="text-sm text-secondary mb-1 font-medium">Per Year (365d)</div>
+              <div id="res-year" class="text-2xl font-bold text-text">--</div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="prose max-w-none mb-12">
+      <h2>Storage Planning Tips</h2>
+      <p>
+        When planning storage arrays (NAS or RAID) for video editing or surveillance, you must account for formatting overhead. Hard drive manufacturers sell space in decimal (Base-10, 1 TB = 1,000,000,000,000 bytes). However, computers read storage in binary (Base-2, 1 TiB = 1,099,511,627,776 bytes).
+      </p>
+      <p>
+        This means a "10 TB" hard drive from the store will only show up as approximately <strong>9.09 TB</strong> of usable space in Windows.
+      </p>
+
+      <h3>Recommended Overprovisioning</h3>
+      <ul>
+        <li><strong>Editing Drives:</strong> Never fill an SSD beyond 80-85% capacity, as write speeds will degrade significantly. Add a 20% margin to your calculation.</li>
+        <li><strong>Redundancy:</strong> If using RAID 5, you lose the capacity of one drive. If using RAID 1 or 10, you lose 50% of your total raw capacity.</li>
+        <li><strong>Proxies:</strong> If shooting in 4K RAW or ProRes, factor in an extra 5-10% of space for generating lightweight 1080p H.264 proxy files for smoother timeline editing.</li>
+      </ul>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  :global(.js-active) .js-only-block {
+    display: block;
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js-active');
+
+  function formatBytes(bytes: number) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  function calcStorage() {
+    const vEl = document.getElementById('v-bitrate-s') as HTMLInputElement;
+    const aEl = document.getElementById('a-bitrate-s') as HTMLInputElement;
+    const camEl = document.getElementById('cam-count') as HTMLInputElement;
+    const hrsEl = document.getElementById('hours-day') as HTMLInputElement;
+
+    const v = vEl ? parseFloat(vEl.value) || 0 : 0;
+    const a = aEl ? parseFloat(aEl.value) || 0 : 0;
+    const cams = camEl ? parseInt(camEl.value) || 1 : 1;
+    const hrs = hrsEl ? parseFloat(hrsEl.value) || 24 : 24;
+
+    // Total kbps for all cameras
+    const totalKbps = (v + a) * cams;
+
+    // Bytes per second (kbps -> bits -> bytes)
+    const bytesPerSecond = (totalKbps * 1000) / 8;
+
+    const secondsPerDay = hrs * 60 * 60;
+    const bytesPerDay = bytesPerSecond * secondsPerDay;
+    const bytesPerMonth = bytesPerDay * 30;
+    const bytesPerYear = bytesPerDay * 365;
+
+    const resDay = document.getElementById('res-day');
+    const resMonth = document.getElementById('res-month');
+    const resYear = document.getElementById('res-year');
+
+    if (resDay) resDay.innerText = formatBytes(bytesPerDay);
+    if (resMonth) resMonth.innerText = formatBytes(bytesPerMonth);
+    if (resYear) resYear.innerText = formatBytes(bytesPerYear);
+  }
+
+  // Handle preset buttons
+  const presetBtns = document.querySelectorAll('#presets button');
+  presetBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const target = e.target as HTMLButtonElement;
+      const vEl = document.getElementById('v-bitrate-s') as HTMLInputElement;
+      const aEl = document.getElementById('a-bitrate-s') as HTMLInputElement;
+      if (vEl && target.dataset.v) vEl.value = target.dataset.v;
+      if (aEl && target.dataset.a) aEl.value = target.dataset.a;
+      calcStorage();
+    });
+  });
+
+  const form = document.getElementById('storage-calc-form');
+  if (form) {
+    form.addEventListener('input', calcStorage);
+    calcStorage(); // initial
+  }
+</script>
