@@ -27,5 +27,12 @@ import Layout from "../../layouts/Layout.astro";
     </ul>
 
     <p>This comprehensive tracking ensures <em>non-repudiation</em>—meaning a signer cannot easily deny that they signed the document.</p>
+
+    <h2>Example: Detecting Document Tampering</h2>
+    <p>Consider a scenario where a freelancer signs a <a href="/templates/freelance-contract">contract</a> for $5,000. After the contract is signed, the client attempts to alter the PDF locally to say $3,000.</p>
+    <p>Because usignpdf calculates a SHA-256 hash of the document at the exact moment of signing, any subsequent modification—even changing a single pixel in the PDF—will result in a completely different hash when the file is run through a verification tool. The Certificate of Completion acts as a mathematical anchor to the original, unaltered agreement.</p>
+
+    <h2>Edge Cases: What if someone else signs on my computer?</h2>
+    <p>A common legal challenge is: <em>"That's my IP address, but my assistant clicked the button."</em> To defend against this, an Audit Trail relies on the broader context of <a href="/glossary#authentication">Authentication</a> (e.g., the unique link was sent to a specific email address that only the signer controls) combined with the IP logging to build a preponderance of evidence.</p>
   </div>
 </Layout>

@@ -38,6 +38,9 @@ import CaptureForm from "../../components/forms/capture-form.astro";
                 <option value="wills">Wills, Codicils, or Testamentary Trusts</option>
                 <option value="family">Family Law (Divorce, Adoption)</option>
                 <option value="notary">Document requiring Notarization</option>
+                <option value="healthcare">Healthcare Directives / Proxies</option>
+                <option value="poa">Powers of Attorney</option>
+                <option value="promissory">Promissory Notes / Loan Agreements</option>
             </select>
           </div>
           <noscript>
@@ -82,6 +85,15 @@ import CaptureForm from "../../components/forms/capture-form.astro";
           title = "Likely Requires Wet Signature";
           colorClass = "text-error";
           explanation = "In almost all jurisdictions, documents related to wills, codicils, testamentary trusts, adoption, divorce, or family law explicitly require physical (wet) signatures and often witnesses.";
+      } else if (docType === 'healthcare' || docType === 'poa') {
+          isValid = false;
+          title = "Proceed with Caution";
+          colorClass = "text-error";
+          explanation = "Healthcare directives, healthcare proxies, and Powers of Attorney frequently fall outside standard ESIGN/eIDAS protections and often require notarization or wet signatures depending on state/local laws. Do not use standard e-signature platforms without consulting local counsel.";
+      } else if (docType === 'promissory') {
+          title = "Generally Valid, but High Risk";
+          colorClass = "text-success";
+          explanation = "While promissory notes and unsecured loans can technically be signed electronically, transferring ownership of an electronic promissory note (an 'eNote') requires specialized systems (like an eVault) to prove 'control' under UCC Article 9. Standard e-signatures are okay for simple, non-transferable agreements.";
       } else if (docType === 'notary') {
            isValid = false;
            title = "Requires Electronic Notary (RON)";

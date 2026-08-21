@@ -23,5 +23,36 @@ import Layout from "../../layouts/Layout.astro";
 
     <h2>Document Deletion</h2>
     <p>We are not a permanent file storage service. We recommend downloading your completed PDFs. You can request immediate deletion of your documents from our servers at any time.</p>
+
+    <h2>Encryption Standards Comparison</h2>
+    <table class="w-full text-left border-collapse bg-surface rounded border border-border my-8">
+      <thead class="bg-surface-alt">
+        <tr>
+          <th class="p-3 border-b border-border">Standard</th>
+          <th class="p-3 border-b border-border">Bit Length</th>
+          <th class="p-3 border-b border-border">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-3 border-b border-border">DES</td>
+          <td class="p-3 border-b border-border">56-bit</td>
+          <td class="p-3 border-b border-border text-error">Obsolete / Insecure</td>
+        </tr>
+        <tr>
+          <td class="p-3 border-b border-border">AES-128</td>
+          <td class="p-3 border-b border-border">128-bit</td>
+          <td class="p-3 border-b border-border text-text-muted">Secure (Standard)</td>
+        </tr>
+        <tr class="bg-primary text-surface">
+          <td class="p-3 font-bold">AES-256 (usignpdf)</td>
+          <td class="p-3 font-bold">256-bit</td>
+          <td class="p-3 font-bold text-success">Military/Bank Grade</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Key Rotation and Management</h2>
+    <p>We employ automated key rotation policies to ensure that even in the highly unlikely event of a key compromise, historical documents remain secure through perfect forward secrecy principles.</p>
   </div>
 </Layout>

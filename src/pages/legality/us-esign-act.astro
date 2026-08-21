@@ -14,7 +14,7 @@ import Layout from "../../layouts/Layout.astro";
     <h1 class="text-4xl font-bold mt-8 mb-8">US ESIGN Act & UETA</h1>
 
     <h2>The Electronic Signatures in Global and National Commerce Act (ESIGN)</h2>
-    <p>Passed in 2000, the ESIGN Act is a federal law that grants electronic signatures and records the same legal status as traditional handwritten signatures and paper documents.</p>
+    <p>Passed on <strong>June 30, 2000</strong>, the ESIGN Act is a federal law that grants electronic signatures and records the same legal status as traditional handwritten signatures and paper documents.</p>
 
     <h2>Uniform Electronic Transactions Act (UETA)</h2>
     <p>UETA was adopted by 49 states (New York has a similar law) to establish a uniform framework for electronic transactions at the state level.</p>
@@ -23,8 +23,18 @@ import Layout from "../../layouts/Layout.astro";
     <ol>
         <li><strong>Intent to sign:</strong> The signer must demonstrate clear intent to sign electronically (e.g., clicking an "I Agree" or "Sign" button).</li>
         <li><strong>Consent to do business electronically:</strong> The parties must agree to conduct the transaction electronically.</li>
-        <li><strong>Association of signature with the record:</strong> The system used to capture the transaction must keep an associated record that reflects the process by which the signature was created, or generate a graphic statement (which usignpdf provides via our <a href="/glossary#audit-trail">Audit Trail</a>).</li>
+        <li><strong>Association of signature with the record:</strong> The system used to capture the transaction must keep an associated record that reflects the process by which the signature was created, or generate a graphic statement (which usignpdf provides via our <a href="/security/audit-trails">Audit Trail</a>).</li>
         <li><strong>Record retention:</strong> The system must securely store the document for future reference.</li>
     </ol>
+
+    <h2>Where ESIGN Does Not Apply</h2>
+    <p>While the ESIGN act covers the vast majority of commercial and consumer transactions, specific edge cases require a wet signature. These include:</p>
+    <ul>
+        <li>Documents subject to the Uniform Commercial Code (UCC) (other than sections 1-107 and 1-206, and Articles 2 and 2A).</li>
+        <li>Court orders, notices, or official court documents required to be executed in connection with court proceedings.</li>
+        <li>Notices of cancellation of utility services.</li>
+        <li>Default, acceleration, repossession, foreclosure, or eviction under a credit agreement or lease for a primary residence.</li>
+        <li>Wills, codicils, and testamentary trusts.</li>
+    </ul>
   </div>
 </Layout>

@@ -25,7 +25,14 @@ import CaptureForm from "../../components/forms/capture-form.astro";
     </ol>
 
     <h2>How usignpdf complies</h2>
-    <p>usignpdf provides Standard Electronic Signatures (SES) which are legally valid for the vast majority of commercial agreements, employment contracts, and NDAs in the EU. Our robust <a href="/glossary#audit-trail">Audit Trail</a> helps prove intent and document integrity, bolstering the enforceability of the SES.</p>
+    <p>usignpdf provides Standard Electronic Signatures (SES) which are legally valid for the vast majority of commercial agreements, employment contracts, and NDAs in the EU. Our robust <a href="/security/audit-trails">Audit Trail</a> helps prove intent and document integrity, bolstering the enforceability of the SES.</p>
+
+    <h2>The Burden of Proof (A Worked Example)</h2>
+    <p>Under eIDAS Article 25(1), an electronic signature cannot be denied legal effect solely because it is in electronic form. However, the burden of proof differs between the tiers:</p>
+    <ul>
+        <li><strong>SES / AES Scenario:</strong> If you use usignpdf to sign a <a href="/templates/freelance-contract">B2B contract</a> (SES) and a dispute goes to court in France, the burden is on the person attempting to enforce the signature to prove it is valid. You would introduce the usignpdf <a href="/security/audit-trails">Audit Trail</a> (IP address, email hash, timestamp) as evidence. The judge evaluates this evidence just as they would witness testimony for a wet signature.</li>
+        <li><strong>QES Scenario:</strong> A QES reverses the burden of proof. It carries a presumption of legal validity across the EU. If someone challenges a QES, the burden is on them to prove the signature was forged. QES is typically only used for high-value government or real estate transactions due to the high friction of identity verification.</li>
+    </ul>
 
     <div class="not-prose bg-surface-alt p-6 mt-8 rounded border border-border">
       <h3 class="text-lg font-bold mb-2">Need to get an EU contract signed?</h3>
