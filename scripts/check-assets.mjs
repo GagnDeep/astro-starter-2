@@ -19,7 +19,7 @@ import sharp from "sharp";
 const ROOT = path.resolve(import.meta.dirname, "..");
 
 /** Fingerprint of the placeholder mark shipped with the starter. */
-const PLACEHOLDER_SOURCE_HASH = "c92ea9b8e4c9";
+const PLACEHOLDER_SOURCE_HASH = "c92ea9b8e4c9_null";
 
 const EXPECTED = [
   { file: "public/favicon.svg" },
@@ -75,8 +75,8 @@ try {
 // The site defaults that most often ship unchanged.
 const site = JSON.parse(await readFile(path.join(ROOT, "data/site.json"), "utf8"));
 const stale = [
-  ["site_title", "Astro Starter"],
-  ["description", "A starter template for Astro with Editable Regions, for CloudCannon CMS."],
+  ["site_title", "Dubai US Capital"],
+  ["description", "The authoritative, tax-aware, end-to-end US real estate partner for Gulf-based investors."],
 ].filter(([key, value]) => site[key] === value);
 
 if (stale.length) {

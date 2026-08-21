@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const page = {
+  data: {
+    title: "Frequently Asked Questions | Dubai US Capital",
+    seo: {
+      page_description: "Answers to common questions about investing in US real estate from the UAE, tax implications, and structuring.",
+    }
+  }
+};
+
+const faqs = [
+  {
+    q: "Can a UAE resident buy property in the US?",
+    a: "Yes, there are no restrictions on foreign nationals (Non-Resident Aliens) owning real estate in the United States. However, the way you structure the purchase (e.g., in your own name vs. an LLC) has massive tax implications."
+  },
+  {
+    q: "Do I have to pay US taxes if I live in Dubai?",
+    a: "Yes. If you generate income from US real estate, that income is subject to US federal income tax, and potentially state income tax, regardless of your residency in the UAE. However, through deductions like depreciation, the actual tax paid can often be minimized."
+  },
+  {
+    q: "What is FIRPTA?",
+    a: "The Foreign Investment in Real Property Tax Act (FIRPTA) requires buyers to withhold 15% of the gross sales price when buying US real estate from a foreign seller. This is to ensure the IRS collects capital gains tax. You must file a US tax return to claim any refund if your actual tax liability is lower."
+  },
+  {
+    q: "How does the US Estate Tax affect foreign investors?",
+    a: "This is the biggest hidden risk. Non-Resident Aliens are only granted a $60,000 exemption for US estate taxes. Any US assets (including real estate) above that amount are taxed at up to 40% upon death. Proper structuring (like foreign blockers or specific trusts) is essential to avoid this."
+  },
+  {
+    q: "Can I get a mortgage in the US without a US credit score?",
+    a: "Yes. Many lenders offer 'Foreign National Mortgages' or DSCR (Debt Service Coverage Ratio) loans. These underwrite the cash flow of the property rather than your personal credit history. Expect a higher down payment (typically 30-40%) and slightly higher interest rates."
+  }
+];
+---
+
+<Layout title={page.data.title} seo={page.data.seo}>
+  <div class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h1>
+    <p class="text-lg text-slate-700 mb-12">
+      We've compiled answers to the most common questions we receive from Gulf-based investors.
+    </p>
+
+    <div class="space-y-8">
+      {faqs.map((faq) => (
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+          <h3 class="text-xl font-bold text-slate-900 mb-3 mt-0">{faq.q}</h3>
+          <p class="text-slate-700 m-0">{faq.a}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 p-6 bg-slate-50 border border-slate-200 rounded-lg text-center">
+      <h3 class="text-xl font-bold text-slate-900 mb-2">Still have questions?</h3>
+      <p class="text-slate-600 mb-4">Our advisory team is ready to discuss your specific situation.</p>
+      <a href="/contact/" class="inline-block bg-blue-600 text-white font-medium py-2 px-6 rounded-md hover:bg-blue-700 transition-colors">Contact Us</a>
+    </div>
+  </div>
+</Layout>
