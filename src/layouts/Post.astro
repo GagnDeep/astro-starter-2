@@ -2,6 +2,7 @@
 import Layout from "./Layout.astro";
 import PostSummary from "../components/blog/summary.astro";
 import PostHero from "../components/blog/post-hero/post-hero.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
 import { getCollection } from "astro:content";
 
 type Props = {
@@ -44,6 +45,11 @@ const filteredPosts = posts.filter(
         <editable-text data-prop="@content" data-type="block">
           <slot />
         </editable-text>
+      </div>
+      <div class="mt-16 bg-slate-50 p-8 rounded-lg border border-slate-200 not-prose">
+        <h3 class="text-2xl font-semibold mb-4">Stay Hydrated, Stay Healthy</h3>
+        <p class="mb-6 text-slate-600">Get a weekly hydration tip directly to your inbox.</p>
+        <NewsletterForm form="newsletter" submitLabel="Subscribe" />
       </div>
     </article>
   </div>

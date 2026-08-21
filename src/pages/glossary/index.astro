@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const glossaryEntries = await getCollection("glossary");
+---
+<Layout title="Hydration Glossary">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8">Hydration Glossary</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {glossaryEntries.map(entry => (
+        <a href={`/glossary/${entry.id}/`} class="block p-4 bg-slate-50 border border-slate-200 rounded hover:border-primary transition-colors">
+          <h2 class="font-bold text-slate-800">{entry.data.title}</h2>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

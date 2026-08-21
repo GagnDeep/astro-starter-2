@@ -11,6 +11,37 @@ commit_templates:
     template_string: '{message}'
 
 collections_config:
+  reference:
+    path: src/content/reference
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/reference/[slug]/'
+    icon: menu_book
+    _enabled_editors:
+      - visual
+      - content
+  beverages:
+    path: src/content/beverages
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/beverages/[slug]/'
+    icon: local_drink
+    _enabled_editors:
+      - visual
+      - content
+  glossary:
+    path: src/content/glossary
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/glossary/[slug]/'
+    icon: format_list_bulleted
+    _enabled_editors:
+      - visual
+      - content
+
   pages:
     path: src/content/pages
     glob:
@@ -167,6 +198,12 @@ collection_groups:
     collections:
       - pages
       - blog
+
+  - heading: Reference
+    collections:
+      - reference
+      - beverages
+      - glossary
   - heading: Data
     collections:
       - data

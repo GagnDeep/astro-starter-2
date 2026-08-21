@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const referenceEntries = await getCollection("reference");
+---
+<Layout title="Hydration Reference Library">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8">Hydration Reference Library</h1>
+    <p class="text-xl text-slate-600 mb-12">Science-backed guides for specific demographics and conditions.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {referenceEntries.map(entry => (
+        <a href={`/reference/${entry.id}/`} class="block p-6 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <h2 class="text-xl font-bold mb-2 text-primary">{entry.data.title}</h2>
+          <p class="text-slate-600">{entry.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

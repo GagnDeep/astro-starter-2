@@ -1,0 +1,75 @@
+---
+---
+<div class="calculator bg-white p-6 rounded-lg shadow-sm border border-slate-200 my-8" id="sweat-loss-calculator">
+  <h3 class="text-2xl font-bold mb-4">Sweat Loss & Hydration Calculator</h3>
+  <p class="mb-6 text-slate-600">Determine exactly how much fluid you lose during a workout to plan your rehydration strategy.</p>
+
+  <form id="sweat-form" class="space-y-4 max-w-md">
+    <div>
+      <label for="pre-weight" class="block text-sm font-medium text-slate-700 mb-1">Pre-workout Weight (lbs)</label>
+      <input type="number" step="0.1" id="pre-weight" name="pre-weight" required min="50" max="500" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+    </div>
+
+    <div>
+      <label for="post-weight" class="block text-sm font-medium text-slate-700 mb-1">Post-workout Weight (lbs)</label>
+      <input type="number" step="0.1" id="post-weight" name="post-weight" required min="50" max="500" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+    </div>
+
+    <div>
+      <label for="fluid-intake" class="block text-sm font-medium text-slate-700 mb-1">Fluid Consumed During Workout (oz)</label>
+      <input type="number" step="1" id="fluid-intake" name="fluid-intake" value="0" min="0" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+    </div>
+
+    <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark transition-colors font-medium">Calculate Rehydration Needs</button>
+  </form>
+
+  <div id="sweat-result-container" class="mt-6 p-4 bg-slate-50 rounded-md border border-slate-200 hidden">
+    <h4 class="font-bold text-lg mb-2">Rehydration Plan:</h4>
+    <p class="mb-2">You lost <span id="weight-loss" class="font-bold">0</span> lbs during your workout.</p>
+    <div class="text-2xl font-bold text-primary mb-2">Drink: <span id="rehydrate-oz">0</span> oz</div>
+    <p class="text-sm text-slate-600">You should consume 16-24 oz of fluid for every pound lost to properly rehydrate, accounting for continued fluid loss post-exercise.</p>
+  </div>
+
+  <noscript>
+    <div class="mt-6 p-4 bg-yellow-50 text-yellow-800 rounded-md border border-yellow-200">
+      <h4 class="font-bold mb-2">How to calculate manually:</h4>
+      <p>Subtract your post-workout weight from your pre-workout weight to find pounds lost.</p>
+      <p class="mt-2">Multiply the pounds lost by 16-24 to find the ounces of water you need to drink to rehydrate fully.</p>
+    </div>
+  </noscript>
+</div>
+
+<script>
+  const form = document.getElementById('sweat-form');
+  const resultContainer = document.getElementById('sweat-result-container');
+  const weightLossEl = document.getElementById('weight-loss');
+  const rehydrateOzEl = document.getElementById('rehydrate-oz');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form as HTMLFormElement);
+      const preWeight = parseFloat(formData.get('pre-weight') as string);
+      const postWeight = parseFloat(formData.get('post-weight') as string);
+
+      if (isNaN(preWeight) || isNaN(postWeight)) return;
+
+      let weightLoss = preWeight - postWeight;
+
+      // Safety check for unrealistic values
+      if (weightLoss < 0) {
+        alert("Post-workout weight must be less than pre-workout weight.");
+        return;
+      }
+
+      // Rehydrate 1.5x the amount lost (approx 24oz per lb)
+      const rehydrateOz = Math.round(weightLoss * 24);
+
+      if (weightLossEl && rehydrateOzEl && resultContainer) {
+        weightLossEl.textContent = weightLoss.toFixed(1);
+        rehydrateOzEl.textContent = rehydrateOz.toString();
+        resultContainer.classList.remove('hidden');
+      }
+    });
+  }
+</script>
