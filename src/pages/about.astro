@@ -1,5 +1,30 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Prose from "../layouts/Prose.astro";
+
+const props = {
+  title: "About uSignPDF",
+  seo: {
+    page_description: "Learn about the mission behind uSignPDF and why we built a freemium e-signature tool for small businesses."
+  }
+};
 ---
 
-<AboutPage />
+<Prose {...props}>
+  <h2>Our Mission</h2>
+  <p>We believe small businesses shouldn't have to subsidize enterprise software features they don't need. The e-signature market is dominated by tools designed for massive sales teams, leaving freelancers, sole proprietors, and small agencies stuck with confusing interfaces and expensive subscriptions.</p>
+
+  <h2>Why We Built It</h2>
+  <p>After helping hundreds of clients navigate complicated contract platforms, we realized the core need is simple: <strong>I just need this PDF signed legally.</strong></p>
+  <p>That's what uSignPDF does. No mandatory accounts for your signers. No feature bloat. Just upload, send, and get it signed with a compliant audit trail.</p>
+
+  <div class="not-prose my-12 p-8 bg-slate-50 rounded-xl border border-slate-200">
+    <h3 class="text-xl font-bold mb-4">Join our waitlist for early access</h3>
+    <p class="text-slate-600 mb-6">We're launching soon. Be the first to get access to our free tier.</p>
+    <form data-capture="waitlist" method="POST" action="https://api.markremover.com/v1/collect/waitlist" class="flex gap-4">
+        <input type="hidden" name="key" value="wcs_pk_usignpdf_demo" />
+        <input type="hidden" name="redirect" value="https://usignpdf.com/thanks" />
+        <input type="email" name="email" required placeholder="Email address" class="input-field flex-1" />
+        <button type="submit" class="btn-primary">Join Waitlist</button>
+    </form>
+  </div>
+</Prose>

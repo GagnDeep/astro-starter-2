@@ -40,12 +40,12 @@ export interface ObservabilityConfig {
   enabled: boolean;
   respectDoNotTrack: boolean;
   clientToken: string;
-  applicationId: string;
+  applicationId?: string;
   site: string;
   organizationIdentifier: string;
-  service: string;
-  env: string;
-  version: string;
+  service?: string;
+  env?: string;
+  version?: string;
   apiVersion: string;
   insecureHTTP: boolean;
   trackResources: boolean;

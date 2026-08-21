@@ -1,0 +1,19 @@
+---
+import Layout from "./Layout.astro";
+import type { SEOProps, Props as LayoutProps } from "./Layout.astro";
+
+interface Props extends LayoutProps {
+  title: string;
+}
+
+const props = Astro.props;
+---
+
+<Layout {...props}>
+  <div class="max-w-3xl mx-auto px-4 py-12 md:py-20">
+    <article class="prose prose-slate prose-a:text-blue-600 hover:prose-a:text-blue-700 max-w-none">
+      <h1>{props.title}</h1>
+      <slot />
+    </article>
+  </div>
+</Layout>

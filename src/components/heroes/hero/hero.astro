@@ -59,6 +59,7 @@ const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
             data-prop-alt="image.alt_text"
             alt={image.alt_text}
             src={imageSrc}
+            inferSize={true}
             class="w-full max-w-lg"
             loading="eager"
             widths={[600, 800, 1200]}

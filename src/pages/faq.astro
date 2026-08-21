@@ -1,0 +1,24 @@
+---
+import Prose from "../layouts/Prose.astro";
+
+const props = {
+  title: "Frequently Asked Questions",
+  seo: {
+    page_description: "Answers to common questions about uSignPDF, e-signature legality, and pricing."
+  }
+};
+---
+
+<Prose {...props}>
+  <h2>Is uSignPDF legally binding?</h2>
+  <p>Yes. uSignPDF complies with the U.S. ESIGN Act (Electronic Signatures in Global and National Commerce Act) and UETA (Uniform Electronic Transactions Act). Every signed document includes a comprehensive audit trail detailing IP addresses, timestamps, and browser information.</p>
+
+  <h2>Do my clients need to create an account to sign?</h2>
+  <p>No. We built uSignPDF to be completely frictionless for your signers. They simply click the secure link in their email, review the document, sign, and they're done. No account creation required.</p>
+
+  <h2>What happens when I hit my free limit?</h2>
+  <p>On the free tier, you can send up to 3 documents for signature every month. If you need to send more, you can easily upgrade to our Pro plan for unlimited documents, or wait until the next billing cycle for your limit to reset.</p>
+
+  <h2>How do you handle security?</h2>
+  <p>All documents are transmitted using 256-bit TLS encryption. Once signed, the final PDFs are secured with cryptographic hashes to ensure they haven't been tampered with. We do not sell your data or use your documents to train AI models.</p>
+</Prose>

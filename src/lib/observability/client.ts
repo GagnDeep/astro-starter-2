@@ -86,7 +86,7 @@ export function initObservability(
 
       openobserveRum.init({
         ...common,
-        applicationId: config.applicationId,
+        applicationId: config.applicationId ?? "unknown",
         trackResources: config.trackResources,
         trackLongTasks: config.trackLongTasks,
         trackUserInteractions: config.trackUserInteractions,

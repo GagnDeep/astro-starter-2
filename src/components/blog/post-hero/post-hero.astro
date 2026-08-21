@@ -37,14 +37,15 @@ const imageSrc = images[image]?.default || image;
 
 <div class="flex flex-col">
   {
-    image && image_alt && (
+    image && (
       <Picture
         data-editable="image"
         data-prop-src="image"
         data-prop-alt="image_alt"
         class="w-full rounded-lg aspect-video object-cover"
         src={imageSrc}
-        alt={image_alt}
+        inferSize={true}
+        alt={image_alt || ""}
         widths={[600, 800, 1200]}
         sizes="(max-width: 1200px) 100vw, 1200px"
         loading="eager"

@@ -1,48 +1,56 @@
 {
   "header": {
     "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "uSignPDF logo",
     "logo_url": "/",
+    "links": [
+      {
+        "link": "/pricing/",
+        "text": "Pricing"
+      },
+      {
+        "link": "/tools/roi-calculator/",
+        "text": "ROI Calculator"
+      },
+      {
+        "link": "/guides/legality-of-esignatures/",
+        "text": "Are E-Signatures Legal?"
+      },
+      {
+        "link": "/blog/",
+        "text": "Blog"
+      },
+      {
+        "link": "/contact/",
+        "text": "Contact"
+      }
+    ]
+  },
+  "footer": {
+    "logo": "/images/logos/logo-wordmark-white.png",
+    "logo_alt_text": "uSignPDF logo",
+    "logo_url": "/",
+    "copyright": "uSignPDF. All rights reserved.",
     "links": [
       {
         "link": "/about/",
         "text": "About"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/pricing/",
+        "text": "Pricing"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "link": "/faq/",
+        "text": "FAQ"
       },
       {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
+        "link": "/glossary/",
+        "text": "Glossary"
       },
       {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
-      }
-    ]
-  },
-  "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/legal/privacy/",
+        "text": "Privacy Policy"
       }
     ]
   }
