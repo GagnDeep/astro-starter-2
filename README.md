@@ -170,7 +170,3 @@ Three page-building components are included:
     ├── scripts/           # Component registration for visual editing
     └── styles/            # Global CSS (Tailwind v4)
 ```
-
-## DogSnacking.com Implementation Notes
-- **Forms**: Implemented using shared Capture server under label `contact` and `newsletter`.
-- **Calculators**: Find three tools under `/tools/` to calculate caloric allowances and analyze toxic ingredients. Pure logic mapped to Vet algorithms with zero reliance on 3rd party API calls.

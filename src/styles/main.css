@@ -139,36 +139,3 @@
   .align-right { text-align: right; }
   .align-justify { text-align: justify; }
 }
-
-@theme {
-  --color-text: #1F2937;
-  --color-primary: #047857;
-  --color-secondary: #4338CA;
-  --color-warning: #B45309;
-  --color-danger: #B91C1C;
-  --color-muted: #4B5563;
-  --color-bg: #FFFFFF;
-  --color-surface: #F9FAFB;
-  --color-border: #E5E7EB;
-
-  --font-serif: 'Merriweather', serif;
-  --font-sans: 'Inter', sans-serif;
-}
-
-@layer base {
-  body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-sans);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
-  }
-}
-
-@theme {
-  --color-primary-hover: #065f46;
-  --color-danger-hover: #991b1b;
-  --color-primary-light: #d1fae5;
-}
