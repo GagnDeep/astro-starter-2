@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "FoodLogTrack vs. MyFitnessPal: Why you should stop paying for basic macro calculators.",
+  no_index: false,
+};
+---
+<Layout title="FoodLogTrack vs. MyFitnessPal" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose text-text">
+    <h1 class="text-4xl font-bold text-primary mb-6">FoodLogTrack vs. MyFitnessPal</h1>
+    <p class="text-xl text-text-muted mb-8">Why are you paying a monthly subscription to scan a barcode and do basic math?</p>
+
+    <p>MyFitnessPal is a behemoth in the fitness tracking space. For years, it was the default app everyone used. But over time, it became bloated, slow, and increasingly aggressive with its monetization.</p>
+
+    <h2>The Problem with Modern Tracking Apps</h2>
+    <p>When you download an app like MyFitnessPal today, you are immediately bombarded with prompts to upgrade to "Premium" just to access basic features—like setting custom macro targets by the gram, or simply scanning a barcode without an ad interrupting you.</p>
+
+    <h2>Why FoodLogTrack is Different</h2>
+
+    <table class="w-full text-left border-collapse mt-6 mb-8">
+      <thead>
+        <tr class="bg-surface">
+          <th class="p-4 border-b border-border">Feature</th>
+          <th class="p-4 border-b border-border text-primary font-bold">FoodLogTrack</th>
+          <th class="p-4 border-b border-border text-gray-500">MyFitnessPal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-4 border-b border-border font-medium">Cost</td>
+          <td class="p-4 border-b border-border font-bold text-green-700">Free</td>
+          <td class="p-4 border-b border-border text-red-600">Free with heavy limits / $19.99/mo</td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b border-border font-medium">Custom Macro Settings</td>
+          <td class="p-4 border-b border-border">Yes, unrestricted</td>
+          <td class="p-4 border-b border-border text-red-600">Premium Only</td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b border-border font-medium">Primary-Sourced Math</td>
+          <td class="p-4 border-b border-border">Yes, fully transparent</td>
+          <td class="p-4 border-b border-border">Black-box algorithms</td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b border-border font-medium">Speed</td>
+          <td class="p-4 border-b border-border">Instant (Static site)</td>
+          <td class="p-4 border-b border-border">Slow, bloated app</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>The Verdict</h2>
+    <p>If you need an enormous crowdsourced database to track the exact brand of obscure keto-friendly cereal you bought, MyFitnessPal might still hold value for you. But if you want to calculate your TDEE, set your macros accurately, and learn how to manage your diet without relying on a paid algorithm, <strong>FoodLogTrack</strong> is the better choice.</p>
+
+    <p><a href="/">Start using our free calculators today.</a></p>
+  </div>
+</Layout>

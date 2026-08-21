@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "FoodLogTrack pricing: Always free. No paywalls, no subscriptions.",
+  no_index: false,
+};
+---
+<Layout title="Pricing" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16 text-center">
+    <h1 class="text-5xl font-bold text-primary mb-6">Pricing</h1>
+    <p class="text-2xl text-text-muted mb-12">How much does it cost to use the best macro and calorie calculators on the web?</p>
+
+    <div class="bg-surface border-4 border-secondary p-12 rounded-2xl max-w-lg mx-auto shadow-xl transform rotate-1">
+      <h2 class="text-6xl font-bold text-text mb-2">$0</h2>
+      <p class="text-xl font-bold text-primary uppercase tracking-widest mb-6">Forever</p>
+
+      <ul class="text-left space-y-4 mb-8 text-lg font-medium text-text-muted">
+        <li class="flex items-center">
+          <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          No hidden fees
+        </li>
+        <li class="flex items-center">
+          <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          No premium subscriptions
+        </li>
+        <li class="flex items-center">
+          <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          Unlimited usage
+        </li>
+      </ul>
+
+      <a href="/" class="block w-full bg-primary text-white text-center py-3 rounded font-bold hover:opacity-90 transition">Go to Calculators</a>
+    </div>
+
+    <div class="mt-20 max-w-2xl mx-auto prose">
+      <h3>Wait, really? How do you make money?</h3>
+      <p>Yes, really. We strongly believe that fundamental nutritional math shouldn't be hidden behind a $9.99/mo subscription. We keep the servers running by showing tasteful advertisements and occasionally recommending high-quality affiliate products (like protein powders or meal delivery services) that we actually use and trust.</p>
+    </div>
+  </div>
+</Layout>
