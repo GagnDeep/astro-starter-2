@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "Learn more about uMediaPlayer, the faq page for the instant browser-based media player.",
+};
+---
+
+<Layout title="Faq | uMediaPlayer" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8 text-cyan-500">Faq</h1>
+
+    <div class="surface-panel mb-12 prose prose-invert max-w-none">
+      <p>Welcome to the faq page. uMediaPlayer is designed to play your local files instantly, securely, and offline.</p>
+
+
+      <h2 class="text-2xl mt-8 mb-4">Frequently Asked Questions</h2><p>Find answers to common issues.</p>
+
+      <p>This page provides detailed faq information related to local file playback in browsers.</p>
+    </div>
+
+    <div class="surface-panel bg-slate-800 p-8 rounded-lg">
+      <h3 class="text-xl font-bold mb-4">Get the Guide & Updates</h3>
+      <NewsletterForm />
+    </div>
+  </div>
+</Layout>

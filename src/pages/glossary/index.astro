@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+
+const glossaryEntries = await getCollection("glossary");
+const seo = {
+  page_description: "A comprehensive glossary of browser media playback terminology.",
+};
+---
+
+<Layout title="Glossary | uMediaPlayer" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8 text-cyan-500">Glossary of Terms</h1>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      {glossaryEntries.map((entry) => (
+        <a href={`/glossary/${entry.id}/`} class="surface-panel hover:border-cyan-500 border border-transparent transition-colors block">
+          <h2 class="text-xl font-bold text-slate-50">{entry.data.title}</h2>
+          {entry.data.description && <p class="text-slate-400 mt-2">{entry.data.description}</p>}
+        </a>
+      ))}
+    </div>
+
+    <div class="surface-panel bg-slate-800 p-8 rounded-lg">
+      <h3 class="text-xl font-bold mb-4">Get Updates</h3>
+      <NewsletterForm />
+    </div>
+  </div>
+</Layout>

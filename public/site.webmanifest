@@ -1,7 +1,7 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "uMediaPlayer",
+  "short_name": "uMediaPlayer",
+  "description": "Play any local video or audio file instantly in your browser. Zero installation, completely offline, and your files never leave your device.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",

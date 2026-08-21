@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import MediaPlayer from "../components/player/MediaPlayer.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "Play any local video or audio file instantly in your browser. Zero installation, completely offline, and your files never leave your device.",
+};
+---
+
+<Layout title="uMediaPlayer | Play Local Video Files in Browser" seo={seo}>
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h1 class="text-5xl font-bold mb-6 text-slate-50">Play Any Local File in Your Browser. <span class="text-cyan-500">Zero Installation.</span></h1>
+      <p class="text-xl text-slate-400 mb-8">Drop your MKV, MP4, or WebM files here. No server to set up, no apps to install, and your files never leave your device.</p>
+
+      <div class="mb-12 max-w-4xl mx-auto">
+        <MediaPlayer />
+      </div>
+
+      <div class="max-w-md mx-auto">
+        <p class="text-sm font-bold text-slate-300 mb-3 text-left">Get the Ultimate Guide to Browser Media Codecs + Updates</p>
+        <NewsletterForm submitLabel="Join Waitlist" />
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mt-20">
+      <div class="surface-panel">
+        <h3 class="text-xl font-bold mb-3 text-cyan-500">100% Private & Offline</h3>
+        <p class="text-slate-400">Your files never touch our servers. uMediaPlayer uses modern browser APIs to read files directly from your hard drive.</p>
+      </div>
+      <div class="surface-panel">
+        <h3 class="text-xl font-bold mb-3 text-cyan-500">Format Compatibility</h3>
+        <p class="text-slate-400">Natively supports modern formats like MKV and WebM, plus seamless integration for external SRT subtitle files.</p>
+      </div>
+      <div class="surface-panel">
+        <h3 class="text-xl font-bold mb-3 text-cyan-500">Work Laptop Ready</h3>
+        <p class="text-slate-400">Can't install VLC? No problem. Works flawlessly on locked-down environments like Chromebooks and corporate laptops.</p>
+      </div>
+    </div>
+  </div>
+</Layout>

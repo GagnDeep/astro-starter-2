@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
-  "lang": "en",
-  "locale": "en_US",
-  "twitter_site": "",
-  "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
+  "site_title": "uMediaPlayer",
+  "description": "Play any local video or audio file instantly in your browser. Zero installation, completely offline, and your files never leave your device.",
+  "tagline": "The Instant Browser Media Player",
+  "image_alt": "uMediaPlayer interface showing local file playback",
   "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "uMediaPlayer",
+    "logo": "/icon.svg",
     "same_as": []
-  }
+  },
+  "locale": "en_US",
+  "lang": "en",
+  "default_author": "uMediaPlayer Team",
+  "twitter_site": "@umediaplayer",
+  "image": "/images/og/og-default.png"
 }
