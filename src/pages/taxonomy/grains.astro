@@ -1,0 +1,49 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "A guide to low-FODMAP grains. Discover safe alternatives to wheat and rye, and learn how sourdough fermentation affects FODMAP levels.",
+  canonical_url: "/taxonomy/grains/",
+};
+---
+
+<Layout title="Low-FODMAP Grains | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>Understanding Grains on a Low-FODMAP Diet</h1>
+    <p>Grains are a staple of most diets, but traditional wheat-based products are a common trigger for IBS due to their high <strong>Fructan</strong> content (not gluten!). Understanding the difference between a gluten intolerance and a fructan intolerance is key to expanding your diet.</p>
+
+    <h2>Gluten vs. Fructans: What's the Difference?</h2>
+    <p>Many IBS patients erroneously believe they are gluten intolerant. While Celiac disease involves an immune reaction to the <em>protein</em> gluten, IBS reactions to wheat are almost always due to the <em>carbohydrate</em> fructan.</p>
+    <p>This is why many IBS patients can tolerate pure vital wheat gluten, but suffer severe bloating after eating a slice of standard white bread.</p>
+
+    <h2>The Sourdough Loophole</h2>
+    <p>Traditional sourdough bread is often well-tolerated by IBS patients. Why? Because the prolonged fermentation process uses wild yeast and lactobacillus bacteria that consume the fructans in the flour before the bread is even baked. By the time you eat it, the FODMAP load is drastically reduced.</p>
+    <ul>
+      <li><strong>Safe:</strong> Traditional, slow-fermented sourdough (spelt or wheat).</li>
+      <li><strong>Unsafe:</strong> Supermarket "sourdough" that uses yeast and vinegar for flavor rather than true fermentation.</li>
+    </ul>
+
+    <h2>Safe Low-FODMAP Grains</h2>
+    <table class="w-full text-left mt-4 border-collapse">
+      <thead>
+        <tr>
+          <th class="border-b p-2">Grain</th>
+          <th class="border-b p-2">Safe Serving</th>
+          <th class="border-b p-2">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border-b">Rice (White/Brown)</td><td class="p-2 border-b">1 cup (cooked)</td><td class="p-2 border-b">No detectable FODMAPs.</td></tr>
+        <tr><td class="p-2 border-b">Quinoa</td><td class="p-2 border-b">1 cup (cooked)</td><td class="p-2 border-b">Rinse well before cooking to remove bitter saponins.</td></tr>
+        <tr><td class="p-2 border-b">Oats (Rolled)</td><td class="p-2 border-b">1/2 cup (dry)</td><td class="p-2 border-b">Contains moderate GOS in larger portions. Do not stack with almond milk.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="not-prose bg-[var(--color-secondary-50)] p-8 rounded-lg mt-12 border border-[var(--color-secondary-200)]">
+      <h3 class="text-xl font-bold mb-4">Master FODMAP Stacking</h3>
+      <p class="mb-4">Oats + Almond Milk is a classic stacking mistake. IBS-Go prevents this automatically.</p>
+      <NewsletterForm form="waitlist" submitLabel="Get App Waitlist" placeholder="Enter email" />
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "A step-by-step guide to the FODMAP reintroduction phase. Learn how to test food triggers safely without ruining your week.",
+  canonical_url: "/blog/how-to-reintroduce-fodmaps/",
+  open_graph_type: "article",
+};
+---
+
+<Layout title="How to Reintroduce FODMAPs Safely | IBS-Go Blog" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>How to Reintroduce FODMAPs Without Ruining Your Week</h1>
+    <div class="text-sm text-[var(--color-text-muted)] mb-8">Published October 2024 • Reviewed by Dietitian • 7 min read</div>
+
+    <p>You survived the elimination phase. Your symptoms are finally under control, the bloating is gone, and you feel human again. The thought of deliberately eating a trigger food is terrifying.</p>
+    <p>But the low-FODMAP diet is not meant to be a lifetime diet. It is a diagnostic tool. Staying on it forever harms your gut microbiome by starving the good bacteria that feed on fermentable carbohydrates. You <em>must</em> reintroduce.</p>
+
+    <div class="bg-[var(--color-primary-50)] p-6 my-8 rounded-lg">
+      <h3 class="mt-0">The Golden Rules of Reintroduction</h3>
+      <ol class="mb-0">
+        <li><strong>Test one group at a time.</strong> (e.g., Fructose).</li>
+        <li><strong>Use a clean test food.</strong> (A food that only contains Fructose, like Honey).</li>
+        <li><strong>Maintain the baseline diet.</strong> Continue eating low-FODMAP for everything else.</li>
+        <li><strong>Wait for the washout.</strong> Leave 3 days between tests.</li>
+      </ol>
+    </div>
+
+    <h2>Step 1: Pick a Clean Test Food</h2>
+    <p>A "clean" test food contains only one FODMAP group. If you test with an apple, you are testing Fructose <em>and</em> Sorbitol. If you react, you won't know which one caused it.</p>
+    <table class="w-full text-left">
+      <thead>
+        <tr><th>FODMAP Group</th><th>Clean Test Food</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Fructose</td><td>Honey (1 tbsp) or Mango (1/4 cup)</td></tr>
+        <tr><td>Sorbitol</td><td>Avocado (1/2 fruit)</td></tr>
+        <tr><td>Mannitol</td><td>Sweet Potato (1 cup) or Cauliflower</td></tr>
+        <tr><td>Lactose</td><td>Milk (1/2 cup) or Yogurt</td></tr>
+        <tr><td>Fructans (Grain)</td><td>Wheat bread (1 slice)</td></tr>
+        <tr><td>Fructans (Veg)</td><td>Garlic (1/4 clove) or Onion (2 tbsp)</td></tr>
+        <tr><td>GOS</td><td>Almonds (20 nuts) or Canned Lentils (1/2 cup)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Step 2: The 3-Day Dose Escalation</h2>
+    <p>Never start with a massive dose. Your goal is to find your specific threshold. Here is the standard protocol:</p>
+    <ul>
+      <li><strong>Day 1:</strong> Eat a small dose (e.g., 1/4 clove of garlic). Monitor for 24 hours.</li>
+      <li><strong>Day 2:</strong> If no symptoms, eat a medium dose (e.g., 1/2 clove of garlic).</li>
+      <li><strong>Day 3:</strong> If no symptoms, eat a large dose (e.g., 1 full clove of garlic).</li>
+    </ul>
+    <p>If you experience severe symptoms on Day 1, stop the test immediately. You have found your answer for that group. Do not proceed to Day 2.</p>
+
+    <!-- Mid-article Capture -->
+    <div class="not-prose bg-[var(--color-secondary-50)] p-8 rounded-lg my-12 text-center">
+       <h3 class="text-xl font-bold mb-4">Track your reintroductions automatically</h3>
+       <p class="mb-4">IBS-Go automatically charts your dose escalations and links them to symptom spikes.</p>
+       <NewsletterForm form="waitlist" submitLabel="Get App Waitlist" placeholder="Your email address" />
+    </div>
+
+    <h2>Step 3: The Washout Period</h2>
+    <p>After a 3-day test (whether successful or not), you must return to a strict low-FODMAP diet for at least 3 days. This is the "washout" period. It ensures your gut returns to baseline before you introduce a new variable.</p>
+
+    <h2>Common Mistakes (Why tests fail)</h2>
+    <ul>
+      <li><strong>Stacking during a test:</strong> Testing honey while accidentally eating large amounts of low-FODMAP fruit (like strawberries). The total load triggers you, not just the honey. (See our <a href="/tools/fodmap-stacking-calculator/">Stacking Calculator</a> to prevent this).</li>
+      <li><strong>Testing during a stressful week:</strong> Stress modulates the enteric nervous system. A stressful week can cause a flare-up independently of food, invalidating your test.</li>
+      <li><strong>Impatience:</strong> Testing two different groups in the same week.</li>
+    </ul>
+
+    <h2>What to do next</h2>
+    <p>Once you have tested all groups, you will likely find that you are only sensitive to 1 or 2 specific FODMAPs. You can now reintroduce the safe groups back into your daily diet, enjoying food freedom again!</p>
+  </main>
+</Layout>

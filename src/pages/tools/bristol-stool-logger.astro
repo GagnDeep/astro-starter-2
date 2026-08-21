@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Understand the Bristol Stool Chart. Track your bowel movements accurately to help your dietitian diagnose IBS subtypes and treatment efficacy.",
+  canonical_url: "/tools/bristol-stool-logger/",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="Bristol Stool Chart Tracker | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16">
+    <h1 class="text-4xl font-bold text-[var(--color-primary-950)] mb-4">Bristol Stool Scale Reference</h1>
+    <p class="text-lg text-[var(--color-text-muted)] mb-8">
+      The Bristol Stool Scale is a diagnostic medical tool designed to classify the form of human feces into seven categories. It is crucial for determining transit time and identifying whether you lean towards IBS-C, IBS-D, or IBS-M.
+    </p>
+
+    <div class="grid gap-4 mb-12">
+      <!-- Standard clinical descriptions, avoiding explicit imagery -->
+      <div class="flex gap-4 p-4 bg-white border border-[var(--color-primary-200)] rounded-lg">
+        <div class="w-12 h-12 bg-amber-900 rounded-full flex items-center justify-center text-white font-bold shrink-0">Type 1</div>
+        <div>
+          <h3 class="font-bold">Severe Constipation</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Separate hard lumps, like nuts (hard to pass). Indicates very slow transit time.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-white border border-[var(--color-primary-200)] rounded-lg">
+        <div class="w-12 h-12 bg-amber-800 rounded-lg flex items-center justify-center text-white font-bold shrink-0">Type 2</div>
+        <div>
+          <h3 class="font-bold">Mild Constipation</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Sausage-shaped, but lumpy.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-[var(--color-primary-50)] border border-[var(--color-primary-300)] rounded-lg">
+        <div class="w-12 h-12 bg-amber-700 rounded-lg flex items-center justify-center text-white font-bold shrink-0">Type 3</div>
+        <div>
+          <h3 class="font-bold">Normal</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Like a sausage but with cracks on its surface. Ideal transit time.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-[var(--color-primary-50)] border border-[var(--color-primary-300)] rounded-lg">
+        <div class="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center text-white font-bold shrink-0">Type 4</div>
+        <div>
+          <h3 class="font-bold">Normal</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Like a sausage or snake, smooth and soft. The clinical gold standard.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-white border border-[var(--color-primary-200)] rounded-lg">
+        <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold shrink-0">Type 5</div>
+        <div>
+          <h3 class="font-bold">Lacking Fiber</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Soft blobs with clear-cut edges (passed easily). Often seen with rapid transit or low fiber intake.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-white border border-[var(--color-primary-200)] rounded-lg">
+        <div class="w-12 h-12 bg-amber-400 rounded-md flex items-center justify-center text-white font-bold shrink-0">Type 6</div>
+        <div>
+          <h3 class="font-bold">Mild Diarrhea</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Fluffy pieces with ragged edges, a mushy stool. Classic IBS-D presentation.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-4 bg-white border border-[var(--color-primary-200)] rounded-lg">
+        <div class="w-12 h-12 bg-amber-300 rounded flex items-center justify-center text-white font-bold shrink-0">Type 7</div>
+        <div>
+          <h3 class="font-bold">Severe Diarrhea</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Watery, no solid pieces, entirely liquid. Extremely rapid transit time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[var(--color-secondary-50)] p-8 rounded-lg shadow-sm border border-[var(--color-secondary-200)]">
+      <h2 class="text-2xl font-bold mb-4">Need to export this for your dietitian?</h2>
+      <p class="mb-6 text-[var(--color-text-muted)]">IBS-Go Premium allows you to track your daily Bristol scale score and generate clinical PDF reports for your healthcare provider.</p>
+      <CaptureForm form="waitlist" submitLabel="Get IBS-Go Premium" />
+    </div>
+  </main>
+</Layout>

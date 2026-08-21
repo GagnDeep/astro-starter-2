@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Looking for an alternative to the Monash FODMAP app? See why IBS-Go is the best symptom tracker for calculating FODMAP stacking and predicting flare-ups.",
+  canonical_url: "/compare/monash-alternative/",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="Monash App Alternative | IBS-Go vs Monash University" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>IBS-Go vs. The Monash University App</h1>
+    <p class="lead">The Monash University app is the gold standard for FODMAP research. But as a daily symptom tracker, it falls short.</p>
+
+    <h2>The Problem with Monash</h2>
+    <p>Monash University literally invented the low-FODMAP diet. Their app is an essential reference guide for food testing. Every IBS patient should have it installed.</p>
+    <p>However, many users find the actual <em>diary</em> and <em>tracking</em> features within the Monash app to be clunky, outdated, and lacking intelligent analysis. If you eat a meal and log a symptom, the app doesn't tell you <em>why</em> that symptom happened.</p>
+
+    <h2>Why Use IBS-Go?</h2>
+    <p>IBS-Go is not trying to replace Monash's food database. We are building the tracking engine that should have been there in the first place.</p>
+
+    <table class="w-full text-left">
+      <thead>
+        <tr><th>Feature</th><th>IBS-Go</th><th>Monash App</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>FODMAP Stacking Calculations</td><td class="text-green-600">Automatic</td><td class="text-red-600">Manual guesswork</td></tr>
+        <tr><td>Flare-up Prediction</td><td class="text-green-600">Algorithm based on transit time</td><td class="text-red-600">None</td></tr>
+        <tr><td>Bristol Stool Chart Logging</td><td class="text-green-600">Integrated</td><td class="text-green-600">Yes</td></tr>
+        <tr><td>Dietitian Export</td><td class="text-green-600">Detailed PDF</td><td class="text-red-600">Basic Export</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The Verdict</h2>
+    <p>Use the <strong>Monash App</strong> as your encyclopedia when you're at the grocery store.<br/>Use <strong>IBS-Go</strong> as your daily diary to actually figure out what is triggering your flare-ups.</p>
+
+    <div class="not-prose bg-[var(--color-primary-50)] p-8 rounded-lg mt-12 border border-[var(--color-primary-200)]">
+      <h3 class="text-xl font-bold mb-4">Try the intelligent alternative.</h3>
+      <CaptureForm form="waitlist" submitLabel="Get IBS-Go" />
+    </div>
+  </main>
+</Layout>

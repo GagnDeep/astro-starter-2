@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "The complete guide to low-FODMAP vegetables. Learn how to cook without garlic and onions, and find safe serving sizes for common greens.",
+  canonical_url: "/taxonomy/vegetables/",
+};
+---
+
+<Layout title="Low-FODMAP Vegetables | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>Navigating Low-FODMAP Vegetables</h1>
+    <p>Vegetables are the foundation of a healthy diet, but for an IBS patient, the produce aisle is a minefield. The biggest challenge in this category isn't just knowing what to avoid, but understanding how cooking methods and portion sizes alter the FODMAP load.</p>
+
+    <h2>The Garlic and Onion Problem</h2>
+    <p>Garlic and onions are the most concentrated sources of <strong>Fructans</strong> in the human diet. They are also the base of almost every savory recipe in Western cooking.</p>
+
+    <div class="bg-[var(--color-primary-50)] p-6 my-8 border-l-4 border-[var(--color-primary-500)]">
+      <h3>The Golden Rule of Garlic</h3>
+      <p>Fructans are water-soluble, but they are NOT oil-soluble. This means you can sauté large chunks of garlic in olive oil, remove the garlic pieces before adding other ingredients, and safely eat the garlic-infused oil. The flavor transfers, but the FODMAPs do not.</p>
+    </div>
+
+    <h2>Safe Low-FODMAP Vegetables (Eat Freely)</h2>
+    <ul>
+      <li><strong>Carrots:</strong> Contain no detectable FODMAPs. Eat freely.</li>
+      <li><strong>Cucumber:</strong> Trace FODMAPs. Safe in large quantities.</li>
+      <li><strong>Potatoes (White/Red):</strong> No detectable FODMAPs.</li>
+      <li><strong>Spinach (Baby):</strong> Safe up to 1.5 cups (75g).</li>
+    </ul>
+
+    <h2>Moderate Risk (Watch Your Serving Size)</h2>
+    <table class="w-full text-left mt-4 border-collapse">
+      <thead>
+        <tr>
+          <th class="border-b p-2">Vegetable</th>
+          <th class="border-b p-2">Safe Serving</th>
+          <th class="border-b p-2">FODMAP Group (When stacked)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border-b">Sweet Potato</td><td class="p-2 border-b">1/2 cup (75g)</td><td class="p-2 border-b">Mannitol</td></tr>
+        <tr><td class="p-2 border-b">Zucchini</td><td class="p-2 border-b">1/3 cup (65g)</td><td class="p-2 border-b">Fructans</td></tr>
+        <tr><td class="p-2 border-b">Broccoli (Heads)</td><td class="p-2 border-b">3/4 cup (75g)</td><td class="p-2 border-b">Fructose</td></tr>
+        <tr><td class="p-2 border-b">Broccoli (Stalks)</td><td class="p-2 border-b">1/3 cup (45g)</td><td class="p-2 border-b">Fructose (Concentrated)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="not-prose bg-[var(--color-secondary-50)] p-8 rounded-lg mt-12 border border-[var(--color-secondary-200)]">
+      <h3 class="text-xl font-bold mb-4">Don't memorize this list.</h3>
+      <p class="mb-4">IBS-Go calculates your serving sizes automatically. Join the waitlist for early access.</p>
+      <NewsletterForm form="waitlist" submitLabel="Get App Waitlist" placeholder="Enter email" />
+    </div>
+  </main>
+</Layout>

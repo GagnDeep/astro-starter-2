@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "What are Fructans? Learn why garlic, onions, and wheat trigger IBS symptoms and how to manage Oligosaccharide intolerance.",
+  canonical_url: "/glossary/fructans/",
+};
+---
+<Layout title="Fructans (Oligosaccharides) | IBS-Go Glossary" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>Fructans</h1>
+    <p class="lead"><strong>Fructans</strong> are polymers of fructose molecules. They fall under the "O" (Oligosaccharides) in the FODMAP acronym.</p>
+
+    <h2>Why do they cause IBS symptoms?</h2>
+    <p>The human body fundamentally lacks the enzymes required to break the molecular bonds in fructans. This means that for <em>every</em> human—whether they have IBS or not—fructans travel undigested through the small intestine and into the large intestine.</p>
+    <p>Once in the large intestine, gut bacteria rapidly ferment them. This fermentation produces gas (hydrogen and methane). In a healthy gut, this is just normal digestion. In an IBS gut (which has a hypersensitive nervous system), this gas expansion causes severe pain and bloating.</p>
+
+    <h2>Common Sources</h2>
+    <ul>
+      <li>Garlic and Onions (the most concentrated sources)</li>
+      <li>Wheat, Rye, and Barley</li>
+      <li>Watermelon</li>
+      <li>Cashews and Pistachios</li>
+    </ul>
+
+    <h2>How to Cook Without Fructans</h2>
+    <p>Fructans are water-soluble but <em>not</em> oil-soluble. This is a critical scientific fact for IBS patients.</p>
+    <ul>
+      <li><strong>Safe:</strong> Garlic-infused oil. The flavor compounds transfer to the oil, but the fructans do not.</li>
+      <li><strong>Unsafe:</strong> Cooking garlic in a soup and taking the pieces out. The fructans will have leached into the broth.</li>
+    </ul>
+
+    <div class="not-prose mt-12 pt-8 border-t border-[var(--color-primary-100)]">
+       <h3 class="text-lg font-bold mb-4">Get weekly gut-health tips</h3>
+       <NewsletterForm form="newsletter" submitLabel="Subscribe" placeholder="Enter your email" />
+    </div>
+  </main>
+</Layout>

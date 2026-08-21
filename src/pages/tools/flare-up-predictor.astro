@@ -1,0 +1,113 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Predict your IBS flare-ups by mapping your transit time against meal history. An advanced tool for connecting delayed symptoms to triggers.",
+  canonical_url: "/tools/flare-up-predictor/",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="Flare-Up Predictor | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16">
+    <h1 class="text-4xl font-bold text-[var(--color-primary-950)] mb-4">Symptom Timeline Predictor</h1>
+    <p class="text-lg text-[var(--color-text-muted)] mb-8">
+      Symptom onset is rarely immediate. Depending on your gut transit time, you are likely reacting to a meal eaten 12 to 48 hours ago. Use this calculator to trace back your symptoms.
+    </p>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-[var(--color-primary-100)] mb-12">
+      <noscript>
+        <div class="p-4 bg-[var(--color-secondary-50)] border-l-4 border-[var(--color-secondary-500)] mb-6 text-sm text-[var(--color-secondary-900)]">
+          <strong>Note:</strong> The interactive predictor requires JavaScript. Below is our reference formula.
+        </div>
+        <p class="mb-4"><strong>Formula for IBS-D (Fast Transit):</strong> Symptoms usually appear 12–24 hours after the trigger meal reaches the colon.</p>
+        <p class="mb-4"><strong>Formula for IBS-C (Slow Transit):</strong> Symptoms usually appear 36–72 hours after the trigger meal.</p>
+        <p class="text-sm text-[var(--color-text-muted)]">To manually calculate: take the time of your symptom onset and subtract 18 hours (for IBS-D) or 48 hours (for IBS-C) to find the most likely meal window.</p>
+      </noscript>
+
+      <div id="predictor-app" class="hidden">
+        <div class="space-y-6">
+          <div>
+            <label class="block font-medium mb-2">When did your symptoms start?</label>
+            <input type="datetime-local" id="symptom-time" class="w-full rounded-md border border-[var(--color-primary-200)] px-3 py-2 bg-white focus:ring-2 focus:ring-[var(--color-primary-500)] outline-none" />
+          </div>
+
+          <div>
+            <label class="block font-medium mb-2">What is your primary IBS type?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="ibs-type" value="D" checked /> IBS-D (Diarrhea / Fast)</label>
+              <label class="flex items-center gap-2"><input type="radio" name="ibs-type" value="M" /> IBS-M (Mixed)</label>
+              <label class="flex items-center gap-2"><input type="radio" name="ibs-type" value="C" /> IBS-C (Constipation / Slow)</label>
+            </div>
+          </div>
+
+          <button id="calculate-btn" class="bg-[var(--color-secondary-600)] text-white px-6 py-2.5 rounded-md hover:bg-[var(--color-secondary-700)] font-medium">Predict Trigger Window</button>
+
+          <div id="results" class="hidden mt-6 p-4 bg-[var(--color-primary-50)] rounded-md border border-[var(--color-primary-100)]">
+             <h3 class="font-bold text-[var(--color-primary-900)] mb-2">Likely Trigger Window:</h3>
+             <p id="time-window" class="text-lg font-mono mb-2"></p>
+             <p class="text-sm text-[var(--color-text-muted)]">Review your food diary during this window. Note that FODMAP stacking across meals leading up to this point may also contribute.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[var(--color-surface)] p-8 rounded-lg shadow border border-[var(--color-primary-100)]">
+      <h2 class="text-2xl font-bold mb-4">Tired of doing this manually?</h2>
+      <p class="mb-6 text-[var(--color-text-muted)]">The IBS-Go app automatically flags meals in your trigger window when you log a symptom. Join the waitlist.</p>
+      <CaptureForm form="waitlist" submitLabel="Get the App" />
+    </div>
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const app = document.getElementById("predictor-app");
+    if (app) app.classList.remove("hidden");
+
+    const calcBtn = document.getElementById("calculate-btn");
+    const inputTime = document.getElementById("symptom-time") as HTMLInputElement;
+    const results = document.getElementById("results");
+    const windowText = document.getElementById("time-window");
+
+    // Default to current time for ease of use
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    inputTime.value = now.toISOString().slice(0,16);
+
+    calcBtn?.addEventListener("click", () => {
+      if (!inputTime.value) return;
+
+      const symptomDate = new Date(inputTime.value);
+      const type = (document.querySelector('input[name="ibs-type"]:checked') as HTMLInputElement).value;
+
+      let subtractStart = 0;
+      let subtractEnd = 0;
+
+      // Transit time assumptions based on primary literature
+      if (type === 'D') {
+        subtractStart = 12;
+        subtractEnd = 24;
+      } else if (type === 'M') {
+        subtractStart = 24;
+        subtractEnd = 48;
+      } else if (type === 'C') {
+        subtractStart = 36;
+        subtractEnd = 72;
+      }
+
+      const startDate = new Date(symptomDate.getTime() - (subtractEnd * 60 * 60 * 1000));
+      const endDate = new Date(symptomDate.getTime() - (subtractStart * 60 * 60 * 1000));
+
+      const formatOpts: Intl.DateTimeFormatOptions = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+      const startStr = startDate.toLocaleDateString(undefined, formatOpts);
+      const endStr = endDate.toLocaleDateString(undefined, formatOpts);
+
+      if (windowText && results) {
+        windowText.innerHTML = `${startStr} <br/> <span class="text-sm text-gray-500">to</span> <br/> ${endStr}`;
+        results.classList.remove("hidden");
+      }
+    });
+  });
+</script>

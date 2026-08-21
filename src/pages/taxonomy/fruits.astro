@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "Comprehensive guide to low-FODMAP fruits. Learn which fruits trigger IBS, safe serving sizes, and the difference between fructose and sorbitol loads.",
+  canonical_url: "/taxonomy/fruits/",
+};
+---
+
+<Layout title="Low-FODMAP Fruits Guide | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>The Ultimate Guide to Low-FODMAP Fruits</h1>
+    <p>Fruits are often the hardest category to navigate on a low-FODMAP diet because their FODMAP content changes based on ripeness, preparation, and serving size. The primary culprits in fruit are <strong>Fructose</strong> (a monosaccharide) and <strong>Sorbitol</strong> (a polyol).</p>
+
+    <h2>Why Does Ripeness Matter?</h2>
+    <p>As fruit ripens, the starch converts to sugars, often increasing the FODMAP load. The classic example is the banana:</p>
+    <ul>
+      <li><strong>Unripe/Firm Bananas:</strong> Low FODMAP (Safe at 100g). Mostly resistant starch.</li>
+      <li><strong>Ripe/Spotty Bananas:</strong> High FODMAP (Fructans). Safe serving drops drastically to 30g (about a third of a banana).</li>
+    </ul>
+
+    <div class="bg-[var(--color-primary-50)] p-6 my-8 border-l-4 border-[var(--color-primary-500)]">
+      <h3>Wait, aren't bananas high in fructose?</h3>
+      <p>No! The common misconception is that all sweet fruit is high in fructose. Bananas actually have an equal ratio of glucose to fructose, meaning they are absorbed efficiently. The issue with ripe bananas is <em>fructans</em>, a completely different FODMAP group.</p>
+    </div>
+
+    <h2>High Risk Fruits (Often Trigger Symptoms)</h2>
+    <table class="w-full text-left mt-4 border-collapse">
+      <thead>
+        <tr>
+          <th class="border-b p-2">Fruit</th>
+          <th class="border-b p-2">Primary FODMAP</th>
+          <th class="border-b p-2">Why it hurts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border-b">Apples</td><td class="p-2 border-b">Fructose & Sorbitol</td><td class="p-2 border-b">The double hit of two FODMAPs makes apples a major trigger for most IBS patients.</td></tr>
+        <tr><td class="p-2 border-b">Watermelon</td><td class="p-2 border-b">Fructose, Fructans & Mannitol</td><td class="p-2 border-b">A triple threat. Even a small slice can trigger severe bloating.</td></tr>
+        <tr><td class="p-2 border-b">Blackberries</td><td class="p-2 border-b">Sorbitol</td><td class="p-2 border-b">Often confused with low-FODMAP raspberries, blackberries are high in sorbitol.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Safe Low-FODMAP Fruits</h2>
+    <ul>
+      <li><strong>Blueberries:</strong> Safe up to 1 cup (125g).</li>
+      <li><strong>Kiwi (Green):</strong> Safe up to 2 small fruits (150g). Great for treating IBS-C naturally.</li>
+      <li><strong>Strawberries:</strong> Safe up to 5 medium berries (65g). <em>Note: Recent Monash updates lowered this safe threshold.</em></li>
+      <li><strong>Oranges:</strong> Safe at 1 medium fruit (130g). Juicing them concentrates the sugars, so stick to whole fruit.</li>
+    </ul>
+
+    <h2>What To Do Next</h2>
+    <p>If you're in the elimination phase, stick strictly to the safe list above. If you're reintroducing, test Sorbitol (e.g., using Avocado or Blackberries) separately from Fructose (e.g., using Mango) to isolate your specific trigger.</p>
+
+    <div class="not-prose bg-[var(--color-secondary-50)] p-8 rounded-lg mt-12 border border-[var(--color-secondary-200)]">
+      <h3 class="text-xl font-bold mb-4">Never guess serving sizes again.</h3>
+      <p class="mb-4">Get the IBS-Go app to automatically calculate your fruit serving limits and check for stacking.</p>
+      <NewsletterForm form="waitlist" submitLabel="Get App Waitlist" placeholder="Enter email" />
+    </div>
+  </main>
+</Layout>

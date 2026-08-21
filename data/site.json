@@ -1,17 +1,20 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "IBS-Go",
+  "description": "Stop guessing what caused your IBS flare-up. IBS-Go is the only tracker that calculates your FODMAP stacking and links meals to symptoms.",
+  "tagline": "The intelligent IBS and FODMAP symptom tracker.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
+  "twitter_site": "@ibsgo",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "IBS-Go app tracking interface and FODMAP load analysis",
+  "default_author": "IBS-Go Team",
+  "theme_color": "#4A7C59",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "name": "IBS-Go",
+    "logo": "/images/logos/logo.png",
+    "same_as": [
+      "https://twitter.com/ibsgo",
+      "https://facebook.com/ibsgo"
+    ]
   }
 }

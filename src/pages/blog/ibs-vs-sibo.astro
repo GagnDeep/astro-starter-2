@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "Understand the difference between IBS and SIBO (Small Intestinal Bacterial Overgrowth). Learn about breath testing, symptoms, and overlapping treatments.",
+  canonical_url: "/blog/ibs-vs-sibo/",
+  open_graph_type: "article",
+};
+---
+
+<Layout title="IBS vs SIBO: What's the Difference? | IBS-Go Blog" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>IBS vs. SIBO: Are You Treating the Wrong Condition?</h1>
+    <div class="text-sm text-[var(--color-text-muted)] mb-8">Published October 2024 • Reviewed by Gastroenterologist • 5 min read</div>
+
+    <p>Up to 60% of patients diagnosed with Irritable Bowel Syndrome (IBS) may actually have Small Intestinal Bacterial Overgrowth (SIBO). Because the symptoms overlap almost perfectly, misdiagnosis is rampant.</p>
+
+    <h2>What is SIBO?</h2>
+    <p>In a healthy gut, the vast majority of bacteria live in the large intestine (colon). The small intestine should be relatively sterile. SIBO occurs when bacteria migrate up from the colon into the small intestine and take up residence there.</p>
+    <p>When you eat fermentable carbohydrates (FODMAPs), these misplaced bacteria begin fermenting the food prematurely in the small intestine, producing large amounts of gas in a confined space not designed for it.</p>
+
+    <h2>Symptom Overlap</h2>
+    <p>Both IBS and SIBO present with severe bloating, abdominal pain, altered motility (diarrhea or constipation), and fatigue. However, there is one key indicator that points heavily towards SIBO:</p>
+
+    <div class="bg-[var(--color-primary-50)] p-6 my-8 rounded-lg border-l-4 border-[var(--color-primary-500)]">
+      <h3>The Timing of the Bloat</h3>
+      <p>If you experience severe, balloon-like bloating within <strong>20 to 60 minutes</strong> of eating, you are highly likely dealing with SIBO. Food takes 2-4 hours to reach the large intestine (where normal IBS fermentation occurs). Immediate fermentation means the bacteria are too high up in the digestive tract.</p>
+    </div>
+
+    <h2>How is it Diagnosed?</h2>
+    <p>SIBO cannot be diagnosed via colonoscopy or endoscopy. The gold standard non-invasive diagnostic tool is the <strong>Lactulose Breath Test (LBT)</strong>.</p>
+    <ul>
+      <li>You drink a solution of lactulose (an indigestible sugar).</li>
+      <li>You blow into bags at 20-minute intervals for 3 hours.</li>
+      <li>The laboratory measures the levels of Hydrogen and Methane gas in your breath.</li>
+      <li>An early spike in gas (before 90 minutes) indicates fermentation in the small intestine.</li>
+    </ul>
+
+    <!-- Mid-article Capture -->
+    <div class="not-prose bg-[var(--color-secondary-50)] p-8 rounded-lg my-12 text-center">
+       <h3 class="text-xl font-bold mb-4">Track your symptom timing</h3>
+       <p class="mb-4">IBS-Go helps you log the exact timing of your bloating to share with your doctor, helping differentiate between IBS and SIBO.</p>
+       <NewsletterForm form="waitlist" submitLabel="Get App Waitlist" placeholder="Your email address" />
+    </div>
+
+    <h2>Treatment Differences</h2>
+    <p>While the low-FODMAP diet is highly effective for managing symptoms of both conditions, it is not a cure for SIBO. SIBO requires targeted antimicrobial therapy (either specific antibiotics like Rifaximin or herbal antimicrobials) to eradicate the overgrowth, followed by a prokinetic to repair the migrating motor complex (MMC).</p>
+
+    <h2>What to do next</h2>
+    <p>If your bloating is immediate after eating, request a SIBO breath test from your gastroenterologist. In the meantime, use a rigorous tracker like <a href="/">IBS-Go</a> to present hard data at your next appointment.</p>
+  </main>
+</Layout>

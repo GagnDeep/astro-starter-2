@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "IBS-Go",
+  "short_name": "IBS-Go",
+  "description": "Stop guessing what caused your IBS flare-up. IBS-Go is the only tracker that calculates your FODMAP stacking and links meals to symptoms.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#4A7C59",
+  "theme_color": "#4A7C59",
   "icons": [
     {
       "src": "/meta/icon-192.png",

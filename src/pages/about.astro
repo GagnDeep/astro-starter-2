@@ -1,5 +1,34 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Learn about the team behind IBS-Go. Built by people with IBS, for people with IBS, to make the low-FODMAP diet manageable.",
+  canonical_url: "/about/",
+  open_graph_type: "website",
+};
 ---
 
-<AboutPage />
+<Layout title="About Us | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>Built out of frustration.</h1>
+    <p>
+      IBS-Go was born in 2023 when our founder was handed a printed list of "safe" foods by a gastroenterologist and told to "keep a diary."
+    </p>
+    <p>
+      The reality of the low-FODMAP diet is vastly more complex than a list. After accidentally triggering severe flare-ups by eating "safe" foods that stacked the same FODMAP groups, we realized standard food diaries were fundamentally broken for IBS management.
+    </p>
+    <h2>Our Mission</h2>
+    <p>
+      To provide the analytical rigor of a clinical dietician in an accessible, zero-friction app. We believe you shouldn't need a spreadsheet to figure out why your stomach hurts.
+    </p>
+    <h2>Medical Disclaimer</h2>
+    <p>
+      We are technologists and patients, not doctors. The IBS-Go platform is an informational tool designed to help you and your registered dietitian identify patterns. It is not a diagnostic tool and does not replace professional medical advice. Always consult with a healthcare professional before starting an elimination diet.
+    </p>
+    <hr />
+    <h3>Have a feature request?</h3>
+    <p>We are actively developing IBS-Go based on user feedback. Let us know what you need.</p>
+    <CaptureForm form="contact" submitLabel="Send Feedback" />
+  </main>
+</Layout>

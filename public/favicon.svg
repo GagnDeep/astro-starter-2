@@ -1,16 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
-  <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
-  -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
-  <path
-    d="M256 112 L384 368 H128 Z"
-    fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
-  />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- IBS-Go Logo (Stylised leaf/stomach icon) -->
+  <rect width="512" height="512" fill="#4A7C59" rx="100" />
+  <path d="M256,128 C185,128 128,185 128,256 C128,327 185,384 256,384 C327,384 384,327 384,256 C384,185 327,128 256,128 Z M256,344 C207,344 168,305 168,256 C168,207 207,168 256,168 C305,168 344,207 344,256 C344,305 305,344 256,344 Z" fill="#FFFFFF"/>
+  <path d="M256,200 C225,200 200,225 200,256 C200,287 225,312 256,312 C287,312 312,287 312,256 C312,225 287,200 256,200 Z" fill="#FFFFFF"/>
 </svg>
