@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import WaitlistForm from "../../components/forms/waitlist-form.astro";
+import { Check } from "@lucide/astro";
+
+const seo = {
+  page_description: "Buy exclusive tax preparation leads. High net-worth individuals and business owners seeking CPAs and EAs for annual tax filing and planning.",
+  canonical_url: "/leads/tax-preparation/",
+  open_graph_type: "website"
+};
+---
+
+<Layout title="Exclusive Tax Preparation Leads for CPAs | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-brand-navy">Tax Preparation Leads</h1>
+        <p class="text-xl text-brand-slate mb-8">
+          Stop sifting through tire-kickers. We deliver exclusive, pre-screened individuals and business owners actively looking for a credentialed tax professional.
+        </p>
+
+        <div class="bg-brand-light p-6 rounded-card border border-slate-200 mb-8">
+          <h3 class="text-lg font-bold mb-4">Lead Profile: Who You Will Speak To</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" />
+              <span><strong>Income verified:</strong> W-2 earners over $100k or active business owners.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" />
+              <span><strong>Complex Returns:</strong> Screened for multiple K-1s, 1120/1120S/1065 needs, real estate, or crypto.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" />
+              <span><strong>Willing to Pay:</strong> We filter out prospects seeking "free" or hyper-discounted filing.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="prose">
+          <h3>Why Our Tax Prep Leads Convert</h3>
+          <p>The biggest issue with buying tax preparation leads from general directories is <strong>intent mismatch</strong>. Someone searching for "tax prep near me" might just need a simple 1040EZ done for $50. If you buy that lead, you lose money.</p>
+          <p>We generate leads through highly specific search intent targeting high net-worth individuals and corporate entities. When a prospect submits their information to Institute for Tax, they are explicitly told they will be connected with a CPA or EA for premium tax advisory and preparation.</p>
+          <p>Furthermore, because our leads are <strong>100% exclusive</strong>, you aren't racing 4 other accountants to call the prospect first, nor are you forced into a bidding war that destroys your realization rate.</p>
+        </div>
+      </div>
+
+      <div class="lg:sticky lg:top-24">
+        <WaitlistForm class="shadow-lg border-brand-emerald/20 border-2" submitLabel="Apply for Tax Prep Leads" />
+      </div>
+
+    </div>
+  </div>
+</Layout>

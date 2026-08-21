@@ -1,5 +1,67 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
+import { CheckCircle } from "@lucide/astro";
+
+const seo = {
+  page_description: "Learn about Institute for Tax and our mission to provide the highest quality exclusive leads to CPAs and Enrolled Agents.",
+  canonical_url: "/about/",
+  open_graph_type: "website"
+};
 ---
 
-<AboutPage />
+<Layout title="About Us | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-24">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-brand-navy">About Institute for Tax</h1>
+
+      <div class="prose prose-lg">
+        <p class="text-xl text-brand-slate font-medium mb-8">
+          We built the lead generation platform we wished existed when we were running our own accounting firms.
+        </p>
+
+        <p>The tax preparation industry is broken when it comes to client acquisition. For too long, CPAs and EAs have been forced to choose between two bad options:</p>
+
+        <ul class="mb-8">
+          <li><strong>Option A:</strong> Buy shared leads from massive directories where you compete in a race to the bottom with 5 other preparers for a price-sensitive client.</li>
+          <li><strong>Option B:</strong> Pay a marketing agency a $2,000/month retainer and wait 6 months for "SEO" to kick in.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-brand-navy mt-12 mb-4">Our Mission</h2>
+        <p>Our mission is simple: Connect highly qualified taxpayers with qualified professionals, securely, directly, and exclusively.</p>
+
+        <p>We do not believe in the shared lead model. When a taxpayer submits their information through our web properties, we match them with <strong>exactly one</strong> professional in our network based on geographic and complexity requirements.</p>
+
+        <div class="bg-brand-light p-8 rounded-card border border-slate-200 my-10">
+          <h3 class="text-xl font-bold mb-4">Our Quality Guarantee</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <CheckCircle class="w-6 h-6 text-brand-emerald shrink-0" />
+              <span><strong>100% Exclusive:</strong> A lead sold to you is never sold to anyone else.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle class="w-6 h-6 text-brand-emerald shrink-0" />
+              <span><strong>Pre-screened Intent:</strong> No incentivized traffic, sweepstakes, or co-registration.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle class="w-6 h-6 text-brand-emerald shrink-0" />
+              <span><strong>Valid Contact Info:</strong> Phone numbers are pinged for validity before delivery.</span>
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold text-brand-navy mt-12 mb-4">Who We Serve</h2>
+        <p>We work exclusively with credentialed tax professionals:</p>
+        <ul>
+          <li>Certified Public Accountants (CPAs)</li>
+          <li>Enrolled Agents (EAs)</li>
+          <li>Tax Attorneys</li>
+        </ul>
+        <p>We do not sell leads to uncredentialed preparers or national chain franchises.</p>
+
+        <div class="mt-12 text-center">
+          <a href="/#get-leads" class="btn-primary">Apply for Lead Exclusivity</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

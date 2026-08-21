@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GuideForm from "../../components/forms/guide-form.astro";
+
+const seo = {
+  page_description: "What is Lifetime Value (LTV) for tax clients? Learn how CPAs and Enrolled Agents use LTV to justify marketing spend and acquire better clients.",
+  canonical_url: "/glossary/ltv/",
+  open_graph_type: "article"
+};
+---
+
+<Layout title="Lifetime Value (LTV) | Glossary" seo={seo}>
+  <div class="container py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+    <div class="lg:col-span-8">
+      <div class="mb-8">
+        <a href="/glossary/" class="text-sm text-brand-emerald hover:underline mb-4 inline-block">&larr; Back to Glossary</a>
+        <h1 class="text-4xl font-bold mb-4">Lifetime Value (LTV)</h1>
+        <div class="text-brand-slate text-lg">The total revenue a tax firm can reasonably expect from a single client account throughout the duration of their relationship.</div>
+      </div>
+
+      <div class="prose prose-lg">
+        <h2 class="text-2xl font-bold mt-8 mb-4">How to Calculate LTV for Tax Professionals</h2>
+        <p>For a CPA or EA, LTV is calculated by multiplying the average annual fee collected from a client by the average number of years they remain a client.</p>
+
+        <div class="bg-brand-light p-6 rounded-card border border-slate-200 my-6 font-mono text-sm">
+          LTV = Average Annual Revenue per Client × Average Client Retention (in years)
+        </div>
+
+        <p><strong>Example:</strong> If your average business client pays $1,200 annually for tax preparation and advisory, and your firm retains clients for an average of 6 years, the LTV of that client cohort is $7,200.</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Why LTV dictates your marketing strategy</h2>
+        <p>Understanding LTV is the key to outgrowing your competitors. If Firm A believes a client is only worth their first-year fee ($500), they might only be willing to spend $100 to acquire them.</p>
+
+        <p>If Firm B understands that a $500 client stays for 8 years (LTV = $4,000), they might be willing to spend $300 to acquire them. <strong>Firm B will win every time</strong> because they can outspend Firm A in lead generation, advertising, and marketing.</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">How to increase your tax firm's LTV</h2>
+        <ul>
+          <li><strong>Cross-selling:</strong> Moving a 1040 client to a monthly bookkeeping or advisory retainer.</li>
+          <li><strong>Price increases:</strong> Implementing regular, systematic fee increases (e.g., 5-8% annually) to keep up with inflation and expertise.</li>
+          <li><strong>Improving Retention:</strong> Proactive communication outside of tax season reduces churn, lengthening the client lifespan.</li>
+        </ul>
+
+        <div class="mt-8 pt-8 border-t border-slate-200">
+          <p><strong>Related Terms:</strong></p>
+          <ul class="flex flex-wrap gap-4 list-none pl-0">
+            <li><a href="/glossary/cac/" class="text-brand-emerald hover:underline">Client Acquisition Cost (CAC)</a></li>
+            <li><a href="/glossary/realization-rate/" class="text-brand-emerald hover:underline">Realization Rate</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-4">
+      <div class="sticky top-24">
+        <GuideForm />
+      </div>
+    </div>
+
+  </div>
+</Layout>

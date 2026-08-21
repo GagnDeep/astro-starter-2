@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import WaitlistForm from "../../components/forms/waitlist-form.astro";
+import { Check } from "@lucide/astro";
+
+const seo = {
+  page_description: "Buy exclusive tax resolution leads. Connect with taxpayers facing IRS audits, back taxes, and levies who need immediate representation from an EA or CPA.",
+  canonical_url: "/leads/tax-resolution/",
+  open_graph_type: "website"
+};
+---
+
+<Layout title="Exclusive Tax Resolution Leads for EAs & CPAs | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-brand-navy">Tax Resolution Leads</h1>
+        <p class="text-xl text-brand-slate mb-8">
+          Acquire high-value resolution cases. We deliver taxpayers actively facing IRS collections, levies, and unfiled returns directly to your firm.
+        </p>
+
+        <div class="bg-brand-light p-6 rounded-card border border-slate-200 mb-8">
+          <h3 class="text-lg font-bold mb-4">Lead Profile: Who You Will Speak To</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" />
+              <span><strong>Minimum Debt:</strong> Verified IRS or state tax debt of $10,000 or greater.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" />
+              <span><strong>Urgent Needs:</strong> Facing wage garnishments, bank levies, or active audits.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" />
+              <span><strong>Employment Status:</strong> Verified employment or active business income (ability to pay your retainer).</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="prose">
+          <h3>The Highest ROI in Tax Practice</h3>
+          <p>Tax resolution (Offer in Compromise, Installment Agreements, Penalty Abatement) commands the highest retainers in the industry. However, finding these clients is notoriously difficult and expensive.</p>
+          <p>Buying shared resolution leads often results in speaking to desperate taxpayers who have no income to pay your fee. We solve this by adding financial qualification steps to our intake process. If they cannot afford representation, we do not sell them to you.</p>
+          <p>Because resolution cases are highly sensitive, taxpayers hate being bombarded by 5 different firms. Our <strong>strict 100% exclusivity rule</strong> means the prospect is expecting your call, and only your call, dramatically increasing your contact and close rates.</p>
+        </div>
+      </div>
+
+      <div class="lg:sticky lg:top-24">
+        <WaitlistForm class="shadow-lg border-brand-emerald/20 border-2" submitLabel="Apply for Tax Resolution Leads" />
+      </div>
+
+    </div>
+  </div>
+</Layout>
