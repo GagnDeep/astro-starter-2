@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "The cleanest, most transparent file format converter. Convert PDF, Word, WebP, CSV and more for free.",
+  no_index: false,
+};
+---
+
+<Layout title="uconvertfile.com | Free Online File Converter" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold mb-4">Fast, Free & Secure File Converter</h1>
+      <p class="text-xl text-gray-600">Convert PDFs, images, and data formats without ads or hidden fees.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-16 not-prose">
+      <a href="/tools/pdf-to-word/" class="card block hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">PDF to Word</h3>
+        <p class="text-gray-600 text-sm">Extract text and layout from PDFs to editable DOCX files.</p>
+      </a>
+      <a href="/tools/png-to-webp/" class="card block hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">PNG to WebP</h3>
+        <p class="text-gray-600 text-sm">Compress images for faster web loading without losing quality.</p>
+      </a>
+      <a href="/tools/csv-to-json/" class="card block hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">CSV to JSON</h3>
+        <p class="text-gray-600 text-sm">Instantly convert tabular data into structured JSON arrays.</p>
+      </a>
+    </div>
+
+    <div class="bg-[var(--color-primary)] text-white p-8 rounded-lg mb-16 not-prose">
+      <h2 class="text-3xl font-bold mb-4">The Ultimate Guide to File Formats</h2>
+      <p class="mb-6 opacity-90">Join our waitlist and get our exclusive guide on how compression really works.</p>
+      <CaptureForm form="waitlist">
+        <div class="flex gap-4 flex-col sm:flex-row">
+          <label class="sr-only">Email Address</label>
+          <input type="email" name="email" required placeholder="Email Address" class="flex-1 px-4 py-3 rounded text-black" />
+          <button type="submit" class="bg-[var(--color-accent)] hover:bg-[var(--color-accent-light)] text-white px-6 py-3 rounded font-bold transition">Join Waitlist</button>
+        </div>
+      </CaptureForm>
+    </div>
+
+    <div class="prose max-w-none">
+      <h2>Why use uconvertfile?</h2>
+      <p>Unlike other converters that bombard you with ads or ask for premium subscriptions, we provide simple, straightforward tools that work directly in your browser whenever possible. We explain exactly what happens to your files.</p>
+    </div>
+  </div>
+</Layout>

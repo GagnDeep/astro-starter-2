@@ -1,0 +1,36 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import CaptureForm from "../../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Convert PDF to Word (DOCX) online for free. No watermark.",
+  no_index: false,
+};
+---
+
+<Layout title="PDF to Word Converter" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Convert PDF to Word</h1>
+    <p>Upload a PDF document to convert it to a Microsoft Word (DOCX) file instantly.</p>
+
+    <div class="card my-8 text-center bg-gray-50">
+      <p class="text-gray-500 mb-4">Select a PDF file to upload.</p>
+      <input type="file" accept=".pdf" class="mb-4 block mx-auto border border-gray-300 p-2 rounded" />
+      <button class="btn btn-primary w-full max-w-xs">Convert to Word</button>
+      <p class="text-xs text-gray-400 mt-2">Max file size: 50MB</p>
+    </div>
+
+    <h2>How it works</h2>
+    <p>Our tool analyzes the PDF structure, extracts text and layout information, and reconstructs it as a DOCX file. Complex layouts with tables and images are preserved as closely as possible.</p>
+
+    <div class="mt-12 bg-white p-6 border rounded shadow-sm">
+      <h3>Get the results emailed to you</h3>
+      <CaptureForm form="tools">
+        <label class="block mb-2 font-medium">Email Address
+          <input type="email" name="email" required class="w-full border p-2 rounded mt-1" />
+        </label>
+        <button type="submit" class="btn btn-primary mt-4">Send me my file</button>
+      </CaptureForm>
+    </div>
+  </div>
+</Layout>

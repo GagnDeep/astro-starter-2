@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "A comprehensive glossary of file format terminology.",
+  no_index: false,
+};
+---
+
+<Layout title="Glossary" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Glossary</h1>
+    <p>Learn the terms associated with file formats, compression, and data conversion.</p>
+    <ul>
+      <li><a href="/glossary/lossy/">Lossy Compression</a></li>
+      <li><a href="/glossary/lossless/">Lossless Compression</a></li>
+      <li><a href="/glossary/vector/">Vector Image</a></li>
+      <li><a href="/glossary/raster/">Raster Image</a></li>
+    </ul>
+  </div>
+</Layout>

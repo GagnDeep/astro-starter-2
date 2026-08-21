@@ -4,29 +4,29 @@ import { glob } from 'astro/loaders';
 
 const seoSchema = z
   .object({
-    page_description: z.string().nullable(),
-    canonical_url: z.string().nullable(),
-    featured_image: z.string().nullable(),
-    featured_image_alt: z.string().nullable(),
-    author_twitter_handle: z.string().nullable(),
-    open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
+    page_description: z.string().nullable().optional(),
+    canonical_url: z.string().nullable().optional(),
+    featured_image: z.string().nullable().optional(),
+    featured_image_alt: z.string().nullable().optional(),
+    author_twitter_handle: z.string().nullable().optional(),
+    open_graph_type: z.string().nullable().optional(),
+    no_index: z.boolean().default(false).optional(),
   })
   .optional();
 
 const blogCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     post_hero: z.object({
       date: z.string().or(z.date()),
       heading: z.string(),
       tags: z.array(z.string()),
       author: z.string(),
-      image: z.string(),
+      image: image(),
       image_alt: z.string(),
     }),
-    thumb_image_path: z.string(),
+    thumb_image_path: image(),
     thumb_image_alt: z.string(),
     seo: seoSchema,
   }),
@@ -50,7 +50,37 @@ const pagesCollection = defineCollection({
   schema: z.union([paginatedCollectionSchema, pageSchema]),
 });
 
+const referenceCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/reference" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const taxonomyCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/taxonomy" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const glossaryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   pages: pagesCollection,
+  reference: referenceCollection,
+  taxonomy: taxonomyCollection,
+  glossary: glossaryCollection,
 };

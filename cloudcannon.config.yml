@@ -49,6 +49,7 @@ collections_config:
     path: src/content/blog
     glob:
       - '**/*.mdx'
+      - '**/*.md'
     url: '/blog/[full_slug]/'
     icon: newspaper
     preview:
@@ -133,6 +134,27 @@ collections_config:
         options:
           values: data.tags
           empty_type: array
+  reference:
+    path: src/content/reference
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/reference/[full_slug]/'
+    icon: book
+  taxonomy:
+    path: src/content/taxonomy
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/categories/[full_slug]/'
+    icon: folder
+  glossary:
+    path: src/content/glossary
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/glossary/[full_slug]/'
+    icon: list
   data:
     path: data
     disable_url: true
@@ -167,6 +189,9 @@ collection_groups:
     collections:
       - pages
       - blog
+      - reference
+      - taxonomy
+      - glossary
   - heading: Data
     collections:
       - data
