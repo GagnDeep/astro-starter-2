@@ -18,7 +18,7 @@ const blogs = [
 
 const blogDir = path.join('src', 'content', 'blog');
 
-const generateContent = (title) => {
+const generateContent = () => {
     return `
 If you've ever found yourself frustrated by a PDF that won't let you type into the boxes, you are not alone. Millions of users search for exactly this problem every month. We'll explore the history, mechanics, and solutions in this comprehensive 2000+ word guide.
 
