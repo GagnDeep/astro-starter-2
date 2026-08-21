@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const glossaryEntries = await getCollection("glossary");
+glossaryEntries.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const seo = {
+  page_description: "Glossary of terms related to browser-based document previewing.",
+};
+---
+
+<Layout title="Glossary - udocumentview" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-8">Glossary</h1>
+    <div class="grid gap-6 md:grid-cols-2">
+      {glossaryEntries.map((entry) => (
+        <a href={\`/glossary/\${entry.id}/\`} class="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+          <h2 class="text-xl font-semibold mb-2 text-[var(--color-accent)] hover:underline">{entry.data.title}</h2>
+          <p class="text-gray-600">{entry.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

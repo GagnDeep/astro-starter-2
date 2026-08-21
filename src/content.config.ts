@@ -50,7 +50,17 @@ const pagesCollection = defineCollection({
   schema: z.union([paginatedCollectionSchema, pageSchema]),
 });
 
+const glossaryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
 export const collections = {
+  glossary: glossaryCollection,
   blog: blogCollection,
   pages: pagesCollection,
 };
