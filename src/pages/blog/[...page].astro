@@ -13,8 +13,8 @@ export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = await getCollection("blog");
   const page = await getEntry("pages", "blog");
   posts.sort((a, b) => {
-    const aDate = new Date(a.data.post_hero.date).getTime();
-    const bDate = new Date(b.data.post_hero.date).getTime();
+    const aDate = new Date(a.data.post_hero?.date || '').getTime();
+    const bDate = new Date(b.data.post_hero?.date || '').getTime();
     return bDate - aDate;
   });
   if (!page) return;
