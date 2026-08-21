@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+---
+<Layout title="Tool" seo={{ page_description: "Take the threat model quiz to find out which privacy phone setup is best for you." }}>
+  <div class="prose mx-auto px-4 py-8">
+    <h1>Threat Model Quiz</h1>
+    <p>Finding the right privacy phone depends entirely on what you're trying to protect against. This interactive quiz will help narrow down the options.</p>
+
+    <noscript>
+      <div class="bg-yellow-100 p-4 border-l-4 border-yellow-500 mb-8 text-black">
+        <p><strong>JavaScript is disabled.</strong> Without JS, we recommend the standard Threat Model approach:</p>
+        <ul>
+          <li>If you are a journalist/activist, use GrapheneOS on a Pixel 8.</li>
+          <li>If you just want to avoid Google ads, use CalyxOS or /e/OS.</li>
+        </ul>
+      </div>
+    </noscript>
+
+    <div id="quiz-container" class="my-8 hidden border border-[var(--color-surface-highlight)] bg-[var(--color-surface)] p-6 rounded text-[var(--color-text)]">
+        <div id="quiz-question-container">
+            <h3 id="quiz-question" class="text-xl font-bold mb-4">What is your primary concern?</h3>
+            <div class="flex flex-col gap-2">
+                <button class="quiz-option bg-[var(--color-primary)] text-[var(--color-bg)] py-2 px-4 rounded font-medium hover:opacity-90" data-value="ads">I want to stop corporate tracking (Google/Meta) and advertising.</button>
+                <button class="quiz-option bg-[var(--color-primary)] text-[var(--color-bg)] py-2 px-4 rounded font-medium hover:opacity-90" data-value="hackers">I am worried about physical device theft and amateur hackers.</button>
+                <button class="quiz-option bg-[var(--color-primary)] text-[var(--color-bg)] py-2 px-4 rounded font-medium hover:opacity-90" data-value="spies">I am a high-risk target (journalist/activist) worried about targeted spyware (e.g., Pegasus).</button>
+            </div>
+        </div>
+        <div id="quiz-result-container" class="hidden mt-4 p-4 border border-[var(--color-primary)] bg-[var(--color-bg)] rounded">
+            <h3 class="text-2xl font-bold text-[var(--color-primary)] mb-2">Your Recommendation:</h3>
+            <p id="quiz-result-text" class="text-lg"></p>
+            <button id="quiz-reset" class="mt-4 text-sm text-[var(--color-primary)] underline">Retake Quiz</button>
+        </div>
+    </div>
+
+    <h2>Get Your Results PDF</h2>
+    <p>Sign up below to receive a detailed PDF breakdown of the different threat models and our top device recommendations.</p>
+    <CaptureForm>
+        <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Email Address</label>
+        <input type="email" name="email" required class="w-full rounded border border-[var(--color-surface-highlight)] bg-[var(--color-surface)] text-[var(--color-text)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] mb-4" />
+        <button type="submit" class="rounded bg-[var(--color-primary)] px-5 py-2.5 font-medium text-[var(--color-bg)] hover:opacity-90 disabled:opacity-60">Get Recommendations</button>
+    </CaptureForm>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('quiz-container');
+        if (container) container.classList.remove('hidden');
+
+        const options = document.querySelectorAll('.quiz-option');
+        const questionContainer = document.getElementById('quiz-question-container');
+        const resultContainer = document.getElementById('quiz-result-container');
+        const resultText = document.getElementById('quiz-result-text');
+        const resetBtn = document.getElementById('quiz-reset');
+
+        options.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const val = (e.target as HTMLButtonElement).getAttribute('data-value');
+                resultContainer?.classList.remove('hidden');
+                questionContainer?.classList.add('hidden');
+
+                if (val === 'ads') {
+                    if (resultText) resultText.innerHTML = "<strong>Recommendation: CalyxOS or /e/OS.</strong> Since your main goal is blocking mainstream corporate tracking while keeping high usability, these operating systems provide microG for app compatibility without the heavy security constraints of GrapheneOS. It's a great balance for daily driving.";
+                } else if (val === 'hackers') {
+                    if (resultText) resultText.innerHTML = "<strong>Recommendation: GrapheneOS or stock iPhone.</strong> If you just want encryption at rest and protection against petty theft, a stock iPhone with Advanced Data Protection is actually quite good. However, if you want Android, GrapheneOS's auto-reboot feature and hardened PIN entry make it incredibly difficult for thieves to brute-force your device.";
+                } else if (val === 'spies') {
+                    if (resultText) resultText.innerHTML = "<strong>Recommendation: GrapheneOS on a Google Pixel.</strong> For high-risk individuals, GrapheneOS offers unparalleled sandboxing, a hardened kernel, and hardware-verified boot to defend against zero-day exploits and advanced persistent threats (like NSO Group's Pegasus). Nothing else comes close.";
+                }
+            });
+        });
+
+        resetBtn?.addEventListener('click', () => {
+            resultContainer?.classList.add('hidden');
+            questionContainer?.classList.remove('hidden');
+        });
+    });
+  </script>
+</Layout>

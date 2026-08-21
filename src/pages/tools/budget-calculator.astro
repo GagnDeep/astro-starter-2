@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+---
+<Layout title="Tool" seo={{ page_description: "Calculate the real cost of owning a privacy phone, including VPNs and secure services." }}>
+  <div class="prose mx-auto px-4 py-8">
+    <h1>Privacy Budget Calculator</h1>
+    <p>Privacy isn't just about the phone. Calculate the total cost of ownership including secure email, VPNs, and hardware.</p>
+
+    <noscript>
+      <div class="bg-yellow-100 p-4 border-l-4 border-yellow-500 mb-8 text-black">
+        <p><strong>JavaScript is disabled.</strong> Here are some typical budget ranges:</p>
+        <ul>
+          <li><strong>DIY Budget:</strong> $300-$500 (Used Pixel + GrapheneOS + Free ProtonMail)</li>
+          <li><strong>Mid-Range:</strong> $700-$900 (New Pixel 8 + Paid VPN/Email)</li>
+          <li><strong>Turnkey Enterprise:</strong> $1000+ (Pre-flashed NitroPhone + Full secure service suite)</li>
+        </ul>
+      </div>
+    </noscript>
+
+    <div id="calculator-container" class="my-8 hidden border border-[var(--color-surface-highlight)] bg-[var(--color-surface)] p-6 rounded text-[var(--color-text)]">
+
+        <div class="mb-4">
+            <label class="block font-bold mb-2">Hardware Approach</label>
+            <select id="calc-hardware" class="w-full p-2 border border-[var(--color-surface-highlight)] bg-[var(--color-bg)] rounded text-[var(--color-text)]">
+                <option value="300">Used Pixel 6/7 (DIY Flash) - ~$300</option>
+                <option value="500">Refurbished Pixel 7 (DIY Flash) - ~$500</option>
+                <option value="700">New Pixel 8 (DIY Flash) - ~$700</option>
+                <option value="1000">Pre-flashed NitroPhone / Murena - ~$1000+</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-bold mb-2">Secure Email & Cloud (Annual)</label>
+            <select id="calc-cloud" class="w-full p-2 border border-[var(--color-surface-highlight)] bg-[var(--color-bg)] rounded text-[var(--color-text)]">
+                <option value="0">Free Tiers (Proton/Tuta basic) - $0</option>
+                <option value="60">Basic Paid (Proton Mail Plus) - ~$60/yr</option>
+                <option value="120">Paid Suite (Proton Unlimited / Skiff) - ~$120/yr</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-bold mb-2">VPN Service (Annual)</label>
+            <select id="calc-vpn" class="w-full p-2 border border-[var(--color-surface-highlight)] bg-[var(--color-bg)] rounded text-[var(--color-text)]">
+                <option value="0">No VPN / Included with Email Suite - $0</option>
+                <option value="60">Dedicated Premium VPN (Mullvad/IVPN) - ~$60/yr</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-bold mb-2">Secure SIM / Data Plan (Monthly)</label>
+            <select id="calc-sim" class="w-full p-2 border border-[var(--color-surface-highlight)] bg-[var(--color-bg)] rounded text-[var(--color-text)]">
+                <option value="0">Standard Carrier / Pre-paid Cash - $0 extra</option>
+                <option value="360">Silent Link / Anonymous eSIM - ~$30/mo ($360/yr)</option>
+            </select>
+        </div>
+
+        <div class="p-4 bg-[var(--color-bg)] border border-[var(--color-primary)] rounded mt-6 text-center">
+            <h3 class="text-xl font-bold m-0">Estimated First Year Cost</h3>
+            <p id="calc-total" class="text-4xl font-mono text-[var(--color-primary)] my-2">$300</p>
+            <p id="calc-breakdown" class="text-sm text-gray-400">Includes hardware and first year of service subscriptions.</p>
+        </div>
+    </div>
+
+    <h2>Need a custom quote?</h2>
+    <p>If you need bulk devices for your organization, request a quote below.</p>
+    <CaptureForm>
+        <input type="hidden" name="form_type" value="quote" />
+        <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Organization</label>
+        <input type="text" name="organization" required class="w-full rounded border border-[var(--color-surface-highlight)] bg-[var(--color-surface)] text-[var(--color-text)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] mb-4" />
+        <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Email Address</label>
+        <input type="email" name="email" required class="w-full rounded border border-[var(--color-surface-highlight)] bg-[var(--color-surface)] text-[var(--color-text)] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] mb-4" />
+        <button type="submit" class="rounded bg-[var(--color-primary)] px-5 py-2.5 font-medium text-[var(--color-bg)] hover:opacity-90 disabled:opacity-60">Request Quote</button>
+    </CaptureForm>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('calculator-container');
+        if (container) container.classList.remove('hidden');
+
+        const inputs = ['calc-hardware', 'calc-cloud', 'calc-vpn', 'calc-sim'];
+        const totalEl = document.getElementById('calc-total');
+        const breakdownEl = document.getElementById('calc-breakdown');
+
+        function updateTotal() {
+            let hw = parseInt((document.getElementById('calc-hardware') as HTMLSelectElement)?.value || '0', 10);
+            let sub = 0;
+
+            inputs.slice(1).forEach(id => {
+                const el = document.getElementById(id) as HTMLSelectElement;
+                if (el) sub += parseInt(el.value || '0', 10);
+            });
+
+            let total = hw + sub;
+
+            if (totalEl) totalEl.textContent = `$${total}`;
+            if (breakdownEl) breakdownEl.textContent = `Hardware cost: $${hw}. First-year subscription costs: $${sub}.`;
+        }
+
+        inputs.forEach(id => {
+            document.getElementById(id)?.addEventListener('change', updateTotal);
+        });
+
+        updateTotal(); // init
+    });
+  </script>
+</Layout>

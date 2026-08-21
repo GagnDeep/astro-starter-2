@@ -4,13 +4,13 @@ import { glob } from 'astro/loaders';
 
 const seoSchema = z
   .object({
-    page_description: z.string().nullable(),
-    canonical_url: z.string().nullable(),
-    featured_image: z.string().nullable(),
-    featured_image_alt: z.string().nullable(),
-    author_twitter_handle: z.string().nullable(),
-    open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
+    page_description: z.string().optional().nullable(),
+    canonical_url: z.string().optional().nullable(),
+    featured_image: z.string().optional().nullable(),
+    featured_image_alt: z.string().optional().nullable(),
+    author_twitter_handle: z.string().optional().nullable(),
+    open_graph_type: z.string().optional().nullable(),
+    no_index: z.boolean().optional(),
   })
   .optional();
 
@@ -50,7 +50,34 @@ const pagesCollection = defineCollection({
   schema: z.union([paginatedCollectionSchema, pageSchema]),
 });
 
+const reviewsCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/reviews" }),
+  schema: z.object({
+    title: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const osCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/os" }),
+  schema: z.object({
+    title: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const glossaryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string(),
+    seo: seoSchema,
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   pages: pagesCollection,
+  reviews: reviewsCollection,
+  os: osCollection,
+  glossary: glossaryCollection,
 };

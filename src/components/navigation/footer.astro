@@ -1,25 +1,30 @@
 ---
 import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
 ---
 
-<footer class="bg-gray-800 text-white">
+<footer class="bg-[var(--color-surface)] text-[var(--color-text)] border-t border-[var(--color-surface-highlight)]">
   <div class="mx-auto max-w-6xl px-8 py-12">
     <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
       <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
         <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
       </a>
 
-      <ul class="flex gap-6 items-center justify-center">
+      <div class="flex flex-col items-center justify-center gap-4">
+        <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" placeholder="Get privacy tips" />
+        <ul class="flex gap-6 items-center justify-center">
         {footer.links.map((link) => (
           <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
+            <a class="hover:text-[var(--color-primary)] transition-colors" href={link.link}>
               {link.text}
             </a>
           </li>
         ))}
       </ul>
+      </div>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
+      <div class="text-center sm:text-end text-sm text-[var(--color-surface-highlight)]">
         &copy; {new Date().getFullYear()} {footer.copyright}
       </div>
     </div>
