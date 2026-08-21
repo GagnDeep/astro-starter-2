@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NewsletterForm from '../components/forms/capture-form.astro';
+import { getCollection } from 'astro:content';
+
+const forms = await getCollection('forms');
+const topForms = forms.slice(0, 4);
+const posts = await getCollection('blog');
+const recentPosts = posts.slice(0, 3);
+
+const seo = {
+  title: 'Download Free Tax Forms PDF Instantly',
+  page_description: 'The fastest, clearest place to download official IRS forms, with plain-English guides and honest recommendations.',
+};
+---
+
+<Layout seo={seo} title="Download Free Tax Forms PDF Instantly">
+  <main>
+    {/* Block 1: Hero */}
+    <section class="bg-primary text-surface py-20 px-4 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-surface">Download Official Tax Forms Instantly</h1>
+        <p class="text-xl mb-8 font-serif">Skip the confusion. Get exactly the IRS PDF you need in seconds.</p>
+
+        <div class="bg-surface text-text p-6 rounded-lg shadow-lg max-w-md mx-auto mb-8 text-left">
+          <h2 class="text-2xl font-bold mb-4 mt-0 text-primary">Get Updates</h2>
+          <NewsletterForm />
+        </div>
+      </div>
+    </section>
+
+    {/* Block 2: Top Forms Grid */}
+    <section class="py-16 px-4 bg-bg">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-10 text-primary">Most Downloaded Forms</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {topForms.map(form => (
+            <a href={`/forms/${form.id}/`} class="block p-6 bg-surface border border-border rounded-lg hover:shadow-md transition-shadow no-underline text-text">
+              <h3 class="text-xl font-bold text-primary mb-2">{form.data.form_number}</h3>
+              <p class="text-sm text-text-muted">{form.data.description}</p>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-8">
+          <a href="/forms/" class="text-secondary font-bold hover:underline">View all forms &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    {/* Block 3: The "Paper vs Software" Pivot */}
+    <section class="py-16 px-4 bg-primary-light">
+      <div class="max-w-4xl mx-auto text-center prose">
+        <h2>Filing by hand? There might be a better way.</h2>
+        <p>Paper forms are great for records, but e-filing is often free, faster, and does the math for you.</p>
+        <a href="/compare/" class="inline-block mt-4 px-6 py-3 bg-primary text-surface rounded font-bold no-underline hover:bg-opacity-90">
+          Compare Free Tax Software
+        </a>
+      </div>
+    </section>
+
+    {/* Block 4: Tools Teaser */}
+    <section class="py-16 px-4 bg-surface">
+      <div class="max-w-4xl mx-auto text-center prose">
+        <h2>Free Tax Tools</h2>
+        <p>Estimate your refund or check your tax bracket instantly.</p>
+        <div class="flex justify-center gap-4 mt-6">
+          <a href="/tools/tax-bracket-calculator/" class="px-6 py-3 border border-primary text-primary rounded font-bold no-underline hover:bg-primary hover:text-surface transition-colors">
+            Tax Brackets
+          </a>
+          <a href="/tools/refund-estimator/" class="px-6 py-3 border border-primary text-primary rounded font-bold no-underline hover:bg-primary hover:text-surface transition-colors">
+            Refund Estimator
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Block 5: Latest Guides */}
+    <section class="py-16 px-4 bg-bg">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-10 text-primary">Latest Tax Guides</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {recentPosts.map(post => (
+            <a href={`/blog/${post.id}/`} class="block p-6 bg-surface border border-border rounded-lg hover:shadow-md transition-shadow no-underline text-text">
+              <h3 class="text-lg font-bold text-primary mb-2 line-clamp-2">{post.data.title}</h3>
+              <p class="text-sm text-text-muted">Read guide &rarr;</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

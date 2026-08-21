@@ -1,6 +1,7 @@
 ---
-import PostLayout from "../../layouts/Post.astro";
+import Layout from "../../layouts/Layout.astro";
 import { getCollection, getEntry, render } from "astro:content";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -15,8 +16,28 @@ if (!post) {
   throw new Error("Failed to get post with slug: " + Astro.params.slug);
 }
 const { Content } = await render(post);
+
+const seo = {
+  ...post.data.seo,
+  title: post.data.title,
+};
 ---
 
-<PostLayout frontmatter={post.data} body={post.body}>
-  <Content />
-</PostLayout>
+<Layout seo={seo} title={post.data.title}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <article class="prose max-w-none">
+      <h1>{post.data.title}</h1>
+      <p class="text-sm text-text-muted mb-8">By {post.data.author} | {new Date(post.data.date).toLocaleDateString()}</p>
+
+      <Content />
+
+      <div class="mt-12 pt-8 border-t border-border">
+        <h3>Stay Updated</h3>
+        <p>Get the latest tax tips directly to your inbox.</p>
+        <div class="bg-surface p-6 rounded shadow-sm">
+          <NewsletterForm />
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

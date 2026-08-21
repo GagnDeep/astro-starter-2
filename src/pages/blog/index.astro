@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = await getCollection('blog');
+---
+
+<Layout title="Tax Guides and Advice">
+  <main class="max-w-4xl mx-auto px-4 py-12 prose">
+    <h1>Tax Guides and Advice</h1>
+    <p>Read our latest posts to help you navigate your taxes.</p>
+    <ul>
+      {posts.map(post => (
+        <li>
+          <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>
