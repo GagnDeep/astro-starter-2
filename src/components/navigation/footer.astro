@@ -1,27 +1,43 @@
 ---
-import { footer } from "../../../data/navigation.json";
+import navigation from "../../../data/navigation.json";
+
+const { footer } = navigation;
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-brand-navy-light text-slate-300 py-12 mt-16">
+  <div class="container grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="col-span-1 md:col-span-1">
+      <a href={footer.logo_url} class="text-xl font-bold text-white mb-4 block">Institute for Tax</a>
+      <p class="text-sm mt-4">{footer.copyright}</p>
+    </div>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
+    <div>
+      <h3 class="text-white font-semibold mb-4">Leads</h3>
+      <ul class="space-y-2">
+        <li><a href="/leads/tax-preparation/" class="hover:text-brand-emerald">Tax Preparation Leads</a></li>
+        <li><a href="/leads/tax-resolution/" class="hover:text-brand-emerald">Tax Resolution Leads</a></li>
+        <li><a href="/leads/high-net-worth/" class="hover:text-brand-emerald">High Net Worth Leads</a></li>
+        <li><a href="/leads/corporate-tax/" class="hover:text-brand-emerald">Corporate Tax Leads</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-white font-semibold mb-4">Resources</h3>
+      <ul class="space-y-2">
+        <li><a href="/guides/tax-firm-marketing/" class="hover:text-brand-emerald">Marketing Guide</a></li>
+        <li><a href="/tools/cpa-roi-calculator/" class="hover:text-brand-emerald">ROI Calculator</a></li>
+        <li><a href="/glossary/cac/" class="hover:text-brand-emerald">Glossary</a></li>
+        <li><a href="/blog/" class="hover:text-brand-emerald">Blog</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-white font-semibold mb-4">Company</h3>
+      <ul class="space-y-2">
+        {footer.links.map(link => (
+          <li><a href={link.link} class="hover:text-brand-emerald">{link.text}</a></li>
         ))}
       </ul>
-
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
-      </div>
     </div>
   </div>
 </footer>

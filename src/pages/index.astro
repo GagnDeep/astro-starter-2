@@ -1,0 +1,153 @@
+---
+import Layout from "../layouts/Layout.astro";
+import WaitlistForm from "../components/forms/waitlist-form.astro";
+import { CheckCircle, TrendingUp, Users, ShieldAlert, BarChart, Banknote } from "@lucide/astro";
+
+const seo = {
+  page_description: "Premium, pre-qualified tax preparation and resolution leads for CPAs and Enrolled Agents. Stop competing on price and start closing high-value tax clients.",
+  canonical_url: "/",
+  open_graph_type: "website"
+};
+---
+
+<Layout title="Institute for Tax | Exclusive Tax Leads for CPAs & EAs" seo={seo}>
+  <!-- Hero Section -->
+  <section class="bg-brand-navy pt-20 pb-24 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-emerald via-transparent to-transparent"></div>
+    <div class="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center rounded-full bg-brand-navy-light px-3 py-1 text-sm font-medium text-brand-emerald mb-6 border border-brand-emerald/20">
+          For CPAs and Enrolled Agents
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+          Stop Competing on Price. Buy Exclusive Tax Leads That Actually Close.
+        </h1>
+        <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-lg">
+          We don't sell coaching. We don't sell websites. We sell high-intent, pre-qualified tax preparation and resolution leads delivered directly to your inbox.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+          <div class="flex items-center gap-2">
+            <CheckCircle class="w-5 h-5 text-brand-emerald" />
+            <span class="text-slate-300 text-sm font-medium">100% Exclusive (Never Shared)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <CheckCircle class="w-5 h-5 text-brand-emerald" />
+            <span class="text-slate-300 text-sm font-medium">Pre-screened Intent</span>
+          </div>
+        </div>
+      </div>
+      <div class="lg:ml-auto w-full max-w-md">
+        <WaitlistForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- The "Anti-Shared" Block -->
+  <section class="py-20 bg-brand-light">
+    <div class="container text-center max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Why shared leads are killing your realization rate</h2>
+      <p class="text-xl text-brand-slate mb-12">
+        When you buy leads from massive generic directories, you're competing against 4 other professionals in a race to the bottom. The client always chooses the cheapest option, ruining your margins.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+        <div class="bg-white p-8 rounded-card shadow-sm border border-red-100 relative">
+          <div class="absolute top-0 right-0 p-4">
+            <ShieldAlert class="w-6 h-6 text-red-400" />
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-red-900">The Directory Model</h3>
+          <ul class="space-y-3 text-brand-slate">
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 mt-1">✗</span>
+              <span>Lead is sold to you and 4+ competitors simultaneously.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 mt-1">✗</span>
+              <span>Forces you to slash prices to win the bid.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 mt-1">✗</span>
+              <span>Attracts extreme price-shoppers ("Can you do it for $99?").</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 mt-1">✗</span>
+              <span>Low retention rate; they will shop around again next year.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-8 rounded-card shadow-sm border border-brand-emerald/20 relative ring-2 ring-brand-emerald/20">
+          <div class="absolute top-0 right-0 p-4">
+            <TrendingUp class="w-6 h-6 text-brand-emerald" />
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-brand-navy">The Institute for Tax Model</h3>
+          <ul class="space-y-3 text-brand-slate">
+            <li class="flex items-start gap-2">
+              <span class="text-brand-emerald mt-1">✓</span>
+              <span class="font-medium text-brand-navy">100% Exclusive. If you buy the lead, no one else gets it.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-brand-emerald mt-1">✓</span>
+              <span>Focus on the value of your advice, not the cost of your time.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-brand-emerald mt-1">✓</span>
+              <span>High-income filters ($100k+) and complex returns (K-1s, 1120S).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-brand-emerald mt-1">✓</span>
+              <span>Higher LTV (Lifetime Value) because they value expertise.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works (The Filter) -->
+  <section class="py-20">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Quality over Quantity. Always.</h2>
+        <p class="text-lg text-brand-slate max-w-2xl mx-auto">
+          A lead is useless if they can't afford your minimum engagement fee. We apply strict filtering to ensure you only speak to qualified prospects.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6">
+          <div class="w-12 h-12 rounded-full bg-brand-light flex items-center justify-center mb-6">
+            <Banknote class="w-6 h-6 text-brand-emerald" />
+          </div>
+          <h3 class="text-xl font-bold mb-3">Income Verification</h3>
+          <p class="text-brand-slate">We target business owners and individuals with W-2 income exceeding $100,000, filtering out the "free filing" crowd.</p>
+        </div>
+        <div class="p-6">
+          <div class="w-12 h-12 rounded-full bg-brand-light flex items-center justify-center mb-6">
+            <BarChart class="w-6 h-6 text-brand-emerald" />
+          </div>
+          <h3 class="text-xl font-bold mb-3">Complexity Scoring</h3>
+          <p class="text-brand-slate">Prospects are asked about business ownership, real estate investments, crypto, and unfiled years to ensure the return requires a professional.</p>
+        </div>
+        <div class="p-6">
+          <div class="w-12 h-12 rounded-full bg-brand-light flex items-center justify-center mb-6">
+            <Users class="w-6 h-6 text-brand-emerald" />
+          </div>
+          <h3 class="text-xl font-bold mb-3">High Intent</h3>
+          <p class="text-brand-slate">Our leads are generated through highly specific, long-tail search intent—not broad sweepstakes or misleading ads.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Teaser -->
+  <section class="py-20 bg-brand-navy text-white text-center">
+    <div class="container max-w-3xl">
+      <h2 class="text-3xl font-bold mb-6">Do you know your true Cost Per Acquisition?</h2>
+      <p class="text-lg text-slate-300 mb-8">
+        Stop guessing if your marketing is working. Use our CPA ROI Calculator to see exactly how many exclusive leads you need to hit your revenue goals this tax season.
+      </p>
+      <a href="/tools/cpa-roi-calculator/" class="btn-primary">Calculate Your ROI</a>
+    </div>
+  </section>
+</Layout>

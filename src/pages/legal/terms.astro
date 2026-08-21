@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Terms of Service for Institute for Tax.",
+  canonical_url: "/legal/terms/",
+  no_index: true
+};
+---
+
+<Layout title="Terms of Service | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-20 max-w-3xl">
+    <div class="prose prose-slate mx-auto">
+      <h1 class="text-3xl font-bold mb-8">Terms of Service</h1>
+      <p class="text-sm text-slate-500 mb-8">Last updated: August 2024</p>
+
+      <p>These terms and conditions outline the rules and regulations for the use of Institute for Tax's Website.</p>
+
+      <h2 class="text-xl font-bold mt-8 mb-4">1. Lead Exclusivity</h2>
+      <p>Institute for Tax guarantees that any lead sold to a Professional ("Buyer") is exclusive to that Buyer and will not be sold, shared, or distributed to any other party by Institute for Tax.</p>
+
+      <h2 class="text-xl font-bold mt-8 mb-4">2. Professional Requirements</h2>
+      <p>Buyers must hold a valid, active credential (CPA, EA, or Tax Attorney) in good standing in their respective jurisdiction. We reserve the right to suspend accounts if credentials lapse or if we receive verifiable complaints of malpractice or unethical behavior.</p>
+
+      <h2 class="text-xl font-bold mt-8 mb-4">3. Refund Policy</h2>
+      <p>Refunds for individual leads may be requested within 5 business days of lead delivery for the following reasons only:</p>
+      <ul>
+        <li>Disconnected or invalid phone number AND email address</li>
+        <li>Lead is seeking a service the Buyer explicitly opted out of</li>
+        <li>Lead resides outside of the Buyer's agreed geographic territory (if applicable)</li>
+      </ul>
+      <p>We do not guarantee close rates. A lead that does not answer the phone or does not hire the Buyer is not grounds for a refund, provided the contact information is valid.</p>
+
+      <h2 class="text-xl font-bold mt-8 mb-4">4. Governing Law</h2>
+      <p>These terms and conditions are governed by and construed in accordance with the laws of the United States and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
+    </div>
+  </div>
+</Layout>

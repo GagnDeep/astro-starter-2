@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import WaitlistForm from "../../components/forms/waitlist-form.astro";
+import { Check } from "@lucide/astro";
+const titleStr = "irs-audit".split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+const seo = {
+  page_description: "Buy exclusive " + titleStr + " leads. Pre-screened, high-intent prospects.",
+  canonical_url: "/leads/irs-audit/",
+  open_graph_type: "website"
+};
+---
+<Layout title={`Exclusive ${titleStr} Leads | Institute for Tax`} seo={seo}>
+  <div class="container py-12 lg:py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <h1 class="text-4xl font-bold mb-6 text-brand-navy">{titleStr} Leads</h1>
+        <p class="text-xl text-brand-slate mb-8">Stop competing on price. Buy 100% exclusive, pre-qualified {titleStr} leads delivered directly to you.</p>
+        <div class="bg-brand-light p-6 rounded-card border border-slate-200 mb-8">
+          <h3 class="text-lg font-bold mb-4">Lead Profile Requirements</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2"><Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" /><span>100% Exclusive</span></li>
+            <li class="flex items-start gap-2"><Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" /><span>Verified Intent for {titleStr}</span></li>
+            <li class="flex items-start gap-2"><Check class="w-5 h-5 text-brand-emerald shrink-0 mt-0.5" /><span>Meets income/revenue thresholds</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="lg:sticky lg:top-24">
+        <WaitlistForm submitLabel={`Apply for ${titleStr} Leads`} />
+      </div>
+    </div>
+  </div>
+</Layout>

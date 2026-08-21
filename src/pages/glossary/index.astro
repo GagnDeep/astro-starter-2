@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Tax professional marketing glossary. Definitions for CAC, LTV, Realization Rate, and other terms CPAs and EAs need to know to grow their practice.",
+  canonical_url: "/glossary/",
+  open_graph_type: "website"
+};
+---
+
+<Layout title="Tax Marketing Glossary | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-20">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Tax Marketing Glossary</h1>
+      <p class="text-lg text-brand-slate mb-12">
+        A directory of the metrics, strategies, and jargon used in lead generation and growth for accounting firms.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <a href="/glossary/cac/" class="block p-6 bg-white border border-slate-200 rounded-card shadow-sm hover:border-brand-emerald transition-colors">
+          <h2 class="text-xl font-bold text-brand-navy mb-2">Client Acquisition Cost (CAC)</h2>
+          <p class="text-brand-slate text-sm">The total cost of marketing and sales required to acquire a new, paying tax client.</p>
+        </a>
+
+        <a href="/glossary/ltv/" class="block p-6 bg-white border border-slate-200 rounded-card shadow-sm hover:border-brand-emerald transition-colors">
+          <h2 class="text-xl font-bold text-brand-navy mb-2">Lifetime Value (LTV)</h2>
+          <p class="text-brand-slate text-sm">The total revenue a tax firm can reasonably expect from a single client throughout their relationship.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

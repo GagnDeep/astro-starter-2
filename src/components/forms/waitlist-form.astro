@@ -1,0 +1,73 @@
+---
+import CaptureForm from "./capture-form.astro";
+import { capture } from "../../../capture.config";
+
+interface Props {
+  class?: string;
+  submitLabel?: string;
+}
+
+const { class: className = "", submitLabel = "Get Your First 5 Exclusive Leads" } = Astro.props;
+const field = "w-full rounded border border-gray-300 px-3 py-3 focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald bg-white text-brand-navy shadow-sm";
+const labelClass = "block text-sm font-medium text-brand-navy-light mb-1";
+---
+
+<CaptureForm
+  form={capture.forms.waitlist}
+  submitLabel={submitLabel}
+  successMessage="Application received. We'll be in touch within 24 hours to confirm your territory."
+  class={`bg-brand-light p-6 rounded-card border border-slate-200 ${className}`}
+>
+  <div class="mb-6">
+    <h3 class="text-xl font-bold text-brand-navy mb-2">Apply for Lead Exclusivity</h3>
+    <p class="text-sm text-brand-slate">We strictly limit the number of CPAs/EAs we work with per territory to maintain high lead quality.</p>
+  </div>
+
+  <div class="space-y-4">
+    <div>
+      <label for="name" class={labelClass}>Full Name</label>
+      <input id="name" name="name" type="text" autocomplete="name" required class={field} placeholder="Jane Doe, CPA" />
+    </div>
+
+    <div>
+      <label for="email" class={labelClass}>Work Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required class={field} placeholder="jane@doecpa.com" />
+    </div>
+
+    <div>
+      <label for="phone" class={labelClass}>Phone Number</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" required class={field} placeholder="(555) 123-4567" />
+    </div>
+
+    <div>
+      <label for="firm_size" class={labelClass}>Firm Size</label>
+      <select id="firm_size" name="firm_size" required class={field}>
+        <option value="">Select firm size</option>
+        <option value="solo">Solo Practitioner</option>
+        <option value="2-5">2-5 Employees</option>
+        <option value="6-15">6-15 Employees</option>
+        <option value="16+">16+ Employees</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="lead_type" class={labelClass}>Primary Lead Interest</label>
+      <select id="lead_type" name="lead_type" required class={field}>
+        <option value="">Select lead type</option>
+        <option value="tax_prep">Tax Preparation (High Net Worth / Business)</option>
+        <option value="tax_resolution">Tax Resolution (OIC, Back Taxes)</option>
+        <option value="both">Both</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-6 pt-4 border-t border-slate-200">
+    <p class="text-xs text-brand-slate mb-4">By submitting, you agree to our terms. Your information is secure.</p>
+    <button
+      type="submit"
+      class="w-full rounded-button bg-brand-emerald px-5 py-3 font-semibold text-white hover:bg-brand-emerald-hover focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 disabled:opacity-60 transition-colors text-lg"
+    >
+      {submitLabel}
+    </button>
+  </div>
+</CaptureForm>

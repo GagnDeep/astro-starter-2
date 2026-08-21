@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GuideForm from "../../components/forms/guide-form.astro";
+
+const seo = {
+  page_description: "The definitive guide to tax firm marketing. Learn how to generate leads, improve realization rates, and build a profitable book of business.",
+  canonical_url: "/guides/tax-firm-marketing/",
+  open_graph_type: "article"
+};
+---
+
+<Layout title="Tax Firm Marketing Guide for CPAs | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+    <div class="lg:col-span-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">The Definitive Guide to Tax Firm Marketing</h1>
+      <p class="text-xl text-brand-slate mb-8">
+        Stop competing on price and start attracting high-value clients. A complete blueprint for CPAs and EAs looking to scale their book of business this tax season.
+      </p>
+
+      <div class="prose prose-lg max-w-none">
+        <p>The accounting industry is undergoing a massive shift. The commoditization of simple 1040 preparation by software giants like TurboTax means that traditional "tax prep" is a race to the bottom.</p>
+
+        <p>To survive and thrive, independent tax professionals must pivot from selling <em>compliance</em> to selling <em>advisory</em>. But how do you find the clients willing to pay for advisory?</p>
+
+        <h2 id="the-problem">1. The Problem with Traditional CPA Marketing</h2>
+        <p>Most accounting firms rely entirely on referrals. While referrals are excellent, they are unpredictable. You cannot turn a referral engine on or off, making it impossible to scale predictably.</p>
+        <p>When firms decide to proactively market, they usually make one of two mistakes:</p>
+        <ul>
+          <li><strong>Mistake A: Brand Marketing.</strong> Buying billboard space, sponsoring local little league teams, or paying $5,000 for a pretty website. This builds "awareness," but awareness doesn't pay the rent. Direct response marketing does.</li>
+          <li><strong>Mistake B: Buying Shared Leads.</strong> Signing up for Bark or Thumbtack. You pay $25 for a lead, but so do four other accountants. The client invariably chooses the cheapest option, ruining your realization rate.</li>
+        </ul>
+
+        <h2 id="positioning">2. Positioning: Be a Specialist, Not a Generalist</h2>
+        <p>A "CPA for everyone" is a CPA for no one. High-value clients seek specialists. If a real estate developer is facing a complex 1031 exchange, they do not want a generalist who spends 80% of their day doing W-2s.</p>
+        <p>Choose a niche and gear all your marketing towards it:</p>
+        <ul>
+          <li>Tax Resolution (IRS Audit Defense, OIC)</li>
+          <li>Real Estate Investors</li>
+          <li>E-commerce Businesses</li>
+          <li>Expat / International Tax</li>
+          <li>Medical Professionals</li>
+        </ul>
+        <p>When you are a specialist, you have pricing power.</p>
+
+        <h2 id="acquisition">3. Client Acquisition Channels That Work</h2>
+
+        <h3>A. Buying Exclusive Intent Leads (The Fastest ROI)</h3>
+        <p>If you need clients <em>now</em>, buying exclusive leads is the most predictable channel. You know exactly what a lead costs, you know your close rate, and therefore you know your <a href="/glossary/cac/">Client Acquisition Cost (CAC)</a>.</p>
+        <p><strong>The Golden Rule:</strong> Only buy <em>exclusive</em> leads. Shared leads force you to compete on price, destroying your margins.</p>
+
+        <h3>B. Local SEO (The Long Game)</h3>
+        <p>Optimizing your Google Business Profile (GBP) is critical. Make sure your profile has:</p>
+        <ul>
+          <li>At least 20+ 5-star reviews (build an automated email sequence to ask clients for reviews after successful filings).</li>
+          <li>Consistent NAP (Name, Address, Phone) across the web.</li>
+          <li>Posts and Q&As updated regularly.</li>
+        </ul>
+
+        <h2 id="sales">4. The Sales Process: Closing the Lead</h2>
+        <p>A great lead is useless if your intake process is broken. The most common reason tax professionals fail to close bought leads is <strong>speed to lead</strong>.</p>
+        <p>If a business owner fills out a form requesting tax help, the likelihood of contacting them drops by 100x if you wait more than 5 minutes to call them. You must treat inbound leads as an immediate priority.</p>
+
+        <div class="bg-brand-light p-6 rounded-card border border-slate-200 my-8">
+          <h4 class="font-bold mb-2">The Ideal Intake Flow:</h4>
+          <ol class="mb-0">
+            <li>Lead arrives in your inbox/CRM.</li>
+            <li>Call within 5 minutes. If no answer, send an immediate text message: <em>"Hi [Name], this is Jane Doe, CPA. I received your request for tax help. When is a good time to chat today?"</em></li>
+            <li>Conduct a 15-minute discovery call to assess fit. Do not give free tax advice.</li>
+            <li>Send an engagement letter with a required retainer before beginning work.</li>
+          </ol>
+        </div>
+
+        <h2 id="conclusion">5. Conclusion</h2>
+        <p>Marketing a tax firm doesn't require a degree in advertising. It requires a fundamental understanding of your Lifetime Value (LTV), a willingness to invest in exclusive client acquisition, and a disciplined sales process.</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-4 hidden lg:block">
+      <div class="sticky top-24">
+        <div class="bg-white p-6 rounded-card border border-slate-200 shadow-sm mb-6">
+          <h3 class="font-bold text-brand-navy mb-4">Table of Contents</h3>
+          <ul class="space-y-2 text-sm text-brand-slate">
+            <li><a href="#the-problem" class="hover:text-brand-emerald">1. The Problem with Traditional Marketing</a></li>
+            <li><a href="#positioning" class="hover:text-brand-emerald">2. Positioning: Be a Specialist</a></li>
+            <li><a href="#acquisition" class="hover:text-brand-emerald">3. Client Acquisition Channels</a></li>
+            <li><a href="#sales" class="hover:text-brand-emerald">4. The Sales Process</a></li>
+            <li><a href="#conclusion" class="hover:text-brand-emerald">5. Conclusion</a></li>
+          </ul>
+        </div>
+
+        <GuideForm
+          title="Download the PDF Guide"
+          subtitle="Get this full guide plus our email templates for following up with leads."
+        />
+      </div>
+    </div>
+
+  </div>
+</Layout>

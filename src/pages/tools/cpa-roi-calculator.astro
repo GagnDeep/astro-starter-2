@@ -1,0 +1,195 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const seo = {
+  page_description: "Calculate your true cost per acquisition (CAC) and ROI for tax preparation and resolution leads. See how many exclusive leads you need to hit your revenue goals.",
+  canonical_url: "/tools/cpa-roi-calculator/",
+  open_graph_type: "website"
+};
+---
+
+<Layout title="CPA ROI Calculator | Cost Per Acquisition for Tax Leads" seo={seo}>
+  <div class="container py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+    <div class="lg:col-span-7">
+      <h1 class="text-3xl md:text-4xl font-bold mb-6">CPA ROI & Client Acquisition Calculator</h1>
+      <p class="text-lg text-brand-slate mb-8">
+        Calculate your true Cost Per Acquisition (CAC) and the Return on Investment (ROI) of buying exclusive tax leads. Enter your average metrics below to see how many leads you need to reach your growth goals.
+      </p>
+
+      <div class="bg-brand-light p-6 rounded-card border border-slate-200 mb-8">
+        <form id="roi-calculator" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="avg_fee" class="block text-sm font-medium text-brand-navy mb-1">Average First-Year Fee ($)</label>
+              <input type="number" id="avg_fee" value="750" min="0" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald" />
+              <p class="text-xs text-brand-slate mt-1">What a new client pays you in year one.</p>
+            </div>
+            <div>
+              <label for="retention_years" class="block text-sm font-medium text-brand-navy mb-1">Average Retention (Years)</label>
+              <input type="number" id="retention_years" value="5" min="1" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald" />
+              <p class="text-xs text-brand-slate mt-1">How many years a client stays with you.</p>
+            </div>
+            <div>
+              <label for="close_rate" class="block text-sm font-medium text-brand-navy mb-1">Close Rate (%)</label>
+              <input type="number" id="close_rate" value="20" min="1" max="100" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald" />
+              <p class="text-xs text-brand-slate mt-1">Percentage of qualified leads you convert into clients.</p>
+            </div>
+            <div>
+              <label for="lead_cost" class="block text-sm font-medium text-brand-navy mb-1">Cost Per Exclusive Lead ($)</label>
+              <input type="number" id="lead_cost" value="150" min="0" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald" />
+              <p class="text-xs text-brand-slate mt-1">Average cost of a high-intent, exclusive lead.</p>
+            </div>
+            <div class="md:col-span-2">
+              <label for="revenue_goal" class="block text-sm font-medium text-brand-navy mb-1">New Revenue Goal ($)</label>
+              <input type="number" id="revenue_goal" value="50000" min="0" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald" />
+              <p class="text-xs text-brand-slate mt-1">How much new annualized revenue you want to add.</p>
+            </div>
+          </div>
+          <button type="button" id="calc-btn" class="btn-primary w-full md:w-auto">Calculate ROI</button>
+        </form>
+      </div>
+
+      <div id="results-container" class="hidden">
+        <h3 class="text-2xl font-bold mb-6">Your Projected ROI</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div class="bg-white p-6 rounded-card border border-slate-200 shadow-sm">
+            <p class="text-sm text-brand-slate font-medium mb-1">Client Lifetime Value (LTV)</p>
+            <p class="text-3xl font-bold text-brand-emerald" id="res_ltv">$0</p>
+          </div>
+          <div class="bg-white p-6 rounded-card border border-slate-200 shadow-sm">
+            <p class="text-sm text-brand-slate font-medium mb-1">Cost of Acquisition (CAC)</p>
+            <p class="text-3xl font-bold text-red-600" id="res_cac">$0</p>
+          </div>
+          <div class="bg-white p-6 rounded-card border border-slate-200 shadow-sm">
+            <p class="text-sm text-brand-slate font-medium mb-1">First-Year ROI</p>
+            <p class="text-3xl font-bold text-brand-navy" id="res_roi1">0%</p>
+          </div>
+          <div class="bg-white p-6 rounded-card border border-slate-200 shadow-sm">
+            <p class="text-sm text-brand-slate font-medium mb-1">Lifetime ROI</p>
+            <p class="text-3xl font-bold text-brand-emerald" id="res_roilifetime">0%</p>
+          </div>
+        </div>
+
+        <div class="bg-brand-navy p-6 rounded-card text-white">
+          <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-emerald"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            To hit your $<span id="res_goal">0</span> revenue goal:
+          </h4>
+          <ul class="space-y-3">
+            <li class="flex justify-between border-b border-white/10 pb-2">
+              <span class="text-slate-300">New Clients Needed:</span>
+              <span class="font-bold text-xl" id="res_clients">0</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-2">
+              <span class="text-slate-300">Exclusive Leads Needed:</span>
+              <span class="font-bold text-xl" id="res_leads">0</span>
+            </li>
+            <li class="flex justify-between pb-2">
+              <span class="text-slate-300">Total Ad/Lead Spend:</span>
+              <span class="font-bold text-xl text-brand-emerald" id="res_spend">$0</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- No-JS Fallback Explanation -->
+      <noscript>
+        <div class="bg-white p-6 rounded-card border border-slate-200 shadow-sm mb-8">
+          <h3 class="text-xl font-bold mb-3">How to calculate manually:</h3>
+          <ul class="list-disc pl-5 space-y-2 text-brand-slate">
+            <li><strong>LTV:</strong> Average First-Year Fee × Average Retention Years</li>
+            <li><strong>CAC:</strong> Cost Per Lead / (Close Rate % / 100)</li>
+            <li><strong>First-Year ROI:</strong> ((Average First-Year Fee - CAC) / CAC) × 100</li>
+            <li><strong>Clients Needed:</strong> Revenue Goal / Average First-Year Fee</li>
+            <li><strong>Leads Needed:</strong> Clients Needed / (Close Rate % / 100)</li>
+          </ul>
+        </div>
+      </noscript>
+
+      <div class="prose mt-12">
+        <h3>Understanding Cost Per Acquisition (CAC) for CPAs</h3>
+        <p>Many tax professionals focus on the cost of the lead itself (e.g., "$150 is too much for a lead!"). However, the only metric that truly matters is your <strong>Cost of Acquisition (CAC)</strong> relative to your <strong>Lifetime Value (LTV)</strong>.</p>
+        <p>If you buy 10 shared leads at $20 each ($200 total), but close none of them because they are price shoppers, your CAC is effectively infinite.</p>
+        <p>If you buy 10 exclusive leads at $150 each ($1,500 total) and close 2 of them (20% close rate) at an average fee of $750, your CAC is $750. In year one, you broke even. By year five (assuming standard 80%+ CPA retention rates), you have generated $7,500 from a $1,500 investment—a 400% ROI.</p>
+      </div>
+
+    </div>
+
+    <!-- Sidebar Capture -->
+    <div class="lg:col-span-5">
+      <div class="sticky top-24">
+        <div class="bg-brand-navy p-6 rounded-card text-white mb-6">
+          <h3 class="text-xl font-bold mb-2">Want to save these results?</h3>
+          <p class="text-slate-300 text-sm mb-4">Enter your email and we'll send you a detailed breakdown of your ROI projection, plus our guide to improving your close rate.</p>
+          <CaptureForm
+            form={capture.forms.newsletter}
+            submitLabel="Email My Results"
+            successMessage="Sent! Check your inbox."
+          >
+            <div class="space-y-4">
+              <div>
+                <label for="calc-email" class="sr-only">Email</label>
+                <input id="calc-email" name="email" type="email" required class="w-full rounded border border-white/20 bg-white/10 px-3 py-2 text-white placeholder:text-slate-400 focus:border-brand-emerald focus:outline-none" placeholder="Email Address" />
+              </div>
+              <!-- Hidden fields to pass calculation data -->
+              <input type="hidden" name="calc_ltv" id="hidden_ltv" value="" />
+              <input type="hidden" name="calc_cac" id="hidden_cac" value="" />
+            </div>
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('calc-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      const avgFee = parseFloat((document.getElementById('avg_fee') as HTMLInputElement).value) || 0;
+      const retention = parseFloat((document.getElementById('retention_years') as HTMLInputElement).value) || 0;
+      const closeRate = parseFloat((document.getElementById('close_rate') as HTMLInputElement).value) || 0;
+      const leadCost = parseFloat((document.getElementById('lead_cost') as HTMLInputElement).value) || 0;
+      const goal = parseFloat((document.getElementById('revenue_goal') as HTMLInputElement).value) || 0;
+
+      // Calculations
+      const ltv = avgFee * retention;
+      const closeRateDecimal = closeRate / 100;
+      const cac = closeRateDecimal > 0 ? leadCost / closeRateDecimal : 0;
+
+      const roi1 = cac > 0 ? ((avgFee - cac) / cac) * 100 : 0;
+      const roiLifetime = cac > 0 ? ((ltv - cac) / cac) * 100 : 0;
+
+      const clientsNeeded = avgFee > 0 ? Math.ceil(goal / avgFee) : 0;
+      const leadsNeeded = closeRateDecimal > 0 ? Math.ceil(clientsNeeded / closeRateDecimal) : 0;
+      const totalSpend = leadsNeeded * leadCost;
+
+      // Formatting
+      const fC = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+      const fN = new Intl.NumberFormat('en-US');
+
+      // Update UI
+      document.getElementById('res_ltv')!.textContent = fC.format(ltv);
+      document.getElementById('res_cac')!.textContent = fC.format(cac);
+      document.getElementById('res_roi1')!.textContent = fN.format(Math.round(roi1)) + '%';
+      document.getElementById('res_roilifetime')!.textContent = fN.format(Math.round(roiLifetime)) + '%';
+
+      document.getElementById('res_goal')!.textContent = fN.format(goal);
+      document.getElementById('res_clients')!.textContent = fN.format(clientsNeeded);
+      document.getElementById('res_leads')!.textContent = fN.format(leadsNeeded);
+      document.getElementById('res_spend')!.textContent = fC.format(totalSpend);
+
+      // Update hidden inputs for capture form
+      (document.getElementById('hidden_ltv') as HTMLInputElement).value = ltv.toString();
+      (document.getElementById('hidden_cac') as HTMLInputElement).value = cac.toString();
+
+      document.getElementById('results-container')!.classList.remove('hidden');
+    });
+  });
+</script>

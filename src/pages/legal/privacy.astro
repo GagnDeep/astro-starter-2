@@ -1,0 +1,43 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Privacy Policy for Institute for Tax.",
+  canonical_url: "/legal/privacy/",
+  no_index: true
+};
+---
+
+<Layout title="Privacy Policy | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-20 max-w-3xl">
+    <div class="prose prose-slate mx-auto">
+      <h1 class="text-3xl font-bold mb-8">Privacy Policy</h1>
+      <p class="text-sm text-slate-500 mb-8">Last updated: August 2024</p>
+
+      <p>Institute for Tax ("we," "us," or "our") respects your privacy and is committed to protecting it through our compliance with this policy.</p>
+
+      <h2 class="text-xl font-bold mt-8 mb-4">Information We Collect</h2>
+      <p>When you visit our website, apply for a territory, or use our tools, we collect information that identifies, relates to, describes, or could reasonably be linked, directly or indirectly, with a particular consumer or device ("personal information").</p>
+      <ul>
+        <li>Identifiers (name, email, phone number)</li>
+        <li>Professional information (firm size, CPA/EA license status)</li>
+        <li>Internet or other electronic network activity information</li>
+      </ul>
+
+      <h2 class="text-xl font-bold mt-8 mb-4">How We Use Your Information</h2>
+      <p>We use the information we collect to:</p>
+      <ul>
+        <li>Provide, maintain, and improve our services</li>
+        <li>Process your applications for lead exclusivity</li>
+        <li>Send you technical notices, updates, and support messages</li>
+        <li>Communicate with you about products, services, and events</li>
+      </ul>
+
+      <h2 class="text-xl font-bold mt-8 mb-4">Data Security</h2>
+      <p>We have implemented measures designed to secure your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure. Any payment transactions are encrypted using SSL technology.</p>
+
+      <h2 class="text-xl font-bold mt-8 mb-4">Contact Information</h2>
+      <p>To ask questions or comment about this privacy policy and our privacy practices, contact us via our <a href="/contact/">contact form</a>.</p>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,63 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const seo = {
+  page_description: "Blog and articles on tax marketing, lead generation, and growing a profitable accounting firm.",
+  canonical_url: "/blog/",
+  open_graph_type: "website"
+};
+
+const posts = await getCollection("blog");
+const sortedPosts = posts.sort(
+  (a, b) => new Date(b.data.post_hero.date).valueOf() - new Date(a.data.post_hero.date).valueOf()
+);
+---
+
+<Layout title="Blog | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-24">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Tax Marketing Insights</h1>
+      <p class="text-lg text-brand-slate mb-12">
+        Actionable advice for CPAs and EAs on how to acquire better clients and scale profitably.
+      </p>
+
+      <div class="grid gap-8">
+        {sortedPosts.map((post) => (
+          <article class="bg-white p-6 rounded-card border border-slate-200 shadow-sm flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/3">
+              <a href={`/blog/${post.id}/`}>
+                <img
+                  src={post.data.thumb_image_path}
+                  alt={post.data.thumb_image_alt}
+                  class="w-full h-48 object-cover rounded"
+                />
+              </a>
+            </div>
+            <div class="md:w-2/3 flex flex-col justify-center">
+              <div class="flex items-center gap-2 text-sm text-brand-slate mb-2">
+                <span>{new Date(post.data.post_hero.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <span>&bull;</span>
+                <span>{post.data.post_hero.author}</span>
+              </div>
+              <h2 class="text-2xl font-bold text-brand-navy mb-3">
+                <a href={`/blog/${post.id}/`} class="hover:text-brand-emerald">{post.data.title}</a>
+              </h2>
+              {post.data.seo?.page_description && (
+                <p class="text-brand-slate mb-4 line-clamp-2">{post.data.seo.page_description}</p>
+              )}
+              <div class="mt-auto">
+                <a href={`/blog/${post.id}/`} class="text-brand-emerald font-semibold hover:underline">Read article &rarr;</a>
+              </div>
+            </div>
+          </article>
+        ))}
+        {sortedPosts.length === 0 && (
+          <div class="text-center p-12 bg-brand-light rounded-card border border-slate-200 text-brand-slate">
+            No posts published yet. Check back soon.
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>

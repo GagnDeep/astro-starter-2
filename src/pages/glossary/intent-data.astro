@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GuideForm from "../../components/forms/guide-form.astro";
+const titleStr = "intent-data".split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+const seo = {
+  page_description: "Definition of " + titleStr + " for tax professionals.",
+  canonical_url: "/glossary/intent-data/",
+  open_graph_type: "article"
+};
+---
+<Layout title={`${titleStr} | Glossary`} seo={seo}>
+  <div class="container py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-8">
+      <a href="/glossary/" class="text-sm text-brand-emerald hover:underline mb-4 inline-block">&larr; Back to Glossary</a>
+      <h1 class="text-4xl font-bold mb-4">{titleStr}</h1>
+      <div class="prose prose-lg">
+        <p>In the context of accounting and tax firm management, <strong>{titleStr}</strong> is a critical concept to understand.</p>
+        <p>Tracking and optimizing this metric (or strategy) is essential for moving a firm from a low-margin compliance practice to a high-margin advisory practice.</p>
+      </div>
+    </div>
+    <div class="lg:col-span-4">
+      <div class="sticky top-24">
+        <GuideForm />
+      </div>
+    </div>
+  </div>
+</Layout>

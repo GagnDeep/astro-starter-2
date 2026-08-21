@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+const seo = {
+  page_description: "Estimate the sale value of your CPA or EA practice based on revenue, retention, and margins.",
+  canonical_url: "/tools/firm-valuation-estimator/",
+  open_graph_type: "website"
+};
+---
+<Layout title="Accounting Firm Valuation Estimator | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-20 max-w-3xl">
+    <h1 class="text-4xl font-bold mb-6">Firm Valuation Estimator</h1>
+    <p class="text-lg text-brand-slate mb-8">Looking to sell your book of business in the next 5 years? Estimate its current market value based on industry standard multiples.</p>
+    <div class="bg-brand-light p-6 rounded-card border border-slate-200">
+      <p class="mb-4 font-semibold text-brand-navy">We are updating our valuation multiples for 2024. Enter your email to receive the new calculator.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Email Me The Tool" />
+    </div>
+  </div>
+</Layout>

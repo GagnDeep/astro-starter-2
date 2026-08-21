@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GuideForm from "../../components/forms/guide-form.astro";
+
+const seo = {
+  page_description: "What is Client Acquisition Cost (CAC) for CPAs and tax professionals? Learn how to calculate and optimize your CAC to build a profitable accounting firm.",
+  canonical_url: "/glossary/cac/",
+  open_graph_type: "article"
+};
+---
+
+<Layout title="Client Acquisition Cost (CAC) for CPAs | Glossary" seo={seo}>
+  <div class="container py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+    <div class="lg:col-span-8">
+      <div class="mb-8">
+        <a href="/glossary/" class="text-sm text-brand-emerald hover:underline mb-4 inline-block">&larr; Back to Glossary</a>
+        <h1 class="text-4xl font-bold mb-4">Client Acquisition Cost (CAC)</h1>
+        <div class="text-brand-slate text-lg">The total cost of marketing and sales required to acquire a new, paying tax client.</div>
+      </div>
+
+      <div class="prose prose-lg">
+        <h2 class="text-2xl font-bold mt-8 mb-4">How to Calculate CAC</h2>
+        <p>For a tax preparation or resolution firm, CAC is calculated by dividing your total marketing and sales expenses by the number of new clients acquired over a specific period.</p>
+
+        <div class="bg-brand-light p-6 rounded-card border border-slate-200 my-6 font-mono text-sm">
+          CAC = (Total Marketing Spend + Total Sales Costs) / Number of New Clients
+        </div>
+
+        <p><strong>Example:</strong> If you spend $2,000 on exclusive tax leads during tax season and acquire 10 new clients, your CAC is $200 per client.</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">Why CAC Matters More Than "Cost Per Lead"</h2>
+        <p>Many CPAs mistakenly optimize for the lowest <em>Cost Per Lead (CPL)</em>. They might buy shared leads for $20 each on Thumbtack instead of paying $100 for an exclusive lead.</p>
+
+        <p>However, if it takes 20 shared leads (a $400 spend) to close one client because the leads are shopping around, your CAC is $400.</p>
+
+        <p>If you close 1 out of every 3 exclusive leads (a $300 spend), your CAC is $300. The more expensive lead actually results in a cheaper acquisition cost.</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4">CAC vs. Lifetime Value (LTV)</h2>
+        <p>CAC should never be viewed in isolation. It must be compared to the <strong>Lifetime Value (LTV)</strong> of the client. A general rule of thumb for healthy service businesses is an LTV:CAC ratio of at least 3:1.</p>
+        <p>Because tax clients typically have very high retention rates (often staying with a CPA for 5-10+ years), accounting firms can afford a higher CAC than many other industries. If a business client pays you $1,500/year and stays for 7 years (LTV = $10,500), paying a $500 CAC to acquire them is an exceptional investment.</p>
+
+        <div class="mt-8 pt-8 border-t border-slate-200">
+          <p><strong>Related Terms:</strong></p>
+          <ul class="flex flex-wrap gap-4 list-none pl-0">
+            <li><a href="/glossary/ltv/" class="text-brand-emerald hover:underline">Lifetime Value (LTV)</a></li>
+            <li><a href="/glossary/close-rate/" class="text-brand-emerald hover:underline">Close Rate</a></li>
+            <li><a href="/glossary/exclusive-lead/" class="text-brand-emerald hover:underline">Exclusive Lead</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-4">
+      <div class="sticky top-24">
+        <GuideForm />
+      </div>
+    </div>
+
+  </div>
+</Layout>

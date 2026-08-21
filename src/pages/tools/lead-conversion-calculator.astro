@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+const seo = {
+  page_description: "Calculate your lead conversion rates and see where your sales pipeline is leaking.",
+  canonical_url: "/tools/lead-conversion-calculator/",
+  open_graph_type: "website"
+};
+---
+<Layout title="Lead Conversion Calculator | Institute for Tax" seo={seo}>
+  <div class="container py-12 lg:py-20 max-w-3xl">
+    <h1 class="text-4xl font-bold mb-6">Lead Conversion Calculator</h1>
+    <p class="text-lg text-brand-slate mb-8">Identify the bottlenecks in your tax firm's intake process. Track from lead generation to booked call to signed engagement.</p>
+    <div class="bg-brand-light p-6 rounded-card border border-slate-200">
+      <p class="mb-4 font-semibold text-brand-navy">This tool is currently in beta. Join the waitlist to get early access.</p>
+      <CaptureForm form={capture.forms.newsletter} submitLabel="Notify Me When Live" />
+    </div>
+  </div>
+</Layout>
