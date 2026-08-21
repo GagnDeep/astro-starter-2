@@ -1,0 +1,59 @@
+---
+---
+<div class="calculator bg-blue-50 p-6 rounded-lg border border-blue-100 my-8">
+  <h3 class="text-xl font-bold mb-4">PTE Speaking Rate Calculator</h3>
+  <noscript>
+    <div class="bg-yellow-100 p-4 rounded mb-4 text-yellow-800">
+      <p><strong>JavaScript is disabled.</strong> Here is the logic:</p>
+      <p>Count the words in your text and divide by the time taken (in seconds). Multiply by 60 to get Words Per Minute (WPM). Ideal range is 130-160 WPM.</p>
+    </div>
+  </noscript>
+  <div class="js-enabled-only">
+    <div class="mb-4">
+      <label for="transcript-text" class="block text-sm font-medium text-gray-700">Transcript Text:</label>
+      <textarea id="transcript-text" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+    </div>
+    <div class="mb-4">
+      <label for="time-seconds" class="block text-sm font-medium text-gray-700">Time Taken (seconds):</label>
+      <input type="number" id="time-seconds" min="1" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+    </div>
+    <div class="mt-4" id="wpm-result" aria-live="polite">
+      <!-- Result goes here -->
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const textInput = document.getElementById('transcript-text') as HTMLTextAreaElement;
+    const timeInput = document.getElementById('time-seconds') as HTMLInputElement;
+    const resultDiv = document.getElementById('wpm-result') as HTMLDivElement;
+
+    function updateResult() {
+      const text = textInput.value.trim();
+      const time = parseFloat(timeInput.value);
+      if(text && !isNaN(time) && time > 0) {
+        const words = text.split(/\s+/).filter((w: string) => w.length > 0).length;
+        const wpm = Math.round((words / time) * 60);
+        let feedback = "Good";
+        if(wpm < 130) feedback = "Too Slow";
+        if(wpm > 160) feedback = "Too Fast";
+
+        resultDiv.innerHTML = `
+          <p class="text-lg">Words Per Minute: <strong class="text-blue-700 text-2xl">${wpm}</strong></p>
+          <p class="text-md mt-1 text-gray-700">Status: <strong>${feedback}</strong> (Ideal: 130-160 WPM)</p>
+          <p class="text-xs text-gray-500 mt-2">*Word count: ${words}</p>
+        `;
+      } else {
+        resultDiv.innerHTML = '';
+      }
+    }
+
+    if(textInput && timeInput) {
+      textInput.addEventListener('input', updateResult);
+      timeInput.addEventListener('input', updateResult);
+    }
+  });
+</script>
+<style>
+  noscript + .js-enabled-only { display: none; }
+</style>
