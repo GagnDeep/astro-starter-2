@@ -1,5 +1,23 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<AboutPage />
+<Layout title="About Us | CreateFitnessApp" seo={{ page_description: "Learn about the team behind CreateFitnessApp, the premier boutique development agency for fitness tech." }}>
+  <div class="max-w-4xl mx-auto px-4 py-16 sm:px-6 lg:px-8 prose prose-invert prose-green">
+    <h1>About CreateFitnessApp</h1>
+    <p class="lead">We are a boutique software engineering agency exclusively dedicated to health and fitness technology.</p>
+
+    <h2>Our Story</h2>
+    <p>Founded in 2024, CreateFitnessApp was born out of frustration. Generalist app development agencies were taking on fitness projects without understanding the domain. They struggled with Apple HealthKit integrations, failed to optimize BLE connections for wearables, and ignored HIPAA compliance.</p>
+    <p>We built a team of specialized engineers who only do one thing: build world-class fitness applications.</p>
+
+    <h2>Our Expertise</h2>
+    <ul>
+      <li><strong>Native Wearable Integration:</strong> Deep knowledge of WatchOS and WearOS.</li>
+      <li><strong>Health Data:</strong> CoreMotion, HealthKit, Google Fit, Oura, and Garmin APIs.</li>
+      <li><strong>Compliance:</strong> HIPAA and GDPR compliant backend architectures.</li>
+    </ul>
+
+    <p><a href="/contact">Get in touch with our team</a></p>
+  </div>
+</Layout>

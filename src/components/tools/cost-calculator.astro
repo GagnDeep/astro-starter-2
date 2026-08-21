@@ -1,0 +1,101 @@
+---
+import CaptureForm from "../forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+---
+
+<div class="cost-calculator-wrapper my-8 bg-surface border border-border p-6 rounded-xl">
+  <h2 class="text-white mt-0 mb-4">Development Cost Calculator</h2>
+
+  <div class="no-js-fallback p-4 bg-gray-800 text-gray-300 rounded mb-6">
+    <p class="font-medium mb-2">Base Cost Estimates (Industry Averages)</p>
+    <ul class="list-disc pl-5 mb-0">
+      <li>Core App: $40,000 - $60,000</li>
+      <li>Apple HealthKit / Google Fit: +$10,000</li>
+      <li>Custom Wearable App (WatchOS/WearOS): +$20,000</li>
+      <li>Video Streaming Infrastructure: +$15,000</li>
+      <li>HIPAA Compliant Backend: +$25,000</li>
+    </ul>
+    <p class="text-sm mt-4 mb-0">Enable JavaScript for a tailored interactive estimate.</p>
+  </div>
+
+  <form id="calc-form" class="interactive-tool hidden space-y-4">
+    <div>
+      <label class="block font-medium text-white mb-2">Platform</label>
+      <select id="platform" class="w-full rounded border border-border bg-gray-800 text-white px-3 py-2">
+        <option value="40000">iOS Only ($40k)</option>
+        <option value="40000">Android Only ($40k)</option>
+        <option value="60000" selected>Cross Platform ($60k)</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block font-medium text-white mb-2">Integrations</label>
+      <div class="space-y-2">
+        <label class="flex items-center text-gray-300">
+          <input type="checkbox" class="feature-checkbox mr-2" value="10000"> HealthKit / Google Fit (+$10k)
+        </label>
+        <label class="flex items-center text-gray-300">
+          <input type="checkbox" class="feature-checkbox mr-2" value="20000"> WatchOS / WearOS App (+$20k)
+        </label>
+        <label class="flex items-center text-gray-300">
+          <input type="checkbox" class="feature-checkbox mr-2" value="15000"> Live Video Streaming (+$15k)
+        </label>
+        <label class="flex items-center text-gray-300">
+          <input type="checkbox" class="feature-checkbox mr-2" value="25000"> HIPAA Compliant Backend (+$25k)
+        </label>
+      </div>
+    </div>
+
+    <div class="pt-6 border-t border-border mt-6">
+      <div class="text-gray-300 mb-1">Estimated Budget</div>
+      <div id="calc-result" class="text-4xl font-bold text-primary">$60,000</div>
+    </div>
+  </form>
+
+  <div class="mt-8 pt-8 border-t border-border interactive-tool hidden">
+    <h3 class="text-white text-xl mb-4 mt-0">Get a Detailed Proposal</h3>
+    <p class="text-gray-400 text-sm mb-4">Want us to review your requirements? Request a free technical consultation.</p>
+    <CaptureForm form={capture.forms.estimate} submitLabel="Request Estimate">
+      <div>
+        <label for="est-email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+        <input id="est-email" name="email" type="email" required class="w-full rounded border border-border bg-gray-800 text-white px-3 py-2 focus:border-primary focus:outline-none" />
+      </div>
+      <div>
+        <label for="est-details" class="block text-sm font-medium text-gray-300 mb-1">Project Details</label>
+        <textarea id="est-details" name="details" rows="3" class="w-full rounded border border-border bg-gray-800 text-white px-3 py-2 focus:border-primary focus:outline-none"></textarea>
+      </div>
+      <input type="hidden" id="calculated_budget" name="calculated_budget" value="60000" />
+    </CaptureForm>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const wrapper = document.querySelector('.cost-calculator-wrapper');
+    if (!wrapper) return;
+
+    // Hide fallback, show interactive tool
+    wrapper.querySelector('.no-js-fallback')?.classList.add('hidden');
+    wrapper.querySelectorAll('.interactive-tool').forEach(el => el.classList.remove('hidden'));
+
+    const platformEl = document.getElementById('platform') as HTMLSelectElement;
+    const checkboxes = document.querySelectorAll('.feature-checkbox') as NodeListOf<HTMLInputElement>;
+    const resultEl = document.getElementById('calc-result');
+    const hiddenBudgetEl = document.getElementById('calculated_budget') as HTMLInputElement;
+
+    function calculate() {
+      let total = parseInt(platformEl.value);
+      checkboxes.forEach(cb => {
+        if (cb.checked) total += parseInt(cb.value);
+      });
+      if(resultEl) resultEl.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(total);
+      if(hiddenBudgetEl) hiddenBudgetEl.value = total.toString();
+    }
+
+    platformEl?.addEventListener('change', calculate);
+    checkboxes.forEach(cb => cb.addEventListener('change', calculate));
+
+    // Initial calculation
+    calculate();
+  });
+</script>

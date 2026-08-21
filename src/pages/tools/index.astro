@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const tools = await getCollection("tools");
+---
+<Layout title="Fitness App Development Tools" seo={{ page_description: "Interactive calculators for estimating fitness app development costs, ROI, and privacy risks." }}>
+  <article class="max-w-4xl mx-auto px-4 py-16 prose prose-invert prose-green">
+    <h1>Development Tools & Calculators</h1>
+    <p class="lead text-xl text-gray-300">Data-driven tools to help you plan your health-tech project.</p>
+
+    <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+      {tools.map(tool => (
+        <a href={`/tools/${tool.id}`} class="block bg-surface border border-border p-6 rounded-xl hover:border-primary transition-colors">
+          <h3 class="text-xl font-bold text-white mb-2">{tool.data.title}</h3>
+          <p class="text-gray-400 text-sm">{tool.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </article>
+</Layout>

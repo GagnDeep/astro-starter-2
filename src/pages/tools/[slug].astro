@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import CostCalculator from "../../components/tools/cost-calculator.astro";
+import RoiEstimator from "../../components/tools/roi-estimator.astro";
+import HealthDataPrivacyChecker from "../../components/tools/health-data-privacy-checker.astro";
+
+export async function getStaticPaths() {
+  const items = await getCollection("tools");
+  return items.map((item) => ({ params: { slug: item.id } }));
+}
+
+if (!Astro.params.slug) throw new Error("Slug undefined");
+const entry = await getEntry("tools", Astro.params.slug);
+if (!entry) throw new Error("Failed to get entry");
+
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title} seo={entry.data.seo || undefined}>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 prose prose-invert prose-green">
+    <h1>{entry.data.title}</h1>
+    {entry.data.description && <p class="lead text-xl text-gray-300">{entry.data.description}</p>}
+    <Content />
+
+    {Astro.params.slug === 'development-cost-calculator' && <CostCalculator />}
+    {Astro.params.slug === 'roi-estimator' && <RoiEstimator />}
+    {Astro.params.slug === 'health-data-privacy-checker' && <HealthDataPrivacyChecker />}
+
+    <div class="mt-12 p-6 bg-surface border border-border rounded-xl not-prose">
+      <h3 class="text-white mb-4 mt-0 text-xl font-bold">Have questions about these numbers?</h3>
+      <p class="text-gray-300 text-sm mb-4">Our engineers can provide a custom breakdown for your specific use case.</p>
+      <a href="/contact" class="btn-primary">
+        Talk to an engineer
+      </a>
+    </div>
+  </article>
+</Layout>

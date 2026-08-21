@@ -53,18 +53,32 @@ const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
     {
       image.image_path && image.alt_text && (
         <div class="flex-1">
-          <Picture
-            data-editable="image"
-            data-prop-src="image.image_path"
-            data-prop-alt="image.alt_text"
-            alt={image.alt_text}
-            src={imageSrc}
-            class="w-full max-w-lg"
-            loading="eager"
-            widths={[600, 800, 1200]}
-            sizes="(max-width: 1200px) 100vw, 600px"
-            formats={["avif", "webp"]}
-          />
+          {typeof imageSrc === 'object' ? (
+            <Picture
+              data-editable="image"
+              data-prop-src="image.image_path"
+              data-prop-alt="image.alt_text"
+              alt={image.alt_text}
+              src={imageSrc}
+              class="w-full max-w-lg"
+              loading="eager"
+              widths={[600, 800, 1200]}
+              sizes="(max-width: 1200px) 100vw, 600px"
+              formats={["avif", "webp"]}
+            />
+          ) : (
+            <img
+              data-editable="image"
+              data-prop-src="image.image_path"
+              data-prop-alt="image.alt_text"
+              alt={image.alt_text}
+              src={imageSrc as unknown as string}
+              width="600"
+              height="400"
+              loading="eager"
+              class="w-full max-w-lg"
+            />
+          )}
         </div>
       )
     }

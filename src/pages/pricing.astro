@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Pricing | CreateFitnessApp" seo={{ page_description: "Transparent pricing for custom fitness app development. Find out how much it costs to build your health tech platform." }}>
+  <div class="max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-white mb-4">Transparent Pricing for Custom Apps</h1>
+      <p class="text-xl text-gray-400">No hidden fees. We scope rigorously and deliver on time.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-surface border border-border p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold text-white mb-2">MVP / Prototype</h3>
+        <div class="text-3xl font-bold text-primary mb-6">Starts at $40k</div>
+        <ul class="space-y-3 text-gray-300 mb-8 list-disc pl-5">
+          <li>Core workout tracking</li>
+          <li>Basic user authentication</li>
+          <li>iOS or Android</li>
+          <li>Standard UI/UX</li>
+          <li>2-3 month timeline</li>
+        </ul>
+        <a href="/contact" class="btn-primary w-full text-center block">Get Started</a>
+      </div>
+
+      <div class="bg-surface border border-primary p-8 rounded-2xl relative shadow-[0_0_15px_rgba(0,230,118,0.2)]">
+        <div class="absolute top-0 right-0 bg-primary text-black text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl uppercase tracking-wide">Most Popular</div>
+        <h3 class="text-2xl font-bold text-white mb-2">Full Platform</h3>
+        <div class="text-3xl font-bold text-primary mb-6">Starts at $85k</div>
+        <ul class="space-y-3 text-gray-300 mb-8 list-disc pl-5">
+          <li>Cross-platform (iOS & Android)</li>
+          <li>HealthKit / Google Fit sync</li>
+          <li>Custom Backend & Admin Panel</li>
+          <li>Subscription management</li>
+          <li>4-6 month timeline</li>
+        </ul>
+        <a href="/contact" class="btn-primary w-full text-center block">Get Started</a>
+      </div>
+
+      <div class="bg-surface border border-border p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold text-white mb-2">Enterprise</h3>
+        <div class="text-3xl font-bold text-primary mb-6">Custom Quote</div>
+        <ul class="space-y-3 text-gray-300 mb-8 list-disc pl-5">
+          <li>HIPAA Compliant Infrastructure</li>
+          <li>Wearable apps (WatchOS)</li>
+          <li>Live video streaming</li>
+          <li>Complex hardware integration</li>
+          <li>Dedicated engineering team</li>
+        </ul>
+        <a href="/contact" class="btn-primary w-full text-center block">Contact Sales</a>
+      </div>
+    </div>
+
+    <div class="mt-16 text-center">
+      <p class="text-gray-400">Want to estimate your specific feature set?</p>
+      <a href="/tools/development-cost-calculator" class="text-primary hover:underline mt-2 inline-block">Use our Interactive Cost Calculator &rarr;</a>
+    </div>
+  </div>
+</Layout>

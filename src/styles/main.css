@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #00E676;
+  --color-bg: #0B0F19;
+  --color-surface: #1A202C;
+  --color-text: #F7FAFC;
+  --color-text-muted: #A0AEC0;
+  --color-border: #2D3748;
+}
+
 /*
  * CASCADE RULE — read before adding CSS to this file.
  *
@@ -23,8 +32,22 @@
  */
 
 @layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
   html {
     font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+
+  a {
+    color: var(--color-primary);
   }
 
   main {
@@ -133,6 +156,11 @@
 }
 
 @layer components {
+  /* Common component styles to respect tailwind cascading rules */
+  .btn-primary {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-black bg-[var(--color-primary)] hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-primary)];
+  }
+
   /* CloudCannon content editor alignment classes */
   .align-left { text-align: left; }
   .align-center { text-align: center; }
