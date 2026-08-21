@@ -1,0 +1,94 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+const field = "w-full rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-[rgb(var(--color-primary))] focus:outline-none focus:ring-1 focus:ring-[rgb(var(--color-primary))]";
+const label = "block text-sm font-medium text-gray-700 mb-1";
+---
+<Layout title="Standard vs Itemized Deduction Check" seo={{ page_description: "Find out instantly whether you should take the standard deduction or itemize." }}>
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-4">Standard vs. Itemized Check</h1>
+    <p class="mb-8 text-gray-700">Enter your expected 2024 deductions to see if you should itemize.</p>
+
+    <div class="bg-gray-50 p-6 rounded-lg border">
+      <form class="space-y-4" onsubmit="event.preventDefault(); window.checkDeduction();">
+        <div>
+          <label for="status" class={label}>Filing Status</label>
+          <select id="status" class={field}>
+            <option value="14600">Single ($14,600)</option>
+            <option value="29200">Married Filing Jointly ($29,200)</option>
+            <option value="21900">Head of Household ($21,900)</option>
+          </select>
+        </div>
+        <div>
+          <label for="salt" class={label}>State & Local Taxes Paid (Max $10,000)</label>
+          <input id="salt" type="number" min="0" step="100" class={field} value="0" />
+        </div>
+        <div>
+          <label for="mortgage" class={label}>Mortgage Interest Paid ($)</label>
+          <input id="mortgage" type="number" min="0" step="100" class={field} value="0" />
+        </div>
+        <div>
+          <label for="charity" class={label}>Charitable Donations ($)</label>
+          <input id="charity" type="number" min="0" step="50" class={field} value="0" />
+        </div>
+        <button type="submit" class="rounded bg-[rgb(var(--color-secondary))] px-5 py-2.5 font-medium text-white hover:opacity-90">Compare</button>
+      </form>
+
+      <noscript>
+        <div class="mt-4 text-red-600">
+          <strong>Note:</strong> JavaScript is required for the interactive calculator. The 2024 Standard Deductions are: $14,600 for Single, $29,200 for Married, and $21,900 for Head of Household. If your total qualifying expenses exceed these amounts, you should itemize.
+        </div>
+      </noscript>
+
+      <div id="results" class="hidden mt-6 pt-6 border-t">
+        <h3 class="text-xl font-bold mb-2">Results</h3>
+        <p class="mb-2"><strong>Your Standard Deduction:</strong> <span id="std-amount"></span></p>
+        <p class="mb-4"><strong>Your Total Itemized Deductions:</strong> <span id="item-amount"></span></p>
+        <div id="recommendation" class="p-4 rounded-lg font-bold text-white mb-4"></div>
+
+        <div class="mt-4 p-4 bg-white border rounded">
+          <p class="text-sm font-semibold mb-2">Email me this result:</p>
+          <CaptureForm form={capture.forms.quote} submitLabel="Send">
+             <input type="hidden" name="tool" value="deduction-check" />
+             <input type="hidden" name="recommended_method" id="capture-method" value="" />
+             <input type="email" name="email" placeholder="you@example.com" required class={field} />
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  window.checkDeduction = function() {
+    const std = parseFloat(document.getElementById('status').value);
+
+    let salt = parseFloat(document.getElementById('salt').value) || 0;
+    if (salt > 10000) salt = 10000; // SALT cap
+
+    const mortgage = parseFloat(document.getElementById('mortgage').value) || 0;
+    const charity = parseFloat(document.getElementById('charity').value) || 0;
+
+    const itemizedTotal = salt + mortgage + charity;
+
+    document.getElementById('std-amount').innerText = '$' + std.toLocaleString();
+    document.getElementById('item-amount').innerText = '$' + itemizedTotal.toLocaleString();
+
+    const recBox = document.getElementById('recommendation');
+    const capInput = document.getElementById('capture-method');
+
+    if (itemizedTotal > std) {
+        recBox.className = "p-4 rounded-lg font-bold text-white mb-4 bg-green-600";
+        recBox.innerText = "Recommendation: You should ITEMIZE. You have $" + (itemizedTotal - std).toLocaleString() + " more in deductions than the standard amount.";
+        capInput.value = "Itemize";
+    } else {
+        recBox.className = "p-4 rounded-lg font-bold text-white mb-4 bg-blue-600";
+        recBox.innerText = "Recommendation: Take the STANDARD DEDUCTION. Itemizing would cost you $" + (std - itemizedTotal).toLocaleString() + " in lost deductions.";
+        capInput.value = "Standard";
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+  };
+</script>

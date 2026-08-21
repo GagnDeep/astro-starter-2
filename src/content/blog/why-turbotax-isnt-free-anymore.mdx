@@ -1,7 +1,7 @@
 ---
-title: "Why TurboTax Isnt Free Anymore"
+title: "Why TurboTax Isn't Free Anymore (And What To Use Instead)"
 seo:
-  page_description: "Answers to: Why TurboTax Isnt Free Anymore."
+  page_description: "Millions get baited by 'Free Edition' only to pay $40+. Here is exactly what kicks you out of the free tier and the actually free alternatives for 2024."
   no_index: false
   canonical_url: null
   featured_image: null
@@ -10,7 +10,7 @@ seo:
   open_graph_type: article
 post_hero:
   date: "2024-03-01"
-  heading: "Why TurboTax Isnt Free Anymore"
+  heading: "Why TurboTax Isn't Free Anymore (And What To Use Instead)"
   tags: ["taxes", "blog"]
   author: "FreeFileForm Editorial"
   image: "/src/assets/images/blog/tax-concept.jpg"
@@ -19,27 +19,56 @@ thumb_image_path: "/src/assets/images/blog/tax-concept-thumb.jpg"
 thumb_image_alt: "Thumbnail image"
 ---
 
-# Why TurboTax Isnt Free Anymore
+# Why TurboTax Isn't Free Anymore (And What To Use Instead)
 
-Answers to: Why TurboTax Isnt Free Anymore.
+Every January, the ads start: *Free, Free, Free.* But if you've ever tried to file your taxes using a heavily advertised "Free Edition," you probably reached the end only to see a $40, $80, or even $120 bill.
 
-Here is a detailed breakdown of what you need to know about why turbotax isnt free anymore.
+This isn't an accident. It's a calculated strategy known as "bait and switch." Here is exactly why you got charged, and how to avoid it this year.
 
-[NEEDS CONFIRMATION] Verify the specific limits and deadlines for Why TurboTax Isnt Free Anymore against IRS Publication 17 for the 2024 tax year.
+## What Kicks You Out of the "Free" Tier?
+
+For the 2024 tax season, commercial "Free Editions" only cover what they call "simple tax returns." If you have any of the following, you will be forced to upgrade:
+
+| Tax Situation | Form Required | Forces Upgrade? |
+| --- | --- | --- |
+| Student Loan Interest | 1098-E | Yes (usually to Deluxe) |
+| Freelance / Gig Income (Uber, DoorDash) | 1099-NEC / Schedule C | Yes (usually to Premium) |
+| Sold Crypto or Stocks | 1099-B / Schedule D | Yes (usually to Premium) |
+| Unemployment Income | 1099-G | Yes (varies by provider) |
+| Health Savings Account (HSA) | 1099-SA | Yes |
+| Claiming Dependents | Child Tax Credit | Sometimes (varies by year/provider) |
+
+If you just have a single W-2 and take the standard deduction, you might slip through. But almost *any* other financial activity triggers an upsell.
+
+## The Actually Free Alternatives for 2024
+
+If you don't want to pay, you don't have to. Here are the services that won't bait-and-switch you:
+
+1. **FreeTaxUSA:** Federal filing is 100% free for everyone, including all major forms (1099s, Schedule C, Crypto). State filing is $15. Read our [TurboTax vs FreeTaxUSA](/comparisons/turbotax-vs-freetaxusa) guide for a full breakdown.
+2. **Cash App Taxes:** 100% free for both Federal and State, including most major forms. However, you must file on a mobile device and download their app. Read our [Cash App vs FreeTaxUSA](/comparisons/cash-app-vs-freetaxusa) guide.
+3. **IRS Free File:** If your Adjusted Gross Income (AGI) is $79,000 or less (for 2023 taxes filed in 2024), you qualify for partner software that is legally bound to be free.
+4. **VITA Programs:** Volunteer Income Tax Assistance offers free in-person help if you make under $64,000. Learn more in our [VITA Sites vs Software](/blog/vita-sites-vs-software) guide.
 
 ## Common Mistakes
 
-Many people assume things that aren't true. For example, relying entirely on "free" tiers that upsell you later.
+- **Mistake 1:** Assuming "Free to Start" means "Free to File." Almost all software is free to *start*. They wait until you've spent an hour entering data before hitting you with the paywall, banking on the sunk-cost fallacy.
+- **Mistake 2:** Paying for State Filing when Federal was free. Providers often offer free Federal filing but charge $40+ for the State return. Always check the total price before starting.
 
 ## FAQs
 
-**Q: Is this still true for 2024?**
-A: Yes, but always double-check the latest IRS guidelines.
+**Q: Can I deduct the cost of tax prep software?**
+A: Under current tax law (through 2025), you generally **cannot** deduct tax preparation fees if you take the standard deduction. If you are self-employed, you can deduct a portion of the fee as a business expense on Schedule C.
+
+**Q: Is FreeTaxUSA a scam? Why is it free?**
+A: It is not a scam; they are an authorized IRS e-file provider. They make money by charging $15 for state returns and offering optional add-ons like audit defense.
+
+**Q: What if I already started my return in TurboTax?**
+A: You can absolutely stop, leave the site, and start over in a free service. You don't owe them anything until you actually hit "File" or provide your credit card.
 
 import NewsletterForm from "../../components/forms/newsletter-form.astro";
 
-<div class="my-8 rounded-lg bg-gray-50 p-6">
-  <h3 class="mb-2 text-xl font-bold">Get our 2025 Tax Cheat Sheet</h3>
-  <p class="mb-4">The actually useful deductions you might be missing, straight to your inbox.</p>
+<div class="my-8 rounded-lg bg-[rgb(var(--color-bg))] border border-[rgb(var(--color-border))] p-6 shadow-sm">
+  <h3 class="mb-2 text-xl font-bold text-[rgb(var(--color-text))]">Get our 2025 Tax Cheat Sheet</h3>
+  <p class="mb-4 text-gray-700">The actually useful deductions you might be missing, straight to your inbox.</p>
   <NewsletterForm form="waitlist" submitLabel="Send it to me" />
 </div>

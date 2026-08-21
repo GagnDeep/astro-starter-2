@@ -1,0 +1,139 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+import { getCollection } from "astro:content";
+
+const comparisons = await getCollection("pages", (entry) => entry.id.startsWith("comparisons/"));
+const blogPosts = await getCollection("blog");
+const topComparisons = comparisons.slice(0, 3);
+const latestGuides = blogPosts.sort((a, b) => new Date(b.data.post_hero.date).getTime() - new Date(a.data.post_hero.date).getTime()).slice(0, 3);
+---
+
+<Layout title="FreeFileForm" seo={{ page_description: "The brutally honest, no-B.S. guide to not paying to file your taxes. Find the actually free option." }}>
+  <!-- 1. Hero with Waitlist Capture -->
+  <section class="bg-[rgb(var(--color-bg))] py-20 px-4 md:px-8">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      <div class="md:w-1/2">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-balance">
+          Don't pay to pay your taxes.
+        </h1>
+        <p class="text-xl mb-8 text-gray-700">
+          Find the actually free option. We tell you exactly when software is free, when they will bait-and-switch you, and how to do it yourself if needed.
+        </p>
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <h2 class="font-bold text-lg mb-2">Get our 2025 Tax Cheat Sheet</h2>
+          <p class="text-sm text-gray-600 mb-4">The actually useful deductions you might be missing, straight to your inbox.</p>
+          <NewsletterForm form="waitlist" submitLabel="Join Waitlist" />
+        </div>
+      </div>
+      <div class="md:w-1/2">
+        <img src="/images/og/og-default.png" alt="Tax Guide Illustration" class="rounded-xl shadow-lg border border-gray-200 w-full" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Tool Quick Links -->
+  <section class="py-16 bg-white px-4 md:px-8 border-y border-gray-200">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8 text-center">Free Tools & Calculators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/tools/tax-bracket-calculator" class="group p-6 border border-gray-200 rounded-lg hover:shadow-md transition">
+          <h3 class="font-bold text-lg mb-2 text-[rgb(var(--color-primary))] group-hover:underline">Tax Bracket Calculator</h3>
+          <p class="text-sm text-gray-600">See your true marginal and effective brackets.</p>
+        </a>
+        <a href="/tools/1099-estimator" class="group p-6 border border-gray-200 rounded-lg hover:shadow-md transition">
+          <h3 class="font-bold text-lg mb-2 text-[rgb(var(--color-primary))] group-hover:underline">1099 Estimator</h3>
+          <p class="text-sm text-gray-600">Quick self-employment tax math.</p>
+        </a>
+        <a href="/tools/w4-withholding" class="group p-6 border border-gray-200 rounded-lg hover:shadow-md transition">
+          <h3 class="font-bold text-lg mb-2 text-[rgb(var(--color-primary))] group-hover:underline">W-4 Withholding</h3>
+          <p class="text-sm text-gray-600">Stop giving the IRS an interest-free loan.</p>
+        </a>
+        <a href="/tools/standard-deduction-check" class="group p-6 border border-gray-200 rounded-lg hover:shadow-md transition">
+          <h3 class="font-bold text-lg mb-2 text-[rgb(var(--color-primary))] group-hover:underline">Deduction Check</h3>
+          <p class="text-sm text-gray-600">Standard or itemized? Find out instantly.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Bait and Switch Warning -->
+  <section class="py-20 bg-[rgb(var(--color-secondary))] text-white px-4 md:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">The "Bait and Switch" Warning</h2>
+      <p class="text-xl mb-8 opacity-90">
+        Millions of Americans start a "free" tax return every year, only to be hit with a surprise bill at the end. They'll tell you your return is "too complex" because of a simple 1099 or student loan interest.
+      </p>
+      <a href="/comparisons/turbotax-vs-freetaxusa" class="inline-block bg-white text-[rgb(var(--color-secondary))] font-bold py-3 px-8 rounded hover:bg-gray-100 transition">
+        See the Bait-and-Switch List
+      </a>
+    </div>
+  </section>
+
+  <!-- 4. Top Comparisons -->
+  <section class="py-16 bg-[rgb(var(--color-bg))] px-4 md:px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8">Honest Software Comparisons</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {topComparisons.map((comp) => (
+          <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+            <h3 class="font-bold text-xl mb-2 text-[rgb(var(--color-primary))]">
+              <a href={`/${comp.id.replace(/\/index$/, "")}/`} class="hover:underline">{comp.data.title}</a>
+            </h3>
+            <p class="text-gray-600 text-sm mb-4">{comp.data.seo?.page_description}</p>
+            <a href={`/${comp.id.replace(/\/index$/, "")}/`} class="text-[rgb(var(--color-secondary))] font-semibold hover:underline">Read verdict &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Latest Guides -->
+  <section class="py-16 bg-white px-4 md:px-8 border-t border-gray-200">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex justify-between items-end mb-8">
+        <h2 class="text-3xl font-bold">Latest Tax Answers</h2>
+        <a href="/blog" class="text-[rgb(var(--color-primary))] font-semibold hover:underline">View all posts</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {latestGuides.map((post) => (
+          <div class="bg-white group cursor-pointer border border-gray-200 rounded-lg overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+            <img src={post.data.thumb_image_path} alt={post.data.thumb_image_alt} class="h-48 w-full object-cover" />
+            <div class="p-6 flex-grow flex flex-col justify-between">
+               <div>
+                  <h3 class="font-bold text-lg mb-2 text-gray-900 group-hover:text-[rgb(var(--color-primary))]">
+                    <a href={`/blog/${post.id.replace(/\.mdx?$/, "")}/`} class="before:absolute before:inset-0">
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <p class="text-gray-600 text-sm">{post.data.seo?.page_description}</p>
+               </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FAQ -->
+  <section class="py-16 bg-[rgb(var(--color-bg))] px-4 md:px-8 border-t border-gray-200">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-bold text-lg text-gray-900">Are these tools really free?</h3>
+          <p class="text-gray-600 mt-1">Yes. Our calculators are 100% free, require no account, and do not track you.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-gray-900">How do you make money?</h3>
+          <p class="text-gray-600 mt-1">We may earn a small affiliate commission if you click through and purchase a premium tax software package via our honest comparison links. It costs you nothing extra.</p>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-gray-900">Is FreeTaxUSA actually free?</h3>
+          <p class="text-gray-600 mt-1">Yes, for federal returns, including complex forms like 1099s and Crypto. They charge $15 for state returns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
