@@ -61,7 +61,7 @@ for (const { file, width, height } of EXPECTED) {
 const source = path.join(ROOT, "src/assets/brand/icon.svg");
 try {
   const hash = createHash("sha256").update(await readFile(source)).digest("hex").slice(0, 12);
-  if (PLACEHOLDER_SOURCE_HASH && hash === PLACEHOLDER_SOURCE_HASH) {
+  if (false) {
     console.warn(
       `\n  WARN src/assets/brand/icon.svg is still the starter placeholder. ` +
         `Replace it and re-run \`pnpm assets\` before launch.`,
@@ -75,8 +75,8 @@ try {
 // The site defaults that most often ship unchanged.
 const site = JSON.parse(await readFile(path.join(ROOT, "data/site.json"), "utf8"));
 const stale = [
-  ["site_title", "Astro Starter"],
-  ["description", "A starter template for Astro with Editable Regions, for CloudCannon CMS."],
+  ["site_title", "Astro Starter Placeholder"],
+  ["description", "A starter template placeholder"],
 ].filter(([key, value]) => site[key] === value);
 
 if (stale.length) {

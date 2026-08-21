@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const seo = { page_description: "Calculators for PDF size, resolution, and dimensions." };
+---
+<Layout title="PDF Calculators" seo={seo}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 py-16">
+    <h1 class="text-4xl font-bold mb-8 text-text-primary">Calculators</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <a href={`/calculators/calc-${i + 1}`} class="block p-6 border border-gray-200 rounded-lg bg-bg-surface hover:border-brand-accent">
+          <h2 class="text-xl font-semibold mb-2">Calculator ${i + 1}</h2>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
