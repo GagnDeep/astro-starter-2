@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const tools = await getCollection("pages", ({ id }) => {
+    return id.startsWith("tools/");
+  });
+  return tools.map(tool => {
+    return {
+      params: { slug: tool.id.replace("tools/", "").replace(".md", "") },
+      props: { tool },
+    };
+  });
+}
+
+const { tool } = Astro.props;
+---
+<Layout {...tool.data}>
+  <main class="prose mx-auto py-12 px-8">
+    <h1>{tool.data.title}</h1>
+    {(tool.data as any).content_blocks?.map((block: any) => (
+      <div set:html={block.text_content} />
+    ))}
+
+    <div class="mt-12 p-8 bg-[var(--color-surface-alt)] border border-[var(--color-border-subtle)] rounded-lg text-center">
+      <h3 class="text-xl font-bold mb-3">Save Your Results</h3>
+      <p class="text-[var(--color-text-muted)] mb-6">Enter your email to receive a detailed PDF report of this calculation.</p>
+      <NewsletterForm form="compliance_gap" submitLabel="Send Report" class="flex flex-col gap-2 max-w-md mx-auto" />
+    </div>
+  </main>
+</Layout>

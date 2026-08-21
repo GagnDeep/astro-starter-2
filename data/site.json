@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Battery Product Passport Guide",
+  "description": "The definitive, engineering-grade compliance authority for EU Battery Regulation (2023/1542) implementation.",
+  "tagline": "Guides, calculators, and verified provider directory for the EU Battery Product Passport.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Battery Product Passport Guide - Engineering-grade compliance authority",
+  "default_author": "Battery Passport Expert",
+  "theme_color": "#047857",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Battery Product Passport Guide",
+    "logo": "/images/logos/logo-green.png",
     "same_as": []
   }
 }
