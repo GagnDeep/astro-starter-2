@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Compare Cayman Islands corporate structures: Exempted Company vs LLC vs Ordinary Company.",
+  canonical_url: "/compare/",
+  open_graph_type: "website"
+};
+---
+<Layout seo={seo} title="Compare Cayman Corporate Structures | The Cayman Journal">
+  <div class="max-w-5xl mx-auto py-12 px-6">
+    <h1 class="text-3xl font-bold mb-4">Compare Cayman Corporate Structures</h1>
+    <p class="text-gray-600 mb-12">Understand the differences between the primary entities used for business in the Cayman Islands.</p>
+
+    <div class="overflow-x-auto bg-white rounded-lg shadow-sm border border-gray-200 mb-12">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-navy-900 text-white">
+            <th class="p-4 border-b">Feature</th>
+            <th class="p-4 border-b">Exempted Company</th>
+            <th class="p-4 border-b">Limited Liability Company (LLC)</th>
+            <th class="p-4 border-b">Ordinary Company (Resident)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="p-4 font-bold bg-gray-50">Primary Use</td>
+            <td class="p-4">Offshore business, investment funds, holding companies.</td>
+            <td class="p-4">Joint ventures, private equity, flexible management structures.</td>
+            <td class="p-4">Local business operating within the Cayman Islands.</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-bold bg-gray-50">Tax Guarantee</td>
+            <td class="p-4">Can obtain a 20-30 year tax exemption undertaking.</td>
+            <td class="p-4">Can obtain a 50-year tax exemption undertaking.</td>
+            <td class="p-4">No specific tax exemption guarantee (though currently no direct taxes).</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-bold bg-gray-50">Ownership</td>
+            <td class="p-4">Shares (Shareholders).</td>
+            <td class="p-4">LLC Interests (Members).</td>
+            <td class="p-4">Shares (Shareholders). Must have at least 60% Caymanian ownership (usually) to operate locally without a specific license.</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-bold bg-gray-50">Public Register</td>
+            <td class="p-4">No. Register of Members is private.</td>
+            <td class="p-4">No. Register of Members is private.</td>
+            <td class="p-4">Register of Members must be kept at registered office and open to public inspection.</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-bold bg-gray-50">Annual General Meeting</td>
+            <td class="p-4">Not required.</td>
+            <td class="p-4">Not required.</td>
+            <td class="p-4">Required annually.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-brand-50 p-8 rounded-lg border border-brand-100 max-w-3xl mx-auto">
+      <h3 class="text-xl font-bold mb-4 text-navy-900">Need specific structuring advice?</h3>
+      <p class="text-gray-700 mb-6">Join our newsletter to receive weekly insights on offshore structuring and regulatory changes.</p>
+      <CaptureForm form="newsletter" submitLabel="Subscribe">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="Enter your email" class="flex-grow rounded border border-gray-300 px-3 py-2 focus:border-brand-500 focus:outline-none" />
+        </div>
+      </CaptureForm>
+    </div>
+
+  </div>
+</Layout>

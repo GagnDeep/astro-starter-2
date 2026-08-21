@@ -167,6 +167,9 @@ collection_groups:
     collections:
       - pages
       - blog
+      - guides
+      - living
+      - glossary
   - heading: Data
     collections:
       - data
@@ -395,3 +398,72 @@ _inputs:
       When selected this removes the page from your sitemap and adds the noindex robots meta tag.
   _name:
     hidden: true
+
+  guides:
+    path: src/content/guides
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/guides/[full_slug]/'
+    icon: library_books
+    _enabled_editors:
+      - content
+    add_options:
+      - name: Add New Guide
+        schema: default
+        icon: library_add
+        editor: content
+    schemas:
+      default:
+        path: '.cloudcannon/schemas/guide.md'
+    create:
+      path: '[relative_base_path]/{filename|slugify|lowercase}.md'
+    _inputs:
+      title:
+        type: text
+
+  living:
+    path: src/content/living
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/living/[full_slug]/'
+    icon: public
+    _enabled_editors:
+      - content
+    add_options:
+      - name: Add New Living Guide
+        schema: default
+        icon: post_add
+        editor: content
+    schemas:
+      default:
+        path: '.cloudcannon/schemas/living.md'
+    create:
+      path: '[relative_base_path]/{filename|slugify|lowercase}.md'
+    _inputs:
+      title:
+        type: text
+
+  glossary:
+    path: src/content/glossary
+    glob:
+      - '**/*.md'
+      - '**/*.mdx'
+    url: '/glossary/[full_slug]/'
+    icon: book
+    _enabled_editors:
+      - content
+    add_options:
+      - name: Add New Term
+        schema: default
+        icon: add
+        editor: content
+    schemas:
+      default:
+        path: '.cloudcannon/schemas/glossary.md'
+    create:
+      path: '[relative_base_path]/{filename|slugify|lowercase}.md'
+    _inputs:
+      title:
+        type: text

@@ -8,7 +8,7 @@
  *
  * Contract: https://api.markremover.com/docs
  */
-import { capture } from "../../capture.config";
+import capture from "../../capture.config";
 
 export interface SubmitResult {
   ok: boolean;

@@ -1,16 +1,16 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "The Cayman Journal",
+  "description": "Niche news journal for Cayman Islands business, finance, and expat community.",
+  "tagline": "Clarity for Cayman Business & Finance",
   "lang": "en",
-  "locale": "en_US",
-  "twitter_site": "",
+  "locale": "en_KY",
+  "twitter_site": "@caymanjournal",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
+  "image_alt": "The Cayman Journal - Business and Finance News",
+  "default_author": "Editorial Team",
   "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
+    "name": "The Cayman Journal",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
   }

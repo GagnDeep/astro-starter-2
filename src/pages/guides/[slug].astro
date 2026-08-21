@@ -1,0 +1,49 @@
+---
+import PostLayout from "../../layouts/Post.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+export async function getStaticPaths() {
+  const guides = await getCollection("guides");
+  return guides.map((guide) => ({ params: { slug: guide.id } }));
+}
+
+if (!Astro.params.slug) {
+  throw new Error("Guide slug is undefined");
+}
+const guide = await getEntry("guides", Astro.params.slug);
+if (!guide) {
+  throw new Error("Failed to get guide with slug: " + Astro.params.slug);
+}
+const { Content } = await render(guide);
+---
+
+<PostLayout
+  frontmatter={{
+    title: guide.data.title,
+    post_hero: {
+      heading: guide.data.title,
+      date: guide.data.date,
+      author: guide.data.author || "The Cayman Journal",
+      tags: guide.data.tags || [],
+    }
+  }}
+  body={guide.body}
+>
+  <div class="prose max-w-3xl">
+    <Content />
+  </div>
+
+  <div class="mt-16 pt-8 border-t border-gray-200">
+    <div class="bg-brand-50 p-8 rounded-lg border border-brand-100">
+      <h3 class="text-xl font-bold mb-4 text-navy-900">Stay Compliant</h3>
+      <p class="text-gray-700 mb-6">Get regulatory updates and deep-dive guides sent directly to your inbox. No spam, just actionable intelligence for Cayman business.</p>
+      <CaptureForm form="newsletter" submitLabel="Subscribe">
+        <input type="hidden" name="source_guide" value={guide.data.title} />
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="Enter your email" class="flex-grow rounded border border-gray-300 px-3 py-2 focus:border-brand-500 focus:outline-none" />
+        </div>
+      </CaptureForm>
+    </div>
+  </div>
+</PostLayout>

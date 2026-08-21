@@ -75,8 +75,8 @@ try {
 // The site defaults that most often ship unchanged.
 const site = JSON.parse(await readFile(path.join(ROOT, "data/site.json"), "utf8"));
 const stale = [
-  ["site_title", "Astro Starter"],
-  ["description", "A starter template for Astro with Editable Regions, for CloudCannon CMS."],
+  ["site_title", "The Cayman Journal"],
+  ["description", "Niche news journal for Cayman Islands business, finance, and expat community."],
 ].filter(([key, value]) => site[key] === value);
 
 if (stale.length) {

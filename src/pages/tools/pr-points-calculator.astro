@@ -1,0 +1,108 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo = {
+  page_description: "Calculate your points for Cayman Islands Permanent Residency. Check your eligibility based on the point system.",
+  canonical_url: "/tools/pr-points-calculator",
+  open_graph_type: "website"
+};
+---
+<Layout seo={seo} title="Cayman Islands PR Points Calculator">
+  <div class="max-w-4xl mx-auto py-12 px-6">
+    <h1 class="text-3xl font-bold mb-6">Permanent Residency (PR) Points Calculator</h1>
+    <p class="mb-8">To be granted PR based on an 8-year residency, you must score at least 114 points on the government's points system. Use this tool for a basic estimate of your standing.</p>
+
+    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100 mb-12">
+      <form id="pr-form" class="space-y-6">
+
+        <div>
+          <label class="block font-bold text-gray-800 mb-2">1. Occupation / Job Priority (Max 30 pts)</label>
+          <select id="occupation" class="w-full rounded border border-gray-300 px-3 py-2">
+            <option value="15">Tier 1 (e.g., Financial Services, Legal, Medical - High Priority) - Est. 15 pts</option>
+            <option value="10">Tier 2 (General Professional) - Est. 10 pts</option>
+            <option value="5">Tier 3 (Other) - Est. 5 pts</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-800 mb-2">2. Salary (Max 30 pts)</label>
+          <input type="number" id="salary" class="w-full rounded border border-gray-300 px-3 py-2" placeholder="Annual Salary in CI$" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-800 mb-2">3. Real Estate Investment (Max 30 pts)</label>
+          <p class="text-sm text-gray-600 mb-2">Includes property owned in Cayman.</p>
+          <input type="number" id="realestate" class="w-full rounded border border-gray-300 px-3 py-2" placeholder="Value of Real Estate in CI$" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-800 mb-2">4. Age (Max 10 pts)</label>
+          <select id="age" class="w-full rounded border border-gray-300 px-3 py-2">
+            <option value="0">Under 25 (0 pts)</option>
+            <option value="10">25 - 35 (10 pts)</option>
+            <option value="8">36 - 45 (8 pts)</option>
+            <option value="6">46 - 60 (6 pts)</option>
+            <option value="0">61+ (0 pts)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-800 mb-2">5. History and Culture Test (Max 20 pts)</label>
+          <input type="number" id="history" class="w-full rounded border border-gray-300 px-3 py-2" placeholder="Expected Score (0-20)" max="20" />
+        </div>
+
+        <button type="button" id="calc-btn" class="w-full bg-navy-900 text-white py-3 rounded font-medium hover:bg-navy-800 transition-colors text-lg">Calculate Estimate</button>
+      </form>
+    </div>
+
+    <div id="results" class="hidden bg-brand-50 border border-brand-500 p-8 rounded-lg text-center shadow-lg">
+      <h2 class="text-2xl font-bold mb-2">Estimated PR Points</h2>
+      <div class="text-6xl font-black text-brand-700 my-4" id="res-score">0</div>
+      <p id="res-status" class="text-lg font-medium"></p>
+      <p class="text-xs text-gray-500 mt-4">*This is a simplified estimate. The official calculation involves detailed assessments by the WORC board including savings, community involvement, and potential deductions.</p>
+    </div>
+
+  </div>
+
+  <script is:inline>
+    document.getElementById('calc-btn').addEventListener('click', () => {
+      let points = 0;
+
+      // 1. Occupation
+      points += parseInt(document.getElementById('occupation').value || 0);
+
+      // 2. Salary (Simplified bracket)
+      const salary = parseFloat(document.getElementById('salary').value || 0);
+      if (salary > 120000) points += 30;
+      else if (salary > 80000) points += 20;
+      else if (salary > 50000) points += 10;
+
+      // 3. Real Estate (Simplified bracket)
+      const realestate = parseFloat(document.getElementById('realestate').value || 0);
+      if (realestate > 500000) points += 30;
+      else if (realestate > 250000) points += 15;
+      else if (realestate > 100000) points += 5;
+
+      // 4. Age
+      points += parseInt(document.getElementById('age').value || 0);
+
+      // 5. History Test
+      const history = parseInt(document.getElementById('history').value || 0);
+      points += Math.min(history, 20);
+
+      document.getElementById('res-score').innerText = points;
+
+      const statusEl = document.getElementById('res-status');
+      if (points >= 114) {
+        statusEl.innerText = "You meet the estimated threshold (114 points).";
+        statusEl.className = "text-lg font-medium text-green-700";
+      } else {
+        statusEl.innerText = "You fall short of the estimated 114 point threshold. Consider investing in real estate or aiming for a higher score on the History Test.";
+        statusEl.className = "text-lg font-medium text-red-700";
+      }
+
+      document.getElementById('results').classList.remove('hidden');
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</Layout>

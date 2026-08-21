@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const glossary = await getCollection("glossary");
+  return glossary.map((term) => ({ params: { slug: term.id } }));
+}
+
+if (!Astro.params.slug) {
+  throw new Error("Glossary slug is undefined");
+}
+const term = await getEntry("glossary", Astro.params.slug);
+if (!term) {
+  throw new Error("Failed to get glossary term with slug: " + Astro.params.slug);
+}
+const { Content } = await render(term);
+---
+
+<Layout
+  title={`${term.data.title} | Glossary`}
+  seo={term.data.seo}
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Glossary", url: "/glossary/" },
+    { name: term.data.title, url: Astro.url.pathname },
+  ]}
+>
+  <div class="max-w-3xl mx-auto py-12 px-6">
+    <h1 class="text-3xl font-bold mb-8">{term.data.title}</h1>
+    <div class="prose">
+      <Content />
+    </div>
+  </div>
+</Layout>

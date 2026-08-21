@@ -7,13 +7,13 @@ import { getCollection } from "astro:content";
 type Props = {
   frontmatter: {
     title: string;
-    post_hero: {
+    post_hero?: {
       heading: string;
       date: string | Date;
-      image: string;
-      image_alt: string;
-      author: string;
-      tags: Array<string>;
+      image?: string;
+      image_alt?: string;
+      author?: string;
+      tags?: Array<string>;
     };
   };
   body?: string;
