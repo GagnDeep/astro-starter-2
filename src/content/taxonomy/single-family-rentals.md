@@ -9,7 +9,7 @@ Investing in **Single-Family Rentals (SFR)** presents unique characteristics reg
 
 ### Why Invest in Single-Family Rentals (SFR)?
 
-- **Yield Profile:** Historical data shows this asset class provides robust cash-on-cash returns, particularly when leveraged with US non-recourse debt.
+- **Yield Profile:** Historical data shows this asset class provides robust [cash-on-cash returns](/glossary/cash-on-cash-return/), particularly when leveraged with US non-recourse debt.
 - **Inflation Hedge:** Rents and property values in this sector typically outpace core inflation.
 - **Management:** We recommend utilizing top-tier third-party property management or investing passively through syndications to minimize day-to-day involvement.
 

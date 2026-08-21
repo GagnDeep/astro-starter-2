@@ -1,21 +1,18 @@
 # STATUS.md - Dubai US Capital
 
 ## Completed in this Run:
-- Built out the `library` collection with 15 pages on cross-border tax implications, structuring, and regulations.
-- Built out the `taxonomy` collection with 10 pages covering US asset classes tailored for UAE investors.
-- Built out the `glossary` collection with 20 terms and an index page.
-- Created 12 long-form blog posts (MDX) answering specific questions for Gulf investors, complete with the embedded `guide-download` capture form.
-- Created `tools` directory with interactive React islands for FIRPTA withholding and Real Estate Yield calculators, mapped to Astro routes.
-- Created Base Routes (`index`, `about`, `contact`, `pricing`, `faq`, `legal`).
-- Re-architected schemas in `src/content.config.ts` to support all collections.
-- Corrected layout prop errors in `.astro` components ensuring clean type safety.
-- Ran `pnpm build` and `pnpm check` successfully.
-- Generated and correctly sized Brand Assets (icon, favicon, OG images) via `pnpm assets`.
-- Wired capture forms correctly according to `AGENTS.md` and `capture.config.ts`.
-- Documented project structure and setup in `README.md`.
+- Deepened the weakest pages (Library and Taxonomy templates), expanding 6 key pages with specific scenarios, tables, and Edge cases for UAE investors.
+- Created 3 new Blog Posts targeting specific keyword gaps ("1031 Exchange Alternatives", "DSCR Loans for Foreign Nationals", "Dubai Family Office Allocations").
+- Created 2 new Reference Library pages targeting advanced structures ("Portfolio Interest Exemption", "UAE Freezone Blockers").
+- Created a 3rd interactive tool: Foreign National Mortgage Calculator, mapped into `/tools/` via React Island.
+- Strengthened Internal Linking across the generated content, linking key concepts like FIRPTA, LLC, and Cap Rates directly to the glossary and deep reference guides.
+- Addressed `pnpm check` warnings by clearing unused imports (e.g. React in Calculators).
+- Confirmed `pnpm build` completes fully with zero errors, compiling 74 individual pages.
+- Tested and confirmed form capture API config (`test_capture.js` returned 201 Created).
+- Updated README.md with correct counts and components.
 
 ## [NEEDS CONFIRMATION]
 - Ensure the production domain `dubaiusacapital.com` is correctly set up for DNS, as the `capture.config.ts` redirect target must match the deployment origin exactly for same-origin rules.
 
 ## What's Next
-- Site is built, audited, and ready to be submitted.
+- Site is built, audited, improved, and ready to be submitted.

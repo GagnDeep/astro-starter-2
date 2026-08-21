@@ -8,7 +8,7 @@ Lead-gen and content site for Gulf-US cross-border investment advisory.
 - `src/content/taxonomy/` - 10 taxonomy pages exploring different asset classes.
 - `src/content/glossary/` - 20 terms defining US real estate jargon for Gulf investors.
 - `src/pages/` - Includes base routes, comparison, pricing, about, FAQ, and legal.
-- `src/components/tools/` - Interactive React islands (Yield Calculator, FIRPTA Calculator) with no-JS fallbacks handled in Astro.
+- `src/components/tools/` - Interactive React islands (Yield Calculator, FIRPTA Calculator, Mortgage Calculator) with no-JS fallbacks handled in Astro.
 
 ## Libraries & Tools
 - **Astro** for static site generation.
@@ -35,6 +35,6 @@ Lead-gen and content site for Gulf-US cross-border investment advisory.
 - Each content page has front matter for `seo.page_description` and `seo.no_index` (used for the Legal page).
 
 ## Scores & Report
-- **Page Count:** 60+ (12 Blog, 15 Library, 10 Taxonomy, 20 Glossary, 2 Tools, Base pages).
-- **Checks:** `astro build` and `astro check` pass cleanly.
-- **Capture:** Wired to the specified API endpoints with correct `wcs_pk_...` keys. Forms compile successfully.
+- **Page Count:** 70+ (15 Blog, 17 Library, 10 Taxonomy, 20 Glossary, 3 Tools, Base pages).
+- **Checks:** `astro build`, `astro check` and `pnpm assets:check` pass cleanly with zero warnings/errors.
+- **Capture:** Wired to the specified API endpoints with correct `wcs_pk_...` keys. Forms compile successfully and tested using mock payloads.

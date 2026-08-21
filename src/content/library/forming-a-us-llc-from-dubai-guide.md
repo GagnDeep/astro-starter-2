@@ -1,11 +1,11 @@
 ---
-title: "Step-by-Step Guide: Forming a US LLC from Dubai"
+title: "Step-by-Step Guide: Forming a US [LLC](/glossary/llc/) from Dubai"
 seo:
-  page_description: "A comprehensive guide on Step-by-Step Guide: Forming a US LLC from Dubai tailored specifically for UAE residents and Gulf-based investors."
+  page_description: "A comprehensive guide on Step-by-Step Guide: Forming a US [LLC](/glossary/llc/) from Dubai tailored specifically for UAE residents and Gulf-based investors."
 ---
 ## Overview
 
-When considering **Step-by-Step Guide: Forming a US LLC from Dubai**, Gulf-based investors face unique challenges and opportunities. Unlike domestic US investors, non-resident aliens (NRAs) must navigate a complex web of cross-border tax regulations, structuring requirements, and financing hurdles.
+When considering **Step-by-Step Guide: Forming a US [LLC](/glossary/llc/) from Dubai**, Gulf-based investors face unique challenges and opportunities. Unlike domestic US investors, non-resident aliens (NRAs) must navigate a complex web of cross-border tax regulations, structuring requirements, and financing hurdles.
 
 ### Why This Matters for UAE Residents
 
@@ -13,7 +13,7 @@ Investing from a zero-tax jurisdiction like the UAE into a high-tax jurisdiction
 
 ### Key Considerations
 
-1. **Structuring:** Using a US LLC (typically in Wyoming or Delaware) vs holding the property in your personal name.
+1. **Structuring:** Using a US [LLC](/glossary/llc/) (typically in Wyoming or Delaware) vs holding the property in your personal name.
 2. **Tax Exposure:** Understanding the impact of FIRPTA, Federal Income Tax, State Income Tax, and US Estate Tax.
 3. **Financing:** Leveraging foreign national mortgage programs.
 
@@ -25,4 +25,4 @@ Investing from a zero-tax jurisdiction like the UAE into a high-tax jurisdiction
 
 ### Next Steps
 
-To properly implement a strategy for Step-by-Step Guide: Forming a US LLC from Dubai, we strongly recommend working with a qualified cross-border advisory team before making an offer on a property.
+To properly implement a strategy for Step-by-Step Guide: Forming a US [LLC](/glossary/llc/) from Dubai, we strongly recommend working with a qualified cross-border advisory team before making an offer on a property.

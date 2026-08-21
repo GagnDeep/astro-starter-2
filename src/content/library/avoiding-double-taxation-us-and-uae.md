@@ -14,7 +14,7 @@ Investing from a zero-tax jurisdiction like the UAE into a high-tax jurisdiction
 ### Key Considerations
 
 1. **Structuring:** Using a US LLC (typically in Wyoming or Delaware) vs holding the property in your personal name.
-2. **Tax Exposure:** Understanding the impact of FIRPTA, Federal Income Tax, State Income Tax, and US Estate Tax.
+2. **Tax Exposure:** Understanding the impact of [FIRPTA](/glossary/firpta/), Federal Income Tax, State Income Tax, and US Estate Tax.
 3. **Financing:** Leveraging foreign national mortgage programs.
 
 ### Common Mistakes
