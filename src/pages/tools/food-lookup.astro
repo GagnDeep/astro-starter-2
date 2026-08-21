@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import foodsData from "../../../data/foods.json";
+import { Search, ShieldAlert, Apple, CheckCircle2 } from "@lucide/astro";
+
+const title = "Interactive Food FODMAP Lookup Tool — IBS Go";
+const description = "Search instant Monash-cited low FODMAP food serving sizes with static HTML table fallback for complete accessibility.";
+---
+
+<Layout title={title} seo={{ page_description: description }}>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <nav class="mb-6 text-sm text-stone-600 flex items-center gap-2">
+      <a href="/" class="hover:underline">Home</a> <span>/</span> <a href="/food/" class="hover:underline">Food Directory</a> <span>/</span> <span class="font-semibold text-stone-900">Food Lookup Tool</span>
+    </nav>
+
+    <header class="mb-8">
+      <h1 class="text-3xl sm:text-4xl font-bold text-stone-900 mb-3">Instant FODMAP Food Lookup Tool</h1>
+      <p class="text-stone-700 text-lg">Check serving thresholds instantly before grocery shopping or cooking.</p>
+    </header>
+
+    <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded-r-lg mb-8 text-sm text-stone-800 flex items-start gap-3">
+      <ShieldAlert class="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+      <div>
+        <strong>Accessibility & No-JS Fallback:</strong> This tool includes a complete static HTML table fallback below for JavaScript-disabled environments.
+      </div>
+    </div>
+
+    <!-- Static Table Fallback -->
+    <div class="overflow-x-auto bg-white rounded-xl border border-stone-200 shadow-sm mb-12">
+      <table class="w-full text-left border-collapse text-sm">
+        <thead>
+          <tr class="bg-stone-100 border-b border-stone-200 text-stone-900 font-semibold">
+            <th class="p-4">Food</th>
+            <th class="p-4">Category</th>
+            <th class="p-4">Rating</th>
+            <th class="p-4">FODMAP Group</th>
+            <th class="p-4">Green Serving</th>
+            <th class="p-4">Red Serving</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-stone-200 text-stone-800">
+          {foodsData.map((f) => (
+            <tr class="hover:bg-stone-50">
+              <td class="p-4 font-bold text-stone-900"><a href={`/food/${f.slug}/`} class="text-amber-800 hover:underline">{f.name}</a></td>
+              <td class="p-4 text-xs text-stone-600">{f.category}</td>
+              <td class="p-4 font-semibold">{f.fodmap_rating}</td>
+              <td class="p-4 text-xs">{f.fodmap_type}</td>
+              <td class="p-4 font-mono text-emerald-800 font-bold">{f.green_serving}</td>
+              <td class="p-4 font-mono text-rose-800 font-bold">{f.red_serving}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flex flex-wrap gap-4 text-sm font-medium pt-6 border-t border-stone-200">
+      <a href="/food/" class="text-amber-800 hover:underline">&larr; Full Food Directory</a>
+      <a href="/tools/symptom-pattern/" class="text-amber-800 hover:underline">Symptom Pattern Tool &rarr;</a>
+    </div>
+  </main>
+</Layout>

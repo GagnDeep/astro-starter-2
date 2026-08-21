@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { BookOpen, ShieldAlert } from "@lucide/astro";
+
+const terms = [
+  { term: "FODMAP", def: "Fermentable Oligosaccharides, Disaccharides, Monosaccharides, and Polyols—short-chain carbohydrates resistant to small intestinal digestion." },
+  { term: "Fructans", def: "Chains of fructose molecules found in garlic, onions, wheat, rye, and inulin that undergo colonic fermentation." },
+  { term: "GOS (Galacto-Oligosaccharides)", def: "Indigestible galactosyl-glucose chains abundant in legumes, lentils, chickpeas, and certain tree nuts." },
+  { term: "Lactose", def: "Disaccharide sugar in milk requiring the enzyme lactase for hydrolysis into glucose and galactose." },
+  { term: "Polyols", def: "Sugar alcohols (sorbitol, mannitol, xylitol) found naturally in fruits and artificial sweeteners that induce osmotic water shifts." },
+  { term: "Visceral Hypersensitivity", def: "Heightened pain perception in enteric nerves response to normal intestinal gas or peristaltic wall expansion." },
+  { term: "Rome IV Criteria", def: "International clinical diagnostic consensus defining functional gastrointestinal disorders based on symptom frequency." },
+  { term: "SIBO", def: "Small Intestinal Bacterial Overgrowth—excessive bacterial proliferation in the small bowel fermenting food prematurely." },
+  { term: "Gastrocolic Reflex", def: "Physiological reflex stimulating colonic peristalsis following the arrival of food in the stomach." },
+  { term: "Psyllium Husk", def: "Soluble plantago seed fiber forming a viscous mucilage gel that regulates stool water content in both IBS-C and IBS-D." },
+  { term: "Enteric Coated Peppermint Oil", def: "Natural L-menthol antispasmodic designed to bypass stomach acid and relax colonic smooth muscle." },
+  { term: "Bile Acid Malabsorption (BAM)", def: "Excess bile salts entering the large bowel stimulating secretory watery diarrhea, mimicking IBS-D." },
+  { term: "Alpha-Galactosidase", def: "Enzyme supplement that hydrolyzes GOS bonds in legumes prior to colonic transit." },
+  { term: "Gut-Directed Hypnotherapy", def: "Evidence-based psychological intervention modulating central processing of gut sensory signals." },
+  { term: "Dysbiosis", def: "Imbalance or reduced alpha-diversity in gut bacterial populations." },
+  { term: "FODMAP Stacking", def: "Cumulative accumulation of multiple moderate-FODMAP foods consumed within a single digestion window." },
+  { term: "Migrating Motor Complex (MMC)", def: "Electromechanical wave clearing undigested debris from the stomach and small bowel during inter-meal fasting periods." },
+  { term: "Prebiotics", def: "Non-digestible food ingredients that selectively stimulate growth of beneficial intestinal bacteria." },
+  { term: "Probiotics", def: "Live microorganisms conferring health benefits on the host when administered in adequate strain-specific amounts." },
+  { term: "Asafoetida (Hing)", def: "Resin spice providing rich savory allium flavor without containing water-soluble fructans." }
+];
+
+const title = "IBS & Low-FODMAP Clinical Glossary — IBS Go";
+const description = "Comprehensive glossary defining 20+ key gastroenterology terms, FODMAP groups, and dietary concepts.";
+---
+
+<Layout title={title} seo={{ page_description: description }}>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <nav class="mb-6 text-sm text-stone-600 flex items-center gap-2">
+      <a href="/" class="hover:underline">Home</a> <span>/</span> <span class="font-semibold text-stone-900">Glossary</span>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-stone-900 mb-3">Clinical & Dietary Glossary</h1>
+      <p class="text-stone-700 text-lg">Clear, plain-English definitions for complex gastroenterology terms and FODMAP groups.</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      {terms.map((t) => (
+        <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
+          <h2 class="text-lg font-bold text-amber-950 mb-2">{t.term}</h2>
+          <p class="text-xs text-stone-700 leading-relaxed">{t.def}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4 text-sm font-medium pt-6 border-t border-stone-200">
+      <a href="/food/" class="text-amber-800 hover:underline">Food Directory &rarr;</a>
+      <a href="/symptoms/" class="text-amber-800 hover:underline">Symptom Library &rarr;</a>
+      <a href="/protocols/" class="text-amber-800 hover:underline">Protocol Guides &rarr;</a>
+    </div>
+  </main>
+</Layout>

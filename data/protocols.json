@@ -1,0 +1,175 @@
+[
+  {
+    "slug": "elimination-phase",
+    "title": "Phase 1: Time-Limited Elimination (2-6 Weeks)",
+    "subtitle": "Strict, temporary removal of high-FODMAP foods to establish a clean symptom baseline.",
+    "duration": "Strictly 2 to 6 weeks maximum",
+    "purpose": "Identify whether fermentable carbohydrates are driving your IBS symptoms.",
+    "key_steps": [
+      "Replace high-FODMAP staples with certified low-FODMAP alternatives.",
+      "Maintain a detailed food and daily symptom log.",
+      "Assess symptom reduction at week 4."
+    ],
+    "common_mistakes": [
+      "Staying on strict elimination for months or years (damages microbiome diversity).",
+      "Fearing trace ingredients while ignoring major triggers.",
+      "Assuming low-FODMAP means gluten-free or dairy-free."
+    ],
+    "dietitian_tip": "If symptoms do not improve by week 6, re-evaluate with a Registered Dietitian; continuing restriction beyond 6 weeks without benefit is counterproductive."
+  },
+  {
+    "slug": "reintroduction-phase",
+    "title": "Phase 2: Systematic Reintroduction & Challenge",
+    "subtitle": "Testing individual FODMAP groups step-by-step to discover exact threshold limits.",
+    "duration": "6 to 8 weeks",
+    "purpose": "Identify which specific FODMAP groups trigger symptoms and at what exact serving size.",
+    "key_steps": [
+      "Test one FODMAP group at a time (e.g., Fructans, Sorbitol, Lactose).",
+      "Consume a challenge food in increasing portions over 3 days (e.g. Day 1: 1/4 clove garlic; Day 2: 1/2 clove; Day 3: 1 full clove).",
+      "Take a 2-3 day washout period between test groups until symptoms return to baseline."
+    ],
+    "common_mistakes": [
+      "Testing during a high-stress week or travel.",
+      "Testing two FODMAP groups simultaneously.",
+      "Giving up on a food group permanently after a single mild reaction."
+    ],
+    "dietitian_tip": "Keep a baseline low-FODMAP diet during washout days to ensure clear results for the next challenge group."
+  },
+  {
+    "slug": "personalization-phase",
+    "title": "Phase 3: Long-Term Personalization",
+    "subtitle": "Re-expanding your diet to maximize microbiome health and dining freedom.",
+    "duration": "Lifelong flexible habit",
+    "purpose": "Enjoy a broad, nutritious diet containing only minimal restrictions for proven personal triggers.",
+    "key_steps": [
+      "Reincorporate all well-tolerated FODMAP groups into daily meals.",
+      "Eat foods you reacted to in reduced, tolerable portion sizes.",
+      "Periodically re-test foods you previously failed (gut tolerance changes over time)."
+    ],
+    "common_mistakes": [
+      "Never attempting to re-test failed foods.",
+      "Labeling entire food groups as 'poison'."
+    ],
+    "dietitian_tip": "Gut microbiome diversity thrives on 30+ different plant foods per week. Personalization is about freedom, not restriction!"
+  },
+  {
+    "slug": "eating-out-dining",
+    "title": "Low-FODMAP Eating Out & Social Dining",
+    "subtitle": "Practical strategies for restaurants, dinner parties, and social occasions.",
+    "duration": "Ongoing practical guide",
+    "purpose": "Maintain digestive peace without sacrificing social life or feeling isolated.",
+    "key_steps": [
+      "Review restaurant menus online beforehand.",
+      "Opt for simple grilled protein (steak, chicken, fish) with steamed vegetables or roasted potatoes.",
+      "Ask sauces and dressings to be served on the side.",
+      "Politely inform staff about garlic and onion sensitivity."
+    ],
+    "common_mistakes": [
+      "Assuming 'gluten-free' menu items are garlic/onion free.",
+      "Skipping meals before dining out (causes hypoglycemia and exaggerated gastrocolic reflex)."
+    ],
+    "dietitian_tip": "Carry garlic/onion-free salad dressing packets or enzyme supplements when dining at unknown venues."
+  },
+  {
+    "slug": "travel-and-airports",
+    "title": "Travel, Flying & Road Trips with IBS",
+    "subtitle": "Navigating airports, flight delays, and foreign cuisine with digestive confidence.",
+    "duration": "Ongoing travel guide",
+    "purpose": "Prevent travel-induced flare-ups driven by flight pressure, dehydration, and schedule changes.",
+    "key_steps": [
+      "Pack safe low-FODMAP portable snacks (macadamia nuts, rice cakes, dark chocolate, firm bananas).",
+      "Stay hydrated with plain water; avoid carbonated beverages on flights.",
+      "Pack an emergency gut toolkit (peppermint oil, loperamide, osmotic laxative, heating patch)."
+    ],
+    "common_mistakes": [
+      "Relying on airport fast-food kiosks.",
+      "Holding bowel movements on long flights."
+    ],
+    "dietitian_tip": "Air cabin pressure changes cause intestinal gas expansion; stick to light, low-FODMAP meals 4 hours before boarding."
+  },
+  {
+    "slug": "reading-food-labels",
+    "title": "Reading Food Labels & Hidden FODMAPs",
+    "subtitle": "How to spot sneaky fructans, polyols, and high-FODMAP additives in packaged foods.",
+    "duration": "Skill guide",
+    "purpose": "Confidently scan ingredient lists in supermarket aisles in under 10 seconds.",
+    "key_steps": [
+      "Check ingredient order: ingredients are listed by weight from highest to lowest.",
+      "Watch out for 'natural flavorings', 'dehydrated garlic/onion', 'inulin', 'chicory root', and 'high-fructose corn syrup'.",
+      "Be aware of sugar alcohols ending in '-ol' (sorbitol, mannitol, xylitol, maltitol)."
+    ],
+    "common_mistakes": [
+      "Assuming 'organic' or 'vegan' products are low FODMAP.",
+      "Ignoring inulin / chicory root fiber added to high-protein snacks."
+    ],
+    "dietitian_tip": "If garlic or onion powder is listed near the very end of ingredients (<2%), it may be tolerable for some, but avoid during strict elimination."
+  },
+  {
+    "slug": "fiber-and-prebiotics",
+    "title": "Balancing Fiber & Prebiotics in IBS",
+    "subtitle": "Navigating soluble vs insoluble fiber for IBS-C and IBS-D.",
+    "duration": "Core nutrition guide",
+    "purpose": "Optimize stool consistency without triggering excessive bacterial gas.",
+    "key_steps": [
+      "Understand the difference: Soluble fiber absorbs water into gel (great for both IBS-C & IBS-D); Insoluble fiber adds roughage.",
+      "Introduce soluble fiber (e.g. Psyllium husk, chia seeds, oats) slowly, titrating over 2 weeks.",
+      "Drink an extra glass of water with every fiber increase."
+    ],
+    "common_mistakes": [
+      "Adding coarse wheat bran to constipation (insoluble roughage can worsen IBS pain).",
+      "Increasing fiber rapidly in one day."
+    ],
+    "dietitian_tip": "Psyllium husk (isabgol) titrated to 5-10g daily is clinically proven to improve global IBS symptoms."
+  },
+  {
+    "slug": "mind-gut-axis-nerva",
+    "title": "The Mind-Gut Axis & Stress Management",
+    "subtitle": "How central nervous system stress directly triggers gut motility and pain sensitivity.",
+    "duration": "Holistic therapy guide",
+    "purpose": "Calm the vagus nerve and reduce visceral hypersensitivity using mind-body interventions.",
+    "key_steps": [
+      "Practice 10 minutes of daily gut-directed meditation or diaphragmatic breathing.",
+      "Utilize gut-directed hypnotherapy programs (e.g., Nerva protocol).",
+      "Maintain consistent sleep hygiene."
+    ],
+    "common_mistakes": [
+      "Treating IBS solely as a dietary disease while ignoring severe stress triggers.",
+      "Hyper-fixating on food fear and anxious logging."
+    ],
+    "dietitian_tip": "Research shows gut-directed hypnotherapy matches the efficacy of the low-FODMAP diet for long-term IBS symptom reduction!"
+  },
+  {
+    "slug": "ibs-and-hormones",
+    "title": "IBS and Hormones / Menstrual Cycle",
+    "subtitle": "Understanding why gut symptoms fluctuate across the luteal and menstrual phases.",
+    "duration": "Hormonal guide",
+    "purpose": "Anticipate cycle-related flares and adjust self-care proactively.",
+    "key_steps": [
+      "Track symptoms alongside menstrual cycle phases.",
+      "Prepare for progesterone drops before period start (often triggers loose stools and cramping).",
+      "Use heat therapy and gentle soluble fiber during pre-menstrual days."
+    ],
+    "common_mistakes": [
+      "Blaming new food triggers when flares are actually driven by prostaglandins.",
+      "Over-restricting diet during pre-menstrual craving phases."
+    ],
+    "dietitian_tip": "Increased bowel urgency right before or during your period is driven by uterine prostaglandins relaxing smooth muscles in both uterus and bowel."
+  },
+  {
+    "slug": "working-with-dietitian",
+    "title": "Working with a Registered Specialist Dietitian",
+    "subtitle": "Why professional guidance dramatically improves low-FODMAP success rates.",
+    "duration": "Consultation guide",
+    "purpose": "Ensure nutritional adequacy, prevent unnecessary restriction, and streamline reintroduction.",
+    "key_steps": [
+      "Confirm practitioner credentials (Registered Dietitian / Registered Dietitian Nutritionist specializing in GI health).",
+      "Bring 3-7 days of food and symptom logs to initial consultation.",
+      "Collaborate on a tailored reintroduction calendar."
+    ],
+    "common_mistakes": [
+      "Consulting unaccredited 'nutrition coaches' who order unvalidated IgG food sensitivity blood tests.",
+      "Attempting complex protocol management without expert baseline screening."
+    ],
+    "dietitian_tip": "Always rule out coeliac disease (via IgA tTG blood test while eating gluten) BEFORE starting a low-FODMAP or gluten-free diet!"
+  }
+]

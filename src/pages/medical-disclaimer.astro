@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ShieldAlert } from "@lucide/astro";
+
+const title = "Medical & Health Disclaimer — IBS Go";
+const description = "Medical advice disclaimer: IBS Go is an educational tracking tool, not a diagnostic medical device.";
+---
+
+<Layout title={title} seo={{ page_description: description }}>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <nav class="mb-6 text-sm text-stone-600">
+      <a href="/" class="hover:underline">Home</a> <span>/</span> <span class="font-semibold text-stone-900">Medical Disclaimer</span>
+    </nav>
+
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-stone-900 mb-4">Medical Advice & Health Disclaimer</h1>
+      <p class="text-stone-700 text-lg">Please read this clinical notice carefully before using IBS Go.</p>
+    </header>
+
+    <div class="bg-amber-50 border-l-4 border-amber-600 p-6 rounded-r-xl mb-8 text-stone-900 text-sm space-y-4">
+      <div class="flex items-center gap-2 font-bold text-base text-amber-950">
+        <ShieldAlert class="w-6 h-6 text-amber-700"/> Not Medical Advice
+      </div>
+      <p>
+        IBS Go provides self-tracking tools and educational information based on published clinical literature (Monash FODMAP Research, NICE Guidelines, ACG Guidelines). It is NOT a medical device, diagnostic tool, or substitute for professional medical care.
+      </p>
+      <p>
+        Never ignore or delay seeking professional medical advice because of something you read on this site.
+      </p>
+      <p>
+        <strong>Red-Flag Symptoms Warning:</strong> If you experience severe abdominal pain, persistent vomiting, unexplained weight loss, nocturnal diarrhea, or blood in stool, seek emergency medical evaluation immediately.
+      </p>
+    </div>
+
+    <div class="pt-6 border-t border-stone-200">
+      <a href="/" class="text-amber-800 font-medium hover:underline">&larr; Return to Home</a>
+    </div>
+  </main>
+</Layout>
