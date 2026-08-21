@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("library");
+
+const seo = {
+  page_description: "Structured guides on implementing AI in your workflows. From prompting to full automation.",
+};
+
+const categories = Array.from(new Set(entries.map(e => e.data.category)));
+---
+
+<Layout title="Practical AI Reference Library" seo={seo}>
+  <div class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold mb-4">Practical AI Reference Library</h1>
+    <p class="text-xl text-slate-600 mb-12">Structured guides on implementing AI in your daily workflows.</p>
+
+    <div class="space-y-16">
+      {categories.map((category) => (
+        <section>
+          <h2 class="text-2xl font-semibold mb-6 capitalize">{category}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {entries.filter(e => e.data.category === category)
+              .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
+              .map((entry) => (
+              <a href={`/library/${entry.id}/`} class="block p-6 border border-slate-200 rounded-lg hover:border-brand-500 transition-colors">
+                <h3 class="text-lg font-semibold mb-2">{entry.data.title}</h3>
+                <p class="text-slate-600 text-sm">{entry.data.description}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout>
