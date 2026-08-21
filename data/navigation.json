@@ -26,24 +26,21 @@
       }
     ]
   },
-  "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+  "footer": [
+    {
+      "heading": "Tools",
+      "links": [
+        {
+          "text": "BMR Calculator",
+          "url": "/tools/bmr-calculator/"
+        }
+      ]
+    }
+  ],
+  "footer_brand": {
+    "logo": "/favicon.svg",
+    "logo_alt_text": "FoodLogTrack Logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
-      }
-    ]
+    "copyright": "FoodLogTrack. All rights reserved."
   }
 }

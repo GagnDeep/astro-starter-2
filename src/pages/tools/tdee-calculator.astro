@@ -1,0 +1,17 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Calculate your Total Daily Energy Expenditure (TDEE).",
+  title: "TDEE Calculator"
+};
+---
+
+<Layout title="TDEE Calculator" seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-12 prose">
+    <h1>TDEE Calculator</h1>
+    <p>Calculate your Total Daily Energy Expenditure (TDEE) to know how many calories you burn per day including activity.</p>
+    <p>Learn more about <a href="/library/tdee-explained/">how TDEE works</a> or calculate your <a href="/tools/bmr-calculator/">BMR</a>.</p>
+  </main>
+</Layout>
