@@ -1,0 +1,114 @@
+---
+title: "The SEO Impact of Embedded Video: How to Avoid Penalties"
+post_hero:
+  date: "2024-01-12"
+  heading: "The SEO Impact of Embedded Video: How to Avoid Penalties"
+  tags:
+    - SEO
+    - Performance
+    - Marketing
+  author: "Sarah Jane"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "SEO chart"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Video SEO"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "Understand how massive video iframes destroy your Core Web Vitals, and how to use poster images and lazy loading to fix your Lighthouse scores."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+Adding a video to your landing page can drastically increase conversion rates, but if implemented incorrectly, it can destroy your organic search rankings.
+
+Google's search algorithm heavily weighs **Core Web Vitals**: a set of performance metrics that measure how fast and stable a page loads. An unoptimized video embed is the fastest way to fail these metrics.
+
+In this guide, we will look at how video impacts SEO, and the technical strategies required to mitigate the damage.
+
+## How Video Breaks Core Web Vitals
+
+### 1. Cumulative Layout Shift (CLS)
+CLS measures how much the elements on your page jump around as it loads.
+
+If you drop a `<video>` tag onto a page without explicitly defining its width and height, the browser assumes it takes up zero space. Then, half a second later, the video metadata loads, the browser realizes the video is 1920x1080, and it violently shoves all the text below the video down the screen.
+
+**The Fix:** You must wrap your video in an aspect-ratio container, or explicitly set the width and height attributes, so the browser reserves the exact mathematical space before the video even begins loading.
+
+### 2. Largest Contentful Paint (LCP)
+LCP measures how long it takes for the largest element on the screen (usually your hero image or hero video) to become visible.
+
+If your hero video is a 20MB file, and you have `<video autoplay preload="auto">`, the browser attempts to download a huge chunk of that 20MB file before it paints the first frame. Your LCP score will tank.
+
+**The Fix:** Never force the browser to download video data to satisfy LCP. Use a heavily compressed **Poster Image**. The browser will load the highly-optimized JPEG instantly, satisfying the LCP requirement, while the actual video buffers invisibly in the background.
+
+### 3. Total Blocking Time (TBT)
+TBT measures how long the browser's main thread is locked up by Javascript, preventing the user from clicking or scrolling.
+
+If you embed a YouTube or Vimeo iframe, you are forcing the browser to download, parse, and execute hundreds of kilobytes of third-party Javascript before the player even initializes. This spikes your TBT.
+
+**The Fix:** Use lazy loading, or better yet, a "Facade".
+
+## The "Facade" Strategy (Lazy Loading Iframes)
+
+A facade is a technique where you do not load the video player at all when the page loads.
+
+Instead, you display a static image with a "Play Button" graphic layered on top of it. To the user, it looks exactly like a video player. But to the browser, it is just a simple JPEG.
+
+When the user clicks the play button, you execute a tiny script that swaps the image out for the actual iframe, and automatically triggers `.play()`.
+
+By doing this, you remove 100% of the video player's Javascript payload from the initial page load. Your Lighthouse performance score will often jump from a 60 to a 95.
+
+### Implementing a Facade
+
+If you are stuck using a heavy player like YouTube, you can implement a facade easily using the open-source [Lite YouTube Embed](https://github.com/paulirish/lite-youtube-embed) library by Paul Irish.
+
+Instead of writing this:
+```html
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+```
+
+You write this:
+```html
+<lite-youtube videoid="dQw4w9WgXcQ"></lite-youtube>
+```
+
+The web component handles fetching the poster image automatically and only initializes the heavy iframe when the user interacts.
+
+## Schema.org and VideoObject JSON-LD
+
+Beyond performance, you must explicitly tell Google what your video is about. Google cannot watch your video to understand the content; you must provide metadata.
+
+You do this by injecting `VideoObject` structured data into the `<head>` of your page.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "How to tie a tie",
+  "description": "A step-by-step tutorial on tying a half-windsor knot.",
+  "thumbnailUrl": "https://example.com/poster.jpg",
+  "uploadDate": "2024-01-12T08:00:00+08:00",
+  "duration": "PT1M33S",
+  "contentUrl": "https://example.com/video.mp4"
+}
+</script>
+```
+
+Providing this schema is the only way to get your video to appear in the "Videos" tab of Google Search results, and it significantly increases the chance of your video appearing as a Rich Snippet on the main search page.
+
+## Conclusion
+
+Video is a double-edged sword for SEO. If you ignore performance, the resulting Lighthouse penalties will bury your page in the search rankings. But if you implement strict aspect ratios, poster images, facades, and structured data, video becomes one of the most powerful organic growth levers available.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Lighthouse scores 95+ guaranteed</h3>
+  <p>uVideoPlayer was engineered specifically for Core Web Vitals. Our embed scripts are under 5kb, layout shifts are mathematically prevented, and we auto-generate VideoObject schema for every upload.</p>
+  <CaptureForm form={capture.forms.newsletter} submitLabel="Subscribe for SEO tips" />
+</div>

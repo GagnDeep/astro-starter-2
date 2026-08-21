@@ -1,0 +1,179 @@
+---
+title: "How to Implement Video Chapters Using WebVTT"
+post_hero:
+  date: "2024-01-05"
+  heading: "How to Implement Video Chapters Using WebVTT"
+  tags:
+    - Accessibility
+    - Frontend
+    - HTML5
+  author: "Mark Remover"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "VTT file structure"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Video chapters"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "A technical guide to adding chapter markers and navigation to your HTML5 video player using WebVTT files and the HTMLTrackElement API."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+If you are hosting a 45-minute webinar or a long-form tutorial, forcing your users to manually scrub the timeline to find a specific topic is a terrible user experience.
+
+YouTube solved this elegantly with "Video Chapters." But how do you implement that functionality on your own website without relying on YouTube?
+
+The answer is **WebVTT (Web Video Text Tracks)**.
+
+WebVTT is the standard format used for subtitles and captions, but it also has a specific specification for defining chapter markers. In this guide, we will write a VTT file and use the HTML5 API to generate a clickable chapter menu.
+
+## 1. Writing the WebVTT File
+
+A VTT file is just a simple text file. Create a new file called `chapters.vtt`.
+
+The file must start with the word `WEBVTT`. Then, we define blocks of time and assign a title to each block.
+
+```vtt
+WEBVTT
+
+00:00:00.000 --> 00:01:30.000
+Introduction
+
+00:01:30.000 --> 00:05:45.000
+Installing the Dependencies
+
+00:05:45.000 --> 00:12:20.000
+Configuring the Database
+
+00:12:20.000 --> 00:15:00.000
+Deploying to Production
+```
+
+### Critical Formatting Rules:
+* The timestamps must be in `HH:MM:SS.mmm` format (hours, minutes, seconds, milliseconds).
+* The arrow must be exactly `-->` with spaces on either side.
+* There must be a blank line between each chapter block.
+
+## 2. Linking the VTT to your Video
+
+Now, we add the VTT file to our HTML5 `<video>` element using the `<track>` tag.
+
+Crucially, we must set the `kind` attribute to `chapters`.
+
+```html
+<video id="course-video" controls src="course.mp4" width="800">
+  <track
+    id="chapter-track"
+    kind="chapters"
+    src="chapters.vtt"
+    srclang="en"
+    default
+  >
+</video>
+
+<!-- An empty list where we will inject our clickable chapter menu -->
+<ul id="chapter-list"></ul>
+```
+
+Unlike subtitles (`kind="captions"`), the browser will not automatically display `chapters` on the screen as text. It loads the data into memory, waiting for us to use it.
+
+## 3. Parsing the Chapters with JavaScript
+
+Now for the magic. We want to read the VTT file via Javascript and build a list of clickable links.
+
+We cannot read the track data immediately on page load, because the browser has to fetch the `.vtt` file asynchronously. We must listen for the `loadedmetadata` or `load` event on the track itself.
+
+```javascript
+const video = document.getElementById('course-video');
+const trackElement = document.getElementById('chapter-track');
+const chapterList = document.getElementById('chapter-list');
+
+trackElement.addEventListener('load', () => {
+
+  // The 'track' property of the HTMLTrackElement contains the parsed data
+  const textTrack = trackElement.track;
+
+  // The 'cues' property contains an array of our chapter blocks
+  const cues = textTrack.cues;
+
+  // Clear any existing list items
+  chapterList.innerHTML = '';
+
+  // Loop through each chapter and create a button
+  for (let i = 0; i < cues.length; i++) {
+    const cue = cues[i];
+
+    const li = document.createElement('li');
+    const button = document.createElement('button');
+
+    button.textContent = cue.text; // e.g., "Introduction"
+
+    // When clicked, seek the video to the start time of this chapter
+    button.addEventListener('click', () => {
+      video.currentTime = cue.startTime;
+      video.play();
+    });
+
+    li.appendChild(button);
+    chapterList.appendChild(li);
+  }
+});
+```
+
+### The Result
+With just 25 lines of Javascript, we have dynamically generated a menu that looks like this:
+* [Introduction]
+* [Installing the Dependencies]
+* [Configuring the Database]
+* [Deploying to Production]
+
+Clicking any of those buttons instantly jumps the video to the correct timestamp.
+
+## 4. Highlighting the Active Chapter
+
+To make the UI even better, we should highlight the current chapter as the video plays.
+
+The `TextTrack` object fires a `cuechange` event whenever the video crosses a timestamp boundary defined in our VTT file.
+
+```javascript
+// Add an ID to our buttons during creation so we can find them later
+// button.id = 'chapter-btn-' + i;
+
+trackElement.track.addEventListener('cuechange', (e) => {
+  // Remove the 'active' class from all buttons
+  document.querySelectorAll('#chapter-list button').forEach(b => b.classList.remove('active'));
+
+  // Find the currently active cue
+  const activeCues = e.target.activeCues;
+
+  if (activeCues && activeCues.length > 0) {
+    const currentCue = activeCues[0];
+
+    // Find the button that matches this cue's text and highlight it
+    const buttons = Array.from(document.querySelectorAll('#chapter-list button'));
+    const activeButton = buttons.find(b => b.textContent === currentCue.text);
+
+    if (activeButton) {
+      activeButton.classList.add('active');
+    }
+  }
+});
+```
+
+## Conclusion
+
+Using WebVTT for chapters is the ultimate standard-compliant approach. It allows you to decouple your chapter metadata from your application logic. If you need to update a chapter title, you just edit the text file—you don't have to recompile your javascript or touch a database.
+
+Furthermore, screen readers and assistive technologies understand `<track kind="chapters">`, ensuring your video navigation is accessible to all users.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Want automatic chapters?</h3>
+  <p>uVideoPlayer automatically parses VTT files and injects beautiful, interactive chapter markers directly into the player timeline. No coding required.</p>
+  <CaptureForm form={capture.forms.newsletter} submitLabel="Stay updated" />
+</div>

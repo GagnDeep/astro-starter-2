@@ -1,0 +1,108 @@
+---
+title: "How to Protect Premium Video Content from Piracy"
+post_hero:
+  date: "2024-02-15"
+  heading: "How to Protect Premium Video Content from Piracy"
+  tags:
+    - Security
+    - DRM
+    - Business
+  author: "Mark Remover"
+  image: "/src/assets/images/blog/post-placeholder.jpg"
+  image_alt: "Security lock graphic"
+thumb_image_path: "/src/assets/images/blog/post-placeholder.jpg"
+thumb_image_alt: "Video Security"
+seo:
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
+  no_index: false
+  page_description: "A pragmatic guide to securing your video courses and premium content using signed URLs, domain restriction, and AES-128 encryption."
+---
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { capture } from "../../../capture.config";
+
+If you sell online courses, corporate training, or premium entertainment, your video is your primary asset. The moment someone figures out how to right-click and save your video, they can distribute it on piracy forums or share it with their entire company, devastating your revenue.
+
+The bad news: **it is mathematically impossible to perfectly secure a video that is being streamed to a screen.** If a user can see it, they can record it using a screen capture tool like OBS.
+
+The good news: **you don't need perfect security.** You just need to make stealing your video difficult enough that 99.9% of people won't bother.
+
+Here are the pragmatic tiers of video security.
+
+## Tier 1: The Basics (Security by Obscurity)
+
+If you are just dropping an `<video src="video.mp4">` tag onto a webpage, anyone can right-click the video, select "Save Video As," and download it.
+
+### Disable the Right-Click Menu
+You can use Javascript to disable the context menu on the video element.
+
+```javascript
+document.getElementById('my-video').addEventListener('contextmenu', e => {
+  e.preventDefault();
+});
+```
+
+* **Pros:** Defeats the least technical 80% of users.
+* **Cons:** Anyone who knows how to open the Chrome DevTools Network tab can instantly find the `.mp4` URL and download it directly.
+
+## Tier 2: Domain Restriction
+
+If you are using a video hosting provider, the first real layer of security is Domain Restriction (also known as CORS/Referer checking).
+
+You configure your video provider to only serve the video if the request originates from `https://yourcourse.com`.
+
+* **Pros:** Prevents users from copying the embed code and pasting it onto their own blog.
+* **Cons:** Referer headers can be spoofed by technical users using terminal tools like `curl` or browser extensions.
+
+## Tier 3: Signed URLs & Token Authentication
+
+This is where real security begins.
+
+Instead of your `<video src="...">` pointing to a static, permanent URL, your backend server generates a temporary, cryptographically signed URL every time the page loads.
+
+The URL looks something like this:
+`https://cdn.yoursite.com/video.mp4?expires=1708000000&signature=abc123xyz`
+
+### How it works:
+1. A user logs into your course.
+2. Your backend verifies they paid.
+3. Your backend generates a URL that expires in exactly 15 minutes, signed with a secret key.
+4. The user's browser requests the video. The CDN verifies the signature and the expiration time.
+5. If the user tries to copy that URL and post it on Reddit, the URL will have expired by the time anyone clicks it, returning a 403 Forbidden error.
+
+* **Pros:** Highly secure. Prevents hotlinking and URL sharing entirely.
+* **Cons:** Requires backend engineering. Your CDN must support token authentication.
+
+## Tier 4: HLS with AES-128 Encryption
+
+If you are using Adaptive Bitrate Streaming (HLS), you aren't serving a single `.mp4`; you are serving a manifest file and thousands of tiny `.ts` segments.
+
+With HLS AES-128 encryption, the transcoding pipeline encrypts every single one of those tiny video segments using a 128-bit key.
+
+The player downloads the encrypted video chunk, then makes a separate secure request to a key server to get the decryption key. It decrypts the chunk in memory and plays it.
+
+* **Pros:** Even if a user manages to download all 2,000 `.ts` files using a browser extension, the files are useless encrypted gibberish without the key.
+* **Cons:** Complex to implement. You must secure the key server (usually via signed URLs, as discussed in Tier 3).
+
+## Tier 5: Digital Rights Management (DRM)
+
+DRM (Widevine, PlayReady, FairPlay) is the nuclear option used by Netflix and Disney.
+
+DRM integrates directly with the operating system and the hardware screen. It prevents screen recording software from capturing the video (the resulting screen recording will just show a black rectangle where the video should be).
+
+* **Pros:** The ultimate protection against piracy and screen recording.
+* **Cons:** Astronomically expensive to license. Extremely difficult to implement. Often breaks playback for legitimate users on older devices or Linux machines.
+
+## Conclusion
+
+For 95% of businesses selling video content, **Tier 3 (Signed URLs) combined with Tier 4 (HLS AES-128 Encryption)** is the sweet spot. It provides robust protection against URL sharing and casual downloading, without the massive financial overhead and playback issues associated with DRM.
+
+---
+<div className="mt-12 p-8 bg-[var(--color-bg-base)] border border-[var(--color-border)] rounded-lg">
+  <h3 className="mt-0 text-2xl">Secure your content automatically</h3>
+  <p>uVideoPlayer implements Domain Restriction and HLS AES-128 encryption out of the box. Protect your revenue without hiring a security engineer.</p>
+  <CaptureForm form={capture.forms.contact} submitLabel="Try it free" />
+</div>
