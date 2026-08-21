@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Definition of Linearized PDF (Fast Web View)." };
+---
+<Layout title="What is a Linearized PDF?" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>Linearized PDF (Fast Web View)</h1>
+    <p><strong>Definition:</strong> A Linearized PDF (often referred to as "Fast Web View" enabled) is a PDF file structured in a specific way that allows web browsers to display the first page of the document before the entire file has been downloaded from the web server.</p>
+
+    <h2>How it Works</h2>
+    <p>Normally, the cross-reference table (the index that tells a viewer where every object is located) is at the very end of a PDF file. This means a browser must download the <em>entire</em> file before it can render page 1.</p>
+    <p>Linearization restructures the file (per <a href="/reference/topic-1">PDF Specifications</a>) so that the index for the first page, and the objects needed for the first page, are moved to the very beginning of the file.</p>
+
+    <h2>Why it Matters</h2>
+    <ul>
+      <li><strong>User Experience:</strong> Huge documents (like a 50MB manual) will appear instantly on the web, improving perceived performance.</li>
+      <li><strong>Bandwidth:</strong> If a user only reads page 1 and leaves, they don't consume the bandwidth required for the whole file.</li>
+    </ul>
+
+    <h2>Impact on Editing</h2>
+    <p>When you use an <a href="/tools/annotate-pdf">online annotation tool</a> to edit a Linearized PDF and save it, the tool must specifically re-linearize the file upon saving. Standard "incremental saves" (which just append changes to the end of the file) break the linearization structure. If you are extracting pages (see <a href="/guides/guide-2">our extraction guide</a>), the resulting file is rarely linearized by default.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Suggest an edit to this term</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Suggestion" />
+    </div>
+  </div>
+</Layout>

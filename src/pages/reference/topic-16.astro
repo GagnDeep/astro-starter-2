@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Reference on the PDF Document Information Dictionary." };
+---
+<Layout title="Document Information Dictionary" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>Document Information Dictionary</h1>
+    <p>Before the widespread adoption of <a href="/glossary/term-1">XMP Metadata</a>, PDF files stored metadata in a specific structure known as the Document Information Dictionary.</p>
+
+    <h2>Standard Entries</h2>
+    <p>According to <a href="/reference/topic-1">PDF Specifications</a>, this dictionary typically contains the following keys:</p>
+    <ul>
+      <li><strong>Title:</strong> The document's title.</li>
+      <li><strong>Author:</strong> The name of the person who created the document.</li>
+      <li><strong>Subject:</strong> The subject of the document.</li>
+      <li><strong>Keywords:</strong> Keywords associated with the document.</li>
+      <li><strong>Creator:</strong> If the document was converted to PDF from another format, the name of the conforming product (e.g., Microsoft Word) that created the original document.</li>
+      <li><strong>Producer:</strong> The name of the conforming product that converted it to PDF.</li>
+      <li><strong>CreationDate:</strong> The date and time the document was created.</li>
+      <li><strong>ModDate:</strong> The date and time the document was most recently modified.</li>
+    </ul>
+
+    <h2>Deprecation in PDF 2.0</h2>
+    <p>In the PDF 2.0 specification, the Document Information Dictionary was officially deprecated in favor of XMP Metadata. However, because billions of older PDFs exist, any robust <a href="/tools/annotate-pdf">annotation tool</a> must still be able to read and safely rewrite this dictionary when saving a file.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Did this technical reference help?</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Feedback" />
+    </div>
+  </div>
+</Layout>

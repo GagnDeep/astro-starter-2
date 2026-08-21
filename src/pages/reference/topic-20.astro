@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Technical reference on Font Embedding in PDFs." };
+---
+<Layout title="Font Embedding" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>Font Embedding</h1>
+    <p>One of the primary goals of the PDF format is portability—ensuring a document looks the same on every device. Font embedding is the mechanism that achieves this.</p>
+
+    <h2>Full vs. Subset Embedding</h2>
+    <ul>
+      <li><strong>Full Embedding:</strong> The entire font file (e.g., Arial.ttf) is stored inside the PDF. This allows for future editing but massively inflates file size.</li>
+      <li><strong>Subset Embedding:</strong> Only the specific characters used in the document are embedded. If you only type "Cat", only the glyphs for C, a, and t are saved.</li>
+    </ul>
+
+    <h2>Annotations and Fonts</h2>
+    <p>When you add text to a PDF using an <a href="/tools/add-text-to-pdf">online tool</a>, the tool must either use one of the 14 standard PDF fonts (which are guaranteed to be available on all viewers, like Helvetica or Times) or embed a new font. If you use a custom web font for your annotation, the tool must embed it, which affects <a href="/calculators/calc-1">file size</a> and <a href="/glossary/term-3">PDF/A compliance</a>.</p>
+    <p>For printing, professional standards like <a href="/glossary/term-5">PDF/X</a> strictly require all fonts to be embedded to avoid substitution errors.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Did this technical reference help?</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Feedback" />
+    </div>
+  </div>
+</Layout>

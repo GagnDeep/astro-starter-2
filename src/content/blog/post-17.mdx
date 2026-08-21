@@ -1,0 +1,41 @@
+---
+title: "How to extract highlighted text from PDF"
+post_hero:
+  date: "2024-04-12"
+  heading: "How to extract highlighted text from PDF"
+  tags: ["Extraction", "Research", "Workflow"]
+  author: "uViewPDF Team"
+  image: "/src/assets/images/blog/featured-image-2.jpg"
+  image_alt: "Extracting text"
+thumb_image_path: "/src/assets/images/blog/blog-thumb-2.jpg"
+thumb_image_alt: "Text extraction"
+seo:
+  page_description: "A guide to extracting only the text you've highlighted from a long PDF document for research purposes."
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: "article"
+  no_index: false
+---
+
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+If you are a student or researcher, you likely spend hours [highlighting PDFs](/tools/highlight-pdf). But once you've marked up a 100-page document, how do you get those highlights out into a Word document or note-taking app without retyping them?
+
+## Why Extraction is Difficult
+
+Because of how [PDF Content Streams](/reference/topic-17) work, text and highlights are stored separately. A highlight is just a colored rectangle floating above the text; it does not inherently "know" what text it is covering.
+
+To extract the text, software must calculate the mathematical overlap between the highlight annotation and the text stream underneath it.
+
+## Best Tools for the Job
+
+While simple web viewers don't offer extraction, dedicated citation managers (like Zotero or Mendeley) or specialized Mac tools (like Highlights app) do this calculation automatically.
+
+If you just need to share the visual pages containing highlights (rather than the raw text), you can extract those specific pages following our [Extraction Guide](/guides/guide-2), which significantly reduces the [file size](/calculators/calc-1) for email sharing.
+
+<div className="not-prose mt-12 p-8 bg-gray-50 border border-gray-200 rounded-lg">
+  <h3 className="text-xl font-bold mb-4">Want more research tips?</h3>
+  <CaptureForm formLabel="newsletter" submitText="Subscribe" />
+</div>

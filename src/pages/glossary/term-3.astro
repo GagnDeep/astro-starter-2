@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Definition of PDF/A standard for long-term archiving." };
+---
+<Layout title="What is PDF/A?" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>PDF/A (Archival Standard)</h1>
+    <p><strong>Definition:</strong> PDF/A is an ISO-standardized version of the Portable Document Format (ISO 19005) specialized for use in the long-term archiving and preservation of electronic documents.</p>
+
+    <h2>The Goal of PDF/A</h2>
+    <p>The core philosophy of PDF/A is that a document should look exactly the same when opened 50 years from now, regardless of what software or operating system is used to view it.</p>
+
+    <h2>Restrictions compared to standard PDF</h2>
+    <p>To guarantee long-term reproducibility, PDF/A prohibits features that rely on external environments or are subject to change. Key restrictions include:</p>
+    <ul>
+      <li><strong>No Encryption:</strong> <a href="/reference/topic-2">PDF Security & Passwords</a> are forbidden. If you can't open it without a password today, you might lose access to it in the future.</li>
+      <li><strong>Embedded Fonts:</strong> Every font used must be embedded within the file. It cannot rely on system fonts. (This increases size, see <a href="/calculators/calc-1">File Size Estimator</a>).</li>
+      <li><strong>No Audio/Video:</strong> Multimedia content is prohibited.</li>
+      <li><strong>No JavaScript:</strong> Interactive forms relying on JS will not function.</li>
+      <li><strong>Color Spaces:</strong> Device-independent color spaces are required.</li>
+    </ul>
+
+    <h2>PDF/A and Annotations</h2>
+    <p>You can <a href="/tools/annotate-pdf">annotate a PDF/A</a> document, but saving those annotations while maintaining compliance requires specialized software. If you add a text note using a non-standard font, and the software fails to embed it, the file will lose its PDF/A compliant status.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Suggest an edit to this term</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Suggestion" />
+    </div>
+  </div>
+</Layout>

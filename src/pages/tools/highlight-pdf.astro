@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Highlight PDF documents online for free. Fast and secure text highlighting in your browser.",
+};
+---
+<Layout title="Highlight PDF Online" seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-8 py-16">
+    <h1 class="text-4xl font-bold mb-4 text-text-primary">Highlight PDF Online</h1>
+    <p class="text-xl text-text-secondary mb-8">Quickly highlight important text in your PDFs. Processing is done securely in your browser.</p>
+
+    <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-16 text-center mb-12 shadow-inner">
+      <div class="mb-4 text-brand-accent">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+        </svg>
+      </div>
+      <p class="text-text-primary font-medium mb-2">Drag and drop your PDF here</p>
+      <button class="btn-primary mt-2">Upload PDF</button>
+    </div>
+
+    <div class="prose max-w-none">
+      <h2>Why use a dedicated highlighter?</h2>
+      <p>Our tool is designed specifically for speed. We don't bog you down with complex menus when all you want to do is mark important sections of text. If you need freehand drawing or text insertion, switch to our <a href="/tools/annotate-pdf">full annotator</a>.</p>
+
+      <h3>How Highlighting Works Technically</h3>
+      <p>When you highlight text, you aren't changing the original text color. Instead, our tool adds a semi-transparent rectangle over the text's bounding box and saves it to the <code>Annots</code> array, compliant with <a href="/reference/topic-1">PDF Specifications</a>. This ensures your highlights are perfectly straight and snap to the text, unlike freehand drawing.</p>
+
+      <h3>Scanned Documents</h3>
+      <p>If you upload a scanned document (an image inside a PDF), the text cannot be highlighted normally because there is no text data—only image data. In this case, you must rely on our freehand markup tool, or use OCR (Optical Character Recognition) software first.</p>
+    </div>
+
+    <div class="mt-16 bg-bg-surface p-8 border border-gray-200 rounded-lg shadow-sm">
+      <h3 class="text-2xl font-bold mb-4">Feedback on the Highlighter</h3>
+      <p class="text-text-secondary mb-6">Are there specific colors or features you'd like added to this tool?</p>
+      <CaptureForm formLabel="annotate" submitText="Send Feedback" />
+    </div>
+  </div>
+</Layout>

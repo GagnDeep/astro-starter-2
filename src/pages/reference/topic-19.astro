@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Technical reference on the PDF Cross-Reference (XRef) Table." };
+---
+<Layout title="Cross-Reference (XRef) Table" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>Cross-Reference (XRef) Table</h1>
+    <p>A PDF file is essentially a database of objects. The Cross-Reference (XRef) table is the index that allows viewer software to find these objects instantly without reading the entire file.</p>
+
+    <h2>How it Works</h2>
+    <p>Located near the end of the file (unless it is a <a href="/glossary/term-2">Linearized PDF</a>), the XRef table lists the byte offset (the exact location in the file) for every indirect object.</p>
+
+    <pre><code>xref
+0 6
+0000000000 65535 f
+0000000010 00000 n
+0000000053 00000 n</code></pre>
+
+    <h2>Incremental Updates and Annotations</h2>
+    <p>When you use our <a href="/tools/annotate-pdf">annotation tool</a> to add a note, the software does not rewrite the entire file. Instead, per <a href="/reference/topic-1">PDF Specifications</a>, it appends the new annotation object to the end of the file, and then appends a <em>new</em> XRef table that updates the index for that specific object.</p>
+
+    <p>This "incremental save" feature is why saving an annotated PDF is nearly instantaneous, but it's also why repeatedly saving a file can cause the <a href="/calculators/calc-1">file size</a> to bloat over time as dead objects are left behind.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Did this technical reference help?</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Feedback" />
+    </div>
+  </div>
+</Layout>

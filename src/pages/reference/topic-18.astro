@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Technical reference on PDF Interactive Form Fields (AcroForms)." };
+---
+<Layout title="Interactive Form Fields (AcroForms)" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>Interactive Form Fields (AcroForms)</h1>
+    <p>AcroForms are the standard technology used to create interactive, fillable PDF forms. First introduced in PDF 1.2, they allow authors to add text boxes, checkboxes, radio buttons, and drop-down lists to a document.</p>
+
+    <h2>How AcroForms Work</h2>
+    <p>An AcroForm consists of a central <code>AcroForm</code> dictionary located in the Document Catalog. This dictionary holds an array of all the fields in the document. Unlike simple <a href="/tools/annotate-pdf">annotations</a>, form fields manage complex state (e.g., is this checkbox checked?).</p>
+
+    <h2>Filling Forms Online</h2>
+    <p>While you can use a generic "Add Text" tool to type answers onto a flat PDF, dealing with true AcroForms requires the software to parse the field dictionary, render the appropriate UI element (like a dropdown), and save the selected value back into the PDF structure.</p>
+
+    <p>Note: Forms that contain JavaScript validation or calculations may break if the document is saved in a strictly compliant archival format like <a href="/glossary/term-3">PDF/A</a>, or if the user's viewer restricts execution due to <a href="/reference/topic-2">Security settings</a>.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Did this technical reference help?</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Feedback" />
+    </div>
+  </div>
+</Layout>

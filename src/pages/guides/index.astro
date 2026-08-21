@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const seo = { page_description: "Guides and tutorials for PDF annotation." };
+---
+<Layout title="PDF Guides" seo={seo}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 py-16">
+    <h1 class="text-4xl font-bold mb-8 text-text-primary">Guides</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {Array.from({ length: 10 }).map((_, i) => (
+        <a href={`/guides/guide-${i + 1}`} class="block p-6 border border-gray-200 rounded-lg bg-bg-surface hover:border-brand-accent">
+          <h2 class="text-xl font-semibold mb-2">Guide ${i + 1}</h2>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

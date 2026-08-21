@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+const seo = { page_description: "Definition of PDF/X print standard." };
+---
+<Layout title="What is PDF/X?" seo={seo}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-8 py-16 prose">
+    <h1>PDF/X (Print Standard)</h1>
+    <p><strong>Definition:</strong> PDF/X is a subset of the PDF standard (ISO 15930) specifically designed to facilitate graphics exchange and professional printing.</p>
+
+    <h2>Key Requirements</h2>
+    <p>Like <a href="/glossary/term-3">PDF/A</a>, PDF/X restricts certain features to ensure predictable results. However, its focus is on <em>printing</em> rather than archiving.</p>
+    <ul>
+      <li><strong>Color Spaces:</strong> All colors must be defined in CMYK, spot colors, or calibrated spaces (RGB is usually forbidden unless strictly managed). This is vital for estimating <a href="/calculators/calc-3">Print Costs</a>.</li>
+      <li><strong>Embedded Fonts:</strong> All fonts must be embedded.</li>
+      <li><strong>No Transparency (in older versions):</strong> Early PDF/X versions required transparency to be flattened.</li>
+    </ul>
+
+    <h2>Annotations and Printing</h2>
+    <p>When you <a href="/tools/annotate-pdf">annotate a document</a>, those annotations usually default to RGB colors. If you send an annotated document to a commercial printer requiring PDF/X, the file will likely be rejected or the colors will print unexpectedly.</p>
+
+    <div class="mt-12 not-prose p-6 bg-gray-50 border border-gray-200 rounded">
+      <h3 class="text-lg font-bold mb-4">Suggest an edit to this term</h3>
+      <CaptureForm formLabel="feedback" submitText="Send Suggestion" />
+    </div>
+  </div>
+</Layout>

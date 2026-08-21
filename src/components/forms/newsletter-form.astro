@@ -1,29 +1,24 @@
 ---
-/**
- * Inline email capture — newsletter sign-up or waitlist. Same wiring as
- * `capture-form.astro`, one field and a button on a single row.
- *
- * Pass `form={capture.forms.waitlist}` to file these under a different label.
- */
 import { capture } from "../../../capture.config";
 import { actionUrl } from "../../lib/capture";
 
 interface Props {
-  form?: string;
-  submitLabel?: string;
+  formLabel?: keyof typeof capture.forms;
+  submitText?: string;
   placeholder?: string;
   successMessage?: string;
   class?: string;
 }
 
 const {
-  form = capture.forms.newsletter,
-  submitLabel = "Subscribe",
+  formLabel = "newsletter",
+  submitText = "Subscribe",
   placeholder = "you@example.com",
   successMessage = "You're on the list — check your inbox.",
   class: className = "",
 } = Astro.props;
 
+const form = capture.forms[formLabel] || formLabel;
 const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
 ---
 
@@ -54,13 +49,13 @@ const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
       autocomplete="email"
       required
       placeholder={placeholder}
-      class="w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
+      class="w-full rounded border border-gray-300 px-3 py-2 focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
     />
     <button
       type="submit"
-      class="shrink-0 rounded bg-blue-600 px-5 py-2.5 font-medium text-white hover:bg-blue-700 disabled:opacity-60"
+      class="shrink-0 rounded bg-brand-accent px-5 py-2.5 font-medium text-white hover:bg-brand-hover disabled:opacity-60 transition-colors"
     >
-      {submitLabel}
+      {submitText}
     </button>
   </div>
 
@@ -68,7 +63,7 @@ const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
     data-capture-status
     role="status"
     aria-live="polite"
-    class="mt-2 text-sm text-gray-600 data-[state=error]:text-red-700 data-[state=success]:text-green-700"
+    class="mt-2 text-sm text-text-secondary data-[state=error]:text-error data-[state=success]:text-green-700"
   >
   </p>
 </form>
