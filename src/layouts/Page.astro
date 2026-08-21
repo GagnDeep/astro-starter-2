@@ -1,57 +1,55 @@
 ---
 import Layout from "./Layout.astro";
-import type { CollectionEntry } from "astro:content";
+import type { SEOProps } from "./Layout.astro";
+import NewsletterForm from "../components/forms/newsletter-form.astro";
+import { capture } from "../../capture.config";
 
 type Props = {
-  /** Front matter of a `pages` collection entry. */
-  frontmatter: CollectionEntry<"pages">["data"] & {
-    content_blocks?: any[];
-    hero_block?: any;
+  frontmatter: {
+    title: string;
+    seo?: SEOProps;
+    hero_block?: {
+      _name: string;
+      [key: string]: any;
+    };
+    content_blocks?: Array<{
+      _name: string;
+      [key: string]: any;
+    }>;
   };
 };
 
-const props = Astro.props.frontmatter;
-
-const components: Record<string, Function> = {};
-const componentImports = import.meta.glob("../components/**/*.astro", {
-  eager: true,
-});
-
-const componentMap: Record<string, string> = {
-  Hero: "heroes/hero/hero",
-  LeftRight: "left-right/left-right",
-  TextBlock: "text-block/text-block",
-};
-
-Object.entries(componentImports).forEach(([path, obj]) => {
-  const relativePath = path.replace("../components/", "").replace(".astro", "");
-  const entry = Object.entries(componentMap).find(([, v]) => v === relativePath);
-  if (entry) {
-    components[entry[0]] = (obj as any).default;
-  }
-});
-
-const HeroComponent = props.hero_block?._name ? components[props.hero_block._name] : null;
+const { frontmatter } = Astro.props;
+const { title, seo, hero_block, content_blocks } = frontmatter;
 ---
 
-<Layout {...props}>
-  {HeroComponent && (
-    <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
-      <HeroComponent {...props.hero_block} />
-    </editable-component>
-  )}
+<Layout title={title} seo={seo}>
+  {
+    hero_block && (
+      <editable-component data-prop="hero_block" data-component={hero_block._name}>
+        {/* Render hero component here based on mapping, or fallback */}
+      </editable-component>
+    )
+  }
 
-  {props.content_blocks && props.content_blocks.length > 0 && (
-    <div data-editable="array" data-prop="content_blocks" data-id-key="_name" data-component-key="_name">
-      {props.content_blocks.map((block: any) => {
-        const Component = components[block._name];
-        if (!Component) return null;
-        return (
-          <section data-editable="array-item" data-id={block._name} data-component={block._name}>
-            <Component {...block} />
-          </section>
-        );
-      })}
-    </div>
-  )}
+  <div class="mx-auto max-w-4xl px-8 py-12 prose">
+    <slot />
+  </div>
+
+  <div class="mx-auto max-w-2xl px-8 py-12 mb-12 bg-slate-50 border border-slate-200 rounded-xl">
+      <h3 class="font-semibold text-2xl text-slate-900 mb-2">Get the Cheatsheet</h3>
+      <p class="text-slate-600 text-sm mb-4">Master practical AI. Get our free 12-page cheatsheet covering prompting, RAG, and tools.</p>
+      <NewsletterForm form={capture.forms.newsletter} submitLabel="Download Cheatsheet" />
+  </div>
+
+  {
+    content_blocks?.map((block, index) => (
+      <editable-component
+        data-prop={`content_blocks[${index}]`}
+        data-component={block._name}
+      >
+        {/* Render content component here based on mapping */}
+      </editable-component>
+    ))
+  }
 </Layout>

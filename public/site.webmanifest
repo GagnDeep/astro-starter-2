@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "World AI School",
+  "short_name": "World AI School",
+  "description": "Online course platform teaching practical AI skills to students worldwide. Learn prompting, fine-tuning, RAG, and AI automation.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#4338ca",
+  "theme_color": "#4338ca",
   "icons": [
     {
       "src": "/meta/icon-192.png",
