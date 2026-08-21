@@ -1,0 +1,31 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const items = await getCollection("glossary");
+  return items.map((item) => ({ params: { slug: item.id } }));
+}
+
+if (!Astro.params.slug) throw new Error("Slug undefined");
+const entry = await getEntry("glossary", Astro.params.slug);
+if (!entry) throw new Error("Failed to get entry");
+
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title} seo={entry.data.seo || undefined}>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 prose prose-invert prose-green">
+    <h1>{entry.data.title}</h1>
+    {entry.data.description && <p class="lead text-xl text-gray-300">{entry.data.description}</p>}
+    <Content />
+
+    <div class="mt-12 p-6 bg-surface border border-border rounded-xl">
+      <h3 class="text-white mb-4 mt-0">Need help integrating {entry.data.title}?</h3>
+      <p class="text-gray-300 text-sm mb-4">We are experts in health tech architecture.</p>
+      <a href="/contact" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-black bg-primary hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+        Talk to an engineer
+      </a>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="FAQ | CreateFitnessApp" seo={{ page_description: "Frequently asked questions about building custom fitness applications, integrating wearables, and HIPAA compliance." }}>
+  <div class="max-w-4xl mx-auto px-4 py-16 sm:px-6 lg:px-8 prose prose-invert prose-green">
+    <h1 class="text-center mb-12">Frequently Asked Questions</h1>
+
+    <div class="space-y-8">
+      <div>
+        <h3>Do you use no-code tools like FlutterFlow or Bubble?</h3>
+        <p>No. While those tools are great for simple apps, fitness applications require deep hardware access (Bluetooth, Health APIs, background processing). We build using React Native or Native (Swift/Kotlin) to ensure maximum performance and reliable sensor data.</p>
+      </div>
+
+      <div>
+        <h3>How long does it take to build a fitness app?</h3>
+        <p>A basic MVP typically takes 2-3 months. A fully-featured platform with wearable integrations, subscriptions, and a custom backend usually takes 4-6 months.</p>
+      </div>
+
+      <div>
+        <h3>Can you integrate with the Apple Watch?</h3>
+        <p>Yes. We have extensive experience building native WatchOS companion apps using HealthKit and CoreMotion to track real-time workouts and stream telemetry to the iOS app.</p>
+      </div>
+
+      <div>
+        <h3>Do we need to be HIPAA compliant?</h3>
+        <p>If you are simply tracking workouts for a consumer, usually no (FTC rules apply). However, if your app shares data with doctors, insurance companies, or clinical trial managers, yes. We can architect HIPAA compliant backends on AWS or Google Cloud.</p>
+      </div>
+
+      <div>
+        <h3>Who owns the code?</h3>
+        <p>You do. Once the project is fully paid for, all Intellectual Property and source code is transferred entirely to your company.</p>
+      </div>
+    </div>
+  </div>
+</Layout>

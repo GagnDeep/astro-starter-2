@@ -37,7 +37,7 @@ const imageSrc = images[image]?.default || image;
 
 <div class="flex flex-col">
   {
-    image && image_alt && (
+    image && image_alt && typeof imageSrc === 'object' ? (
       <Picture
         data-editable="image"
         data-prop-src="image"
@@ -50,7 +50,18 @@ const imageSrc = images[image]?.default || image;
         loading="eager"
         formats={["avif", "webp"]}
       />
-    )
+    ) : image && image_alt ? (
+      <img
+        data-editable="image"
+        data-prop-src="image"
+        data-prop-alt="image_alt"
+        class="w-full rounded-lg aspect-video object-cover"
+        src={imageSrc as unknown as string}
+        alt={image_alt}
+        width="1200"
+        height="630"
+      />
+    ) : null
   }
   <h1
     data-editable="text"

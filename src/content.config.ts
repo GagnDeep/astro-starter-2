@@ -4,13 +4,13 @@ import { glob } from 'astro/loaders';
 
 const seoSchema = z
   .object({
-    page_description: z.string().nullable(),
-    canonical_url: z.string().nullable(),
-    featured_image: z.string().nullable(),
-    featured_image_alt: z.string().nullable(),
-    author_twitter_handle: z.string().nullable(),
-    open_graph_type: z.string().nullable(),
-    no_index: z.boolean(),
+    page_description: z.string().nullable().optional(),
+    canonical_url: z.string().nullable().optional(),
+    featured_image: z.string().nullable().optional(),
+    featured_image_alt: z.string().nullable().optional(),
+    author_twitter_handle: z.string().nullable().optional(),
+    open_graph_type: z.string().nullable().optional(),
+    no_index: z.boolean().optional(),
   })
   .optional();
 
@@ -50,7 +50,38 @@ const pagesCollection = defineCollection({
   schema: z.union([paginatedCollectionSchema, pageSchema]),
 });
 
+const referenceCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/reference" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    content_blocks: z.array(z.any()).optional(),
+    seo: seoSchema,
+  }),
+});
+
+const glossaryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    seo: seoSchema,
+  }),
+});
+
+const toolsCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/tools" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    seo: seoSchema,
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   pages: pagesCollection,
+  reference: referenceCollection,
+  glossary: glossaryCollection,
+  tools: toolsCollection,
 };

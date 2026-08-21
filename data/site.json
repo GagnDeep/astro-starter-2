@@ -1,17 +1,20 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
-  "lang": "en",
+  "site_title": "CreateFitnessApp.com",
+  "description": "The premier fitness app development company. We build high-performance custom apps with Apple HealthKit, Google Fit, and wearable integrations.",
+  "tagline": "Build the future of fitness.",
+  "image_alt": "CreateFitnessApp.com - Fitness App Development Experts",
+  "theme_color": "#00E676",
   "locale": "en_US",
-  "twitter_site": "",
+  "lang": "en",
+  "twitter_site": "@createfitnessapp",
+  "default_author": "CreateFitnessApp Team",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "name": "CreateFitnessApp",
+    "logo": "/siteicon.png",
+    "same_as": [
+      "https://twitter.com/createfitnessapp",
+      "https://linkedin.com/company/createfitnessapp"
+    ]
   }
 }

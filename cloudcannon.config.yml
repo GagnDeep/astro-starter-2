@@ -38,6 +38,18 @@ collections_config:
         path: '.cloudcannon/schemas/source-page.astro'
         remove_extra_inputs: false
         hide_extra_inputs: true
+  reference:
+    path: src/content/reference
+    url: '/reference/[slug]/'
+    icon: library_books
+  glossary:
+    path: src/content/glossary
+    url: '/glossary/[slug]/'
+    icon: font_download
+  tools:
+    path: src/content/tools
+    url: '/tools/[slug]/'
+    icon: build
     create:
       path: '[relative_base_path]/{filename|slugify|lowercase}.md'
     new_preview_url: /

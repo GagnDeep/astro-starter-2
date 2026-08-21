@@ -32,6 +32,7 @@ export const capture = {
     newsletter: "newsletter",
     waitlist: "waitlist",
     quote: "quote",
+    estimate: "estimate",
   },
 
   /**

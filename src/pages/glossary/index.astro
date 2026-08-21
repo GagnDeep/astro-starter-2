@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const terms = await getCollection("glossary");
+---
+<Layout title="Fitness App Development Glossary" seo={{ page_description: "Definitions and technical contexts for terms used in health-tech." }}>
+  <article class="max-w-4xl mx-auto px-4 py-16 prose prose-invert prose-green">
+    <h1>Health-Tech Glossary</h1>
+    <p class="lead text-xl text-gray-300">The terminology you need to know when building in health and fitness.</p>
+
+    <div class="not-prose grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+      {terms.map(term => (
+        <a href={`/glossary/${term.id}`} class="block bg-surface border border-border p-4 rounded-xl hover:border-primary transition-colors">
+          <h3 class="text-lg font-bold text-white">{term.data.title}</h3>
+        </a>
+      ))}
+    </div>
+  </article>
+</Layout>
