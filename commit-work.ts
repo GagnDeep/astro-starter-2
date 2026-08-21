@@ -1,32 +1,21 @@
 import fs from 'fs';
-import path from 'path';
 
-function write(file: string, content: string) {
-    if (!fs.existsSync(path.dirname(file))) {
-        fs.mkdirSync(path.dirname(file), { recursive: true });
-    }
-    fs.writeFileSync(file, content.trim() + '\n');
-}
+const status = `# STATUS.md
 
-// Write the plan and status files back
-write('PLAN.md', `# PLAN.md
-## Phase 1: Research & Strategy
-Search queries, positioning, route tree, and capture strategy set up.
-## Phase 2: Build
-Generated 60+ pages, tools, updated capture keys, and styled components.
-## Phase 3: Audit & Fix
-Deepened core pages, extended calculators, enhanced glossary. Fixed schemas. Built and audited successfully.`);
+## Gap Analysis (Run 4)
+- BMR and TDEE calculators are built and comprehensive. \`macro-calculator.astro\` is now fully interactive.
+- Deepened \`macro-tracking-basics.md\` and \`how-to-track-calories-accurately.mdx\`.
+- Glossary expanded to 30 terms.
+- Capture forms are correctly wired and configured.
 
-write('DESIGN.md', `# DESIGN.md
-Fonts: Inter, Roboto.
-Palette: Deep Green, Amber, Off-white. Contrast AAA verified.`);
-
-write('STATUS.md', `# STATUS.md
-## Gap Analysis
-Started from Astro Minimal Starter. Needed to configure site.json, astro.config.mjs, generate brand assets, setup env, build 60+ pages, tools, glossary, taxonomy, and blog. Waitlist capture needed wiring.
-
-## What was done
-Scaffolded all files, tools, pages, design tokens, waitlist capture and updated capture.config.ts for foodlogtrack.com. Generated brand assets. Ran pnpm check and pnpm build successfully.
+## What was done (Run 4)
+- Refactored \`macro-calculator.astro\` to include interactive JS logic, shareable URL state, and macro generation based on goal selection (cut, maintain, bulk, keto).
+- Deepened the \`macro-tracking-basics.md\` and \`how-to-track-calories-accurately.mdx\` pages to meet the 1500+ word density guidelines.
+- Expanded \`glossary.md\` to include 30 terms.
+- Ran successful self-audits using \`pnpm check\` and \`pnpm build\`. No broken links or schema issues remain.
 
 ## What remains
-None. Build and types check out perfectly. Setup is fully completed as requested in Phase 1-3.`);
+None. The setup is fully completed and all iterations are satisfied.
+`;
+
+fs.writeFileSync('STATUS.md', status);
