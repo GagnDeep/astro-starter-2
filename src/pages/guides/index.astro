@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const guides = await getCollection('guides');
+---
+<Layout title="Tax Guides">
+  <div class="mx-auto max-w-6xl px-8 py-16">
+    <h1 class="text-4xl font-heading font-bold mb-8">Tax Guides</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {guides.map(guide => (
+        <a href={`/guides/${guide.id}/`} class="block p-6 bg-white border border-gray-200 rounded-xl hover:shadow-lg transition-shadow">
+          <h2 class="text-xl font-bold mb-2">{guide.data.title}</h2>
+          <p class="text-gray-600 text-sm">{guide.data.seo?.page_description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

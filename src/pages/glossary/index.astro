@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const glossary = await getCollection('glossary');
+// sort alphabetically
+glossary.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+<Layout title="Tax Glossary">
+  <div class="mx-auto max-w-6xl px-8 py-16">
+    <h1 class="text-4xl font-heading font-bold mb-8">Tax Glossary</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {glossary.map(g => (
+        <a href={`/glossary/${g.id}/`} class="block p-4 bg-white border border-gray-200 rounded-lg hover:border-[var(--color-primary)] transition-colors">
+          <h2 class="font-bold text-gray-900">{g.data.title}</h2>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/heroes/hero/hero.astro";
+import ComparisonTable from "../components/tables/comparison-table.astro";
+import { getCollection } from 'astro:content';
+
+const tools = await getCollection('tools');
+const guides = await getCollection('guides');
+const posts = await getCollection('blog');
+
+// Get top items for homepage
+const topTools = tools.slice(0, 4);
+const topGuides = guides.slice(0, 4);
+const topPosts = posts.slice(0, 3);
+
+const comparisonFeatures = [
+  { name: "Federal Tax Return (Form 1040)", freeFile: true, paidSoftware: true },
+  { name: "W-2 Income", freeFile: true, paidSoftware: true },
+  { name: "Standard Deduction", freeFile: true, paidSoftware: true },
+  { name: "1099-NEC (Freelance/Contractor)", freeFile: "Yes (IRS Free File)", paidSoftware: "Upgrade Required ($120+)" },
+  { name: "Capital Gains (Schedule D)", freeFile: "Yes (IRS Free File)", paidSoftware: "Upgrade Required ($89+)" },
+  { name: "State Returns", freeFile: "Sometimes (Depends on State/Partner)", paidSoftware: "Usually Extra ($40+)" },
+];
+---
+
+<Layout title="FreeFileForm - File for Free. Really." seo={{ page_description: "The definitive guide to maximizing your refund using truly free tools, cutting through the software upsells." }}>
+  <!-- 1. Hero with immediate Free File eligibility checker form -->
+  <Hero
+    heading="Don't Pay to File Your Taxes"
+    subheading="Millions qualify for free tax filing, yet end up paying due to confusing upsells. Let's find your **truly free** option."
+    show_eligibility_form={true}
+  />
+
+  <!-- 2. "Why Pay?" - Direct contrast of free vs paid features -->
+  <!-- 3. Top Free Filing Tools Comparison Table -->
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-6xl px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl font-heading font-bold text-[var(--color-primary)]">Why Pay?</h2>
+        <p class="text-lg text-gray-600 mt-4">If your AGI is under $79,000, you likely qualify for IRS Free File which covers complex scenarios that commercial "free" editions upcharge for.</p>
+      </div>
+      <ComparisonTable title="Free vs Paid Features" features={comparisonFeatures} />
+    </div>
+  </section>
+
+  <!-- 4. Popular Calculators Grid -->
+  <section class="py-16 bg-gray-50 border-t border-gray-200 border-b">
+    <div class="mx-auto max-w-6xl px-8">
+      <h2 class="text-3xl font-heading font-bold text-[var(--color-primary)] mb-8">Free Tax Calculators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {topTools.map(tool => (
+          <a href={`/tools/${tool.id}/`} class="block p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-[var(--color-secondary)] hover:shadow-md transition-all">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">{tool.data.title}</h3>
+            <p class="text-sm text-gray-600">Calculate your estimated tax liability or refund using our secure, private tools.</p>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/tools/" class="inline-block px-6 py-3 border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-bold rounded hover:bg-[var(--color-primary)] hover:text-white transition-colors">View All Calculators</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Guides by Taxpayer Type (W2, 1099, Mixed) -->
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-6xl px-8">
+      <h2 class="text-3xl font-heading font-bold text-[var(--color-primary)] mb-8">Top Tax Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {topGuides.map(guide => (
+          <a href={`/guides/${guide.id}/`} class="group block p-6 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
+            <h3 class="font-bold text-gray-900 group-hover:text-[var(--color-secondary)] transition-colors mb-2">{guide.data.title}</h3>
+            <p class="text-sm text-gray-500 line-clamp-2">Read our definitive guide on this essential tax topic.</p>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8 space-x-4">
+        <a href="/guides/" class="inline-block px-6 py-3 bg-gray-100 text-gray-800 font-bold rounded hover:bg-gray-200 transition-colors">All Guides</a>
+        <a href="/types/" class="inline-block px-6 py-3 bg-gray-100 text-gray-800 font-bold rounded hover:bg-gray-200 transition-colors">By Taxpayer Type</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Recent Updates / Blog -->
+  <section class="py-16 bg-gray-50 border-t border-gray-200">
+    <div class="mx-auto max-w-6xl px-8">
+      <h2 class="text-3xl font-heading font-bold text-[var(--color-primary)] mb-8">Latest Advice</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {topPosts.map(post => (
+          <a href={`/blog/${post.id}/`} class="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <img src={post.data.thumb_image_path} alt={post.data.thumb_image_alt} class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <p class="text-xs font-bold text-[var(--color-secondary)] mb-2 uppercase tracking-wider">{post.data.post_hero.tags[0]}</p>
+              <h3 class="text-lg font-bold text-gray-900 mb-2 leading-tight">{post.data.title}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

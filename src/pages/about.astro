@@ -1,5 +1,25 @@
 ---
-import AboutPage from "../content/pages/about.astro";
+import Layout from "../layouts/Layout.astro";
 ---
+<Layout title="About FreeFileForm" seo={{ page_description: "Learn about our mission to help taxpayers find truly free tax software." }}>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8 prose prose-lg">
+      <h1 class="font-heading text-[var(--color-primary)]">About Us</h1>
+      <p class="lead text-xl">The definitive guide to maximizing your refund using truly free tools, cutting through the software upsells.</p>
 
-<AboutPage />
+      <h2>Our Mission</h2>
+      <p>Every year, millions of taxpayers who qualify for free tax filing end up paying unnecessary fees. The software companies use confusing terminology and aggressive upselling tactics to move users away from the free options.</p>
+      <p>At FreeFileForm, we believe that if your taxes are simple enough, or if you meet the income requirements set by the IRS, you should not pay a dime to file.</p>
+
+      <h2>How We Help</h2>
+      <ul>
+        <li><strong>Unbiased Comparisons:</strong> We breakdown the differences between top providers and highlight their true costs.</li>
+        <li><strong>Free Calculators:</strong> Tools that don't require you to create an account or hand over sensitive information just to get an estimate.</li>
+        <li><strong>Plain-English Guides:</strong> We translate complex tax jargon into actionable advice.</li>
+      </ul>
+
+      <h2>Contact Us</h2>
+      <p>Have questions? Reach out via our <a href="/contact/">Contact page</a>.</p>
+    </div>
+  </section>
+</Layout>
