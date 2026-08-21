@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const pages = await getCollection("glossary");
+---
+
+<Layout title="Solar">
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>Glossary</h1>
+    <ul>
+      {pages.map((page) => (
+        <li>
+          <a href={`/glossary/${page.id}`}><strong>{page.data.term}</strong></a>: {page.data.definition}
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

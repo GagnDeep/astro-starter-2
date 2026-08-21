@@ -46,7 +46,7 @@ export const capture = {
    * configured server-side (`honeypot_field`); a honeypot the server does not
    * know about only adds a field to the stored payload.
    */
-  honeypotField: null as string | null,
+  honeypotField: "honey_pot_field_name" as string | null,
 } as const;
 
 export type FormLabel = keyof typeof capture.forms;

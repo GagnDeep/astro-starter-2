@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const seo: any = {
+  page_description: "Expert California solar installers. Navigate NEM 3.0, high PG&E rates, and battery storage with our data-driven resources.",
+  no_index: false,
+};
+---
+
+<Layout title={seo.title || "Solar"} seo={seo}>
+  <main>
+    {/* Hero Section */}
+    <section class="bg-[var(--bg-primary)] py-20 px-4">
+      <div class="max-w-5xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">We Do The Math, You Make The Choice.</h1>
+        <p class="text-xl mb-10 max-w-3xl mx-auto text-gray-700">Navigate California's complex solar landscape, NEM 3.0, and rising utility rates with unbiased data and exact calculations.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="/tools/nem-3-calculator" class="rounded bg-[var(--accent-primary)] px-6 py-3 font-medium text-white hover:bg-[var(--accent-secondary)] transition-colors">NEM 3.0 Calculator</a>
+          <a href="/tools/battery-roi" class="rounded border border-[var(--accent-primary)] text-[var(--accent-primary)] px-6 py-3 font-medium hover:bg-gray-100 transition-colors">Battery ROI Tool</a>
+        </div>
+      </div>
+    </section>
+
+    {/* The NEM 3.0 Reality Check */}
+    <section class="py-16 px-4 bg-white border-t border-b border-gray-200">
+      <div class="max-w-4xl mx-auto prose">
+        <h2 class="text-center">The NEM 3.0 Reality Check</h2>
+        <p class="text-center text-lg mb-8">Solar in California changed fundamentally in 2023. Here is the truth without the sales pitch.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h3>Solar Only = Slow ROI</h3>
+            <p>Under NEM 3.0, utilities (PG&E, SCE, SDG&E) buy back your excess solar at a fraction of what they charge. A solar-only system can now take 10-12 years to pay for itself.</p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h3>Batteries are Mandatory</h3>
+            <p>To see real savings, you must store your midday solar power and use it during peak evening hours (4 PM - 9 PM) when rates exceed $0.50/kWh. This brings ROI back to 6-8 years.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Reference Library Highlight */}
+    <section class="py-16 px-4 bg-[var(--bg-primary)]">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-10">California Solar Library</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <a href="/reference/nem-3-0-explained" class="block bg-white p-6 rounded shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-bold mb-2">NEM 3.0 Explained</h3>
+            <p class="text-sm text-gray-600">The definitive guide to Net Billing Tariff and how it impacts your bill.</p>
+          </a>
+          <a href="/reference/pg-e-solar-rates-guide" class="block bg-white p-6 rounded shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-bold mb-2">PG&E Rates Guide</h3>
+            <p class="text-sm text-gray-600">Decoding E-ELEC vs EV2-A for solar owners.</p>
+          </a>
+          <a href="/reference/california-solar-tax-credit-2024" class="block bg-white p-6 rounded shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="font-bold mb-2">Tax Credits</h3>
+            <p class="text-sm text-gray-600">How to claim the 30% federal ITC and SGIP rebates.</p>
+          </a>
+        </div>
+        <div class="text-center mt-8">
+          <a href="/reference" class="text-[var(--interactive)] hover:underline font-medium">View all 15+ reference guides &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    {/* Capture Form Section */}
+    <section class="py-16 px-4 bg-white">
+      <div class="max-w-md mx-auto">
+        <h2 class="text-2xl font-bold text-center mb-6">Get Rate Updates</h2>
+        <p class="text-center text-gray-600 mb-6">California utility rates change constantly. Subscribe to our newsletter to stay ahead of PG&E, SCE, and SDG&E hikes.</p>
+        <CaptureForm form="newsletter" submitLabel="Subscribe" />
+      </div>
+    </section>
+  </main>
+</Layout>

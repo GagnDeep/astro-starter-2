@@ -1,0 +1,89 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  title: "Solar Provider Comparison",
+  page_description: "Compare top solar equipment and financing options in California.",
+  no_index: false,
+};
+---
+
+<Layout title={seo.title || "Solar Provider Comparison"} seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>Solar Comparison Guide</h1>
+    <p>Navigating the options for going solar in California.</p>
+
+    <h2>Inverters: Enphase vs SolarEdge vs Tesla</h2>
+    <table class="w-full text-left tabular-nums">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Technology</th>
+          <th>Pros</th>
+          <th>Cons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Enphase</td>
+          <td>Microinverter</td>
+          <td>No single point of failure, easy expansion, great for shaded roofs.</td>
+          <td>Slightly higher upfront cost.</td>
+        </tr>
+        <tr>
+          <td>SolarEdge</td>
+          <td>String + Optimizers</td>
+          <td>Highly efficient DC coupling, great battery integration.</td>
+          <td>Central inverter failure takes down whole system.</td>
+        </tr>
+        <tr>
+          <td>Tesla</td>
+          <td>String</td>
+          <td>Integrated ecosystem with Powerwall, sleek aesthetic.</td>
+          <td>String-level optimization handles shading poorly compared to microinverters.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Batteries: Powerwall 3 vs Enphase 5P</h2>
+    <table class="w-full text-left tabular-nums">
+      <thead>
+        <tr>
+          <th>Spec</th>
+          <th>Tesla Powerwall 3</th>
+          <th>Enphase IQ Battery 5P</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Capacity</td>
+          <td>13.5 kWh</td>
+          <td>5.0 kWh</td>
+        </tr>
+        <tr>
+          <td>Continuous Power</td>
+          <td>11.5 kW</td>
+          <td>3.84 kW</td>
+        </tr>
+        <tr>
+          <td>Chemistry</td>
+          <td>LFP (Lithium Iron Phosphate)</td>
+          <td>LFP</td>
+        </tr>
+        <tr>
+          <td>Best For</td>
+          <td>Whole home backup, high power loads (HVAC).</td>
+          <td>Modular sizing, pairing with Enphase microinverters.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Financing: Buy vs Loan vs Lease/PPA</h2>
+    <p>Under NEM 3.0, the financial vehicle you choose heavily impacts your long-term returns.</p>
+    <ul>
+      <li><strong>Cash Purchase:</strong> Best ROI. You own the system and claim the 30% tax credit. Payback in 6-8 years.</li>
+      <li><strong>Solar Loan:</strong> Good ROI if rates are low. You own the system and claim the tax credit. Beware of high dealer fees (often 20-30% hidden in the principal).</li>
+      <li><strong>Lease/PPA:</strong> Easiest entry ($0 down), but worst long-term ROI. You do NOT get the tax credit. Under NEM 3.0, ensure the PPA includes a battery, otherwise savings are minimal.</li>
+    </ul>
+  </div>
+</Layout>

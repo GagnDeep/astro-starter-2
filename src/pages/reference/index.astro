@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const pages = await getCollection("reference");
+---
+
+<Layout title="Solar">
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>Reference Library</h1>
+    <ul>
+      {pages.map((page) => (
+        <li>
+          <a href={`/reference/${page.id}`}>{page.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

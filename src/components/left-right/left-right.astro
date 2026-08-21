@@ -47,7 +47,7 @@ const imageSrc = images[image.image_path]?.default ?? image.image_path;
         button?.link && (
           <a
             href={button.link}
-            class="mt-2 inline-block w-fit rounded-lg bg-blue-600 px-6 py-3 text-white font-medium hover:bg-blue-700 transition-colors">
+            class="mt-2 inline-block w-fit rounded-lg bg-[var(--interactive)] px-6 py-3 text-white font-medium hover:bg-[var(--accent-secondary)] transition-colors">
             <span data-editable="text" data-prop="button.text">
               {button.text}
             </span>

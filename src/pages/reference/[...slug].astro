@@ -1,0 +1,27 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+import { render } from "astro:content";
+
+export interface Props {
+  page: CollectionEntry<"reference">;
+}
+
+export async function getStaticPaths() {
+  const pages = await getCollection("reference");
+  return pages.map((page) => ({
+    params: { slug: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<Layout title={page.data.title} seo={page.data.seo}>
+  <article class="max-w-4xl mx-auto px-4 py-16 prose">
+    <Content components={{ CaptureForm }} />
+  </article>
+</Layout>

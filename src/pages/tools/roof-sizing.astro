@@ -1,0 +1,85 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const seo: any = {
+  page_description: "Calculate how many solar panels can fit on your roof.",
+  no_index: false,
+};
+---
+
+<Layout title={seo.title || "Solar"} seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>Roof Sizing Calculator</h1>
+    <p>Estimate how many solar panels you can physically fit on your available roof space.</p>
+
+    <noscript>
+      <div class="bg-gray-100 p-6 rounded-lg mb-8">
+        <h3>Roof Sizing Logic (No-JS Fallback)</h3>
+        <p>Modern residential solar panels (around 400W) measure roughly 66 by 40 inches. That's about 18 square feet per panel.</p>
+        <p><strong>Example:</strong></p>
+        <ul>
+          <li>Unshaded South/West facing roof space: 500 sq ft</li>
+          <li>Account for fire setbacks (approx 20% loss): 400 sq ft usable</li>
+          <li>Divide by 18 sq ft per panel: ~22 panels</li>
+          <li>22 panels * 400W = 8.8 kW system size.</li>
+        </ul>
+      </div>
+    </noscript>
+
+    <div id="calculator" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8 tabular-nums">
+      <form id="sizing-calc-form" class="space-y-4">
+        <div>
+          <label for="roof-sqft" class="block text-sm font-medium mb-1">Estimated Unshaded Roof Area (Square Feet)</label>
+          <input type="number" id="roof-sqft" name="roof-sqft" value="600" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-[var(--interactive)] focus:outline-none focus:ring-1 focus:ring-[var(--interactive)]" />
+        </div>
+        <div>
+          <label for="panel-wattage" class="block text-sm font-medium mb-1">Panel Wattage (Typical 400W)</label>
+          <input type="number" id="panel-wattage" name="panel-wattage" value="400" class="w-full rounded border border-gray-300 px-3 py-2 focus:border-[var(--interactive)] focus:outline-none focus:ring-1 focus:ring-[var(--interactive)]" />
+        </div>
+        <button type="button" id="calc-btn" class="rounded bg-[var(--accent-primary)] px-5 py-2.5 font-medium text-white hover:bg-[var(--accent-secondary)]">Estimate System Size</button>
+      </form>
+
+      <div id="results" class="mt-8 hidden">
+        <h3 class="text-xl font-semibold mb-4">Estimated Results</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-gray-50 p-4 rounded border border-gray-200">
+            <p class="text-sm text-gray-500 mb-1">Max Panels (Accounting for setbacks)</p>
+            <p class="text-2xl font-bold text-[var(--accent-primary)]" id="res-panels">--</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded border border-gray-200">
+            <p class="text-sm text-gray-500 mb-1">Max System Size</p>
+            <p class="text-2xl font-bold" id="res-sys-size">--</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('calc-btn')?.addEventListener('click', () => {
+        const sqftInput = document.getElementById('roof-sqft') as HTMLInputElement;
+        const wattageInput = document.getElementById('panel-wattage') as HTMLInputElement;
+
+        const sqft = parseFloat(sqftInput.value) || 0;
+        const wattage = parseFloat(wattageInput.value) || 0;
+
+        // CA Fire code requires 3ft setbacks from ridges and some edges.
+        // A rough heuristic is 75% usable space for a simple roof.
+        const usableSqft = sqft * 0.75;
+
+        // Standard panel is ~18 sqft
+        const numPanels = Math.floor(usableSqft / 18);
+        const sysSizeKw = (numPanels * wattage) / 1000;
+
+        const resultsDiv = document.getElementById('results');
+        const resPanels = document.getElementById('res-panels');
+        const resSysSize = document.getElementById('res-sys-size');
+
+        if (resultsDiv && resPanels && resSysSize) {
+          resultsDiv.classList.remove('hidden');
+          resPanels.textContent = `${numPanels}`;
+          resSysSize.textContent = `${sysSizeKw.toFixed(1)} kW`;
+        }
+      });
+    </script>
+  </div>
+</Layout>

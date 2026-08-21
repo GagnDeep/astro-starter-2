@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  title: "Solar Pricing in California",
+  page_description: "Real, unfiltered solar pricing data for California homeowners.",
+  no_index: false,
+};
+---
+
+<Layout title={seo?.title || "Solar"} seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>California Solar Pricing Guide 2024</h1>
+    <p>We believe in transparent pricing. Here is what you should actually expect to pay for a solar and battery system in California right now.</p>
+
+    <h2>Average Cost Per Watt (Solar Only)</h2>
+    <p>In California, the fair market price for a standard residential solar installation (before the 30% tax credit) is between <strong>$2.70 and $3.50 per watt</strong>.</p>
+    <ul class="tabular-nums">
+      <li><strong>5 kW System:</strong> $13,500 - $17,500</li>
+      <li><strong>8 kW System:</strong> $21,600 - $28,000</li>
+      <li><strong>12 kW System:</strong> $32,400 - $42,000</li>
+    </ul>
+
+    <h2>Battery Pricing (Mandatory for NEM 3.0)</h2>
+    <p>Batteries are expensive but necessary to achieve a reasonable ROI under the new Net Billing Tariff. Prices below are fully installed.</p>
+    <ul class="tabular-nums">
+      <li><strong>1x Tesla Powerwall 3 (13.5 kWh):</strong> ~$13,500 - $15,500</li>
+      <li><strong>2x Tesla Powerwalls (27.0 kWh):</strong> ~$22,000 - $25,000</li>
+      <li><strong>Enphase IQ 5P (5.0 kWh):</strong> ~$5,500 - $6,500 per unit</li>
+    </ul>
+
+    <h2>Example NEM 3.0 System Quote</h2>
+    <p>A typical California home with a $250/month electric bill requires a system similar to this:</p>
+    <table class="w-full tabular-nums text-left border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="p-2 border">Item</th>
+          <th class="p-2 border">Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-2 border">7.2 kW Solar Array (18 x 400W panels @ $3.00/W)</td>
+          <td class="p-2 border">$21,600</td>
+        </tr>
+        <tr>
+          <td class="p-2 border">1x Tesla Powerwall 3</td>
+          <td class="p-2 border">$14,500</td>
+        </tr>
+        <tr class="font-bold">
+          <td class="p-2 border">Gross System Cost</td>
+          <td class="p-2 border">$36,100</td>
+        </tr>
+        <tr class="text-[var(--accent-primary)]">
+          <td class="p-2 border">Federal ITC (30%)</td>
+          <td class="p-2 border">-$10,830</td>
+        </tr>
+        <tr class="font-bold text-xl">
+          <td class="p-2 border">Net Cost</td>
+          <td class="p-2 border">$25,270</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="bg-gray-50 p-6 mt-8 rounded border border-gray-200">
+      <h3>Beware the "Dealer Fee"</h3>
+      <p>If you are financing your system through a solar loan (e.g., GoodLeap, Mosaic) with a very low interest rate (like 3.99%), the installer is paying a "dealer fee" to the bank, which is passed on to you. This fee can add 20% to 35% to the gross cost of the system. <strong>Always ask for the cash price vs the financed price.</strong></p>
+    </div>
+  </div>
+</Layout>

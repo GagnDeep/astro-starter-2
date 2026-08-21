@@ -1,48 +1,56 @@
 {
   "header": {
     "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "CaliforSolar Logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/tools/nem-3-calculator",
+        "text": "NEM 3.0 Calculator"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/reference/",
+        "text": "Reference Library"
+      },
+      {
+        "link": "/pricing",
+        "text": "Pricing"
+      },
+      {
+        "link": "/faq",
+        "text": "FAQ"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
     "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "CaliforSolar Logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "CaliforSolar. All rights reserved.",
     "links": [
       {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/legal",
+        "text": "Legal & Disclaimers"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/taxonomy/",
+        "text": "Regional Guides"
+      },
+      {
+        "link": "/glossary/",
+        "text": "Solar Glossary"
+      },
+      {
+        "link": "/tools/roof-sizing",
+        "text": "Roof Sizing Tool"
       }
     ]
   }

@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const seo = {
+  title: "Legal & Disclaimers",
+  page_description: "Legal disclaimers regarding our solar calculators and financial estimates.",
+  no_index: false,
+};
+---
+
+<Layout title={seo?.title || "Solar"} seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 py-16 prose">
+    <h1>Legal & Disclaimers</h1>
+
+    <h2>Calculators and Financial Estimates</h2>
+    <p>The calculators, tools, and mathematical estimates provided on this website are for informational and educational purposes only. They do not constitute financial, tax, or legal advice.</p>
+    <p>Utility rates (including PG&E, SCE, and SDG&E), time-of-use (TOU) schedules, and export values under the Net Billing Tariff (NEM 3.0) are highly volatile and subject to change without notice by the California Public Utilities Commission (CPUC). While we strive for accuracy, the results from our calculators are estimations based on generalized usage curves and historical rate data.</p>
+
+    <h2>Tax Advice Disclaimer</h2>
+    <p>We are not tax professionals. Information regarding the federal Investment Tax Credit (ITC) or state rebates (like SGIP) is provided for context. You should consult a qualified CPA or tax advisor to determine your eligibility for any tax credits or financial incentives.</p>
+
+    <h2>Affiliate & Installer Network</h2>
+    <p>We may partner with local California solar installers. If you request a quote through our platform, your information is routed to vetted professionals in our network. We receive compensation for these connections, which allows us to keep our educational resources and tools free to use.</p>
+  </div>
+</Layout>
