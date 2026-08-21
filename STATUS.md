@@ -11,6 +11,9 @@
 - Checked types and successfully compiled (`pnpm check` and `pnpm build` pass).
 - Rewrote 12 blog posts and 15 reference pages entirely to deepen their strategic rigor, including worked examples, margin analysis, compliance burdens, edge cases, and FAQ drawn from search data.
 - Plumbed accurate `seo` block frontmatter directly into JSON-LD and page metadata pipelines for SEO adherence.
+- Extended the UI and context logic for the yield and mortgage calculators.
+- Generated new deep taxonomies (Student Lets, Holiday Lets).
+- Scripted bulk internal linking blocks onto all blog entities.
 
 ## Gap Analysis (Resolved)
 - Found missing or stale placeholder routing and replaced it with full deep-linked structure.
@@ -19,4 +22,3 @@
 
 ## What remains / To tackle next run
 - Add further live API hooks for calculators, pulling live swap rates.
-- Create more specific taxonomies (e.g., student lets, holiday lets).
