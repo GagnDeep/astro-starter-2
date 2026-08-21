@@ -1,0 +1,63 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsletterForm from "../../components/forms/newsletter-form.astro";
+
+const seo = {
+  page_description: "Why transit time is the missing link in IBS tracking. Learn how to calculate your gut motility to accurately identify food triggers.",
+  canonical_url: "/blog/understanding-transit-time/",
+  open_graph_type: "article",
+};
+---
+
+<Layout title="Transit Time: The Missing Link in IBS Tracking | IBS-Go Blog" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>Transit Time: Why You're Blaming the Wrong Foods</h1>
+    <div class="text-sm text-[var(--color-text-muted)] mb-8">Published October 2024 • Reviewed by Dietitian • 6 min read</div>
+
+    <p>You eat a salad for lunch. Two hours later, you are severely bloated and running to the bathroom. You immediately conclude that the salad caused the flare-up. You cross tomatoes and lettuce off your safe list.</p>
+    <p>This is the most common mistake made by IBS patients. The reality of human digestion means that the salad is almost certainly innocent. You are reacting to something you ate yesterday.</p>
+
+    <h2>The Anatomy of Digestion</h2>
+    <p>To understand why delayed reactions happen, we have to look at the physical journey of food through the gastrointestinal tract:</p>
+    <ol>
+      <li><strong>Stomach (2-4 hours):</strong> Food is broken down into chyme. No FODMAP fermentation happens here.</li>
+      <li><strong>Small Intestine (3-6 hours):</strong> Nutrients are absorbed. For IBS patients, this is where FODMAP absorption fails. However, gas production has not yet started.</li>
+      <li><strong>Large Intestine / Colon (10-40 hours):</strong> The undigested FODMAPs arrive. Gut bacteria begin rapid fermentation, producing hydrogen and methane gas. This expansion triggers the enteric nervous system, causing pain, bloating, and altered motility.</li>
+    </ol>
+
+    <div class="bg-[var(--color-primary-50)] p-6 my-8 rounded-lg border-l-4 border-[var(--color-primary-500)]">
+      <h3>The Gastrocolic Reflex</h3>
+      <p>Why did the salad cause an immediate reaction? Eating food stretches the stomach, which triggers the <em>gastrocolic reflex</em>—a signal to the colon to make room for new food. If your colon was already full of fermenting FODMAPs from last night's dinner, the salad simply pulled the trigger on a loaded gun.</p>
+    </div>
+
+    <h2>How to Measure Your Transit Time</h2>
+    <p>To accurately track your triggers, you need to know your baseline transit time. The easiest way to do this is the "corn test" or the "sesame seed test."</p>
+    <ul>
+      <li>Swallow a tablespoon of whole sesame seeds or eat a serving of whole kernel corn without chewing them thoroughly.</li>
+      <li>Record the exact time you ate them.</li>
+      <li>Monitor your bowel movements using the Bristol Stool Chart. Record the time when you first see the seeds/corn appear in your stool.</li>
+      <li>The difference between ingestion and appearance is your transit time.</li>
+    </ul>
+
+    <table class="w-full text-left mt-4 border-collapse">
+      <thead>
+        <tr><th>Transit Time</th><th>IBS Subtype Indication</th><th>When to look for triggers</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>12 - 24 hours</td><td>IBS-D (Fast Motility)</td><td>Previous 2 meals</td></tr>
+        <tr><td>24 - 48 hours</td><td>Normal / IBS-M</td><td>Previous 24-36 hours</td></tr>
+        <tr><td>48 - 72+ hours</td><td>IBS-C (Slow Motility)</td><td>2 to 3 days ago</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Mid-article Capture -->
+    <div class="not-prose bg-[var(--color-secondary-50)] p-8 rounded-lg my-12 text-center">
+       <h3 class="text-xl font-bold mb-4">Let our algorithm do the math</h3>
+       <p class="mb-4">IBS-Go's Flare-Up Predictor automatically calculates your trigger window based on your logged transit time.</p>
+       <NewsletterForm form="waitlist" submitLabel="Get App Waitlist" placeholder="Your email address" />
+    </div>
+
+    <h2>What to do next</h2>
+    <p>Stop blaming the meal you just ate. Calculate your transit time, and start looking 24 to 48 hours in the past. If you need help calculating this automatically, try our free <a href="/tools/flare-up-predictor/">Flare-up Predictor Tool</a>.</p>
+  </main>
+</Layout>

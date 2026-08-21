@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Comparing Cara Care and IBS-Go. Find out which gut health tracker is best for managing your low-FODMAP diet and identifying symptom triggers.",
+  canonical_url: "/compare/cara-care-alternative/",
+  open_graph_type: "website",
+};
+---
+
+<Layout title="Cara Care Alternative | IBS-Go" seo={seo}>
+  <main class="container-narrow py-16 prose prose-lg">
+    <h1>IBS-Go vs. Cara Care</h1>
+    <p class="lead">Cara Care is a beautiful, medicalized app for overall GI issues. IBS-Go is laser-focused on solving the FODMAP puzzle.</p>
+
+    <h2>Where Cara Care Excels</h2>
+    <p>Cara Care is fantastic for general digestive health tracking. It covers a wide range of metrics, including mood, skin, and sleep, making it great for holistic health overviews. However, for users specifically trying to navigate the complexities of the low-FODMAP elimination diet, it can feel too broad.</p>
+
+    <h2>The IBS-Go Difference</h2>
+    <p>IBS-Go is built specifically for the FODMAP protocol. If you eat 1/4 cup of sweet potato and a handful of blackberries, Cara Care logs the food. IBS-Go logs the food, calculates that you just stacked Mannitol and Sorbitol, and warns you of a potential flare-up in 24 hours.</p>
+
+    <table class="w-full text-left">
+      <thead>
+        <tr><th>Feature</th><th>IBS-Go</th><th>Cara Care</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Focus</td><td>Strict Low-FODMAP Analysis</td><td>Holistic GI & Mood Tracking</td></tr>
+        <tr><td>Stacking Alerts</td><td class="text-green-600">Yes</td><td class="text-red-600">No</td></tr>
+        <tr><td>Data Input Speed</td><td class="text-green-600">Rapid (FODMAP focused)</td><td class="text-orange-600">Slower (Many variables)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="not-prose bg-[var(--color-primary-50)] p-8 rounded-lg mt-12 border border-[var(--color-primary-200)]">
+      <h3 class="text-xl font-bold mb-4">Focus on what triggers you.</h3>
+      <CaptureForm form="waitlist" submitLabel="Get IBS-Go" />
+    </div>
+  </main>
+</Layout>
