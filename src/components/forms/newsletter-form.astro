@@ -1,78 +1,15 @@
 ---
-/**
- * Inline email capture — newsletter sign-up or waitlist. Same wiring as
- * `capture-form.astro`, one field and a button on a single row.
- *
- * Pass `form={capture.forms.waitlist}` to file these under a different label.
- */
-import { capture } from "../../../capture.config";
-import { actionUrl } from "../../lib/capture";
-
-interface Props {
-  form?: string;
-  submitLabel?: string;
-  placeholder?: string;
-  successMessage?: string;
-  class?: string;
-}
-
-const {
-  form = capture.forms.newsletter,
-  submitLabel = "Subscribe",
-  placeholder = "you@example.com",
-  successMessage = "You're on the list — check your inbox.",
-  class: className = "",
-} = Astro.props;
-
-const thanks = new URL(capture.thanksUrl, Astro.site ?? Astro.url).toString();
+import CaptureForm from './capture-form.astro';
 ---
-
-<form
-  data-capture={form}
-  data-capture-success={successMessage}
-  method="POST"
-  action={actionUrl(form)}
-  class={className}
->
-  <input type="hidden" name="key" value={capture.publicKey} />
-  <input type="hidden" name="redirect" value={thanks} />
-  {
-    capture.honeypotField && (
-      <div class="hidden" aria-hidden="true">
-        <label for={`hp-${form}`}>Leave this field empty</label>
-        <input id={`hp-${form}`} name={capture.honeypotField} tabindex="-1" autocomplete="off" />
-      </div>
-    )
-  }
-
-  <div class="flex flex-col gap-2 sm:flex-row">
-    <label for={`email-${form}`} class="sr-only">Email</label>
-    <input
-      id={`email-${form}`}
-      name="email"
-      type="email"
-      autocomplete="email"
-      required
-      placeholder={placeholder}
-      class="w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
-    />
-    <button
-      type="submit"
-      class="shrink-0 rounded bg-blue-600 px-5 py-2.5 font-medium text-white hover:bg-blue-700 disabled:opacity-60"
-    >
-      {submitLabel}
-    </button>
-  </div>
-
-  <p
-    data-capture-status
-    role="status"
-    aria-live="polite"
-    class="mt-2 text-sm text-gray-600 data-[state=error]:text-red-700 data-[state=success]:text-green-700"
-  >
-  </p>
-</form>
-
-<script>
-  import "../../scripts/capture-forms";
-</script>
+<div class="bg-surface p-6 rounded border border-border text-center max-w-lg mx-auto my-8">
+  <h3 class="text-xl font-bold mb-2">Get Document Conversion Tips</h3>
+  <p class="text-sm text-text-muted mb-4">Join our newsletter for the latest guides and updates.</p>
+  <CaptureForm formLabel="newsletter">
+    <div class="flex flex-col sm:flex-row gap-2">
+      <input type="email" name="email" placeholder="Your email address" required class="flex-1 px-4 py-2 border border-border rounded focus:outline-none focus:border-brand" />
+      <button type="submit" class="bg-brand hover:bg-brand-hover text-white font-medium py-2 px-6 rounded transition-colors">
+        Subscribe
+      </button>
+    </div>
+  </CaptureForm>
+</div>

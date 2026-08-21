@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CaptureForm from '../components/forms/capture-form.astro';
+---
+<Layout title="Free Online Document Converter" seo={{ page_description: "Convert PDF to Word, JPG, Excel and more for free. Fast, secure, and no installation required." }}>
+  <div class="bg-surface border-b border-border py-20 px-4 text-center">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-4xl sm:text-5xl font-bold text-text-main mb-6">Free Online Document Converter</h1>
+      <p class="text-xl text-text-muted mb-10">Convert PDF to Word, merge PDFs, or turn images into documents securely.</p>
+
+      <div class="bg-white p-8 rounded-lg shadow-sm border border-border max-w-xl mx-auto">
+        <h2 class="text-2xl font-semibold mb-4">Start Converting Now</h2>
+        <a href="/tools/pdf-to-word" class="inline-block bg-brand hover:bg-brand-hover text-white font-medium py-3 px-8 rounded transition-colors text-lg">
+          Explore Tools
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 px-4">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div>
+          <h3 class="text-xl font-bold mb-2">100% Free</h3>
+          <p class="text-text-muted">No hidden fees, subscriptions, or watermarks.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Secure</h3>
+          <p class="text-text-muted">Files are processed via HTTPS and deleted automatically.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Fast</h3>
+          <p class="text-text-muted">Get your converted documents in seconds.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-surface py-16 px-4">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-3xl font-bold text-center mb-12">Popular Tools</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/tools/pdf-to-word" class="block bg-white p-6 rounded shadow-sm border border-border hover:border-brand transition-colors text-center">
+          <span class="block text-lg font-semibold text-brand mb-2">PDF to Word</span>
+          <span class="text-sm text-text-muted">Convert PDFs to editable DOCX</span>
+        </a>
+        <a href="/tools/word-to-pdf" class="block bg-white p-6 rounded shadow-sm border border-border hover:border-brand transition-colors text-center">
+          <span class="block text-lg font-semibold text-brand mb-2">Word to PDF</span>
+          <span class="text-sm text-text-muted">Convert DOCX to PDF</span>
+        </a>
+        <a href="/tools/jpg-to-pdf" class="block bg-white p-6 rounded shadow-sm border border-border hover:border-brand transition-colors text-center">
+          <span class="block text-lg font-semibold text-brand mb-2">JPG to PDF</span>
+          <span class="text-sm text-text-muted">Turn images into PDF documents</span>
+        </a>
+        <a href="/tools/merge-pdf" class="block bg-white p-6 rounded shadow-sm border border-border hover:border-brand transition-colors text-center">
+          <span class="block text-lg font-semibold text-brand mb-2">Merge PDF</span>
+          <span class="text-sm text-text-muted">Combine multiple PDFs into one</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 px-4">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl font-bold mb-6">Get Tips & Tricks</h2>
+      <p class="text-text-muted mb-8">Join our newsletter to get guides on document management.</p>
+      <div class="max-w-md mx-auto">
+        <CaptureForm formLabel="newsletter">
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input type="email" name="email" placeholder="Your email address" required class="flex-1 px-4 py-2 border border-border rounded focus:outline-none focus:border-brand" />
+            <button type="submit" class="bg-brand hover:bg-brand-hover text-white font-medium py-2 px-6 rounded transition-colors">
+              Subscribe
+            </button>
+          </div>
+        </CaptureForm>
+      </div>
+    </div>
+  </div>
+</Layout>

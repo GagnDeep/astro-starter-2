@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const formats = await getCollection('formats');
+  return formats.map(format => ({
+    params: { slug: format.id },
+    props: { format },
+  }));
+}
+
+import NewsletterForm from '../../components/forms/newsletter-form.astro';
+
+const { format } = Astro.props;
+const { Content } = await render(format);
+---
+<Layout title={format.data.title} seo={format.data.seo}>
+  <article class="prose mx-auto px-4 py-16">
+    <Content />
+
+    <hr class="my-12" />
+    <NewsletterForm />
+
+    <div class="mt-8 pt-8 border-t border-border">
+      <h3>Explore other formats:</h3>
+      <a href="/formats/">Back to Formats Library</a>
+    </div>
+  </article>
+</Layout>

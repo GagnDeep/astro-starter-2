@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const formats = await getCollection('formats');
+---
+<Layout title="File Formats Reference Library">
+  <div class="mx-auto max-w-4xl px-4 py-16">
+    <h1 class="text-4xl font-bold mb-8">File Formats Library</h1>
+    <p class="mb-8 text-text-muted">Comprehensive guides to every digital document and image format.</p>
+    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      {formats.map(format => (
+        <a href={`/formats/${format.id}/`} class="block p-6 bg-surface border border-border rounded shadow-sm hover:shadow-md hover:border-brand transition-all">
+          <h2 class="text-xl font-semibold text-brand">{format.data.title}</h2>
+          <p class="mt-2 text-sm text-text-muted">{format.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
