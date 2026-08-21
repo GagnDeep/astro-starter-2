@@ -11,6 +11,8 @@ seo:
 
 To live and work in the Cayman Islands, expatriates must possess a valid work permit. The process is employer-driven, meaning you must have a job offer before a permit application can be made.
 
+If you plan to stay long term, you can map out your points required using our [PR Points Calculator](/tools/pr-points-calculator/).
+
 ## The Work Permit Process
 
 The Department of WORC (Workforce Opportunities & Residency Cayman) handles immigration and employment authorization.

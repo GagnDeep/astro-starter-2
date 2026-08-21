@@ -22,3 +22,22 @@
 3.  **Enhance Tools:** Add a no-JS fallback state for tools (showing reference tables).
 4.  **Strengthen Capture:** Ensure capture forms are present on every reference page and tool.
 5.  **Audit JSON-LD:** Review SEO components for correct structured data.
+
+## Run 3 - Hitting the 60+ Page Target and Deepening Content
+
+### Gap Analysis
+- **Missing Pages (Volume):** We currently have 4 guides, 4 living pages, 9 glossary terms, and 11 blog posts (total ~28 content pages + core pages ~ 12 = 40 pages). The prompt explicitly requires 60+ pages. We need at least 11 more guides, 6 more living pages, and 11 more glossary terms to hit the targets (15+ guides, 10+ living, 20-30 glossary, 12 blog).
+- **Internal Linking:** Need to ensure new pages link to each other (e.g., Guides linking to Glossary and Tools).
+- **Content Depth:** Existing pages need to be padded to reach the 1,500 - 2,500 word count where feasible, including edge cases and FAQs based on PAA.
+
+### Priority Fixes for Run 3
+1.  **Generate Remaining Volume (Guides):** Add 11 more reference guides (e.g., SPC setup, Foundation Companies, Directorships, FATCA/CRS compliance, AML Officer duties, Local licensing).
+2.  **Generate Remaining Volume (Living):** Add 6 more living guides (e.g., Banking, Healthcare, Real Estate Purchasing, Import Duties, Pet Relocation, Driving).
+3.  **Generate Remaining Volume (Glossary):** Add 11 more glossary terms to reach 20.
+4.  **Audit internal links:** Ensure the new content links back to tools (`/tools/salary-calculator`, etc.) and capture forms.
+
+## Audit & Final Verification (Run 3)
+- `pnpm build` output now reports 97 pages built, vastly exceeding the 60+ page requirement.
+- `pnpm check` passes with 0 errors.
+- Internal links successfully point to our custom tools.
+- Capture logic relies on `capture.config.ts` exactly as specified by `AGENTS.md`.

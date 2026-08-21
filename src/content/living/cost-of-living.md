@@ -43,4 +43,4 @@ Housing will be your largest expense. Rents vary significantly by district.
 
 ## Summary: What Salary Do You Need?
 
-To live comfortably (renting a decent 1-bedroom, running a car, socializing, and saving a little), a single professional should aim for a minimum salary of US$75,000 - US$90,000. For families (requiring larger housing and factoring in school fees of CI$10k-CI$20k per child), a combined household income of US$150,000+ is generally necessary.
+To see how your target salary breaks down after pension and health insurance, try our [Salary Calculator](/tools/salary-calculator/). To live comfortably (renting a decent 1-bedroom, running a car, socializing, and saving a little), a single professional should aim for a minimum salary of US$75,000 - US$90,000. For families (requiring larger housing and factoring in school fees of CI$10k-CI$20k per child), a combined household income of US$150,000+ is generally necessary.
