@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import NewsletterForm from '../../components/forms/newsletter-form.astro';
+import { capture } from '../../../capture.config';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id.split('.')[0] },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await (await import('astro:content')).render(post);
+---
+
+<Layout title={`${post.data.title} | Institute of Property`} post_hero={post.data.post_hero}>
+  <article class="py-16 px-6 sm:px-12 max-w-3xl mx-auto prose prose-slate">
+    <div class="not-prose mb-10 text-center border-b border-border pb-10">
+      <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+      <p class="text-text-muted">By {post.data.post_hero.author} • {new Date(post.data.post_hero.date).toLocaleDateString()}</p>
+    </div>
+
+    <Content />
+
+    <div class="mt-16 bg-primary text-surface p-8 rounded-lg not-prose">
+      <h3 class="text-xl font-bold mb-4">Get analytical insights every week</h3>
+      <NewsletterForm form={capture.forms.newsletter} class="flex flex-col sm:flex-row gap-2" submitLabel="Subscribe" />
+    </div>
+  </article>
+</Layout>

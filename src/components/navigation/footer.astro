@@ -1,27 +1,43 @@
 ---
-import { footer } from "../../../data/navigation.json";
+import NewsletterForm from "../forms/newsletter-form.astro";
+import { capture } from "../../../capture.config";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
-
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+<footer class="bg-primary text-surface mt-auto py-12 px-6 sm:px-12">
+  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="md:col-span-2">
+      <h3 class="text-xl font-bold mb-4">Institute of Property</h3>
+      <p class="text-surface/70 mb-6 max-w-sm">
+        Data-driven property investment education. No hype, just mathematics and legal realities.
+      </p>
+      <div class="max-w-sm">
+        <NewsletterForm form={capture.forms.newsletter} submitLabel="Subscribe" placeholder="Weekly insights..." />
       </div>
     </div>
+
+    <div>
+      <h4 class="font-bold mb-4">Resources</h4>
+      <ul class="space-y-2 text-surface/70">
+        <li><a href="/tools/" class="hover:text-accent transition-colors">Calculators</a></li>
+        <li><a href="/reference/" class="hover:text-accent transition-colors">Reference Library</a></li>
+        <li><a href="/blog/" class="hover:text-accent transition-colors">Analysis Blog</a></li>
+        <li><a href="/glossary/" class="hover:text-accent transition-colors">Glossary</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-bold mb-4">Company</h4>
+      <ul class="space-y-2 text-surface/70">
+        <li><a href="/about/" class="hover:text-accent transition-colors">About Us</a></li>
+        <li><a href="/comparison/" class="hover:text-accent transition-colors">Strategies Compared</a></li>
+        <li><a href="/pricing/" class="hover:text-accent transition-colors">Courses</a></li>
+        <li><a href="/faq/" class="hover:text-accent transition-colors">FAQ</a></li>
+        <li><a href="/contact/" class="hover:text-accent transition-colors">Contact</a></li>
+        <li><a href="/legal/" class="hover:text-accent transition-colors">Legal & Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-5xl mx-auto mt-12 pt-8 border-t border-surface/20 text-surface/50 text-sm text-center md:text-left">
+    &copy; {new Date().getFullYear()} Institute of Property. All rights reserved.
   </div>
 </footer>

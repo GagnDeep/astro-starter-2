@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Stamp Duty Calculator | Institute of Property">
+  <div class="py-16 px-6 sm:px-12 bg-background min-h-screen">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4 text-center">Stamp Duty Calculator (BTL/Second Home)</h1>
+      <p class="text-center text-text-muted mb-10 max-w-2xl mx-auto">Includes the 3% additional property surcharge standard for investors.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card">
+          <form id="sdlt-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1" for="price">Purchase Price (£)</label>
+              <input type="number" id="price" class="input-field" value="250000" required>
+            </div>
+            <button type="submit" class="btn-primary w-full">Calculate</button>
+          </form>
+        </div>
+
+        <div class="card bg-primary text-surface flex flex-col justify-center items-center text-center">
+          <div id="results" class="hidden w-full">
+            <h3 class="text-xl font-medium text-surface/80 mb-2">Total SDLT Due</h3>
+            <p id="sdlt-result" class="text-5xl font-bold text-accent mb-6">£10,000</p>
+          </div>
+          <div id="initial-state" class="text-surface/60">
+            Enter your figures and click calculate.
+          </div>
+        </div>
+      </div>
+
+      <noscript>
+        <div class="mt-12 prose prose-slate max-w-none">
+          <h3>2024 Rates (Additional Property)</h3>
+          <ul>
+            <li>£0 to £250,000: 3%</li>
+            <li>£250,001 to £925,000: 8%</li>
+            <li>£925,001 to £1.5m: 13%</li>
+            <li>Over £1.5m: 15%</li>
+          </ul>
+        </div>
+      </noscript>
+    </div>
+  </div>
+
+  <script is:inline>
+    const form = document.getElementById('sdlt-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const p = parseFloat(document.getElementById('price').value);
+      let tax = 0;
+
+      if(p > 0) {
+        if(p <= 250000) {
+          tax = p * 0.03;
+        } else if (p <= 925000) {
+          tax = (250000 * 0.03) + ((p - 250000) * 0.08);
+        } else if (p <= 1500000) {
+          tax = (250000 * 0.03) + (675000 * 0.08) + ((p - 925000) * 0.13);
+        } else {
+          tax = (250000 * 0.03) + (675000 * 0.08) + (575000 * 0.13) + ((p - 1500000) * 0.15);
+        }
+
+        document.getElementById('sdlt-result').innerText = '£' + tax.toLocaleString('en-GB', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+        document.getElementById('initial-state').classList.add('hidden');
+        document.getElementById('results').classList.remove('hidden');
+      }
+    });
+  </script>
+</Layout>

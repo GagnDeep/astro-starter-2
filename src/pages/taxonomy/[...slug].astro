@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('taxonomy');
+  return pages.map(page => ({
+    params: { slug: page.id.split('.')[0] },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await (await import('astro:content')).render(page);
+---
+
+<Layout title={`${page.data.title} | Institute of Property`}>
+  <div class="py-16 px-6 sm:px-12 max-w-4xl mx-auto prose prose-slate">
+    <Content />
+  </div>
+</Layout>

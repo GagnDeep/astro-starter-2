@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaptureForm from '../../components/forms/capture-form.astro';
+import { capture } from '../../../capture.config';
+---
+
+<Layout title="Rental Yield Calculator | Institute of Property">
+  <div class="py-16 px-6 sm:px-12 bg-background min-h-screen">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4 text-center">Rental Yield Calculator</h1>
+      <p class="text-center text-text-muted mb-10 max-w-2xl mx-auto">Calculate your gross and net rental yield. Crucial for understanding the cash-generating ability of an asset.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Calculator Inputs (Island) -->
+        <div class="card">
+          <form id="yield-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1" for="price">Property Price (£)</label>
+              <input type="number" id="price" class="input-field" value="200000" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="rent">Monthly Rent (£)</label>
+              <input type="number" id="rent" class="input-field" value="1000" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="costs">Annual Costs (£)</label>
+              <input type="number" id="costs" class="input-field" value="1500" title="Insurance, maintenance, ground rent, management">
+            </div>
+            <button type="submit" class="btn-primary w-full">Calculate</button>
+          </form>
+        </div>
+
+        <!-- Calculator Results -->
+        <div class="card bg-primary text-surface flex flex-col justify-center items-center text-center">
+          <div id="results" class="hidden w-full">
+            <h3 class="text-xl font-medium text-surface/80 mb-2">Gross Yield</h3>
+            <p id="gross-yield" class="text-5xl font-bold text-accent mb-6">6.00%</p>
+
+            <h3 class="text-xl font-medium text-surface/80 mb-2">Net Yield</h3>
+            <p id="net-yield" class="text-5xl font-bold text-accent mb-6">5.25%</p>
+
+            <p class="text-sm text-surface/60 border-t border-surface/20 pt-4 mt-4">
+              *Net yield accounts for the operational costs you entered, but does not include mortgage interest or taxes.
+            </p>
+          </div>
+          <div id="initial-state" class="text-surface/60">
+            Enter your figures and click calculate.
+          </div>
+        </div>
+      </div>
+
+      <!-- Lead Gen -->
+      <div class="mt-16 max-w-2xl mx-auto card text-center">
+        <h3 class="text-xl font-bold mb-4">Want these results sent to your email?</h3>
+        <p class="text-text-muted mb-6">We'll send you a detailed breakdown and our guide on improving yield.</p>
+        <CaptureForm form={capture.forms.quote} submitLabel="Email me my results">
+          <input type="hidden" id="capture-gross" name="gross_yield" value="" />
+          <input type="hidden" id="capture-net" name="net_yield" value="" />
+          <div>
+             <label for="email" class="sr-only">Email</label>
+             <input id="email" name="email" type="email" autocomplete="email" required placeholder="your@email.com" class="input-field mb-4" />
+          </div>
+        </CaptureForm>
+      </div>
+
+      <!-- No-JS Fallback Explanation -->
+      <noscript>
+        <div class="mt-12 prose prose-slate max-w-none">
+          <h3>How to calculate yield manually</h3>
+          <p><strong>Gross Yield</strong> = (Monthly Rent * 12) / Property Price * 100</p>
+          <p><strong>Net Yield</strong> = ((Monthly Rent * 12) - Annual Costs) / Property Price * 100</p>
+        </div>
+      </noscript>
+
+    </div>
+  </div>
+
+  <script is:inline>
+    const form = document.getElementById('yield-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const price = parseFloat(document.getElementById('price').value);
+      const rent = parseFloat(document.getElementById('rent').value);
+      const costs = parseFloat(document.getElementById('costs').value) || 0;
+
+      if(price > 0 && rent > 0) {
+        const annualRent = rent * 12;
+        const gross = (annualRent / price) * 100;
+        const net = ((annualRent - costs) / price) * 100;
+
+        document.getElementById('gross-yield').innerText = gross.toFixed(2) + '%';
+        document.getElementById('net-yield').innerText = net.toFixed(2) + '%';
+
+        document.getElementById('capture-gross').value = gross.toFixed(2);
+        document.getElementById('capture-net').value = net.toFixed(2);
+
+        document.getElementById('initial-state').classList.add('hidden');
+        document.getElementById('results').classList.remove('hidden');
+      }
+    });
+  </script>
+</Layout>

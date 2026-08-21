@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CaptureForm from '../components/forms/capture-form.astro';
+import { capture } from '../../capture.config';
+---
+
+<Layout title="Pricing & Courses | Institute of Property">
+  <div class="py-16 px-6 sm:px-12 bg-background min-h-screen">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-4xl font-bold mb-4">Courses & Mentorship</h1>
+      <p class="text-lg text-text-muted mb-12 max-w-2xl mx-auto">Skip the hype. Learn the exact frameworks we use to analyze, structure, and acquire high-performing assets.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="card flex flex-col h-full border-border">
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-2">The Foundation</h3>
+            <p class="text-3xl font-bold mb-4">£495</p>
+            <p class="text-text-muted">For investors acquiring their first 1-3 properties.</p>
+          </div>
+          <ul class="text-left space-y-3 mb-8 flex-grow">
+            <li class="flex items-center gap-2"><span>✓</span> Deal analysis spreadsheets</li>
+            <li class="flex items-center gap-2"><span>✓</span> Tax structuring (Ltd vs Personal)</li>
+            <li class="flex items-center gap-2"><span>✓</span> Due diligence checklists</li>
+            <li class="flex items-center gap-2"><span>✓</span> Mortgage financing guide</li>
+          </ul>
+          <button class="btn-primary w-full" disabled>Enrollment Closed</button>
+        </div>
+
+        <div class="card flex flex-col h-full border-accent relative shadow-md">
+          <div class="absolute top-0 right-0 bg-accent text-surface text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">ADVANCED</div>
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-2">Portfolio Builder</h3>
+            <p class="text-3xl font-bold mb-4">Waitlist</p>
+            <p class="text-text-muted">For scaling to HMOs, Commercial, and Portfolio Refinancing.</p>
+          </div>
+          <ul class="text-left space-y-3 mb-8 flex-grow">
+            <li class="flex items-center gap-2"><span>✓</span> Advanced BRRRR modeling</li>
+            <li class="flex items-center gap-2"><span>✓</span> HMO licensing & compliance</li>
+            <li class="flex items-center gap-2"><span>✓</span> Bridging finance mechanics</li>
+            <li class="flex items-center gap-2"><span>✓</span> Commercial conversions</li>
+          </ul>
+
+          <CaptureForm form={capture.forms.waitlist} submitLabel="Join Waitlist" successMessage="You're on the list!">
+             <div>
+                <label for="email" class="sr-only">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="your@email.com" class="input-field mb-4" />
+             </div>
+          </CaptureForm>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

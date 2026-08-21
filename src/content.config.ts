@@ -32,6 +32,34 @@ const blogCollection = defineCollection({
   }),
 });
 
+const referenceCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/reference" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.string().or(z.date()),
+    seo: seoSchema,
+  }),
+});
+
+const taxonomyCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/taxonomy" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    seo: seoSchema,
+  }),
+});
+
+const glossaryCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  schema: z.object({
+    title: z.string(),
+    definition: z.string(),
+    seo: seoSchema,
+  }),
+});
+
 const pageSchema = z.object({
   title: z.string(),
   hero_block: z.any().optional(),
@@ -52,5 +80,8 @@ const pagesCollection = defineCollection({
 
 export const collections = {
   blog: blogCollection,
+  reference: referenceCollection,
+  taxonomy: taxonomyCollection,
+  glossary: glossaryCollection,
   pages: pagesCollection,
 };

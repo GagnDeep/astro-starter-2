@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const referencePages = await getCollection('reference');
+---
+
+<Layout title="Reference Library | Institute of Property">
+  <div class="py-16 px-6 sm:px-12 bg-background min-h-screen">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Reference Library</h1>
+      <p class="text-lg text-text-muted mb-10">Deep, analytical guides on the mechanics of UK property investment.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {referencePages.map(page => (
+          <a href={`/reference/${page.id.split('.')[0]}/`} class="card hover:shadow-md hover:border-accent transition-all">
+            <h3 class="font-semibold text-lg mb-2">{page.data.title}</h3>
+            <p class="text-sm text-text-muted">{page.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

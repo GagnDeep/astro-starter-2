@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NewsletterForm from '../components/forms/newsletter-form.astro';
+import { capture } from '../../capture.config';
+---
+
+<Layout title="Institute of Property | Data-Driven Property Investment Education">
+  <!-- Hero Section -->
+  <section class="bg-primary text-surface py-20 px-6 sm:px-12 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl sm:text-6xl font-bold mb-6 text-surface tracking-tight">
+        Data-Driven Property Investment Education
+      </h1>
+      <p class="text-xl sm:text-2xl text-border mb-10 max-w-2xl mx-auto font-serif">
+        We rely on numbers, legal realities, and long-term wealth preservation.
+        Not "get rich quick" hype.
+      </p>
+
+      <div class="bg-surface/10 p-6 rounded-lg max-w-xl mx-auto border border-border/20 backdrop-blur-sm">
+        <h3 class="text-lg font-medium text-surface mb-4">Join the waitlist for our advanced course</h3>
+        <NewsletterForm
+          form={capture.forms.waitlist}
+          submitLabel="Join Waitlist"
+          placeholder="your@email.com"
+          successMessage="You are on the waitlist! We will notify you when the course opens."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- The Problem Section -->
+  <section class="py-16 px-6 sm:px-12 bg-background">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-10 text-center">Why most landlords lose money</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card bg-surface">
+          <h3 class="text-xl font-semibold mb-3">Underestimating Hidden Costs</h3>
+          <p class="text-text-muted">Maintenance, void periods, and compliance updates silently eat away at yield. Most investors only look at gross rent.</p>
+        </div>
+        <div class="card bg-surface">
+          <h3 class="text-xl font-semibold mb-3">Section 24 Tax Trap</h3>
+          <p class="text-text-muted">Investing in your personal name without understanding the inability to deduct mortgage interest has bankrupted many.</p>
+        </div>
+        <div class="card bg-surface">
+          <h3 class="text-xl font-semibold mb-3">Buying Emotional Assets</h3>
+          <p class="text-text-muted">Purchasing a property because you "like the area" rather than doing a rigorous cash flow and ROI analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Solution (Tools) -->
+  <section class="py-16 px-6 sm:px-12 bg-surface border-y border-border">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">Do the math before you buy</h2>
+      <p class="text-lg text-text-muted mb-10 max-w-2xl mx-auto">
+        Use our precision calculators to run scenarios, stress-test your portfolio, and understand the true bottom line.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/tools/yield-calculator/" class="card hover:shadow-md transition-shadow group text-left">
+          <h3 class="text-lg font-semibold group-hover:text-accent mb-2">Yield Calculator</h3>
+          <p class="text-sm text-text-muted">Calculate Gross and Net Yield accurately.</p>
+        </a>
+        <a href="/tools/roi-calculator/" class="card hover:shadow-md transition-shadow group text-left">
+          <h3 class="text-lg font-semibold group-hover:text-accent mb-2">ROI Calculator</h3>
+          <p class="text-sm text-text-muted">Measure cash-on-cash return for your investments.</p>
+        </a>
+        <a href="/tools/mortgage-calculator/" class="card hover:shadow-md transition-shadow group text-left">
+          <h3 class="text-lg font-semibold group-hover:text-accent mb-2">Mortgage Calculator</h3>
+          <p class="text-sm text-text-muted">Stress test rates and interest-only vs repayment.</p>
+        </a>
+        <a href="/tools/stamp-duty-calculator/" class="card hover:shadow-md transition-shadow group text-left">
+          <h3 class="text-lg font-semibold group-hover:text-accent mb-2">Stamp Duty</h3>
+          <p class="text-sm text-text-muted">Factor in the 3% surcharge for second homes.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Structured Learning -->
+  <section class="py-16 px-6 sm:px-12 bg-background">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-10">
+        <div>
+          <h2 class="text-3xl font-bold mb-4">Start with the foundations</h2>
+          <p class="text-lg text-text-muted">Our reference library covers the legal and structural realities.</p>
+        </div>
+        <a href="/reference/" class="text-accent font-medium hover:underline mt-4 md:mt-0">View all reference guides &rarr;</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="/reference/limited-company/" class="flex items-start gap-4 p-4 border border-border rounded-lg bg-surface hover:border-accent transition-colors">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center shrink-0 text-primary font-bold">1</div>
+          <div>
+            <h3 class="font-semibold text-lg mb-1">Limited Company vs Personal Name</h3>
+            <p class="text-sm text-text-muted">The definitive guide to structures and tax implications.</p>
+          </div>
+        </a>
+        <a href="/reference/section-24/" class="flex items-start gap-4 p-4 border border-border rounded-lg bg-surface hover:border-accent transition-colors">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center shrink-0 text-primary font-bold">2</div>
+          <div>
+            <h3 class="font-semibold text-lg mb-1">Surviving Section 24</h3>
+            <p class="text-sm text-text-muted">How mortgage interest relief changes affect your bottom line.</p>
+          </div>
+        </a>
+        <a href="/reference/hmo-regulations/" class="flex items-start gap-4 p-4 border border-border rounded-lg bg-surface hover:border-accent transition-colors">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center shrink-0 text-primary font-bold">3</div>
+          <div>
+            <h3 class="font-semibold text-lg mb-1">HMO Regulations UK</h3>
+            <p class="text-sm text-text-muted">Licensing, room sizes, and fire safety compliance.</p>
+          </div>
+        </a>
+        <a href="/reference/tenant-eviction/" class="flex items-start gap-4 p-4 border border-border rounded-lg bg-surface hover:border-accent transition-colors">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center shrink-0 text-primary font-bold">4</div>
+          <div>
+            <h3 class="font-semibold text-lg mb-1">Tenant Eviction Process</h3>
+            <p class="text-sm text-text-muted">Navigating Section 8 and Section 21 notices correctly.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
