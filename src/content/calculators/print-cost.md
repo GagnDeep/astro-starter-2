@@ -3,6 +3,7 @@ title: Document Print Cost Calculator
 seo:
   page_description: "Estimate printing costs for your document."
 ---
+
 import PrintCost from "../../components/calculators/print-cost.astro";
 
 <PrintCost />

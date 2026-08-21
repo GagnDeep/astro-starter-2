@@ -8,7 +8,8 @@
 
 ## Palette
 
-*Tokens mapped to CSS vars in Tailwind:*
+_Tokens mapped to CSS vars in Tailwind:_
+
 - `--color-bg-primary`: `#ffffff` (White)
 - `--color-bg-secondary`: `#f8fafc` (Slate 50)
 - `--color-text-primary`: `#0f172a` (Slate 900)
@@ -21,14 +22,14 @@
 
 ## Measured Contrast Table
 
-| Foreground | Background | Ratio | WCAG AA Status |
-|---|---|---|---|
-| `--color-text-primary` (`#0f172a`) | `--color-bg-primary` (`#ffffff`) | 15.8:1 | Pass |
-| `--color-text-secondary` (`#475569`) | `--color-bg-primary` (`#ffffff`) | 5.3:1 | Pass |
-| `--color-text-primary` (`#0f172a`) | `--color-bg-secondary` (`#f8fafc`) | 15.3:1 | Pass |
-| `--color-accent-primary` (`#2563eb`) | `--color-bg-primary` (`#ffffff`) | 5.1:1 | Pass |
-| `--color-bg-primary` (`#ffffff`) | `--color-accent-primary` (`#2563eb`) | 5.1:1 | Pass |
-| `--color-error` (`#dc2626`) | `--color-bg-primary` (`#ffffff`) | 5.2:1 | Pass |
+| Foreground                           | Background                           | Ratio  | WCAG AA Status |
+| ------------------------------------ | ------------------------------------ | ------ | -------------- |
+| `--color-text-primary` (`#0f172a`)   | `--color-bg-primary` (`#ffffff`)     | 15.8:1 | Pass           |
+| `--color-text-secondary` (`#475569`) | `--color-bg-primary` (`#ffffff`)     | 5.3:1  | Pass           |
+| `--color-text-primary` (`#0f172a`)   | `--color-bg-secondary` (`#f8fafc`)   | 15.3:1 | Pass           |
+| `--color-accent-primary` (`#2563eb`) | `--color-bg-primary` (`#ffffff`)     | 5.1:1  | Pass           |
+| `--color-bg-primary` (`#ffffff`)     | `--color-accent-primary` (`#2563eb`) | 5.1:1  | Pass           |
+| `--color-error` (`#dc2626`)          | `--color-bg-primary` (`#ffffff`)     | 5.2:1  | Pass           |
 
 ## Typography
 
@@ -36,6 +37,7 @@
 - **Mono (Code/Data):** JetBrains Mono, Menlo, monospace
 
 ## Elements
+
 - **Buttons:** Solid primary color, sharp corners (`rounded-none` or `rounded-sm`), 2px transparent border for focus states.
 - **Forms:** Clear labels, visible borders (`--color-border`), accessible error states.
 - **Icons:** @lucide/astro only. Sized with Tailwind classes, colored with `currentColor`.

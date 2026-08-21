@@ -2,16 +2,20 @@
 import Layout from "../../layouts/Layout.astro";
 
 const seo = {
-  page_description: "View PDF files securely online without downloading. Zero footprint, browser-based PDF previewer.",
-  open_graph_type: "website"
+  page_description:
+    "View PDF files securely online without downloading. Zero footprint, browser-based PDF previewer.",
+  open_graph_type: "website",
 };
 ---
+
 <Layout title="Online PDF Viewer | uDocumentView" seo={seo}>
   <main class="max-w-4xl mx-auto px-4 py-16 text-center">
     <h1 class="text-4xl font-bold mb-4">Online PDF Viewer</h1>
     <p class="text-xl text-slate-600 mb-8">Securely read PDF files without Adobe Acrobat.</p>
 
-    <div class="max-w-3xl mx-auto p-12 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer mb-12">
+    <div
+      class="max-w-3xl mx-auto p-12 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer mb-12"
+    >
       <p class="text-lg font-medium text-slate-900">Drag & Drop your .pdf here</p>
     </div>
   </main>

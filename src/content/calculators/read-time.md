@@ -3,6 +3,7 @@ title: Document Read Time Calculator
 seo:
   page_description: "Calculate how long it takes to read a document."
 ---
+
 import ReadTime from "../../components/calculators/read-time.astro";
 
 <ReadTime />

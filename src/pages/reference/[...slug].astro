@@ -1,12 +1,12 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const pages = await getCollection('reference');
-  return pages.map(page => {
+  const pages = await getCollection("reference");
+  return pages.map((page) => {
     // If the ID is 'formats-pdf', the slug should be 'formats/pdf'
-    const slug = page.id.replace('-', '/');
+    const slug = page.id.replace("-", "/");
     return {
       params: { slug },
       props: { page },
@@ -17,6 +17,7 @@ export async function getStaticPaths() {
 const { page } = Astro.props;
 const { Content } = await render(page);
 ---
+
 <Layout title={`${page.data.title} | uDocumentView Reference`} seo={page.data.seo}>
   <main class="max-w-3xl mx-auto px-4 py-16 prose prose-slate max-w-none">
     <Content />

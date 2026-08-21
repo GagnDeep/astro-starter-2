@@ -1,10 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const calculators = await getCollection('calculators');
-  return calculators.map(calc => ({
+  const calculators = await getCollection("calculators");
+  return calculators.map((calc) => ({
     params: { slug: calc.id },
     props: { calc },
   }));
@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 const { calc } = Astro.props;
 const { Content } = await render(calc);
 ---
+
 <Layout title={`${calc.data.title} | uDocumentView Tools`} seo={calc.data.seo}>
   <main class="max-w-4xl mx-auto px-4 py-16">
     <div class="prose prose-slate max-w-none">

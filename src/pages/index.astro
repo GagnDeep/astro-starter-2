@@ -3,8 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import CaptureForm from "../components/forms/capture-form.astro";
 
 const seo = {
-  page_description: "The fastest, safest way to view any document in your browser—no downloads, no accounts, no trace left behind.",
-  open_graph_type: "website"
+  page_description:
+    "The fastest, safest way to view any document in your browser—no downloads, no accounts, no trace left behind.",
+  open_graph_type: "website",
 };
 ---
 
@@ -12,17 +13,38 @@ const seo = {
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Hero Block -->
     <section class="py-20 text-center">
-      <h1 class="text-5xl font-extrabold text-slate-900 tracking-tight mb-4">View Any Document Instantly</h1>
+      <h1 class="text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+        View Any Document Instantly
+      </h1>
       <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10">
-        The fastest, safest way to view PDFs, Word docs, Excel sheets, and more directly in your browser. No downloads. No accounts. No trace left behind.
+        The fastest, safest way to view PDFs, Word docs, Excel sheets, and more directly in your
+        browser. No downloads. No accounts. No trace left behind.
       </p>
 
       <!-- Fake Drop Zone -->
-      <div class="max-w-3xl mx-auto p-12 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-blue-500 mx-auto mb-4" viewBox="0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <div
+        class="max-w-3xl mx-auto p-12 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-16 h-16 text-blue-500 mx-auto mb-4"
+          viewBox="0 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"
+          ></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg
+        >
         <p class="text-lg font-medium text-slate-900">Drag & Drop your document here</p>
-        <p class="text-sm text-slate-500 mt-2">Supports PDF, DOCX, XLSX, PPTX, CSV, TXT (Max 50MB)</p>
-        <button class="mt-6 px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700">Browse Files</button>
+        <p class="text-sm text-slate-500 mt-2">
+          Supports PDF, DOCX, XLSX, PPTX, CSV, TXT (Max 50MB)
+        </p>
+        <button
+          class="mt-6 px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700"
+          >Browse Files</button
+        >
       </div>
     </section>
 
@@ -30,20 +52,29 @@ const seo = {
     <section class="py-16 border-t border-slate-200">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-slate-900">Zero Footprint Viewer</h2>
-        <p class="mt-4 text-lg text-slate-600">Your privacy is our priority. Here's how we protect your data.</p>
+        <p class="mt-4 text-lg text-slate-600">
+          Your privacy is our priority. Here's how we protect your data.
+        </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="p-6 bg-white rounded-lg shadow-sm border border-slate-200">
           <h3 class="text-xl font-semibold mb-3">No Uploads Needed</h3>
-          <p class="text-slate-600">Many formats are parsed entirely locally in your browser. Your files never touch our servers.</p>
+          <p class="text-slate-600">
+            Many formats are parsed entirely locally in your browser. Your files never touch our
+            servers.
+          </p>
         </div>
         <div class="p-6 bg-white rounded-lg shadow-sm border border-slate-200">
           <h3 class="text-xl font-semibold mb-3">Ephemeral Processing</h3>
-          <p class="text-slate-600">If server rendering is required, files are processed in memory and instantly destroyed.</p>
+          <p class="text-slate-600">
+            If server rendering is required, files are processed in memory and instantly destroyed.
+          </p>
         </div>
         <div class="p-6 bg-white rounded-lg shadow-sm border border-slate-200">
           <h3 class="text-xl font-semibold mb-3">No Tracking</h3>
-          <p class="text-slate-600">We do not read, scan, or index your documents. No accounts required.</p>
+          <p class="text-slate-600">
+            We do not read, scan, or index your documents. No accounts required.
+          </p>
         </div>
       </div>
     </section>
@@ -54,21 +85,55 @@ const seo = {
         <h2 class="text-3xl font-bold text-slate-900">Supported Formats</h2>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-        <a href="/tools/pdf-viewer/" class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50">PDF</a>
-        <a href="/tools/docx-viewer/" class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50">DOCX (Word)</a>
-        <a href="/tools/excel-viewer/" class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50">XLSX (Excel)</a>
-        <a href="/tools/ppt-viewer/" class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50">PPTX (PowerPoint)</a>
-        <a href="/tools/csv-viewer/" class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50">CSV</a>
-        <a href="/tools/rtf-viewer/" class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50">RTF</a>
-        <a href="/tools/txt-viewer/" class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50">TXT</a>
-        <a href="/tools/odt-viewer/" class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50">ODT</a>
+        <a
+          href="/tools/pdf-viewer/"
+          class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50"
+          >PDF</a
+        >
+        <a
+          href="/tools/docx-viewer/"
+          class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50"
+          >DOCX (Word)</a
+        >
+        <a
+          href="/tools/excel-viewer/"
+          class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50"
+          >XLSX (Excel)</a
+        >
+        <a
+          href="/tools/ppt-viewer/"
+          class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50"
+          >PPTX (PowerPoint)</a
+        >
+        <a
+          href="/tools/csv-viewer/"
+          class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50"
+          >CSV</a
+        >
+        <a
+          href="/tools/rtf-viewer/"
+          class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50"
+          >RTF</a
+        >
+        <a
+          href="/tools/txt-viewer/"
+          class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50"
+          >TXT</a
+        >
+        <a
+          href="/tools/odt-viewer/"
+          class="p-4 border border-slate-200 rounded text-blue-600 font-medium hover:bg-slate-50"
+          >ODT</a
+        >
       </div>
     </section>
 
     <!-- Updates Form -->
     <section class="py-16 border-t border-slate-200 text-center max-w-lg mx-auto">
       <h2 class="text-2xl font-bold text-slate-900 mb-4">Get Platform Updates</h2>
-      <p class="text-slate-600 mb-6">Join our newsletter to hear when we add support for new document formats.</p>
+      <p class="text-slate-600 mb-6">
+        Join our newsletter to hear when we add support for new document formats.
+      </p>
       <CaptureForm form="newsletter" submitLabel="Subscribe" class="text-left" />
     </section>
   </main>

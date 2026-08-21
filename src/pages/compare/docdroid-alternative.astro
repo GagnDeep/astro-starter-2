@@ -2,14 +2,18 @@
 import Layout from "../../layouts/Layout.astro";
 
 const seo = {
-  page_description: "Looking for an alternative to DocDroid? See how uDocumentView offers a cleaner, ad-free, secure viewing experience.",
-  open_graph_type: "article"
+  page_description:
+    "Looking for an alternative to DocDroid? See how uDocumentView offers a cleaner, ad-free, secure viewing experience.",
+  open_graph_type: "article",
 };
 ---
+
 <Layout title="DocDroid Alternative | uDocumentView" seo={seo}>
   <main class="max-w-4xl mx-auto px-4 py-16">
     <h1 class="text-4xl font-bold mb-6">uDocumentView vs. DocDroid</h1>
-    <p class="text-xl text-slate-600 mb-12">A cleaner, faster, ad-free alternative for document viewing.</p>
+    <p class="text-xl text-slate-600 mb-12">
+      A cleaner, faster, ad-free alternative for document viewing.
+    </p>
 
     <div class="overflow-x-auto">
       <table class="w-full text-left border-collapse">
@@ -28,8 +32,12 @@ const seo = {
           </tr>
           <tr class="bg-slate-50">
             <td class="p-4 border border-slate-300 font-medium">Public Indexing</td>
-            <td class="p-4 border border-slate-300 text-green-600 font-medium">Never indexed. Zero footprint.</td>
-            <td class="p-4 border border-slate-300 text-red-500">Docs often visible publicly by default</td>
+            <td class="p-4 border border-slate-300 text-green-600 font-medium"
+              >Never indexed. Zero footprint.</td
+            >
+            <td class="p-4 border border-slate-300 text-red-500"
+              >Docs often visible publicly by default</td
+            >
           </tr>
           <tr>
             <td class="p-4 border border-slate-300 font-medium">UI Cleanliness</td>

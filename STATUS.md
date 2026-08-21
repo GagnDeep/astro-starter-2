@@ -13,6 +13,7 @@
 - [x] Core Components & Tools built (Calculators, forms, header/footer)
 - [x] Content Generation (60+ pages: glossary, reference, calculators, compare, legal, etc.)
 - [x] Audits & Fixes (pnpm check, pnpm build passed perfectly with 85 pages).
+- [x] Restart Phase 1 (Iteration 4/4): Re-ran `pnpm check` and `pnpm build` cleanly from `ac914e5` base with fully functional logic.
 
 [NEEDS CONFIRMATION]
 - N/A

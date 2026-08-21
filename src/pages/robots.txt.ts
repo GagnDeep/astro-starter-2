@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro';
+import type { APIRoute } from "astro";
 
 const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
@@ -9,12 +9,12 @@ Sitemap: ${sitemapURL.href}
 
 export const GET: APIRoute = ({ site }) => {
   if (!site) {
-    throw new Error('site is required in astro.config.mjs');
+    throw new Error("site is required in astro.config.mjs");
   }
-  const sitemapURL = new URL('sitemap-index.xml', site);
+  const sitemapURL = new URL("sitemap-index.xml", site);
   return new Response(getRobotsTxt(sitemapURL), {
     headers: {
-      'Content-Type': 'text/plain',
+      "Content-Type": "text/plain",
     },
   });
 };

@@ -1,6 +1,6 @@
 import { defineCollection } from "astro:content";
-import { z } from 'astro/zod';
-import { glob } from 'astro/loaders';
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
 const seoSchema = z
   .object({
@@ -15,17 +15,19 @@ const seoSchema = z
   .optional();
 
 const blogCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/blog" }),
   schema: z.object({
     title: z.string(),
-    post_hero: z.object({
-      date: z.string().or(z.date()),
-      heading: z.string().optional(),
-      tags: z.array(z.string()).optional(),
-      author: z.string().optional(),
-      image: z.string().optional(),
-      image_alt: z.string().optional(),
-    }).optional(),
+    post_hero: z
+      .object({
+        date: z.string().or(z.date()),
+        heading: z.string().optional(),
+        tags: z.array(z.string()).optional(),
+        author: z.string().optional(),
+        image: z.string().optional(),
+        image_alt: z.string().optional(),
+      })
+      .optional(),
     thumb_image_path: z.string().optional(),
     thumb_image_alt: z.string().optional(),
     seo: seoSchema,
@@ -46,12 +48,12 @@ const paginatedCollectionSchema = z.object({
 });
 
 const pagesCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,astro}', base: "./src/content/pages" }),
+  loader: glob({ pattern: "**/[^_]*.{md,astro}", base: "./src/content/pages" }),
   schema: z.union([paginatedCollectionSchema, pageSchema]),
 });
 
 const referenceCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/reference" }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/reference" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -60,7 +62,7 @@ const referenceCollection = defineCollection({
 });
 
 const glossaryCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/glossary" }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/glossary" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -69,7 +71,7 @@ const glossaryCollection = defineCollection({
 });
 
 const calculatorsCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/calculators" }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/calculators" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),

@@ -1,26 +1,31 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
-const calculators = await getCollection('calculators');
+const calculators = await getCollection("calculators");
 
 const seo = {
   page_description: "Document size, read time, and print cost calculators.",
-  open_graph_type: "website"
+  open_graph_type: "website",
 };
 ---
+
 <Layout title="Document Calculators | uDocumentView" seo={seo}>
   <main class="max-w-4xl mx-auto px-4 py-16">
     <h1 class="text-4xl font-bold mb-8">Calculators</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {calculators.map(calc => (
-        <div class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
-          <h2 class="text-xl font-bold mb-2">
-            <a href={`/calculators/${calc.id}/`} class="text-blue-600 hover:underline">{calc.data.title}</a>
-          </h2>
-          <p class="text-slate-600">{calc.data.seo?.page_description}</p>
-        </div>
-      ))}
+      {
+        calculators.map((calc) => (
+          <div class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
+            <h2 class="text-xl font-bold mb-2">
+              <a href={`/calculators/${calc.id}/`} class="text-blue-600 hover:underline">
+                {calc.data.title}
+              </a>
+            </h2>
+            <p class="text-slate-600">{calc.data.seo?.page_description}</p>
+          </div>
+        ))
+      }
     </div>
   </main>
 </Layout>

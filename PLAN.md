@@ -1,6 +1,7 @@
 # PLAN.md - udocumentview.com
 
 ## Audience Verbatim Phrases (20+)
+
 1. "I just need to see what's in this PDF without downloading it."
 2. "Is there a way to view a Word document securely online?"
 3. "How can I preview an Excel file on my phone?"
@@ -25,31 +26,33 @@
 ## Competitor Teardowns (5-7)
 
 1. **Google Drive / Google Docs Viewer**
-   - *Homepage Block Order:* Hero (Sign up), Features, Integration, Pricing, Footer.
-   - *Gaps:* Requires Google account for sharing, complex UI, privacy concerns (Google scans docs).
+   - _Homepage Block Order:_ Hero (Sign up), Features, Integration, Pricing, Footer.
+   - _Gaps:_ Requires Google account for sharing, complex UI, privacy concerns (Google scans docs).
 
 2. **Microsoft OneDrive / Office Online**
-   - *Homepage Block Order:* Hero (Microsoft 365), Features, App links, Footer.
-   - *Gaps:* Heavy page load, requires Microsoft account, not standalone.
+   - _Homepage Block Order:_ Hero (Microsoft 365), Features, App links, Footer.
+   - _Gaps:_ Heavy page load, requires Microsoft account, not standalone.
 
 3. **DocDroid**
-   - *Homepage Block Order:* Hero (Upload), Features, Recent Docs, Ad banners, Footer.
-   - *Gaps:* Cluttered with ads, slow loading, questionable privacy, old UI.
+   - _Homepage Block Order:_ Hero (Upload), Features, Recent Docs, Ad banners, Footer.
+   - _Gaps:_ Cluttered with ads, slow loading, questionable privacy, old UI.
 
 4. **PDF.js (Mozilla)**
-   - *Homepage Block Order:* Hero (Github link), Demo, Docs, Footer.
-   - *Gaps:* Developer tool, not a consumer product. Requires implementation.
+   - _Homepage Block Order:_ Hero (Github link), Demo, Docs, Footer.
+   - _Gaps:_ Developer tool, not a consumer product. Requires implementation.
 
 5. **Smallpdf (Viewer tool)**
-   - *Homepage Block Order:* Hero (Upload), Feature list, Other tools cross-sell, Footer.
-   - *Gaps:* Pushy upsells to Pro, limited free usage, heavy focus on editing rather than pure viewing.
+   - _Homepage Block Order:_ Hero (Upload), Feature list, Other tools cross-sell, Footer.
+   - _Gaps:_ Pushy upsells to Pro, limited free usage, heavy focus on editing rather than pure viewing.
 
 6. **Zoho Viewer**
-   - *Homepage Block Order:* Hero (Upload), Features, API link, Footer.
-   - *Gaps:* Outdated design, slow parsing for large files.
+   - _Homepage Block Order:_ Hero (Upload), Features, API link, Footer.
+   - _Gaps:_ Outdated design, slow parsing for large files.
 
 ## Keywords by Intent (40+)
-*Navigational / Informational (Articles win)*
+
+_Navigational / Informational (Articles win)_
+
 1. what is a docx file
 2. how to open pdf on android
 3. pdf vs word
@@ -66,47 +69,25 @@
 14. view powerpoint online free
 15. rtf reader online
 
-*Transactional / Investigative (Tools win)*
-16. online document viewer
-17. pdf previewer
-18. word doc viewer
-19. excel viewer online
-20. ppt viewer online
-21. docx reader
-22. odt viewer
-23. csv viewer
-24. rtf viewer
-25. view document online
-26. secure document viewer
-27. online pdf reader
-28. open word document online
-29. free document viewer
-30. view pdf without downloading
-31. document preview generator
-32. online file viewer
-33. view text file online
-34. document link generator
-35. secure pdf sharing
-36. fast pdf viewer
-37. zero footprint document viewer
-38. open large pdf online
-39. view docx without office
-40. online presentation viewer
-41. spreadsheet viewer online
+_Transactional / Investigative (Tools win)_ 16. online document viewer 17. pdf previewer 18. word doc viewer 19. excel viewer online 20. ppt viewer online 21. docx reader 22. odt viewer 23. csv viewer 24. rtf viewer 25. view document online 26. secure document viewer 27. online pdf reader 28. open word document online 29. free document viewer 30. view pdf without downloading 31. document preview generator 32. online file viewer 33. view text file online 34. document link generator 35. secure pdf sharing 36. fast pdf viewer 37. zero footprint document viewer 38. open large pdf online 39. view docx without office 40. online presentation viewer 41. spreadsheet viewer online
 
 ## Positioning
-*Selected:* The fastest, safest way to view any document in your browser—no downloads, no accounts, no trace left behind.
-*Rejected:*
+
+_Selected:_ The fastest, safest way to view any document in your browser—no downloads, no accounts, no trace left behind.
+_Rejected:_
+
 1. "The ultimate document management system." (Too complex)
 2. "A better Google Drive." (Inaccurate comparison)
 3. "PDF viewer for enterprise." (Too niche)
 4. "Edit your documents online." (We are purely viewing/previewing)
 
 ## Voice
-*Tone:* Direct, helpful, privacy-focused, professional but accessible.
-*Banned Words:* "Synergy", "Leverage", "Revolutionary", "Next-gen", "Seamless", "Robust".
+
+_Tone:_ Direct, helpful, privacy-focused, professional but accessible.
+_Banned Words:_ "Synergy", "Leverage", "Revolutionary", "Next-gen", "Seamless", "Robust".
 
 ## Route Tree (60+ pages)
+
 - `/` (online document viewer)
 - `/about/` (about udocumentview)
 - `/pricing/` (document viewer pricing)
@@ -173,6 +154,7 @@
 - `/blog/protecting-sensitive-documents/` (protecting sensitive documents)
 
 ## Homepage Block Order (Unique)
+
 1. **The "Instant Proof" Hero:** A functional drop zone right in the hero. "Drop a doc, see it now. No upload required."
 2. **The "No-Trace" Guarantee:** Clear explanation of local parsing/ephemeral storage before listing features.
 3. **Format Matrix:** A clean, visual table showing exactly what formats work.

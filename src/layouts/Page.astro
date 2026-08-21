@@ -35,23 +35,32 @@ const HeroComponent = props.hero_block?._name ? components[props.hero_block._nam
 ---
 
 <Layout {...props}>
-  {HeroComponent && (
-    <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
-      <HeroComponent {...props.hero_block} />
-    </editable-component>
-  )}
+  {
+    HeroComponent && (
+      <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
+        <HeroComponent {...props.hero_block} />
+      </editable-component>
+    )
+  }
 
-  {props.content_blocks && props.content_blocks.length > 0 && (
-    <div data-editable="array" data-prop="content_blocks" data-id-key="_name" data-component-key="_name">
-      {props.content_blocks.map((block: any) => {
-        const Component = components[block._name];
-        if (!Component) return null;
-        return (
-          <section data-editable="array-item" data-id={block._name} data-component={block._name}>
-            <Component {...block} />
-          </section>
-        );
-      })}
-    </div>
-  )}
+  {
+    props.content_blocks && props.content_blocks.length > 0 && (
+      <div
+        data-editable="array"
+        data-prop="content_blocks"
+        data-id-key="_name"
+        data-component-key="_name"
+      >
+        {props.content_blocks.map((block: any) => {
+          const Component = components[block._name];
+          if (!Component) return null;
+          return (
+            <section data-editable="array-item" data-id={block._name} data-component={block._name}>
+              <Component {...block} />
+            </section>
+          );
+        })}
+      </div>
+    )
+  }
 </Layout>

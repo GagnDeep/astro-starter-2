@@ -1,10 +1,10 @@
 ---
-import type { GetStaticPathsOptions } from 'astro';
-import { getCollection } from 'astro:content';
+import type { GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const posts = await getCollection('blog');
+  const posts = await getCollection("blog");
 
   const sortedPosts = posts.sort((a, b) => {
     const aDate = new Date(a.data.post_hero?.date || 0).getTime();
@@ -19,26 +19,31 @@ const { page } = Astro.props;
 
 const seo = {
   page_description: "Articles, tips, and updates about document formats and secure viewing.",
-  open_graph_type: "website"
+  open_graph_type: "website",
 };
 ---
+
 <Layout title="Blog | uDocumentView" seo={seo}>
   <main class="max-w-4xl mx-auto px-4 py-16">
     <h1 class="text-4xl font-bold mb-8">Blog</h1>
 
     <div class="grid gap-8">
-      {page.data.map(post => (
-        <article class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-          <h2 class="text-2xl font-bold mb-2">
-            <a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline">{post.data.title}</a>
-          </h2>
-          <div class="text-sm text-slate-500 mb-4">
-            {post.data.post_hero?.date && new Date(post.data.post_hero.date).toLocaleDateString()}
-            {post.data.post_hero?.author && ` by ${post.data.post_hero.author}`}
-          </div>
-          <p class="text-slate-600">{post.data.seo?.page_description || post.data.title}</p>
-        </article>
-      ))}
+      {
+        page.data.map((post) => (
+          <article class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <h2 class="text-2xl font-bold mb-2">
+              <a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline">
+                {post.data.title}
+              </a>
+            </h2>
+            <div class="text-sm text-slate-500 mb-4">
+              {post.data.post_hero?.date && new Date(post.data.post_hero.date).toLocaleDateString()}
+              {post.data.post_hero?.author && ` by ${post.data.post_hero.author}`}
+            </div>
+            <p class="text-slate-600">{post.data.seo?.page_description || post.data.title}</p>
+          </article>
+        ))
+      }
     </div>
   </main>
 </Layout>

@@ -1,10 +1,10 @@
 ---
-import type { GetStaticPathsOptions } from 'astro';
-import { getCollection } from 'astro:content';
+import type { GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const posts = await getCollection('blog');
+  const posts = await getCollection("blog");
 
   const uniqueTags = new Set<string>();
   for (const post of posts) {
@@ -16,13 +16,11 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   }
 
   return Array.from(uniqueTags).flatMap((tag) => {
-    const filteredPosts = posts.filter((post) =>
-      post.data.post_hero?.tags?.includes(tag)
-    );
+    const filteredPosts = posts.filter((post) => post.data.post_hero?.tags?.includes(tag));
     const sortedPosts = filteredPosts.sort((a, b) => {
-        const aDate = new Date(a.data.post_hero?.date || 0).getTime();
-        const bDate = new Date(b.data.post_hero?.date || 0).getTime();
-        return bDate - aDate;
+      const aDate = new Date(a.data.post_hero?.date || 0).getTime();
+      const bDate = new Date(b.data.post_hero?.date || 0).getTime();
+      return bDate - aDate;
     });
     return paginate(sortedPosts, {
       params: { tag },
@@ -36,26 +34,31 @@ const { tag } = Astro.params;
 
 const seo = {
   page_description: `Articles and tips tagged with ${tag}.`,
-  open_graph_type: "website"
+  open_graph_type: "website",
 };
 ---
+
 <Layout title={`Posts tagged with "${tag}" | uDocumentView`} seo={seo}>
   <main class="max-w-4xl mx-auto px-4 py-16">
     <h1 class="text-4xl font-bold mb-8">Posts tagged with "{tag}"</h1>
 
     <div class="grid gap-8">
-      {page.data.map((post: any) => (
-        <article class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-          <h2 class="text-2xl font-bold mb-2">
-            <a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline">{post.data.title}</a>
-          </h2>
-          <div class="text-sm text-slate-500 mb-4">
-            {post.data.post_hero?.date && new Date(post.data.post_hero.date).toLocaleDateString()}
-            {post.data.post_hero?.author && ` by ${post.data.post_hero.author}`}
-          </div>
-          <p class="text-slate-600">{post.data.seo?.page_description || post.data.title}</p>
-        </article>
-      ))}
+      {
+        page.data.map((post: any) => (
+          <article class="p-6 bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <h2 class="text-2xl font-bold mb-2">
+              <a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline">
+                {post.data.title}
+              </a>
+            </h2>
+            <div class="text-sm text-slate-500 mb-4">
+              {post.data.post_hero?.date && new Date(post.data.post_hero.date).toLocaleDateString()}
+              {post.data.post_hero?.author && ` by ${post.data.post_hero.author}`}
+            </div>
+            <p class="text-slate-600">{post.data.seo?.page_description || post.data.title}</p>
+          </article>
+        ))
+      }
     </div>
   </main>
 </Layout>

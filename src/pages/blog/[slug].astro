@@ -1,11 +1,11 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import CaptureForm from "../../components/forms/capture-form.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
   }));
@@ -14,6 +14,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
+
 <Layout title={`${post.data.title} | uDocumentView`} seo={post.data.seo}>
   <main class="max-w-3xl mx-auto px-4 py-16">
     <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
