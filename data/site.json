@@ -1,16 +1,16 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Retirement",
+  "description": "The definitive, math-backed playbook for transitioning from wealth accumulation to safe decumulation, designed to connect serious planners with fiduciary advisors.",
+  "tagline": "Math-backed strategies for a safe retirement.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
+  "twitter_site": "@InstituteOfRet",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Retirement",
+  "default_author": "Institute of Retirement",
+  "theme_color": "#0369a1",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of Retirement",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
   }
