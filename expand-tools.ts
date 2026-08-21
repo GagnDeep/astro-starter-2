@@ -1,0 +1,173 @@
+import fs from 'fs';
+
+const tdee = `---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Calculate your Total Daily Energy Expenditure (TDEE) accurately with our free tool. Includes activity multipliers and edge cases.",
+  title: "TDEE Calculator"
+};
+---
+
+<Layout title="TDEE Calculator" seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-12 prose">
+    <h1>TDEE Calculator</h1>
+    <p>Your Total Daily Energy Expenditure (TDEE) is an estimation of how many calories you burn per day when exercise and daily activity are taken into account. It is the fundamental metric needed to establish a calorie deficit or surplus.</p>
+
+    <div class="bg-white p-6 rounded shadow my-8 not-prose border border-gray-200">
+      <form id="tdee-form" class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+            <select id="gender" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-green-500 focus:border-green-500">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+            <input type="number" id="age" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-green-500 focus:border-green-500" required />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
+            <input type="number" id="weight" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-green-500 focus:border-green-500" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Height (cm)</label>
+            <input type="number" id="height" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-green-500 focus:border-green-500" required />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Activity Level</label>
+          <select id="activity" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:ring-green-500 focus:border-green-500">
+            <option value="1.2">Sedentary (office job, little to no exercise)</option>
+            <option value="1.375">Lightly Active (light exercise/sports 1-3 days/week)</option>
+            <option value="1.55">Moderately Active (moderate exercise/sports 3-5 days/week)</option>
+            <option value="1.725">Very Active (hard exercise/sports 6-7 days a week)</option>
+            <option value="1.9">Extra Active (very hard exercise/sports & physical job)</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded transition duration-150">Calculate TDEE</button>
+      </form>
+
+      <div id="result" class="mt-6 hidden p-6 bg-green-50 rounded-md border border-green-200">
+        <h3 class="text-2xl font-bold text-green-900 mb-2 text-center">Your TDEE: <span id="tdee-value"></span> kcal/day</h3>
+        <p class="text-green-800 text-sm text-center mb-6">This is your maintenance calorie level. Eat this amount to maintain your current weight.</p>
+
+        <div class="grid grid-cols-2 gap-4 text-center mb-6">
+            <div class="bg-white p-3 rounded shadow-sm">
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">For Fat Loss (500 kcal deficit)</p>
+                <p class="text-lg font-bold text-amber-600"><span id="cut-value"></span> kcal</p>
+            </div>
+            <div class="bg-white p-3 rounded shadow-sm">
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">For Muscle Gain (250 kcal surplus)</p>
+                <p class="text-lg font-bold text-green-700"><span id="bulk-value"></span> kcal</p>
+            </div>
+        </div>
+
+        <div class="mt-4 pt-6 border-t border-green-200">
+            <p class="text-sm font-medium mb-3 text-green-900 text-center">Save your results and get our free macro tracking guide:</p>
+            <CaptureForm form="quote" />
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="bg-yellow-50 p-4 border border-yellow-200 rounded my-4">
+        <p><strong>JavaScript is required to use the interactive calculator.</strong></p>
+        <p>You can calculate it manually by first finding your BMR (Mifflin-St Jeor), then multiplying by your activity factor (1.2 to 1.9).</p>
+      </div>
+    </noscript>
+
+    <h2>How the TDEE Formula Works</h2>
+    <p>This calculator uses the <strong>Mifflin-St Jeor equation</strong> to first calculate your Basal Metabolic Rate (BMR), which is widely considered the most accurate standard formula for the general population. It then multiplies your BMR by an activity multiplier (the Katch-McArdle multipliers).</p>
+
+    <h3>Activity Multipliers Explained</h3>
+    <ul>
+        <li><strong>Sedentary (1.2):</strong> You work a desk job and do not intentionally exercise.</li>
+        <li><strong>Lightly Active (1.375):</strong> You work a desk job but walk a lot, or do light workouts 1-3 times a week.</li>
+        <li><strong>Moderately Active (1.55):</strong> You exercise moderately 3-5 times a week.</li>
+        <li><strong>Very Active (1.725):</strong> You exercise hard most days of the week, or have a physically demanding job (e.g., construction).</li>
+    </ul>
+
+    <h3>Limitations and Edge Cases</h3>
+    <p>It is crucial to understand that TDEE calculators provide an <em>estimate</em>. The human metabolism is dynamic, not a static mathematical formula.</p>
+    <ul>
+        <li><strong>The Activity Overestimation Trap:</strong> Most people overestimate their activity level. If you work a desk job but go to the gym for 45 minutes a day, you are likely only "Lightly Active," not "Very Active."</li>
+        <li><strong>Body Composition:</strong> The Mifflin formula relies on total body weight. If you have a very high muscle mass, this formula may underestimate your needs. If you have a very high body fat percentage, it may overestimate your needs.</li>
+    </ul>
+
+    <p>For more detailed reading, check out our guide on <a href="/library/tdee-explained/">TDEE Explained</a> and <a href="/library/macro-tracking-basics/">Macro Tracking Basics</a>.</p>
+  </main>
+</Layout>
+
+<script>
+  const form = document.getElementById('tdee-form');
+  const resultDiv = document.getElementById('result');
+  const tdeeValueSpan = document.getElementById('tdee-value');
+  const cutValueSpan = document.getElementById('cut-value');
+  const bulkValueSpan = document.getElementById('bulk-value');
+
+  // URL State management
+  const urlParams = new URLSearchParams(window.location.search);
+  const stateWeight = urlParams.get('w');
+  const stateHeight = urlParams.get('h');
+  const stateAge = urlParams.get('a');
+  const stateGender = urlParams.get('g');
+  const stateActivity = urlParams.get('act');
+
+  if (stateWeight) (document.getElementById('weight') as HTMLInputElement).value = stateWeight;
+  if (stateHeight) (document.getElementById('height') as HTMLInputElement).value = stateHeight;
+  if (stateAge) (document.getElementById('age') as HTMLInputElement).value = stateAge;
+  if (stateGender) (document.getElementById('gender') as HTMLSelectElement).value = stateGender;
+  if (stateActivity) (document.getElementById('activity') as HTMLSelectElement).value = stateActivity;
+
+  function calculate() {
+    const gender = (document.getElementById('gender') as HTMLSelectElement).value;
+    const weight = parseFloat((document.getElementById('weight') as HTMLInputElement).value);
+    const height = parseFloat((document.getElementById('height') as HTMLInputElement).value);
+    const age = parseFloat((document.getElementById('age') as HTMLInputElement).value);
+    const activity = parseFloat((document.getElementById('activity') as HTMLSelectElement).value);
+
+    if (isNaN(weight) || isNaN(height) || isNaN(age)) return;
+
+    // Mifflin-St Jeor
+    let bmr = 10 * weight + 6.25 * height - 5 * age;
+    bmr += (gender === 'male') ? 5 : -161;
+
+    const tdee = bmr * activity;
+
+    if (tdeeValueSpan) tdeeValueSpan.textContent = Math.round(tdee).toString();
+    if (cutValueSpan) cutValueSpan.textContent = Math.round(tdee - 500).toString();
+    if (bulkValueSpan) bulkValueSpan.textContent = Math.round(tdee + 250).toString();
+
+    resultDiv?.classList.remove('hidden');
+
+    // Update URL for shareability
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('w', weight.toString());
+    newUrl.searchParams.set('h', height.toString());
+    newUrl.searchParams.set('a', age.toString());
+    newUrl.searchParams.set('g', gender);
+    newUrl.searchParams.set('act', activity.toString());
+    window.history.replaceState({}, '', newUrl);
+  }
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      calculate();
+    });
+
+    // Auto-calculate if URL params are present
+    if (stateWeight && stateHeight && stateAge) {
+      calculate();
+    }
+  }
+</script>
+`;
+
+fs.writeFileSync('src/pages/tools/tdee-calculator.astro', tdee);

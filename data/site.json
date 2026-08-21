@@ -1,17 +1,17 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
-  "lang": "en",
-  "locale": "en_US",
-  "twitter_site": "",
-  "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "site_title": "FoodLogTrack",
+  "description": "The simple food log web app monetized with ads and diet affiliate products.",
+  "tagline": "Track What You Eat. Skip The Bloat.",
+  "image_alt": "FoodLogTrack logo",
+  "theme_color": "#166534",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "FoodLogTrack",
+    "logo": "/images/logo.png",
     "same_as": []
-  }
+  },
+  "locale": "en_US",
+  "image": "/images/og-default.png",
+  "lang": "en",
+  "twitter_site": "@foodlogtrack",
+  "default_author": "FoodLogTrack Team"
 }

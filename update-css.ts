@@ -1,4 +1,5 @@
-@import "tailwindcss";
+import fs from 'fs';
+const content = `@import "tailwindcss";
 
 @theme {
   --color-brand-primary: #166534;
@@ -133,3 +134,5 @@
   .align-right { text-align: right; }
   .align-justify { text-align: justify; }
 }
+`;
+fs.writeFileSync('src/styles/main.css', content);

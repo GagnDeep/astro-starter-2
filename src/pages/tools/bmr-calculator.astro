@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Calculate your Basal Metabolic Rate (BMR) with our free tool.",
+  title: "BMR Calculator"
+};
+---
+
+<Layout title="BMR Calculator" seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-12 prose">
+    <h1>BMR Calculator</h1>
+    <p>Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor equation, the most accurate standard formula.</p>
+
+    <div class="bg-white p-6 rounded shadow my-8 not-prose">
+      <form id="bmr-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">Gender</label>
+          <select id="gender" class="w-full border rounded p-2">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Weight (kg)</label>
+          <input type="number" id="weight" class="w-full border rounded p-2" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Height (cm)</label>
+          <input type="number" id="height" class="w-full border rounded p-2" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Age</label>
+          <input type="number" id="age" class="w-full border rounded p-2" required />
+        </div>
+        <button type="submit" class="bg-green-800 text-white px-4 py-2 rounded font-medium">Calculate BMR</button>
+      </form>
+
+      <div id="result" class="mt-6 hidden p-4 bg-green-50 rounded">
+        <h3 class="text-xl font-bold text-green-900 mb-2">Your BMR: <span id="bmr-value"></span> calories/day</h3>
+        <p class="text-green-800 text-sm">This is how many calories you burn at rest. To find your TDEE, check out our <a href="/tools/tdee-calculator/" class="underline font-medium">TDEE Calculator</a>.</p>
+
+        <div class="mt-4 pt-4 border-t border-green-200">
+            <p class="text-sm font-medium mb-2 text-green-900">Email my results to me:</p>
+            <CaptureForm form="quote" />
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="bg-yellow-50 p-4 border border-yellow-200 rounded my-4">
+        <p><strong>JavaScript is required to use the interactive calculator.</strong></p>
+        <p>You can calculate it manually: <br/>
+        Men: 10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) + 5<br/>
+        Women: 10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) - 161
+        </p>
+      </div>
+    </noscript>
+
+    <h2>What is BMR?</h2>
+    <p>Basal Metabolic Rate (BMR) is the total number of calories that your body needs to perform basic, life-sustaining functions like breathing, circulation, and cell production. It accounts for about 60-75% of your daily calorie expenditure.</p>
+    <p>Want to know your total daily burn? Visit our <a href="/tools/tdee-calculator/">TDEE Calculator</a> or read our <a href="/library/bmr-explained/">BMR guide</a>.</p>
+  </main>
+</Layout>
+
+<script>
+  const form = document.getElementById('bmr-form');
+  const resultDiv = document.getElementById('result');
+  const bmrValueSpan = document.getElementById('bmr-value');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const gender = (document.getElementById('gender') as HTMLSelectElement).value;
+      const weight = parseFloat((document.getElementById('weight') as HTMLInputElement).value);
+      const height = parseFloat((document.getElementById('height') as HTMLInputElement).value);
+      const age = parseFloat((document.getElementById('age') as HTMLInputElement).value);
+
+      if (isNaN(weight) || isNaN(height) || isNaN(age)) return;
+
+      // Mifflin-St Jeor
+      let bmr = 10 * weight + 6.25 * height - 5 * age;
+      bmr += (gender === 'male') ? 5 : -161;
+
+      if (bmrValueSpan) bmrValueSpan.textContent = Math.round(bmr).toString();
+      resultDiv?.classList.remove('hidden');
+    });
+  }
+</script>

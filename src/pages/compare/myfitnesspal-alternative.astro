@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaptureForm from "../../components/forms/capture-form.astro";
+
+const seo = {
+  page_description: "Why FoodLogTrack is the best MyFitnessPal alternative for simple food tracking.",
+  title: "MyFitnessPal Alternative"
+};
+---
+
+<Layout title="MyFitnessPal Alternative" seo={seo}>
+  <main class="max-w-3xl mx-auto px-4 py-12 prose">
+    <h1>The Best MyFitnessPal Alternative</h1>
+    <p>Tired of paying to scan a barcode? We are too. FoodLogTrack gives you barcode scanning and basic macros for free. No bloated social feeds.</p>
+    <h2>Compare</h2>
+    <table>
+      <thead><tr><th>Feature</th><th>FoodLogTrack</th><th>MyFitnessPal</th></tr></thead>
+      <tbody>
+        <tr><td>Barcode Scanning</td><td>Free</td><td>Premium ($19.99/mo)</td></tr>
+        <tr><td>Social Feed</td><td>None</td><td>Yes (Bloated)</td></tr>
+      </tbody>
+    </table>
+    <p>Join the <a href="/">waitlist</a> today.</p>
+  </main>
+</Layout>
