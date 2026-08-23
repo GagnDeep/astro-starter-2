@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Catering",
+  "description": "A practical operator resource for people who run catering businesses: licensing, pricing, contracts, software, and certifications.",
+  "tagline": "The operator's guide to running a catering business.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Catering — resources for catering business owners.",
+  "default_author": "Institute of Catering",
+  "theme_color": "#1e293b",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of Catering",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Content Operations",
+      "bio": "The Institute of Catering editorial team.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "All resources, templates, and guides are vetted by current or former catering operators. We review local regulations regularly but do not provide legal advice.",
+    "monetization": "We fund this site through software referrals and certification affiliate programs. We only recommend tools we have tested or used in production. Commission links are marked with rel=\"sponsored nofollow\" and disclosed above the fold.",
+    "corrections": "We correct factual errors promptly. If you spot an inaccuracy in licensing requirements or pricing models, please contact us."
   }
 }
