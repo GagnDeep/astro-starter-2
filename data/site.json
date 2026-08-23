@@ -1,17 +1,27 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
-  "lang": "en",
-  "locale": "en_US",
-  "twitter_site": "",
-  "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "site_title": "jsonmock",
+  "description": "Deterministic record-and-replay mocking of LLM and AI-agent API responses for CI.",
+  "tagline": "Stop burning real API credits in CI.",
+  "image_alt": "jsonmock logo",
+  "theme_color": "#00ff00",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "jsonmock",
+    "logo": "/images/logos/logo-wordmark-blue.png",
     "same_as": []
+  },
+  "locale": "en_US",
+  "authors": [
+    {
+      "slug": "engineer",
+      "name": "Engineering Team",
+      "role": "Core Maintainers",
+      "bio": "Building reliable CI tools for AI developers.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "We test all mock configurations against live LLM API behavior before publishing.",
+    "monetization": "We make money through developer SaaS subscriptions.",
+    "corrections": "Corrections to documentation or code examples can be submitted via GitHub issues."
   }
 }

@@ -18,7 +18,7 @@ const { heading, date, author, image, image_alt, tags, bodyContent } =
 
 const wordCount = bodyContent?.split(" ")?.length ?? 0;
 const dateObj = new Date(date);
-const authorWithFallback = author || site.default_author;
+const authorWithFallback = author || site.authors?.[0]?.slug || "admin";
 
 let readingTime = "Less than 1 minute";
 const readingTimeInMins = Math.floor(wordCount / 183);
@@ -43,7 +43,7 @@ const imageSrc = images[image]?.default || image;
         data-prop-src="image"
         data-prop-alt="image_alt"
         class="w-full rounded-lg aspect-video object-cover"
-        src={imageSrc}
+        src={imageSrc} width={1200} height={630}
         alt={image_alt}
         widths={[600, 800, 1200]}
         sizes="(max-width: 1200px) 100vw, 1200px"
