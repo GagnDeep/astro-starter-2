@@ -1,17 +1,36 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "DogSnacker",
+  "description": "Vet-reviewed homemade dog-treat recipes organised by food allergen.",
+  "tagline": "Dog treats for sensitive stomachs.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "DogSnacker — vet-reviewed homemade dog-treat recipes.",
+  "default_author": "DogSnacker",
+  "theme_color": "#d97706",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "same_as": [],
+    "name": "DogSnacker",
+    "logo": "/images/logos/logo-wordmark.png"
+  },
+  "authors": [
+    {
+      "slug": "dr-sarah-jenkins",
+      "name": "Dr. Sarah Jenkins",
+      "role": "Veterinary Consultant",
+      "bio": "Dr. Sarah Jenkins is a licensed veterinarian specializing in canine nutrition and allergen-friendly diets."
+    },
+    {
+      "slug": "editorial-team",
+      "name": "DogSnacker Editorial Team",
+      "role": "Recipe Creators",
+      "bio": "We develop and test homemade dog treat recipes, focusing on minimal ingredients for sensitive dogs."
+    }
+  ],
+  "editorial": {
+    "testing": "Every recipe is developed in-house, tested by our team's dogs, and reviewed by a licensed veterinarian for nutritional safety and allergen accuracy.",
+    "monetization": "We earn a commission if you purchase recommended ingredients or kitchen tools through our affiliate links, and we sell digital recipe collections.",
+    "corrections": "If a recipe ingredient is flagged for safety or updated veterinary guidance, we will update the post immediately and note the correction at the top of the page."
   }
 }
