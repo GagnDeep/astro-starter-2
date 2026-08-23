@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of RIA",
+  "description": "B2B media and insights for registered investment adviser firms on firm formation, compliance, technology, and succession.",
+  "tagline": "The operational blueprint for independent RIAs.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of RIA - B2B media for registered investment advisers.",
+  "default_author": "Institute of RIA Editorial",
+  "theme_color": "#172554",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of RIA",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Institute of RIA Editorial",
+      "real_role": "Editorial Team",
+      "bio": "Our editorial team covers firm formation, compliance, technology stacks and succession for RIA principals, COOs, and compliance leads.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We publish reproducible, back-tested reviews of technology stacks and services using live RIA operational environments.",
+    "how_we_make_money": "We generate revenue through vendor referrals and sponsorships from RIA-serving vendors. We do not provide investment advice and we do not match consumers with advisers.",
+    "corrections": "Corrections to factual errors will be published prominently on the affected page within 24 hours of verification."
   }
 }
