@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Neurofeedback",
+  "description": "An honest, citation-backed review of what neurofeedback research does and does not support. Explore B2B content for clinicians evaluating equipment.",
+  "tagline": "Evidence-based neurofeedback research and clinical equipment analysis.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Neurofeedback — evidence-based neurofeedback research.",
+  "default_author": "Institute of Neurofeedback",
+  "theme_color": "#1a1c29",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Neurofeedback",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Reviewers and Researchers",
+      "bio": "Our editorial team ensures every clinical claim is backed by peer-reviewed citations and rigorous research.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We aggregate and review peer-reviewed neurofeedback research. For equipment comparisons, we evaluate published technical specifications and clinical efficacy studies.",
+    "how_we_make_money": "We generate revenue through B2B content and clinician-focused equipment comparison affiliate relationships. We do not accept payment to alter clinical claim outcomes.",
+    "corrections": "If you find a factual error or unsupported clinical claim, please contact us. Corrections are reviewed by our team and published transparently."
   }
 }
