@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 /*
+ * Art Direction: Editorial/Swiss
+ */
+
+/*
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
