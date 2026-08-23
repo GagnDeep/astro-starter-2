@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Fish Scanner",
+  "description": "An aquarium stocking and compatibility calculator focused on the marine and reef gap.",
+  "tagline": "The marine aquarium compatibility and stocking calculator.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Fish Scanner — The marine aquarium compatibility and stocking calculator.",
+  "default_author": "Editorial Team",
+  "theme_color": "#001a33",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Fish Scanner",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Reef and Marine Aquarium Specialists",
+      "bio": "Our editorial team brings years of experience in marine aquarium care, compatibility, and stocking."
+    }
+  ],
+  "editorial": {
+    "testing": "We combine aquarium husbandry literature with experienced marine aquarist reports to source our compatibility logic. Every claim is cited to its primary data source.",
+    "revenue": "We make money through affiliate commissions when you purchase aquarium supplies using our links. These are always marked clearly with 'sponsored'.",
+    "corrections": "If we get stocking logic wrong, we fix it and update our algorithms. Contact us to report any issues or submit citations."
   }
 }

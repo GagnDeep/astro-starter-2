@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "Fish Scanner",
+  "short_name": "Fish Scanner",
+  "description": "An aquarium stocking and compatibility calculator focused on the marine and reef gap.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#001a33",
+  "theme_color": "#001a33",
   "icons": [
     {
       "src": "/meta/icon-192.png",
