@@ -1,44 +1,40 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-wordmark.png",
+    "logo_alt_text": "Handpano logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/scales/",
+        "text": "Choose a Scale"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/makers/",
+        "text": "Find a Maker"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "link": "/guide/",
+        "text": "Buyer's Guide"
       },
       {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "link": "/lessons/",
+        "text": "Lessons"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-wordmark.png",
+    "logo_alt_text": "Handpano logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Handpano. All rights reserved.",
     "links": [
+      {
+        "link": "/about/",
+        "text": "About & Ethics"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
       },
       {
         "link": "/feed.xml",

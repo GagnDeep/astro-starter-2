@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "Handpano — The Buyer's Guide to Handpans",
+  "short_name": "Handpano",
+  "description": "Independent, citation-backed reviews and resources for first-time handpan buyers. Choose the right scale, maker, and budget without affiliate bias.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#2c3e50",
+  "theme_color": "#2c3e50",
   "icons": [
     {
       "src": "/meta/icon-192.png",

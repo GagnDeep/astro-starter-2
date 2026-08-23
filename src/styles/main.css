@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 /*
+ * ART DIRECTION: Editorial/Swiss
+ * Conveying high founder credibility, clarity, and precision. It focuses on
+ * well-structured typography, asymmetric layouts, and an objective, technical
+ * presentation.
+ */
+
+/*
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
