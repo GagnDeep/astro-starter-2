@@ -1,0 +1,41 @@
+---
+interface Props {
+  heading: string;
+  subheading: string;
+  button: {
+    text: string;
+    link: string;
+  };
+}
+
+const { heading, subheading, button } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-(--color-brand-800) text-(--surface-color)">
+  <div class="mx-auto max-w-4xl px-8 flex flex-col md:flex-row items-center gap-8 md:gap-16 reveal reveal-active">
+    <div class="flex-1 flex flex-col gap-4 text-center md:text-left">
+      <h2
+        data-editable="text"
+        data-prop="heading"
+        class="text-3xl md:text-4xl font-bold text-balance text-(--surface-color)">
+        {heading}
+      </h2>
+      <p
+        data-editable="text"
+        data-prop="subheading"
+        class="text-xl text-(--color-brand-200) max-w-2xl">
+        {subheading}
+      </p>
+    </div>
+
+    {button && button.link && (
+      <div class="flex-shrink-0">
+        <a
+          href={button.link}
+          class="inline-block px-8 py-4 bg-(--color-accent-500) text-(--color-brand-950) font-bold hover:bg-(--color-accent-400) hover-transition focus-visible shadow-md">
+          <span data-editable="text" data-prop="button.text">{button.text}</span>
+        </a>
+      </div>
+    )}
+  </div>
+</section>

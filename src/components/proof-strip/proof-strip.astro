@@ -1,0 +1,36 @@
+---
+interface Props {
+  logos: {
+    image_path: string;
+    alt_text: string;
+  }[];
+  label: string;
+}
+
+const { logos, label } = Astro.props;
+---
+
+<section class="py-12 bg-(--surface-color) border-y border-(--border-color)">
+  <div class="mx-auto max-w-6xl px-8 flex flex-col md:flex-row items-center gap-8 lg:gap-16">
+    <p
+      data-editable="text"
+      data-prop="label"
+      class="text-sm font-bold uppercase tracking-widest text-(--color-neutral-500) whitespace-nowrap">
+      {label}
+    </p>
+
+    <div class="flex flex-wrap justify-center md:justify-start items-center gap-8 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+      {logos && logos.map((logo, index) => (
+        <img
+          src={logo.image_path}
+          alt={logo.alt_text}
+          class="h-8 md:h-10 w-auto object-contain"
+          data-editable="image"
+          data-prop-src={`logos[${index}].image_path`}
+          data-prop-alt={`logos[${index}].alt_text`}
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div>
+</section>

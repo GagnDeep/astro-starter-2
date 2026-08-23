@@ -26,17 +26,17 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 const imageSrc = images[image.image_path]?.default ?? image.image_path;
 ---
 
-<section class="py-12 md:py-20">
+<section class="py-16 md:py-24 bg-(--bg-color)">
   <div
-    class={`mx-auto max-w-6xl px-8 flex flex-col md:flex-row items-center gap-12 ${flipped ? "md:flex-row-reverse" : ""}`}>
-    <div class="flex-1 flex flex-col gap-4">
+    class={`mx-auto max-w-6xl px-8 flex flex-col items-stretch gap-12 lg:gap-16 ${flipped ? "md:flex-row-reverse" : "md:flex-row"}`}>
+    <div class="flex flex-col gap-6 w-full md:w-[45%] lg:w-[40%] justify-center py-8 reveal reveal-active">
       <h2
         data-editable="text"
         data-prop="heading"
-        class="text-2xl md:text-4xl font-bold leading-tight text-balance">
+        class="text-balance text-(--heading-color) font-bold text-4xl">
         {heading}
       </h2>
-      <div class="text-gray-600">
+      <div class="text-(--text-color) prose">
         <Markdown
           content={text_content}
           dataProp="text_content"
@@ -45,29 +45,31 @@ const imageSrc = images[image.image_path]?.default ?? image.image_path;
       </div>
       {
         button?.link && (
-          <a
-            href={button.link}
-            class="mt-2 inline-block w-fit rounded-lg bg-blue-600 px-6 py-3 text-white font-medium hover:bg-blue-700 transition-colors">
-            <span data-editable="text" data-prop="button.text">
-              {button.text}
-            </span>
-          </a>
+          <div class="pt-4">
+             <a
+              href={button.link}
+              class="inline-block w-fit font-bold uppercase tracking-widest text-sm text-(--color-brand-800) hover:text-(--color-brand-600) border-b-2 border-(--color-brand-800) hover:border-(--color-brand-600) pb-1 hover-transition focus-visible">
+              <span data-editable="text" data-prop="button.text">
+                {button.text}
+              </span>
+            </a>
+          </div>
         )
       }
     </div>
     {
       image.image_path && image.alt_text && (
-        <div class="flex-1">
+        <div class="w-full md:w-[55%] lg:w-[60%] flex relative min-h-[300px] shadow-[var(--card-shadow)] reveal reveal-active overflow-hidden">
           <Picture
             data-editable="image"
             data-prop-src="image.image_path"
             data-prop-alt="image.alt_text"
             alt={image.alt_text}
             src={imageSrc}
-            class="w-full rounded-lg"
+            class="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
             widths={[600, 800, 1200]}
-            sizes="(max-width: 1200px) 100vw, 600px"
+            sizes="(max-width: 768px) 100vw, 60vw"
             formats={["avif", "webp"]}
           />
         </div>

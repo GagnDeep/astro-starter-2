@@ -1,0 +1,36 @@
+---
+import site from "../../../../data/site.json";
+
+interface Props {
+  author_slug?: string;
+  date?: string | Date;
+}
+
+const { author_slug, date } = Astro.props;
+
+const author = site.authors.find((a: any) => a.slug === author_slug) || site.authors[0];
+
+const formattedDate = date ? new Date(date).toLocaleDateString(site.locale, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}) : null;
+---
+
+<div class="flex items-center gap-4 py-6 border-b border-(--border-color) mb-8">
+  <div class="w-12 h-12 bg-(--color-brand-100) text-(--color-brand-800) font-bold text-xl flex items-center justify-center rounded-sm">
+    {author.name.charAt(0)}
+  </div>
+  <div>
+    <p class="font-bold text-(--heading-color)">{author.name}</p>
+    <div class="flex items-center gap-2 text-sm text-(--color-neutral-600)">
+      <span>{author.role}</span>
+      {formattedDate && (
+        <>
+          <span aria-hidden="true">&bull;</span>
+          <time datetime={new Date(date as string | Date).toISOString()}>{formattedDate}</time>
+        </>
+      )}
+    </div>
+  </div>
+</div>
