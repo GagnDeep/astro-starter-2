@@ -1,3 +1,4 @@
+/* Art Direction: Technical-brutalist */
 @import "tailwindcss";
 
 /*
@@ -130,9 +131,7 @@
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
   }
-}
 
-@layer components {
   /* CloudCannon content editor alignment classes */
   .align-left { text-align: left; }
   .align-center { text-align: center; }
