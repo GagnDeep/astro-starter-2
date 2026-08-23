@@ -18,7 +18,7 @@ const { heading, date, author, image, image_alt, tags, bodyContent } =
 
 const wordCount = bodyContent?.split(" ")?.length ?? 0;
 const dateObj = new Date(date);
-const authorWithFallback = author || site.default_author;
+const authorWithFallback = author || site.authors?.[0]?.name;
 
 let readingTime = "Less than 1 minute";
 const readingTimeInMins = Math.floor(wordCount / 183);

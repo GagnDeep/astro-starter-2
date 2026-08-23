@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "Institute of DNA",
+  "short_name": "Institute of DNA",
+  "description": "A privacy-first comparison of consumer DNA tests. We analyze terms of service, data retention policies, and where your genetic data actually ends up.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#171a1c",
+  "theme_color": "#171a1c",
   "icons": [
     {
       "src": "/meta/icon-192.png",
