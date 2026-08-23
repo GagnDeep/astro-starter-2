@@ -15,9 +15,7 @@ export default function BlogPagination({ pagination }) {
       <li key={i}>
         <a
           className={`inline-block px-4 py-2 rounded-lg font-semibold ${
-            i === currentPage
-              ? "bg-blue-600 text-white"
-              : "text-gray-700 hover:text-blue-600"
+            i === currentPage ? "bg-blue-600 text-white" : "text-gray-700 hover:text-blue-600"
           }`}
           href={i === 1 ? "/blog" : `/blog/${i}`}
         >

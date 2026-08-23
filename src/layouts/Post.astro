@@ -22,9 +22,7 @@ type Props = {
 const { frontmatter, body } = Astro.props;
 
 const posts = await getCollection("blog");
-const filteredPosts = posts.filter(
-  (post) => post.data.title !== frontmatter.title,
-);
+const filteredPosts = posts.filter((post) => post.data.title !== frontmatter.title);
 ---
 
 <Layout
