@@ -1,44 +1,36 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-brand.png",
+    "logo_alt_text": "DogSnacker logo",
     "logo_url": "/",
+    "links": [
+      {
+        "link": "/recipes/",
+        "text": "Recipes"
+      },
+      {
+        "link": "/about/",
+        "text": "About"
+      },
+      {
+        "link": "/contact/",
+        "text": "Contact"
+      }
+    ]
+  },
+  "footer": {
+    "logo": "/images/logos/logo-brand.png",
+    "logo_alt_text": "DogSnacker logo",
+    "logo_url": "/",
+    "copyright": "DogSnacker. All rights reserved.",
     "links": [
       {
         "link": "/about/",
         "text": "About"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
-      }
-    ]
-  },
-  "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
       },
       {
         "link": "/feed.xml",

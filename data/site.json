@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "DogSnacker",
+  "description": "Vet-reviewed homemade dog-treat recipes organised by food allergen, for owners managing a sensitivity or elimination diet.",
+  "tagline": "Homemade dog-treat recipes for sensitive stomachs",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "DogSnacker — Vet-reviewed homemade dog-treat recipes by food allergen.",
+  "default_author": "DogSnacker Editorial",
+  "theme_color": "#D2B48C",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "DogSnacker",
+    "logo": "/images/logos/logo-brand.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "dogsnacker-editorial",
+      "name": "DogSnacker Editorial",
+      "role": "Content Team",
+      "bio": "Our team of writers and researchers.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "Recipes are developed and tested in home kitchens before being reviewed by consulting veterinarians for nutritional safety and allergen accuracy.",
+    "how_we_make_money": "We earn a commission when you purchase recommended ingredients or kitchen tools through our affiliate links. We also sell digital recipe collections.",
+    "corrections": "We update recipes and health guidance as new veterinary insights become available. If you spot an error, please contact us."
   }
 }
