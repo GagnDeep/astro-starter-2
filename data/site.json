@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "They Are Tracking",
+  "description": "Data-broker removal guidance and privacy-tool comparisons.",
+  "tagline": "Get your personal information off data-broker sites.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "They Are Tracking — data-broker removal guidance and privacy-tool comparisons.",
+  "default_author": "Editorial Team",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "They Are Tracking",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Privacy Researchers",
+      "bio": "Our editorial team researches and compares privacy tools and data broker removal processes."
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We manually opt out of data brokers to verify the free process, and test paid removal services using test profiles to measure their effectiveness.",
+    "how_we_make_money": "We earn an affiliate commission when you purchase some of the privacy tools or paid removal services we recommend. We disclose these relationships on the pages where they appear.",
+    "corrections": "If we make an error in our methodology or a data broker changes their opt-out process, we update the guide and note the change at the top of the page."
   }
 }
