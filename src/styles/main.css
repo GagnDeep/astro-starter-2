@@ -1,4 +1,41 @@
+/* ART DIRECTION: Technical-brutalist */
+
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Bricolage Grotesque Fallback", sans-serif;
+  --font-body: "IBM Plex Sans", "IBM Plex Sans Fallback", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Palette: Stainless Steel, Orange Safety Cone, Raw Concrete */
+  --color-brand-100: oklch(0.95 0.05 45); /* Soft orange */
+  --color-brand-500: oklch(0.65 0.18 45); /* Core brand orange */
+  --color-brand-900: oklch(0.25 0.08 45); /* Deep orange */
+
+  --color-support-100: oklch(0.95 0.03 260); /* Soft steel blue */
+  --color-support-500: oklch(0.55 0.1 260); /* Steel blue */
+  --color-support-900: oklch(0.2 0.05 260); /* Deep steel */
+
+  --color-neutral-50: oklch(0.98 0.01 260);
+  --color-neutral-100: oklch(0.95 0.01 260);
+  --color-neutral-200: oklch(0.9 0.01 260);
+  --color-neutral-300: oklch(0.8 0.015 260);
+  --color-neutral-400: oklch(0.65 0.02 260);
+  --color-neutral-500: oklch(0.5 0.02 260);
+  --color-neutral-600: oklch(0.4 0.02 260);
+  --color-neutral-700: oklch(0.3 0.025 260);
+  --color-neutral-800: oklch(0.2 0.03 260);
+  --color-neutral-900: oklch(0.15 0.03 260);
+
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+
+  --shadow-sm: 2px 2px 0 0 oklch(0.15 0.03 260);
+  --shadow-md: 4px 4px 0 0 oklch(0.15 0.03 260);
+  --shadow-lg: 8px 8px 0 0 oklch(0.15 0.03 260);
+}
 
 /*
  * CASCADE RULE — read before adding CSS to this file.
@@ -23,8 +60,37 @@
  */
 
 @layer base {
+  @font-face {
+    font-family: "Bricolage Grotesque";
+    src: url("/fonts/display.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 400 800;
+  }
+  @font-face {
+    font-family: "Bricolage Grotesque Fallback";
+    src: local("Arial");
+    size-adjust: 105%;
+    ascent-override: 95%;
+    descent-override: 25%;
+  }
+  @font-face {
+    font-family: "IBM Plex Sans";
+    src: url("/fonts/body.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "IBM Plex Sans Fallback";
+    src: local("Arial");
+    size-adjust: 102%;
+    ascent-override: 95%;
+    descent-override: 25%;
+  }
+
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
+    background-color: var(--color-neutral-50);
+    color: var(--color-neutral-900);
   }
 
   main {
@@ -34,14 +100,50 @@
   img {
     object-fit: cover;
   }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+
+  /* Dark mode design (not inverted) */
+  @media (prefers-color-scheme: dark) {
+    html {
+      background-color: oklch(0.18 0.08 45); /* dark brand surface */
+      color: var(--color-neutral-100);
+    }
+
+    .shadow-sm, .shadow-md, .shadow-lg {
+      box-shadow: 0 -1px 0 0 oklch(1 0 0 / 0.1);
+    }
+
+    *:focus-visible {
+      outline: 2px solid oklch(0.8 0.2 45); /* raised chroma */
+    }
+  }
 }
 
 @layer components {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+
+  h1 { font-size: clamp(2.75rem, 6vw, 5.5rem); }
+
+  .prose {
+    font-size: 1.125rem; /* 18px body */
+    line-height: 1.6;
+  }
+
   .prose h1,
   .prose h2,
   .prose h3,
   .prose h4 {
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-weight: 700;
     margin-bottom: 0.5rem;
     text-wrap: balance;
     line-height: 1.2;

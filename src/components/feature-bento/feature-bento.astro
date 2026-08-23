@@ -1,0 +1,26 @@
+---
+import Markdown from "../utility/markdown.astro";
+
+interface Props {
+  heading: string;
+  features: {
+    title: string;
+    description: string;
+  }[];
+}
+
+const { heading, features } = Astro.props;
+---
+<section class="py-16 mx-auto max-w-6xl px-8">
+  {heading && <h2 class="text-3xl font-bold mb-8 uppercase text-neutral-900 border-l-8 border-brand-500 pl-4">{heading}</h2>}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {features && features.map((feature, i) => (
+      <div class={`border-4 border-neutral-900 p-6 bg-white shadow-md ${i % 3 === 0 ? 'md:col-span-2 bg-brand-100/20' : 'md:col-span-1'} hover:-translate-y-1 hover:shadow-lg transition-transform`}>
+        <h3 class="text-xl font-bold uppercase mb-2">{feature.title}</h3>
+        <div class="text-neutral-700">
+          <Markdown content={feature.description} dataType="inline" />
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+interface Props {
+  logos: {
+    image_path: string;
+    alt_text: string;
+  }[];
+}
+
+const { logos } = Astro.props;
+---
+<section class="py-8 bg-neutral-900 border-y-4 border-neutral-900">
+  <div class="mx-auto max-w-6xl px-8">
+    <p class="text-center text-brand-500 font-bold uppercase tracking-widest text-sm mb-6">Trusted By Operators</p>
+    <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center grayscale opacity-80">
+      {logos && logos.map(logo => (
+        <img src={logo.image_path} alt={logo.alt_text} class="h-10 md:h-12 w-auto object-contain" loading="lazy" />
+      ))}
+    </div>
+  </div>
+</section>

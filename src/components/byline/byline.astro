@@ -1,0 +1,20 @@
+---
+interface Props {
+  author_name: string;
+  author_role: string;
+  author_image?: string;
+  date: string;
+}
+
+const { author_name, author_role, author_image, date } = Astro.props;
+---
+<div class="flex items-center gap-4 py-6 border-y-2 border-neutral-900 my-8">
+  {author_image && (
+    <img src={author_image} alt={author_name} class="w-16 h-16 object-cover border-2 border-neutral-900 rounded-none bg-brand-100" />
+  )}
+  <div>
+    <p class="font-bold uppercase text-neutral-900 m-0 leading-tight">{author_name}</p>
+    <p class="text-neutral-600 text-sm m-0 uppercase font-bold">{author_role}</p>
+    <p class="text-neutral-500 text-xs m-0 mt-1"><time datetime={new Date(date).toISOString()}>{new Date(date).toLocaleDateString()}</time></p>
+  </div>
+</div>
