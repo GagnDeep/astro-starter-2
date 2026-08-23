@@ -1,0 +1,38 @@
+---
+import Markdown from "../utility/markdown.astro";
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  table_html: string;
+}
+
+const { heading, subheading, table_html } = Astro.props;
+---
+
+<section class="py-[var(--spacing-block)] reveal">
+  <div class="mx-auto max-w-4xl px-8 flex flex-col gap-6">
+    <div class="text-left flex flex-col gap-2">
+      <h2
+        data-editable="text"
+        data-prop="heading"
+        class="text-2xl md:text-3xl font-bold leading-tight text-neutral-900 dark:text-neutral-100">
+        {heading}
+      </h2>
+      {subheading && (
+         <div class="prose text-neutral-600 dark:text-neutral-300">
+           <Markdown content={subheading} dataProp="subheading" dataType="block" />
+         </div>
+      )}
+    </div>
+
+    <div class="w-full overflow-x-auto border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-sm">
+      <div
+        class="prose max-w-none w-full"
+        data-editable="text"
+        data-prop="table_html"
+        set:html={table_html}
+      />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+import { ChevronRight } from "@lucide/astro";
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="py-4 reveal">
+  <ol class="mx-auto max-w-6xl px-8 flex items-center flex-wrap gap-2 text-sm text-neutral-600 dark:text-neutral-400" data-editable="array" data-prop="items">
+    {items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <li class="flex items-center gap-2" data-editable="array-item">
+          {isLast ? (
+             <span class="text-neutral-900 dark:text-neutral-100 font-medium" aria-current="page" data-editable="text" data-prop={`items.${index}.name`}>{item.name}</span>
+          ) : (
+             <a href={item.url} class="hover:text-brand dark:hover:text-accent-dark transition-colors focus-visible:outline-brand dark:focus-visible:outline-accent-dark rounded-sm">
+               <span data-editable="text" data-prop={`items.${index}.name`}>{item.name}</span>
+             </a>
+          )}
+          {!isLast && (
+            <ChevronRight class="w-4 h-4 text-neutral-400" />
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
