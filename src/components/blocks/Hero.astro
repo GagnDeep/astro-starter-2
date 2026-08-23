@@ -1,4 +1,7 @@
 ---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
 export interface Props {
   heading: string;
   subheading?: string;
@@ -6,8 +9,14 @@ export interface Props {
   primary_cta_link?: string;
   secondary_cta_text?: string;
   secondary_cta_link?: string;
-  image?: string;
-  image_alt?: string;
+  image?: {
+    image_path: string;
+    alt_text?: string;
+  };
+  button?: {
+    text: string;
+    link: string;
+  };
 }
 
 const {
@@ -18,8 +27,20 @@ const {
   secondary_cta_text,
   secondary_cta_link,
   image,
-  image_alt,
+  button
 } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif,svg,webp,avif}",
+  { eager: true }
+);
+
+const imgPath = image?.image_path;
+const imageSrc = imgPath ? (images[imgPath]?.default ?? imgPath) : null;
+const imageAlt = image?.alt_text || "";
+
+const cta1_text = primary_cta_text || button?.text;
+const cta1_link = primary_cta_link || button?.link;
 ---
 
 <section class="py-16 sm:py-24 max-w-7xl mx-auto px-8 w-full">
@@ -35,12 +56,12 @@ const {
 
       <div class="flex flex-wrap gap-4">
         {
-          primary_cta_text && primary_cta_link && (
+          cta1_text && cta1_link && (
             <a
-              href={primary_cta_link}
+              href={cta1_link}
               class="bg-(--color-brand-600) text-white px-6 py-3 font-medium hover:bg-(--color-brand-700) transition-colors"
             >
-              {primary_cta_text}
+              {cta1_text}
             </a>
           )
         }
@@ -58,13 +79,22 @@ const {
     </div>
 
     {
-      image && (
+      imageSrc && (
         <div class="lg:col-span-5 h-full min-h-[300px] w-full">
-          <img
-            src={image}
-            alt={image_alt || ""}
-            class="w-full h-full object-cover object-center shadow-md border border-(--border-color)"
-          />
+          {typeof imageSrc === 'string' ? (
+             <img
+              src={imageSrc}
+              alt={imageAlt}
+              class="w-full h-full object-cover object-center shadow-md border border-(--border-color)"
+            />
+          ) : (
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              loading="eager"
+              class="w-full h-full object-cover object-center shadow-md border border-(--border-color)"
+            />
+          )}
         </div>
       )
     }
