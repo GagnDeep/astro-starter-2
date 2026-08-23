@@ -5,17 +5,17 @@ import { header } from "../../../data/navigation.json";
 import { Menu, X } from "@lucide/astro";
 ---
 
-<header class="bg-white">
-  <div class="mx-auto max-w-6xl px-8">
+<header class="bg-neutral-100 dark:bg-surface-dark border-b border-neutral-300 dark:border-neutral-700 sticky top-0 z-40 transition-colors duration-200">
+  <div class="mx-auto max-w-6xl px-8" data-editable="object" data-prop="header">
     <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+      <a href={header.logo_url} class="focus-visible:outline-brand dark:focus-visible:outline-accent-dark rounded-sm">
+        <img class="w-48 h-auto dark:brightness-0 dark:invert" src={header.logo} alt={header.logo_alt_text} />
       </a>
 
-      <ul class="hidden sm:flex items-center gap-6">
+      <ul class="hidden sm:flex items-center gap-6" data-editable="array" data-prop="links">
         {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
+          <li data-editable="array-item">
+            <a class="text-neutral-700 dark:text-neutral-200 hover:text-brand dark:hover:text-accent-dark transition-colors duration-200 font-medium" href={link.link}>
               {link.text}
             </a>
           </li>
@@ -23,7 +23,7 @@ import { Menu, X } from "@lucide/astro";
       </ul>
 
       <button
-        class="sm:hidden p-2"
+        class="sm:hidden p-2 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-md transition-colors"
         aria-label="Open navigation menu"
         popovertarget="mobile-menu"
         popovertargetaction="show"
@@ -31,30 +31,30 @@ import { Menu, X } from "@lucide/astro";
         <Menu class="w-6 h-6" aria-hidden="true" />
       </button>
 
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
+      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-neutral-100 dark:bg-surface-dark z-50">
         <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+          <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
+            <a href={header.logo_url}>
+              <img class="w-48 h-auto dark:brightness-0 dark:invert" src={header.logo} alt={header.logo_alt_text} />
+            </a>
+            <button
+              class="p-2 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-md transition-colors"
+              aria-label="Close navigation menu"
+              popovertarget="mobile-menu"
+              popovertargetaction="hide"
+            >
+              <X class="w-6 h-6" aria-hidden="true" />
+            </button>
+          </div>
+          <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-neutral-200 dark:divide-neutral-700 w-full px-8">
+            {header.links.map((link) => (
+              <li class="w-full text-center">
+                <a class="block py-5 text-2xl font-medium text-neutral-800 dark:text-neutral-100 hover:text-brand dark:hover:text-accent-dark transition-colors" href={link.link}>
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </nav>

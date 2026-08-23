@@ -47,10 +47,12 @@ function organizationNode(base: string): JsonLdNode {
   if (site.organization?.logo) {
     node.logo = {
       "@type": "ImageObject",
+      "@id": id(base, "logo"),
       url: absoluteUrl(site.organization.logo, base),
     };
+    node.image = { "@id": id(base, "logo") };
   }
-  if (site.organization?.same_as?.length) {
+  if (site.organization?.same_as && site.organization.same_as.length > 0) {
     node.sameAs = site.organization.same_as;
   }
   return node;
@@ -89,18 +91,25 @@ export function buildSchemaGraph({
     description: seo.description,
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
-    primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
-      : undefined,
+    about: { "@id": id(base, "organization") },
   };
 
+  if (seo.image) {
+    pageNode.primaryImageOfPage = {
+      "@type": "ImageObject",
+      "@id": `${seo.canonical}#primaryimage`,
+      url: seo.image,
+      ...(seo.imageAlt && { caption: seo.imageAlt })
+    };
+    pageNode.image = { "@id": `${seo.canonical}#primaryimage` };
+  }
+
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      pageNode.author = { "@type": "Person", "@id": `${seo.canonical}#author`, name: seo.article.author };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;

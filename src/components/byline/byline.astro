@@ -1,0 +1,24 @@
+---
+interface Props {
+  author_name: string;
+  author_role?: string;
+  date: string | Date;
+}
+
+const { author_name, author_role, date } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<div class="flex items-center gap-4 py-6 border-b border-neutral-300 dark:border-neutral-700 reveal">
+  <div class="flex flex-col">
+    <span class="font-medium text-neutral-900 dark:text-neutral-100" data-editable="text" data-prop="author_name">{author_name}</span>
+    {author_role && (
+       <span class="text-sm text-neutral-600 dark:text-neutral-400" data-editable="text" data-prop="author_role">{author_role}</span>
+    )}
+    <time class="text-sm text-neutral-500 dark:text-neutral-500 mt-1" datetime={new Date(date).toISOString()} data-editable="text" data-prop="date">{formattedDate}</time>
+  </div>
+</div>
