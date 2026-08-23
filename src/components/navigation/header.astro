@@ -1,21 +1,19 @@
 ---
 import { header } from "../../../data/navigation.json";
-// Icons: @lucide/astro renders inline SVG at build time — zero client JS,
-// tree-shaken per import. See AGENTS.md → "Icons".
 import { Menu, X } from "@lucide/astro";
 ---
 
-<header class="bg-white">
+<header class="bg-[var(--bg-color)] border-b-2 border-[var(--border-color)]">
   <div class="mx-auto max-w-6xl px-8">
     <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
+      <a href={header.logo_url} class="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]">
         <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
       </a>
 
       <ul class="hidden sm:flex items-center gap-6">
         {header.links.map((link) => (
           <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
+            <a class="text-[var(--text-color)] font-bold uppercase tracking-wide hover:text-[var(--accent-color-hover)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]" href={link.link}>
               {link.text}
             </a>
           </li>
@@ -23,38 +21,38 @@ import { Menu, X } from "@lucide/astro";
       </ul>
 
       <button
-        class="sm:hidden p-2"
+        class="sm:hidden p-2 brutal-border bg-[var(--surface-color)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)] hover:bg-[var(--accent-color)] transition-colors"
         aria-label="Open navigation menu"
         popovertarget="mobile-menu"
         popovertargetaction="show"
       >
-        <Menu class="w-6 h-6" aria-hidden="true" />
+        <Menu class="w-6 h-6 stroke-[var(--text-color)]" aria-hidden="true" />
       </button>
 
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-[var(--bg-color)] z-50">
+        <div class="flex flex-col h-full border-2 border-[var(--border-color)] m-4 bg-[var(--surface-color)] shadow-[var(--shadow-color)] brutal-shadow">
+          <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-4 py-4 border-b-2 border-[var(--border-color)]">
+            <a href={header.logo_url}>
+              <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+            </a>
+            <button
+              class="p-2 brutal-border hover:bg-[var(--accent-color)] transition-colors"
+              aria-label="Close navigation menu"
+              popovertarget="mobile-menu"
+              popovertargetaction="hide"
+            >
+              <X class="w-6 h-6 stroke-[var(--text-color)]" aria-hidden="true" />
+            </button>
+          </div>
+          <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y-2 divide-[var(--border-color)]">
+            {header.links.map((link) => (
+              <li class="w-full text-center">
+                <a class="block py-6 text-2xl font-bold uppercase tracking-wider text-[var(--text-color)] hover:bg-[var(--accent-color)] hover:text-[var(--text-color)] transition-colors" href={link.link}>
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </nav>

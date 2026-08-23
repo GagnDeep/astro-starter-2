@@ -1,38 +1,145 @@
 @import "tailwindcss";
 
 /*
- * CASCADE RULE — read before adding CSS to this file.
- *
- * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
- * beats *any* cascade layer regardless of specificity or source order, so a
- * bare reset like
- *
- *   * { margin: 0; padding: 0; }        <-- outside any @layer
- *
- * silently kills every `p-*`, `px-*`, `m-*`, `mx-auto` and `space-y-*` on the
- * site, while colours, flex and grid keep working — which makes it look like
- * "Tailwind is half broken" rather than a cascade problem.
- *
- * Therefore: every rule in this file stays inside `@layer base` or
- * `@layer components`. No element/reset rule may be written at the top level.
- * `pnpm build` warns if an unlayered spacing reset reaches the output.
- *
- * A `*` reset is not needed anyway: Tailwind's preflight (in `@layer base`)
- * already sets `margin: 0; padding: 0; box-sizing: border-box` on
- * `*, ::before, ::after, ::backdrop`.
+ * Art Direction: Technical-brutalist
+ * Palette: Ledger Paper (neutral), Bloomberg Terminal Accent (Amber), Accounting Ink (Blue).
  */
 
+@theme {
+  --font-sans: "JetBrains Mono", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: "IBM Plex Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-brand-amber: oklch(0.7 0.15 70); /* Bloomberg Terminal Accent */
+  --color-brand-amber-dark: oklch(0.6 0.18 70);
+
+  --color-brand-blue: oklch(0.5 0.15 100); /* Accounting Ink */
+  --color-brand-blue-dark: oklch(0.4 0.18 100);
+
+  --color-ledger-50: oklch(0.98 0.01 90); /* Ledger Paper - low chroma neutral */
+  --color-ledger-100: oklch(0.95 0.01 90);
+  --color-ledger-200: oklch(0.90 0.02 90);
+  --color-ledger-300: oklch(0.80 0.02 90);
+  --color-ledger-400: oklch(0.70 0.02 90);
+  --color-ledger-500: oklch(0.60 0.02 90);
+  --color-ledger-600: oklch(0.50 0.02 90);
+  --color-ledger-700: oklch(0.40 0.02 90);
+  --color-ledger-800: oklch(0.30 0.02 90);
+  --color-ledger-900: oklch(0.20 0.02 90);
+  --color-ledger-950: oklch(0.15 0.02 90);
+
+  --radius-none: 0;
+  --radius-sm: 0;
+  --radius: 0; /* brutalist square */
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+
+  --shadow-sm: 2px 2px 0px 0px oklch(0.2 0.02 90);
+  --shadow-md: 4px 4px 0px 0px oklch(0.2 0.02 90);
+  --shadow-lg: 6px 6px 0px 0px oklch(0.2 0.02 90);
+  --shadow-xl: 8px 8px 0px 0px oklch(0.2 0.02 90);
+}
+
 @layer base {
+  @font-face {
+    font-family: 'IBM Plex Serif';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/ibm-plex-serif-regular.woff2') format('woff2');
+    size-adjust: 104%;
+  }
+
+  @font-face {
+    font-family: 'IBM Plex Serif';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/ibm-plex-serif-bold.woff2') format('woff2');
+    size-adjust: 104%;
+  }
+
+  @font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono-regular.woff2') format('woff2');
+    size-adjust: 96%;
+  }
+
+  @font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/jetbrains-mono-bold.woff2') format('woff2');
+    size-adjust: 96%;
+  }
+
+  :root {
+    --bg-color: var(--color-ledger-50);
+    --text-color: var(--color-ledger-900);
+    --surface-color: #ffffff;
+    --border-color: var(--color-ledger-200);
+    --accent-color: var(--color-brand-amber);
+    --accent-color-hover: var(--color-brand-amber-dark);
+    --link-color: var(--color-brand-blue);
+    --shadow-color: var(--color-ledger-900);
+    --focus-ring: var(--color-brand-blue-dark);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Dark mode designed: Surface is brand hue at low lightness, not #000 */
+      --bg-color: oklch(0.18 0.02 70);
+      --text-color: var(--color-ledger-100);
+      --surface-color: oklch(0.22 0.03 70);
+      --border-color: oklch(0.35 0.04 70);
+      /* Raised accent chroma for dark mode */
+      --accent-color: oklch(0.75 0.18 70);
+      --accent-color-hover: oklch(0.8 0.20 70);
+      --link-color: oklch(0.65 0.18 100);
+
+      /* Replace shadows with a 1px top highlight (simulated in shadow variable for simplicity in box-shadow utility, or handled in utilities) */
+      --shadow-color: transparent;
+    }
+  }
+
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    color: var(--text-color);
   }
 
-  main {
-    min-height: 100vh;
+  body {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    /* Ensure one-shot scroll reveal can work */
+    overflow-x: hidden;
   }
 
-  img {
-    object-fit: cover;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  p {
+    max-width: 65ch;
+    text-wrap: pretty;
+  }
+
+  /* Focus visible styles meeting WCAG AA */
+  *:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 }
 
@@ -41,14 +148,11 @@
   .prose h2,
   .prose h3,
   .prose h4 {
-    font-weight: 500;
     margin-bottom: 0.5rem;
-    text-wrap: balance;
-    line-height: 1.2;
-    max-width: 72ch;
+    font-family: var(--font-serif);
+    font-weight: 600;
   }
-  .prose h1 { font-size: 2rem; }
-  .prose h2 { font-size: 1.75rem; }
+  .prose h2 { font-size: 1.75rem; letter-spacing: -0.02em; }
   .prose h3 { font-size: 1.5rem; }
   .prose h4 { font-size: 1.25rem; }
 
@@ -56,9 +160,9 @@
   .prose a,
   .prose ol li,
   .prose ul li {
-    line-height: 1.75;
-    max-width: 72ch;
-    text-wrap: pretty;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    max-width: 65ch;
   }
   .prose p,
   .prose ol,
@@ -74,15 +178,17 @@
   }
   .prose blockquote {
     font-style: italic;
-    border-left: 5px solid #000;
+    border-left: 4px solid var(--accent-color);
     padding-inline: 1rem;
     margin-inline: 0;
     margin-block: 1rem;
+    background-color: var(--surface-color);
+    padding: 1rem;
   }
   .prose ul li {
     margin-inline: 1rem;
     padding-block: 0.125rem;
-    list-style: disc;
+    list-style: square;
   }
   .prose ol li {
     list-style-type: decimal;
@@ -90,10 +196,15 @@
     margin-inline: 1rem;
   }
   .prose a {
-    color: #034ad8;
+    color: var(--link-color);
     text-decoration: underline;
-    text-underline-offset: 0.1rem;
-    cursor: pointer;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+  .prose a:hover {
+    color: var(--text-color);
+    text-decoration-color: var(--text-color);
   }
   .prose sup { vertical-align: super; font-size: smaller; }
   .prose sub { vertical-align: sub; font-size: smaller; }
@@ -105,37 +216,117 @@
   .prose table p { margin-bottom: 0; padding-block: 0.5rem; }
   .prose th,
   .prose td {
-    border: 1px solid #e5e5e5;
-    padding: 0.5rem;
+    border: 2px solid var(--border-color);
+    padding: 0.75rem;
   }
-  .prose thead { background-color: #f5f5f5; }
+  .prose thead { background-color: var(--surface-color); border-bottom: 4px solid var(--border-color); }
   .prose img {
     max-width: 100%;
     height: auto;
-    margin: 1rem auto;
+    margin: 1.5rem auto;
+    border: 2px solid var(--border-color);
   }
   .prose hr {
     border: 0;
-    border-top: 1px solid #d4d4d4;
-    margin: 1.5rem 0;
+    border-top: 2px dashed var(--border-color);
+    margin: 2rem 0;
   }
   .prose pre {
     margin-block: 1.5rem;
-    padding: 1rem;
+    padding: 1.25rem;
+    background-color: var(--surface-color);
+    border: 2px solid var(--border-color);
   }
   .prose p > code,
   .prose li > code {
-    background-color: #f5f5f5;
-    color: inherit;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 0.2rem 0.4rem;
   }
-}
 
-@layer components {
   /* CloudCannon content editor alignment classes */
   .align-left { text-align: left; }
   .align-center { text-align: center; }
   .align-right { text-align: right; }
   .align-justify { text-align: justify; }
+
+  /* Utilities for technical-brutalist styling */
+  .brutal-border {
+    border: 2px solid var(--text-color);
+  }
+
+  .brutal-shadow {
+    box-shadow: 4px 4px 0px 0px var(--shadow-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .brutal-shadow {
+      box-shadow: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .brutal-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--text-color);
+    box-shadow: 4px 4px 0px 0px var(--shadow-color);
+    transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .brutal-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px var(--shadow-color);
+    background-color: var(--accent-color-hover);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .brutal-button {
+      box-shadow: none;
+      border-color: var(--text-color);
+      color: oklch(0.18 0.02 70); /* Dark text on amber in dark mode */
+    }
+    .brutal-button:hover {
+      transform: none;
+      background-color: var(--accent-color-hover);
+    }
+  }
+
+  /* One-shot scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear forwards;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+  }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

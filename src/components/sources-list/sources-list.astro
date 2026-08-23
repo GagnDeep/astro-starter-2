@@ -1,0 +1,37 @@
+---
+interface Source {
+  title: string;
+  url: string;
+  date?: string;
+}
+
+interface Props {
+  heading?: string;
+  sources: Source[];
+}
+
+const { heading = "Sources", sources = [] } = Astro.props;
+---
+
+<section class="py-12 border-t-4 border-[var(--border-color)] bg-[var(--surface-color)]">
+  <div class="mx-auto max-w-3xl px-8">
+    <h3 data-editable="text" data-prop="heading" class="text-xl font-bold uppercase tracking-widest mb-6 font-sans">
+      {heading}
+    </h3>
+
+    <ol data-editable="array" data-prop="sources" class="list-decimal pl-6 flex flex-col gap-3 font-sans text-sm">
+      {sources.map((source) => (
+        <li data-editable="array-item" class="pl-2 marker:font-bold marker:text-[var(--accent-color)]">
+          <a href={source.url} class="text-[var(--link-color)] hover:text-[var(--text-color)] underline decoration-2 underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]">
+            <span data-editable="text" data-prop="sources[].title">{source.title}</span>
+          </a>
+          {source.date && (
+            <span class="text-[var(--text-color)] opacity-70 ml-2">
+              (Accessed <span data-editable="text" data-prop="sources[].date">{source.date}</span>)
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { ChevronRight } from "@lucide/astro";
+
+interface Breadcrumb {
+  label: string;
+  url: string;
+}
+
+interface Props {
+  items: Breadcrumb[];
+}
+
+const { items = [] } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="py-4 border-b-2 border-[var(--border-color)] bg-[var(--surface-color)]">
+  <div class="mx-auto max-w-6xl px-8">
+    <ol data-editable="array" data-prop="items" class="flex flex-wrap items-center gap-2 font-sans text-sm font-medium">
+      {items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return (
+          <li data-editable="array-item" class="flex items-center gap-2">
+            {isLast ? (
+              <span class="text-[var(--text-color)] opacity-70" aria-current="page">
+                <span data-editable="text" data-prop="items[].label">{item.label}</span>
+              </span>
+            ) : (
+              <>
+                <a href={item.url} class="text-[var(--link-color)] hover:text-[var(--text-color)] hover:underline decoration-2 underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]">
+                  <span data-editable="text" data-prop="items[].label">{item.label}</span>
+                </a>
+                <ChevronRight class="w-6 h-6 stroke-[var(--border-color)]" aria-hidden="true" />
+              </>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</nav>

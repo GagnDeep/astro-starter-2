@@ -1,0 +1,58 @@
+---
+
+interface Column {
+  header: string;
+}
+
+interface Row {
+  feature: string;
+  values: string[];
+}
+
+interface Props {
+  heading?: string;
+  columns: Column[];
+  rows: Row[];
+}
+
+const { heading, columns = [], rows = [] } = Astro.props;
+---
+
+<section class="py-16 md:py-24 border-b-2 border-[var(--border-color)] overflow-hidden">
+  <div class="mx-auto max-w-6xl px-8">
+    {heading && (
+      <h2 data-editable="text" data-prop="heading" class="text-3xl md:text-5xl font-bold mb-12 reveal">
+        {heading}
+      </h2>
+    )}
+
+    <div class="overflow-x-auto reveal pb-4" style="transition-delay: 100ms;">
+      <table class="w-full text-left border-collapse brutal-border bg-[var(--surface-color)] min-w-[600px]">
+        <thead>
+          <tr>
+            <th class="p-4 border-2 border-[var(--border-color)] bg-[var(--bg-color)] w-1/4">Feature</th>
+            {columns.map((col) => (
+              <th data-editable="array-item" class="p-4 border-2 border-[var(--border-color)] bg-[var(--bg-color)] font-bold">
+                <span data-editable="text" data-prop="columns[].header">{col.header}</span>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody data-editable="array" data-prop="rows">
+          {rows.map((row) => (
+            <tr data-editable="array-item" class="hover:bg-[var(--ledger-50)] transition-colors">
+              <td class="p-4 border-2 border-[var(--border-color)] font-medium">
+                <span data-editable="text" data-prop="rows[].feature">{row.feature}</span>
+              </td>
+              {row.values?.map((val, idx) => (
+                <td class="p-4 border-2 border-[var(--border-color)]">
+                  <span data-editable="text" data-prop={`rows[].values[${idx}]`}>{val}</span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

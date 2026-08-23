@@ -45,15 +45,22 @@ function organizationNode(base: string): JsonLdNode {
   };
 
   if (site.organization?.logo) {
-    node.logo = {
-      "@type": "ImageObject",
-      url: absoluteUrl(site.organization.logo, base),
-    };
+    node.logo = { "@id": id(base, "logo") };
   }
+  // site.json has same_as (snake_case)
   if (site.organization?.same_as?.length) {
     node.sameAs = site.organization.same_as;
   }
   return node;
+}
+
+function logoNode(base: string): JsonLdNode | null {
+  if (!site.organization?.logo) return null;
+  return {
+    "@type": "ImageObject",
+    "@id": id(base, "logo"),
+    url: absoluteUrl(site.organization.logo, base),
+  };
 }
 
 function breadcrumbNode(base: string, items: BreadcrumbItem[]): JsonLdNode {
@@ -89,13 +96,16 @@ export function buildSchemaGraph({
     description: seo.description,
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
-    primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
-      : undefined,
   };
 
+  if (seo.image) {
+    pageNode.primaryImageOfPage = { "@id": `${seo.canonical}#primaryimage` };
+  }
+
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
+    if (seo.image) {
+      pageNode.image = { "@id": `${seo.canonical}#primaryimage` };
+    }
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
@@ -105,10 +115,25 @@ export function buildSchemaGraph({
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
     }
-    pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
+    pageNode.mainEntityOfPage = { "@id": `${seo.canonical}#webpage` };
   }
 
-  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
+  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base)];
+
+  const lNode = logoNode(base);
+  if (lNode) graph.push(lNode);
+
+  if (seo.image) {
+    graph.push({
+      "@type": "ImageObject",
+      "@id": `${seo.canonical}#primaryimage`,
+      url: seo.image,
+      ...(seo.imageAlt && { caption: seo.imageAlt })
+    });
+  }
+
+  graph.push(prune(pageNode));
+
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
 
   return { "@context": "https://schema.org", "@graph": graph };
