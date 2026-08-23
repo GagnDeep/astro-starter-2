@@ -47,6 +47,7 @@ function organizationNode(base: string): JsonLdNode {
   if (site.organization?.logo) {
     node.logo = {
       "@type": "ImageObject",
+      "@id": id(base, "organization-logo"),
       url: absoluteUrl(site.organization.logo, base),
     };
   }
@@ -90,7 +91,12 @@ export function buildSchemaGraph({
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
     primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
+      ? {
+          "@type": "ImageObject",
+          "@id": `${seo.canonical}#primaryimage`,
+          url: seo.image,
+          ...(seo.imageAlt && { caption: seo.imageAlt })
+        }
       : undefined,
   };
 
@@ -105,7 +111,7 @@ export function buildSchemaGraph({
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
     }
-    pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
+    pageNode.mainEntityOfPage = { "@id": `${seo.canonical}#webpage` };
   }
 
   const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];

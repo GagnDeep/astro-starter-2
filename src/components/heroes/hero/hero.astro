@@ -25,46 +25,55 @@ const allImages = import.meta.glob<{ default: ImageMetadata }>(
 const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
 ---
 
-<section class="py-16 md:py-24">
-  <div
-    class="mx-auto max-w-6xl px-8 flex flex-col md:flex-row items-center gap-8">
-    <div class="flex-1 flex flex-col gap-4">
+<section class="py-16 md:py-32 relative overflow-hidden bg-[var(--color-bg-base)]">
+  <div class="mx-auto max-w-7xl px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    {/* Asymmetric span: 7 columns for text, 5 for image */}
+    <div class="lg:col-span-7 flex flex-col gap-6 lg:pr-8 reveal is-visible">
       <h1
         data-editable="text"
         data-prop="heading"
-        class="text-3xl md:text-5xl font-bold leading-tight text-balance">
+        class="text-[var(--color-brand-900)] dark:text-[var(--color-neutral-100)]"
+      >
         {heading}
       </h1>
-      <div class="text-lg text-gray-600 max-w-prose">
+      <div class="text-xl md:text-2xl text-[var(--color-text-muted)] max-w-prose leading-relaxed">
         <Markdown content={subheading} dataProp="subheading" dataType="block" />
       </div>
       {
         button?.link && (
-          <a
-            href={button.link}
-            class="mt-2 inline-block w-fit rounded-lg bg-blue-600 px-6 py-3 text-white font-medium hover:bg-blue-700 transition-colors">
-            <span data-editable="text" data-prop="button.text">
-              {button.text}
-            </span>
-          </a>
+          <div class="mt-4">
+            <a
+              href={button.link}
+              class="inline-block w-fit rounded-none bg-[var(--color-accent-600)] px-8 py-4 text-[var(--color-brand-900)] font-bold tracking-wide hover:bg-[var(--color-accent-400)] hover-transition shadow-[var(--shadow-sm)] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-brand-900)] dark:focus-visible:ring-[var(--color-accent-400)]"
+            >
+              <span data-editable="text" data-prop="button.text">
+                {button.text}
+              </span>
+            </a>
+          </div>
         )
       }
     </div>
+
     {
       image.image_path && image.alt_text && (
-        <div class="flex-1">
-          <Picture
-            data-editable="image"
-            data-prop-src="image.image_path"
-            data-prop-alt="image.alt_text"
-            alt={image.alt_text}
-            src={imageSrc}
-            class="w-full max-w-lg"
-            loading="eager"
-            widths={[600, 800, 1200]}
-            sizes="(max-width: 1200px) 100vw, 600px"
-            formats={["avif", "webp"]}
-          />
+        <div class="lg:col-span-5 relative reveal is-visible" style="transition-delay: 150ms;">
+          <div class="aspect-square md:aspect-[4/5] overflow-hidden bg-[var(--color-neutral-200)] dark:bg-[var(--color-brand-800)] border border-[var(--color-border-base)]">
+            <Picture
+              data-editable="image"
+              data-prop-src="image.image_path"
+              data-prop-alt="image.alt_text"
+              alt={image.alt_text}
+              src={imageSrc}
+              class="w-full h-full object-cover grayscale-[20%] mix-blend-multiply dark:mix-blend-normal opacity-90"
+              loading="eager"
+              widths={[600, 800]}
+              sizes="(max-width: 1024px) 100vw, 800px"
+              formats={["avif", "webp"]}
+            />
+          </div>
+          {/* Subtle architectural accent line */}
+          <div class="absolute -bottom-4 -left-4 w-24 h-1 bg-[var(--color-accent-500)] hidden md:block"></div>
         </div>
       )
     }
