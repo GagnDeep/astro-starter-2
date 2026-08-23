@@ -1,0 +1,39 @@
+---
+interface Logo {
+  image_path: string;
+  alt_text: string;
+}
+
+interface Props {
+  text?: string;
+  logos: Logo[];
+}
+
+const { text, logos } = Astro.props;
+---
+
+<section class="py-8 border-y-2 border-[var(--color-brand-ink)] dark:border-white/20 bg-[var(--color-neutral-200)] dark:bg-[var(--color-neutral-900)] reveal is-visible">
+  <div class="mx-auto max-w-6xl px-8 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+    {text && (
+      <p data-editable="text" data-prop="text" class="font-bold font-[family-name:var(--font-display)] uppercase text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)] tracking-wider whitespace-nowrap">
+        {text}
+      </p>
+    )}
+
+    <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12" data-editable="array" data-prop="logos">
+      {logos.map((logo, idx) => (
+        <div data-editable="array-item" class="grayscale hover:grayscale-0 transition-[filter] duration-200 opacity-60 hover:opacity-100">
+          <img
+            data-editable="image"
+            data-prop-src={`logos[${idx}].image_path`}
+            data-prop-alt={`logos[${idx}].alt_text`}
+            src={logo.image_path}
+            alt={logo.alt_text}
+            class="h-10 w-auto object-contain dark:invert"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

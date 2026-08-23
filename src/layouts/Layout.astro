@@ -50,6 +50,7 @@ const resolvedArticle: ArticleMeta | undefined =
 
     <!-- Boot telemetry first so early errors and first-paint timings land. -->
     <Observability />
+    <link rel="preload" href="/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
     <Seo title={title} seo={seo} article={resolvedArticle} breadcrumbs={breadcrumbs} />
 
@@ -64,7 +65,7 @@ const resolvedArticle: ArticleMeta | undefined =
   <body class="flex flex-col min-h-screen">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:shadow"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--color-brand-accent)] focus:text-[var(--color-brand-ink)] focus:px-6 focus:py-3 focus:font-bold focus:font-[family-name:var(--font-display)] focus:border-2 focus:border-[var(--color-brand-ink)] focus:shadow-[var(--shadow-brutal)] focus:uppercase"
     >
       Skip to content
     </a>

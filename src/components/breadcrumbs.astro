@@ -1,0 +1,37 @@
+---
+import type { BreadcrumbItem } from "../lib/seo/schema";
+import { ChevronRight } from "@lucide/astro";
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+{items && items.length > 0 && (
+  <nav aria-label="Breadcrumb" class="py-4 border-b border-[var(--color-brand-ink)]/10 dark:border-white/10 mb-8 reveal is-visible">
+    <ol class="flex items-center space-x-2 text-sm font-[family-name:var(--font-body)] text-[color:var(--color-neutral-800)] dark:text-[color:var(--color-neutral-200)] flex-wrap">
+      {items.map((item, index) => {
+        const isLast = index === items.length - 1;
+
+        return (
+          <li class="flex items-center">
+            {isLast ? (
+              <span class="font-bold text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)]" aria-current="page">
+                {item.name}
+              </span>
+            ) : (
+              <>
+                <a href={item.url} class="hover:text-[var(--color-brand-accent)] dark:hover:text-[var(--color-brand-accent-dark)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-accent)]">
+                  {item.name}
+                </a>
+                <ChevronRight class="w-4 h-4 mx-2 opacity-50" stroke-width="2" />
+              </>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </nav>
+)}

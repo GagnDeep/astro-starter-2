@@ -2,24 +2,24 @@
 import { footer } from "../../../data/navigation.json";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
+<footer class="bg-[var(--color-brand-paper)] dark:bg-[var(--color-brand-paper-dark)] border-t border-[var(--color-brand-ink)] dark:border-white/20">
+  <div class="mx-auto max-w-6xl px-8 py-12" data-editable="object" data-prop="footer">
     <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
+      <a class="flex justify-center sm:justify-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-accent)]" href={footer.logo_url}>
+        <img class="w-48 h-auto" src={footer.logo} alt={footer.logo_alt_text} />
       </a>
 
-      <ul class="flex gap-6 items-center justify-center">
+      <ul class="flex gap-6 items-center justify-center flex-wrap" data-editable="array" data-prop="footer.links">
         {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
+          <li data-editable="array-item">
+            <a class="text-[var(--color-brand-ink)] dark:text-[var(--color-brand-ink-dark)] hover:text-[var(--color-brand-accent)] dark:hover:text-[var(--color-brand-accent-dark)] transition-colors duration-200 uppercase font-bold tracking-tight font-[family-name:var(--font-display)] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-accent)]" href={link.link}>
               {link.text}
             </a>
           </li>
         ))}
       </ul>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
+      <div class="text-center sm:text-end text-sm text-[var(--color-neutral-800)] dark:text-[var(--color-neutral-200)] font-[family-name:var(--font-body)]">
         &copy; {new Date().getFullYear()} {footer.copyright}
       </div>
     </div>

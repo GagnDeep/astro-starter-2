@@ -50,7 +50,7 @@ function organizationNode(base: string): JsonLdNode {
       url: absoluteUrl(site.organization.logo, base),
     };
   }
-  if (site.organization?.same_as?.length) {
+  if (site.organization?.same_as?.length && site.organization.same_as.length > 0) {
     node.sameAs = site.organization.same_as;
   }
   return node;

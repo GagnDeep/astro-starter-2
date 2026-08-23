@@ -1,0 +1,57 @@
+---
+interface Column {
+  header: string;
+}
+
+interface Row {
+  label: string;
+  values: string[];
+}
+
+interface Props {
+  heading?: string;
+  columns: Column[];
+  rows: Row[];
+}
+
+const { heading, columns, rows } = Astro.props;
+---
+
+<section class="py-[var(--spacing-section)] reveal is-visible">
+  <div class="mx-auto max-w-6xl px-8">
+    {heading && (
+      <h2 data-editable="text" data-prop="heading" class="mb-12 text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)]">
+        {heading}
+      </h2>
+    )}
+
+    <div class="overflow-x-auto border-2 border-[var(--color-brand-ink)] dark:border-white/20 shadow-[var(--shadow-brutal)] dark:shadow-[0_-1px_0_0_rgba(255,255,255,0.1)] bg-[var(--color-brand-paper)] dark:bg-[var(--color-brand-paper-dark)]">
+      <table class="w-full text-left border-collapse min-w-[600px]">
+        <thead class="bg-[var(--color-neutral-200)] dark:bg-[var(--color-neutral-800)] border-b-2 border-[var(--color-brand-ink)] dark:border-white/20">
+          <tr data-editable="array" data-prop="columns">
+            <th class="p-4 font-bold font-[family-name:var(--font-display)] text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)]">Feature</th>
+            {columns.map((col, idx) => (
+              <th class="p-4 font-bold font-[family-name:var(--font-display)] text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)] border-l-2 border-[var(--color-brand-ink)] dark:border-white/20" data-editable="array-item">
+                <span data-editable="text" data-prop={`columns[${idx}].header`}>{col.header}</span>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody data-editable="array" data-prop="rows">
+          {rows.map((row, rIdx) => (
+            <tr class="border-b-2 last:border-b-0 border-[var(--color-brand-ink)] dark:border-white/20" data-editable="array-item">
+              <td class="p-4 font-bold text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)]">
+                <span data-editable="text" data-prop={`rows[${rIdx}].label`}>{row.label}</span>
+              </td>
+              {row.values.map((val, vIdx) => (
+                <td class="p-4 border-l-2 border-[var(--color-brand-ink)] dark:border-white/20 text-[color:var(--color-neutral-800)] dark:text-[color:var(--color-neutral-200)]">
+                  <span data-editable="text" data-prop={`rows[${rIdx}].values[${vIdx}]`}>{val}</span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

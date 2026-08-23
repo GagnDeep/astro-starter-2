@@ -1,0 +1,30 @@
+---
+interface Props {
+  heading: string;
+  subheading?: string;
+  button: {
+    text: string;
+    link: string;
+  };
+}
+
+const { heading, subheading, button } = Astro.props;
+---
+
+<section class="py-[var(--spacing-section)] bg-[var(--color-brand-ink)] dark:bg-[var(--color-brand-paper-dark)] text-white dark:border-y dark:border-white/20 reveal is-visible">
+  <div class="mx-auto max-w-4xl px-8 text-center flex flex-col items-center gap-6">
+    <h2 data-editable="text" data-prop="heading" class="text-white dark:text-[color:var(--color-brand-ink-dark)]">
+      {heading}
+    </h2>
+    {subheading && (
+      <p data-editable="text" data-prop="subheading" class="text-xl text-white/80 dark:text-[color:var(--color-neutral-200)] max-w-2xl mx-auto">
+        {subheading}
+      </p>
+    )}
+    <div class="mt-4">
+      <a href={button.link} class="brutal-btn !bg-[var(--color-brand-paper)] !text-[var(--color-brand-ink)] dark:!bg-[var(--color-brand-accent-dark)] dark:!text-[var(--color-brand-ink-dark)] hover:!shadow-[6px_6px_0_0_rgba(255,255,255,0.2)] dark:hover:!shadow-[0_-1px_0_0_rgba(255,255,255,0.3)] !border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+        <span data-editable="text" data-prop="button.text">{button.text}</span>
+      </a>
+    </div>
+  </div>
+</section>
