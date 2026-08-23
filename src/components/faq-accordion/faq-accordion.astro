@@ -1,0 +1,32 @@
+---
+import Markdown from "../utility/markdown.astro";
+import { ChevronDown } from "@lucide/astro";
+
+interface Props {
+  heading: string;
+  items: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+const { heading, items } = Astro.props;
+---
+<section class="py-16 mx-auto max-w-4xl px-8">
+  {heading && <h2 class="text-3xl font-bold mb-8 uppercase text-neutral-900 border-l-8 border-brand-500 pl-4">{heading}</h2>}
+  <div class="space-y-4">
+    {items && items.map(item => (
+      <details class="group border-4 border-neutral-900 bg-white [&_summary::-webkit-details-marker]:hidden shadow-md">
+        <summary class="flex cursor-pointer items-center justify-between p-6 uppercase font-bold text-neutral-900 hover:bg-brand-100/10 transition-colors">
+          <span>{item.question}</span>
+          <span class="ml-4 flex-shrink-0 transition-transform group-open:rotate-180">
+            <ChevronDown class="w-6 h-6" aria-hidden="true" />
+          </span>
+        </summary>
+        <div class="p-6 border-t-4 border-neutral-900 bg-neutral-50 prose prose-neutral max-w-none">
+          <Markdown content={item.answer} dataType="block" />
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

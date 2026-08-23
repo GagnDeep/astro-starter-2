@@ -1,0 +1,24 @@
+---
+interface Props {
+  breadcrumbs: {
+    label: string;
+    url: string;
+  }[];
+}
+
+const { breadcrumbs } = Astro.props;
+---
+<nav aria-label="Breadcrumb" class="py-4 border-b-2 border-neutral-200 mb-8 mx-auto max-w-6xl px-8">
+  <ol class="flex flex-wrap items-center gap-2 text-sm font-bold uppercase text-neutral-600">
+    {breadcrumbs && breadcrumbs.map((crumb, i) => (
+      <li class="flex items-center gap-2">
+        {i > 0 && <span class="text-neutral-400">/</span>}
+        {i === breadcrumbs.length - 1 ? (
+          <span class="text-neutral-900" aria-current="page">{crumb.label}</span>
+        ) : (
+          <a href={crumb.url} class="hover:text-brand-500 transition-colors">{crumb.label}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

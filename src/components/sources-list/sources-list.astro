@@ -1,0 +1,24 @@
+---
+interface Props {
+  sources: {
+    title: string;
+    url?: string;
+  }[];
+}
+
+const { sources } = Astro.props;
+---
+<section class="py-12 mx-auto max-w-4xl px-8 mt-16 bg-neutral-100 border-4 border-neutral-900">
+  <h2 class="text-2xl font-bold mb-4 uppercase text-neutral-900 border-b-2 border-neutral-900 pb-2">Primary Sources</h2>
+  <ol class="list-decimal list-inside space-y-2 text-neutral-800">
+    {sources && sources.map(source => (
+      <li class="pl-2">
+        {source.url ? (
+          <a href={source.url} target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 font-bold underline decoration-brand-500 decoration-2 underline-offset-2 transition-colors">{source.title}</a>
+        ) : (
+          <span class="font-bold">{source.title}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</section>
