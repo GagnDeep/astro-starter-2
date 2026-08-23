@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "AI Wire Harness | Custom & EV Harness RFQ Matching",
+  "description": "Source custom wire harnesses from IPC/WHMA-A-620 certified manufacturers. Pay-per-lead RFQ matching for EV, aerospace and prototyping.",
+  "tagline": "The fastest way to source custom wire harnesses.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "AI Wire Harness - Custom and EV Harness RFQ Matching",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "AI Wire Harness",
+    "logo": "/images/logos/logo-white.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Sourcing Editorial Team",
+      "real_role": "Procurement Analysts",
+      "bio": "Our editorial team evaluates supplier capabilities and RFQ structures to ensure matched leads meet engineering specifications.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We verify manufacturer IPC/WHMA-A-620 certifications and review their production capabilities before matching them with RFQs.",
+    "how_we_make_money": "We operate a pay-per-lead model where harness manufacturers pay to access verified RFQs from engineers and procurement staff. We do not charge the buyers submitting RFQs.",
+    "corrections": "If a manufacturer's certification status changes or capabilities are misrepresented, we remove them from the matching pool immediately and update our records. Email corrections to compliance@aiwireharness.com."
   }
 }

@@ -1,48 +1,88 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-white.png",
+    "logo_alt_text": "AI Wire Harness",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "text": "Custom & EV Harnesses",
+        "link": "/custom-ev-harnesses/",
+        "target": "_self"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "text": "Aerospace Prototyping",
+        "link": "/aerospace-prototyping/",
+        "target": "_self"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "text": "Supplier Certifications",
+        "link": "/certifications/",
+        "target": "_self"
       },
       {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "text": "Submit RFQ",
+        "link": "/submit-rfq/",
+        "target": "_self"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
+    "logo": "/images/logos/logo-white.png",
+    "logo_alt_text": "AI Wire Harness",
+    "description": "Source custom wire harnesses from IPC/WHMA-A-620 certified manufacturers.",
+    "links_groups": [
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "title": "Sourcing",
+        "links": [
+          {
+            "text": "Custom Wire Harnesses",
+            "link": "/custom-wire-harness-manufacturer/",
+            "target": "_self"
+          },
+          {
+            "text": "EV Harness Prototyping",
+            "link": "/ev-harness-prototyping/",
+            "target": "_self"
+          },
+          {
+            "text": "IPC/WHMA-A-620 Suppliers",
+            "link": "/ipc-whma-a-620-suppliers/",
+            "target": "_self"
+          }
+        ]
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "title": "Company",
+        "links": [
+          {
+            "text": "About Us",
+            "link": "/about/",
+            "target": "_self"
+          },
+          {
+            "text": "For Harness Manufacturers",
+            "link": "/for-manufacturers/",
+            "target": "_self"
+          }
+        ]
+      }
+    ],
+    "social": [
+      {
+        "icon": "Twitter",
+        "link": "https://twitter.com/aiwireharness",
+        "alt_text": "Twitter"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "icon": "Linkedin",
+        "link": "https://linkedin.com/company/aiwireharness",
+        "alt_text": "LinkedIn"
+      }
+    ],
+    "bottom_links": [
+      {
+        "text": "Privacy Policy",
+        "link": "/privacy/"
       }
     ]
   }
