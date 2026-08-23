@@ -1,3 +1,5 @@
+#!/bin/bash
+cat << 'INNER_EOF' > src/layouts/Layout.astro
 ---
 import "../styles/main.css";
 import site from "../../data/site.json";
@@ -86,3 +88,4 @@ const resolvedArticle: ArticleMeta | undefined =
     </script>
   </body>
 </html>
+INNER_EOF
