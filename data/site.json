@@ -1,17 +1,28 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Advisor CTO",
+  "description": "Fractional CTO practice serving RIA and wealth-management firms. Secure, integrate, and mitigate vendor risk in your Orion, Redtail, Wealthbox, or eMoney stacks.",
+  "tagline": "Fractional CTO practice for RIA and wealth-management firms.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Advisor CTO - Fractional CTO for RIAs",
+  "theme_color": "#09141d",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "name": "Advisor CTO",
+    "logo": "/images/logos/logo.png"
+  },
+  "authors": [
+    {
+      "slug": "founder",
+      "name": "Founder Name Placeholder",
+      "role": "Fractional CTO",
+      "bio": "Expert in wealth management technology, security, and integrations.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "All methodologies are tested in live RIA environments before recommendation.",
+    "monetization": "We operate on monthly retainers and fixed-scope engagements. We do not accept referral fees from vendors.",
+    "corrections": "Corrections to public methodologies or case studies are noted transparently on the relevant page."
   }
 }
