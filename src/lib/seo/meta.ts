@@ -94,7 +94,7 @@ export function pageTitle(title: string | undefined, url: URL): string {
 export function resolveSeo({ title, seo, url, siteUrl, article }: ResolveSeoOptions): ResolvedSeo {
   const base = siteUrl ?? new URL(FALLBACK_ORIGIN);
   const noIndex = Boolean(seo?.no_index);
-  const image = seo?.featured_image || site.image;
+  const image = seo?.featured_image || "/images/og/og-default.png";
 
   return {
     title: pageTitle(title, url),
@@ -111,10 +111,10 @@ export function resolveSeo({ title, seo, url, siteUrl, article }: ResolveSeoOpti
       ? "noindex, nofollow"
       : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     locale: site.locale ?? "en_US",
-    lang: site.lang ?? "en",
+    lang: site.locale ?? "en",
     siteName: site.site_title,
-    twitterSite: site.twitter_site ?? "",
-    twitterCreator: seo?.author_twitter_handle || site.twitter_site || "",
+    twitterSite: "",
+    twitterCreator: seo?.author_twitter_handle || "" || "",
     themeColor: site.theme_color ?? "#ffffff",
     article,
   };
