@@ -1,0 +1,38 @@
+---
+interface Props {
+  heading?: string;
+  logos: Array<{
+    image_path: string;
+    alt_text: string;
+  }>;
+}
+
+const { heading, logos = [] } = Astro.props;
+---
+
+<section class="py-12 bg-neutral-100 dark:bg-brand-900 border-b border-border text-center overflow-hidden">
+  <div class="mx-auto max-w-6xl px-8">
+    {heading && (
+      <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-8" data-editable="text" data-prop="heading">
+        {heading}
+      </h3>
+    )}
+
+    <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8" data-editable="array" data-prop="logos">
+      {logos.map((logo) => (
+        <div class="flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-200" data-editable="array-item">
+          {logo.image_path && (
+            <img
+              src={logo.image_path}
+              alt={logo.alt_text}
+              class="h-8 md:h-10 w-auto object-contain dark:invert"
+              data-prop-src="image_path"
+              data-prop-alt="alt_text"
+              loading="lazy"
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

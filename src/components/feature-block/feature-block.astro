@@ -1,0 +1,41 @@
+---
+import Markdown from "../utility/markdown.astro";
+
+interface Props {
+  heading: string;
+  features: Array<{
+    title: string;
+    description: string;
+  }>;
+}
+
+const { heading, features = [] } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-neutral-50 dark:bg-brand-900 border-b border-border">
+  <div class="mx-auto max-w-6xl px-8">
+    <h2 class="text-3xl font-bold mb-12 text-neutral-900 dark:text-neutral-50" data-editable="text" data-prop="heading">
+      {heading}
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" data-editable="array" data-prop="features">
+      {features.map((feature, index) => {
+        // Unequal span logic: first item takes 7 cols, second takes 5, third takes 12
+        let colSpanClass = "md:col-span-12";
+        if (features.length === 3) {
+            colSpanClass = index === 0 ? "md:col-span-7" : index === 1 ? "md:col-span-5" : "md:col-span-12";
+        } else if (features.length > 0) {
+            colSpanClass = index % 2 === 0 ? "md:col-span-7" : "md:col-span-5";
+        }
+
+        return (
+        <div class={`surface p-8 rounded-sm ${colSpanClass} flex flex-col gap-4`} data-editable="array-item">
+          <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-50" data-prop="title">{feature.title}</h3>
+          <div class="text-neutral-700 dark:text-neutral-300">
+             <Markdown content={feature.description} dataProp="description" dataType="inline" />
+          </div>
+        </div>
+      )})}
+    </div>
+  </div>
+</section>

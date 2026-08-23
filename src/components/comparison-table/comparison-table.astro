@@ -1,0 +1,44 @@
+---
+interface Props {
+  heading: string;
+  columns: string[];
+  rows: Array<{
+    cells: string[];
+  }>;
+}
+
+const { heading, columns = [], rows = [] } = Astro.props;
+---
+
+<section class="py-16 md:py-24 border-b border-border">
+  <div class="mx-auto max-w-6xl px-8">
+    <h2 class="text-3xl font-bold mb-8 text-neutral-900 dark:text-neutral-50" data-editable="text" data-prop="heading">
+      {heading}
+    </h2>
+
+    <div class="overflow-x-auto rounded-sm border border-border surface">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-neutral-100 dark:bg-brand-800 border-b border-border" data-editable="array" data-prop="columns">
+            {columns.map((col) => (
+              <th class="p-4 font-semibold text-neutral-900 dark:text-neutral-50" data-editable="array-item">
+                <span data-prop="text">{col}</span>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody data-editable="array" data-prop="rows">
+          {rows.map((row) => (
+            <tr class="border-b border-border last:border-b-0 hover:bg-neutral-50 dark:hover:bg-brand-800/50 transition-colors" data-editable="array-item">
+              {row.cells.map((cell, index) => (
+                <td class="p-4 text-neutral-700 dark:text-neutral-300">
+                   <span data-prop={`cells[${index}]`}>{cell}</span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

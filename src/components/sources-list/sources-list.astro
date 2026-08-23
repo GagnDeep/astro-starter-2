@@ -1,0 +1,33 @@
+---
+interface Props {
+  heading?: string;
+  sources: Array<{
+    title: string;
+    url: string;
+    organization: string;
+  }>;
+}
+
+const { heading = "Primary Sources", sources = [] } = Astro.props;
+---
+
+<section class="py-12 border-t border-border mt-16 bg-neutral-50 dark:bg-brand-900/50">
+  <div class="mx-auto max-w-3xl px-8">
+    <h3 class="text-xl font-semibold mb-6 text-neutral-900 dark:text-neutral-50" data-editable="text" data-prop="heading">
+      {heading}
+    </h3>
+    <ul class="flex flex-col gap-4 text-sm" data-editable="array" data-prop="sources">
+      {sources.map((source) => (
+        <li class="flex items-start gap-2" data-editable="array-item">
+          <span class="text-neutral-400 select-none">&bull;</span>
+          <div>
+            <span class="font-medium text-neutral-700 dark:text-neutral-300 mr-2" data-prop="organization">{source.organization}:</span>
+            <a href={source.url} class="text-brand-700 dark:text-brand-300 underline underline-offset-2 hover:text-brand-500 transition-colors" target="_blank" rel="noopener noreferrer" data-prop="url">
+              <span data-prop="title">{source.title}</span>
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
