@@ -1,48 +1,48 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Institute of Humanoids",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/suppliers/",
+        "text": "Suppliers"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/jobs/",
+        "text": "Hardware Jobs"
+      },
+      {
+        "link": "/sponsor/",
+        "text": "Sponsorship"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Institute of Humanoids",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Institute of Humanoids. All rights reserved.",
     "links": [
       {
+        "link": "/about/",
+        "text": "About & Editorial"
+      },
+      {
         "link": "/contact/",
-        "text": "Contact"
+        "text": "Contact & Corrections"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/sponsor/",
+        "text": "Sponsorship"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/post-job/",
+        "text": "Post a Job"
       }
     ]
   }
