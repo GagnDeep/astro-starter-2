@@ -1,6 +1,7 @@
 ---
 import Layout from "./Layout.astro";
 import type { CollectionEntry } from "astro:content";
+import siteData from "../../data/site.json";
 
 type Props = {
   /** Front matter of a `pages` collection entry. */
@@ -40,9 +41,37 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 });
 
 const HeroComponent = props.hero_block?._name ? components[props.hero_block._name] : null;
+
+let resolvedArticle: any = undefined;
+let listData: any = undefined;
+
+const comparisonBlock = props.content_blocks?.find(b => b._name === "ComparisonTable");
+if (comparisonBlock && comparisonBlock.rows && comparisonBlock.columns) {
+  listData = {
+    name: comparisonBlock.heading || "Comparison",
+    items: comparisonBlock.columns.slice(1).map((col: any, index: number) => ({
+      name: col.header,
+      description: comparisonBlock.rows.map((r: any) => `${r.label}: ${r.values[index]}`).join(', ') || ""
+    }))
+  };
+}
+
+if (props.seo?.open_graph_type === "article") {
+  // Find byline if exists to get author and date
+  const byline = props.content_blocks?.find(b => b._name === "Byline");
+  if (byline) {
+    resolvedArticle = {
+      publishedTime: byline.date ? new Date(byline.date).toISOString() : new Date().toISOString(),
+      author: byline.author_slug || "founder",
+      author_name: siteData.authors.find((a:any) => a.slug === (byline.author_slug || "founder"))?.name || "CTO Founder"
+    };
+  }
+}
+
+const seoProps = { ...props.seo, list_data: listData };
 ---
 
-<Layout {...props}>
+<Layout {...props} seo={seoProps} article={resolvedArticle}>
   {HeroComponent && (
     <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
       <HeroComponent {...props.hero_block} />
