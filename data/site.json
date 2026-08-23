@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Sustainability",
+  "description": "California SB 253 and SB 261 climate disclosure compliance workflow and readiness toolkit.",
+  "tagline": "California Climate Disclosure Readiness",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Sustainability logo and compliance toolkit",
+  "default_author": "editorial-team",
+  "theme_color": "#1e293b",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of Sustainability",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Regulatory Analysts",
+      "bio": "Our team of regulatory analysts tracks CARB guidance and California legislative updates to maintain the SB 253 and SB 261 readiness toolkits.",
+      "same_as": []
+    }
+  ],
+  "editorial": {
+    "testing": "All compliance workflows are tested against current CARB guidance and the text of SB 253 and SB 261.",
+    "monetization": "We generate revenue through site sponsorships and sales of our paid readiness toolkit for sustainability and finance leads.",
+    "corrections": "We date every page. If CARB issues new guidance or legislation shifts, we update our materials and log the correction with the date of the change."
   }
 }
