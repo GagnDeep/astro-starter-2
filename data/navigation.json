@@ -1,48 +1,56 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Advisor CTO",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/positioning/",
+        "text": "Positioning"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/services/",
+        "text": "Services"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "link": "/methodology/",
+        "text": "Methodology"
       },
       {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
+        "link": "/track-record/",
+        "text": "Track Record"
       },
       {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "link": "/booking/",
+        "text": "Book a Consultation"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Advisor CTO",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Advisor CTO. All rights reserved.",
     "links": [
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "link": "/positioning/",
+        "text": "Positioning"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/services/",
+        "text": "Services"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/methodology/",
+        "text": "Methodology"
+      },
+      {
+        "link": "/track-record/",
+        "text": "Track Record"
+      },
+      {
+        "link": "/booking/",
+        "text": "Book a Consultation"
       }
     ]
   }

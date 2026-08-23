@@ -13,12 +13,11 @@ interface Props {
   bodyContent?: string;
 }
 
-const { heading, date, author, image, image_alt, tags, bodyContent } =
-  Astro.props;
+const { heading, date, author, image, image_alt, tags, bodyContent } = Astro.props;
 
 const wordCount = bodyContent?.split(" ")?.length ?? 0;
 const dateObj = new Date(date);
-const authorWithFallback = author || site.default_author;
+const authorWithFallback = author || site.authors?.[0]?.name;
 
 let readingTime = "Less than 1 minute";
 const readingTimeInMins = Math.floor(wordCount / 183);
@@ -55,7 +54,8 @@ const imageSrc = images[image]?.default || image;
   <h1
     data-editable="text"
     data-prop="heading"
-    class="text-3xl md:text-4xl font-bold mt-4 mb-2 text-balance">
+    class="text-3xl md:text-4xl font-bold mt-4 mb-2 text-balance"
+  >
     {heading}
   </h1>
   {
@@ -64,7 +64,8 @@ const imageSrc = images[image]?.default || image;
         {tags.map((tag: string) => (
           <a
             href={`/tags/${tag}/`}
-            class="bg-gray-100 text-blue-600 text-xs font-medium px-3 py-1 rounded-md no-underline">
+            class="bg-gray-100 text-blue-600 text-xs font-medium px-3 py-1 rounded-md no-underline"
+          >
             {tag.charAt(0).toUpperCase() + tag.slice(1)}
           </a>
         ))}

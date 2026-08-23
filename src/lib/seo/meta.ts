@@ -113,8 +113,8 @@ export function resolveSeo({ title, seo, url, siteUrl, article }: ResolveSeoOpti
     locale: site.locale ?? "en_US",
     lang: site.lang ?? "en",
     siteName: site.site_title,
-    twitterSite: site.twitter_site ?? "",
-    twitterCreator: seo?.author_twitter_handle || site.twitter_site || "",
+    twitterSite: "",
+    twitterCreator: seo?.author_twitter_handle || "" || "",
     themeColor: site.theme_color ?? "#ffffff",
     article,
   };
