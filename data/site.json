@@ -1,17 +1,29 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of DNA",
+  "description": "A privacy-first comparison of consumer DNA tests. We analyze terms of service, data retention policies, and where your genetic data actually ends up.",
+  "tagline": "Protect your genome. Find a DNA test that respects your privacy.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of DNA - Privacy-led DNA test reviews",
+  "theme_color": "#171a1c",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of DNA",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Privacy Researchers",
+      "bio": "Our editorial team consists of privacy researchers dedicated to analyzing the terms of service and data sharing practices of direct-to-consumer genetic testing companies."
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We purchase DNA tests out of pocket, send them in, and rigorously evaluate the data privacy controls, terms of service, and deletion procedures. We do not evaluate medical accuracy and do not give medical advice.",
+    "how_we_make_money": "We are reader-supported. We may earn an affiliate commission when you buy through our links, but our reviews and privacy ratings are independent.",
+    "corrections": "We correct factual errors promptly. If a company updates its privacy policy or terms of service, we update our reviews and note the date of the change."
   }
 }

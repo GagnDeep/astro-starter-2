@@ -1,7 +1,7 @@
 {
   "header": {
     "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Institute of DNA",
     "logo_url": "/",
     "links": [
       {
@@ -9,40 +9,32 @@
         "text": "About"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/compare/",
+        "text": "Compare DNA Tests"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
     "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Institute of DNA",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Institute of DNA. All rights reserved.",
     "links": [
+      {
+        "link": "/about/",
+        "text": "About Us"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/privacy/",
+        "text": "Privacy Policy"
       }
     ]
   }
