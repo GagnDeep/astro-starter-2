@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of RIA",
+  "description": "B2B media for registered investment adviser firms covering firm formation, compliance, technology stacks, and succession.",
+  "tagline": "The essential resource for RIA principals, COOs, and compliance leads.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of RIA",
+  "default_author": "Institute of RIA",
+  "theme_color": "#e0e0e0",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of RIA",
+    "logo": "/images/og/og-default.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Institute of RIA Editorial Team",
+      "role": "Editorial Team",
+      "bio": "Our team of industry researchers covers RIA formation, compliance, and technology stacks.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We conduct reproducible, published back-testing of AI stock-picking tools and technology stacks. All methodologies are published.",
+    "how_we_make_money": "We generate revenue through vendor referrals and sponsorship from RIA-serving vendors. Commission links carry rel=\"sponsored nofollow\" with plain-language disclosures.",
+    "corrections": "Corrections to factual errors will be published promptly with a note detailing the change and the date it was made."
   }
 }
