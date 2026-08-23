@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Battery Digital Passport",
+  "description": "The authoritative free information layer on the EU battery passport, mandatory on 18 February 2027.",
+  "tagline": "Regulatory accuracy on the EU battery passport.",
   "lang": "en",
-  "locale": "en_US",
+  "locale": "en_EU",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Battery Digital Passport — The authoritative free information layer on the EU battery passport.",
+  "default_author": "Battery Digital Passport Editorial",
+  "theme_color": "#1c1c1c",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Battery Digital Passport",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial",
+      "name": "Editorial Team",
+      "role": "Compliance Research",
+      "bio": "Our compliance research team verifies obligations and data fields against EUR-Lex and official EU sources.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "Every date, obligation, and data field is cited from EUR-Lex and official sources. Claims are labeled with a last-verified date. Unverified claims are explicitly labeled.",
+    "how_we_make_money": "We are supported by vendor sponsorship and a paid readiness toolkit. We do not sell compliance software.",
+    "corrections": "Corrections are made promptly with a visible update note on the affected page."
   }
 }

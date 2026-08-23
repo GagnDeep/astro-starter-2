@@ -1,16 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
-  <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
-  -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
-  <path
-    d="M256 112 L384 368 H128 Z"
-    fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
-  />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+  <rect width="512" height="512" rx="40" fill="#1c1c1c" />
+  <!-- A minimal battery/passport representation, simple and technical -->
+  <rect x="156" y="100" width="200" height="312" rx="20" fill="none" stroke="#f0f0f0" stroke-width="32" />
+  <rect x="226" y="50" width="60" height="30" fill="#f0f0f0" />
+  <!-- Battery level lines representing data layers -->
+  <line x1="206" y1="200" x2="306" y2="200" stroke="#f0f0f0" stroke-width="24" stroke-linecap="round" />
+  <line x1="206" y1="260" x2="306" y2="260" stroke="#f0f0f0" stroke-width="24" stroke-linecap="round" />
+  <line x1="206" y1="320" x2="306" y2="320" stroke="#f0f0f0" stroke-width="24" stroke-linecap="round" />
 </svg>

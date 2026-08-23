@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 /*
+ * ART DIRECTION: Technical-brutalist.
+ * Highly legible, structured, dense but clearly hierarchical. Prioritises factual accuracy over decorative flair.
+ */
+
+/*
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
