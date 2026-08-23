@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "AI Wire Harness",
+  "description": "RFQ matching platform for custom wire harness sourcing. Connect with EV harness prototypers and IPC/WHMA-A-620 suppliers.",
+  "tagline": "Custom wire harness sourcing and RFQ matching.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "AI Wire Harness platform",
+  "theme_color": "#1c1c1c",
+  "default_author": "AI Wire Harness Editorial",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "AI Wire Harness",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "AI Wire Harness Editorial",
+      "role": "Sourcing Analysts",
+      "bio": "Our editorial team evaluates wire harness manufacturers and sourcing trends for EV, aerospace, and custom applications."
+    }
+  ],
+  "editorial": {
+    "testing": "We evaluate harness manufacturers based on their ISO certifications, IPC/WHMA-A-620 compliance, and production capabilities.",
+    "monetization": "We make money by charging wire harness manufacturers a pay-per-lead fee when they receive RFQs from qualified buyers.",
+    "corrections": "If you find an error in our supplier data or guides, please contact us. We will verify and issue a correction within 48 hours."
   }
 }

@@ -1,16 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
-  <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
-  -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
+  <!-- AI Wire Harness Brand Mark -->
+  <rect width="512" height="512" rx="112" fill="#1c1c1c" />
+
+  <!-- Plug/connector head representing wire harness -->
   <path
-    d="M256 112 L384 368 H128 Z"
+    d="M200 160 v192 M256 160 v192 M312 160 v192"
     fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
+    stroke="#ff6600"
+    stroke-width="24"
+    stroke-linecap="round"
   />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+  <path
+    d="M160 352 h192 v64 a32 32 0 0 1 -32 32 h-128 a32 32 0 0 1 -32 -32 z"
+    fill="#ffffff"
+  />
+  <!-- Circuit/AI nodes representing the AI/tech aspect -->
+  <circle cx="200" cy="130" r="16" fill="#00ccff" />
+  <circle cx="256" cy="110" r="16" fill="#00ccff" />
+  <circle cx="312" cy="130" r="16" fill="#00ccff" />
+
+  <!-- Connections to nodes -->
+  <path
+    d="M200 146 v14 M256 126 v34 M312 146 v14"
+    fill="none"
+    stroke="#00ccff"
+    stroke-width="8"
+  />
 </svg>
