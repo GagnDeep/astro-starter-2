@@ -1,7 +1,7 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Institute of Underwriting logo",
     "logo_url": "/",
     "links": [
       {
@@ -9,36 +9,40 @@
         "text": "About"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/articles/",
+        "text": "Articles"
+      },
+      {
+        "link": "/sponsor/",
+        "text": "Sponsorship"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Institute of Underwriting logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Institute of Underwriting. Not a professional body, not an accrediting institute. All rights reserved.",
     "links": [
+      {
+        "link": "/about/",
+        "text": "About Us"
+      },
+      {
+        "link": "/articles/",
+        "text": "Articles"
+      },
+      {
+        "link": "/sponsor/",
+        "text": "Sponsorship"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
       },
       {
         "link": "/feed.xml",
