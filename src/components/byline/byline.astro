@@ -1,0 +1,20 @@
+---
+export interface Props {
+  author: string;
+  role?: string;
+  date?: string;
+}
+
+const { author, role, date } = Astro.props;
+---
+
+<div class="flex items-center gap-4 py-4 border-b border-[var(--border-color)] mb-8">
+  <div>
+    <p class="font-bold text-lg">{author}</p>
+    {(role || date) && (
+      <p class="text-sm text-[var(--color-neutral-600)]">
+        {role}{role && date ? " • " : ""}{date ? new Date(date).toLocaleDateString() : ""}
+      </p>
+    )}
+  </div>
+</div>

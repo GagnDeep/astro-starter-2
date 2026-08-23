@@ -1,0 +1,30 @@
+---
+import { ChevronDown } from "@lucide/astro";
+
+export interface Props {
+  heading?: string;
+  items: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<section class="mx-auto max-w-3xl px-4 sm:px-8 py-16">
+  {heading && <h2 class="text-3xl font-bold mb-8 text-center">{heading}</h2>}
+  <div class="space-y-4">
+    {items?.map((item) => (
+      <details class="group bg-[var(--surface-color)] border border-[var(--border-color)] [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex cursor-pointer items-center justify-between gap-4 p-6 font-bold text-lg">
+          {item.question}
+          <ChevronDown class="w-6 h-6 shrink-0 transition-transform duration-200 group-open:-rotate-180" />
+        </summary>
+        <div class="px-6 pb-6 text-[var(--text-color)] opacity-90 prose">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
