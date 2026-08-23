@@ -1,0 +1,64 @@
+---
+interface Props {
+  heading: string;
+  headers: string[];
+  rows: {
+    cells: string[];
+  }[];
+}
+const { heading, headers, rows } = Astro.props;
+---
+
+<section class="py-16 md:py-24">
+  <div class="mx-auto max-w-6xl px-8 overflow-x-auto">
+    {
+      heading && (
+        <h2
+          data-editable="text"
+          data-prop="heading"
+          class="mb-12 border-b-4 border-[var(--color-brand-500)] pb-4 inline-block"
+        >
+          {heading}
+        </h2>
+      )
+    }
+    <table class="w-full border-collapse min-w-[600px]">
+      <thead>
+        <tr
+          class="bg-[var(--surface-color)] border-b-2 border-[var(--color-neutral-900)] dark:border-[var(--color-neutral-100)]"
+          data-editable="array"
+          data-prop="headers"
+        >
+          {
+            headers?.map((header, i) => (
+              <th
+                class="p-4 text-left font-display font-bold uppercase tracking-wider text-sm"
+                data-editable="text"
+                data-prop={`headers[${i}]`}
+              >
+                {header}
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody data-editable="array" data-prop="rows">
+        {
+          rows?.map((row, rowIndex) => (
+            <tr class="border-b border-[var(--surface-border)] hover:bg-[var(--surface-color)] transition-colors">
+              {row.cells?.map((cell, cellIndex) => (
+                <td
+                  class="p-4 tabular-nums"
+                  data-editable="text"
+                  data-prop={`rows[${rowIndex}].cells[${cellIndex}]`}
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

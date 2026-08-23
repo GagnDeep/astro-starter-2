@@ -1,0 +1,39 @@
+---
+import { ChevronRight } from "@lucide/astro";
+
+interface Props {
+  items: {
+    name: string;
+    url: string;
+  }[];
+}
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="py-4 border-b border-[var(--surface-border)]">
+  <div class="mx-auto max-w-6xl px-8">
+    <ol class="flex items-center space-x-2 text-sm text-gray-500">
+      {
+        items?.map((item, index) => {
+          const isLast = index === items.length - 1;
+          return (
+            <li class="flex items-center">
+              {isLast ? (
+                <span class="text-gray-900 dark:text-gray-100 font-medium" aria-current="page">
+                  {item.name}
+                </span>
+              ) : (
+                <>
+                  <a href={item.url} class="hover:text-[var(--color-brand-500)] transition-colors">
+                    {item.name}
+                  </a>
+                  <ChevronRight class="w-6 h-6 mx-2 text-gray-400" aria-hidden="true" />
+                </>
+              )}
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</nav>

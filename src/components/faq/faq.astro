@@ -1,0 +1,57 @@
+---
+import Markdown from "../utility/markdown.astro";
+import { ChevronDown } from "@lucide/astro";
+
+interface Props {
+  heading: string;
+  items: {
+    question: string;
+    answer: string;
+  }[];
+}
+const { heading, items } = Astro.props;
+---
+
+<section class="py-16 md:py-24">
+  <div class="mx-auto max-w-3xl px-8">
+    {
+      heading && (
+        <h2
+          data-editable="text"
+          data-prop="heading"
+          class="mb-12 border-b-4 border-[var(--color-brand-500)] pb-4 inline-block"
+        >
+          {heading}
+        </h2>
+      )
+    }
+    <div class="space-y-4" data-editable="array" data-prop="items">
+      {
+        items?.map((item, index) => (
+          <details class="group bg-[var(--surface-color)] border border-[var(--surface-border)] shadow-[var(--shadow-current)]">
+            <summary class="flex cursor-pointer list-none items-center justify-between p-6 font-bold text-lg marker:hidden">
+              <span data-editable="text" data-prop={`items[${index}].question`}>
+                {item.question}
+              </span>
+              <span class="ml-4 flex-shrink-0 transition-transform duration-200 group-open:rotate-180">
+                <ChevronDown class="w-6 h-6" aria-hidden="true" />
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-700 dark:text-gray-300 prose max-w-none">
+              <Markdown
+                content={item.answer}
+                dataProp={`items[${index}].answer`}
+                dataType="block"
+              />
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
