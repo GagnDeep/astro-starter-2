@@ -1,4 +1,6 @@
 ---
+import Markdown from "./utility/markdown.astro";
+
 interface Column {
   header: string;
 }
@@ -10,19 +12,27 @@ interface Row {
 
 interface Props {
   heading?: string;
+  subheading?: string;
   columns: Column[];
   rows: Row[];
 }
 
-const { heading, columns, rows } = Astro.props;
+const { heading, subheading, columns, rows } = Astro.props;
 ---
 
 <section class="py-[var(--spacing-section)] reveal is-visible">
   <div class="mx-auto max-w-6xl px-8">
     {heading && (
-      <h2 data-editable="text" data-prop="heading" class="mb-12 text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)]">
-        {heading}
-      </h2>
+      <div class="mb-12">
+        <h2 data-editable="text" data-prop="heading" class="mb-4 text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)]">
+          {heading}
+        </h2>
+        {subheading && (
+          <div data-editable="text" data-prop="subheading" class="text-xl max-w-3xl text-[color:var(--color-neutral-800)] dark:text-[color:var(--color-neutral-200)]">
+            <Markdown content={subheading} dataProp="subheading" dataType="block" />
+          </div>
+        )}
+      </div>
     )}
 
     <div class="overflow-x-auto border-2 border-[var(--color-brand-ink)] dark:border-white/20 shadow-[var(--shadow-brutal)] dark:shadow-[0_-1px_0_0_rgba(255,255,255,0.1)] bg-[var(--color-brand-paper)] dark:bg-[var(--color-brand-paper-dark)]">

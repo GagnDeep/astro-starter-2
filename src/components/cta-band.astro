@@ -1,14 +1,17 @@
 ---
+import CaptureForm from "./forms/capture-form.astro";
+
 interface Props {
   heading: string;
   subheading?: string;
-  button: {
+  show_form?: boolean;
+  button?: {
     text: string;
     link: string;
   };
 }
 
-const { heading, subheading, button } = Astro.props;
+const { heading, subheading, show_form, button } = Astro.props;
 ---
 
 <section class="py-[var(--spacing-section)] bg-[var(--color-brand-ink)] dark:bg-[var(--color-brand-paper-dark)] text-white dark:border-y dark:border-white/20 reveal is-visible">
@@ -21,10 +24,17 @@ const { heading, subheading, button } = Astro.props;
         {subheading}
       </p>
     )}
-    <div class="mt-4">
-      <a href={button.link} class="brutal-btn !bg-[var(--color-brand-paper)] !text-[var(--color-brand-ink)] dark:!bg-[var(--color-brand-accent-dark)] dark:!text-[var(--color-brand-ink-dark)] hover:!shadow-[6px_6px_0_0_rgba(255,255,255,0.2)] dark:hover:!shadow-[0_-1px_0_0_rgba(255,255,255,0.3)] !border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-        <span data-editable="text" data-prop="button.text">{button.text}</span>
-      </a>
-    </div>
+
+    {show_form ? (
+      <div class="w-full max-w-md mx-auto mt-4 text-left p-6 bg-[var(--color-brand-paper)] dark:bg-[var(--color-brand-paper-dark)] border-2 border-[var(--color-brand-accent)] shadow-[var(--shadow-brutal)]">
+        <CaptureForm class="text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)]" />
+      </div>
+    ) : button?.text && button?.link ? (
+      <div class="mt-4">
+        <a href={button.link} class="brutal-btn !bg-[var(--color-brand-paper)] !text-[var(--color-brand-ink)] dark:!bg-[var(--color-brand-accent-dark)] dark:!text-[var(--color-brand-ink-dark)] hover:!shadow-[6px_6px_0_0_rgba(255,255,255,0.2)] dark:hover:!shadow-[0_-1px_0_0_rgba(255,255,255,0.3)] !border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+          <span data-editable="text" data-prop="button.text">{button.text}</span>
+        </a>
+      </div>
+    ) : null}
   </div>
 </section>
