@@ -3,7 +3,7 @@ title: "Aerospace UAE Directory & Jobs"
 seo:
   page_description: "Aerospace UAE directory and hiring board for Tier 2/3 aerospace supply chain. Find AS9100-certified CNC machining, composite manufacturing, and aviation jobs."
   canonical_url: "https://aerospaceuae.com/"
-  featured_image: "/images/og/og-default.png"
+  featured_image: "../../assets/images/placeholder.png"
   featured_image_alt: "Aerospace UAE directory and hiring platform logo"
   author_twitter_handle: null
   open_graph_type: "website"
@@ -14,13 +14,13 @@ hero_block:
   subheading: "Designed strictly for primes sourcing AS9100-certified subcontractors, and engineers seeking specialized MRO roles in the UAE. Zero editorial. Pure technical data."
   primary_cta_text: "Search the Directory"
   primary_cta_link: "/directory/"
-  image: "/images/og/og-default.png"
+  image: "../../assets/images/placeholder.png"
   image_alt: "Aerospace UAE industrial platform interface"
 content_blocks:
   - _name: LeftRight
     heading: "Sourcing Tier 2 and Tier 3 capabilities should not rely on generic search."
     text: "Primes and buyers waste weeks verifying local capabilities. We map the UAE's aerospace manufacturing and MRO supply chain directly. Whether you need 5-axis CNC machining, composite layup, or Nadcap-accredited NDT, you access direct, verified vendor capabilities without marketing abstraction. We focus on factual capabilities—equipment lists, certifications, and capacities."
-    image: "/images/og/og-default.png"
+    image: "../../assets/images/placeholder.png"
     image_alt: "Technical schematic of aerospace component"
     image_position: "left"
   - _name: FeatureBlock
@@ -56,11 +56,11 @@ content_blocks:
           - "General mechanical labor"
   - _name: ProofStrip
     logos:
-      - src: "/images/og/og-default.png"
+      - src: "../../assets/images/placeholder.png"
         alt: "Placeholder logo 1"
-      - src: "/images/og/og-default.png"
+      - src: "../../assets/images/placeholder.png"
         alt: "Placeholder logo 2"
-      - src: "/images/og/og-default.png"
+      - src: "../../assets/images/placeholder.png"
         alt: "Placeholder logo 3"
   - _name: FAQAccordion
     heading: "Frequently Asked Questions"

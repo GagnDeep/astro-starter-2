@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Page.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+
+const page = {
+  data: {
+    title: "Contact & Support",
+    seo: {
+      page_description: "Contact Aerospace UAE for support with directory listings, job postings, or general inquiries.",
+      canonical_url: "https://aerospaceuae.com/contact/",
+      featured_image: "../../assets/images/placeholder.png",
+      featured_image_alt: "Aerospace UAE Support",
+      author_twitter_handle: null,
+      open_graph_type: "website",
+      no_index: false
+    }
+  }
+};
+---
+
+<Layout frontmatter={page.data}>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="display-text mb-6">Contact & Support</h1>
+    <p class="text-lg text-text-muted mb-12">
+      Need help with your listing, billing, or platform access? Submit your inquiry below and our data team will respond promptly. Note that we do not offer editorial coverage or media partnerships.
+    </p>
+
+    <div class="bg-surface-raised p-8 rounded-lg border border-border">
+      <CaptureForm form="listing">
+        <div class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm font-medium mb-1">Name</label>
+            <input type="text" id="name" name="name" required class="w-full p-2 border border-border rounded bg-surface-base" />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium mb-1">Email</label>
+            <input type="email" id="email" name="email" required class="w-full p-2 border border-border rounded bg-surface-base" />
+          </div>
+          <div>
+            <label for="company" class="block text-sm font-medium mb-1">Company</label>
+            <input type="text" id="company" name="company" class="w-full p-2 border border-border rounded bg-surface-base" />
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium mb-1">Message</label>
+            <textarea id="message" name="message" rows="4" required class="w-full p-2 border border-border rounded bg-surface-base"></textarea>
+          </div>
+          <button type="submit" class="bg-brand-500 text-white px-6 py-2 rounded font-medium hover:bg-brand-600 transition-colors">
+            Send Message
+          </button>
+        </div>
+      </CaptureForm>
+    </div>
+  </div>
+</Layout>
