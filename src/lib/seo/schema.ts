@@ -44,12 +44,16 @@ function organizationNode(base: string): JsonLdNode {
     url: new URL("/", base).toString(),
   };
 
-  if (site.organization?.logo) {
+  const logoUrl = site.organization?.logo || site.image;
+  if (logoUrl) {
     node.logo = {
       "@type": "ImageObject",
-      url: absoluteUrl(site.organization.logo, base),
+      "@id": id(base, "logo"),
+      url: absoluteUrl(logoUrl, base),
     };
+    node.image = { "@id": id(base, "logo") };
   }
+
   if (site.organization?.same_as?.length) {
     node.sameAs = site.organization.same_as;
   }
@@ -89,18 +93,36 @@ export function buildSchemaGraph({
     description: seo.description,
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
-    primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
-      : undefined,
   };
 
+  if (seo.image) {
+    pageNode.primaryImageOfPage = {
+      "@type": "ImageObject",
+      "@id": `${seo.canonical}#primaryimage`,
+      url: seo.image,
+      ...(seo.imageAlt && { caption: seo.imageAlt })
+    };
+    pageNode.image = { "@id": `${seo.canonical}#primaryimage` };
+  }
+
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      // Find author in site authors array if possible to add sameAs
+      const siteAuthor = (site.authors as any[])?.find(a => a.name === seo.article?.author);
+      const authorNode: JsonLdNode = {
+        "@type": "Person",
+        "@id": id(base, `author/${encodeURIComponent(seo.article.author)}`),
+        name: seo.article.author
+      };
+      if (siteAuthor && siteAuthor.same_as) {
+        authorNode.sameAs = siteAuthor.same_as;
+      } else if (siteAuthor && siteAuthor.sameAs) {
+        authorNode.sameAs = siteAuthor.sameAs;
+      }
+      pageNode.author = authorNode;
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;

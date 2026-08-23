@@ -2,25 +2,24 @@
 import { footer } from "../../../data/navigation.json";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-[var(--color-surface)] text-[var(--color-text)] border-t-2 border-[var(--color-border)] mt-24">
+  <div class="mx-auto max-w-6xl px-8 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-12 items-start gap-12">
+      <div class="sm:col-span-4 flex flex-col justify-start">
+        <a class="focus-visible mb-6" href={footer.logo_url}>
+          <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
+        </a>
+        <p class="text-[var(--color-text-muted)] text-sm font-display max-w-xs">
+          &copy; {new Date().getFullYear()} {footer.copyright}
+        </p>
+      </div>
 
-      <ul class="flex gap-6 items-center justify-center">
+      <div class="sm:col-span-8 flex flex-wrap gap-x-12 gap-y-6 sm:justify-end font-display font-bold">
         {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
+          <a class="hover:text-[var(--color-supporting)] hover-transition focus-visible text-lg" href={link.link}>
+            {link.text}
+          </a>
         ))}
-      </ul>
-
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
       </div>
     </div>
   </div>
