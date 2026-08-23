@@ -1,44 +1,36 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-blue.png",
+    "logo_alt_text": "Battery Digital Passport Logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/obligations/",
+        "text": "Obligations"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/dates/",
+        "text": "Timeline"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "link": "/readiness/",
+        "text": "Readiness Toolkit"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-white.png",
+    "logo_alt_text": "Battery Digital Passport Logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Battery Digital Passport. Accurate regulatory information.",
     "links": [
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "link": "/readiness/",
+        "text": "Toolkit"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/sponsorship/",
+        "text": "Sponsorship"
       },
       {
         "link": "/feed.xml",
