@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "NRI Direct",
+  "description": "Independent document assistance for non-resident Indians in the UK. Expert help with OCI cards, Indian passport renewals, and visa applications.",
+  "tagline": "Independent UK document assistance for OCI and Indian passports.",
   "lang": "en",
-  "locale": "en_US",
+  "locale": "en_GB",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "NRI Direct — independent UK assistance for OCI and Indian passport renewals.",
+  "default_author": "NRI Direct Team",
+  "theme_color": "#0d3b66",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "NRI Direct",
+    "logo": "/images/logos/logo-nridirect.svg",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "nri-direct-team",
+      "name": "NRI Direct Team",
+      "role": "Document Specialists",
+      "bio": "Our team of independent document specialists helps UK-based NRIs navigate complex applications for OCI cards, passport renewals, and visas. We are an independent business and are not affiliated with the Indian government or VFS Global.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We regularly process and review application requirements based on the latest published guidelines to ensure our document checks remain accurate.",
+    "how_we_make_money": "We charge a transparent fee for our independent document checking and application assistance services. We do not accept payment to expedite government processing, which is impossible.",
+    "corrections": "If you spot an error in our guidance, please contact us. We correct factual inaccuracies promptly and update the 'last reviewed' date on affected pages."
   }
 }
