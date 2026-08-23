@@ -1,10 +1,9 @@
 ---
 _schema: default
-title: Astro Minimal Starter
+title: NRI Direct UK - Document Assistance
 seo:
   page_description: >-
-    A starting point for developers looking to build a website with Astro, using
-    Editable Regions in CloudCannon.
+    Independent document assistance and application review for OCI cards, Indian passport renewals, and visas for UK residents.
   canonical_url:
   featured_image:
   featured_image_alt:

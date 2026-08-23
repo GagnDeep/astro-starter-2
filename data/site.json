@@ -1,16 +1,16 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "NRI Direct UK",
+  "description": "Independent document assistance and application review for OCI cards, Indian passport renewals, and visas for UK residents.",
+  "tagline": "Expert, independent assistance for your Indian document applications in the UK.",
   "lang": "en",
-  "locale": "en_US",
+  "locale": "en_GB",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "NRI Direct UK - Independent document assistance for OCI, passports, and visas.",
+  "default_author": "NRI Direct UK",
+  "theme_color": "#052e16",
   "organization": {
-    "name": "CloudCannon",
+    "name": "NRI Direct UK",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
   }
