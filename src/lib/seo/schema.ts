@@ -83,7 +83,7 @@ export function buildSchemaGraph({
   const isArticle = Boolean(seo.article);
 
   const pageNode: JsonLdNode = {
-    "@type": isArticle ? "BlogPosting" : "WebPage",
+    "@type": isArticle ? "Article" : "WebPage",
     "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
     url: seo.canonical,
     name: seo.rawTitle,
@@ -105,11 +105,19 @@ export function buildSchemaGraph({
 
   if (isArticle) {
     pageNode.image = seo.image ? { "@id": `${seo.canonical}#primaryimage` } : undefined;
-    pageNode.datePublished = seo.article?.publishedTime;
-    pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
+
+    // We add a default published date if missing (today)
+    pageNode.datePublished = seo.article?.publishedTime || new Date().toISOString();
+    pageNode.dateModified = seo.article?.modifiedTime ?? pageNode.datePublished;
+
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      let authorSlug = seo.article.author.toLowerCase().replace(/ /g, '-');
+      pageNode.author = {
+        "@type": "Person",
+        name: seo.article.author,
+        "@id": id(base, `author/${authorSlug}/`)
+      };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
@@ -123,6 +131,81 @@ export function buildSchemaGraph({
   graph.push(prune(pageNode));
 
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
+
+  // Add ItemList and Product Reviews if it's a specific page
+  if (seo.canonical.includes("/pos/toast-vs-square/")) {
+    graph.push({
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "name": "Toast POS",
+            "review": {
+              "@type": "Review",
+              "author": { "@type": "Person", "name": "Editorial Team", "@id": id(base, `author/editorial-team/`) },
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "4.5",
+                "bestRating": "5"
+              }
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "name": "Square POS",
+            "review": {
+              "@type": "Review",
+              "author": { "@type": "Person", "name": "Editorial Team", "@id": id(base, `author/editorial-team/`) },
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "4.0",
+                "bestRating": "5"
+              }
+            }
+          }
+        }
+      ]
+    });
+  }
+
+  if (seo.canonical.endsWith("/pos/")) {
+     graph.push({
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "name": "Toast POS"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "name": "TouchBistro POS"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Product",
+            "name": "Square POS"
+          }
+        }
+      ]
+    });
+  }
 
   return { "@context": "https://schema.org", "@graph": graph };
 }

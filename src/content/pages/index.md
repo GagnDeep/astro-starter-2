@@ -22,6 +22,8 @@ content_blocks:
   - _name: "LeftRight"
     heading: "Why are vendor sales pitches so dangerous?"
     text_content: |
+      *Disclosure: We may earn a vendor referral bounty when you choose a vendor through links on our site.*
+
       Every POS representative will tell you their system does it all. They promise seamless inventory, flawless tip pooling, and a line out the door.
 
       The reality is different. Systems built for food trucks fail in fine dining. Payroll software that looks great on a demo often breaks down under multi-state tax laws. You are making decisions in the chaotic 90 days before opening, and a wrong choice costs thousands in hidden fees and lost margins.
@@ -50,24 +52,26 @@ content_blocks:
       - header: "Hardware"
       - header: "Best For"
     rows:
-      - cells: ["<a href='/pos/toast-vs-square/'>Toast</a>", "Proprietary Android", "High-volume restaurants"]
-      - cells: ["<a href='/pos/touchbistro-alternatives/'>TouchBistro</a>", "iPad / Cloud", "Full-service dining"]
-      - cells: ["<a href='/pos/toast-vs-square/'>Square</a>", "iPad / Proprietary", "Quick-service & cafes"]
+      - cells: ["<a href='/pos/toast-vs-square/' rel='sponsored nofollow'>Toast</a>", "Proprietary Android", "High-volume restaurants"]
+      - cells: ["<a href='/pos/touchbistro-alternatives/' rel='sponsored nofollow'>TouchBistro</a>", "iPad / Cloud", "Full-service dining"]
+      - cells: ["<a href='/pos/toast-vs-square/' rel='sponsored nofollow'>Square</a>", "iPad / Proprietary", "Quick-service & cafes"]
   - _name: "TextBlock"
     heading: "How does our methodology work?"
     text_content: |
       We are the Institute of Restaurants, a technology comparison site for independent owners. **We are not an accreditation body.**
 
       Our reviews are rigorous, but we earn a commission if you choose a vendor through our affiliate links. This helps keep our research free for you. Read our full methodology to see exactly how we test and rank systems. Start exploring our hubs: <a href="/pos/">POS</a>, <a href="/payroll/">Payroll</a>, <a href="/online-ordering/">Online Ordering</a>, and <a href="/reservations/">Reservations</a>.
-  - _name: "FaqAccordion"
+  - _name: "TextBlock"
     heading: "What are the common questions before opening?"
-    items:
-      - question: "Should I buy proprietary hardware or use iPads?"
-        answer: "It depends on your environment. Proprietary hardware often withstands heat, grease, and spills better than consumer iPads. However, iPads offer lower upfront costs and easier replacement if a screen breaks."
-      - question: "Can I switch POS systems later?"
-        answer: "Yes, but it is painful. Switching requires retraining staff, migrating menus, and often buying new hardware. It is significantly cheaper to get it right the first time before your doors open."
-      - question: "Do I need a separate payroll system?"
-        answer: "Most POS systems offer integrated payroll, but standalone systems often handle complex tip pooling and multi-state compliance better. Evaluate your labor complexity before committing to a bundled solution. Explore our <a href='/payroll/'>payroll software comparisons</a> to see the differences."
+    text_content: |
+      **Should I buy proprietary hardware or use iPads?**
+      It depends on your environment. Proprietary hardware often withstands heat, grease, and spills better than consumer iPads. However, iPads offer lower upfront costs and easier replacement if a screen breaks.
+
+      **Can I switch POS systems later?**
+      Yes, but it is painful. Switching requires retraining staff, migrating menus, and often buying new hardware. It is significantly cheaper to get it right the first time before your doors open.
+
+      **Do I need a separate payroll system?**
+      Most POS systems offer integrated payroll, but standalone systems often handle complex tip pooling and multi-state compliance better. Evaluate your labor complexity before committing to a bundled solution. Explore our payroll software comparisons to see the differences.
   - _name: "CtaBand"
     heading: "Join our newsletter"
     text: "Get unbiased reviews and tech stack teardowns delivered to your inbox."
