@@ -24,6 +24,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true },
 );
 const imageSrc = images[image.image_path]?.default ?? image.image_path;
+const isRemoteImage = typeof imageSrc === "string";
+const imageWidth = isRemoteImage ? 800 : undefined;
+const imageHeight = isRemoteImage ? 800 : undefined;
 ---
 
 <section class="py-12 md:py-20">
@@ -63,6 +66,9 @@ const imageSrc = images[image.image_path]?.default ?? image.image_path;
             data-prop-alt="image.alt_text"
             alt={image.alt_text}
             src={imageSrc}
+            inferSize={isRemoteImage ? undefined : false}
+            width={imageWidth}
+            height={imageHeight}
             class="w-full rounded-lg"
             loading="lazy"
             widths={[600, 800, 1200]}

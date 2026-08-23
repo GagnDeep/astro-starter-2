@@ -13,8 +13,8 @@ hero_block:
   heading: "The Operator's Guide to Catering"
   subheading: "Everything you need to run a modern catering business. This site provides operators with practical, hard-won insights into licensing, pricing strategies, ironclad contracts, software selection, and mandatory certifications."
   image:
-    image_path: ""
-    alt_text: ""
+    image_path: "/src/assets/images/about-hero.jpg"
+    alt_text: "Professional team working."
   button:
     text: "Read our guides"
     link: "/blog/"
@@ -32,8 +32,8 @@ content_blocks:
 
       [View licensing requirements](/licensing/)
     image:
-      image_path: ""
-      alt_text: ""
+      image_path: "/src/assets/images/about-hero.jpg"
+      alt_text: "Professional team working."
     flipped: false
   - _name: "LeftRight"
     heading: "How should a catering business structure its pricing?"
@@ -42,8 +42,8 @@ content_blocks:
 
       [Explore pricing models](/pricing/)
     image:
-      image_path: ""
-      alt_text: ""
+      image_path: "/src/assets/images/about-hero.jpg"
+      alt_text: "Professional team working."
     flipped: true
   - _name: "LeftRight"
     heading: "How do catering contracts protect against cancellations?"
@@ -52,8 +52,8 @@ content_blocks:
 
       [Review contract templates](/contracts/)
     image:
-      image_path: ""
-      alt_text: ""
+      image_path: "/src/assets/images/about-hero.jpg"
+      alt_text: "Professional team working."
     flipped: false
   - _name: "LeftRight"
     heading: "Which software platforms streamline catering operations?"
@@ -62,8 +62,8 @@ content_blocks:
 
       [Compare software platforms](/software/)
     image:
-      image_path: ""
-      alt_text: ""
+      image_path: "/src/assets/images/about-hero.jpg"
+      alt_text: "Professional team working."
     flipped: true
   - _name: "LeftRight"
     heading: "What food safety certifications are legally required?"
@@ -72,8 +72,8 @@ content_blocks:
 
       [Find mandatory certifications](/certifications/)
     image:
-      image_path: ""
-      alt_text: ""
+      image_path: "/src/assets/images/about-hero.jpg"
+      alt_text: "Professional team working."
     flipped: false
   - _name: "Faq"
     heading: "Are catering margins better than standard restaurants?"

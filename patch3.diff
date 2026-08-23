@@ -1,0 +1,36 @@
+<<<<<<< SEARCH
+const imageSrc = images[image]?.default || image;
+---
+=======
+const imageSrc = images[image]?.default || image;
+const isRemoteImage = typeof imageSrc === 'string';
+---
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+      <Picture
+        data-editable="image"
+        data-prop-src="image"
+        data-prop-alt="image_alt"
+        class="w-full rounded-none aspect-video object-cover mb-8 grayscale"
+        src={imageSrc}
+        alt={image_alt}
+        widths={[600, 800, 1200]}
+        sizes="(max-width: 1200px) 100vw, 1200px"
+        loading="eager"
+        formats={["avif", "webp"]}
+      />
+=======
+      <Picture
+        data-editable="image"
+        data-prop-src="image"
+        data-prop-alt="image_alt"
+        class="w-full rounded-none aspect-video object-cover mb-8 grayscale"
+        src={imageSrc}
+        alt={image_alt}
+        inferSize={isRemoteImage}
+        widths={[600, 800, 1200]}
+        sizes="(max-width: 1200px) 100vw, 1200px"
+        loading="eager"
+        formats={["avif", "webp"]}
+      />
+>>>>>>> REPLACE
