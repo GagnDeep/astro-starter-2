@@ -68,6 +68,7 @@ Generated files are committed; nothing regenerates during `astro build`.
 ---
 import { ArrowRight } from "@lucide/astro";
 ---
+
 <ArrowRight class="w-5 h-5" aria-hidden="true" />
 ```
 
@@ -133,7 +134,7 @@ Components that need live re-rendering are registered in `src/scripts/register-c
 
 The About page (`src/content/pages/about.astro`) demonstrates **source editables** — a pattern where content lives directly in an Astro template rather than in Markdown front matter. Source editable regions use `data-editable="source"`, `data-path="path/to/file.astro"`, and `data-key` attributes. CloudCannon writes changes straight back to the `.astro` file.
 
-This is useful for standalone pages (like About or Contact) where a developer wants full control over the markup while still giving editors visual editing access — **and where page building with components is *not* desired**. No accompanying Markdown file or front matter schema is needed. A thin routing wrapper in `src/pages/about.astro` handles Astro's file-based routing.
+This is useful for standalone pages (like About or Contact) where a developer wants full control over the markup while still giving editors visual editing access — **and where page building with components is _not_ desired**. No accompanying Markdown file or front matter schema is needed. A thin routing wrapper in `src/pages/about.astro` handles Astro's file-based routing.
 
 ### Components
 
