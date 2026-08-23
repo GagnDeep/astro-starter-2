@@ -76,6 +76,11 @@ const sitemapUrl = new URL("/sitemap-index.xml", origin).toString();
 <meta name="theme-color" content={meta.themeColor} />
 <meta name="format-detection" content="telephone=no" />
 
+<!-- Preload fonts to avoid FOUT if self-hosting font files later -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 <link
   rel="alternate"
   type="application/rss+xml"
