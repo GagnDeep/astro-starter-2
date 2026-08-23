@@ -9,8 +9,12 @@
         "text": "Methodology"
       },
       {
-        "link": "/pos-systems/",
+        "link": "/pos/",
         "text": "POS Systems"
+      },
+      {
+        "link": "/payroll/",
+        "text": "Payroll"
       },
       {
         "link": "/online-ordering/",
@@ -21,8 +25,12 @@
         "text": "Reservations"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "link": "/blog/",
+        "text": "Blog"
+      },
+      {
+        "link": "/about/",
+        "text": "About"
       }
     ]
   },
@@ -37,12 +45,72 @@
         "text": "Methodology"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
+        "link": "/pos/",
+        "text": "POS"
+      },
+      {
+        "link": "/payroll/",
+        "text": "Payroll"
+      },
+      {
+        "link": "/online-ordering/",
+        "text": "Online Ordering"
+      },
+      {
+        "link": "/reservations/",
+        "text": "Reservations"
+      },
+      {
+        "link": "/blog/",
+        "text": "Blog"
+      },
+      {
+        "link": "/about/",
+        "text": "About"
       },
       {
         "link": "/feed.xml",
         "text": "RSS Feed"
+      },
+      {
+        "link": "/pos/fine-dining/",
+        "text": "Fine Dining"
+      },
+      {
+        "link": "/pos/food-truck/",
+        "text": "Food Trucks"
+      },
+      {
+        "link": "/pos/toast-vs-square/",
+        "text": "Toast vs Square"
+      },
+      {
+        "link": "/pos/touchbistro-alternatives/",
+        "text": "TouchBistro Alts"
+      },
+      {
+        "link": "/payroll/multistate/",
+        "text": "Multi-state Payroll"
+      },
+      {
+        "link": "/payroll/tipped-minimum-wage/",
+        "text": "Tipped Minimum Wage"
+      },
+      {
+        "link": "/online-ordering/no-commission/",
+        "text": "No Commission"
+      },
+      {
+        "link": "/online-ordering/toast-integration/",
+        "text": "Toast Integration"
+      },
+      {
+        "link": "/reservations/deposit-handling/",
+        "text": "Deposit Handling"
+      },
+      {
+        "link": "/reservations/table-management/",
+        "text": "Table Management"
       }
     ]
   }
