@@ -2,12 +2,16 @@
 interface Props {
   heading: string;
   description: string;
-  button: {
+  button?: {
     text: string;
     link: string;
   };
+  form?: "newsletter" | "contact";
 }
-const { heading, description, button } = Astro.props;
+const { heading, description, button, form } = Astro.props;
+
+import NewsletterForm from "../forms/newsletter-form.astro";
+import CaptureForm from "../forms/capture-form.astro";
 ---
 
 <section class="py-24 bg-[var(--color-brand-900)] text-white">
@@ -23,7 +27,11 @@ const { heading, description, button } = Astro.props;
       {description}
     </p>
     {
-      button?.link && (
+      form === "newsletter" ? (
+        <NewsletterForm class="w-full max-w-md mx-auto" />
+      ) : form === "contact" ? (
+        <CaptureForm class="w-full max-w-md mx-auto text-left" />
+      ) : button?.link ? (
         <a
           href={button.link}
           class="inline-block rounded-none bg-white text-[var(--color-brand-900)] px-10 py-4 font-bold hover:bg-[var(--color-brand-100)] transition-colors"
@@ -32,7 +40,7 @@ const { heading, description, button } = Astro.props;
             {button.text}
           </span>
         </a>
-      )
+      ) : null
     }
   </div>
 </section>
