@@ -1,8 +1,7 @@
 /**
- * JSON-LD (schema.org) builders.
+ * SEO Schema (JSON-LD) generation.
  *
- * Every page emits a single `@graph` containing the site's `WebSite` and
- * `Organization` nodes plus a node for the page itself. Nodes reference each
+ * This outputs a valid schema.org graph. Nodes (WebSite, Organization, WebPage) reference each
  * other by `@id`, which is what Google's parsers prefer over repeated
  * duplicate blocks.
  */
@@ -47,8 +46,11 @@ function organizationNode(base: string): JsonLdNode {
   if (site.organization?.logo) {
     node.logo = {
       "@type": "ImageObject",
+      "@id": id(base, "logo"),
       url: absoluteUrl(site.organization.logo, base),
+      contentUrl: absoluteUrl(site.organization.logo, base),
     };
+    node.image = { "@id": id(base, "logo") };
   }
   if (site.organization?.same_as?.length) {
     node.sameAs = site.organization.same_as;
@@ -90,12 +92,17 @@ export function buildSchemaGraph({
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
     primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
+      ? {
+          "@type": "ImageObject",
+          "@id": `${seo.canonical}#primaryimage`,
+          url: seo.image,
+          ...(seo.imageAlt && { caption: seo.imageAlt })
+        }
       : undefined,
   };
 
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
+    pageNode.image = { "@id": `${seo.canonical}#primaryimage` };
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };

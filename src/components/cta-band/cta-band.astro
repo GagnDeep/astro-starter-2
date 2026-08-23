@@ -1,0 +1,31 @@
+---
+interface Props {
+  heading: string;
+  description: string;
+  button: {
+    text: string;
+    link: string;
+  };
+}
+
+const { heading, description, button } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-brand-900 border-y border-brand-700 text-neutral-50 text-center">
+  <div class="mx-auto max-w-4xl px-8 flex flex-col items-center gap-6">
+    <h2 class="text-3xl font-bold" data-editable="text" data-prop="heading">
+      {heading}
+    </h2>
+    <p class="text-lg text-neutral-300 max-w-prose" data-editable="text" data-prop="description">
+      {description}
+    </p>
+    {button?.link && (
+      <a
+        href={button.link}
+        class="mt-4 inline-flex items-center justify-center rounded-sm bg-accent-500 px-8 py-3 text-white font-semibold hover:bg-accent-600 transition-colors shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-50"
+      >
+        <span data-editable="text" data-prop="button.text">{button.text}</span>
+      </a>
+    )}
+  </div>
+</section>
