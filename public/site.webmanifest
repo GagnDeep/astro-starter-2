@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "NRI Direct UK",
+  "short_name": "NRI Direct UK",
+  "description": "Independent document assistance and checking services for OCI, Indian passports, and visas for NRIs in the UK.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#0a192f",
+  "theme_color": "#0a192f",
   "icons": [
     {
       "src": "/meta/icon-192.png",

@@ -32,8 +32,6 @@ export const capture = {
     contact: "contact", // general queries
     "document-check": "document-check", // paid document check service
     "application-assistance": "application-assistance", // paid assistance
-    newsletter: "newsletter",
-    waitlist: "waitlist",
   },
 
   /**
