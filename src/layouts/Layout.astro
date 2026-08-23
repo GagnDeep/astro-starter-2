@@ -35,7 +35,7 @@ const resolvedArticle: ArticleMeta | undefined =
   (post_hero?.date
     ? {
         publishedTime: new Date(post_hero.date).toISOString(),
-        author: post_hero.author ?? site.default_author,
+        author: post_hero.author ?? (site.authors.length > 0 ? site.authors[0].name : "Editorial Team"),
         tags: post_hero.tags,
       }
     : undefined);
