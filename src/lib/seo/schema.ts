@@ -47,8 +47,10 @@ function organizationNode(base: string): JsonLdNode {
   if (site.organization?.logo) {
     node.logo = {
       "@type": "ImageObject",
+      "@id": id(base, "logo"),
       url: absoluteUrl(site.organization.logo, base),
     };
+    node.image = { "@id": id(base, "logo") };
   }
   if (site.organization?.same_as?.length) {
     node.sameAs = site.organization.same_as;
@@ -90,12 +92,17 @@ export function buildSchemaGraph({
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
     primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
+      ? {
+          "@type": "ImageObject",
+          "@id": `${seo.canonical}#primaryimage`,
+          url: seo.image,
+          ...(seo.imageAlt && { caption: seo.imageAlt })
+        }
       : undefined,
   };
 
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
+    pageNode.image = seo.image ? { "@id": `${seo.canonical}#primaryimage` } : undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };

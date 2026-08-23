@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
-/* Art Direction: Technical-brutalist */
+/*
+ * Art Direction: Technical-brutalist
+ * Justification: This direction aligns with the no-nonsense, practical, data-driven nature
+ * of commercial and specialty underwriting. It avoids the fluff of standard corporate sites,
+ * fitting the persona of a trade publication that doesn't pretend to be a professional body.
+ */
 
 /*
  * CASCADE RULE — read before adding CSS to this file.
@@ -24,9 +29,139 @@
  * `*, ::before, ::after, ::backdrop`.
  */
 
+@theme {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Lora", serif;
+
+  --color-brand-100: oklch(95% 0.02 250);
+  --color-brand-500: oklch(60% 0.05 250);
+  --color-brand-900: oklch(25% 0.05 250); /* Ink (Brand Hue) */
+
+  --color-support-100: oklch(98% 0.01 80);
+  --color-support-300: oklch(90% 0.04 80); /* Manilla (Supporting Hue) */
+  --color-support-900: oklch(40% 0.02 80);
+
+  --color-accent-500: oklch(75% 0.15 130); /* Highlighters (Accent) */
+  --color-accent-600: oklch(65% 0.15 130);
+
+  /* Neutral Ramp */
+  --color-neutral-50: oklch(98% 0.01 250);
+  --color-neutral-100: oklch(95% 0.01 250);
+  --color-neutral-200: oklch(85% 0.015 250);
+  --color-neutral-300: oklch(75% 0.015 250);
+  --color-neutral-400: oklch(65% 0.02 250);
+  --color-neutral-500: oklch(55% 0.02 250);
+  --color-neutral-600: oklch(45% 0.02 250);
+  --color-neutral-700: oklch(35% 0.025 250);
+  --color-neutral-800: oklch(25% 0.025 250);
+  --color-neutral-900: oklch(15% 0.03 250);
+
+  --spacing-0: 0px;
+  --spacing-px: 1px;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+
+  --radius-none: 0;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 oklch(0% 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px oklch(0% 0 0 / 0.1), 0 2px 4px -2px oklch(0% 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px oklch(0% 0 0 / 0.1), 0 4px 6px -4px oklch(0% 0 0 / 0.1);
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1.125rem; /* 18px */
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: clamp(2.75rem, 6vw, 5.5rem);
+}
+
 @layer base {
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('/fonts/space-grotesk.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('/fonts/lora.woff2') format('woff2');
+  }
+
+  /* Fallback fonts with size-adjust */
+  @font-face {
+    font-family: 'Space Grotesk Fallback';
+    src: local('Arial');
+    size-adjust: 105%;
+  }
+
+  @font-face {
+    font-family: 'Lora Fallback';
+    src: local('Times New Roman');
+    size-adjust: 110%;
+  }
+
+  :root {
+    --bg-color: var(--color-support-100);
+    --text-color: var(--color-neutral-900);
+    --link-color: var(--color-brand-900);
+    --border-color: var(--color-neutral-200);
+    --surface-color: var(--color-white);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: oklch(15% 0.05 250);
+      --text-color: var(--color-support-100);
+      --link-color: var(--color-support-300);
+      --border-color: oklch(25% 0.05 250);
+      --surface-color: oklch(20% 0.05 250);
+    }
+
+    .shadow-sm, .shadow-md, .shadow-lg {
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+  }
+
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body), 'Lora Fallback', serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   main {
@@ -36,101 +171,31 @@
   img {
     object-fit: cover;
   }
-}
 
-@layer components {
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4 {
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-wrap: balance;
-    line-height: 1.2;
-    max-width: 72ch;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display), 'Space Grotesk Fallback', system-ui, sans-serif;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 700;
   }
-  .prose h1 { font-size: 2rem; }
-  .prose h2 { font-size: 1.75rem; }
-  .prose h3 { font-size: 1.5rem; }
-  .prose h4 { font-size: 1.25rem; }
 
-  .prose p,
-  .prose a,
-  .prose ol li,
-  .prose ul li {
-    line-height: 1.75;
-    max-width: 72ch;
-    text-wrap: pretty;
+  h1 {
+    letter-spacing: -0.035em;
   }
-  .prose p,
-  .prose ol,
-  .prose ul {
-    margin-bottom: 1.5rem;
+
+  *:focus-visible {
+    outline: 3px solid var(--color-accent-500);
+    outline-offset: 2px;
   }
-  .prose li p {
-    margin-bottom: 0.125rem;
+
+  a {
+    color: var(--link-color);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
-  .prose li {
-    margin-bottom: 0.25rem;
-    max-width: fit-content;
-  }
-  .prose blockquote {
-    font-style: italic;
-    border-left: 5px solid #000;
-    padding-inline: 1rem;
-    margin-inline: 0;
-    margin-block: 1rem;
-  }
-  .prose ul li {
-    margin-inline: 1rem;
-    padding-block: 0.125rem;
-    list-style: disc;
-  }
-  .prose ol li {
-    list-style-type: decimal;
-    padding-block: 0.125rem;
-    margin-inline: 1rem;
-  }
-  .prose a {
-    color: #034ad8;
-    text-decoration: underline;
-    text-underline-offset: 0.1rem;
-    cursor: pointer;
-  }
-  .prose sup { vertical-align: super; font-size: smaller; }
-  .prose sub { vertical-align: sub; font-size: smaller; }
-  .prose table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1.5rem;
-  }
-  .prose table p { margin-bottom: 0; padding-block: 0.5rem; }
-  .prose th,
-  .prose td {
-    border: 1px solid #e5e5e5;
-    padding: 0.5rem;
-  }
-  .prose thead { background-color: #f5f5f5; }
-  .prose img {
-    max-width: 100%;
-    height: auto;
-    margin: 1rem auto;
-  }
-  .prose hr {
-    border: 0;
-    border-top: 1px solid #d4d4d4;
-    margin: 1.5rem 0;
-  }
-  .prose pre {
-    margin-block: 1.5rem;
-    padding: 1rem;
-  }
-  .prose p > code,
-  .prose li > code {
-    background-color: #f5f5f5;
-    color: inherit;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+
+  p, li {
+    max-width: 65ch;
   }
 }
 
@@ -140,4 +205,20 @@
   .align-center { text-align: center; }
   .align-right { text-align: right; }
   .align-justify { text-align: justify; }
+
+  /* Motion: one-shot scroll reveal (12-20px plus opacity, 300-500ms) */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+  }
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Fast hovers */
+  .hover-transition {
+    transition: all 150ms ease-in-out;
+  }
 }
