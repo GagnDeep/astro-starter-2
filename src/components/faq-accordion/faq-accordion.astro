@@ -1,0 +1,30 @@
+---
+export interface Props {
+  heading?: string;
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+const { heading, faqs = [] } = Astro.props;
+---
+
+<div class="py-16 md:py-24 border-t border-[var(--color-border)] max-w-3xl mx-auto">
+  {heading && <h2 class="mb-8">{heading}</h2>}
+
+  <div class="flex flex-col space-y-4">
+    {faqs.map(faq => (
+      <details class="group border border-[var(--color-border)] bg-[var(--color-surface-base)] open:bg-[var(--color-surface-raised)]">
+        <summary class="cursor-pointer font-bold p-6 flex justify-between items-center outline-none focus-visible:bg-[var(--color-surface-raised)]">
+          {faq.question}
+          <span class="ml-4 flex-shrink-0 text-xl font-mono group-open:hidden">+</span>
+          <span class="ml-4 flex-shrink-0 text-xl font-mono hidden group-open:block">-</span>
+        </summary>
+        <div class="px-6 pb-6 pt-0 text-[var(--color-text-muted)] leading-relaxed">
+          <p class="m-0">{faq.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</div>

@@ -1,77 +1,61 @@
 ---
 import { header } from "../../../data/navigation.json";
-// Icons: @lucide/astro renders inline SVG at build time — zero client JS,
-// tree-shaken per import. See AGENTS.md → "Icons".
+// Icons: @lucide/astro renders inline SVG at build time — zero client JS
 import { Menu, X } from "@lucide/astro";
 ---
 
-<header class="bg-white">
+<header class="bg-[var(--color-surface-base)] border-b border-[var(--color-border)] sticky top-0 z-40">
   <div class="mx-auto max-w-6xl px-8">
-    <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+    <nav class="flex items-center justify-between py-4" aria-label="Main Navigation">
+      <a href={header.logo_url} class="flex items-center gap-2 focus-visible:outline-offset-4">
+        {/* If we have a logo, show it, otherwise just plain text to avoid broken images if the src is missing */}
+        <span class="font-bold text-xl uppercase tracking-widest display-text text-[var(--color-text-base)]">
+          {header.logo_alt_text || "AEROSPACE UAE"}
+        </span>
       </a>
 
-      <ul class="hidden sm:flex items-center gap-6">
+      {/* Desktop Menu */}
+      <ul class="hidden sm:flex items-center gap-6 m-0 p-0" data-editable="array" data-prop="header.links">
         {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
+          <li data-editable="array-item">
+            <a
+              class="text-[var(--color-text-muted)] hover:text-[var(--color-brand-600)] font-medium transition-colors hover-transition"
+              href={link.link}
+            >
               {link.text}
             </a>
           </li>
         ))}
       </ul>
 
-      <button
-        class="sm:hidden p-2"
-        aria-label="Open navigation menu"
-        popovertarget="mobile-menu"
-        popovertargetaction="show"
-      >
-        <Menu class="w-6 h-6" aria-hidden="true" />
-      </button>
+      {/* Mobile Menu using details/summary for zero-JS toggle */}
+      <details class="sm:hidden group relative">
+        <summary class="list-none p-2 cursor-pointer outline-none focus-visible:bg-[var(--color-surface-raised)]" aria-label="Toggle navigation menu">
+          <Menu class="w-6 h-6 group-open:hidden" aria-hidden="true" />
+          <X class="w-6 h-6 hidden group-open:block" aria-hidden="true" />
+        </summary>
 
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
+        <div class="absolute top-full right-0 left-[-100vw] w-screen bg-[var(--color-surface-base)] border-b border-[var(--color-border)] shadow-md p-4 flex flex-col gap-4">
+          <ul class="flex flex-col gap-4 m-0 p-0 items-end pr-8">
+            {header.links.map((link) => (
+              <li>
+                <a
+                  class="text-[var(--color-text-base)] font-bold text-xl block py-2 hover:text-[var(--color-brand-600)] transition-colors"
+                  href={link.link}
+                >
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-        </div>
-      </div>
+      </details>
     </nav>
   </div>
 </header>
 
 <style>
-  #mobile-menu {
-    opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
-  }
-  #mobile-menu:popover-open {
-    opacity: 1;
-  }
-  @starting-style {
-    #mobile-menu:popover-open {
-      opacity: 0;
-    }
+  details > summary::-webkit-details-marker {
+    display: none;
   }
 </style>
