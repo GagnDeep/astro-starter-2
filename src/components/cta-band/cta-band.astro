@@ -1,5 +1,6 @@
 ---
 import Markdown from "../utility/markdown.astro";
+import CaptureForm from "../forms/capture-form.astro";
 
 interface Props {
   heading: string;
@@ -14,22 +15,19 @@ const { heading, subheading, button } = Astro.props;
 ---
 
 <section class="py-16 md:py-24 bg-[var(--accent-color)] border-b-2 border-[var(--text-color)] text-[var(--text-color)]">
-  <div class="mx-auto max-w-4xl px-8 text-center reveal flex flex-col items-center">
-    <h2 data-editable="text" data-prop="heading" class="text-3xl md:text-5xl font-bold mb-6 !text-[var(--text-color)]">
-      {heading}
-    </h2>
-    {subheading && (
-      <div class="text-lg md:text-xl mb-8 max-w-2xl font-sans font-medium !text-[var(--text-color)] opacity-90">
-        <Markdown content={subheading} dataProp="subheading" dataType="block" />
-      </div>
-    )}
-    {button?.link && (
-      <a
-        href={button.link}
-        class="bg-[var(--text-color)] text-[var(--bg-color)] font-bold px-8 py-4 uppercase tracking-wide border-2 border-transparent hover:bg-transparent hover:text-[var(--text-color)] hover:border-[var(--text-color)] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bg-color)] shadow-[4px_4px_0px_0px_var(--bg-color)] hover:shadow-none hover:translate-y-1 hover:translate-x-1"
-      >
-        <span data-editable="text" data-prop="button.text">{button.text}</span>
-      </a>
-    )}
+  <div class="mx-auto max-w-4xl px-8 reveal flex flex-col items-center">
+    <div class="text-center">
+      <h2 data-editable="text" data-prop="heading" class="text-3xl md:text-5xl font-bold mb-6 !text-[var(--text-color)]">
+        {heading}
+      </h2>
+      {subheading && (
+        <div class="text-lg md:text-xl mb-8 max-w-2xl font-sans font-medium !text-[var(--text-color)] opacity-90 mx-auto">
+          <Markdown content={subheading} dataProp="subheading" dataType="block" />
+        </div>
+      )}
+    </div>
+    <div class="w-full max-w-md bg-[var(--surface-color)] text-[var(--text-color)] p-6 brutal-border brutal-shadow">
+      <CaptureForm submitLabel={button.text} class="text-left" />
+    </div>
   </div>
 </section>
