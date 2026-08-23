@@ -60,6 +60,7 @@ and never load an icon font or CDN script.
 ---
 import { ArrowRight, Menu } from "@lucide/astro";
 ---
+
 <ArrowRight class="w-5 h-5" aria-hidden="true" />
 ```
 
@@ -85,18 +86,18 @@ an Iconify set rather than hand-rolling SVG.
 
 ## Start here for a new site
 
-| Goal | Edit |
-| --- | --- |
-| Site name, description, social image, org, locale | `data/site.json` |
-| Production domain (drives canonicals, sitemap, RSS) | `site:` in `astro.config.mjs` |
-| Nav + footer links | `data/navigation.json` |
-| Telemetry identity (`service`, `env`, `applicationId`) | `.env` (copy `.env.example`) |
-| Form capture key, form labels, thank-you URL | `capture.config.ts` (repo root) |
-| Pages | `src/content/pages/*.md` (front matter → `Page.astro`) |
-| Blog posts | `src/content/blog/*.mdx` |
-| Reusable blocks | `src/components/**`, registered in `src/scripts/register-components.ts` |
-| Global styles / design tokens | `src/styles/main.css` |
-| Favicons, app icons, OG image | `src/assets/brand/icon.svg` + `pnpm assets` |
+| Goal                                                   | Edit                                                                    |
+| ------------------------------------------------------ | ----------------------------------------------------------------------- |
+| Site name, description, social image, org, locale      | `data/site.json`                                                        |
+| Production domain (drives canonicals, sitemap, RSS)    | `site:` in `astro.config.mjs`                                           |
+| Nav + footer links                                     | `data/navigation.json`                                                  |
+| Telemetry identity (`service`, `env`, `applicationId`) | `.env` (copy `.env.example`)                                            |
+| Form capture key, form labels, thank-you URL           | `capture.config.ts` (repo root)                                         |
+| Pages                                                  | `src/content/pages/*.md` (front matter → `Page.astro`)                  |
+| Blog posts                                             | `src/content/blog/*.mdx`                                                |
+| Reusable blocks                                        | `src/components/**`, registered in `src/scripts/register-components.ts` |
+| Global styles / design tokens                          | `src/styles/main.css`                                                   |
+| Favicons, app icons, OG image                          | `src/assets/brand/icon.svg` + `pnpm assets`                             |
 
 ## Layout
 
@@ -286,5 +287,5 @@ changes: no API route, no env var, no server code.
 - CloudCannon editable regions (`data-editable`, `<editable-component>`) must be kept
   intact when refactoring markup, or the visual editor breaks. New page-building
   components must be registered in `src/scripts/register-components.ts`.
-- Content shape changes go in `src/content.config.ts` *and* `cloudcannon.config.yml`.
+- Content shape changes go in `src/content.config.ts` _and_ `cloudcannon.config.yml`.
 - Site-wide values belong in `data/*.json`, not hardcoded in components.

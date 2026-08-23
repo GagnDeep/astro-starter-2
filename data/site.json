@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Sustainability",
+  "description": "Readiness toolkit and compliance workflows for California SB 253 and SB 261 climate disclosures.",
+  "tagline": "California Climate Disclosure Compliance",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Sustainability - California SB 253 and SB 261 climate disclosure compliance",
+  "default_author": "Institute of Sustainability",
+  "theme_color": "#0d1f1f",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Sustainability",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Sustainability and Finance Analysts",
+      "bio": "Our editorial team tracks the latest regulatory changes and guidance from CARB to ensure compliance workflows remain accurate and actionable.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "All content and tools are rigorously tested against primary statutory texts and current guidance from the California Air Resources Board (CARB). Review dates are included on all materials to reflect the fast-moving regulatory landscape.",
+    "revenue": "The Institute of Sustainability is funded through sponsorships from industry partners and the sale of our paid readiness toolkit for SB 253 and SB 261 compliance. Sponsored content is clearly marked, and all outbound commission links carry rel=\"sponsored nofollow\".",
+    "corrections": "We correct material errors promptly. To report a correction or an outdated interpretation of CARB guidance, please contact us."
   }
 }
