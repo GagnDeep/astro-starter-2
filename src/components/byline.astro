@@ -8,7 +8,7 @@ interface Props {
 
 const { author_slug, date } = Astro.props;
 
-const author = site.authors.find(a => a.slug === author_slug) || site.authors[0];
+const author = site.authors.find(a => a.slug === author_slug || a.name === author_slug) || site.authors[0];
 const formattedDate = date ? new Date(date).toLocaleDateString(site.locale.replace('_', '-'), {
   year: 'numeric',
   month: 'long',

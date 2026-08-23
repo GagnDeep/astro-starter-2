@@ -1,10 +1,5 @@
 /**
  * JSON-LD (schema.org) builders.
- *
- * Every page emits a single `@graph` containing the site's `WebSite` and
- * `Organization` nodes plus a node for the page itself. Nodes reference each
- * other by `@id`, which is what Google's parsers prefer over repeated
- * duplicate blocks.
  */
 import site from "../../../data/site.json";
 import { absoluteUrl, type ResolvedSeo } from "./meta";
@@ -69,6 +64,37 @@ function breadcrumbNode(base: string, items: BreadcrumbItem[]): JsonLdNode {
   };
 }
 
+export interface ItemListElement {
+  "@type": "ListItem";
+  position: number;
+  item: {
+    "@type": "Thing" | "Product";
+    name: string;
+    description?: string;
+  };
+}
+
+function itemListNode(base: string, listData: { name: string, items: { name: string, description?: string }[] }): JsonLdNode {
+  return {
+    "@type": "ItemList",
+    "@id": `${base}#itemlist`,
+    name: listData.name,
+    itemListElement: listData.items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: item.name,
+        description: item.description
+      }
+    }))
+  };
+}
+
+function prune(node: JsonLdNode): JsonLdNode {
+  return Object.fromEntries(Object.entries(node).filter(([, value]) => value !== undefined));
+}
+
 /** The full JSON-LD graph for a page. Returns `null` for noindex pages. */
 export function buildSchemaGraph({
   seo,
@@ -81,7 +107,7 @@ export function buildSchemaGraph({
   const isArticle = Boolean(seo.article);
 
   const pageNode: JsonLdNode = {
-    "@type": isArticle ? "BlogPosting" : "WebPage",
+    "@type": isArticle ? (seo.canonical.includes("/blog/") ? "BlogPosting" : "Article") : "WebPage",
     "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
     url: seo.canonical,
     name: seo.rawTitle,
@@ -100,7 +126,12 @@ export function buildSchemaGraph({
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      const authorSlug = seo.article.author.toLowerCase().replace(/\s+/g, "-");
+      pageNode.author = {
+        "@type": "Person",
+        name: seo.article.author_name || seo.article.author,
+        "@id": `${base}authors/${authorSlug}/#person`
+      };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
@@ -110,11 +141,7 @@ export function buildSchemaGraph({
 
   const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
+  if (seo.listData) graph.push(itemListNode(base, seo.listData));
 
   return { "@context": "https://schema.org", "@graph": graph };
-}
-
-/** Drop undefined values so the emitted JSON stays clean. */
-function prune(node: JsonLdNode): JsonLdNode {
-  return Object.fromEntries(Object.entries(node).filter(([, value]) => value !== undefined));
 }
