@@ -1,0 +1,50 @@
+---
+import { ChevronRight } from "@lucide/astro";
+
+interface Crumb {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="py-4 border-b border-[var(--color-border-base)] bg-[var(--color-bg-surface)]">
+  <div class="mx-auto max-w-7xl px-8 lg:px-12">
+    <ol class="flex flex-wrap items-center gap-2 text-sm text-[var(--color-text-muted)]" data-editable="array" data-prop="crumbs">
+      {crumbs.map((crumb, index) => {
+        const isLast = index === crumbs.length - 1;
+        return (
+          <li class="flex items-center gap-2" data-editable="array-item">
+            {isLast ? (
+              <span
+                class="font-medium text-[var(--color-text-base)]"
+                data-editable="text"
+                data-prop={`crumbs[${index}].name`}
+                aria-current="page"
+              >
+                {crumb.name}
+              </span>
+            ) : (
+              <>
+                <a
+                  href={crumb.url}
+                  class="hover:text-[var(--color-brand-700)] dark:hover:text-[var(--color-accent-400)] transition-colors outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-900)] dark:focus-visible:ring-[var(--color-accent-400)] rounded-sm"
+                  data-editable="text"
+                  data-prop={`crumbs[${index}].name`}
+                >
+                  {crumb.name}
+                </a>
+                <ChevronRight class="w-6 h-6 text-[var(--color-border-base)]" stroke-width="1.5" />
+              </>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</nav>

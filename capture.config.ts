@@ -31,6 +31,7 @@ export const capture = {
   forms: {
     contact: "contact",
     newsletter: "newsletter",
+    waitlist: "waitlist",
   },
 
   /**

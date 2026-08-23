@@ -1,0 +1,54 @@
+---
+import Markdown from "../utility/markdown.astro";
+import { ChevronDown } from "@lucide/astro";
+
+interface Faq {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  heading: string;
+  faqs: Faq[];
+}
+
+const { heading, faqs } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-[var(--color-bg-base)]">
+  <div class="mx-auto max-w-4xl px-8 lg:px-12">
+    <h2
+      data-editable="text"
+      data-prop="heading"
+      class="mb-12 text-[var(--color-brand-900)] dark:text-[var(--color-neutral-100)]"
+    >
+      {heading}
+    </h2>
+
+    <div class="flex flex-col gap-4" data-editable="array" data-prop="faqs">
+      {faqs.map((faq, index) => (
+        <details
+          class="group bg-[var(--color-bg-surface)] border border-[var(--color-border-base)]"
+          data-editable="array-item"
+        >
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-brand-900)] dark:focus-visible:ring-[var(--color-accent-400)] hover:bg-[var(--color-neutral-100)] dark:hover:bg-[var(--color-brand-800)] hover-transition font-display font-medium text-lg text-[var(--color-brand-800)] dark:text-[var(--color-neutral-200)]">
+            <span data-editable="text" data-prop={`faqs[${index}].question`}>{faq.question}</span>
+            <ChevronDown class="w-6 h-6 text-[var(--color-text-muted)] group-open:rotate-180 transition-transform duration-200" stroke-width="1.5" />
+          </summary>
+          <div class="p-6 pt-0 text-[var(--color-text-muted)] border-t border-transparent group-open:border-[var(--color-border-base)]">
+            <div class="pt-4">
+              <Markdown content={faq.answer} dataProp={`faqs[${index}].answer`} dataType="block" />
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Fix Safari details/summary marker */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
