@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Washington DC Review",
+  "description": "A federal contracting reference hub for small businesses navigating SAM.gov registration, set-aside certifications, and GSA Schedules.",
+  "tagline": "The small business reference hub for federal contracting.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Washington DC Review — federal contracting resource for small businesses.",
+  "default_author": "Editorial Team",
+  "theme_color": "#1a365d",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Washington DC Review",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Content Operations",
+      "bio": "Our editorial team researches and documents federal contracting requirements to help small businesses navigate SAM.gov and certification processes."
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We research primary sources from SAM.gov, the SBA, and GSA, summarizing regulations and submission requirements. We are not a government agency and do not offer legal or compliance advice.",
+    "how_we_make_money": "We generate revenue through lead generation and referral bounties to specialized GovCon service providers. If you engage a provider through our links, we may earn a commission.",
+    "corrections": "If we misstate a regulation or process, we update the page and note the date of the correction. We encourage readers to always consult primary government sources."
   }
 }

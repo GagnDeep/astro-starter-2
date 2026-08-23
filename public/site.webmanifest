@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "Washington DC Review",
+  "short_name": "Washington DC Review",
+  "description": "A federal contracting reference hub for small businesses navigating SAM.gov registration, set-aside certifications, and GSA Schedules.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#1a365d",
+  "theme_color": "#1a365d",
   "icons": [
     {
       "src": "/meta/icon-192.png",
