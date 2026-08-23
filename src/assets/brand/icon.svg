@@ -1,16 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Institute of Catering Brand Mark">
   <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
+    Brand mark for Institute of Catering.
+    A plate/platter motif combined with a checklist/clipboard motif, representing the business/operational side of catering.
   -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
+  <rect width="512" height="512" rx="64" fill="#0f172a" />
+
+  <!-- Platter cloche outline -->
   <path
-    d="M256 112 L384 368 H128 Z"
+    d="M128 320 C128 200, 384 200, 384 320"
     fill="none"
     stroke="#ffffff"
-    stroke-width="36"
+    stroke-width="32"
+    stroke-linecap="round"
+  />
+
+  <!-- Base of platter -->
+  <path
+    d="M96 320 H416"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="32"
+    stroke-linecap="round"
+  />
+
+  <!-- Cloche handle -->
+  <circle cx="256" cy="160" r="24" fill="#ffffff" />
+
+  <!-- Checkmark representing certification/contracts -->
+  <path
+    d="M200 250 L240 290 L320 210"
+    fill="none"
+    stroke="#f97316"
+    stroke-width="28"
+    stroke-linecap="round"
     stroke-linejoin="round"
   />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
 </svg>

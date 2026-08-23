@@ -1,36 +1,32 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-blue.png",
+    "logo_alt_text": "Institute of Catering",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/software/",
+        "text": "Software"
+      },
+      {
+        "link": "/certifications/",
+        "text": "Certifications"
       },
       {
         "link": "/blog/",
-        "text": "Blog"
+        "text": "Guides"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-blue.png",
+    "logo_alt_text": "Institute of Catering",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Institute of Catering. All rights reserved.",
     "links": [
       {
         "link": "/contact/",
@@ -38,11 +34,15 @@
       },
       {
         "link": "/blog/",
-        "text": "Blog"
+        "text": "Guides"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/software/",
+        "text": "Software"
+      },
+      {
+        "link": "/certifications/",
+        "text": "Certifications"
       }
     ]
   }
