@@ -1,0 +1,40 @@
+---
+interface Props {
+  author_name: string;
+  author_role?: string;
+  author_image?: string;
+  date: string;
+}
+
+const { author_name, author_role, author_image, date } = Astro.props;
+
+// Date formatting
+const formattedDate = new Date(date).toLocaleDateString('en-IE', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<div class="flex items-center gap-4 py-6 border-y-2 border-[var(--color-border)] my-8 bg-[var(--color-surface)] px-6 shadow-[var(--shadow-sm)]">
+  {author_image && (
+    <img
+      src={author_image}
+      alt={author_name}
+      class="w-16 h-16 object-cover border-2 border-[var(--color-border)]"
+    />
+  )}
+  <div>
+    <p class="font-display font-bold text-[var(--color-text)] m-0">
+      {author_name}
+    </p>
+    {author_role && (
+      <p class="text-sm text-[var(--color-text-muted)] m-0">
+        {author_role}
+      </p>
+    )}
+    <p class="text-xs text-[var(--color-text-muted)] mt-1 font-mono uppercase tracking-wider">
+      {formattedDate}
+    </p>
+  </div>
+</div>

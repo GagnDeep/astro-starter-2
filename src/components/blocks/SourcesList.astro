@@ -1,0 +1,52 @@
+---
+import { BookOpen } from "@lucide/astro";
+
+interface Source {
+  title: string;
+  url?: string;
+  date?: string;
+}
+
+interface Props {
+  heading?: string;
+  sources: Source[];
+}
+
+const { heading = "Primary Sources", sources } = Astro.props;
+---
+
+<section class="py-12 bg-[var(--color-bg)]">
+  <div class="mx-auto max-w-4xl px-8">
+    <div class="border-2 border-[var(--color-border)] bg-[var(--color-surface)] p-8 shadow-[var(--shadow-sm)]">
+      <h2 class="mb-6 font-display font-bold text-xl text-[var(--color-text)] flex items-center gap-2">
+        <BookOpen class="w-6 h-6 text-[var(--color-supporting)]" aria-hidden="true" />
+        {heading}
+      </h2>
+
+      <ul class="space-y-4">
+        {sources.map((source) => (
+          <li class="text-sm pl-4 border-l-2 border-[var(--color-supporting)]">
+            {source.url ? (
+              <a
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-medium text-[var(--color-text)] hover:text-[var(--color-supporting)] underline underline-offset-4 decoration-[var(--color-border)] hover:decoration-[var(--color-supporting)] transition-colors focus-visible"
+              >
+                {source.title}
+              </a>
+            ) : (
+              <span class="font-medium text-[var(--color-text)]">{source.title}</span>
+            )}
+            {source.date && (
+              <span class="text-[var(--color-text-muted)] ml-2 font-mono">({source.date})</span>
+            )}
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6 text-xs text-[var(--color-text-muted)] italic">
+        All claims are verified against official EU publications.
+      </p>
+    </div>
+  </div>
+</section>

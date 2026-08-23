@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 /*
+ * Art Direction: Technical-brutalist
+ * Justification: This fits the regulatory, high-precision nature of battery passports.
+ *
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
@@ -22,9 +25,131 @@
  * `*, ::before, ::after, ::backdrop`.
  */
 
+@theme {
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+
+  /* OKLCH Palette */
+  /* Lithium (Brand hue - silver/white metallic) */
+  --color-brand: oklch(0.92 0.02 260); /* silver tint */
+  --color-brand-muted: oklch(0.96 0.01 260);
+  /* Copper (Supporting hue - reddish-brown, 30-60deg from gray) */
+  --color-supporting: oklch(0.55 0.15 45); /* reddish copper */
+  --color-supporting-muted: oklch(0.85 0.05 45);
+  /* Graphite (Neutral ramp - dark grey, chroma 0.01-0.03, never pure grey) */
+  --color-neutral-50: oklch(0.98 0.01 260);
+  --color-neutral-100: oklch(0.95 0.015 260);
+  --color-neutral-200: oklch(0.88 0.015 260);
+  --color-neutral-300: oklch(0.8 0.02 260);
+  --color-neutral-400: oklch(0.7 0.02 260);
+  --color-neutral-500: oklch(0.55 0.02 260);
+  --color-neutral-600: oklch(0.42 0.02 260);
+  --color-neutral-700: oklch(0.3 0.025 260);
+  --color-neutral-800: oklch(0.2 0.025 260);
+  --color-neutral-900: oklch(0.12 0.03 260); /* Never #000 */
+
+  /* Surface, Text, Borders */
+  --color-bg: var(--color-neutral-50);
+  --color-surface: oklch(1 0 0);
+  --color-text: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-600);
+  --color-border: var(--color-neutral-200);
+
+  /* Radius - Brutalist (mostly sharp or slight) */
+  --radius-sm: 0;
+  --radius-DEFAULT: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+
+  /* Shadow - Brutalist hard shadows */
+  --shadow-sm: 2px 2px 0px var(--color-neutral-900);
+  --shadow-DEFAULT: 4px 4px 0px var(--color-neutral-900);
+  --shadow-md: 6px 6px 0px var(--color-neutral-900);
+  --shadow-lg: 8px 8px 0px var(--color-neutral-900);
+  --shadow-xl: 12px 12px 0px var(--color-neutral-900);
+  --shadow-2xl: 16px 16px 0px var(--color-neutral-900);
+}
+
 @layer base {
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/space-grotesk-regular.woff2) format('woff2');
+    size-adjust: 105%;
+  }
+
+  @font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/fonts/space-grotesk-bold.woff2) format('woff2');
+    size-adjust: 105%;
+  }
+
+  @font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/ibm-plex-sans-regular.woff2) format('woff2');
+    size-adjust: 100%;
+  }
+
+  @font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(/fonts/ibm-plex-sans-medium.woff2) format('woff2');
+    size-adjust: 100%;
+  }
+
+  :root {
+    color-scheme: light dark;
+  }
+
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  /* Display Typography */
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+
+  /* Specific Display scale clamp(2.75rem, 6vw, 5.5rem) */
+  h1, .text-display-1 {
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+
+  h2, .text-display-2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  h3, .text-display-3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  /* Body Typography */
+  p, li, .text-body {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    max-width: 65ch;
   }
 
   main {
@@ -34,6 +159,51 @@
   img {
     object-fit: cover;
   }
+
+  /* WCAG AA focus visible styles */
+  :focus-visible {
+    outline: 3px solid var(--color-supporting);
+    outline-offset: 2px;
+  }
+
+  /* Motion */
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 400ms ease-out, transform 400ms ease-out;
+    }
+
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Background is low lightness brand hue, never #000 */
+      --color-bg: oklch(0.18 0.03 260); /* Graphite base */
+      --color-surface: oklch(0.22 0.04 260); /* Brand hue at low lightness */
+
+      /* Raise accent chroma */
+      --color-supporting: oklch(0.65 0.22 45); /* brighter copper */
+
+      /* Text */
+      --color-text: var(--color-neutral-50);
+      --color-text-muted: var(--color-neutral-400);
+      --color-border: var(--color-neutral-700);
+
+      /* Replace shadows with a 1px top highlight */
+      --shadow-sm: inset 0 1px 0px rgba(255, 255, 255, 0.1);
+      --shadow-DEFAULT: inset 0 1px 0px rgba(255, 255, 255, 0.1);
+      --shadow-md: inset 0 1px 0px rgba(255, 255, 255, 0.1);
+      --shadow-lg: inset 0 1px 0px rgba(255, 255, 255, 0.1);
+      --shadow-xl: inset 0 1px 0px rgba(255, 255, 255, 0.1);
+      --shadow-2xl: inset 0 1px 0px rgba(255, 255, 255, 0.1);
+    }
+  }
 }
 
 @layer components {
@@ -41,23 +211,35 @@
   .prose h2,
   .prose h3,
   .prose h4 {
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 0.5rem;
     text-wrap: balance;
-    line-height: 1.2;
-    max-width: 72ch;
+    max-width: 65ch;
   }
-  .prose h1 { font-size: 2rem; }
-  .prose h2 { font-size: 1.75rem; }
-  .prose h3 { font-size: 1.5rem; }
-  .prose h4 { font-size: 1.25rem; }
+  .prose h1 {
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+  .prose h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .prose h3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .prose h4 { font-size: 1.25rem; font-family: var(--font-display); }
 
   .prose p,
   .prose a,
   .prose ol li,
   .prose ul li {
-    line-height: 1.75;
-    max-width: 72ch;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 65ch;
     text-wrap: pretty;
   }
   .prose p,
@@ -74,7 +256,7 @@
   }
   .prose blockquote {
     font-style: italic;
-    border-left: 5px solid #000;
+    border-left: 5px solid var(--color-supporting);
     padding-inline: 1rem;
     margin-inline: 0;
     margin-block: 1rem;
@@ -82,17 +264,18 @@
   .prose ul li {
     margin-inline: 1rem;
     padding-block: 0.125rem;
-    list-style: disc;
+    list-style: square; /* Brutalist */
   }
   .prose ol li {
-    list-style-type: decimal;
+    list-style-type: decimal-leading-zero; /* Technical */
     padding-block: 0.125rem;
     margin-inline: 1rem;
   }
   .prose a {
-    color: #034ad8;
+    color: var(--color-supporting);
     text-decoration: underline;
     text-underline-offset: 0.1rem;
+    text-decoration-thickness: 2px; /* Brutalist */
     cursor: pointer;
   }
   .prose sup { vertical-align: super; font-size: smaller; }
@@ -105,37 +288,70 @@
   .prose table p { margin-bottom: 0; padding-block: 0.5rem; }
   .prose th,
   .prose td {
-    border: 1px solid #e5e5e5;
-    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    padding: 0.75rem;
   }
-  .prose thead { background-color: #f5f5f5; }
+  .prose thead {
+    background-color: var(--color-surface);
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
   .prose img {
     max-width: 100%;
     height: auto;
-    margin: 1rem auto;
+    margin: 1.5rem auto;
+    border: 2px solid var(--color-border); /* Brutalist */
   }
   .prose hr {
     border: 0;
-    border-top: 1px solid #d4d4d4;
-    margin: 1.5rem 0;
+    border-top: 2px solid var(--color-border); /* Brutalist */
+    margin: 2rem 0;
   }
   .prose pre {
     margin-block: 1.5rem;
     padding: 1rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
   }
   .prose p > code,
   .prose li > code {
-    background-color: #f5f5f5;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     color: inherit;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+    padding: 0.125rem 0.25rem;
   }
-}
 
-@layer components {
   /* CloudCannon content editor alignment classes */
   .align-left { text-align: left; }
   .align-center { text-align: center; }
   .align-right { text-align: right; }
   .align-justify { text-align: justify; }
+
+  /* Utilities */
+  .hover-transition {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+  }
+
+  .brutalist-button {
+    @apply inline-flex items-center justify-center font-display font-bold px-6 py-3 border-2 border-text shadow transition-transform hover:-translate-y-1 hover:shadow-md;
+    background-color: var(--color-brand);
+    color: var(--color-neutral-900);
+  }
+
+  .brutalist-button:hover {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+  }
+
+  .brutalist-button-alt {
+    @apply inline-flex items-center justify-center font-display font-bold px-6 py-3 border-2 border-text shadow transition-transform hover:-translate-y-1 hover:shadow-md;
+    background-color: var(--color-supporting);
+    color: white;
+  }
+
+  .brutalist-button-alt:hover {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+  }
 }

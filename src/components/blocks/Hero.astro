@@ -1,0 +1,48 @@
+---
+interface Props {
+  heading: string;
+  subheading?: string;
+  image?: string;
+  image_alt?: string;
+  primary_cta_text?: string;
+  primary_cta_link?: string;
+}
+
+const { heading, subheading, image, image_alt, primary_cta_text, primary_cta_link } = Astro.props;
+---
+
+<section class="py-16 sm:py-24 relative overflow-hidden bg-[var(--color-bg)] border-b-2 border-[var(--color-border)]">
+  <div class="mx-auto max-w-6xl px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      {/* Asymmetric layout: 7 columns for text, 5 for image */}
+      <div class="lg:col-span-7 flex flex-col items-start scroll-reveal is-visible">
+        <h1 class="mb-6 font-display font-bold text-[var(--color-text)] text-balance">
+          {heading}
+        </h1>
+        {subheading && (
+          <p class="mb-8 text-xl text-[var(--color-text-muted)] max-w-[50ch] text-pretty">
+            {subheading}
+          </p>
+        )}
+        {primary_cta_text && primary_cta_link && (
+          <a href={primary_cta_link} class="brutalist-button">
+            {primary_cta_text}
+          </a>
+        )}
+      </div>
+
+      {image && (
+        <div class="lg:col-span-5 relative scroll-reveal is-visible">
+          <div class="aspect-square relative w-full border-2 border-[var(--color-border)] shadow-[var(--shadow-DEFAULT)] overflow-hidden bg-[var(--color-surface)]">
+            <img
+              src={image}
+              alt={image_alt || ""}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
