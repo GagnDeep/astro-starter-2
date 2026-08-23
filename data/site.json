@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Restaurants",
+  "description": "A restaurant POS and technology comparison aimed at the 90-day pre-opening window. Independent evaluations for first-time owners.",
+  "tagline": "Independent restaurant technology evaluations.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
+  "image_alt": "Institute of Restaurants logo.",
   "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Restaurants",
+    "logo": "/images/logos/logo-wordmark-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Editorial Team",
+      "bio": "Our team of former restaurant operators and hospitality tech experts reviews every platform.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We evaluate restaurant technology based on features, pricing transparency, and support. We test platforms firsthand or interview operators who use them daily in high-volume environments.",
+    "how_we_make_money": "Institute of Restaurants is an independent comparison site, not an accreditation body. We may earn a vendor referral bounty when you choose a vendor through links on our site (for example, Toast, TouchBistro, or Square). This allows us to provide our research for free.",
+    "corrections": "We strive for accuracy. If you find an error in our pricing or feature data, please contact us. We correct factual errors promptly and update our reviews as platforms evolve."
   }
 }
