@@ -1,48 +1,40 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Handpano logo",
     "logo_url": "/",
+    "links": [
+      {
+        "link": "/scales/",
+        "text": "Scales"
+      },
+      {
+        "link": "/makers/",
+        "text": "Makers"
+      },
+      {
+        "link": "/guide/",
+        "text": "Buyer's Guide"
+      }
+    ]
+  },
+  "footer": {
+    "logo": "/images/logos/logo-white.png",
+    "logo_alt_text": "Handpano logo",
+    "logo_url": "/",
+    "copyright": "Handpano. All rights reserved.",
     "links": [
       {
         "link": "/about/",
         "text": "About"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
-      }
-    ]
-  },
-  "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
-    "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
-    "links": [
-      {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/editorial/",
+        "text": "Editorial Policy"
       }
     ]
   }

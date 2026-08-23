@@ -1,17 +1,27 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Handpano",
+  "description": "The handpan buyer's resource. Choose the right scale, maker, and budget for your first instrument without relying on affiliate lists.",
+  "tagline": "Find your first handpan.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Handpano — Find your first handpan.",
+  "theme_color": "#1c1917",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "name": "Handpano",
+    "logo": "/images/logos/logo.png"
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Handpano Editorial Team",
+      "role": "Writers & Reviewers",
+      "bio": "A dedicated team evaluating handpan makers and scales."
+    }
+  ],
+  "editorial": {
+    "testing": "We buy or borrow every handpan we test. We do not accept free instruments in exchange for coverage.",
+    "monetization": "We make money through our own buyer's decision guide and direct lessons. We do not use affiliate links.",
+    "corrections": "We correct factual errors promptly and note significant updates at the top of the relevant article."
   }
 }
