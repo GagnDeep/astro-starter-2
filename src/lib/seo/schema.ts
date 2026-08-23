@@ -20,6 +20,7 @@ export interface PageSchemaOptions {
   seo: ResolvedSeo;
   siteUrl: URL | undefined;
   breadcrumbs?: BreadcrumbItem[];
+  content_blocks?: any[];
 }
 
 const id = (base: string, hash: string) => `${new URL("/", base).toString()}#${hash}`;
@@ -77,6 +78,7 @@ export function buildSchemaGraph({
   seo,
   siteUrl,
   breadcrumbs,
+  content_blocks,
 }: PageSchemaOptions): JsonLdNode | null {
   if (seo.noIndex) return null;
 
@@ -110,13 +112,16 @@ export function buildSchemaGraph({
   }
 
   if (isArticle) {
+    pageNode["@type"] = "Article";
     pageNode.image = primaryImageId ? { "@id": primaryImageId } : undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
 
     if (seo.article?.author) {
-      const authorId = `${base}#author-${seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      const authorSlug = seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const authorUrl = new URL(`/authors/${authorSlug}/`, base).toString();
+      const authorId = `${authorUrl}#author`;
 
       const authorData = site.authors?.find((a) => a.name === seo.article?.author);
 
@@ -125,6 +130,7 @@ export function buildSchemaGraph({
           "@type": "Person",
           "@id": authorId,
           name: seo.article.author,
+          url: authorUrl,
           jobTitle: authorData?.real_role,
           description: authorData?.bio,
           sameAs: authorData?.sameAs?.length ? authorData.sameAs : undefined,
@@ -164,6 +170,23 @@ export function buildSchemaGraph({
     // Overwrite the ID to be strictly the webpage URL + #breadcrumb to match what we reference
     bItems["@id"] = `${seo.canonical}#breadcrumb`;
     graph.push(bItems);
+  }
+
+  if (content_blocks?.length) {
+    content_blocks.forEach((block) => {
+      if (block._name === "ComparisonTable") {
+        graph.push({
+          "@type": "ItemList",
+          "@id": `${seo.canonical}#comparison-table`,
+          name: block.heading,
+          itemListElement: block.features.map((row: any, i: number) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: row.feature,
+          })),
+        });
+      }
+    });
   }
 
   return { "@context": "https://schema.org", "@graph": graph };
