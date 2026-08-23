@@ -1,44 +1,44 @@
 {
   "header": {
     "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Institute of Restaurants",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/methodology/",
+        "text": "Methodology"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/pos-systems/",
+        "text": "POS Systems"
+      },
+      {
+        "link": "/online-ordering/",
+        "text": "Online Ordering"
+      },
+      {
+        "link": "/reservations/",
+        "text": "Reservations"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
     "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Institute of Restaurants",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Institute of Restaurants. All rights reserved.",
     "links": [
+      {
+        "link": "/methodology/",
+        "text": "Methodology"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
       },
       {
         "link": "/feed.xml",
