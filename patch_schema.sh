@@ -1,3 +1,5 @@
+#!/bin/bash
+cat << 'INNER_EOF' > src/components/seo/seo.astro
 ---
 /**
  * Everything that belongs in <head> for search engines and social platforms.
@@ -107,3 +109,4 @@ const sitemapUrl = new URL("/sitemap-index.xml", origin).toString();
 {observabilityConfig.enabled && <link rel="preconnect" href={observabilityOrigin()} crossorigin />}
 
 {schema && <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />}
+INNER_EOF

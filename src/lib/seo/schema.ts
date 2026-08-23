@@ -20,6 +20,7 @@ export interface PageSchemaOptions {
   seo: ResolvedSeo;
   siteUrl: URL | undefined;
   breadcrumbs?: BreadcrumbItem[];
+  itemListElements?: any[];
 }
 
 const id = (base: string, hash: string) => `${new URL("/", base).toString()}#${hash}`;
@@ -75,6 +76,7 @@ export function buildSchemaGraph({
   seo,
   siteUrl,
   breadcrumbs,
+  itemListElements,
 }: PageSchemaOptions): JsonLdNode | null {
   if (seo.noIndex) return null;
 
@@ -82,7 +84,7 @@ export function buildSchemaGraph({
   const isArticle = Boolean(seo.article);
 
   const pageNode: JsonLdNode = {
-    "@type": isArticle ? "BlogPosting" : "WebPage",
+    "@type": isArticle ? "Article" : "WebPage",
     "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
     url: seo.canonical,
     name: seo.rawTitle,
@@ -106,7 +108,17 @@ export function buildSchemaGraph({
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      // Find author slug from site.json or fallback to lowercased name
+      const authorObj = site.authors?.find(a => a.name === seo.article?.author);
+      const authorSlug = authorObj ? authorObj.slug : seo.article?.author.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const authorUrl = new URL(`/author/${authorSlug}/`, base).toString();
+
+      pageNode.author = {
+        "@type": "Person",
+        "@id": `${authorUrl}#person`,
+        name: seo.article.author,
+        url: authorUrl
+      };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
@@ -116,6 +128,14 @@ export function buildSchemaGraph({
 
   const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
+
+  if (itemListElements && itemListElements.length > 0) {
+    graph.push({
+      "@type": "ItemList",
+      "@id": `${seo.canonical}#itemlist`,
+      itemListElement: itemListElements
+    });
+  }
 
   return { "@context": "https://schema.org", "@graph": graph };
 }
