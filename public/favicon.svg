@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="DogSnacker Brand Mark">
   <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
+    Brand hue: Oklch warm orange/brown.
+    A simple dog bone / treat shape.
   -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
-  <path
-    d="M256 112 L384 368 H128 Z"
-    fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
-  />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+  <rect width="512" height="512" rx="112" fill="#d97706" />
+
+  <path d="M180,180 a50,50 0 1,1 -70,70 a50,50 0 1,1 70,-70 M332,180 a50,50 0 1,0 70,70 a50,50 0 1,0 -70,-70 M180,332 a50,50 0 1,0 -70,-70 a50,50 0 1,0 70,70 M332,332 a50,50 0 1,1 70,-70 a50,50 0 1,1 -70,70 M160,200 L352,200 L352,312 L160,312 Z" fill="#ffffff"/>
+
+  <rect x="156" y="210" width="200" height="92" fill="#ffffff" />
+  <circle cx="156" cy="210" r="46" fill="#ffffff" />
+  <circle cx="156" cy="302" r="46" fill="#ffffff" />
+  <circle cx="356" cy="210" r="46" fill="#ffffff" />
+  <circle cx="356" cy="302" r="46" fill="#ffffff" />
+
 </svg>

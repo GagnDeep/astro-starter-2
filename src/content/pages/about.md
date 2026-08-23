@@ -1,13 +1,12 @@
 ---
-title: DogSnacker
+title: About DogSnacker
 seo:
-  page_description: Vet-reviewed homemade dog-treat recipes organised by food allergen.
+  page_description: Learn about DogSnacker and our vet-reviewed homemade dog-treat recipes.
   canonical_url: null
   featured_image: null
   featured_image_alt: null
   author_twitter_handle: null
   open_graph_type: website
   no_index: false
-hero_block: null
 content_blocks: []
 ---
