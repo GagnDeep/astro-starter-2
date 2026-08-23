@@ -1,0 +1,42 @@
+---
+import Markdown from "../utility/markdown.astro";
+import { ChevronDown } from "@lucide/astro";
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  heading?: string;
+  items: FaqItem[];
+}
+
+const { heading, items = [] } = Astro.props;
+---
+
+<section class="py-16 md:py-24 border-b-2 border-[var(--border-color)]">
+  <div class="mx-auto max-w-4xl px-8">
+    {heading && (
+      <h2 data-editable="text" data-prop="heading" class="text-3xl md:text-5xl font-bold mb-12 reveal text-center">
+        {heading}
+      </h2>
+    )}
+
+    <div data-editable="array" data-prop="items" class="flex flex-col gap-4 reveal" style="transition-delay: 100ms;">
+      {items.map((item) => (
+        <details data-editable="array-item" class="group brutal-border bg-[var(--surface-color)] overflow-hidden">
+          <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-xl hover:bg-[var(--accent-color)] hover:text-[var(--text-color)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--focus-ring)] list-none [&::-webkit-details-marker]:hidden">
+            <span data-editable="text" data-prop="items[].question">{item.question}</span>
+            <ChevronDown class="w-6 h-6 stroke-current transition-transform duration-200 group-open:rotate-180 flex-shrink-0" />
+          </summary>
+          <div class="p-6 pt-0 font-sans text-lg border-t-2 border-[var(--border-color)] mt-0 bg-[var(--surface-color)] hidden group-open:block">
+            <div class="pt-4">
+              <Markdown content={item.answer} dataProp="items[].answer" dataType="block" />
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

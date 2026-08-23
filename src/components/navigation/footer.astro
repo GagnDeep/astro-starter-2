@@ -2,24 +2,24 @@
 import { footer } from "../../../data/navigation.json";
 ---
 
-<footer class="bg-gray-800 text-white">
+<footer class="bg-[var(--surface-color)] border-t-4 border-[var(--border-color)] text-[var(--text-color)]">
   <div class="mx-auto max-w-6xl px-8 py-12">
     <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
+      <a class="flex justify-center sm:justify-start focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]" href={footer.logo_url}>
         <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
       </a>
 
       <ul class="flex gap-6 items-center justify-center">
         {footer.links.map((link) => (
           <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
+            <a class="font-bold uppercase tracking-wide hover:text-[var(--accent-color-hover)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--focus-ring)]" href={link.link}>
               {link.text}
             </a>
           </li>
         ))}
       </ul>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
+      <div class="text-center sm:text-end text-sm font-medium">
         &copy; {new Date().getFullYear()} {footer.copyright}
       </div>
     </div>

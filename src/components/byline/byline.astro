@@ -1,0 +1,30 @@
+---
+interface Props {
+  author_name: string;
+  author_role?: string;
+  date?: string;
+}
+
+const { author_name, author_role, date } = Astro.props;
+---
+
+<div class="flex items-center gap-4 py-6 border-y-2 border-[var(--border-color)] my-8 bg-[var(--surface-color)] px-4 brutal-border">
+  <div class="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <div>
+      <div class="font-bold font-serif text-lg text-[var(--text-color)]">
+        <span data-editable="text" data-prop="author_name">{author_name}</span>
+      </div>
+      {author_role && (
+        <div class="text-sm font-sans font-medium uppercase tracking-wide text-[var(--text-color)] opacity-80">
+          <span data-editable="text" data-prop="author_role">{author_role}</span>
+        </div>
+      )}
+    </div>
+
+    {date && (
+      <time class="text-sm font-sans font-medium bg-[var(--accent-color)] text-[var(--text-color)] px-3 py-1 brutal-border inline-block w-fit">
+        <span data-editable="text" data-prop="date">{date}</span>
+      </time>
+    )}
+  </div>
+</div>
