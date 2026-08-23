@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Humanoids",
+  "description": "The humanoid-robotics supply-chain cross-reference and hardware job board.",
+  "tagline": "Mapping the humanoid robotics supply chain.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Humanoids — mapping the humanoid robotics supply chain.",
+  "default_author": "Institute of Humanoids",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of Humanoids",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Data Verification & Engineering Research",
+      "bio": "Researching and verifying humanoid robotics supply chains and component specs."
+    }
+  ],
+  "editorial": {
+    "testing": "We map supply chains based on publicly available data, SEC filings, supplier announcements, and engineering job postings.",
+    "monetization": "We make money through site sponsorships and paid job postings for hardware engineering roles. We do not accept payment for inclusion in the supply-chain database.",
+    "corrections": "If you represent a supplier or humanoid company and find a data error, please contact us for immediate correction."
   }
 }
