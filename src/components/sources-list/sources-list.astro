@@ -1,8 +1,9 @@
 ---
 interface SourceItem {
-  title: string;
+  title?: string;
+  text?: string;
   url: string;
-  date: string;
+  date?: string;
 }
 
 interface Props {
@@ -33,16 +34,18 @@ const { heading, sources } = Astro.props;
               class="text-neutral-900 dark:text-neutral-50 hover:text-orange-500 hover:underline underline-offset-4 outline-none focus-visible:outline-2 focus-visible:outline-orange-500 font-medium"
             >
               <span data-editable="text" data-prop={`sources.${index}.title`}>
-                {source.title}
+                {source.title || source.text}
               </span>
             </a>
-            <span class="ml-2 text-sm">
-              (Accessed{" "}
-              <span data-editable="text" data-prop={`sources.${index}.date`}>
-                {source.date}
+            {source.date && (
+              <span class="ml-2 text-sm">
+                (Accessed{" "}
+                <span data-editable="text" data-prop={`sources.${index}.date`}>
+                  {source.date}
+                </span>
+                )
               </span>
-              )
-            </span>
+            )}
           </li>
         ))
       }

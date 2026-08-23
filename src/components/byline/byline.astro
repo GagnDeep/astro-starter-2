@@ -13,12 +13,14 @@ const { author, role, date } = Astro.props;
 >
   <div class="flex flex-col">
     <p class="font-display font-semibold text-neutral-900 dark:text-neutral-50 text-lg">
-      <span data-editable="text" data-prop="author">{author}</span>
+      <a href={`/authors/${author.toLowerCase().replace(/[^a-z0-9]+/g, "-")}/`} class="hover:text-orange-500 transition-colors">
+        <span data-editable="text" data-prop="author">{author}</span>
+      </a>
     </p>
     <p class="text-neutral-600 dark:text-neutral-400 text-sm">
-      <span data-editable="text" data-prop="role">{role}</span>
-      <span class="mx-2">&middot;</span>
-      <span data-editable="text" data-prop="date">{date}</span>
+      {role && <span data-editable="text" data-prop="role">{role}</span>}
+      {role && <span class="mx-2">&middot;</span>}
+      <span data-editable="text" data-prop="date">Last updated: {date}</span>
     </p>
   </div>
 </div>

@@ -37,6 +37,12 @@ const pageSchema = z.object({
   hero_block: z.any().optional(),
   content_blocks: z.array(z.any()).optional(),
   seo: seoSchema,
+  article: z.object({
+    publishedTime: z.string().optional(),
+    modifiedTime: z.string().optional(),
+    author: z.string().optional(),
+    tags: z.array(z.string()).optional()
+  }).optional()
 });
 
 const paginatedCollectionSchema = z.object({
