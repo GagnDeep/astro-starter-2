@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Lawyer CTO",
+  "description": "AI governance policy and fractional CTO services for small and mid-size law firms.",
+  "tagline": "AI governance policy for law firms.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
+  "image_alt": "Lawyer CTO - AI governance policy and fractional CTO services for law firms.",
+  "default_author": "hart-cto",
   "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Hart CTO Inc",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "hart-cto",
+      "name": "Hart CTO",
+      "role": "Fractional CTO",
+      "bio": "Specializing in AI governance policy and technology strategy for small and mid-size law firms.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We evaluate AI tools and governance frameworks through hands-on implementation in law firm environments.",
+    "how_we_make_money": "We are funded exclusively by client retainers and fixed-fee engagements. We do not accept affiliate fees or vendor sponsorships.",
+    "how_we_handle_corrections": "Corrections to factual errors or governance guidance are made directly in the text with a dated note detailing the change."
   }
 }

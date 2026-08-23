@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 /*
+ * ART DIRECTION: Archival-serif
+ */
+
+/*
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
