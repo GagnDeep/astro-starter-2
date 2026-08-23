@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "NRI Direct UK",
+  "description": "OCI card, Indian passport renewal, and visa document assistance for Non-Resident Indians living in the UK. Independent checking and application support.",
+  "tagline": "Professional document checking and application support for UK-based NRIs.",
   "lang": "en",
-  "locale": "en_US",
+  "locale": "en_GB",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "NRI Direct UK — OCI, Passport and Visa document assistance.",
+  "default_author": "NRI Direct UK Team",
+  "theme_color": "#082f49",
   "organization": {
-    "name": "CloudCannon",
+    "name": "NRI Direct UK",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "nri-direct-uk-team",
+      "name": "NRI Direct UK Team",
+      "role": "Application Specialists",
+      "bio": "Specialists in navigating OCI, Indian passport, and visa documentation for UK residents.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "All document guides are regularly verified against current UK and Indian application requirements through independent testing and real application processes.",
+    "monetization": "We charge a fee for professional document checking and application assistance services. We are entirely independent and have no affiliation with VFS Global, the Indian government, any consulate, or high commission.",
+    "corrections": "If you spot an error in our guidance, please contact us. We correct factual errors promptly and update our documentation to reflect the latest requirements."
   }
 }
