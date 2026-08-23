@@ -1,0 +1,31 @@
+---
+export interface Props {
+  heading: string;
+  text: string;
+  cta_text: string;
+  cta_link: string;
+}
+
+const { heading, text, cta_text, cta_link } = Astro.props;
+---
+
+<section
+  class="py-16 sm:py-24 bg-(--color-brand-800) dark:bg-(--color-brand-900) text-(--color-neutral-100) border-y border-(--color-brand-700)"
+>
+  <div
+    class="max-w-7xl mx-auto px-8 w-full flex flex-col md:flex-row gap-8 items-start md:items-center justify-between"
+  >
+    <div class="max-w-2xl">
+      <h2 class="text-3xl sm:text-4xl font-display mb-4 text-white">{heading}</h2>
+      <p class="text-lg text-(--color-neutral-300)">{text}</p>
+    </div>
+    <div class="shrink-0">
+      <a
+        href={cta_link}
+        class="inline-block bg-(--color-accent-500) text-white px-8 py-4 font-medium hover:bg-(--color-accent-600) transition-colors text-center min-w-[200px]"
+      >
+        {cta_text}
+      </a>
+    </div>
+  </div>
+</section>

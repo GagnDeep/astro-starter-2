@@ -1,0 +1,72 @@
+---
+export interface Props {
+  heading: string;
+  subheading?: string;
+  primary_cta_text?: string;
+  primary_cta_link?: string;
+  secondary_cta_text?: string;
+  secondary_cta_link?: string;
+  image?: string;
+  image_alt?: string;
+}
+
+const {
+  heading,
+  subheading,
+  primary_cta_text,
+  primary_cta_link,
+  secondary_cta_text,
+  secondary_cta_link,
+  image,
+  image_alt,
+} = Astro.props;
+---
+
+<section class="py-16 sm:py-24 max-w-7xl mx-auto px-8 w-full">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- Asymmetric Hero: Text gets 7 cols, image gets 5 -->
+    <div class="lg:col-span-7 flex flex-col items-start text-left">
+      <h1 class="text-balance text-gray-900 dark:text-white mb-6">{heading}</h1>
+      {
+        subheading && (
+          <p class="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl">{subheading}</p>
+        )
+      }
+
+      <div class="flex flex-wrap gap-4">
+        {
+          primary_cta_text && primary_cta_link && (
+            <a
+              href={primary_cta_link}
+              class="bg-(--color-brand-600) text-white px-6 py-3 font-medium hover:bg-(--color-brand-700) transition-colors"
+            >
+              {primary_cta_text}
+            </a>
+          )
+        }
+        {
+          secondary_cta_text && secondary_cta_link && (
+            <a
+              href={secondary_cta_link}
+              class="bg-transparent border-2 border-(--border-color) px-6 py-3 font-medium hover:border-(--color-brand-600) transition-colors"
+            >
+              {secondary_cta_text}
+            </a>
+          )
+        }
+      </div>
+    </div>
+
+    {
+      image && (
+        <div class="lg:col-span-5 h-full min-h-[300px] w-full">
+          <img
+            src={image}
+            alt={image_alt || ""}
+            class="w-full h-full object-cover object-center shadow-md border border-(--border-color)"
+          />
+        </div>
+      )
+    }
+  </div>
+</section>

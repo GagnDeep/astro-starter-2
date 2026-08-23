@@ -1,0 +1,38 @@
+---
+import { ChevronDown } from "@lucide/astro";
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface Props {
+  heading: string;
+  items: FaqItem[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<section class="py-16 sm:py-24 max-w-4xl mx-auto px-8 w-full">
+  <h2 class="text-3xl sm:text-4xl font-display mb-10">{heading}</h2>
+
+  <div class="space-y-4">
+    {
+      items.map((item) => (
+        <details class="group border border-(--border-color) surface-card [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex cursor-pointer items-center justify-between gap-1.5 p-6 font-medium text-lg list-none hover:bg-(--color-neutral-100) dark:hover:bg-(--color-brand-800) transition-colors">
+            <span>{item.question}</span>
+            <ChevronDown
+              class="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180"
+              aria-hidden="true"
+            />
+          </summary>
+          <div class="p-6 pt-0 text-(--color-neutral-600) dark:text-(--color-neutral-300) border-t border-(--border-color)">
+            <p class="leading-relaxed mt-4" set:html={item.answer} />
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>
