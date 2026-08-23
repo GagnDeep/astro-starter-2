@@ -1,14 +1,12 @@
 ---
+import CaptureForm from "../forms/capture-form.astro";
+
 interface Props {
   heading: string;
   subheading?: string;
-  button: {
-    text: string;
-    link: string;
-  };
 }
 
-const { heading, subheading, button } = Astro.props;
+const { heading, subheading } = Astro.props;
 ---
 
 <section class="py-16 md:py-24 border-y-2 border-neutral-900 bg-orange-500 dark:border-neutral-700">
@@ -31,13 +29,11 @@ const { heading, subheading, button } = Astro.props;
         </p>
       )
     }
-    <a
-      href={button.link}
-      class="inline-block bg-neutral-900 px-10 py-5 text-neutral-50 font-display font-semibold text-lg hover:bg-neutral-50 hover:text-neutral-900 transition-colors shadow-brutal outline-none focus-visible:outline-2 focus-visible:outline-neutral-900 focus-visible:outline-offset-4"
-    >
-      <span data-editable="text" data-prop="button.text">
-        {button.text}
-      </span>
-    </a>
+    <div class="max-w-md mx-auto text-left bg-neutral-50 p-6 shadow-brutal border-2 border-neutral-900">
+      <CaptureForm
+        submitLabel="Get Matched Now"
+        successMessage="Thanks - we'll review your RFQ and connect you with verified manufacturers."
+      />
+    </div>
   </div>
 </section>
