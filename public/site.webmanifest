@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "Most Private Phone",
+  "short_name": "Most Private Phone",
+  "description": "De-Googled phone guidance, setup guides, and pre-configured hardware for the privacy-conscious.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#18181b",
+  "theme_color": "#18181b",
   "icons": [
     {
       "src": "/meta/icon-192.png",

@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Most Private Phone",
+  "description": "De-Googled phone guidance, setup guides, and pre-configured hardware for the privacy-conscious.",
+  "tagline": "Real privacy, tested and verified.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Most Private Phone — de-Googled phone guidance, setup guides, and pre-configured hardware.",
+  "default_author": "Editorial Team",
+  "theme_color": "#18181b",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Most Private Phone",
+    "logo": "/images/brand/icon.svg",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Testing and Verification",
+      "bio": "Our editorial team tests and verifies the privacy and security claims of mobile devices and software.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "We publish the evaluation criteria and the evidence behind every ranking. We never state a security property we have not tested.",
+    "monetization": "We make money through paid setup guides and capped configured-hardware lines. We do not rely on affiliate commissions to carry the site.",
+    "corrections": "We correct factual errors promptly and transparently."
   }
 }
