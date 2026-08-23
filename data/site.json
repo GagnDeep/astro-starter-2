@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Contractors",
+  "description": "State-by-state reference on contractor licensing requirements, exam-prep comparisons, bonding, and insurance.",
+  "tagline": "Your guide to contractor licensing and requirements.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Contractors",
+  "default_author": "Institute of Contractors Editorial",
+  "theme_color": "#2c3e50",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of Contractors",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Content and Research",
+      "bio": "Our editorial team researches and verifies state-level requirements for contractor licensing, exams, and bonding.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We aggregate and verify licensing requirements directly from state board official documentation and cross-reference exam materials.",
+    "how_we_make_money": "We receive referral commissions when you purchase exam-prep courses or bonding/insurance through links on our site.",
+    "corrections": "If you find outdated licensing information, please contact us. We review and correct inaccuracies promptly."
   }
 }
