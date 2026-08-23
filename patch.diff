@@ -1,0 +1,9 @@
+<<<<<<< SEARCH
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+=======
+  canonical_url: null
+  featured_image: "/src/assets/images/about-hero.jpg"
+  featured_image_alt: "Professional team working."
+>>>>>>> REPLACE
