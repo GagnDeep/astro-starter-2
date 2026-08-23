@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "AI & Investing",
+  "description": "Reproducible, published back-testing of AI stock-picking tools for retail investors.",
+  "tagline": "Data-driven analysis of AI investing products.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "AI & Investing — back-testing AI stock-picking tools.",
+  "default_author": "Editorial Team",
+  "theme_color": "#121212",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "AI & Investing",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Research & Analysis",
+      "bio": "Our team of researchers back-tests AI stock-picking tools to provide reproducible performance analysis.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We evaluate AI investing tools through reproducible back-testing against historical market data. Every performance claim on this site is backed by a published, repeatable methodology.",
+    "how_we_make_money": "We may earn an affiliate commission when you purchase tools through our links. This does not affect our testing methodology or results.",
+    "corrections": "If you find a factual error or a flaw in our methodology, please contact us. We publish corrections prominently alongside the original analysis."
   }
 }
