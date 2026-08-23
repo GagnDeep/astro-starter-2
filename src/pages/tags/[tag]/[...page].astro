@@ -34,12 +34,13 @@ if (!page) {
 }
 
 page.title = tag[0].toUpperCase() + tag.slice(1);
+const seo = page.seo ? { ...page.seo, page_description: `Posts tagged with "${page.title}"` } : undefined;
 
 const pagination = Astro.props.page;
 const filteredPosts = pagination.data;
 ---
 
-<Layout title={page.title} seo={page.seo}>
+<Layout title={page.title} seo={seo}>
   <div class="mx-auto max-w-6xl px-8 py-16">
     <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">
       {page.title}

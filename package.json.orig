@@ -12,7 +12,6 @@
     "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,json,md,mdx,css}\"",
     "astro": "astro",
     "assets": "node scripts/generate-icons.mjs && node scripts/generate-og.mjs && node scripts/check-assets.mjs",
-    "audit": "node scripts/seo-audit.mjs",
     "assets:icons": "node scripts/generate-icons.mjs",
     "assets:og": "node scripts/generate-og.mjs",
     "assets:check": "node scripts/check-assets.mjs"
@@ -39,7 +38,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "node-html-parser": "^9.0.1",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3"
