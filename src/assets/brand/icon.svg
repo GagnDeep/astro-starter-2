@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Aerospace UAE Mark">
   <!--
     Source brand mark. Replace this file with your own square SVG, then run
     `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
     Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
   -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
+  <rect width="512" height="512" fill="#0d1b2a" />
   <path
-    d="M256 112 L384 368 H128 Z"
+    d="M256 64 L448 448 H64 Z"
     fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
+    stroke="#e0e1dd"
+    stroke-width="48"
+    stroke-linejoin="miter"
   />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+  <polygon points="256,160 384,384 128,384" fill="#415a77" />
 </svg>

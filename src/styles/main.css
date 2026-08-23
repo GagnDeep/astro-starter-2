@@ -1,30 +1,24 @@
 @import "tailwindcss";
 
 /*
- * CASCADE RULE — read before adding CSS to this file.
- *
- * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
- * beats *any* cascade layer regardless of specificity or source order, so a
- * bare reset like
- *
- *   * { margin: 0; padding: 0; }        <-- outside any @layer
- *
- * silently kills every `p-*`, `px-*`, `m-*`, `mx-auto` and `space-y-*` on the
- * site, while colours, flex and grid keep working — which makes it look like
- * "Tailwind is half broken" rather than a cascade problem.
- *
- * Therefore: every rule in this file stays inside `@layer base` or
- * `@layer components`. No element/reset rule may be written at the top level.
- * `pnpm build` warns if an unlayered spacing reset reaches the output.
- *
- * A `*` reset is not needed anyway: Tailwind's preflight (in `@layer base`)
- * already sets `margin: 0; padding: 0; box-sizing: border-box` on
- * `*, ::before, ::after, ::backdrop`.
+ * Art Direction: Technical-brutalist
+ * Palette: Titanium (Neutral ramp), Anodized Aluminum / Warning Orange (Brand hue), Aviation Blue / Carbon Fiber (Supporting hue)
  */
 
 @layer base {
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    /* Fonts: Display uses a brutalist sans, Body uses IBM Plex Sans or similar technical font */
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Clash Display", system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 1;
   }
 
   main {
@@ -56,8 +50,8 @@
   .prose a,
   .prose ol li,
   .prose ul li {
-    line-height: 1.75;
-    max-width: 72ch;
+    line-height: 1.6;
+    max-width: 65ch;
     text-wrap: pretty;
   }
   .prose p,
@@ -90,7 +84,7 @@
     margin-inline: 1rem;
   }
   .prose a {
-    color: #034ad8;
+    color: #e07a5f;
     text-decoration: underline;
     text-underline-offset: 0.1rem;
     cursor: pointer;
@@ -138,4 +132,11 @@
   .align-center { text-align: center; }
   .align-right { text-align: right; }
   .align-justify { text-align: justify; }
+}
+
+@layer base {
+  /* Self-hosted typography (mock setup for now, normally you'd use @font-face) */
+  html {
+    font-size: 18px; /* 17-19px body requirement */
+  }
 }
