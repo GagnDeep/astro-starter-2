@@ -1,0 +1,35 @@
+---
+import type { BreadcrumbItem } from "../../lib/seo/schema";
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="py-4 border-b border-(--border-color) bg-(--bg-color)">
+  <div class="mx-auto max-w-6xl px-8">
+    <ol class="flex items-center flex-wrap gap-2 text-sm text-(--color-neutral-600)">
+      <li>
+        <a href="/" class="hover:text-(--color-brand-600) hover-transition focus-visible">Home</a>
+      </li>
+      {items && items.map((item, index) => {
+        const isLast = index === items.length - 1;
+
+        return (
+          <li class="flex items-center gap-2">
+            <span class="text-(--color-neutral-400)" aria-hidden="true">/</span>
+            {isLast ? (
+              <span class="text-(--text-color) font-medium" aria-current="page">{item.name}</span>
+            ) : (
+              <a href={item.url} class="hover:text-(--color-brand-600) hover-transition focus-visible">
+                {item.name}
+              </a>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</nav>

@@ -1,0 +1,49 @@
+---
+import Markdown from "../utility/markdown.astro";
+
+interface Props {
+  heading: string;
+  features: string[];
+  competitor_name: string;
+  our_values: string[];
+  competitor_values: string[];
+}
+
+const { heading, features, competitor_name, our_values, competitor_values } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-(--bg-color)">
+  <div class="mx-auto max-w-6xl px-8 reveal reveal-active">
+    <h2
+      data-editable="text"
+      data-prop="heading"
+      class="text-3xl md:text-4xl font-bold text-(--heading-color) text-balance mb-12 max-w-2xl">
+      {heading}
+    </h2>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse min-w-[600px]">
+        <thead>
+          <tr>
+            <th class="w-1/3 p-4 border-b-2 border-(--border-color) bg-(--bg-color) text-(--text-color) font-normal text-sm uppercase tracking-wider">Features</th>
+            <th class="w-1/3 p-4 border-b-2 border-(--color-brand-800) bg-(--surface-color) text-(--heading-color) font-bold text-xl">AdvisorCTO</th>
+            <th class="w-1/3 p-4 border-b-2 border-(--border-color) bg-(--bg-color) text-(--text-color) font-bold text-xl" data-editable="text" data-prop="competitor_name">{competitor_name}</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-(--border-color)">
+          {features && features.map((feature, index) => (
+            <tr class="group hover:bg-(--surface-color) hover-transition">
+              <td class="p-4 text-(--text-color) font-medium" data-editable="text" data-prop={`features[${index}]`}>{feature}</td>
+              <td class="p-4 bg-(--surface-color) group-hover:bg-(--color-neutral-50) text-(--text-color)">
+                <Markdown content={our_values[index] || ""} dataProp={`our_values[${index}]`} dataType="inline" />
+              </td>
+              <td class="p-4 text-(--color-neutral-500)">
+                <Markdown content={competitor_values[index] || ""} dataProp={`competitor_values[${index}]`} dataType="inline" />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

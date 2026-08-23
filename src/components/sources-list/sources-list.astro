@@ -1,0 +1,44 @@
+---
+interface Props {
+  heading?: string;
+  sources: {
+    title: string;
+    url: string;
+    author?: string;
+    date?: string;
+  }[];
+}
+
+const { heading = "Sources & Citations", sources } = Astro.props;
+---
+
+<section class="py-12 mt-12 border-t-2 border-(--border-color) bg-(--bg-color)">
+  <div class="mx-auto max-w-4xl px-8">
+    <h2
+      class="text-xl font-bold text-(--heading-color) mb-6"
+      data-editable="text"
+      data-prop="heading">
+      {heading}
+    </h2>
+
+    <ol class="list-decimal list-outside ml-4 space-y-4 text-sm text-(--text-color)" data-editable="array" data-prop="sources">
+      {sources && sources.map((source, index) => (
+        <li class="pl-2" data-editable="array-item">
+          <cite class="not-italic">
+            {source.author && <span data-editable="text" data-prop={`sources[${index}].author`}>{source.author}. </span>}
+            <a
+              href={source.url}
+              target="_blank"
+              rel="noopener"
+              class="text-(--color-brand-600) hover:underline focus-visible"
+              data-editable="text"
+              data-prop={`sources[${index}].title`}>
+              {source.title}
+            </a>
+            {source.date && <span data-editable="text" data-prop={`sources[${index}].date`}> ({source.date})</span>}
+          </cite>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
