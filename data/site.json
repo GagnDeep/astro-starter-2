@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "PTE Trainer",
+  "description": "Free scored PTE Academic practice tools and an Australian visa points calculator. Independent practice material not affiliated with Pearson.",
+  "tagline": "PTE Academic practice and Australian visa points calculator.",
   "lang": "en",
-  "locale": "en_US",
+  "locale": "en_AU",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "PTE Trainer — free scored PTE Academic practice tools and Australian visa points calculator.",
+  "default_author": "PTE Trainer Editorial",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
+    "name": "PTE Trainer",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial",
+      "name": "PTE Trainer Editorial",
+      "role": "Content Team",
+      "bio": "The editorial team at PTE Trainer curates free practice tools and the latest Australian visa points information.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "All practice tools are tested internally. We independently review all resources and do not accept payment for scores.",
+    "monetization": "We make money through affiliate commissions and premium practice material.",
+    "corrections": "Corrections can be requested via our contact form and are reviewed by our editorial team within 48 hours."
   }
 }

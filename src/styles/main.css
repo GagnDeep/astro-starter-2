@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 /*
+ * ART DIRECTION: Technical-brutalist
+ * Justification: A utilitarian, structured, function-first approach aligning with exam prep and visa point calculation constraints.
+ * Uses OKLCH palette based on Graphite, Paper, and Blueprint.
+ */
+
+/*
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
