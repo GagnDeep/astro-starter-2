@@ -1,0 +1,50 @@
+---
+export interface Feature {
+  title: string;
+  description: string;
+  icon?: string; // Optional lucide icon name
+}
+
+export interface Props {
+  heading: string;
+  subheading?: string;
+  features: Feature[];
+}
+
+const { heading, subheading, features } = Astro.props;
+---
+
+<section class="py-16 sm:py-24 max-w-7xl mx-auto px-8 w-full">
+  <div class="mb-12 max-w-3xl">
+    <h2 class="text-3xl sm:text-4xl font-display mb-4">{heading}</h2>
+    {
+      subheading && (
+        <p class="text-lg text-(--color-neutral-600) dark:text-(--color-neutral-300)">
+          {subheading}
+        </p>
+      )
+    }
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+    {
+      features.map((feature, index) => {
+        // Create a bento layout with unequal spans. Pattern: 4, 2, 2, 4, 3, 3, etc.
+        let spanClass = "md:col-span-3"; // fallback
+        if (index % 4 === 0) spanClass = "md:col-span-4";
+        else if (index % 4 === 1) spanClass = "md:col-span-2";
+        else if (index % 4 === 2) spanClass = "md:col-span-2";
+        else if (index % 4 === 3) spanClass = "md:col-span-4";
+
+        return (
+          <div class={`surface-card p-8 flex flex-col items-start ${spanClass}`}>
+            <h3 class="text-xl font-medium mb-3">{feature.title}</h3>
+            <p class="text-(--color-neutral-600) dark:text-(--color-neutral-300) leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>

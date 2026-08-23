@@ -1,0 +1,46 @@
+---
+import { ChevronRight } from "@lucide/astro";
+
+export interface Crumb {
+  text: string;
+  url: string;
+}
+
+export interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+---
+
+<nav
+  aria-label="Breadcrumb"
+  class="py-4 max-w-7xl mx-auto px-8 w-full border-b border-(--border-color)"
+>
+  <ol
+    class="flex items-center space-x-2 text-sm text-(--color-neutral-600) dark:text-(--color-neutral-400)"
+  >
+    {
+      crumbs.map((crumb, index) => (
+        <li class="flex items-center">
+          {index > 0 && <ChevronRight class="w-4 h-4 mx-1 flex-shrink-0" aria-hidden="true" />}
+          {index === crumbs.length - 1 ? (
+            <span
+              class="font-medium text-(--color-neutral-900) dark:text-white"
+              aria-current="page"
+            >
+              {crumb.text}
+            </span>
+          ) : (
+            <a
+              href={crumb.url}
+              class="hover:text-(--color-brand-600) dark:hover:text-(--color-brand-400) transition-colors"
+            >
+              {crumb.text}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

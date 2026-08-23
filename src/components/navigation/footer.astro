@@ -2,25 +2,43 @@
 import { footer } from "../../../data/navigation.json";
 ---
 
-<footer class="bg-gray-800 text-white">
+<footer
+  class="bg-(--color-brand-900) text-(--color-neutral-100) border-t border-(--color-brand-700)"
+>
   <div class="mx-auto max-w-6xl px-8 py-12">
     <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
+      <a
+        class="flex justify-center sm:justify-start"
+        href={footer.logo_url}
+        aria-label="Go to homepage"
+      >
+        <img
+          class="w-48 h-auto"
+          src={footer.logo}
+          alt={footer.logo_alt_text}
+          width="192"
+          height="40"
+        />
       </a>
 
       <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
+        {
+          footer.links.map((link) => (
+            <li>
+              <a
+                class="text-(--color-neutral-300) hover:text-white transition-colors"
+                href={link.link}
+              >
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
       </ul>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <div class="text-center sm:text-end text-sm text-(--color-neutral-400)">
+        &copy; {new Date().getFullYear()}
+        {footer.copyright}
       </div>
     </div>
   </div>

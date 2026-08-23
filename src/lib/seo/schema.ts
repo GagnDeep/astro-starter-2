@@ -47,8 +47,10 @@ function organizationNode(base: string): JsonLdNode {
   if (site.organization?.logo) {
     node.logo = {
       "@type": "ImageObject",
+      "@id": id(base, "logo"),
       url: absoluteUrl(site.organization.logo, base),
     };
+    node.image = { "@id": id(base, "logo") };
   }
   if (site.organization?.same_as?.length) {
     node.sameAs = site.organization.same_as;
@@ -89,13 +91,20 @@ export function buildSchemaGraph({
     description: seo.description,
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
-    primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
-      : undefined,
+    primaryImageOfPage: seo.image ? { "@id": `${seo.canonical}#primaryimage` } : undefined,
   };
 
+  const imageNode = seo.image
+    ? {
+        "@type": "ImageObject",
+        "@id": `${seo.canonical}#primaryimage`,
+        url: seo.image,
+        ...(seo.imageAlt && { caption: seo.imageAlt }),
+      }
+    : null;
+
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
+    pageNode.image = seo.image ? { "@id": `${seo.canonical}#primaryimage` } : undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
@@ -108,7 +117,11 @@ export function buildSchemaGraph({
     pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
   }
 
-  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
+  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base)];
+
+  if (imageNode) graph.push(prune(imageNode));
+  graph.push(prune(pageNode));
+
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
 
   return { "@context": "https://schema.org", "@graph": graph };

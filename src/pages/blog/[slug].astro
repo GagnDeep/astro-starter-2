@@ -17,6 +17,6 @@ if (!post) {
 const { Content } = await render(post);
 ---
 
-<PostLayout frontmatter={post.data} body={post.body}>
+<PostLayout frontmatter={post.data}>
   <Content />
 </PostLayout>

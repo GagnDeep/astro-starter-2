@@ -5,25 +5,36 @@ import { header } from "../../../data/navigation.json";
 import { Menu, X } from "@lucide/astro";
 ---
 
-<header class="bg-white">
+<header class="bg-(--bg-color) border-b border-(--border-color)">
   <div class="mx-auto max-w-6xl px-8">
     <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+      <a href={header.logo_url} aria-label="Go to homepage">
+        <img
+          class="w-48 h-auto"
+          src={header.logo}
+          alt={header.logo_alt_text}
+          width="192"
+          height="40"
+        />
       </a>
 
       <ul class="hidden sm:flex items-center gap-6">
-        {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
+        {
+          header.links.map((link) => (
+            <li>
+              <a
+                class="text-(--text-color) hover:text-(--color-brand-600) transition-colors font-medium"
+                href={link.link}
+              >
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
       </ul>
 
       <button
-        class="sm:hidden p-2"
+        class="sm:hidden p-2 text-(--text-color)"
         aria-label="Open navigation menu"
         popovertarget="mobile-menu"
         popovertargetaction="show"
@@ -31,30 +42,48 @@ import { Menu, X } from "@lucide/astro";
         <Menu class="w-6 h-6" aria-hidden="true" />
       </button>
 
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
+      <div
+        popover
+        id="mobile-menu"
+        class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-(--bg-color) z-50"
+      >
         <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
+          <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
+            <a href={header.logo_url} aria-label="Go to homepage">
+              <img
+                class="w-48 h-auto"
+                src={header.logo}
+                alt={header.logo_alt_text}
+                width="192"
+                height="40"
+              />
+            </a>
+            <button
+              class="p-2 text-(--text-color)"
+              aria-label="Close navigation menu"
+              popovertarget="mobile-menu"
+              popovertargetaction="hide"
+            >
+              <X class="w-6 h-6" aria-hidden="true" />
+            </button>
+          </div>
+          <ul
+            class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-(--border-color)"
           >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+            {
+              header.links.map((link) => (
+                <li class="w-full max-w-xs text-center border-t border-(--border-color)">
+                  <a
+                    class="block py-5 text-2xl font-medium text-(--text-color) hover:text-(--color-brand-600) transition-colors"
+                    href={link.link}
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              ))
+            }
+            <li class="w-full max-w-xs text-center border-t border-(--border-color) border-b"></li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -64,7 +93,10 @@ import { Menu, X } from "@lucide/astro";
 <style>
   #mobile-menu {
     opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
+    transition:
+      opacity 200ms ease,
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
   }
   #mobile-menu:popover-open {
     opacity: 1;
