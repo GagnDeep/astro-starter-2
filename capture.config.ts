@@ -21,17 +21,16 @@ export const capture = {
    * Deliberately committed rather than an env var: it is inlined into the
    * browser bundle anyway, and a missing env var would silently break forms.
    */
-  publicKey: "wcs_pk_47bxlyp54gjn_BR9Mhe51yJEkTuchPcpJnvAs7ZnZ98lM6zxfgBI-tbE",
+  publicKey: "wcs_pk_placeholder", // MUST BE REPLACED BEFORE LAUNCH,
 
   /**
    * Form labels — how submissions are grouped in the dashboard. Add one per
    * form on the site; any string up to 64 chars works, no registration needed.
    */
-  forms: {
+    forms: {
     contact: "contact",
+    compatibility_report: "compatibility_report",
     newsletter: "newsletter",
-    waitlist: "waitlist",
-    quote: "quote",
   },
 
   /**
