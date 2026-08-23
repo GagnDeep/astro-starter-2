@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Retirement",
+  "description": "A disclosed-methodology comparison of countries to retire abroad in, scored on cost of living, visa route, healthcare and tax treatment.",
+  "tagline": "Compare countries to retire abroad, based on data.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Retirement — Compare countries to retire abroad.",
+  "default_author": "Editorial Team",
+  "theme_color": "#1b3b5c",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Retirement",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Lead Researchers",
+      "bio": "Our team of analysts breaks down visa requirements, healthcare systems, and cost of living metrics to help you compare retirement destinations.",
+      "same_as": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We score countries using a disclosed methodology across four primary dimensions: cost of living index, visa route accessibility, healthcare quality and availability, and tax treatment for retirees. Every claim is verified against official government sources and updated annually.",
+    "how_we_make_money": "We earn modest affiliate commissions and lead generation fees when you follow links to selected partners. We do not accept payment to alter a country's score.",
+    "corrections": "If you find an inaccuracy in our visa or tax data, please contact us. We publish corrections on the affected page when official sources confirm a policy change."
   }
 }
