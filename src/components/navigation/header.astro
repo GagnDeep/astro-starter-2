@@ -13,13 +13,15 @@ import { Menu, X } from "@lucide/astro";
       </a>
 
       <ul class="hidden sm:flex items-center gap-6">
-        {header.links.map((link) => (
-          <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
+        {
+          header.links.map((link) => (
+            <li>
+              <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
       </ul>
 
       <button
@@ -31,30 +33,41 @@ import { Menu, X } from "@lucide/astro";
         <Menu class="w-6 h-6" aria-hidden="true" />
       </button>
 
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
+      <div
+        popover
+        id="mobile-menu"
+        class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50"
+      >
         <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
+          <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
+            <a href={header.logo_url}>
+              <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+            </a>
+            <button
+              class="p-2"
+              aria-label="Close navigation menu"
+              popovertarget="mobile-menu"
+              popovertargetaction="hide"
+            >
+              <X class="w-6 h-6" aria-hidden="true" />
+            </button>
+          </div>
+          <ul
+            class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200"
           >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+            {
+              header.links.map((link) => (
+                <li class="w-full max-w-xs text-center">
+                  <a
+                    class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors"
+                    href={link.link}
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
         </div>
       </div>
     </nav>
@@ -64,7 +77,10 @@ import { Menu, X } from "@lucide/astro";
 <style>
   #mobile-menu {
     opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
+    transition:
+      opacity 200ms ease,
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
   }
   #mobile-menu:popover-open {
     opacity: 1;

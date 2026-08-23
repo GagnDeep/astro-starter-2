@@ -1,44 +1,36 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Institute of Sustainability",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/sb-253/",
+        "text": "SB 253 Guide"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/sb-261/",
+        "text": "SB 261 Guide"
       },
       {
-        "link": "/contact/",
-        "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
+        "link": "/toolkit/",
+        "text": "Readiness Toolkit"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Institute of Sustainability",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Institute of Sustainability. All rights reserved.",
     "links": [
+      {
+        "link": "/about/",
+        "text": "About & Editorial Policy"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
       },
       {
         "link": "/feed.xml",
