@@ -1,12 +1,16 @@
 ---
+import CaptureForm from "../forms/capture-form.astro";
+import type { FormLabel } from "../../../capture.config";
+
 export interface Props {
   heading?: string;
   text?: string;
   cta_text?: string;
   cta_link?: string;
+  form?: string;
 }
 
-const { heading, text, cta_text, cta_link } = Astro.props;
+const { heading, text, cta_text, cta_link, form } = Astro.props;
 ---
 
 <div class="bg-[var(--color-brand-600)] text-white py-12 px-8 my-16 shadow-md flex flex-col md:flex-row items-center justify-between gap-8 border-y-4 border-[var(--color-brand-800)]">
@@ -15,12 +19,18 @@ const { heading, text, cta_text, cta_link } = Astro.props;
     {text && <p class="text-white/90 mt-2 m-0">{text}</p>}
   </div>
 
-  {cta_text && cta_link && (
-    <a
-      href={cta_link}
-      class="whitespace-nowrap px-8 py-4 bg-[var(--color-surface-base)] text-[var(--color-text-base)] font-bold hover:bg-[var(--color-surface-raised)] hover-transition"
-    >
-      {cta_text}
-    </a>
+  {form ? (
+    <div class="bg-[var(--color-surface-base)] text-[var(--color-text-base)] p-6 shadow-sm min-w-[300px] w-full md:w-auto">
+      <CaptureForm form={form as FormLabel} submitLabel={cta_text || "Submit"} />
+    </div>
+  ) : (
+    cta_text && cta_link && (
+      <a
+        href={cta_link}
+        class="whitespace-nowrap px-8 py-4 bg-[var(--color-surface-base)] text-[var(--color-text-base)] font-bold hover:bg-[var(--color-surface-raised)] hover-transition"
+      >
+        {cta_text}
+      </a>
+    )
   )}
 </div>
