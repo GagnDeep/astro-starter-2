@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Handpano — The Buyer's Guide to Handpans",
+  "description": "Independent, citation-backed reviews and resources for first-time handpan buyers. Choose the right scale, maker, and budget without affiliate bias.",
+  "tagline": "Find your first handpan without the affiliate spin.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Handpano — independent handpan buyer's guide",
+  "default_author": "Handpano Editorial",
+  "theme_color": "#2c3e50",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Handpano",
+    "logo": "/images/logos/logo-wordmark.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial",
+      "name": "Handpano Editorial",
+      "role": "Editorial Team",
+      "bio": "The Handpano editorial team writes independent guides for first-time buyers based on direct testing and market research.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We buy handpans at retail price or borrow them from owners. We never accept free instruments in exchange for reviews.",
+    "how_we_make_money": "We sell our own buyer's decision guide and lessons. We do not use affiliate links, and makers do not pay us for placement.",
+    "corrections": "If we make an error regarding a maker's specifications, pricing, or materials, we correct it on the page and log the date of the change."
   }
 }
