@@ -1,48 +1,44 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Battery Digital Passport logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/obligations/",
+        "text": "Obligations"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/data-fields/",
+        "text": "Data Fields"
+      },
+      {
+        "link": "/toolkit/",
+        "text": "Readiness Toolkit"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Battery Digital Passport logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Battery Digital Passport. Not affiliated with the European Union.",
     "links": [
       {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/obligations/",
+        "text": "Obligations"
       },
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/toolkit/",
+        "text": "Toolkit"
       }
     ]
   }
