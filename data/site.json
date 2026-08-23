@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Humanoids",
+  "description": "Humanoid robotics supply-chain cross-reference and hardware job board. Discover who supplies actuators, harmonic drives, batteries, and compute to leading humanoid platforms.",
+  "tagline": "The humanoid hardware supply chain, mapped.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Humanoids — supply chain cross-reference for humanoid robotics",
+  "default_author": "Institute of Humanoids Editorial",
+  "theme_color": "#111111",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Humanoids",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial",
+      "name": "Editorial Team",
+      "role": "Data Verification & Curation",
+      "bio": "Our editorial team verifies supply chain relationships and hardware specifications against public teardowns, official partnerships, and direct supplier confirmations.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "Supplier relationships are verified through official press releases, teardown videos from verifiable hardware engineers, and direct confirmation from component manufacturers.",
+    "monetization": "We make money through paid job postings for hardware engineering roles and corporate sponsorship from component suppliers. Sponsored listings are explicitly marked.",
+    "corrections": "To submit a correction to a supplier relationship or component specification, use the contact form. All corrections require a verifiable primary source."
   }
 }
