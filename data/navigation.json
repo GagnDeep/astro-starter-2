@@ -1,44 +1,44 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Washington DC Review",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/sam-gov-registration/",
+        "text": "SAM.gov Registration"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/set-asides/",
+        "text": "Set-Aside Certifications"
+      },
+      {
+        "link": "/gsa-schedule/",
+        "text": "GSA Schedule"
+      },
+      {
+        "link": "/methodology/",
+        "text": "Methodology"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Washington DC Review",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Washington DC Review. All rights reserved. Not affiliated with the U.S. Government.",
     "links": [
       {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/methodology/",
+        "text": "Methodology"
       },
       {
         "link": "/feed.xml",
