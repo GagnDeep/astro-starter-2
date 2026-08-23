@@ -31,6 +31,8 @@ export const capture = {
   forms: {
     contact: "contact",
     newsletter: "newsletter",
+    software_referral: "software_referral",
+    certification_inquiry: "certification_inquiry",
     waitlist: "waitlist",
     toolkit_inquiry: "toolkit_inquiry",
     sponsorship: "sponsorship",
