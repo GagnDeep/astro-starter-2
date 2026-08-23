@@ -1,13 +1,14 @@
 ---
-_schema: paginated
+_schema: default
 title: Blog
+page_size: 10
 seo:
-  page_description: A blog template with tags.
+  page_description: >-
+    Read the latest blog posts.
   canonical_url:
   featured_image:
   featured_image_alt:
   author_twitter_handle:
-  open_graph_type: website
+  open_graph_type:
   no_index: false
-page_size: 6
 ---
