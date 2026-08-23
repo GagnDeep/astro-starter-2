@@ -6,7 +6,7 @@ import Markdown from "../../utility/markdown.astro";
 interface Props {
   heading: string;
   subheading: string;
-  image: {
+  image?: {
     image_path: string;
     alt_text: string;
   };
@@ -22,7 +22,7 @@ const allImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif,svg,webp,avif}",
   { eager: true },
 );
-const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
+const imageSrc = image?.image_path ? (allImages[image.image_path]?.default ?? image.image_path) : null;
 ---
 
 <section class="py-16 md:py-24 border-b-2 border-[var(--border-color)]">
@@ -53,7 +53,7 @@ const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
       }
     </div>
     {
-      image.image_path && image.alt_text && (
+      image?.image_path && image?.alt_text && (
         <div class="md:col-span-5 reveal" style="transition-delay: 150ms;">
           <div class="brutal-border brutal-shadow bg-[var(--surface-color)] p-2">
             <Picture
@@ -61,7 +61,7 @@ const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
               data-prop-src="image.image_path"
               data-prop-alt="image.alt_text"
               alt={image.alt_text}
-              src={imageSrc}
+              src={imageSrc as any}
               class="w-full h-auto aspect-square object-cover"
               loading="eager"
               widths={[600, 800, 1200]}

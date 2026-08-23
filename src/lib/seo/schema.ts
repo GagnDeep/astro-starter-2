@@ -20,6 +20,7 @@ export interface PageSchemaOptions {
   seo: ResolvedSeo;
   siteUrl: URL | undefined;
   breadcrumbs?: BreadcrumbItem[];
+  itemListElements?: Array<{ name: string; url?: string }>;
 }
 
 const id = (base: string, hash: string) => `${new URL("/", base).toString()}#${hash}`;
@@ -77,11 +78,8 @@ function breadcrumbNode(base: string, items: BreadcrumbItem[]): JsonLdNode {
 }
 
 /** The full JSON-LD graph for a page. Returns `null` for noindex pages. */
-export function buildSchemaGraph({
-  seo,
-  siteUrl,
-  breadcrumbs,
-}: PageSchemaOptions): JsonLdNode | null {
+export function buildSchemaGraph(options: PageSchemaOptions): JsonLdNode | null {
+  const { seo, siteUrl, breadcrumbs } = options;
   if (seo.noIndex) return null;
 
   const base = (siteUrl ?? new URL(seo.canonical)).toString();
@@ -110,7 +108,17 @@ export function buildSchemaGraph({
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      const authors = site.authors as Array<{ name: string; slug: string }>;
+      const authorMatch = authors?.find(a => a.name === seo.article?.author);
+      if (authorMatch) {
+        pageNode.author = {
+          "@type": "Person",
+          "@id": id(base, `authors/${authorMatch.slug}/`),
+          name: authorMatch.name
+        };
+      } else {
+        pageNode.author = { "@type": "Person", name: seo.article.author };
+      }
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
@@ -135,6 +143,19 @@ export function buildSchemaGraph({
   graph.push(prune(pageNode));
 
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
+
+  if (options.itemListElements?.length) {
+    graph.push({
+      "@type": "ItemList",
+      "@id": `${seo.canonical}#itemlist`,
+      itemListElement: options.itemListElements.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        ...(item.url && { url: absoluteUrl(item.url, base) })
+      }))
+    });
+  }
 
   return { "@context": "https://schema.org", "@graph": graph };
 }
