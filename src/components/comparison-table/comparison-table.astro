@@ -1,0 +1,98 @@
+---
+interface FeatureRow {
+  feature: string;
+  us: boolean | string;
+  them: boolean | string;
+}
+
+interface Props {
+  heading: string;
+  us_label: string;
+  them_label: string;
+  features: FeatureRow[];
+}
+
+const { heading, us_label, them_label, features } = Astro.props;
+---
+
+<section
+  class="py-16 md:py-24 border-b-2 border-neutral-900 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900"
+>
+  <div class="mx-auto max-w-5xl px-8 reveal-on-scroll">
+    <h2
+      data-editable="text"
+      data-prop="heading"
+      class="font-display font-semibold text-3xl md:text-4xl mb-12 text-center text-neutral-900 dark:text-neutral-50 text-balance"
+    >
+      {heading}
+    </h2>
+    <div
+      class="overflow-x-auto border-2 border-neutral-900 shadow-brutal dark:border-neutral-700 bg-white dark:bg-neutral-900"
+    >
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr
+            class="bg-neutral-100 dark:bg-neutral-800 border-b-2 border-neutral-900 dark:border-neutral-700"
+          >
+            <th
+              class="p-4 md:p-6 font-display font-semibold text-neutral-900 dark:text-neutral-50 border-r-2 border-neutral-900 dark:border-neutral-700 w-1/2"
+            >
+              Feature
+            </th>
+            <th
+              class="p-4 md:p-6 font-display font-semibold text-orange-500 border-r-2 border-neutral-900 dark:border-neutral-700 w-1/4 text-center"
+            >
+              <span data-editable="text" data-prop="us_label">{us_label}</span>
+            </th>
+            <th
+              class="p-4 md:p-6 font-display font-semibold text-neutral-500 dark:text-neutral-400 w-1/4 text-center"
+            >
+              <span data-editable="text" data-prop="them_label">{them_label}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody data-editable="array" data-prop="features">
+          {
+            features.map((row, index) => (
+              <tr class="border-b border-neutral-200 dark:border-neutral-800 last:border-b-0">
+                <td class="p-4 md:p-6 text-body font-medium text-neutral-800 dark:text-neutral-200 border-r-2 border-neutral-900 dark:border-neutral-700">
+                  <span data-editable="text" data-prop={`features.${index}.feature`}>
+                    {row.feature}
+                  </span>
+                </td>
+                <td class="p-4 md:p-6 text-center border-r-2 border-neutral-900 dark:border-neutral-700 bg-orange-50 dark:bg-neutral-900/50 text-neutral-900 dark:text-neutral-100 font-medium">
+                  {typeof row.us === "boolean" ? (
+                    row.us ? (
+                      <span class="text-orange-500 font-bold text-xl">✓</span>
+                    ) : (
+                      <span class="text-neutral-400 font-bold text-xl">✕</span>
+                    )
+                  ) : (
+                    <span data-editable="text" data-prop={`features.${index}.us`}>
+                      {row.us}
+                    </span>
+                  )}
+                </td>
+                <td class="p-4 md:p-6 text-center text-neutral-600 dark:text-neutral-400 font-medium">
+                  {typeof row.them === "boolean" ? (
+                    row.them ? (
+                      <span class="text-neutral-800 dark:text-neutral-200 font-bold text-xl">
+                        ✓
+                      </span>
+                    ) : (
+                      <span class="text-neutral-400 font-bold text-xl">✕</span>
+                    )
+                  ) : (
+                    <span data-editable="text" data-prop={`features.${index}.them`}>
+                      {row.them}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

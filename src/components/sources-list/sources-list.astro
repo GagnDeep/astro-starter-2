@@ -1,0 +1,51 @@
+---
+interface SourceItem {
+  title: string;
+  url: string;
+  date: string;
+}
+
+interface Props {
+  heading: string;
+  sources: SourceItem[];
+}
+
+const { heading, sources } = Astro.props;
+---
+
+<section
+  class="py-12 border-t-2 border-neutral-900 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 mt-16"
+>
+  <div class="mx-auto max-w-3xl px-8 reveal-on-scroll">
+    <h3
+      data-editable="text"
+      data-prop="heading"
+      class="font-display font-semibold text-2xl mb-6 text-neutral-900 dark:text-neutral-50"
+    >
+      {heading}
+    </h3>
+    <ol class="list-decimal list-inside space-y-3" data-editable="array" data-prop="sources">
+      {
+        sources.map((source, index) => (
+          <li class="text-body text-neutral-600 dark:text-neutral-400 marker:text-neutral-900 dark:marker:text-neutral-50 marker:font-bold">
+            <a
+              href={source.url}
+              class="text-neutral-900 dark:text-neutral-50 hover:text-orange-500 hover:underline underline-offset-4 outline-none focus-visible:outline-2 focus-visible:outline-orange-500 font-medium"
+            >
+              <span data-editable="text" data-prop={`sources.${index}.title`}>
+                {source.title}
+              </span>
+            </a>
+            <span class="ml-2 text-sm">
+              (Accessed{" "}
+              <span data-editable="text" data-prop={`sources.${index}.date`}>
+                {source.date}
+              </span>
+              )
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

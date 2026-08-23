@@ -1,0 +1,52 @@
+---
+import Markdown from "../utility/markdown.astro";
+
+interface FeatureCard {
+  title: string;
+  description: string;
+  span_cols: number;
+}
+
+interface Props {
+  heading: string;
+  features: FeatureCard[];
+}
+
+const { heading, features } = Astro.props;
+---
+
+<section
+  class="py-16 md:py-24 border-b-2 border-neutral-900 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800"
+>
+  <div class="mx-auto max-w-6xl px-8 reveal-on-scroll">
+    <h2
+      data-editable="text"
+      data-prop="heading"
+      class="font-display font-semibold text-3xl md:text-5xl mb-12 text-neutral-900 dark:text-neutral-50 text-balance"
+    >
+      {heading}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-editable="array" data-prop="features">
+      {
+        features.map((feature, index) => (
+          <div
+            class={`border-2 border-neutral-900 shadow-brutal dark:border-neutral-700 bg-white dark:bg-neutral-900 p-8 ${feature.span_cols === 2 ? "md:col-span-2" : "md:col-span-1"} hover:-translate-y-1 transition-transform duration-200`}
+          >
+            <h3 class="font-display font-semibold text-2xl mb-4 text-neutral-900 dark:text-neutral-50">
+              <span data-editable="text" data-prop={`features.${index}.title`}>
+                {feature.title}
+              </span>
+            </h3>
+            <div class="text-body text-neutral-600 dark:text-neutral-400">
+              <Markdown
+                content={feature.description}
+                dataProp={`features.${index}.description`}
+                dataType="block"
+              />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+import Markdown from "../utility/markdown.astro";
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  heading: string;
+  items: FaqItem[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<section
+  class="py-16 md:py-24 border-b-2 border-neutral-900 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900"
+>
+  <div class="mx-auto max-w-4xl px-8 reveal-on-scroll">
+    <h2
+      data-editable="text"
+      data-prop="heading"
+      class="font-display font-semibold text-3xl md:text-4xl mb-12 text-neutral-900 dark:text-neutral-50 text-balance"
+    >
+      {heading}
+    </h2>
+    <div
+      class="border-t-2 border-neutral-900 dark:border-neutral-700"
+      data-editable="array"
+      data-prop="items"
+    >
+      {
+        items.map((item, index) => (
+          <details class="group border-b-2 border-neutral-900 dark:border-neutral-700 open:bg-neutral-100 dark:open:bg-neutral-800 transition-colors">
+            <summary class="flex justify-between items-center cursor-pointer font-display font-semibold text-xl p-6 text-neutral-900 dark:text-neutral-50 focus-visible:outline-2 focus-visible:outline-orange-500 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors list-none [&::-webkit-details-marker]:hidden">
+              <span data-editable="text" data-prop={`items.${index}.question`}>
+                {item.question}
+              </span>
+              <span class="transform group-open:rotate-180 transition-transform text-orange-500 font-bold text-2xl leading-none">
+                +
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-body text-neutral-700 dark:text-neutral-300">
+              <Markdown content={item.answer} dataProp={`items.${index}.answer`} dataType="block" />
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  details[open] summary span:last-child {
+    transform: rotate(45deg);
+  }
+</style>
