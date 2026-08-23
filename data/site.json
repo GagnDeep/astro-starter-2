@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Underwriting",
+  "description": "A technical resource and newsletter for commercial and specialty insurance underwriters.",
+  "tagline": "The technical briefing for working underwriters.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Underwriting logo.",
+  "default_author": "Institute of Underwriting Editorial",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Underwriting",
+    "logo": "/meta/icon-512.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial",
+      "name": "Editorial Team",
+      "role": "Writers and Researchers",
+      "bio": "Our technical writers research and compile practical insights for commercial lines underwriting.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We consult working underwriters and subject matter experts to review technical accuracy before publication.",
+    "how_we_make_money": "We are fully funded by insurtech and industry sponsorships, operating as a trade publication.",
+    "corrections_policy": "Factual errors are corrected in the text with a dated correction notice at the bottom of the article."
   }
 }

@@ -1,16 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Institute of Underwriting Brand mark">
   <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
+    Source brand mark. Keep the 512x512 viewBox and leave ~10% breathing room.
   -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
+  <rect width="512" height="512" rx="48" fill="#111827" />
+
+  <!-- An abstract "U" built from a folded document and chart line, representing underwriting and technical rigor -->
   <path
-    d="M256 112 L384 368 H128 Z"
+    d="M160 120 L160 360 C160 380 180 400 200 400 L312 400 C332 400 352 380 352 360 L352 200 L256 120 Z"
     fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
+    stroke="#f8fafc"
+    stroke-width="32"
     stroke-linejoin="round"
   />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+  <path
+    d="M256 120 L256 216 L352 216"
+    fill="none"
+    stroke="#f8fafc"
+    stroke-width="32"
+    stroke-linejoin="round"
+  />
+  <circle cx="216" cy="300" r="24" fill="#38bdf8" />
 </svg>
