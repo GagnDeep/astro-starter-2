@@ -1,0 +1,11 @@
+--- package.json
++++ package.json
+@@ -9,7 +9,8 @@
+     "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,json,md,mdx,css}\"",
+     "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,json,md,mdx,css}\"",
+     "astro": "astro",
+     "assets": "node scripts/generate-icons.mjs && node scripts/generate-og.mjs && node scripts/check-assets.mjs",
++    "audit": "node scripts/seo-audit.mjs",
+     "assets:icons": "node scripts/generate-icons.mjs",
+     "assets:og": "node scripts/generate-og.mjs",
+     "assets:check": "node scripts/check-assets.mjs"
