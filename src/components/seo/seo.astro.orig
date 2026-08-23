@@ -19,13 +19,12 @@ interface Props {
   seo?: SeoFrontmatter | null;
   article?: ArticleMeta;
   breadcrumbs?: BreadcrumbItem[];
-  itemListElements?: Array<{ name: string; url?: string }>;
 }
 
-const { title, seo, article, breadcrumbs, itemListElements } = Astro.props;
+const { title, seo, article, breadcrumbs } = Astro.props;
 
 const meta = resolveSeo({ title, seo, url: Astro.url, siteUrl: Astro.site, article });
-const schema = buildSchemaGraph({ seo: meta, siteUrl: Astro.site, breadcrumbs, itemListElements });
+const schema = buildSchemaGraph({ seo: meta, siteUrl: Astro.site, breadcrumbs });
 
 const origin = Astro.site ?? new URL(Astro.url.origin);
 const rssUrl = new URL("/feed.xml", origin).toString();

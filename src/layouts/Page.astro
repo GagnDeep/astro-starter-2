@@ -40,9 +40,21 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 });
 
 const HeroComponent = props.hero_block?._name ? components[props.hero_block._name] : null;
+
+// Extract comparison items for ItemList schema
+let itemListElements: Array<{ name: string; url?: string }> = [];
+if (props.content_blocks) {
+  const tableBlock = props.content_blocks.find((b: any) => b._name === 'ComparisonTable');
+  if (tableBlock && tableBlock.rows) {
+    itemListElements = tableBlock.columns
+      .filter((_: any, idx: number) => idx > 0)
+      .map((col: any) => ({ name: col.header }));
+  }
+}
 ---
 
-<Layout {...props}>
+<Layout {...props} itemListElements={itemListElements.length > 0 ? itemListElements : undefined}>
+
   {HeroComponent && (
     <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
       <HeroComponent {...props.hero_block} />

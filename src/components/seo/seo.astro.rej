@@ -1,0 +1,11 @@
+--- seo.astro
++++ seo.astro
+@@ -16,6 +16,7 @@
+   seo?: SeoFrontmatter | null;
+   article?: ArticleMeta;
+   breadcrumbs?: BreadcrumbItem[];
++  itemListElements?: Array<{ name: string; url?: string }>;
+ }
+
+-const { title, seo, article, breadcrumbs } = Astro.props;
++const { title, seo, article, breadcrumbs, itemListElements } = Astro.props;
