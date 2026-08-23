@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand: oklch(60% 0.15 240);
+  --color-brand-supporting: oklch(60% 0.15 290);
+  --color-neutral: oklch(50% 0.02 240);
+  --font-display: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", monospace;
+}
+
+/*
+ * ART DIRECTION: Technical-brutalist.
+ * The aesthetic must reflect a serious, code-first testing tool.
+ * No gradients, glassmorphism, or emoji. Surfaces are stark, and interactive
+ * elements are obvious and utilitarian.
+ */
+
 /*
  * CASCADE RULE — read before adding CSS to this file.
  *

@@ -1,17 +1,29 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "jsonmock",
+  "description": "Deterministic record-and-replay mocking of LLM and AI-agent API responses for CI.",
+  "tagline": "Stop burning real API credits in CI.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "jsonmock - Deterministic record-and-replay mocking of LLM and AI-agent API responses for CI.",
+  "default_author": "jsonmock",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
-    "same_as": []
+    "name": "jsonmock",
+    "logo": "/images/logos/logo.png"
+  },
+  "authors": [
+    {
+      "slug": "jsonmock",
+      "name": "jsonmock Engineering",
+      "role": "Engineering Team",
+      "bio": "Building deterministic mock testing for LLMs."
+    }
+  ],
+  "editorial": {
+    "testing": "All examples are tested and verified. Code samples are runnable and proven.",
+    "monetization": "We make money through developer SaaS subscriptions.",
+    "corrections": "Corrections are pushed via standard CI/CD updates."
   }
 }

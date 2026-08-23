@@ -20,6 +20,8 @@ export const capture = {
    * This site's write-only public key. Per-site — swap it for a new domain.
    * Deliberately committed rather than an env var: it is inlined into the
    * browser bundle anyway, and a missing env var would silently break forms.
+   *
+   * TODO: This placeholder key MUST be replaced before launch!
    */
   publicKey: "wcs_pk_47bxlyp54gjn_BR9Mhe51yJEkTuchPcpJnvAs7ZnZ98lM6zxfgBI-tbE",
 
@@ -28,10 +30,9 @@ export const capture = {
    * form on the site; any string up to 64 chars works, no registration needed.
    */
   forms: {
-    contact: "contact",
+    sales: "sales",
     newsletter: "newsletter",
-    waitlist: "waitlist",
-    quote: "quote",
+    support: "support",
   },
 
   /**
