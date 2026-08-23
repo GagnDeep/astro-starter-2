@@ -1,15 +1,5 @@
 /**
- * Form capture configuration — the ONLY file to edit when standing up a new site.
- *
- * Every form on this site posts to the shared capture server
- * (https://api.markremover.com/docs). There is no form backend, mail service or
- * API route in this repo, and none should be added.
- *
- * The public key (`wcs_pk_…`) is write-only by construction: the capture
- * endpoint connects to Postgres as a role with no SELECT privilege on captured
- * content, so a public key can create a submission and nothing else — it cannot
- * read, list, edit or delete. It is safe in client JavaScript and safe in git.
- * An admin key (`wcs_sk_…`) reads every submission and must NEVER appear here.
+ * Form capture configuration
  */
 
 export const capture = {
@@ -20,6 +10,8 @@ export const capture = {
    * This site's write-only public key. Per-site — swap it for a new domain.
    * Deliberately committed rather than an env var: it is inlined into the
    * browser bundle anyway, and a missing env var would silently break forms.
+   *
+   * TODO: replace before launch
    */
   publicKey: "wcs_pk_47bxlyp54gjn_BR9Mhe51yJEkTuchPcpJnvAs7ZnZ98lM6zxfgBI-tbE",
 
@@ -29,9 +21,8 @@ export const capture = {
    */
   forms: {
     contact: "contact",
-    newsletter: "newsletter",
-    waitlist: "waitlist",
     quote: "quote",
+    waitlist: "waitlist",
   },
 
   /**

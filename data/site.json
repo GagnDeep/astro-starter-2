@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "nridirect.uk",
+  "description": "Independent document assistance and application review for OCI cards, Indian passport renewals, and visa paperwork for non-resident Indians living in the UK.",
+  "tagline": "Independent document assistance for OCI and Indian passport applications.",
   "lang": "en",
-  "locale": "en_US",
+  "locale": "en_GB",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "nridirect.uk — Independent document assistance for OCI and Indian passport applications.",
+  "default_author": "nridirect.uk Team",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "nridirect.uk",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "nridirect.uk Editorial Team",
+      "role": "Document Specialists",
+      "bio": "Our team of independent document specialists helps NRIs navigate OCI, passport and visa paperwork with precision."
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We meticulously review official guidelines and continually test our own internal checklists against current application processing requirements. Our guides are fact-checked by our document specialists.",
+    "how_we_make_money": "We charge a fee for our document-check and application-assistance services. We do not accept payment to expedite official government processing, which is impossible.",
+    "corrections": "If you spot an error or outdated requirement in our guides, please contact us. We correct factual errors promptly and note significant updates at the top of the relevant guide."
   }
 }
