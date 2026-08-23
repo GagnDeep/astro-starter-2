@@ -1,48 +1,48 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/icons/logo.svg",
+    "logo_alt_text": "AI and Investing Logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/methodology/",
+        "text": "Methodology"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/reviews/",
+        "text": "Reviews"
+      },
+      {
+        "link": "/about/",
+        "text": "About Us"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/icons/logo.svg",
+    "logo_alt_text": "AI and Investing Logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "AI and Investing. All rights reserved. Disclaimer: The information provided is not investment advice.",
     "links": [
+      {
+        "link": "/methodology/",
+        "text": "Methodology"
+      },
+      {
+        "link": "/disclaimer/",
+        "text": "Disclaimer"
+      },
+      {
+        "link": "/privacy/",
+        "text": "Privacy Policy"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
       }
     ]
   }
