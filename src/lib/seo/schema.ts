@@ -84,9 +84,10 @@ export function buildSchemaGraph({
   const base = (siteUrl ?? new URL(seo.canonical)).toString();
   const isArticle = Boolean(seo.article);
 
+  const isItemList = seo.canonical.includes("/readiness/vendor-selection");
   const pageNode: JsonLdNode = {
-    "@type": isArticle ? "BlogPosting" : "WebPage",
-    "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
+    "@type": isArticle ? "Article" : isItemList ? "ItemList" : "WebPage",
+    "@id": `${seo.canonical}#${isArticle ? "article" : isItemList ? "itemlist" : "webpage"}`,
     url: seo.canonical,
     name: seo.rawTitle,
     headline: seo.rawTitle,
@@ -94,6 +95,21 @@ export function buildSchemaGraph({
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
   };
+
+  if (isItemList) {
+    pageNode.itemListElement = [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Vendor A"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Vendor B"
+      }
+    ];
+  }
 
   if (seo.image) {
     pageNode.primaryImageOfPage = {

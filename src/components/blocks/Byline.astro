@@ -1,12 +1,13 @@
 ---
 interface Props {
   author_name: string;
+  author_url?: string;
   author_role?: string;
   author_image?: string;
   date: string;
 }
 
-const { author_name, author_role, author_image, date } = Astro.props;
+const { author_name, author_url, author_role, author_image, date } = Astro.props;
 
 // Date formatting
 const formattedDate = new Date(date).toLocaleDateString('en-IE', {
@@ -26,7 +27,13 @@ const formattedDate = new Date(date).toLocaleDateString('en-IE', {
   )}
   <div>
     <p class="font-display font-bold text-[var(--color-text)] m-0">
-      {author_name}
+      {author_url ? (
+        <a href={author_url} class="text-[var(--color-text)] hover:text-[var(--color-supporting)] decoration-transparent hover:decoration-[var(--color-supporting)] transition-colors">
+          {author_name}
+        </a>
+      ) : (
+        author_name
+      )}
     </p>
     {author_role && (
       <p class="text-sm text-[var(--color-text-muted)] m-0">

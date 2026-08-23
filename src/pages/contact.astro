@@ -16,7 +16,15 @@ const field =
 const label = "block text-sm font-medium text-gray-700 mb-1";
 ---
 
-<Layout title="Contact" seo={{ page_description: "Get in touch — we read every message." }}>
+<Layout title="Contact" seo={{
+  page_description: "Get in touch — we read every message.",
+  canonical_url: "/contact/",
+  featured_image: "/images/og/og-default.png",
+  featured_image_alt: "Battery Digital Passport Contact",
+  author_twitter_handle: null,
+  open_graph_type: "website",
+  no_index: false
+}}>
   <section class="py-16 md:py-24">
     <div class="mx-auto max-w-3xl px-8">
       <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Contact</h1>

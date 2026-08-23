@@ -1,0 +1,39 @@
+<<<<<<< SEARCH
+  const pageNode: JsonLdNode = {
+    "@type": isArticle ? "BlogPosting" : "WebPage",
+    "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
+    url: seo.canonical,
+    name: seo.rawTitle,
+    headline: seo.rawTitle,
+    description: seo.description,
+    inLanguage: seo.lang,
+    isPartOf: { "@id": id(base, "website") },
+  };
+=======
+  const isItemList = seo.canonical.includes("/readiness/vendor-selection");
+  const pageNode: JsonLdNode = {
+    "@type": isArticle ? "Article" : isItemList ? "ItemList" : "WebPage",
+    "@id": `${seo.canonical}#${isArticle ? "article" : isItemList ? "itemlist" : "webpage"}`,
+    url: seo.canonical,
+    name: seo.rawTitle,
+    headline: seo.rawTitle,
+    description: seo.description,
+    inLanguage: seo.lang,
+    isPartOf: { "@id": id(base, "website") },
+  };
+
+  if (isItemList) {
+    pageNode.itemListElement = [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Vendor A"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Vendor B"
+      }
+    ];
+  }
+>>>>>>> REPLACE
