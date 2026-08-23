@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 /*
+ * ART DIRECTION: Technical-brutalist
+ * Justification: The design choices must reflect the industrial, precise, and practical nature of the aerospace and MRO supply chain. The layout should be straightforward, highly structured, data-dense, and utilitarian without being overly styled.
+ *
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
