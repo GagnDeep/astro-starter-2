@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Underwriting",
+  "description": "A resource and newsletter for working commercial and specialty insurance underwriters.",
+  "tagline": "The Underwriter's Trade Publication.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Underwriting — a resource for commercial and specialty insurance underwriters.",
+  "default_author": "Editorial Team",
+  "theme_color": "#1c2526",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Underwriting",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "real_role": "Writers and Editors",
+      "bio": "Our editorial team consists of industry veterans producing technical content for commercial and specialty underwriters.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "All our content is peer-reviewed by active practitioners in the commercial and specialty insurance sectors.",
+    "funding": "The Institute of Underwriting is a free resource funded entirely through insurtech sponsorships. We are not a professional body or an accrediting institute.",
+    "corrections": "We strive for accuracy. If you find an error, please contact us, and we will update the piece with a correction notice."
   }
 }

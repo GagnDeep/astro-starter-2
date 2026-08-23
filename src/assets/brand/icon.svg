@@ -1,16 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brand mark">
-  <!--
-    Source brand mark. Replace this file with your own square SVG, then run
-    `pnpm assets` to regenerate every favicon, app icon and Open Graph image.
-    Keep the 512x512 viewBox and leave ~10% breathing room around the artwork.
-  -->
-  <rect width="512" height="512" rx="112" fill="#0f172a" />
-  <path
-    d="M256 112 L384 368 H128 Z"
-    fill="none"
-    stroke="#ffffff"
-    stroke-width="36"
-    stroke-linejoin="round"
-  />
-  <circle cx="256" cy="300" r="34" fill="#38bdf8" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- A distinctive geometric mark for the Institute of Underwriting -->
+  <rect width="100" height="100" rx="10" fill="#1c2526" />
+  <path d="M 30 70 L 30 30 L 50 30 C 65 30 70 40 70 50 C 70 60 65 70 50 70 Z" fill="none" stroke="#e3e1da" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
+  <path d="M 50 30 L 50 70" fill="none" stroke="#e3e1da" stroke-width="8" stroke-linecap="round" />
+  <circle cx="50" cy="50" r="4" fill="#a49377" />
 </svg>
