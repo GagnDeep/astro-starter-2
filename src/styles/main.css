@@ -1,6 +1,23 @@
 @import "tailwindcss";
 
 /*
+ * Art Direction: Editorial/Swiss
+ * Justification: The editorial direction conveys a high degree of trustworthiness
+ * and rigour, ensuring readers view our methodology and tracking guidance as
+ * authoritative and unbiased, which is essential to balance the affiliate model.
+ */
+
+@theme {
+  --color-brand: oklch(0.25 0.02 250);
+  --color-supporting: oklch(0.85 0.08 80);
+  --color-neutral-100: oklch(0.98 0.01 250);
+  --color-neutral-900: oklch(0.15 0.01 250);
+
+  --font-display: "Newsreader", serif;
+  --font-body: "Work Sans", sans-serif;
+}
+
+/*
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
@@ -24,7 +41,13 @@
 
 @layer base {
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
+    color: var(--color-neutral-900);
+    background-color: var(--color-neutral-100);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 
   main {
@@ -47,7 +70,11 @@
     line-height: 1.2;
     max-width: 72ch;
   }
-  .prose h1 { font-size: 2rem; }
+  .prose h1 {
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
   .prose h2 { font-size: 1.75rem; }
   .prose h3 { font-size: 1.5rem; }
   .prose h4 { font-size: 1.25rem; }
@@ -56,8 +83,9 @@
   .prose a,
   .prose ol li,
   .prose ul li {
-    line-height: 1.75;
-    max-width: 72ch;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 65ch;
     text-wrap: pretty;
   }
   .prose p,
@@ -90,7 +118,7 @@
     margin-inline: 1rem;
   }
   .prose a {
-    color: #034ad8;
+    color: var(--color-brand);
     text-decoration: underline;
     text-underline-offset: 0.1rem;
     cursor: pointer;
