@@ -1,0 +1,23 @@
+---
+export interface Props {
+  author?: string;
+  role?: string;
+  date?: string;
+}
+
+const { author, role, date } = Astro.props;
+---
+
+<div class="flex items-center gap-4 py-4 border-b border-[var(--color-border)] mb-8">
+  <div class="h-10 w-10 bg-[var(--color-brand-600)] flex items-center justify-center text-white font-bold text-xl">
+    {author ? author.charAt(0).toUpperCase() : "?"}
+  </div>
+  <div>
+    {author && <p class="m-0 font-bold leading-tight">{author}</p>}
+    <div class="flex text-sm text-[var(--color-text-muted)] gap-2">
+      {role && <span>{role}</span>}
+      {role && date && <span>&bull;</span>}
+      {date && <span>{new Date(date).toLocaleDateString('en-AE', { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
+    </div>
+  </div>
+</div>

@@ -47,8 +47,13 @@ function organizationNode(base: string): JsonLdNode {
   if (site.organization?.logo) {
     node.logo = {
       "@type": "ImageObject",
+      "@id": id(base, "logo"),
+      inLanguage: site.lang,
       url: absoluteUrl(site.organization.logo, base),
+      contentUrl: absoluteUrl(site.organization.logo, base),
+      caption: site.site_title,
     };
+    node.image = { "@id": id(base, "logo") };
   }
   if (site.organization?.same_as?.length) {
     node.sameAs = site.organization.same_as;
@@ -90,22 +95,35 @@ export function buildSchemaGraph({
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
     primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
+      ? {
+          "@type": "ImageObject",
+          "@id": `${seo.canonical}#primaryimage`,
+          inLanguage: seo.lang,
+          url: seo.image,
+          contentUrl: seo.image,
+          ...(seo.imageAlt && { caption: seo.imageAlt })
+        }
       : undefined,
   };
 
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
+    pageNode.image = seo.image ? { "@id": `${seo.canonical}#primaryimage` } : undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      pageNode.author = {
+        "@type": "Person",
+        "@id": id(base, `author-${seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`),
+        name: seo.article.author
+      };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
     }
     pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
+  } else {
+    pageNode.about = { "@id": id(base, "organization") };
   }
 
   const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];

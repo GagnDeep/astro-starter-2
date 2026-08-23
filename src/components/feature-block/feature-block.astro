@@ -1,0 +1,30 @@
+---
+export interface Props {
+  heading?: string;
+  features?: {
+    title: string;
+    description: string;
+  }[];
+}
+
+const { heading, features = [] } = Astro.props;
+---
+
+<div class="py-16 md:py-24 border-t border-[var(--color-border)]">
+  {heading && <h2 class="mb-12 text-balance">{heading}</h2>}
+
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+    {features.map((feature, index) => {
+      // Unequal span bento: first is wider, others are smaller
+      const colSpan = index === 0 ? "md:col-span-8" : "md:col-span-4";
+      const bg = index === 0 ? "bg-[var(--color-surface-raised)]" : "bg-transparent";
+
+      return (
+        <div class={`p-8 border border-[var(--color-border)] flex flex-col space-y-4 ${colSpan} ${bg}`}>
+          <h3 class="text-xl font-bold">{feature.title}</h3>
+          <p class="text-[var(--color-text-muted)] m-0">{feature.description}</p>
+        </div>
+      );
+    })}
+  </div>
+</div>

@@ -1,0 +1,27 @@
+---
+export interface Props {
+  sources?: {
+    title: string;
+    url?: string;
+    date_accessed?: string;
+  }[];
+}
+
+const { sources = [] } = Astro.props;
+---
+
+<div class="py-8 mt-16 border-t border-[var(--color-border)] text-sm">
+  <h3 class="text-base mb-4 uppercase tracking-wider text-[var(--color-text-muted)]">Sources</h3>
+  <ol class="list-decimal list-inside space-y-2 text-[var(--color-text-muted)]">
+    {sources.map(source => (
+      <li>
+        {source.url ? (
+          <a href={source.url} class="text-[var(--color-text-base)] hover:underline">{source.title}</a>
+        ) : (
+          <span class="text-[var(--color-text-base)]">{source.title}</span>
+        )}
+        {source.date_accessed && ` (Accessed: ${source.date_accessed})`}
+      </li>
+    ))}
+  </ol>
+</div>

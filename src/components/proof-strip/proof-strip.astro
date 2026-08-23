@@ -1,0 +1,16 @@
+---
+export interface Props {
+  logos?: {
+    src: string;
+    alt: string;
+  }[];
+}
+
+const { logos = [] } = Astro.props;
+---
+
+<div class="py-8 border-y border-[var(--color-border)] bg-[var(--color-surface-raised)] flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-200">
+  {logos.map(logo => (
+    <img src={logo.src} alt={logo.alt} class="h-8 w-auto object-contain mix-blend-multiply dark:mix-blend-screen" />
+  ))}
+</div>
