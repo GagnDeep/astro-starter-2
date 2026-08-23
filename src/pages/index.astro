@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Page.astro";
+
+const frontmatter = {
+  title: "Home",
+  seo: {
+    page_description: "De-Googled phone guidance, setup guides, and pre-configured hardware for the privacy-conscious.",
+    canonical_url: null,
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: null,
+    no_index: false,
+  },
+};
+---
+
+<Layout frontmatter={frontmatter}>
+  <div class="mx-auto max-w-6xl px-8 py-16">
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Most Private Phone</h1>
+  </div>
+</Layout>
