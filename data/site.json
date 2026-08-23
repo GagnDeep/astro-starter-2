@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "AdvisorCTO",
+  "description": "Fractional CTO services for RIA and wealth-management firms. We manage security, integration, and vendor risk for Orion, Redtail, Wealthbox, and eMoney stacks.",
+  "tagline": "Fractional CTO for RIAs & Wealth Management.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "AdvisorCTO — Fractional CTO services for RIA and wealth-management firms.",
+  "default_author": "AdvisorCTO",
+  "theme_color": "#0d1b2a",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "AdvisorCTO",
+    "logo": "/images/logos/advisorcto-logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "founder",
+      "name": "AdvisorCTO Founder",
+      "role": "Fractional CTO & Founder",
+      "bio": "Experienced fractional CTO specializing in RIA and wealth-management firms. Helping firms using Orion, Redtail, Wealthbox or eMoney stacks manage security, integrations, and vendor risks.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "We test and evaluate wealth-management software, integrations, and security practices objectively. Our insights are based on hands-on experience operating production environments for RIAs.",
+    "monetization": "AdvisorCTO makes money exclusively through monthly retainers and fixed-scope consulting engagements. We do not accept referral fees, kickbacks, or affiliate commissions from any vendor, ensuring our advice remains entirely independent.",
+    "corrections": "If we discover an inaccuracy in our technical advice or vendor assessments, we update the content and note the correction at the bottom of the affected page."
   }
 }

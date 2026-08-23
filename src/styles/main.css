@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 /*
+ * ART DIRECTION: Technical-brutalist
+ * Justification: Conveys authority, precision, and trust for RIA and wealth-management firms.
+ * Uses stark contrast and no-nonsense typography, strictly avoiding gradients or soft glassmorphism.
+ */
+
+/*
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
