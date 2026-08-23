@@ -1,17 +1,30 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Neurofeedback",
+  "description": "An honest, citation-backed review of neurofeedback research and B2B resources for clinicians.",
+  "tagline": "Evidence-based neurofeedback analysis and clinical resources.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Neurofeedback — evidence-based analysis and clinical resources.",
+  "default_author": "Institute of Neurofeedback",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of Neurofeedback",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Medical Reviewers",
+      "bio": "Our editorial team ensures all clinical claims are strictly citation-backed."
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We rigorously review peer-reviewed neurofeedback research.",
+    "how_we_make_money": "We generate revenue through B2B content and equipment comparisons.",
+    "corrections": "Corrections are handled transparently and swiftly, backed by updated citations."
   }
 }
