@@ -1,17 +1,32 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Fish Scanner",
+  "tagline": "The marine and reef aquarium compatibility tool",
+  "description": "Plan your marine or reef aquarium with confidence. Check saltwater fish compatibility, stocking limits, and care requirements using primary sources.",
   "lang": "en",
   "locale": "en_US",
-  "twitter_site": "",
+  "theme_color": "#0284c7",
+  "image_alt": "Fish Scanner preview image",
+
+  "default_author": "Fish Scanner Editorial Team",
+  "twitter_site": "@fishscanner",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Fish Scanner",
+    "logo": "/images/brand/logo.svg",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Fish Scanner Editorial Team",
+      "role": "Marine Aquarists & Researchers",
+      "bio": "Our editorial team verifies marine fish compatibility against primary aquaculture and scientific literature.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "All compatibility rules are verified against primary aquaculture literature, established hobbyist breeding logs, and marine biology databases. We do not rely on anecdotal forum posts.",
+    "monetization": "We make money through affiliate commissions when you purchase aquarium supplies using links on our site.",
+    "corrections": "To report a correction, please use the contact form. Our team will review the claim against primary sources and update the database if verified."
   }
 }
