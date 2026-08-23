@@ -1,0 +1,100 @@
+---
+import CaptureForm from "../forms/capture-form.astro";
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  form_label?: string;
+}
+
+const { heading, subheading, form_label = "newsletter" } = Astro.props;
+---
+
+<style>
+  .capture-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  @media (min-width: 768px) {
+    .capture-section {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+  .capture-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    gap: 3rem;
+  }
+  @media (min-width: 1024px) {
+    .capture-container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  .capture-heading {
+    margin-bottom: 1rem;
+  }
+  .capture-card {
+    padding: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .capture-card {
+      padding: 2rem;
+    }
+  }
+  .capture-field-wrapper {
+    margin-bottom: 1rem;
+  }
+  .capture-label {
+    margin-bottom: 0.25rem;
+  }
+  .capture-input {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+</style>
+
+<section class="capture-section bg-[var(--color-brand-900)] text-[var(--color-neutral-100)] border-y border-[var(--color-brand-800)] relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-1/3 h-full bg-[var(--color-brand-800)] -skew-x-12 translate-x-16 hidden md:block opacity-50"></div>
+
+  <div class="capture-container mx-auto max-w-5xl relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between">
+    <div class="max-w-2xl">
+      <h2
+        class="capture-heading text-3xl md:text-5xl font-bold text-[var(--color-neutral-100)]"
+        data-editable="text"
+        data-prop="heading"
+      >
+        {heading}
+      </h2>
+      {subheading && (
+        <p
+          class="text-xl text-[var(--color-brand-300)]"
+          data-editable="text"
+          data-prop="subheading"
+        >
+          {subheading}
+        </p>
+      )}
+    </div>
+
+    <div class="capture-card w-full max-w-sm shrink-0 bg-[var(--color-bg-surface)] rounded-none border border-[var(--color-brand-700)] shadow-[var(--shadow-lg)]">
+      <CaptureForm form={form_label} submitLabel="Subscribe">
+        <div class="capture-field-wrapper">
+          <label for="email" class="capture-label block text-sm font-medium text-[var(--color-text-base)]">Email Address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="capture-input w-full rounded-none border border-[var(--color-border-base)] bg-[var(--color-bg-base)] text-[var(--color-text-base)] focus:border-[var(--color-accent-500)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent-500)]"
+            placeholder="you@example.com"
+          />
+        </div>
+      </CaptureForm>
+    </div>
+  </div>
+</section>
