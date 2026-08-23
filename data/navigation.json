@@ -1,48 +1,48 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Lawyer CTO logo",
     "logo_url": "/",
     "links": [
+      {
+        "link": "/ai-governance/",
+        "text": "AI Governance"
+      },
+      {
+        "link": "/fractional-cto/",
+        "text": "Fractional CTO"
+      },
       {
         "link": "/about/",
         "text": "About"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "Lawyer CTO logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Lawyer CTO. All rights reserved.",
     "links": [
+      {
+        "link": "/ai-governance/",
+        "text": "AI Governance"
+      },
+      {
+        "link": "/fractional-cto/",
+        "text": "Fractional CTO"
+      },
+      {
+        "link": "/about/",
+        "text": "About"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
       }
     ]
   }

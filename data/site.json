@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Lawyer CTO",
+  "description": "Legal-technology fractional CTO practice. Specializing in AI governance policy for small and mid-size law firms.",
+  "tagline": "AI Governance and Strategy for Law Firms",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Lawyer CTO — AI Governance and Strategy for Law Firms",
+  "default_author": "Lawyer CTO",
+  "theme_color": "#111827",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Lawyer CTO",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "founder",
+      "name": "CTO Founder",
+      "role": "Fractional CTO",
+      "bio": "Legal-technology fractional CTO specializing in AI governance policy for small and mid-size law firms.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "We implement and review AI tools within standard law firm workflows, ensuring they meet data privacy and compliance standards before recommending them.",
+    "money": "We generate revenue through retainers as fractional CTOs and fixed-fee engagements for AI governance policy development.",
+    "corrections": "If our analysis of a technology or governance requirement is incorrect, we will issue a public correction and update the relevant policy framework."
   }
 }
