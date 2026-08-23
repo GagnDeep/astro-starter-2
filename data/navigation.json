@@ -1,48 +1,44 @@
 {
   "header": {
     "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Aerospace UAE logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/directory/",
+        "text": "Directory"
       },
       {
-        "link": "/blog/",
-        "text": "Blog"
+        "link": "/jobs/",
+        "text": "Jobs"
+      },
+      {
+        "link": "/pricing/",
+        "text": "Pricing"
       },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
     "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo_alt_text": "Aerospace UAE logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "Aerospace UAE. Directory, jobs, and reference data only.",
     "links": [
+      {
+        "link": "/directory/",
+        "text": "Supplier Directory"
+      },
+      {
+        "link": "/jobs/",
+        "text": "Job Board"
+      },
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "/blog/",
-        "text": "Blog"
-      },
-      {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
       }
     ]
   }

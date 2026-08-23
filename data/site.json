@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Aerospace UAE",
+  "description": "Subscription directory and hiring board for the UAE's Tier 2/3 aerospace and MRO supply chain.",
+  "tagline": "Sourcing UAE subcontractors and ICV-registered vendors.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Aerospace UAE — directory and hiring board for the UAE's Tier 2/3 aerospace and MRO supply chain.",
+  "default_author": "Aerospace UAE",
+  "theme_color": "#0d1b2a",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Aerospace UAE",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Aerospace UAE Data Team",
+      "real_role": "Data Researchers",
+      "bio": "Our team verifies ICV registration and operational capabilities of Tier 2/3 aerospace subcontractors in the UAE.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "We verify company registrations and ICV status directly through publicly available registries.",
+    "revenue": "We make money through paid supplier listings, recruiter job postings, and a subcontractor-matching newsletter.",
+    "corrections": "To report inaccuracies in directory listings or job postings, please contact us. Corrections will be reflected directly in the database."
   }
 }
