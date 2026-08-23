@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Humanoids",
+  "description": "The humanoid-robotics supply-chain cross-reference. We track which suppliers provide actuators, harmonic drives, batteries, sensors and compute to which humanoid companies, plus a specialist hardware job board.",
+  "tagline": "Structured supplier data and specialist jobs for the humanoid robotics industry.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Humanoids — The supply-chain cross-reference and hardware job board.",
+  "default_author": "Institute of Humanoids",
+  "theme_color": "#1c1917",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Institute of Humanoids",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Supply Chain Analysts",
+      "bio": "Our editorial team tracks the hardware supply chain across the humanoid robotics industry.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "We track supplier data by referencing publicly disclosed hardware components, verifiable supply contracts, and direct teardowns. We do not aggregate press releases or rumours.",
+    "monetization": "We make money through corporate sponsorships and paid job postings. We do not accept payment to list or alter supplier cross-references. Commission links, if used, are strictly labelled 'sponsored nofollow'.",
+    "corrections": "If a hardware integration is incorrect, incomplete, or out of date, email corrections@instituteofhumanoids.com. We log corrections transparently on the relevant supplier pages."
   }
 }
