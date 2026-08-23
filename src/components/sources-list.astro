@@ -1,0 +1,45 @@
+---
+interface Source {
+  title: string;
+  url?: string;
+  date?: string;
+}
+
+interface Props {
+  heading?: string;
+  sources: Source[];
+}
+
+const { heading = "Sources & Citations", sources } = Astro.props;
+---
+
+<section class="py-12 border-t border-[var(--color-brand-ink)] dark:border-white/20 mt-16 reveal is-visible">
+  <div class="mx-auto max-w-3xl px-8">
+    <h2 data-editable="text" data-prop="heading" class="text-xl font-bold font-[family-name:var(--font-display)] text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)] mb-6">
+      {heading}
+    </h2>
+
+    <ol class="list-decimal-leading-zero list-inside space-y-3 font-[family-name:var(--font-body)] text-sm text-[color:var(--color-neutral-800)] dark:text-[color:var(--color-neutral-200)]" data-editable="array" data-prop="sources">
+      {sources.map((source, idx) => (
+        <li data-editable="array-item">
+          {source.url ? (
+            <a
+              href={source.url}
+              rel="noopener noreferrer"
+              class="hover:text-[var(--color-brand-accent)] dark:hover:text-[var(--color-brand-accent-dark)] underline underline-offset-4 decoration-[var(--color-brand-ink)]/30 dark:decoration-white/30 hover:decoration-[var(--color-brand-accent)]"
+            >
+              <span data-editable="text" data-prop={`sources[${idx}].title`}>{source.title}</span>
+            </a>
+          ) : (
+            <span data-editable="text" data-prop={`sources[${idx}].title`}>{source.title}</span>
+          )}
+          {source.date && (
+            <span class="ml-2 text-xs opacity-70 before:content-['('] after:content-[')']" data-editable="text" data-prop={`sources[${idx}].date`}>
+              {source.date}
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

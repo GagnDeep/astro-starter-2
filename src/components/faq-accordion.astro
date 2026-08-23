@@ -1,0 +1,38 @@
+---
+import Markdown from "./utility/markdown.astro";
+import { ChevronDown } from "@lucide/astro";
+
+interface Faq {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  heading: string;
+  faqs: Faq[];
+}
+
+const { heading, faqs } = Astro.props;
+---
+
+<section class="py-[var(--spacing-section)] reveal is-visible">
+  <div class="mx-auto max-w-3xl px-8">
+    <h2 data-editable="text" data-prop="heading" class="mb-12 text-center text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)]">
+      {heading}
+    </h2>
+
+    <div class="flex flex-col gap-4" data-editable="array" data-prop="faqs">
+      {faqs.map((faq, idx) => (
+        <details class="group brutal-card !p-0" data-editable="array-item">
+          <summary class="flex cursor-pointer items-center justify-between p-6 font-bold font-[family-name:var(--font-display)] text-xl text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)] list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:bg-[var(--color-brand-accent)]/10 dark:focus-visible:bg-[var(--color-brand-accent-dark)]/10">
+            <span data-editable="text" data-prop={`faqs[${idx}].question`}>{faq.question}</span>
+            <ChevronDown class="h-6 w-6 transition-transform duration-200 group-open:-rotate-180" stroke-width="2" />
+          </summary>
+          <div class="px-6 pb-6 text-[color:var(--color-neutral-800)] dark:text-[color:var(--color-neutral-200)] prose border-t border-[var(--color-brand-ink)] dark:border-white/20 pt-4">
+            <Markdown content={faq.answer} dataProp={`faqs[${idx}].answer`} dataType="block" />
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

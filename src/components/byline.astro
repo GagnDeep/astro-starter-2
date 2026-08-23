@@ -1,0 +1,37 @@
+---
+import site from "../../data/site.json";
+
+interface Props {
+  author_slug?: string;
+  date?: string | Date;
+}
+
+const { author_slug, date } = Astro.props;
+
+const author = site.authors.find(a => a.slug === author_slug) || site.authors[0];
+const formattedDate = date ? new Date(date).toLocaleDateString(site.locale.replace('_', '-'), {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}) : null;
+---
+
+<div class="flex items-center gap-4 py-6 border-b-2 border-[var(--color-brand-ink)] dark:border-white/20 mb-8 reveal is-visible">
+  <div class="flex flex-col">
+    <span class="font-bold font-[family-name:var(--font-display)] text-[color:var(--color-brand-ink)] dark:text-[color:var(--color-brand-ink-dark)] uppercase tracking-wide">
+      {author.name}
+    </span>
+    <span class="text-sm text-[color:var(--color-neutral-800)] dark:text-[color:var(--color-neutral-200)]">
+      {author.role}
+    </span>
+  </div>
+
+  {formattedDate && (
+    <>
+      <div class="w-1 h-1 rounded-none bg-[var(--color-brand-accent)] dark:bg-[var(--color-brand-accent-dark)]"></div>
+      <time datetime={new Date(date!).toISOString()} class="text-sm font-[family-name:var(--font-body)] text-[color:var(--color-neutral-800)] dark:text-[color:var(--color-neutral-200)]">
+        {formattedDate}
+      </time>
+    </>
+  )}
+</div>
