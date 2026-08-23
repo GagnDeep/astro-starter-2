@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "NRI Direct UK",
+  "description": "Independent document assistance and checking services for OCI, Indian passports, and visas for NRIs in the UK.",
+  "tagline": "Independent document assistance for OCI, Indian passports, and visas.",
   "lang": "en",
-  "locale": "en_US",
+  "locale": "en_GB",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "NRI Direct UK logo and service description.",
+  "default_author": "NRI Direct UK",
+  "theme_color": "#0a192f",
   "organization": {
-    "name": "CloudCannon",
+    "name": "NRI Direct UK",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "NRI Direct UK Editorial Team",
+      "role": "Document Assistance Specialists",
+      "bio": "Our team of independent specialists provides guidance on OCI, Indian passport, and visa documentation for UK residents.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "testing": "All our tools and documentation guides are verified against actual application requirements and updated regularly.",
+    "monetization": "We operate as an independent service and generate revenue through paid document-check and application-assistance services.",
+    "corrections": "We strive for accuracy. If you notice any outdated requirements, please contact us for immediate corrections."
   }
 }

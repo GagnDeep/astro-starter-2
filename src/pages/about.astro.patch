@@ -1,0 +1,10 @@
+--- src/pages/about.astro
++++ src/pages/about.astro
+@@ -1,5 +1,6 @@
+ ---
+-import AboutPage from "../content/pages/about.astro";
++// import AboutPage from "../content/pages/about.astro";
+ ---
+
+-<AboutPage />
++<div>About Page</div>
