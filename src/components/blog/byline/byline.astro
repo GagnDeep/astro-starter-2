@@ -1,0 +1,30 @@
+---
+interface Props {
+  author_name: string;
+  author_image_path?: string;
+  author_role?: string;
+  date: string;
+}
+const { author_name, author_image_path, author_role, date } = Astro.props;
+---
+
+<div class="flex items-center gap-4 py-6 my-8 border-y border-[var(--surface-border)]">
+  {
+    author_image_path && (
+      <img
+        src={author_image_path}
+        alt={author_name}
+        class="w-12 h-12 rounded-full object-cover grayscale"
+      />
+    )
+  }
+  <div>
+    <div class="font-bold text-lg leading-tight">{author_name}</div>
+    <div class="text-sm text-gray-600 dark:text-gray-400">
+      {author_role && <span>{author_role} &middot; </span>}
+      <time datetime={new Date(date).toISOString()}>
+        {new Intl.DateTimeFormat("en-US", { dateStyle: "long" }).format(new Date(date))}
+      </time>
+    </div>
+  </div>
+</div>

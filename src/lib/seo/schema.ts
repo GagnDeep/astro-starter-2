@@ -47,6 +47,7 @@ function organizationNode(base: string): JsonLdNode {
   if (site.organization?.logo) {
     node.logo = {
       "@type": "ImageObject",
+      "@id": id(base, "logo"),
       url: absoluteUrl(site.organization.logo, base),
     };
   }
@@ -90,22 +91,27 @@ export function buildSchemaGraph({
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
     primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
+      ? {
+          "@type": "ImageObject",
+          "@id": id(base, "primaryimage"),
+          url: seo.image,
+          ...(seo.imageAlt && { caption: seo.imageAlt }),
+        }
       : undefined,
   };
 
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
+    pageNode.image = seo.image ? { "@id": id(base, "primaryimage") } : undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      pageNode.author = { "@type": "Person", "@id": id(base, "author"), name: seo.article.author };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
     }
-    pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
+    pageNode.mainEntityOfPage = { "@id": `${seo.canonical}#webpage` };
   }
 
   const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];

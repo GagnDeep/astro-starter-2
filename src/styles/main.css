@@ -1,30 +1,116 @@
 @import "tailwindcss";
 
 /*
- * CASCADE RULE — read before adding CSS to this file.
- *
- * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
- * beats *any* cascade layer regardless of specificity or source order, so a
- * bare reset like
- *
- *   * { margin: 0; padding: 0; }        <-- outside any @layer
- *
- * silently kills every `p-*`, `px-*`, `m-*`, `mx-auto` and `space-y-*` on the
- * site, while colours, flex and grid keep working — which makes it look like
- * "Tailwind is half broken" rather than a cascade problem.
- *
- * Therefore: every rule in this file stays inside `@layer base` or
- * `@layer components`. No element/reset rule may be written at the top level.
- * `pnpm build` warns if an unlayered spacing reset reaches the output.
- *
- * A `*` reset is not needed anyway: Tailwind's preflight (in `@layer base`)
- * already sets `margin: 0; padding: 0; box-sizing: border-box` on
- * `*, ::before, ::after, ::backdrop`.
+ * ART DIRECTION: Editorial/Swiss
+ * Asymmetric hero sections, stark contrast, strong typography, disciplined grids.
  */
 
+@theme {
+  /* Palette OKLCH */
+  --color-brand-100: oklch(0.95 0.04 45);
+  --color-brand-200: oklch(0.9 0.08 45);
+  --color-brand-300: oklch(0.85 0.12 45);
+  --color-brand-400: oklch(0.75 0.16 45);
+  --color-brand-500: oklch(0.65 0.2 45); /* Copper */
+  --color-brand-600: oklch(0.55 0.2 45);
+  --color-brand-700: oklch(0.45 0.16 45);
+  --color-brand-800: oklch(0.35 0.12 45);
+  --color-brand-900: oklch(0.25 0.08 45);
+
+  --color-support-100: oklch(0.95 0.04 250);
+  --color-support-200: oklch(0.9 0.08 250);
+  --color-support-300: oklch(0.85 0.12 250);
+  --color-support-400: oklch(0.75 0.16 250);
+  --color-support-500: oklch(0.55 0.16 250); /* Blue Apron Canvas */
+  --color-support-600: oklch(0.45 0.16 250);
+  --color-support-700: oklch(0.35 0.12 250);
+  --color-support-800: oklch(0.25 0.08 250);
+  --color-support-900: oklch(0.15 0.04 250);
+
+  --color-neutral-50: oklch(0.98 0.01 260);
+  --color-neutral-100: oklch(0.95 0.02 260);
+  --color-neutral-200: oklch(0.9 0.02 260);
+  --color-neutral-300: oklch(0.8 0.02 260);
+  --color-neutral-400: oklch(0.7 0.02 260);
+  --color-neutral-500: oklch(0.6 0.02 260);
+  --color-neutral-600: oklch(0.5 0.02 260);
+  --color-neutral-700: oklch(0.4 0.02 260);
+  --color-neutral-800: oklch(0.3 0.02 260);
+  --color-neutral-900: oklch(0.2 0.02 260); /* Stainless Steel */
+  --color-neutral-950: oklch(0.12 0.02 260);
+
+  /* Typography */
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  /* Type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
+
+  --spacing-4xl: 8rem;
+  --spacing-5xl: 12rem;
+  --spacing-6xl: 16rem;
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-dark: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
 @layer base {
+  @import "../../public/fonts/fonts.css";
+
+  :root {
+    --bg-color: var(--color-neutral-50);
+    --text-color: var(--color-neutral-900);
+    --surface-color: white;
+    --surface-border: var(--color-neutral-200);
+    --shadow-current: var(--shadow-sm);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Brand hue at low lightness, never #000 */
+      --bg-color: oklch(0.12 0.04 45);
+      --text-color: var(--color-neutral-50);
+      --surface-color: oklch(0.18 0.06 45);
+      --surface-border: oklch(0.25 0.08 45);
+      --shadow-current: var(--shadow-dark);
+      /* Raised accent chroma for dark mode */
+      --color-brand-500: oklch(0.65 0.25 45);
+    }
+  }
+
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  body {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
 
   main {
@@ -33,6 +119,42 @@
 
   img {
     object-fit: cover;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  h1 {
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -47,10 +169,18 @@
     line-height: 1.2;
     max-width: 72ch;
   }
-  .prose h1 { font-size: 2rem; }
-  .prose h2 { font-size: 1.75rem; }
-  .prose h3 { font-size: 1.5rem; }
-  .prose h4 { font-size: 1.25rem; }
+  .prose h1 {
+    font-size: 2rem;
+  }
+  .prose h2 {
+    font-size: 1.75rem;
+  }
+  .prose h3 {
+    font-size: 1.5rem;
+  }
+  .prose h4 {
+    font-size: 1.25rem;
+  }
 
   .prose p,
   .prose a,
@@ -95,20 +225,31 @@
     text-underline-offset: 0.1rem;
     cursor: pointer;
   }
-  .prose sup { vertical-align: super; font-size: smaller; }
-  .prose sub { vertical-align: sub; font-size: smaller; }
+  .prose sup {
+    vertical-align: super;
+    font-size: smaller;
+  }
+  .prose sub {
+    vertical-align: sub;
+    font-size: smaller;
+  }
   .prose table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1.5rem;
   }
-  .prose table p { margin-bottom: 0; padding-block: 0.5rem; }
+  .prose table p {
+    margin-bottom: 0;
+    padding-block: 0.5rem;
+  }
   .prose th,
   .prose td {
     border: 1px solid #e5e5e5;
     padding: 0.5rem;
   }
-  .prose thead { background-color: #f5f5f5; }
+  .prose thead {
+    background-color: #f5f5f5;
+  }
   .prose img {
     max-width: 100%;
     height: auto;
@@ -134,8 +275,16 @@
 
 @layer components {
   /* CloudCannon content editor alignment classes */
-  .align-left { text-align: left; }
-  .align-center { text-align: center; }
-  .align-right { text-align: right; }
-  .align-justify { text-align: justify; }
+  .align-left {
+    text-align: left;
+  }
+  .align-center {
+    text-align: center;
+  }
+  .align-right {
+    text-align: right;
+  }
+  .align-justify {
+    text-align: justify;
+  }
 }
