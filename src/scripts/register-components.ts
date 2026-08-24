@@ -12,6 +12,7 @@ import ProofStrip from "../components/proof-strip/proof-strip.astro";
 import Byline from "../components/byline/byline.astro";
 import SourcesList from "../components/sources-list/sources-list.astro";
 import Breadcrumbs from "../components/breadcrumbs/breadcrumbs.astro";
+import CaptureBand from "../components/capture-band/capture-band.astro";
 
 registerAstroComponent("Hero", Hero);
 registerAstroComponent("LeftRight", LeftRight);
@@ -25,3 +26,4 @@ registerAstroComponent("ProofStrip", ProofStrip);
 registerAstroComponent("Byline", Byline);
 registerAstroComponent("SourcesList", SourcesList);
 registerAstroComponent("Breadcrumbs", Breadcrumbs);
+registerAstroComponent("CaptureBand", CaptureBand);
