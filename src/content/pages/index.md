@@ -31,7 +31,7 @@ content_blocks:
       - title: "Specialized Engineering Jobs"
         description: "A focused hiring board for structural technicians, B1/B2 licensed engineers, and avionics specialists. No generic postings."
       - title: "Strictly Independent Data"
-        description: "Operating outside media licensing law, we provide a raw directory with no news, no editorials, and zero government affiliation."
+        description: "Operating outside media licensing law, we provide a raw directory with no news, no editorials, and zero government affiliation. Read our [Editorial Policy](/editorial-policy/), [How We Make Money](/how-we-make-money/), and [Blog](/blog/). Browse [Aviation Logistics](/directory/aviation-logistics/), [Structures Technicians](/jobs/structures-technicians/), [Avionics Specialists](/jobs/avionics-specialists/), [Quality Inspectors](/jobs/quality-inspectors/), and [CNC Programmers](/jobs/cnc-programmers/)."
   - _name: ComparisonTable
     heading: "Why primes choose our technical index over broad B2B directories."
     columns:
@@ -78,4 +78,6 @@ content_blocks:
     form: "listing"
   - _name: TextBlock
     text_content: "Find what you need. Navigate to our [Supplier Directory](/directory/) to source local vendors or browse our [Jobs Board](/jobs/) for your next engineering role."
+  - _name: TextBlock
+    text_content: "Check our [Blog](/blog/). See [About](/about/), [Editorial Policy](/editorial-policy/), and [How We Make Money](/how-we-make-money/)."
 ---

@@ -34,9 +34,11 @@ content_blocks:
       The directory is designed for procurement officers, supply chain managers, and primes seeking verified local capabilities without marketing fluff. The hiring board is built for recruiters needing specialized technical talent and for licensed engineers seeking high-quality roles.
 
       ### How is our independence maintained?
-      By generating revenue exclusively through listing fees and subscriptions, and by refusing sponsored content or advertorials, we ensure that our data index remains objective and uncompromised by external commercial pressure.
+      By generating revenue exclusively through listing fees and subscriptions, and by refusing sponsored content or advertorials, we ensure that our data index remains objective and uncompromised by external commercial pressure. Read our [Editorial Policy](/editorial-policy/) and [How We Make Money](/how-we-make-money/).
   - _name: SourcesList
     sources:
       - title: "UAE Open Data"
         url: "https://bayanat.ae/"
+  - _name: TextBlock
+    text_content: "Related roles: [Avionics Specialists](/jobs/avionics-specialists/), [CNC Programmers](/jobs/cnc-programmers/), [Quality Inspectors](/jobs/quality-inspectors/), and [Structures Technicians](/jobs/structures-technicians/). Check out our [Blog](/blog/) for more info."
 ---

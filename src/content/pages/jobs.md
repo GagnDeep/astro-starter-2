@@ -24,7 +24,7 @@ content_blocks:
     text_content: |
       The hiring board is exclusively focused on specialized engineers and technicians looking for high-quality MRO and aerospace manufacturing roles in the UAE. We cut through the noise of generic job platforms by only listing active roles that require specific aviation certifications and experience.
 
-      From B1/B2 licensed engineers and aircraft structures technicians to avionics specialists and aerospace CNC programmers, we vet every posting to ensure it meets our technical criteria. We require recruiters to list the specific aircraft type ratings or regulatory compliance standards (like Part-145 and AS9100) needed for the role.
+      From B1/B2 licensed engineers and aircraft structures technicians to avionics specialists and aerospace CNC programmers, we vet every posting to ensure it meets our technical criteria. We require recruiters to list the specific aircraft type ratings or regulatory compliance standards (like Part-145 and AS9100) needed for the role. Categories include [Structures Technicians](/jobs/structures-technicians/), [Avionics Specialists](/jobs/avionics-specialists/), [Quality Inspectors](/jobs/quality-inspectors/), [CNC Programmers](/jobs/cnc-programmers/), and [B1/B2 Licensed Engineers](/jobs/b1-b2-licensed-engineers/).
 
       Our platform generates revenue through paid recruiter job postings, ensuring that the roles listed are serious and actively hiring.
 
@@ -60,4 +60,6 @@ content_blocks:
         url: "https://www.gcaa.gov.ae/"
       - title: "EASA Part-66"
         url: "https://www.easa.europa.eu/en/domains/aircraft-products/continuing-airworthiness-organisations/part-66"
+  - _name: TextBlock
+    text_content: "See [Aviation Logistics](/directory/aviation-logistics/) and [Surface Treatment](/directory/surface-treatment/). Check out our [Blog](/blog/) for updates."
 ---
