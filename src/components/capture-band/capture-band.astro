@@ -1,0 +1,49 @@
+---
+import NewsletterForm from "../forms/newsletter-form.astro";
+
+export interface Props {
+  title: string;
+  text: string;
+  form_label?: string;
+}
+
+const { title, text, form_label = "newsletter" } = Astro.props;
+---
+
+<div class="capture-band bg-[var(--accent-color)] text-white border-y-2 border-[var(--border-color)]">
+  <div class="capture-band-container mx-auto flex flex-col md:flex-row items-center reveal">
+    <div class="flex-1">
+      <h2 class="text-white capture-band-title">{title}</h2>
+      <p class="text-white opacity-90 m-0">{text}</p>
+    </div>
+    <div class="capture-band-card flex-1 w-full bg-[var(--surface-color)] border-2 border-[var(--border-color)] shadow-sm">
+      <h3 class="text-[var(--text-color)] text-xl capture-band-subtitle">Stay informed</h3>
+      <NewsletterForm form={form_label} />
+    </div>
+  </div>
+</div>
+
+<style>
+  .capture-band {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+  .capture-band-container {
+    max-width: 56rem;
+    gap: 2rem;
+  }
+  .capture-band-title {
+    margin-bottom: 1rem;
+  }
+  .capture-band-card {
+    max-width: 28rem;
+    padding: 1.5rem;
+  }
+  .capture-band-subtitle {
+    margin-bottom: 1rem;
+  }
+</style>
