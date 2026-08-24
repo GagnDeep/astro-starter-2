@@ -3,8 +3,8 @@ title: "Custom Wire Harness Manufacturer Network"
 seo:
   page_description: "Source custom wire harnesses from IPC/WHMA-A-620 certified manufacturers. Pay-per-lead RFQ matching for EV, aerospace and prototyping."
   canonical_url: null
-  featured_image: null
-  featured_image_alt: null
+  featured_image: "/src/assets/images/ev-harness.jpg"
+  featured_image_alt: "EV Harness"
   author_twitter_handle: null
   open_graph_type: "website"
   no_index: false
@@ -13,14 +13,14 @@ hero_block:
   heading: "Stop searching for custom wire harness manufacturers."
   subheading: "Submit your RFQ once. We match your specifications with actively vetted, IPC/WHMA-A-620 certified wire harness manufacturers. Sourcing is entirely free for engineers and buyers."
   image:
-    image_path: "/src/assets/images/blog/featured-image-1.jpg"
+    image_path: "/src/assets/images/ev-harness.jpg"
     alt_text: "High-voltage EV wire harness prototyping"
   button:
     text: "Submit Your RFQ"
-    link: "#rfq"
+    link: "/contact/"
 content_blocks:
   - _name: "TextBlock"
-    text_content: "## The traditional wire harness sourcing problem\n\nFinding a reliable custom wire harness manufacturer takes weeks of searching, verifying certifications, and waiting for quotes. Most directories list thousands of unqualified shops, leaving you to manually verify their capabilities for high-voltage EV prototyping or aerospace assemblies.\n\nWe solve this by reversing the process. You define the engineering requirements, and we instantly match your RFQ with facilities that have proven expertise, verified capacity, and active IPC/WHMA-A-620 Class 2 or 3 certifications."
+    text_content: "## The traditional wire harness sourcing problem\n\n*Disclosure: We operate a pay-per-lead model where harness manufacturers pay to access verified RFQs. Sourcing is entirely free for buyers.*\n\nFinding a reliable custom wire harness manufacturer takes weeks of searching, verifying certifications, and waiting for quotes. Most directories list thousands of unqualified shops, leaving you to manually verify their capabilities for high-voltage EV prototyping or aerospace assemblies.\n\nWe solve this by reversing the process. You define the engineering requirements, and we instantly match your RFQ with facilities that have proven expertise, verified capacity, and active IPC/WHMA-A-620 Class 2 or 3 certifications."
   - _name: "BentoFeatures"
     heading: "Sourcing custom wire harnesses without the busywork."
     features:
