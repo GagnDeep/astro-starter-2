@@ -32,6 +32,7 @@ const { seo, title, article, breadcrumbs, post_hero } = Astro.props;
 // Derive article metadata from a blog post's hero block when not passed explicitly.
 const resolvedArticle: ArticleMeta | undefined =
   article ??
+  (seo as any)?.article ??
   (post_hero?.date
     ? {
         publishedTime: new Date(post_hero.date).toISOString(),

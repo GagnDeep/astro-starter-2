@@ -8,9 +8,11 @@ type Props = {
     content_blocks?: any[];
     hero_block?: any;
   };
+  article?: any;
 };
 
 const props = Astro.props.frontmatter;
+const article = Astro.props.article;
 
 const components: Record<string, Function> = {};
 const componentImports = import.meta.glob("../components/**/*.astro", {
@@ -25,7 +27,8 @@ const componentMap: Record<string, string> = {
   CtaBand: "cta-band/cta-band",
   FaqAccordion: "faq-accordion/faq-accordion",
   ProofStrip: "proof-strip/proof-strip",
-  SourcesList: "sources-list/sources-list"
+  SourcesList: "sources-list/sources-list",
+  ContactBlock: "contact-block/contact-block"
 };
 
 Object.entries(componentImports).forEach(([path, obj]) => {
@@ -39,7 +42,7 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 const HeroComponent = props.hero_block?._name ? components[props.hero_block._name] : null;
 ---
 
-<Layout {...props}>
+<Layout {...props} article={article}>
   {HeroComponent && (
     <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
       <HeroComponent {...props.hero_block} />

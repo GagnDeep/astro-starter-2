@@ -9,6 +9,7 @@ import CtaBand from "../components/cta-band/cta-band.astro";
 import FaqAccordion from "../components/faq-accordion/faq-accordion.astro";
 import ProofStrip from "../components/proof-strip/proof-strip.astro";
 import SourcesList from "../components/sources-list/sources-list.astro";
+import ContactBlock from "../components/contact-block/contact-block.astro";
 
 registerAstroComponent("Hero", Hero);
 registerAstroComponent("LeftRight", LeftRight);
@@ -19,3 +20,4 @@ registerAstroComponent("CtaBand", CtaBand);
 registerAstroComponent("FaqAccordion", FaqAccordion);
 registerAstroComponent("ProofStrip", ProofStrip);
 registerAstroComponent("SourcesList", SourcesList);
+registerAstroComponent("ContactBlock", ContactBlock);
