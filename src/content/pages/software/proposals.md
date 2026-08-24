@@ -56,6 +56,14 @@ content_blocks:
     heading: "How does proposal software protect margins?"
     text_content: |
       Proposal software protects margins by tying your recipe database directly to the quote. If the wholesale price of beef tenderloin spikes, the software automatically flags the margin drop on the proposal before you send it to the client. This prevents operators from honoring outdated pricing and losing money on high-end events.
+  - _name: "TextBlock"
+    heading: "Connecting Tools"
+    text_content: |
+      Find more software categories in the [Software Hub](/software/), or check out [Catering CRM](/software/crm/) to manage leads before the proposal stage.
+  - _name: "TextBlock"
+    heading: "Back to Home"
+    text_content: |
+      Find more resources on our [homepage](/).
   - _name: "SourcesList"
     heading: "Primary Sources"
     sources:

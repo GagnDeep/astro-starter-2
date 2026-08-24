@@ -67,6 +67,14 @@ content_blocks:
       A catering-specific CRM is essential because it tracks events, not just generic sales leads. It automatically triggers follow-ups based on the event date—reminding clients when final headcounts are due or when a tasting should be scheduled. Standard CRMs require massive customization to replicate this functionality.
 
       [Compare Catering CRMs](/software/crm/)
+  - _name: "TextBlock"
+    heading: "Explore More"
+    text_content: |
+      Dive deeper into specific tools: [Catering CRM](/software/crm/) or [Catering Proposal Generators](/software/proposals/).
+  - _name: "TextBlock"
+    heading: "Additional Knowledge"
+    text_content: |
+      Software is vital, but so is understanding your [Commissary Kitchen Requirements](/licensing/kitchen/) and how to write a solid [Catering Cancellation Policy Sample](/contracts/cancellations/).
   - _name: "SourcesList"
     heading: "Primary Sources"
     sources:
