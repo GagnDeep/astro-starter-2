@@ -29,7 +29,7 @@ content_blocks:
   - _name: "TextBlock"
     heading: "Independent OCI Application Help"
     text_content: |
-      Navigating the Overseas Citizen of India (OCI) application process from the UK can be complex and frustrating. The official guidelines often lack clarity, and a minor error in documentation or photograph specifications can lead to an immediate rejection at the VFS counter. Our independent checking service meticulously reviews your application against the latest requirements, ensuring everything is in perfect order before your appointment.
+      Navigating the Overseas Citizen of India (OCI) application process from the UK can be complex and frustrating. The official guidelines often lack clarity, and a minor error in documentation or photograph specifications can lead to an immediate rejection at the VFS counter. Our independent checking service meticulously reviews your application against the latest requirements, ensuring everything is in perfect order before your appointment. If you have questions, please [Contact Us](/contact/).
 
       ### Why Professional Checking Matters
       The requirements for an OCI card are rigorous. You must prove your Indian origin, navigate the online portal, and upload documents with strict size and format constraints. Without professional assistance, many applicants find themselves turned away due to simple oversights, resulting in wasted appointment fees and months of delay.

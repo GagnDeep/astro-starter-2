@@ -72,41 +72,62 @@ content_blocks:
 
       Many applicants are unaware of this requirement until they are turned away at the VFS counter. The process of obtaining an apostille can take weeks, significantly delaying your application. Our service identifies immediately whether any of your documents require an apostille or notarisation. We advise you on the necessary steps to obtain the correct legalisation, ensuring that your final bundle is fully compliant with international documentary standards as demanded by the High Commission.
 
+  - _name: "TextBlock"
+    heading: "Related Services"
+    text_content: |
+      For more information on other services, please return to our [OCI Application Assistance](/oci/). We also provide specific guidance for [New Applications](/oci/new-application/), [Renewals](/oci/renewal/), [Lost Passports](/oci/lost-passport/), and [Minor Applications](/oci/minor-application/).
+
+      ### Common Mistakes and Bureaucratic Realities
+      When dealing with consular services and application centres like VFS Global, it is essential to understand the underlying bureaucratic realities. The agents processing your documents are not empowered to exercise discretion or apply common sense to minor discrepancies. Their mandate is strictly to enforce a rigid checklist. If a rule specifies a white background for a photograph, an off-white or cream background will result in an immediate rejection. There is no appeals process at the counter; a rejection means you must forfeit your appointment, correct the error, and rebook, which can add weeks or months to your processing time.
+
+      This rigidity often causes immense frustration for applicants who are used to more flexible administrative systems in the UK. For instance, a common mistake is assuming that digital copies or uncertified photocopies are acceptable if the original document is lost. However, the High Commission typically requires primary, original evidence or legally certified replacements (such as apostilled duplicates). This is especially critical when dealing with name changes. If you have changed your name through marriage, deed poll, or during naturalisation as a British citizen, every single discrepancy between your current passport and your supporting documents must be bridged by formal legal paperwork.
+
+      ### Financial Implications of Rejections
+      The cost of an application failure goes beyond the immediate stress. While the High Commission fees are sometimes refunded if an application is not processed, the VFS service charges, courier fees, and any expedited processing fees (like Tatkaal) are almost always forfeited. Furthermore, if you require urgent travel and your application is delayed due to an avoidable documentation error, the cost of rebooking flights or missing crucial engagements in India can be astronomical.
+
+      Our document checking service is designed as an insurance policy against these hidden costs. By identifying and rectifying errors before you ever reach the VFS counter, we ensure that your application proceeds smoothly on its first submission. We have analyzed thousands of successful and rejected applications, allowing us to identify the obscure tripwires that catch out most applicants. Whether it is an unacceptable utility bill format, an improperly signed consent form, or a digital photograph that is a few kilobytes over the limit, we flag the issue and provide clear, actionable instructions on how to resolve it.
+
+      ### Preparing for Your VFS Appointment
+      Attending a VFS appointment can be a stressful experience, particularly given the often crowded conditions and strict security protocols. Arriving fully prepared is your best defense. We advise applicants to organize their physical documents precisely in the order requested by the online portal's checklist. Every required photocopy should be neatly printed, single-sided, and self-attested (signed by you) unless explicitly stated otherwise. Do not staple your documents, as this impedes the scanning process; use paper clips instead.
+
+      Furthermore, always bring a backup set of photographs and an extra copy of your primary identification documents. While our digital checks ensure your initial submission is correct, having physical backups can occasionally save an appointment if a VFS agent requests an additional copy for their internal records. Ultimately, the success of your application depends on your attention to detail. By partnering with our checking service, you leverage our expertise to transform a complex, daunting bureaucracy into a predictable, manageable process, securing your OCI, passport renewal, or visa with confidence and peace of mind.
+
   - _name: "ComparisonTable"
     heading: "New OCI Application Support"
     subheading: "The difference professional checking makes."
     table_html: |
       <table>
-        <thead>
-          <tr>
-            <th>Support Level</th>
-            <th>Self-Managed</th>
-            <th>NRI Direct UK Support</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Portal Navigation</strong></td>
-            <td>Struggle with errors</td>
-            <td>Guided assistance</td>
-          </tr>
-          <tr>
-            <td><strong>Document Verification</strong></td>
-            <td>None</td>
-            <td>Full audit of origin proof & surrender certs</td>
-          </tr>
-          <tr>
-            <td><strong>Photo Compliance</strong></td>
-            <td>High risk of rejection</td>
-            <td>Pre-checked against specs</td>
-          </tr>
-          <tr>
-            <td><strong>Checking Fee (Verified May 2024)</strong></td>
-            <td>N/A</td>
-            <td>£75 Flat Fee</td>
-          </tr>
-        </tbody>
+      <thead>
+      <tr>
+      <th>Support Level</th>
+      <th>Self-Managed</th>
+      <th>NRI Direct UK Support</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><strong>Portal Navigation</strong></td>
+      <td>Struggle with errors</td>
+      <td>Guided assistance</td>
+      </tr>
+      <tr>
+      <td><strong>Document Verification</strong></td>
+      <td>None</td>
+      <td>Full audit of origin proof & surrender certs</td>
+      </tr>
+      <tr>
+      <td><strong>Photo Compliance</strong></td>
+      <td>High risk of rejection</td>
+      <td>Pre-checked against specs</td>
+      </tr>
+      <tr>
+      <td><strong>Checking Fee (Verified May 2024)</strong></td>
+      <td>N/A</td>
+      <td>£75 Flat Fee</td>
+      </tr>
+      </tbody>
       </table>
+
   - _name: "SourcesList"
     heading: "Primary Sources & Citations"
     sources:

@@ -52,6 +52,18 @@ content_blocks:
     image:
       image_path: "/src/assets/images/blog/featured-image-4.jpg"
       alt_text: "Categorized application support hubs"
+  - _name: "LeftRight"
+    heading: "Explore Visa Services"
+    text_content: |
+      We offer dedicated guides for various Indian visa applications. Select the service that matches your situation for a detailed breakdown of the requirements.
+
+      - [Tourist e-Visa Guidance](/visa/tourist-evisa/)
+      - [Entry Visa (Spouses)](/visa/entry-visa/)
+      - [OCI Application Assistance](/oci/)
+      - [Indian Passport Renewal](/passport/)
+    image:
+      image_path: "/src/assets/images/pages/document-checking.svg"
+      alt_text: "Visa Services"
   - _name: "CtaBand"
     heading: "Ready to secure your application?"
     text_content: "Don't risk a rejection. Submit your details today for a professional review of your OCI or passport application."

@@ -63,7 +63,7 @@ content_blocks:
       A photograph taken in a standard UK photo booth will almost always be rejected, as these booths are calibrated for UK passport standards, which differ significantly from Indian standards. A photograph printed on the wrong type of paper, or one with a slight shadow behind the ear, will be summarily dismissed. Our audit includes a precise digital or physical measurement of your photographs against these strict criteria. If your photos do not comply, we will tell you exactly why and what you need to instruct your photographer to do to fix them.
 
       ### Translating Bureaucracy into Action
-      When you use our document checking service, you do not just receive a pass or fail grade. You receive a comprehensive, actionable report. If we identify an error or a missing document, we explain clearly and concisely how to rectify the situation. We provide specific instructions, not vague generalities.
+      When you use our document checking service, you do not just receive a pass or fail grade. You receive a comprehensive, actionable report. If we identify an error or a missing document, we explain clearly and concisely how to rectify the situation. We provide specific instructions, not vague generalities. For transparency, read [How We Make Money](/how-we-make-money/).
 
       For example, if your proof of address is rejected because it is a mobile phone bill, we will list the specific alternatives that are guaranteed to be accepted. If an affidavit is required, we will guide you on the necessary wording and formatting. Our goal is not merely to find faults, but to provide you with the exact roadmap you need to construct a flawless application. We empower you to attend your VFS appointment with absolute confidence, knowing that your paperwork is unassailable.
 
@@ -113,6 +113,18 @@ content_blocks:
       - title: "VFS Global UK - General Guidelines"
         url: "https://visa.vfsglobal.com/gbr/en/ind/"
         date_accessed: "2024-05-10"
+  - _name: "LeftRight"
+    heading: "Explore Visa Services"
+    text_content: |
+      We offer dedicated guides for various Indian visa applications. Select the service that matches your situation for a detailed breakdown of the requirements.
+
+      - [Tourist e-Visa Guidance](/visa/tourist-evisa/)
+      - [Entry Visa (Spouses)](/visa/entry-visa/)
+      - [OCI Application Assistance](/oci/)
+      - [Indian Passport Renewal](/passport/)
+    image:
+      image_path: "/src/assets/images/pages/document-checking.svg"
+      alt_text: "Visa Services"
   - _name: "CtaBand"
     heading: "Book Your Document Check"
     text_content: "Submit your details below to start the audit process."
