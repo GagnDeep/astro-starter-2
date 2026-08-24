@@ -1,0 +1,50 @@
+---
+import { ChevronDown } from "@lucide/astro";
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface Props {
+  heading: string;
+  items: FAQItem[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<section class="py-16 bg-surface-color" data-editable="faq-accordion">
+  <div class="mx-auto max-w-3xl px-4 sm:px-8">
+    <h2 class="mb-10 font-bold text-center">{heading}</h2>
+
+    <div class="space-y-4">
+      {items.map((item) => (
+        <details class="group bg-bg-color border border-border-color rounded-sm shadow-sm hover-transition">
+          <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-brand-900 focus-visible">
+            <span class="text-lg">{item.question}</span>
+            <span class="transition group-open:rotate-180 ml-4 flex-shrink-0 text-accent-600">
+              <ChevronDown class="w-6 h-6" aria-hidden="true" />
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-neutral-700 animate-fade-in border-t border-border-color pt-4">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

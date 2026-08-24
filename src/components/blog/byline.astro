@@ -1,0 +1,42 @@
+---
+import site from "../../../data/site.json";
+
+export interface Props {
+  author: string;
+  date: string | Date;
+  updated_date?: string | Date;
+}
+
+const { author, date, updated_date } = Astro.props;
+
+const authorData = site.authors.find((a) => a.name === author) || {
+  name: author,
+  role: "Author",
+  slug: "#"
+};
+
+const formatDate = (dateValue: string | Date) => {
+  return new Date(dateValue).toLocaleDateString(site.locale.replace("_", "-"), {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+---
+
+<div class="flex items-center gap-4 py-6 border-b border-border-color mb-8" data-editable="byline">
+  <div>
+    <p class="font-medium text-brand-900">
+      By <a href={`/author/${authorData.slug}`} class="text-brand-900 hover:text-accent-600 transition-colors">{authorData.name}</a>
+    </p>
+    <div class="text-sm text-neutral-600 flex flex-wrap gap-2 items-center mt-1">
+      <time datetime={new Date(date).toISOString()}>{formatDate(date)}</time>
+      {updated_date && (
+        <>
+          <span aria-hidden="true">&bull;</span>
+          <span class="italic">Updated <time datetime={new Date(updated_date).toISOString()}>{formatDate(updated_date)}</time></span>
+        </>
+      )}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+---
+export interface Column {
+  label: string;
+  key: string;
+}
+
+export interface Row {
+  [key: string]: string | number;
+}
+
+export interface Props {
+  heading: string;
+  description?: string;
+  columns: Column[];
+  rows: Row[];
+}
+
+const { heading, description, columns, rows } = Astro.props;
+---
+
+<section class="py-16 bg-bg-color" data-editable="comparison-table">
+  <div class="mx-auto max-w-6xl px-4 sm:px-8">
+    <div class="mb-8">
+      <h2 class="font-bold">{heading}</h2>
+      {description && <p class="text-neutral-700 mt-2">{description}</p>}
+    </div>
+
+    <div class="overflow-x-auto rounded-sm border border-border-color shadow-sm">
+      <table class="w-full text-left border-collapse min-w-max">
+        <thead>
+          <tr class="bg-surface-color border-b border-border-color">
+            {columns.map((col, index) => (
+              <th class={`p-4 font-bold text-brand-900 ${index === 0 ? 'bg-surface-color sticky left-0 z-10 border-r border-border-color' : ''}`}>
+                {col.label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border-color bg-white">
+          {rows.map((row) => (
+            <tr class="hover:bg-neutral-50 transition-colors">
+              {columns.map((col, index) => (
+                <td class={`p-4 text-neutral-800 ${index === 0 ? 'bg-white font-medium sticky left-0 z-10 border-r border-border-color' : ''}`}>
+                  {row[col.key]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
