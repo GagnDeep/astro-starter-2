@@ -121,4 +121,6 @@ content_blocks:
         url: "https://p-r-i.org/nadcap/"
       - title: "EASA Part-145"
         url: "https://www.easa.europa.eu/en/domains/aircraft-products/continuing-airworthiness-organisations/part-145"
+  - _name: TextBlock
+    text_content: "Check our [Blog](/blog/). See [About](/about/), [Editorial Policy](/editorial-policy/), and [How We Make Money](/how-we-make-money/)."
 ---

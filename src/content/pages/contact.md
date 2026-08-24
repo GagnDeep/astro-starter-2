@@ -35,4 +35,6 @@ content_blocks:
     text: "Fill out the form below to reach our technical and account support team."
     cta_text: "Submit Request"
     form: "contact"
+  - _name: TextBlock
+    text_content: "Related roles: [Avionics Specialists](/jobs/avionics-specialists/), [CNC Programmers](/jobs/cnc-programmers/), [Quality Inspectors](/jobs/quality-inspectors/), and [Structures Technicians](/jobs/structures-technicians/)."
 ---

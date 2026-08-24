@@ -32,7 +32,7 @@ content_blocks:
       All verified machine shops must demonstrate the capability to hold tolerances required by standard aerospace primes. Facilities undergo an initial equipment audit via our Data Team to confirm their milling and turning centers meet the stated specifications before their listing goes live.
 
       ### Can these facilities handle exotic alloys?
-      Yes. A core verification metric is the facility's proven experience and tooling capability for machining Inconel, Titanium, and high-nickel aerospace alloys, beyond standard aluminum processing.
+      Yes. A core verification metric is the facility's proven experience and tooling capability for machining Inconel, Titanium, and high-nickel aerospace alloys, beyond standard aluminum processing. Related: [Pricing](/pricing/), [About](/about/), and [Blog](/blog/).
   - _name: ComparisonTable
     heading: "CNC Machining Verification Standard"
     columns:
