@@ -35,6 +35,18 @@ content_blocks:
     heading: "What hidden costs erode corporate drop-off margins?"
     text_content: |
       Hidden costs that erode corporate drop-off margins include high-end disposable packaging, chafing dish fuel (Sternos), and driver wait times at security desks. Always cost out the exact price of the clamshells, cutlery kits, and bags used per order, and factor them into your baseline overhead calculations.
+  - _name: "TextBlock"
+    heading: "More Pricing Guides"
+    text_content: |
+      Return to the [Pricing Hub](/pricing/) for overall strategy, or compare with one-off event strategies in [Wedding Catering Pricing](/pricing/weddings/).
+  - _name: "TextBlock"
+    heading: "Additional Disclosures"
+    text_content: |
+      Read [About](/about/) our mission, check the [Blog](/blog/) for updates, or meet the [Editorial Team](/authors/editorial-team/) guiding our content.
+  - _name: "TextBlock"
+    heading: "Start Here"
+    text_content: |
+      Return to the [homepage](/) to see the full operational roadmap.
   - _name: "SourcesList"
     heading: "Primary Sources"
     sources:

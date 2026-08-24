@@ -37,6 +37,14 @@ content_blocks:
     heading: "How should you price labor for an off-site event?"
     text_content: |
       Labor for off-site events should be billed directly to the client as a separate line item, rather than baked into the food price. Calculate the total hourly cost of your captains, servers, bartenders, and kitchen staff, plus a 20% to 30% markup to cover payroll taxes, workers' compensation, and administrative booking time.
+  - _name: "TextBlock"
+    heading: "Detailed Pricing Guides"
+    text_content: |
+      Explore [Corporate Catering Pricing](/pricing/corporate/) for B2B accounts, [Wedding Catering Pricing](/pricing/weddings/) for events, or check [Catering Profit Margins](/pricing/margins/) benchmarks.
+  - _name: "TextBlock"
+    heading: "Other Resources"
+    text_content: |
+      In addition to pricing, consider [Catering CRM](/software/crm/) solutions or [Food Allergen Training Certification](/certifications/allergen/) to streamline your operations.
   - _name: "SourcesList"
     heading: "Primary Sources"
     sources:

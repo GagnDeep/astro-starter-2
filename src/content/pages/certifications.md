@@ -54,6 +54,14 @@ content_blocks:
     heading: "Why is ANSI accreditation critical?"
     text_content: |
       ANSI (American National Standards Institute) accreditation is critical because health departments will not recognize unaccredited online courses. If your manager takes a generic online quiz that lacks ANSI-CFP approval, your catering operation will fail its health inspection for operating without a valid Person in Charge, potentially resulting in immediate suspension of your commissary permit.
+  - _name: "TextBlock"
+    heading: "Specific Certifications"
+    text_content: |
+      Learn about [Food Safety Manager Certification](/certifications/manager/) requirements, or [Allergen Training](/certifications/allergen/) mandates.
+  - _name: "TextBlock"
+    heading: "More Operational Needs"
+    text_content: |
+      Also consider reviewing [Commissary Kitchen Requirements](/licensing/kitchen/) for prep compliance.
   - _name: "SourcesList"
     heading: "Primary Sources"
     sources:

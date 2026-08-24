@@ -56,6 +56,10 @@ content_blocks:
     heading: "What are the most important CRM features for caterers?"
     text_content: |
       The most important CRM features for caterers include automated pipeline stages, robust email tracking, and deep integration with proposal generators. When a client signs a digital proposal, the CRM should automatically move them from "Lead" to "Booked," issue an invoice for the initial deposit, and block out the date on the production calendar.
+  - _name: "TextBlock"
+    heading: "Comparing Software Options"
+    text_content: |
+      Return to the [Software Hub](/software/) for overall tool strategies, or explore [Catering Proposal Generators](/software/proposals/) for generating BEOs.
   - _name: "SourcesList"
     heading: "Primary Sources"
     sources:

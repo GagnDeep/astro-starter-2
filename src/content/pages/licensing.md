@@ -39,6 +39,14 @@ content_blocks:
       An off-premise liquor permit allows you to serve alcohol at a location other than your licensed physical establishment. This requires navigating host liability, dram shop laws, and often securing a one-day special event permit from the state liquor authority. Serving alcohol off-site demands rigorous staff training (like TIPS or ServSafe Alcohol) to prevent serving minors or visibly intoxicated guests.
 
       [Read more about liquor licensing](/licensing/liquor/)
+  - _name: "TextBlock"
+    heading: "Related Licensing Topics"
+    text_content: |
+      Read more about [Commissary Kitchen Requirements](/licensing/kitchen/) for prep facilities, or [Catering Liquor License](/licensing/liquor/) for alcohol service.
+  - _name: "TextBlock"
+    heading: "Further Compliance"
+    text_content: |
+      You should also review [Catering Cancellation Policy Sample](/contracts/cancellations/) information and explore [Catering Proposal Generators](/software/proposals/) to keep everything legal and efficient.
   - _name: "SourcesList"
     heading: "Primary Sources"
     sources:

@@ -37,6 +37,10 @@ content_blocks:
     heading: "How do venue commission agreements work?"
     text_content: |
       Venue commission agreements require the caterer to pay the venue a percentage of gross food and beverage sales (typically 10% to 15%) for the right to operate on their property. Operators must decide whether to absorb this cost, impacting net margin, or explicitly pass it through as a "Venue Administrative Fee" on the client's invoice.
+  - _name: "TextBlock"
+    heading: "Specific Contract Clauses"
+    text_content: |
+      Review [Catering Cancellation Policy](/contracts/cancellations/) details, or [Venue Agreements](/contracts/venues/) for third-party properties.
   - _name: "SourcesList"
     heading: "Primary Sources"
     sources:
