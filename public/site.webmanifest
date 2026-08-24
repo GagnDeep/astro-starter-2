@@ -1,13 +1,13 @@
 {
-  "name": "Astro Starter",
-  "short_name": "CloudCannon",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
+  "name": "Institute of Retirement",
+  "short_name": "Institute of Retirement",
+  "description": "A fully disclosed, honestly published comparison of countries for near-retirees deciding where to retire abroad, scored on cost of living, visas, healthcare, and tax.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#091223",
+  "theme_color": "#091223",
   "icons": [
     {
       "src": "/meta/icon-192.png",
