@@ -14,7 +14,8 @@
     "assets": "node scripts/generate-icons.mjs && node scripts/generate-og.mjs && node scripts/check-assets.mjs",
     "assets:icons": "node scripts/generate-icons.mjs",
     "assets:og": "node scripts/generate-og.mjs",
-    "assets:check": "node scripts/check-assets.mjs"
+    "assets:check": "node scripts/check-assets.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.0",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "cheerio": "^1.2.0",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3"

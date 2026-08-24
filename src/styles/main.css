@@ -207,12 +207,13 @@
   .align-justify { text-align: justify; }
 
   /* Motion: one-shot scroll reveal (12-20px plus opacity, 300-500ms) */
-  .scroll-reveal {
+  /* Hide scroll-reveal elements initially ONLY if JS is enabled */
+  .js .scroll-reveal {
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 400ms ease-out, transform 400ms ease-out;
   }
-  .scroll-reveal.is-visible {
+  .js .scroll-reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
