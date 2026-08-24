@@ -55,19 +55,4 @@ content_blocks:
         alt_text: Example company logo 2
       - image_path: /src/assets/images/logo-placeholder-3.png
         alt_text: Example company logo 3
-  - _name: FaqAccordion
-    heading: Frequently asked questions about federal contracting.
-    faqs:
-      - question: Do I need to pay to register on SAM.gov?
-        answer: No, SAM.gov registration is completely free. You should never pay a third-party service to register your business on the System for Award Management. The official government website does not charge any fees for creating or maintaining your entity registration.
-      - question: How long does it take to get a GSA Schedule?
-        answer: Securing a GSA Schedule typically takes between six and twelve months from start to finish. This timeline includes preparing your offer, gathering commercial sales practices data, submitting the proposal, and negotiating with a GSA contracting officer.
-      - question: What is a DCAA compliant accounting system?
-        answer: A DCAA compliant accounting system is one that properly segregates direct from indirect costs according to the SF1408 criteria. It ensures that the government is only billed for allowable costs on cost-reimbursement contracts, requiring strict timekeeping and expense tracking.
-  - _name: CtaBand
-    heading: Ready to accelerate your federal contracting journey?
-    text_content: Connect with specialized GovCon consultants who can help you navigate complex registrations, certifications, and compliance requirements.
-    button:
-      text: Get Expert Assistance
-      link: /capture-form/
 ---

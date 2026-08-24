@@ -20,6 +20,7 @@ export interface PageSchemaOptions {
   seo: ResolvedSeo;
   siteUrl: URL | undefined;
   breadcrumbs?: BreadcrumbItem[];
+  itemListElements?: { name: string, description?: string }[];
 }
 
 const id = (base: string, hash: string) => `${new URL("/", base).toString()}#${hash}`;
@@ -56,6 +57,20 @@ function organizationNode(base: string): JsonLdNode {
   return node;
 }
 
+
+function itemListNode(base: string, items: { name: string, description?: string }[]): JsonLdNode {
+  return {
+    "@type": "ItemList",
+    "@id": id(base, "itemlist"),
+    itemListElement: items.map((item, index) => prune({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      description: item.description
+    }))
+  };
+}
+
 function breadcrumbNode(base: string, items: BreadcrumbItem[]): JsonLdNode {
   return {
     "@type": "BreadcrumbList",
@@ -74,6 +89,7 @@ export function buildSchemaGraph({
   seo,
   siteUrl,
   breadcrumbs,
+  itemListElements,
 }: PageSchemaOptions): JsonLdNode | null {
   if (seo.noIndex) return null;
 
@@ -81,7 +97,7 @@ export function buildSchemaGraph({
   const isArticle = Boolean(seo.article);
 
   const pageNode: JsonLdNode = {
-    "@type": isArticle ? "BlogPosting" : "WebPage",
+    "@type": isArticle ? (seo.openGraphType === "article" ? "Article" : "BlogPosting") : "WebPage",
     "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
     url: seo.canonical,
     name: seo.rawTitle,
@@ -94,13 +110,31 @@ export function buildSchemaGraph({
       : undefined,
   };
 
-  if (isArticle) {
+  if (isArticle || seo.openGraphType === "article" || seo.openGraphType === "profile") {
     pageNode.image = seo.image || undefined;
-    pageNode.datePublished = seo.article?.publishedTime;
-    pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
+    pageNode.datePublished = seo.article?.publishedTime || new Date().toISOString();
+    pageNode.dateModified = seo.article?.modifiedTime ?? pageNode.datePublished;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      // Find author slug from site.json
+      const authorObj = site.authors?.find(a => a.name === seo.article?.author);
+      let authorUrl = absoluteUrl(`/authors/${authorObj ? authorObj.slug : seo.article.author.toLowerCase().replace(/\s+/g, '-')}/`, base);
+
+      pageNode.author = {
+        "@type": "Person",
+        "@id": authorUrl,
+        name: seo.article.author,
+        url: authorUrl
+      };
+    } else {
+        const authorObj = site.authors?.find(a => a.name === site.default_author);
+        let authorUrl = absoluteUrl(`/authors/${authorObj ? authorObj.slug : site.default_author.toLowerCase().replace(/\s+/g, '-')}/`, base);
+        pageNode.author = {
+            "@type": "Person",
+            "@id": authorUrl,
+            name: site.default_author,
+            url: authorUrl
+          };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
@@ -108,8 +142,26 @@ export function buildSchemaGraph({
     pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
   }
 
+  // Update schema type based on openGraphType for non-article
+  if (!isArticle) {
+      if (seo.openGraphType === "profile") {
+        pageNode["@type"] = "ProfilePage";
+        const authorObj = site.authors?.find(a => seo.canonical.includes(a.slug));
+        if (authorObj) {
+            pageNode.mainEntity = {
+                "@type": "Person",
+                "@id": seo.canonical,
+                name: authorObj.name,
+                description: authorObj.bio,
+                jobTitle: authorObj.role
+            }
+        }
+      }
+  }
+
   const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
+  if (itemListElements?.length) graph.push(itemListNode(base, itemListElements));
 
   return { "@context": "https://schema.org", "@graph": graph };
 }

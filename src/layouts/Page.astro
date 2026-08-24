@@ -40,9 +40,15 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 });
 
 const HeroComponent = props.hero_block?._name ? components[props.hero_block._name] : null;
+
+const comparisonBlocks = props.content_blocks?.filter(b => b._name === "ComparisonTable") || [];
+let itemListElements;
+if (comparisonBlocks.length > 0) {
+  itemListElements = comparisonBlocks[0].rows?.map((row: any) => ({ name: row.label, description: row.values?.join(", ") }));
+}
 ---
 
-<Layout {...props}>
+<Layout {...props} itemListElements={itemListElements}>
   {HeroComponent && (
     <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
       <HeroComponent {...props.hero_block} />
