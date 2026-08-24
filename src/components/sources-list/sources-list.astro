@@ -1,0 +1,28 @@
+---
+export interface Props {
+  sources: {
+    title: string;
+    url?: string;
+    date_accessed?: string;
+  }[];
+}
+
+const { sources = [] } = Astro.props;
+---
+<div class="border-t-2 border-(--border-color) pt-8 mt-16" data-component="SourcesList">
+  <h3 class="text-xl mb-4">Sources & Citations</h3>
+  <ol class="list-decimal pl-5 space-y-2 font-mono text-sm text-(--text-muted)">
+    {sources.map((source) => (
+      <li>
+        {source.url ? (
+          <a href={source.url} class="text-(--text-main) underline hover:text-(--color-brand)" rel="nofollow sponsored">{source.title}</a>
+        ) : (
+          <span class="text-(--text-main)">{source.title}</span>
+        )}
+        {source.date_accessed && (
+          <span class="ml-2">Accessed: {source.date_accessed}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</div>

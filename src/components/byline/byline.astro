@@ -1,0 +1,26 @@
+---
+export interface Props {
+  author: string;
+  role?: string;
+  date: string;
+  image?: string;
+}
+
+const { author, role, date, image } = Astro.props;
+---
+<div class="flex items-center gap-4 py-6 border-y-2 border-(--border-color) my-8" data-component="Byline">
+  {image && (
+    <img src={image} alt={author} class="w-16 h-16 rounded-none border-2 border-(--border-color) object-cover grayscale" />
+  )}
+  <div>
+    <p class="font-bold text-lg m-0 leading-tight">{author}</p>
+    {(role || date) && (
+      <p class="text-(--text-muted) font-mono text-sm m-0 mt-1">
+        {role && <span>{role} • </span>}
+        <time datetime={new Date(date).toISOString()}>
+          {new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(date))}
+        </time>
+      </p>
+    )}
+  </div>
+</div>

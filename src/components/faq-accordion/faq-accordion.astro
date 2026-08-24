@@ -1,0 +1,35 @@
+---
+export interface Props {
+  heading?: string;
+  items: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+const { heading, items = [] } = Astro.props;
+---
+<section class="border-b-2 border-(--border-color) bg-(--bg-surface) py-16 lg:py-24" data-component="FaqAccordion">
+  <div class="mx-auto max-w-4xl px-8">
+    {heading && <h2 class="mb-12 reveal text-4xl">{heading}</h2>}
+
+    <div class="flex flex-col gap-4">
+      {items.map((item) => (
+        <details class="brutal-card group bg-white reveal">
+          <summary class="p-6 text-xl font-semibold cursor-pointer list-none flex justify-between items-center focus-visible outline-offset-[-2px] marker:hidden [&::-webkit-details-marker]:hidden">
+            <span>{item.question}</span>
+            <span class="text-2xl text-(--text-muted) group-open:rotate-45 transition-transform duration-200" aria-hidden="true">+</span>
+          </summary>
+          <div class="px-6 pb-6 pt-2 font-mono text-(--text-muted) border-t-2 border-(--border-color) mt-2">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+</style>

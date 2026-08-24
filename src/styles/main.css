@@ -7,35 +7,124 @@
 @theme {
   --color-brand: oklch(60% 0.15 250);
   --color-support: oklch(55% 0.15 285);
-  --color-neutral-dark: oklch(20% 0.02 260);
-  --color-neutral-light: oklch(95% 0.01 260);
+
+  --color-neutral-50: oklch(98% 0.005 260);
+  --color-neutral-100: oklch(95% 0.01 260);
+  --color-neutral-200: oklch(85% 0.01 260);
+  --color-neutral-300: oklch(75% 0.015 260);
+  --color-neutral-400: oklch(60% 0.015 260);
+  --color-neutral-500: oklch(45% 0.015 260);
+  --color-neutral-600: oklch(35% 0.02 260);
+  --color-neutral-700: oklch(25% 0.02 260);
+  --color-neutral-800: oklch(20% 0.02 260);
+  --color-neutral-900: oklch(15% 0.02 260);
+  --color-neutral-950: oklch(12% 0.02 260);
+
+  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --spacing-4xs: 0.125rem;
+  --spacing-3xs: 0.25rem;
+  --spacing-2xs: 0.5rem;
+  --spacing-xs: 0.75rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+  --spacing-4xl: 8rem;
+
+  --radius-sm: 0; /* Brutalist: sharp edges */
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+
+  --shadow-sm: 2px 2px 0px 0px var(--color-neutral-900);
+  --shadow-md: 4px 4px 0px 0px var(--color-neutral-900);
+  --shadow-lg: 8px 8px 0px 0px var(--color-neutral-900);
 }
 
-/*
- * CASCADE RULE — read before adding CSS to this file.
- *
- * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
- * beats *any* cascade layer regardless of specificity or source order, so a
- * bare reset like
- *
- *   * { margin: 0; padding: 0; }        <-- outside any @layer
- *
- * silently kills every `p-*`, `px-*`, `m-*`, `mx-auto` and `space-y-*` on the
- * site, while colours, flex and grid keep working — which makes it look like
- * "Tailwind is half broken" rather than a cascade problem.
- *
- * Therefore: every rule in this file stays inside `@layer base` or
- * `@layer components`. No element/reset rule may be written at the top level.
- * `pnpm build` warns if an unlayered spacing reset reaches the output.
- *
- * A `*` reset is not needed anyway: Tailwind's preflight (in `@layer base`)
- * already sets `margin: 0; padding: 0; box-sizing: border-box` on
- * `*, ::before, ::after, ::backdrop`.
- */
-
 @layer base {
+  @font-face {
+    font-family: 'Geist';
+    src: url('/fonts/geist/Geist-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('/fonts/geist/Geist-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('/fonts/geist/Geist-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist Mono';
+    src: url('/fonts/geist/GeistMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Size-adjust fallback */
+  @font-face {
+    font-family: 'Geist Fallback';
+    src: local('Arial');
+    ascent-override: 90%;
+    descent-override: 20%;
+    line-gap-override: 0%;
+    size-adjust: 100%;
+  }
+
+  :root {
+    --bg-surface: var(--color-neutral-50);
+    --text-main: var(--color-neutral-900);
+    --text-muted: var(--color-neutral-600);
+    --border-color: var(--color-neutral-300);
+    --focus-ring: var(--color-brand);
+    --shadow-color: var(--color-neutral-900);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Dark mode: non-inverted, surfaces are brand hue at low lightness, raise accent chroma, 1px top highlight */
+      --bg-surface: oklch(15% 0.04 250); /* Brand hue, low lightness */
+      --text-main: var(--color-neutral-100);
+      --text-muted: var(--color-neutral-400);
+      --border-color: oklch(25% 0.04 250);
+      --focus-ring: oklch(65% 0.25 250); /* Raised chroma brand */
+      --color-brand: oklch(65% 0.25 250); /* Raised chroma brand */
+      --shadow-color: transparent;
+    }
+  }
+
   html {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+  }
+
+  body {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    max-width: 65ch;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      max-width: 100%; /* Override max-width on body for large screens to allow full bleed components */
+    }
   }
 
   main {
@@ -45,101 +134,208 @@
   img {
     object-fit: cover;
   }
+
+  /* Focus visible WCAG AA */
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer components {
+  /* Display & Headings */
+  .display-title {
+    font-family: var(--font-sans);
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+  h2 { font-size: 2rem; letter-spacing: -0.01em; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+
+  /* Body measure cap */
+  p, li, blockquote {
+    max-width: 65ch;
+    text-wrap: pretty;
+  }
+
+  /* Prose styling */
   .prose h1,
   .prose h2,
   .prose h3,
   .prose h4 {
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-wrap: balance;
-    line-height: 1.2;
-    max-width: 72ch;
-  }
-  .prose h1 { font-size: 2rem; }
-  .prose h2 { font-size: 1.75rem; }
-  .prose h3 { font-size: 1.5rem; }
-  .prose h4 { font-size: 1.25rem; }
-
-  .prose p,
-  .prose a,
-  .prose ol li,
-  .prose ul li {
-    line-height: 1.75;
-    max-width: 72ch;
-    text-wrap: pretty;
+    margin-bottom: var(--spacing-sm);
   }
   .prose p,
   .prose ol,
   .prose ul {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-md);
   }
   .prose li p {
-    margin-bottom: 0.125rem;
+    margin-bottom: var(--spacing-3xs);
   }
   .prose li {
-    margin-bottom: 0.25rem;
-    max-width: fit-content;
+    margin-bottom: var(--spacing-2xs);
   }
   .prose blockquote {
     font-style: italic;
-    border-left: 5px solid #000;
-    padding-inline: 1rem;
+    border-left: 4px solid var(--border-color);
+    padding-inline: var(--spacing-md);
     margin-inline: 0;
-    margin-block: 1rem;
+    margin-block: var(--spacing-md);
   }
   .prose ul li {
-    margin-inline: 1rem;
-    padding-block: 0.125rem;
+    margin-inline: var(--spacing-md);
+    padding-block: var(--spacing-4xs);
     list-style: disc;
   }
   .prose ol li {
     list-style-type: decimal;
-    padding-block: 0.125rem;
-    margin-inline: 1rem;
+    padding-block: var(--spacing-4xs);
+    margin-inline: var(--spacing-md);
   }
   .prose a {
-    color: #034ad8;
+    color: var(--color-brand);
     text-decoration: underline;
-    text-underline-offset: 0.1rem;
+    text-underline-offset: 2px;
     cursor: pointer;
+  }
+  .prose a:hover {
+    color: var(--color-support);
   }
   .prose sup { vertical-align: super; font-size: smaller; }
   .prose sub { vertical-align: sub; font-size: smaller; }
   .prose table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--border-color);
   }
-  .prose table p { margin-bottom: 0; padding-block: 0.5rem; }
+  .prose table p { margin-bottom: 0; padding-block: var(--spacing-2xs); }
   .prose th,
   .prose td {
-    border: 1px solid #e5e5e5;
-    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-2xs);
   }
-  .prose thead { background-color: #f5f5f5; }
+  .prose thead { background-color: var(--bg-surface); }
   .prose img {
     max-width: 100%;
     height: auto;
-    margin: 1rem auto;
+    margin: var(--spacing-md) 0;
+    border: 1px solid var(--border-color);
   }
   .prose hr {
     border: 0;
-    border-top: 1px solid #d4d4d4;
-    margin: 1.5rem 0;
+    border-top: 1px solid var(--border-color);
+    margin: var(--spacing-lg) 0;
   }
   .prose pre {
-    margin-block: 1.5rem;
-    padding: 1rem;
+    margin-block: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: var(--color-neutral-900);
+    color: var(--color-neutral-50);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
   }
   .prose p > code,
   .prose li > code {
-    background-color: #f5f5f5;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
     color: inherit;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+    padding: 0.125rem 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+
+  /* Brutalist utilities */
+  .brutal-card {
+    background-color: var(--bg-surface);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .brutal-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .brutal-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-brand);
+    color: white;
+    border: 2px solid var(--color-neutral-900);
+    padding: var(--spacing-2xs) var(--spacing-md);
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+  }
+
+  .brutal-button:hover {
+    background-color: var(--color-support);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .brutal-card, .brutal-button {
+      box-shadow: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.15); /* 1px top highlight */
+    }
+    .brutal-card:hover, .brutal-button:hover {
+      box-shadow: none;
+      transform: none;
+      background-color: var(--color-neutral-800);
+    }
+    .brutal-button:hover {
+      background-color: var(--color-support);
+    }
+  }
+
+  /* One-shot scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 500ms ease-out, transform 500ms ease-out;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      transition: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 

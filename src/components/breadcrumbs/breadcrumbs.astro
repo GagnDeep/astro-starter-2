@@ -1,0 +1,32 @@
+---
+import type { BreadcrumbItem } from "../../lib/seo/schema";
+
+export interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items = [] } = Astro.props;
+---
+{items.length > 0 && (
+  <nav aria-label="Breadcrumb" class="py-4 px-8 border-b-2 border-(--border-color) bg-(--bg-surface)" data-component="Breadcrumbs">
+    <div class="mx-auto max-w-7xl">
+      <ol class="flex items-center gap-2 text-sm font-mono text-(--text-muted) flex-wrap">
+        {items.map((item, index) => {
+          const isLast = index === items.length - 1;
+          return (
+            <li class="flex items-center gap-2">
+              {isLast ? (
+                <span class="text-(--text-main) font-semibold" aria-current="page">{item.name}</span>
+              ) : (
+                <>
+                  <a href={item.url} class="hover:text-(--color-brand) transition-colors">{item.name}</a>
+                  <span aria-hidden="true" class="text-(--border-color)">/</span>
+                </>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </nav>
+)}
