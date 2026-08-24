@@ -100,7 +100,22 @@ export function buildSchemaGraph({
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      // Find author in site.json
+      const authorData = site.authors?.find((a: any) => a.name === seo.article?.author || a.slug === seo.article?.author);
+      const authorUrl = authorData ? new URL(`/authors/${authorData.slug}/`, base).toString() : undefined;
+      const authorId = authorUrl ? `${authorUrl}#person` : undefined;
+
+      if (authorData) {
+         pageNode.author = {
+            "@type": "Person",
+            "@id": authorId,
+            name: authorData.name,
+            url: authorUrl,
+            sameAs: authorData.sameAs?.length ? authorData.sameAs : undefined
+         };
+      } else {
+         pageNode.author = { "@type": "Person", name: seo.article.author };
+      }
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;

@@ -2,26 +2,30 @@
 import { footer } from "../../../data/navigation.json";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
+<footer class="bg-(--color-neutral-900) text-(--color-neutral-50) border-t-2 border-(--color-neutral-950) py-12">
+  <div class="mx-auto max-w-7xl px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-center border-b-2 border-(--color-neutral-800) pb-12 mb-8">
+      <a class="flex justify-center md:justify-start focus-visible outline-white" href={footer.logo_url}>
+        <img class="w-48 filter invert sepia-0 saturate-0 hue-rotate-0 brightness-200 contrast-200" src={footer.logo} alt={footer.logo_alt_text} />
       </a>
 
-      <ul class="flex gap-6 items-center justify-center">
+      <ul class="flex flex-wrap gap-x-6 gap-y-4 items-center justify-center font-mono text-sm font-semibold">
         {footer.links.map((link) => (
           <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
+            <a class="hover:text-(--color-brand) transition-colors focus-visible outline-white" href={link.link}>
               {link.text}
             </a>
           </li>
         ))}
       </ul>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
+      <div class="text-center md:text-end text-sm text-(--color-neutral-400) font-mono">
         &copy; {new Date().getFullYear()} {footer.copyright}
       </div>
+    </div>
+
+    <div class="text-center text-xs text-(--color-neutral-500) font-mono">
+      <p>Not affiliated with or endorsed by any official government agency. See <a href="/disclaimer/" class="underline hover:text-(--color-brand)">disclaimer</a>.</p>
     </div>
   </div>
 </footer>

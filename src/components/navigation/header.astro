@@ -5,73 +5,52 @@ import { header } from "../../../data/navigation.json";
 import { Menu, X } from "@lucide/astro";
 ---
 
-<header class="bg-white">
-  <div class="mx-auto max-w-6xl px-8">
+<header class="bg-(--bg-surface) border-b-2 border-(--border-color) sticky top-0 z-40">
+  <div class="mx-auto max-w-7xl px-8">
     <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
+      <a href={header.logo_url} class="focus-visible">
         <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
       </a>
 
-      <ul class="hidden sm:flex items-center gap-6">
+      <ul class="hidden sm:flex items-center gap-6 font-semibold font-mono text-sm">
         {header.links.map((link) => (
           <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
+            <a class="text-(--text-main) hover:text-(--color-brand) transition-colors focus-visible" href={link.link}>
               {link.text}
             </a>
           </li>
         ))}
       </ul>
 
-      <button
-        class="sm:hidden p-2"
-        aria-label="Open navigation menu"
-        popovertarget="mobile-menu"
-        popovertargetaction="show"
-      >
-        <Menu class="w-6 h-6" aria-hidden="true" />
-      </button>
+      {/* Mobile Menu using details/summary for zero-JS toggle */}
+      <details class="sm:hidden group">
+        <summary class="p-2 cursor-pointer list-none focus-visible text-(--text-main) marker:hidden [&::-webkit-details-marker]:hidden" aria-label="Toggle navigation menu">
+          <Menu class="w-6 h-6 group-open:hidden" aria-hidden="true" />
+          <X class="w-6 h-6 hidden group-open:block" aria-hidden="true" />
+        </summary>
 
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
-        <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
-          </a>
-          <button
-            class="p-2"
-            aria-label="Close navigation menu"
-            popovertarget="mobile-menu"
-            popovertargetaction="hide"
-          >
-            <X class="w-6 h-6" aria-hidden="true" />
-          </button>
+        <div class="fixed top-[74px] left-0 right-0 bottom-0 bg-(--bg-surface) border-t-2 border-(--border-color) z-50 overflow-y-auto">
+          <ul class="flex flex-col items-center justify-center min-h-[50vh] gap-4 p-8 font-mono font-semibold">
+            {header.links.map((link) => (
+              <li class="w-full text-center border-b-2 border-(--border-color) last:border-b-0 pb-4 last:pb-0">
+                <a class="block py-2 text-xl text-(--text-main) hover:text-(--color-brand) transition-colors focus-visible" href={link.link}>
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
-          {header.links.map((link) => (
-            <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-        </div>
-      </div>
+      </details>
     </nav>
   </div>
 </header>
 
 <style>
-  #mobile-menu {
-    opacity: 0;
-    transition: opacity 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete;
+  /* Extra specificity to hide markers if needed */
+  details > summary {
+    list-style: none;
   }
-  #mobile-menu:popover-open {
-    opacity: 1;
-  }
-  @starting-style {
-    #mobile-menu:popover-open {
-      opacity: 0;
-    }
+  details > summary::-webkit-details-marker {
+    display: none;
   }
 </style>

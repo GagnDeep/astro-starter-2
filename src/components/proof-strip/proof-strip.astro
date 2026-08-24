@@ -1,0 +1,25 @@
+---
+export interface Props {
+  label?: string;
+  logos: {
+    url: string;
+    alt: string;
+  }[];
+}
+
+const { label, logos = [] } = Astro.props;
+---
+<section class="border-b-2 border-(--border-color) bg-(--color-neutral-100) py-8" data-component="ProofStrip">
+  <div class="mx-auto max-w-7xl px-8 flex flex-col md:flex-row items-center gap-8 justify-between">
+    {label && (
+      <div class="font-mono text-sm font-bold text-(--text-muted) uppercase tracking-wider whitespace-nowrap">
+        {label}
+      </div>
+    )}
+    <div class="flex flex-wrap justify-center md:justify-end items-center gap-8 md:gap-12 opacity-70 grayscale">
+      {logos.map((logo) => (
+        <img src={logo.url} alt={logo.alt} class="h-8 md:h-10 object-contain max-w-[120px]" />
+      ))}
+    </div>
+  </div>
+</section>
