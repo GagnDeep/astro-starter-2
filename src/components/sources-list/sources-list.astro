@@ -22,7 +22,7 @@ const { heading = "Sources & Citations", sources } = Astro.props;
       {sources.map((source, index) => (
         <li data-editable="array-item" class="pl-2">
           {source.url ? (
-            <a href={source.url} rel="nofollow" target="_blank" class="text-brand dark:text-accent-dark hover:underline underline-offset-2">
+            <a href={source.url} target="_blank" class="text-brand dark:text-accent-dark hover:underline underline-offset-2">
               <span data-editable="text" data-prop={`sources.${index}.title`}>{source.title}</span>
             </a>
           ) : (
