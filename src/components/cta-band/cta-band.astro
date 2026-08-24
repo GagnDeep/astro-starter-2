@@ -1,19 +1,31 @@
 ---
+import NewsletterForm from "../forms/newsletter-form.astro";
+
 export interface Props {
   heading: string;
   text?: string;
-  button_text: string;
-  button_link: string;
+  button_text?: string;
+  button_link?: string;
+  show_form?: boolean;
 }
 
-const { heading, text, button_text, button_link } = Astro.props;
+const { heading, text, button_text, button_link, show_form } = Astro.props;
 ---
 <section class="bg-(--color-neutral-900) border-b-2 border-(--border-color) py-16" data-component="CtaBand">
   <div class="mx-auto max-w-7xl px-8 text-center reveal">
     <h2 class="text-4xl text-white mb-6 max-w-3xl mx-auto">{heading}</h2>
     {text && <p class="text-xl text-(--color-neutral-300) mb-10 max-w-2xl mx-auto font-mono">{text}</p>}
-    <a href={button_link} class="brutal-button text-lg px-8 py-4 bg-white text-(--color-neutral-900) hover:bg-(--color-brand) hover:text-white border-transparent hover:border-transparent outline-offset-4">
-      {button_text}
-    </a>
+
+    {show_form ? (
+      <div class="max-w-md mx-auto bg-white p-6 brutal-card">
+        <NewsletterForm submitLabel={button_text || "Subscribe"} class="flex flex-col gap-4 text-left" />
+      </div>
+    ) : (
+      button_text && button_link && (
+        <a href={button_link} class="brutal-button text-lg px-8 py-4 bg-white text-(--color-neutral-900) hover:bg-(--color-brand) hover:text-white border-transparent hover:border-transparent outline-offset-4">
+          {button_text}
+        </a>
+      )
+    )}
   </div>
 </section>
