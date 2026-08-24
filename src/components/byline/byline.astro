@@ -13,7 +13,7 @@ const { author, role, date } = Astro.props;
     {author ? author.charAt(0).toUpperCase() : "?"}
   </div>
   <div>
-    {author && <p class="m-0 font-bold leading-tight">{author}</p>}
+    {author && <p class="m-0 font-bold leading-tight"><a href={`/author/${author.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/`} class="text-[var(--color-text-base)] hover:underline">{author}</a></p>}
     <div class="flex text-sm text-[var(--color-text-muted)] gap-2">
       {role && <span>{role}</span>}
       {role && date && <span>&bull;</span>}

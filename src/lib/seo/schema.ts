@@ -20,6 +20,10 @@ export interface PageSchemaOptions {
   seo: ResolvedSeo;
   siteUrl: URL | undefined;
   breadcrumbs?: BreadcrumbItem[];
+  itemList?: {
+    name: string;
+    items: { name: string; description?: string }[];
+  };
 }
 
 const id = (base: string, hash: string) => `${new URL("/", base).toString()}#${hash}`;
@@ -75,11 +79,8 @@ function breadcrumbNode(base: string, items: BreadcrumbItem[]): JsonLdNode {
 }
 
 /** The full JSON-LD graph for a page. Returns `null` for noindex pages. */
-export function buildSchemaGraph({
-  seo,
-  siteUrl,
-  breadcrumbs,
-}: PageSchemaOptions): JsonLdNode | null {
+export function buildSchemaGraph(options: PageSchemaOptions): JsonLdNode | null {
+  const { seo, siteUrl, breadcrumbs } = options;
   if (seo.noIndex) return null;
 
   const base = (siteUrl ?? new URL(seo.canonical)).toString();
@@ -128,6 +129,21 @@ export function buildSchemaGraph({
 
   const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
+
+  if (options.itemList && options.itemList.items.length > 0) {
+    const itemListSchema: JsonLdNode = {
+      "@type": "ItemList",
+      "@id": `${seo.canonical}#itemlist`,
+      name: options.itemList.name,
+      itemListElement: options.itemList.items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        description: item.description
+      }))
+    };
+    graph.push(prune(itemListSchema));
+  }
 
   return { "@context": "https://schema.org", "@graph": graph };
 }
