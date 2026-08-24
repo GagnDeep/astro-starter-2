@@ -1,6 +1,7 @@
 ---
 import "../styles/main.css";
 import site from "../../data/site.json";
+import navigation from "../../data/navigation.json";
 import Header from "../components/navigation/header.astro";
 import Footer from "../components/navigation/footer.astro";
 import Seo from "../components/seo/seo.astro";
@@ -60,16 +61,19 @@ const resolvedArticle: ArticleMeta | undefined =
     <link rel="icon" type="image/x-icon" href="/meta/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/meta/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preload" href="/fonts/space-grotesk-bold.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body class="flex flex-col min-h-screen">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:shadow"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-[var(--surface-color)] focus:text-[var(--text-color)] focus:border-2 focus:border-[var(--border-color)] focus:px-4 focus:py-2 focus:shadow-sm focus-visible:outline-offset-2"
     >
-      Skip to content
+      {navigation.skip_link_text || "Skip to content"}
     </a>
     <Header />
     <main id="main-content" class="flex-1">
+      <div class="fixed -z-10 w-96 h-96 rounded-full bg-[var(--accent-color)] opacity-5 blur-3xl -top-48 -left-48 ambient-glow pointer-events-none" aria-hidden="true"></div>
       <slot />
     </main>
     <Footer />

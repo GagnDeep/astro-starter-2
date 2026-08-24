@@ -1,0 +1,27 @@
+---
+export interface Props {
+  items: {
+    name: string;
+    url: string;
+  }[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="py-4 border-b-2 border-[var(--border-color)] bg-[var(--bg-color)]">
+  <ol class="mx-auto max-w-6xl px-8 flex items-center gap-2 text-sm overflow-x-auto whitespace-nowrap">
+    {items.map((item, index) => (
+      <li class="flex items-center gap-2">
+        {index > 0 && <span class="opacity-50" aria-hidden="true">/</span>}
+        <a
+          href={item.url}
+          class={`hover:text-[var(--accent-color)] ${index === items.length - 1 ? 'font-bold pointer-events-none' : 'opacity-80'}`}
+          aria-current={index === items.length - 1 ? 'page' : undefined}
+        >
+          {item.name}
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>

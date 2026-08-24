@@ -1,0 +1,30 @@
+---
+export interface Props {
+  title?: string;
+  items: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<div class="py-16 px-8 mx-auto max-w-4xl">
+  {title && <h2 class="mb-12">{title}</h2>}
+
+  <div class="flex flex-col gap-4">
+    {items.map((item) => (
+      <details class="group bg-[var(--surface-color)] border-2 border-[var(--border-color)] shadow-sm open:shadow-md transition-shadow">
+        <summary class="p-6 cursor-pointer font-bold list-none flex justify-between items-center [&::-webkit-details-marker]:hidden">
+          <span class="text-xl">{item.question}</span>
+          <span class="text-2xl group-open:hidden">+</span>
+          <span class="text-2xl hidden group-open:block">&minus;</span>
+        </summary>
+        <div class="p-6 pt-0 border-t-2 border-[var(--border-color)] bg-[var(--bg-color)] mt-2 pt-6 prose prose-p:mb-0">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,26 @@
+---
+export interface Props {
+  author: string;
+  date: string;
+  role?: string;
+  read_time?: string;
+}
+
+const { author, date, role, read_time } = Astro.props;
+---
+
+<div class="flex items-center gap-4 py-6 border-y-2 border-[var(--border-color)] my-8 bg-[var(--surface-color)] px-6">
+  <div class="w-12 h-12 rounded-full bg-[var(--bg-color)] border-2 border-[var(--border-color)] flex items-center justify-center font-bold text-xl">
+    {author.charAt(0)}
+  </div>
+  <div>
+    <div class="font-bold">{author}</div>
+    <div class="text-sm opacity-80 flex gap-2">
+      {role && <span>{role} &bull;</span>}
+      <time datetime={new Date(date).toISOString()}>
+        {new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+      </time>
+      {read_time && <span>&bull; {read_time}</span>}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+---
+export interface Props {
+  title?: string;
+  features: {
+    title: string;
+    description: string;
+  }[];
+}
+
+const { title, features } = Astro.props;
+---
+
+<div class="py-16 px-8 mx-auto max-w-6xl">
+  {title && <h2 class="mb-12">{title}</h2>}
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+    {features.map((feature, i) => (
+      <div class={`bg-[var(--surface-color)] border-2 border-[var(--border-color)] p-8 shadow-md ${i % 3 === 0 ? 'md:col-span-2' : 'md:col-span-1'}`}>
+        <h3 class="mb-4">{feature.title}</h3>
+        <p class="m-0">{feature.description}</p>
+      </div>
+    ))}
+  </div>
+</div>
