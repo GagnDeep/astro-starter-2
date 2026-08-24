@@ -1,22 +1,19 @@
-/**
- * SEO metadata resolution.
- *
- * One place decides the final title, description, canonical URL, social image
- * and robots directives for every page. Pages/layouts only supply what they
- * know; site-wide fallbacks come from `data/site.json`.
- *
- * Precedence everywhere: page front matter → site defaults → safe fallback.
- */
 import site from "../../../data/site.json";
 
 export interface SeoFrontmatter {
+  /** ~155 character unique description. Falls back to site description. */
   page_description?: string | null;
+  /**
+   * Only needed if this page duplicates another.
+   * Auto-generated from Astro.url if omitted.
+   */
+  canonical_url?: string | null;
+  /** Absolute path (e.g., /images/hero.jpg). Falls back to site default OG image. */
   featured_image?: string | null;
   featured_image_alt?: string | null;
-  canonical_url?: string | null;
-  no_index?: boolean | null;
-  open_graph_type?: string | null;
   author_twitter_handle?: string | null;
+  open_graph_type?: string | null;
+  no_index?: boolean;
 }
 
 export interface ArticleMeta {
@@ -26,96 +23,106 @@ export interface ArticleMeta {
   tags?: string[];
 }
 
-export interface ResolveSeoOptions {
-  /** Page title, without the site-title suffix. */
-  title?: string;
-  seo?: SeoFrontmatter | null;
-  /** `Astro.url` for the current page. */
-  url: URL;
-  /** `Astro.site` — the configured production origin. */
-  siteUrl?: URL | undefined;
-  article?: ArticleMeta;
-}
-
 export interface ResolvedSeo {
-  /** Full document title, including the site-title suffix. */
-  title: string;
-  /** Page title on its own — used for headings and structured data. */
+  /** Just the page name (e.g. "About") */
   rawTitle: string;
+  /** Page Name — Site Title */
+  fullTitle: string;
   description: string;
+  /** Always absolute, always trailing-slash normalised. */
   canonical: string;
+  /** Absolute URL to the OG image. */
   image: string;
   imageAlt: string;
-  openGraphType: string;
+  openGraphType: "website" | "article" | "profile" | string;
   noIndex: boolean;
-  robots: string;
-  locale: string;
   lang: string;
-  siteName: string;
-  twitterSite: string;
-  twitterCreator: string;
-  themeColor: string;
+  locale: string;
+  twitterCreator?: string;
   article?: ArticleMeta;
+  siteName: string;
+  twitterSite?: string;
+  themeColor: string;
 }
 
-const FALLBACK_ORIGIN = "http://localhost:4321";
+export interface MetaResolutionOptions {
+  frontmatterTitle: string;
+  frontmatterSeo?: SeoFrontmatter;
+  articleMeta?: ArticleMeta;
+  /** The current `Astro.url` */
+  currentUrl: URL;
+  /** The `site:` config value from `astro.config.mjs` */
+  siteUrl: URL | undefined;
+}
 
-/** Absolute URL for an asset path, passing through URLs that are already absolute. */
-export function absoluteUrl(pathOrUrl: string, base: URL | string): string {
-  if (!pathOrUrl) return "";
-  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
-  return new URL(pathOrUrl, base).toString();
+/** Prepends site base to root-relative paths, ignoring fully-qualified URLs. */
+export function absoluteUrl(pathOrUrl: string, base: string | URL): string {
+  try {
+    return new URL(pathOrUrl).toString();
+  } catch {
+    const cleanPath = pathOrUrl.startsWith("/") ? pathOrUrl.slice(1) : pathOrUrl;
+    return new URL(cleanPath, base).toString();
+  }
+}
+
+/** Ensure canonical URLs match the `trailingSlash: "always"` Astro config. */
+function normaliseCanonical(urlStr: string): string {
+  const url = new URL(urlStr);
+  if (!url.pathname.endsWith("/") && !url.pathname.split("/").pop()?.includes(".")) {
+    url.pathname = `${url.pathname}/`;
+  }
+  return url.toString();
 }
 
 /**
- * Canonical URL for a page: production origin + current path, with the trailing
- * slash normalised to match `trailingSlash: "always"` in `astro.config.mjs`.
- * Query strings and hashes are intentionally dropped.
+ * Merges page frontmatter with site.json defaults.
+ * Output is fully resolved and absolute-ised, ready to render `<meta>` tags.
  */
-export function canonicalFor(url: URL, siteUrl: URL | undefined, override?: string | null): string {
-  const base = siteUrl ?? new URL(FALLBACK_ORIGIN);
-  if (override) return absoluteUrl(override, base);
+export function resolveMeta({
+  frontmatterTitle,
+  frontmatterSeo,
+  articleMeta,
+  currentUrl,
+  siteUrl,
+}: MetaResolutionOptions): ResolvedSeo {
+  // Astro.url does not know the site origin during SSG, so we inject it.
+  const base = siteUrl || currentUrl;
 
-  const canonical = new URL(url.pathname, base);
-  const hasExtension = /\.[a-z0-9]+$/i.test(canonical.pathname);
-  if (!hasExtension && !canonical.pathname.endsWith("/")) {
-    canonical.pathname += "/";
-  }
-  return canonical.toString();
-}
+  // Clean up the title: index pages get just the site name, others get Page - Site
+  const rawTitle = frontmatterTitle || site.site_title;
+  const isHome = currentUrl.pathname === "/" || frontmatterTitle === site.site_title;
+  const fullTitle = isHome ? site.site_title : `${rawTitle} — ${site.site_title}`;
 
-/** Build the `<title>`: home page uses the bare title, inner pages get a suffix. */
-export function pageTitle(title: string | undefined, url: URL): string {
-  if (!title) return site.site_title;
-  if (url.pathname === "/" || url.pathname === "") return title;
-  return `${title} | ${site.site_title}`;
-}
+  // Canonical: prefer frontmatter, fall back to current URL, normalise trailing slash
+  let canonicalPath = frontmatterSeo?.canonical_url;
+  if (!canonicalPath) canonicalPath = currentUrl.pathname;
+  const canonical = normaliseCanonical(absoluteUrl(canonicalPath, base));
 
-export function resolveSeo({ title, seo, url, siteUrl, article }: ResolveSeoOptions): ResolvedSeo {
-  const base = siteUrl ?? new URL(FALLBACK_ORIGIN);
-  const noIndex = Boolean(seo?.no_index);
-  const image = seo?.featured_image || site.image;
+  // Images: absolute-ise whatever path we get
+  const imagePath = frontmatterSeo?.featured_image || site.image;
+  const image = absoluteUrl(imagePath, base);
+  const imageAlt = frontmatterSeo?.featured_image_alt || site.image_alt;
+
+  // Description fallback
+  const description = frontmatterSeo?.page_description || site.description;
+
+  const openGraphType = frontmatterSeo?.open_graph_type || (articleMeta ? "article" : "website");
 
   return {
-    title: pageTitle(title, url),
-    rawTitle: title || site.site_title,
-    description: seo?.page_description || site.description,
-    canonical: canonicalFor(url, siteUrl, seo?.canonical_url),
-    image: absoluteUrl(image, base),
-    imageAlt: seo?.featured_image_alt || site.image_alt,
-    openGraphType: seo?.open_graph_type || (article ? "article" : "website"),
-    noIndex,
-    // `max-image-preview:large` is what unlocks large thumbnails in Google
-    // Discover / image results; the other two lift snippet truncation limits.
-    robots: noIndex
-      ? "noindex, nofollow"
-      : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-    locale: site.locale ?? "en_US",
-    lang: site.lang ?? "en",
+    rawTitle,
+    fullTitle,
+    description,
+    canonical,
+    image,
+    imageAlt,
+    openGraphType,
+    noIndex: frontmatterSeo?.no_index ?? false,
+    lang: site.lang,
+    locale: site.locale,
+    twitterCreator: frontmatterSeo?.author_twitter_handle || undefined,
+    article: articleMeta,
     siteName: site.site_title,
-    twitterSite: site.twitter_site ?? "",
-    twitterCreator: seo?.author_twitter_handle || site.twitter_site || "",
-    themeColor: site.theme_color ?? "#ffffff",
-    article,
+    twitterSite: site.twitter_site || undefined,
+    themeColor: site.theme_color,
   };
 }

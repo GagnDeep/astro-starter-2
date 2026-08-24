@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CaptureForm from "../components/forms/capture-form.astro";
+import { capture } from "../../capture.config";
+
+const field =
+  "w-full rounded border border-gray-300 px-3 py-2 focus:border-brand-color focus:outline-none focus:ring-1 focus:ring-brand-color bg-surface-color text-text-color";
+const label = "block text-sm font-medium text-text-color mb-1";
+---
+
+<Layout
+  title="Get Help with Federal Contracting"
+  seo={{
+    page_description:
+      "Connect with specialized GovCon consultants to help you with SAM.gov, GSA Schedules, or compliance requirements.",
+    canonical_url: "/capture-form/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "website",
+    no_index: false,
+  }}
+>
+  <section class="py-16 md:py-24 bg-bg-color">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl text-text-color">
+        Get help with federal contracting
+      </h1>
+      <p class="mb-10 text-lg text-text-muted">
+        Fill out the form below to connect with specialized GovCon service providers who can assist you with your specific federal contracting needs.
+      </p>
+
+      <div class="mb-8 text-sm text-text-muted italic border-l-4 border-brand-color pl-4 py-1">
+        We generate revenue through lead generation and referral bounties. If you engage a provider through this form, we may earn a commission.
+      </div>
+
+      <CaptureForm form={capture.forms.contact} submitLabel="Request Assistance" class="bg-surface-color p-8 rounded-xl border border-border-color shadow-sm">
+        <div>
+          <label for="name" class={label}>Name</label>
+          <input id="name" name="name" autocomplete="name" required class={field} />
+        </div>
+
+        <div>
+          <label for="email" class={label}>Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required class={field} />
+        </div>
+
+        <div>
+          <label for="phone" class={label}>Phone <span class="text-text-muted">(optional)</span></label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" class={field} />
+        </div>
+
+        <div>
+          <label for="company" class={label}>Company <span class="text-text-muted">(optional)</span></label>
+          <input id="company" name="company" autocomplete="organization" class={field} />
+        </div>
+
+        <div>
+          <label for="service_needed" class={label}>What do you need help with?</label>
+          <select id="service_needed" name="service_needed" required class={field}>
+            <option value="">Select an option</option>
+            <option>SAM.gov Registration / Renewal</option>
+            <option>SBA Certification (8a, WOSB, HUBZone, SDVOSB)</option>
+            <option>GSA Schedule Proposal</option>
+            <option>DCAA Accounting Compliance</option>
+            <option>CMMC / Cybersecurity</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class={label}>Additional details</label>
+          <textarea id="message" name="message" rows="5" class={field}></textarea>
+        </div>
+      </CaptureForm>
+    </div>
+  </section>
+</Layout>

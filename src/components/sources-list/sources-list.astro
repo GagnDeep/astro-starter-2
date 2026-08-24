@@ -13,6 +13,9 @@ interface Props {
 }
 
 const { heading = "Sources & References", sources = [] } = Astro.props;
+
+// Disclosure block needed if any source is sponsored
+const hasSponsored = sources.some(s => s.is_sponsored);
 ---
 
 <section class="py-12 bg-bg-color border-t border-border-color reveal-on-scroll">
@@ -20,6 +23,12 @@ const { heading = "Sources & References", sources = [] } = Astro.props;
     <h2 data-editable="text" data-prop="heading" class="text-xl font-medium mb-6 text-text-muted uppercase tracking-wider">
       {heading}
     </h2>
+
+    {hasSponsored && (
+        <div class="mb-4 text-sm text-text-muted italic border-l-4 border-brand-color pl-4 py-1">
+            Some links below may be sponsored. We may earn a commission if you engage these services, at no additional cost to you.
+        </div>
+    )}
 
     {sources.length > 0 && (
       <ul class="flex flex-col gap-4" data-editable="array" data-prop="sources">

@@ -10,7 +10,7 @@
  * duplicated directives are a common cause of confusing Search Console
  * reports.
  */
-import { resolveSeo, type ArticleMeta, type SeoFrontmatter } from "../../lib/seo/meta";
+import { resolveMeta as resolveSeo, type ArticleMeta, type SeoFrontmatter } from "../../lib/seo/meta";
 import { buildSchemaGraph, type BreadcrumbItem } from "../../lib/seo/schema";
 import { observabilityConfig, observabilityOrigin } from "../../lib/observability/config";
 
@@ -19,19 +19,20 @@ interface Props {
   seo?: SeoFrontmatter | null;
   article?: ArticleMeta;
   breadcrumbs?: BreadcrumbItem[];
+  itemListElements?: { name: string, description?: string }[];
 }
 
-const { title, seo, article, breadcrumbs } = Astro.props;
+const { title, seo, article, breadcrumbs, itemListElements } = Astro.props;
 
-const meta = resolveSeo({ title, seo, url: Astro.url, siteUrl: Astro.site, article });
-const schema = buildSchemaGraph({ seo: meta, siteUrl: Astro.site, breadcrumbs });
+const meta = resolveSeo({ frontmatterTitle: title || "", frontmatterSeo: seo || undefined, currentUrl: Astro.url, siteUrl: Astro.site, articleMeta: article });
+const schema = buildSchemaGraph({ seo: meta, siteUrl: Astro.site, breadcrumbs, itemListElements });
 
 const origin = Astro.site ?? new URL(Astro.url.origin);
 const rssUrl = new URL("/feed.xml", origin).toString();
 const sitemapUrl = new URL("/sitemap-index.xml", origin).toString();
 ---
 
-<title>{meta.title}</title>
+<title>{meta.fullTitle}</title>
 <meta name="description" content={meta.description} />
 <link rel="canonical" href={meta.canonical} />
 
@@ -39,11 +40,11 @@ const sitemapUrl = new URL("/sitemap-index.xml", origin).toString();
   /* `max-image-preview:large` unlocks large thumbnails in Google Discover and
     image results; `max-snippet:-1` lifts the snippet length cap. */
 }
-<meta name="robots" content={meta.robots} />
-<meta name="googlebot" content={meta.robots} />
+<meta name="robots" content={meta.noIndex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+<meta name="googlebot" content={meta.noIndex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
 
 <meta property="og:type" content={meta.openGraphType} />
-<meta property="og:title" content={meta.title} />
+<meta property="og:title" content={meta.fullTitle} />
 <meta property="og:description" content={meta.description} />
 <meta property="og:url" content={meta.canonical} />
 <meta property="og:site_name" content={meta.siteName} />
@@ -66,11 +67,10 @@ const sitemapUrl = new URL("/sitemap-index.xml", origin).toString();
 {meta.article?.tags?.map((tag) => <meta property="article:tag" content={tag} />)}
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={meta.title} />
+<meta name="twitter:title" content={meta.fullTitle} />
 <meta name="twitter:description" content={meta.description} />
 {meta.image && <meta name="twitter:image" content={meta.image} />}
 {meta.image && meta.imageAlt && <meta name="twitter:image:alt" content={meta.imageAlt} />}
-{meta.twitterSite && <meta name="twitter:site" content={meta.twitterSite} />}
 {meta.twitterCreator && <meta name="twitter:creator" content={meta.twitterCreator} />}
 
 <meta name="theme-color" content={meta.themeColor} />
