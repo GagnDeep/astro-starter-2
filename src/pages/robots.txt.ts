@@ -16,6 +16,16 @@ Allow: /
 Disallow: /_cloudcannon/
 Disallow: /404
 
+# Explicitly allow AI bots to maintain citation eligibility
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: ${sitemapUrl}
 `;
 

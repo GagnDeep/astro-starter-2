@@ -66,6 +66,10 @@ const resolvedArticle: ArticleMeta | undefined =
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body class="flex flex-col min-h-screen">
+    <script>
+      // Add a js class to the body for JS-only styles (like hiding scroll-reveal initially)
+      document.body.classList.add("js");
+    </script>
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded bg-[var(--color-brand-900)] text-[var(--color-support-100)] focus:px-4 focus:py-2 focus:shadow"
