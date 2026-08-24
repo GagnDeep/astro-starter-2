@@ -14,7 +14,8 @@
     "assets": "node scripts/generate-icons.mjs && node scripts/generate-og.mjs && node scripts/check-assets.mjs",
     "assets:icons": "node scripts/generate-icons.mjs",
     "assets:og": "node scripts/generate-og.mjs",
-    "assets:check": "node scripts/check-assets.mjs"
+    "assets:check": "node scripts/check-assets.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.0",
@@ -30,6 +31,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "astro": "^6.0.2",
+    "cheerio": "^1.2.0",
     "markdown-it": "^13.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

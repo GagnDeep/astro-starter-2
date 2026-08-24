@@ -5,19 +5,19 @@
     "logo_url": "/",
     "links": [
       {
-        "link": "/sam-gov-registration/",
+        "link": "/getting-started/sam-registration/",
         "text": "SAM.gov Registration"
       },
       {
-        "link": "/set-asides/",
+        "link": "/certifications/",
         "text": "Set-Aside Certifications"
       },
       {
-        "link": "/gsa-schedule/",
+        "link": "/gsa-schedules/",
         "text": "GSA Schedule"
       },
       {
-        "link": "/methodology/",
+        "link": "/how-we-make-money/",
         "text": "Methodology"
       },
       {
@@ -37,7 +37,7 @@
         "text": "Contact"
       },
       {
-        "link": "/methodology/",
+        "link": "/how-we-make-money/",
         "text": "Methodology"
       },
       {
