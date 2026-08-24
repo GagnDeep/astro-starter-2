@@ -46,13 +46,42 @@ function organizationNode(base: string): JsonLdNode {
 
   if (site.organization?.logo) {
     node.logo = {
-      "@type": "ImageObject",
-      url: absoluteUrl(site.organization.logo, base),
+      "@id": id(base, "organization/logo")
     };
   }
   if (site.organization?.same_as?.length) {
     node.sameAs = site.organization.same_as;
   }
+  return node;
+}
+
+function organizationLogoNode(base: string): JsonLdNode | null {
+  if (!site.organization?.logo) return null;
+  return {
+    "@type": "ImageObject",
+    "@id": id(base, "organization/logo"),
+    url: absoluteUrl(site.organization.logo, base),
+    caption: site.organization?.name || site.site_title
+  };
+}
+
+function authorNode(base: string, authorName: string): JsonLdNode {
+  // If we have an author in site.json matching by name, use it, otherwise fallback
+  const authorData = site.authors?.find((a) => a.name === authorName);
+  const safeName = authorName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+  const node: JsonLdNode = {
+    "@type": "Person",
+    "@id": id(base, `author/${safeName}`),
+    name: authorName,
+  };
+
+  if (authorData) {
+    if (authorData.sameAs && authorData.sameAs.length > 0) {
+      node.sameAs = authorData.sameAs;
+    }
+  }
+
   return node;
 }
 
@@ -89,18 +118,36 @@ export function buildSchemaGraph({
     description: seo.description,
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
-    primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
-      : undefined,
   };
 
+  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base)];
+
+  const logoNode = organizationLogoNode(base);
+  if (logoNode) graph.push(logoNode);
+
+  if (seo.image) {
+    const primaryImageId = `${seo.canonical}#primaryimage`;
+    pageNode.primaryImageOfPage = { "@id": primaryImageId };
+    if (isArticle) {
+      pageNode.image = { "@id": primaryImageId };
+    }
+
+    graph.push({
+      "@type": "ImageObject",
+      "@id": primaryImageId,
+      url: seo.image,
+      caption: seo.imageAlt || undefined
+    });
+  }
+
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      const authorSafeName = seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      pageNode.author = { "@id": id(base, `author/${authorSafeName}`) };
+      graph.push(authorNode(base, seo.article.author));
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
@@ -108,7 +155,7 @@ export function buildSchemaGraph({
     pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
   }
 
-  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
+  graph.push(prune(pageNode));
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
 
   return { "@context": "https://schema.org", "@graph": graph };

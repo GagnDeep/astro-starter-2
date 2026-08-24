@@ -1,0 +1,31 @@
+---
+export interface Props {
+  title?: string;
+  headers: string[];
+  rows: string[][];
+}
+
+const { title, headers, rows } = Astro.props;
+---
+
+<div class="py-16 px-8 mx-auto max-w-6xl overflow-x-auto">
+  {title && <h2 class="mb-8">{title}</h2>}
+  <table class="reveal w-full border-collapse border-2 border-[var(--border-color)] min-w-[600px] shadow-sm bg-[var(--surface-color)]">
+    <thead>
+      <tr class="border-b-2 border-[var(--border-color)] bg-[var(--bg-color)]">
+        {headers.map((header) => (
+          <th class="p-4 text-left font-bold border-r-2 border-[var(--border-color)] last:border-r-0">{header}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr class="border-b-2 border-[var(--border-color)] last:border-b-0">
+          {row.map((cell) => (
+            <td class="p-4 border-r-2 border-[var(--border-color)] last:border-r-0">{cell}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
