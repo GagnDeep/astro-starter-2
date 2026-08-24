@@ -1,0 +1,63 @@
+---
+import Markdown from "../utility/markdown.astro";
+import * as Icons from "@lucide/astro";
+
+interface Feature {
+  icon?: string;
+  heading: string;
+  text_content: string;
+  span?: 1 | 2; // unequal spans for the grid
+}
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  features: Feature[];
+}
+
+const { heading, subheading, features } = Astro.props;
+---
+
+<section class="py-12 md:py-24 bg-[var(--bg-elevated)]">
+  <div class="mx-auto max-w-6xl px-8">
+    <div class="mb-12">
+      <h2 data-editable="text" data-prop="heading" class="text-3xl md:text-5xl font-bold mb-4 text-balance">
+        {heading}
+      </h2>
+      {subheading && (
+        <div class="text-lg text-[var(--text-muted)] max-w-[60ch]">
+          <Markdown content={subheading} dataProp="subheading" dataType="block" />
+        </div>
+      )}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-editable="array" data-prop="features">
+      {features.map((feature, i) => {
+        const Icon = feature.icon ? Icons[feature.icon as keyof typeof Icons] : undefined;
+        // Check if Icon is a valid component
+        const isValidIcon = Icon && typeof Icon === 'function';
+        return (
+          <div
+            class={`bg-[var(--bg-surface)] p-8 border border-[var(--border-color)] shadow-[var(--shadow-sm)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)] transition-all duration-200 ${
+              feature.span === 2 ? "md:col-span-2" : "md:col-span-1"
+            }`}
+            data-editable="array-item"
+          >
+            {isValidIcon && (
+              <div class="mb-6 inline-flex h-12 w-12 items-center justify-center bg-[var(--color-neutral-100)] text-[var(--accent-color)] border border-[var(--border-color)] shadow-[var(--shadow-sm)]">
+                {/* @ts-ignore - Dynamic icon component rendering */}
+                <Icon class="h-6 w-6 stroke-[1.5]" />
+              </div>
+            )}
+            <h3 data-editable="text" data-prop={`features[${i}].heading`} class="text-xl font-bold mb-3">
+              {feature.heading}
+            </h3>
+            <div class="text-[var(--text-muted)]">
+              <Markdown content={feature.text_content} dataProp={`features[${i}].text_content`} dataType="block" />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
