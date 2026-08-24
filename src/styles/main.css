@@ -1,6 +1,17 @@
 @import "tailwindcss";
 
 /*
+  ART DIRECTION: Technical-brutalist (stark, utilitarian, code-first).
+*/
+
+@theme {
+  --color-brand: oklch(60% 0.15 250);
+  --color-support: oklch(55% 0.15 285);
+  --color-neutral-dark: oklch(20% 0.02 260);
+  --color-neutral-light: oklch(95% 0.01 260);
+}
+
+/*
  * CASCADE RULE — read before adding CSS to this file.
  *
  * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
