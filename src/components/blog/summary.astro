@@ -15,9 +15,9 @@ const imageSrc = images[thumb_image_path]?.default ?? thumb_image_path;
 ---
 
 <div class="flex flex-col">
-  <a href={`/blog/${id}`}>
+  <a href={`/blog/${id}/`}>
     <Picture
-      class="w-full rounded-md aspect-video object-cover"
+      class="w-full rounded-md aspect-video object-cover" width="800" height="450"
       src={imageSrc}
       alt={thumb_image_alt}
       widths={[600, 800]}
