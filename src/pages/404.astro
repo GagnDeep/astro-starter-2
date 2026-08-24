@@ -3,10 +3,11 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="404 - Not Found">
-  <section class="flex flex-col items-center justify-center min-h-[60vh] px-8">
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">Page not found!</h1>
-    <a href="/" class="text-[var(--accent-color)] hover:underline font-medium text-lg">
-      &larr; Back home
+  <section class="flex flex-col items-center justify-center min-h-[60vh] px-8 bg-[var(--bg-surface)] text-[var(--text-main)] text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6 font-display tracking-tight">404 - Page Not Found</h1>
+    <p class="text-lg mb-8 max-w-[65ch] text-[var(--text-muted)] font-body">The requested page could not be found.</p>
+    <a href="/" class="inline-flex items-center justify-center px-6 py-3 bg-[var(--accent-color)] text-[var(--bg-surface)] font-bold text-lg hover:-translate-y-1 hover:shadow-[var(--shadow-md)] transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-color)]">
+      &larr; Return to Home
     </a>
   </section>
 </Layout>
