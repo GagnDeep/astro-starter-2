@@ -1,10 +1,5 @@
 /**
  * JSON-LD (schema.org) builders.
- *
- * Every page emits a single `@graph` containing the site's `WebSite` and
- * `Organization` nodes plus a node for the page itself. Nodes reference each
- * other by `@id`, which is what Google's parsers prefer over repeated
- * duplicate blocks.
  */
 import site from "../../../data/site.json";
 import { absoluteUrl, type ResolvedSeo } from "./meta";
@@ -28,54 +23,8 @@ export interface PageSchemaOptions {
 
 const id = (base: string, hash: string) => `${new URL("/", base).toString()}#${hash}`;
 
-function websiteNode(base: string): JsonLdNode {
-  return {
-    "@type": "WebSite",
-    "@id": id(base, "website"),
-    url: new URL("/", base).toString(),
-    name: site.site_title,
-    description: site.description,
-    inLanguage: site.lang,
-    publisher: { "@id": id(base, "organization") },
-  };
-}
-
-function organizationNode(base: string): JsonLdNode {
-  const node: JsonLdNode = {
-    "@type": "Organization",
-    "@id": id(base, "organization"),
-    name: site.organization?.name || site.site_title,
-    url: new URL("/", base).toString(),
-  };
-
-  if (site.organization?.logo) {
-    node.logo = {
-      "@type": "ImageObject",
-      "@id": id(base, "logo"),
-      inLanguage: site.lang,
-      url: absoluteUrl(site.organization.logo, base),
-      contentUrl: absoluteUrl(site.organization.logo, base),
-      caption: site.site_title,
-    };
-    node.image = { "@id": id(base, "logo") };
-  }
-  if (site.organization?.same_as?.length) {
-    node.sameAs = site.organization.same_as;
-  }
-  return node;
-}
-
-function breadcrumbNode(base: string, items: BreadcrumbItem[]): JsonLdNode {
-  return {
-    "@type": "BreadcrumbList",
-    "@id": `${items[items.length - 1]?.url ?? base}#breadcrumb`,
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: absoluteUrl(item.url, base),
-    })),
-  };
+function prune(node: JsonLdNode): JsonLdNode {
+  return Object.fromEntries(Object.entries(node).filter(([, value]) => value !== undefined));
 }
 
 /** The full JSON-LD graph for a page. Returns `null` for noindex pages. */
@@ -85,6 +34,43 @@ export function buildSchemaGraph(options: PageSchemaOptions): JsonLdNode | null 
 
   const base = (siteUrl ?? new URL(seo.canonical)).toString();
   const isArticle = Boolean(seo.article);
+  const graph: JsonLdNode[] = [];
+
+  const websiteNode: JsonLdNode = {
+    "@type": "WebSite",
+    "@id": id(base, "website"),
+    url: new URL("/", base).toString(),
+    name: site.site_title,
+    description: site.description,
+    inLanguage: site.lang,
+    publisher: { "@id": id(base, "organization") },
+  };
+  graph.push(websiteNode);
+
+  const orgNode: JsonLdNode = {
+    "@type": "Organization",
+    "@id": id(base, "organization"),
+    name: site.organization?.name || site.site_title,
+    url: new URL("/", base).toString(),
+  };
+
+  if (site.organization?.logo) {
+    const logoNode = {
+      "@type": "ImageObject",
+      "@id": id(base, "logo"),
+      inLanguage: site.lang,
+      url: absoluteUrl(site.organization.logo, base),
+      contentUrl: absoluteUrl(site.organization.logo, base),
+      caption: site.site_title,
+    };
+    orgNode.logo = { "@id": id(base, "logo") };
+    orgNode.image = { "@id": id(base, "logo") };
+    graph.push(logoNode);
+  }
+  if (site.organization?.same_as?.length) {
+    orgNode.sameAs = site.organization.same_as;
+  }
+  graph.push(orgNode);
 
   const pageNode: JsonLdNode = {
     "@type": isArticle ? "BlogPosting" : "WebPage",
@@ -95,30 +81,37 @@ export function buildSchemaGraph(options: PageSchemaOptions): JsonLdNode | null 
     description: seo.description,
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
-    primaryImageOfPage: seo.image
-      ? {
-          "@type": "ImageObject",
-          "@id": `${seo.canonical}#primaryimage`,
-          inLanguage: seo.lang,
-          url: seo.image,
-          contentUrl: seo.image,
-          ...(seo.imageAlt && { caption: seo.imageAlt })
-        }
-      : undefined,
   };
 
+  if (seo.image) {
+    const imgObj = {
+      "@type": "ImageObject",
+      "@id": `${seo.canonical}#primaryimage`,
+      inLanguage: seo.lang,
+      url: seo.image,
+      contentUrl: seo.image,
+      ...(seo.imageAlt && { caption: seo.imageAlt })
+    };
+    pageNode.primaryImageOfPage = { "@id": `${seo.canonical}#primaryimage` };
+    graph.push(prune(imgObj));
+  }
+
   if (isArticle) {
-    pageNode.image = seo.image ? { "@id": `${seo.canonical}#primaryimage` } : undefined;
+    if (seo.image) { pageNode.image = { "@id": `${seo.canonical}#primaryimage` }; }
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
+
     if (seo.article?.author) {
-      pageNode.author = {
+      const authorId = id(base, `author-${seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`);
+      pageNode.author = { "@id": authorId };
+      graph.push(prune({
         "@type": "Person",
-        "@id": id(base, `author-${seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`),
+        "@id": authorId,
         name: seo.article.author
-      };
+      }));
     }
+
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
     }
@@ -127,8 +120,21 @@ export function buildSchemaGraph(options: PageSchemaOptions): JsonLdNode | null 
     pageNode.about = { "@id": id(base, "organization") };
   }
 
-  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
-  if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
+  graph.push(prune(pageNode));
+
+  if (breadcrumbs?.length) {
+    const breadcrumbNode = {
+      "@type": "BreadcrumbList",
+      "@id": `${breadcrumbs[breadcrumbs.length - 1]?.url ?? base}#breadcrumb`,
+      itemListElement: breadcrumbs.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: absoluteUrl(item.url, base),
+      })),
+    };
+    graph.push(breadcrumbNode);
+  }
 
   if (options.itemList && options.itemList.items.length > 0) {
     const itemListSchema: JsonLdNode = {
@@ -146,9 +152,4 @@ export function buildSchemaGraph(options: PageSchemaOptions): JsonLdNode | null 
   }
 
   return { "@context": "https://schema.org", "@graph": graph };
-}
-
-/** Drop undefined values so the emitted JSON stays clean. */
-function prune(node: JsonLdNode): JsonLdNode {
-  return Object.fromEntries(Object.entries(node).filter(([, value]) => value !== undefined));
 }
