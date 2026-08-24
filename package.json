@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "seo:audit": "node scripts/seo-audit.mjs",
     "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,json,md,mdx,css}\"",
     "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,json,md,mdx,css}\"",
     "astro": "astro",

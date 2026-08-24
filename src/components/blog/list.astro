@@ -1,14 +1,20 @@
 ---
-import PostSummary from "./summary.astro";
+import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import PostSummary from "./summary.astro";
 
-type Props = {
-  posts: CollectionEntry<"blog">[];
-};
+// Used for routing via visual editing components
+const _name = "BlogList";
 
-const { posts } = Astro.props;
+// CloudCannon returns all files in the collection as part of the page props
+const posts: CollectionEntry<"blog">[] = Astro.props.posts ?? (await getCollection("blog"));
+
+// Sort posts by date, newest first
+posts.sort(
+  (a, b) => new Date(b.data.post_hero.date).getTime() - new Date(a.data.post_hero.date).getTime(),
+);
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
-  {posts.map((post, i) => <PostSummary {...post} key={i} loading="eager" />)}
+<div class="space-y-16 mt-8">
+  {posts.map((post, i) => <PostSummary {...post} key={i} loading={i === 0 ? "eager" : "lazy"} />)}
 </div>
