@@ -1,24 +1,24 @@
 {
   "header": {
-    "logo": "/images/logos/logo-blue.png",
+    "logo": "/src/assets/brand/icon.svg",
     "logo_alt_text": "NRI Direct UK logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/services/",
-        "text": "Services"
-      },
-      {
-        "link": "/oci-card/",
+        "link": "/oci/",
         "text": "OCI Card"
       },
       {
-        "link": "/passport-renewal/",
+        "link": "/passport/",
         "text": "Passport Renewal"
       },
       {
-        "link": "/visa-assistance/",
+        "link": "/visa/",
         "text": "Visa Assistance"
+      },
+      {
+        "link": "/document-checking/",
+        "text": "Document Checking"
       },
       {
         "link": "/contact/",
@@ -27,34 +27,42 @@
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-blue.png",
+    "logo": "/src/assets/brand/icon.svg",
     "logo_alt_text": "NRI Direct UK logo",
     "logo_url": "/",
     "copyright": "NRI Direct UK. All rights reserved.",
     "links": [
       {
-        "link": "/services/",
-        "text": "Services"
-      },
-      {
-        "link": "/oci-card/",
+        "link": "/oci/",
         "text": "OCI Card"
       },
       {
-        "link": "/passport-renewal/",
+        "link": "/passport/",
         "text": "Passport Renewal"
       },
       {
-        "link": "/visa-assistance/",
+        "link": "/visa/",
         "text": "Visa Assistance"
+      },
+      {
+        "link": "/document-checking/",
+        "text": "Document Checking"
       },
       {
         "link": "/contact/",
         "text": "Contact"
       },
       {
-        "link": "/disclaimer/",
-        "text": "Independent Service Disclaimer"
+        "link": "/about/",
+        "text": "About"
+      },
+      {
+        "link": "/editorial-policy/",
+        "text": "Editorial Policy"
+      },
+      {
+        "link": "/how-we-make-money/",
+        "text": "How We Make Money"
       }
     ]
   }

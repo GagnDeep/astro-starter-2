@@ -34,7 +34,7 @@ content_blocks:
       ### Avoiding Common Pitfalls
       The most frequent causes of passport renewal rejections at the VFS counter involve incorrect photo sizes, mismatched signatures, or incomplete address proof. These errors not only cost you money but also significantly delay the issuance of your new passport.
 
-      Our independent document checking service reviews your entire application pack against the latest unwritten strictures enforced at application centres. We ensure that your UK address proof is valid, your photographs meet the precise Indian passport specifications, and all necessary forms are signed correctly.
+      Our independent document checking service reviews your entire application pack against the latest unwritten strictures enforced at application centres. Learn more [About](/about/) our team. We ensure that your UK address proof is valid, your photographs meet the precise Indian passport specifications, and all necessary forms are signed correctly.
 
       ### Complex Scenarios Managed
       Beyond standard renewals, we also provide clear, practical advice for complex situations. If you need a change of appearance affidavit, are applying under the Tatkaal scheme, or need to replace a lost or damaged passport, we break down the requirements into a manageable checklist. We verify your paperwork before you attend your appointment, drastically reducing the risk of a wasted trip.
