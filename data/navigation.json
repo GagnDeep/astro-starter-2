@@ -1,12 +1,20 @@
 {
   "header": {
-    "logo": "/images/logos/logo-wordmark-blue.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo.png",
+    "logo_alt_text": "JsonMock logo",
     "logo_url": "/",
     "links": [
       {
-        "link": "/about/",
-        "text": "About"
+        "link": "/features/",
+        "text": "Features"
+      },
+      {
+        "link": "/pricing/",
+        "text": "Pricing"
+      },
+      {
+        "link": "/docs/",
+        "text": "Documentation"
       },
       {
         "link": "/blog/",
@@ -15,23 +23,27 @@
       {
         "link": "/contact/",
         "text": "Contact"
-      },
-      {
-        "link": "https://github.com/CloudCannon/astro-starter/",
-        "text": "GitHub"
-      },
-      {
-        "link": "https://cloudcannon.com/",
-        "text": "CloudCannon"
       }
     ]
   },
   "footer": {
-    "logo": "/images/logos/logo-wordmark-white.png",
-    "logo_alt_text": "CloudCannon logo",
+    "logo": "/images/logos/logo-white.png",
+    "logo_alt_text": "JsonMock logo",
     "logo_url": "/",
-    "copyright": "MyCompany. All rights reserved.",
+    "copyright": "JsonMock. All rights reserved.",
     "links": [
+      {
+        "link": "/features/",
+        "text": "Features"
+      },
+      {
+        "link": "/pricing/",
+        "text": "Pricing"
+      },
+      {
+        "link": "/docs/",
+        "text": "Documentation"
+      },
       {
         "link": "/contact/",
         "text": "Contact"

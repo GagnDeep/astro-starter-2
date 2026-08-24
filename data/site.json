@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "JsonMock",
+  "description": "Deterministic record-and-replay mocking of LLM and AI-agent API responses for CI.",
+  "tagline": "Stop burning API credits in CI. Mock LLM responses deterministically.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "JsonMock — Deterministic record-and-replay mocking of LLM API responses.",
+  "default_author": "JsonMock Team",
+  "theme_color": "#121212",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "JsonMock",
+    "logo": "/images/logos/logo.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "engineering-team",
+      "name": "Engineering Team",
+      "real_role": "Core Maintainers",
+      "bio": "The engineering team at JsonMock building deterministic testing tools for AI agents.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We run our own tool against live OpenAI, Anthropic, and open-source models to verify deterministic replay. All code examples are executed as part of our own CI pipeline before publication.",
+    "how_we_make_money": "We sell a developer SaaS subscription to engineering teams.",
+    "corrections": "If you find a bug in our examples or an outdated API payload, email support@jsonmock.com. We update code snippets immediately upon verification."
   }
 }
