@@ -116,15 +116,21 @@ export function buildSchemaGraph({
     pageNode.publisher = { "@id": id(base, "organization") };
 
     if (seo.article?.author) {
-      const authorId = `${base}#author-${seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
 
       const authorData = site.authors?.find((a) => a.name === seo.article?.author);
+      const authorId = authorData?.slug ? `${base}${authorData.slug}/#person` : `${base}#author-${seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      const authorUrl = authorData?.slug ? `${base}${authorData.slug}/` : undefined;
+
+
+
 
       graph.push(
         prune({
           "@type": "Person",
           "@id": authorId,
           name: seo.article.author,
+          url: authorUrl,
           jobTitle: authorData?.real_role,
           description: authorData?.bio,
           sameAs: authorData?.sameAs?.length ? authorData.sameAs : undefined,
