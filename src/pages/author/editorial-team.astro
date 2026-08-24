@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import site from "../../../data/site.json";
+
+const author = site.authors.find((a) => a.slug === "editorial-team");
+
+if (!author) {
+  throw new Error("Author not found");
+}
+---
+
+<Layout
+  title={author.name}
+  seo={{
+    page_description: author.bio,
+    canonical_url: `/author/${author.slug}/`,
+    featured_image: "/src/assets/images/author-editorial-team.jpg",
+    featured_image_alt: author.name,
+    author_twitter_handle: null,
+    open_graph_type: "profile",
+    no_index: false,
+  }}
+>
+  <div class="mx-auto max-w-3xl px-8 py-16 md:py-24">
+    <div class="mb-12 text-center">
+      <h1 class="mb-4 text-4xl font-bold md:text-5xl">{author.name}</h1>
+      <p class="text-xl text-neutral-600">{author.role}</p>
+    </div>
+    <div class="prose max-w-none text-neutral-800">
+      <p>{author.bio}</p>
+      <p>
+        The Institute of Retirement Editorial Team rigorously analyzes cost of living,
+        visa options, healthcare, and tax implications for retiring abroad. Our
+        comparisons are fully disclosed and honestly published, ensuring you get
+        objective data to make the best decisions for your retirement.
+      </p>
+    </div>
+  </div>
+</Layout>
