@@ -6,7 +6,7 @@ import Markdown from "../../utility/markdown.astro";
 interface Props {
   heading: string;
   subheading: string;
-  image: {
+  image?: {
     image_path: string;
     alt_text: string;
   };
@@ -22,7 +22,7 @@ const allImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif,svg,webp,avif}",
   { eager: true },
 );
-const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
+const imageSrc = image?.image_path ? (allImages[image.image_path]?.default ?? image.image_path) : "";
 ---
 
 <section class="border-b-2 border-(--border-color) bg-(--bg-surface) overflow-hidden relative" data-component="Hero">
@@ -50,7 +50,7 @@ const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
       }
     </div>
     {
-      image.image_path && image.alt_text && (
+      image?.image_path && image?.alt_text && (
         <div class="flex-1">
           <Picture
             data-editable="image"
