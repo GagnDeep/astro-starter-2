@@ -1,0 +1,45 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Byline from "../../../components/byline/byline.astro";
+import SourcesList from "../../../components/sources-list/sources-list.astro";
+
+const sources = [
+  { title: "TrendSpider Pricing", url: "https://trendspider.com/pricing", date: "2024-08-20" }
+];
+---
+
+<Layout
+  title="TrendSpider Review"
+  seo={{
+    page_description: "Our comprehensive review of TrendSpider. We evaluate its automated charting, strategy tester, and verified pricing for technical traders.",
+    canonical_url: "https://aiandinvesting.com/reviews/trendspider/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["trendspider", "review"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">TrendSpider Review</h1>
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>We review TrendSpider's platform for technical traders.</p>
+
+        <h2>Is TrendSpider worth it for technical analysis?</h2>
+        <p>TrendSpider is well worth the subscription cost for highly dedicated, pattern-focused technical analysts relying on complex, rapidly shifting multi-timeframe charting setups. Its automated trendline drawing algorithms and structurally robust alert system reliably save traders significant manual chart-staring effort, even though long-term fundamental investors will undeniably find almost all of its advanced features totally irrelevant to their analytical workflow.</p>
+
+        <p>You can sign up for TrendSpider <a href="https://trendspider.com" rel="sponsored nofollow">here</a>.</p>
+      </div>
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>

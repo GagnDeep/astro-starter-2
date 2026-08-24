@@ -1,0 +1,29 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import site from "../../../../data/site.json";
+
+const author = site.authors.find(a => a.slug === 'editorial-team');
+---
+
+<Layout
+  title={`${author?.name} - Authors`}
+  seo={{
+    page_description: author?.bio || "The research and analysis team behind AI & Investing's back-tests.",
+    canonical_url: "https://aiandinvesting.com/authors/editorial-team/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "profile",
+    no_index: false
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">{author?.name}</h1>
+      <p class="text-xl text-[var(--text-muted)] mb-8">{author?.role}</p>
+      <div class="prose max-w-none text-[var(--text-main)]">
+        <p>{author?.bio}</p>
+      </div>
+    </div>
+  </section>
+</Layout>

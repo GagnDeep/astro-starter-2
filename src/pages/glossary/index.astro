@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Byline from "../../components/byline/byline.astro";
+import SourcesList from "../../components/sources-list/sources-list.astro";
+
+const sources = [
+  { title: "Investopedia: Algorithmic Trading", url: "https://www.investopedia.com/terms/a/algorithmictrading.asp" }
+];
+---
+
+<Layout
+  title="AI Investing Glossary"
+  seo={{
+    page_description: "Definitions of technical terms used across our reviews and back-tests, from out-of-sample data to survivorship bias.",
+    canonical_url: "https://aiandinvesting.com/glossary/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["glossary", "terms"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">AI Investing Glossary</h1>
+
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>Understand the terminology used in AI stock picking.</p>
+
+        <h2>What is out-of-sample testing?</h2>
+        <p>Out-of-sample testing is the process of evaluating a trading algorithm on historical data that was explicitly excluded from its training phase. This crucial step prevents overfitting and provides a realistic, statistically sound estimate of how the system will perform in live, unpredictable markets.</p>
+
+        <h2>What is survivorship bias in back-testing?</h2>
+        <p>Survivorship bias is a critical error where an algorithm is back-tested only on companies that currently exist. By ignoring delisted or bankrupt stocks, the historical dataset becomes artificially sanitized, resulting in wildly inflated past performance metrics that cannot be replicated in live trading.</p>
+
+      </div>
+
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>

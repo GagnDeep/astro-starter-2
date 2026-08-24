@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Byline from "../components/byline/byline.astro";
+---
+
+<Layout
+  title="About Us"
+  seo={{
+    page_description: "Learn about the team behind AI & Investing and our mission to test AI stock pickers.",
+    canonical_url: "https://aiandinvesting.com/about/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "website",
+    no_index: false
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">About AI & Investing</h1>
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p>AI investing tools are heavily marketed, but verifiable performance is rarely shared. Our team conducts rigorous back-tests of AI stock pickers so you don't have to guess.</p>
+
+        <h2>What is our core mission?</h2>
+        <p>Our core mission is to bring radical transparency to the AI investing space. We firmly believe that all retail investors deserve to see verifiable, completely out-of-sample historical performance data clearly presented before they risk any real capital on opaque, heavily marketed black-box algorithmic trading systems.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

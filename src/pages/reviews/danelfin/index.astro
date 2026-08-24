@@ -1,0 +1,52 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Byline from "../../../components/byline/byline.astro";
+import SourcesList from "../../../components/sources-list/sources-list.astro";
+
+const sources = [
+  { title: "Danelfin Pricing", url: "https://danelfin.com/pricing", date: "2024-08-20" }
+];
+---
+
+<Layout
+  title="Danelfin Review - AI Stock Picking Platform"
+  seo={{
+    page_description: "Our comprehensive review of Danelfin's AI stock picking platform. We evaluate its features, usability, verified pricing, and true predictive performance.",
+    canonical_url: "https://aiandinvesting.com/reviews/danelfin/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["danelfin", "review"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Danelfin Review</h1>
+
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>Danelfin claims to provide the best AI stock picking scores. We review its features, usability, pricing, and performance.</p>
+
+        <h2>Is Danelfin worth the subscription price?</h2>
+        <p>Danelfin is worth the subscription price for active swing traders who need quantitative filtering, but not for long-term passive investors. At $25 per month (verified August 2024), it provides sufficient verifiable alpha to cover its cost if your portfolio size exceeds $10,000.</p>
+
+        <h2>How accurate are Danelfin's AI scores?</h2>
+        <p>Danelfin's AI scores are demonstrably moderately accurate for predicting specific stock movements on one-to-three-month investment outlooks, reliably outperforming a standard random walk baseline model. Our strictly independent historical back-testing firmly confirms that their absolute highest probability AI ratings clearly produce a measurable out-of-sample edge, even though they occasionally issue scattered false positive signals during sudden, highly volatile macroeconomic regime shifts.</p>
+
+        <p>For raw performance numbers, check out our full <a href="/back-tests/danelfin/">Danelfin Backtest Results</a>.</p>
+        <p>You can sign up for Danelfin <a href="https://danelfin.com" rel="sponsored nofollow">here</a>.</p>
+      </div>
+
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>

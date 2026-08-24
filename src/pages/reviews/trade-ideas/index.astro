@@ -1,0 +1,45 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Byline from "../../../components/byline/byline.astro";
+import SourcesList from "../../../components/sources-list/sources-list.astro";
+
+const sources = [
+  { title: "Trade Ideas Pricing", url: "https://trade-ideas.com/pricing", date: "2024-08-20" }
+];
+---
+
+<Layout
+  title="Trade Ideas Review"
+  seo={{
+    page_description: "Our comprehensive review of Trade Ideas. We evaluate its day trading tools, scanner speed, verified pricing, and AI performance.",
+    canonical_url: "https://aiandinvesting.com/reviews/trade-ideas/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["trade-ideas", "review"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Trade Ideas Review</h1>
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>We evaluate Trade Ideas for active day traders.</p>
+
+        <h2>Is Trade Ideas the best scanner for day trading?</h2>
+        <p>Trade Ideas is currently the fastest and most comprehensive scanner for active day trading, featuring unparalleled real-time data processing. However, its complex interface and steep learning curve make it highly unsuitable for beginners or investors focusing on long-term fundamental analysis.</p>
+
+        <p>You can sign up for Trade Ideas <a href="https://trade-ideas.com" rel="sponsored nofollow">here</a>.</p>
+      </div>
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>

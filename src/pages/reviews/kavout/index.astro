@@ -1,0 +1,45 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Byline from "../../../components/byline/byline.astro";
+import SourcesList from "../../../components/sources-list/sources-list.astro";
+
+const sources = [
+  { title: "Kavout Methods", url: "https://www.kavout.com/methodology", date: "2024-08-20" }
+];
+---
+
+<Layout
+  title="Kavout K Score Review"
+  seo={{
+    page_description: "Comprehensive review of Kavout's K Score AI ranking system. We evaluate its predictive strength, usability, and institutional-grade models.",
+    canonical_url: "https://aiandinvesting.com/reviews/kavout/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["kavout", "review"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Kavout K Score Review</h1>
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>We evaluate Kavout's K Score ranking system.</p>
+
+        <h2>How reliable is the Kavout K Score?</h2>
+        <p>The Kavout K Score is highly reliable for constructing diversified, factor-based portfolios over medium-term horizons. Our independent analysis verifies its institutional-grade machine learning models successfully identify structural alpha, though it is not designed to provide actionable signals for short-term day traders.</p>
+
+        <p>You can sign up for Kavout <a href="https://kavout.com" rel="sponsored nofollow">here</a>.</p>
+      </div>
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>

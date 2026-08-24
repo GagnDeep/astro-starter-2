@@ -100,7 +100,8 @@ export function buildSchemaGraph({
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      const authorSlug = seo.article.author.toLowerCase().replace(/\s+/g, "-");
+      pageNode.author = { "@type": "Person", "@id": new URL(`/authors/${authorSlug}/`, base).toString(), "name": seo.article.author, "url": new URL(`/authors/${authorSlug}/`, base).toString() };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;

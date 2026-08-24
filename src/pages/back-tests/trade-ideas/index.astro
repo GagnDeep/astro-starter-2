@@ -1,0 +1,56 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Byline from "../../../components/byline/byline.astro";
+import SourcesList from "../../../components/sources-list/sources-list.astro";
+import ComparisonTable from "../../../components/comparison-table/comparison-table.astro";
+
+const sources = [
+  { title: "SEC Investor Bulletin", url: "https://www.sec.gov/oiea/investor-alerts-and-bulletins/ib_algorithmictrading" }
+];
+
+const tiRows = [
+  { feature: "Intraday Alpha", our_tool: "0.8%", competitor: "0.2%" },
+  { feature: "Win Rate (Filtered)", our_tool: "54%", competitor: "48%" }
+];
+---
+
+<Layout
+  title="Trade Ideas Holly AI Backtest"
+  seo={{
+    page_description: "We rigorously backtest Trade Ideas Holly AI to see if it is historically profitable for day traders, adjusting for realistic slippage.",
+    canonical_url: "https://aiandinvesting.com/back-tests/trade-ideas/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["trade-ideas", "backtest"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Trade Ideas Holly AI Backtest</h1>
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>We tested Trade Ideas Holly AI against historical market data to evaluate its profitability for intraday trading.</p>
+
+        <h2>Is Trade Ideas Holly AI historically profitable?</h2>
+        <p>Trade Ideas Holly AI is historically profitable when paired with strict risk management, but struggles in choppy, trendless markets. Our reproducible back-test indicates that its breakout algorithms provide measurable alpha out-of-sample, provided you ruthlessly cut losses according to the engine's stop criteria.</p>
+
+        <ComparisonTable
+          heading="Intraday Performance vs Benchmark"
+          our_tool_name="Holly AI Signals"
+          competitor_name="VWAP Crossover"
+          rows={tiRows}
+        />
+      </div>
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>
