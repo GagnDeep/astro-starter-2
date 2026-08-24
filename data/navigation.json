@@ -5,8 +5,20 @@
     "logo_url": "/",
     "links": [
       {
-        "link": "/",
-        "text": "Home"
+        "link": "/formation/",
+        "text": "Formation"
+      },
+      {
+        "link": "/compliance/",
+        "text": "Compliance"
+      },
+      {
+        "link": "/technology/",
+        "text": "Technology"
+      },
+      {
+        "link": "/succession/",
+        "text": "Succession"
       }
     ]
   },
@@ -17,8 +29,32 @@
     "copyright": "Institute of RIA. All rights reserved.",
     "links": [
       {
-        "link": "/feed.xml",
-        "text": "RSS Feed"
+        "link": "/about/",
+        "text": "About"
+      },
+      {
+        "link": "/contact/",
+        "text": "Contact"
+      },
+      {
+        "link": "/how-we-make-money/",
+        "text": "How We Make Money"
+      },
+      {
+        "link": "/editorial-policy/",
+        "text": "Editorial Policy"
+      },
+      {
+        "link": "/blog/",
+        "text": "Blog"
+      },
+      {
+        "link": "/authors/editorial-team/",
+        "text": "Editorial Team"
+      },
+      {
+        "link": "/thanks/",
+        "text": "Thanks Page"
       }
     ]
   }
