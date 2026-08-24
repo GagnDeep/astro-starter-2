@@ -60,6 +60,9 @@ content_blocks:
   - _name: TextBlock
     heading: "Final Verdict on the Budget"
     text_content: "While Spain offers slightly cheaper groceries and a generally more robust public transportation network, Portugal edges out a victory when it comes to the major fixed costs of rent and basic utilities. \n\n*Disclosure: We may earn a commission from partners linked in this guide. [Read our policy](/how-we-make-money/).*\n\nIf you are ready to explore housing options, you can <a href=\"https://www.example-real-estate-spain.com\" rel=\"sponsored nofollow\">browse verified rental listings in Spain and Portugal</a> through our trusted real estate partners."
+  - _name: TextBlock
+    heading: "Related Reading"
+    text_content: "Continue your research with these related guides:\n\n- [Portugal NHR Alternatives](/taxes/portugal-nhr-alternatives/)"
   - _name: SourcesList
     sources:
       - title: "INE Portugal - National Statistics Institute"
@@ -69,3 +72,6 @@ content_blocks:
         url: "https://www.ine.es/"
         date_accessed: "2024-05-18"
 ---
+  - _name: TextBlock
+    heading: "More Info"
+    text_content: "Read our [About](/about/) page, [Editorial Policy](/editorial-policy/), and [Thanks](/thanks/)."

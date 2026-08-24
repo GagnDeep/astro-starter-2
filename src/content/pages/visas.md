@@ -55,6 +55,12 @@ content_blocks:
   - _name: TextBlock
     heading: "Next Steps for Your Application"
     text_content: "Begin by gathering your essential documents: birth certificates, marriage certificates, and federal background checks. Crucially, these documents must typically be apostilled and translated by a certified translator within a specific timeframe (often 90 days) before your consulate appointment. Timing is everything in immigration law.\n\n*Disclosure: Our content is free to read, but we may earn a commission from partners we recommend, such as immigration attorneys or expat tax services. This does not influence our analysis. [Read how we make money](/how-we-make-money/).*\n\nFor a smooth transition, we recommend utilizing a <a href=\"https://www.example-immigration-lawyers.com\" rel=\"sponsored nofollow\">trusted network of international immigration attorneys</a> who specialize in retirement transitions."
+  - _name: TextBlock
+    heading: "Related Reading"
+    text_content: "Continue your research with these related guides:\n\n- [Spain Non-Lucrative Visa](/visas/spain-non-lucrative-visa/)\n- [Italy Elective Residency](/visas/italy-elective-residency/)\n- [Panama Pensionado Requirements](/visas/panama-pensionado-requirements/)\n- [Home](/)\n- [Pre-existing Conditions Guidelines](/healthcare/pre-existing-conditions-abroad/)\n- [Spain Insurance Specifics](/healthcare/spain-private-insurance-requirements/)"
+  - _name: TextBlock
+    heading: "Additional Resources"
+    text_content: "Find out more by reading our [About Us](/about/), [Thanks](/thanks/), [Portugal vs Spain](/cost-of-living/portugal-vs-spain/), [Spain Non-Lucrative Visa](/visas/spain-non-lucrative-visa/)."
   - _name: SourcesList
     sources:
       - title: "Ministry of Foreign Affairs, European Union and Cooperation - Spain Visa Requirements"

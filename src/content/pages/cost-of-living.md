@@ -55,6 +55,12 @@ content_blocks:
   - _name: TextBlock
     heading: "Building a Resilient Expat Budget"
     text_content: "A resilient expat budget must account for inflation both in your home country and your destination country. We recommend building your baseline budget with a 10% contingency buffer to absorb minor economic shocks and currency fluctuations. Remember, the goal is not merely to survive in your new home, but to enjoy the retirement lifestyle you have earned without constant financial anxiety.\n\n*Disclosure: We may earn a commission if you click on some of the links in this guide, such as international moving services or financial advisory tools. This helps fund our independent research. [Read our full disclosure policy](/how-we-make-money/).*\n\nIf you need assistance calculating your specific post-tax income and how it translates to these destinations, you can <a href=\"https://www.example-tax-advisor.com\" rel=\"sponsored nofollow\">consult a specialized international tax professional</a> to ensure you are fully compliant."
+  - _name: TextBlock
+    heading: "Related Reading"
+    text_content: "Continue your research with these related guides:\n\n- [Portugal vs Spain Cost](/cost-of-living/portugal-vs-spain/)\n- [Panama Pensionado Requirements](/visas/panama-pensionado-requirements/)\n- [Costa Rica Housing Market](/cost-of-living/costa-rica-housing-market/)\n- [Home](/)\n- [Portugal NHR Tax Benefits](/taxes/portugal-nhr-alternatives/)\n- [Italy Elective Visa Guide](/visas/italy-elective-residency/)"
+  - _name: TextBlock
+    heading: "Additional Resources"
+    text_content: "Find out more by reading our [About Us](/about/), [Thanks](/thanks/), [Editorial Policy](/editorial-policy/)."
   - _name: SourcesList
     sources:
       - title: "Numbeo - Global Cost of Living Database"
