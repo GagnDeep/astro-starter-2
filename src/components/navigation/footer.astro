@@ -2,25 +2,28 @@
 import { footer } from "../../../data/navigation.json";
 ---
 
-<footer class="bg-gray-800 text-white">
-  <div class="mx-auto max-w-6xl px-8 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-8">
-      <a class="flex justify-center sm:justify-start" href={footer.logo_url}>
-        <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
-      </a>
+<footer class="bg-brand-950 text-neutral-100 border-t border-brand-800">
+  <div class="mx-auto max-w-6xl px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+      <div class="md:col-span-4 flex flex-col gap-6">
+        <a href={footer.logo_url} aria-label="Home" class="inline-block">
+          <img class="h-8 w-auto brightness-0 invert" src={footer.logo} alt={footer.logo_alt_text} />
+        </a>
+        <p class="text-sm text-neutral-300 leading-relaxed max-w-xs">
+          {footer.copyright}
+        </p>
+      </div>
 
-      <ul class="flex gap-6 items-center justify-center">
-        {footer.links.map((link) => (
-          <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <div class="md:col-span-8 flex flex-col sm:flex-row gap-12 sm:justify-end">
+        <ul class="flex flex-col gap-4">
+          {footer.links.map((link) => (
+            <li>
+              <a class="text-sm hover:text-white transition-colors duration-200" href={link.link}>
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </div>

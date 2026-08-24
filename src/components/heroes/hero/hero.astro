@@ -25,24 +25,24 @@ const allImages = import.meta.glob<{ default: ImageMetadata }>(
 const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
 ---
 
-<section class="py-16 md:py-24">
-  <div
-    class="mx-auto max-w-6xl px-8 flex flex-col md:flex-row items-center gap-8">
-    <div class="flex-1 flex flex-col gap-4">
+<section class="py-16 md:py-24 bg-surface-color border-b border-border-color">
+  <div class="mx-auto max-w-6xl px-8 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
+    <div class="w-full md:w-3/5 flex flex-col gap-6">
       <h1
         data-editable="text"
         data-prop="heading"
-        class="text-3xl md:text-5xl font-bold leading-tight text-balance">
+        class="font-display font-medium leading-none text-balance text-text-color tracking-tight"
+        style="font-size: var(--text-display);">
         {heading}
       </h1>
-      <div class="text-lg text-gray-600 max-w-prose">
+      <div class="text-lg text-text-muted max-w-prose leading-relaxed">
         <Markdown content={subheading} dataProp="subheading" dataType="block" />
       </div>
       {
         button?.link && (
           <a
             href={button.link}
-            class="mt-2 inline-block w-fit rounded-lg bg-blue-600 px-6 py-3 text-white font-medium hover:bg-blue-700 transition-colors">
+            class="mt-4 inline-flex w-fit items-center justify-center rounded-sm bg-brand-700 px-6 py-3 text-white font-medium hover:bg-accent-color transition-colors duration-200">
             <span data-editable="text" data-prop="button.text">
               {button.text}
             </span>
@@ -52,14 +52,14 @@ const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
     </div>
     {
       image.image_path && image.alt_text && (
-        <div class="flex-1">
+        <div class="w-full md:w-2/5 flex justify-end">
           <Picture
             data-editable="image"
             data-prop-src="image.image_path"
             data-prop-alt="image.alt_text"
             alt={image.alt_text}
             src={imageSrc}
-            class="w-full max-w-lg"
+            class="w-full h-auto object-cover rounded-sm border border-border-color shadow-sm"
             loading="eager"
             widths={[600, 800, 1200]}
             sizes="(max-width: 1200px) 100vw, 600px"
