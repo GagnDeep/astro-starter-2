@@ -1,0 +1,43 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Byline from "../../../components/byline/byline.astro";
+import SourcesList from "../../../components/sources-list/sources-list.astro";
+
+const sources = [
+  { title: "SEC Investor Bulletin", url: "https://www.sec.gov/oiea/investor-alerts-and-bulletins/ib_algorithmictrading" }
+];
+---
+
+<Layout
+  title="TrendSpider Strategy Tester Backtest"
+  seo={{
+    page_description: "We evaluate the accuracy of TrendSpider's backtesting tools, verifying its execution logic and historical charting data against real market conditions.",
+    canonical_url: "https://aiandinvesting.com/back-tests/trendspider/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["trendspider", "backtest"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">TrendSpider Strategy Tester Backtest</h1>
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>We verified how well TrendSpider's backtesting tools actually execute against true historical data.</p>
+
+        <h2>How accurate is TrendSpider's strategy tester?</h2>
+        <p>TrendSpider's strategy tester is highly accurate for daily and weekly timeframes, closely mirroring real-world execution. However, our rigorous analysis found that its engine struggles with intraday slippage modeling, occasionally overestimating returns on fast-moving momentum stocks during the opening thirty minutes.</p>
+      </div>
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>

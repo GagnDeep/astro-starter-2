@@ -1,0 +1,56 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Byline from "../../components/byline/byline.astro";
+import SourcesList from "../../components/sources-list/sources-list.astro";
+
+const sources = [
+  { title: "FINRA: Algorithmic Trading Rules", url: "https://www.finra.org/rules-guidance/key-topics/algorithmic-trading" }
+];
+---
+
+<Layout
+  title="AI Stock Picking Software Reviews"
+  seo={{
+    page_description: "In-depth reviews of AI investing tools, analyzing usability, pricing, features, and actual historical performance data.",
+    canonical_url: "https://aiandinvesting.com/reviews/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["reviews", "software"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">AI Stock Picking Software Reviews</h1>
+
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>Compare different AI investing tools. We evaluate usability, pricing, feature sets, and actual historical performance.</p>
+
+        <h2>How do we evaluate AI stock picking software?</h2>
+        <p>We comprehensively evaluate retail AI stock picking software strictly by combining hands-on usability testing with rigorous, entirely out-of-sample historical back-testing of the platform's underlying predictive machine learning models. We systematically verify all advertised subscription pricing, assess true feature depth, and definitively ensure any and all stated performance claims are fully backed by thoroughly transparent, completely repeatable historical market data.</p>
+
+        <h2>Which AI investing platforms are covered?</h2>
+        <p>We rigorously review and continuously cover the most prominent, heavily marketed AI investing software platforms currently available to standard retail investors today. Our deeply comprehensive online catalog actively includes detailed, data-driven reviews of industry heavyweights like Danelfin, Trade Ideas, TrendSpider, and Kavout, meticulously breaking down their interface strengths, glaring algorithmic weaknesses, and completely verified true predictive forecasting capabilities.</p>
+
+        <ul>
+          <li><a href="/reviews/danelfin/">Danelfin Review</a></li>
+          <li><a href="/reviews/trade-ideas/">Trade Ideas Review</a></li>
+          <li><a href="/reviews/trendspider/">TrendSpider Review</a></li>
+          <li><a href="/reviews/kavout/">Kavout Review</a></li>
+        </ul>
+      </div>
+
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Byline from "../components/byline/byline.astro";
+---
+
+<Layout
+  title="Editorial Policy"
+  seo={{
+    page_description: "Our editorial guidelines and commitment to unbiased, reproducible back-testing data.",
+    canonical_url: "https://aiandinvesting.com/editorial-policy/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "website",
+    no_index: false
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Editorial Policy</h1>
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p>Our commitment is to provide transparent, verifiable data to retail investors. We evaluate AI investing tools through reproducible back-testing against historical market data, without exception.</p>
+
+        <h2>How do we handle corrections?</h2>
+        <p>If you discover any sort of factual error, a broken link, or a fundamental mathematical flaw in our stated back-testing methodology, please contact our editorial team immediately. We always guarantee to publish transparent corrections prominently alongside the original flawed analysis in order to ensure total ongoing transparency and absolutely maintain the rigid integrity of our published historical testing database.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Byline from "../components/byline/byline.astro";
+---
+
+<Layout
+  title="How We Make Money"
+  seo={{
+    page_description: "Full transparency on our affiliate relationships and how AI & Investing is funded.",
+    canonical_url: "https://aiandinvesting.com/how-we-make-money/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "website",
+    no_index: false
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">How We Make Money</h1>
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p>We believe in absolute transparency regarding our revenue sources. Our rigorous, reproducible back-testing methodology ensures our data remains completely objective and fair regardless of our affiliate relationships.</p>
+
+        <h2>Do affiliate links affect our reviews?</h2>
+        <p>No, active affiliate relationships and commission links never influence our testing methodologies or final scores. We may indeed earn a monetary affiliate commission when you explicitly purchase software tools through our outbound links, but you can be guaranteed that every single performance claim is based safely and solely on fully published, strictly repeatable, rigorously verified historical back-test results.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

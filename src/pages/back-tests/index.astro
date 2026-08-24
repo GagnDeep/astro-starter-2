@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Byline from "../../components/byline/byline.astro";
+import SourcesList from "../../components/sources-list/sources-list.astro";
+
+const sources = [
+  { title: "SEC Investor Bulletin", url: "https://www.sec.gov/oiea/investor-alerts-and-bulletins/ib_algorithmictrading" }
+];
+---
+
+<Layout
+  title="AI Stock Picker Back-Tests"
+  seo={{
+    page_description: "Aggregated historical performance data for the top AI trading algorithms. Verify which tools actually beat the market before you invest capital.",
+    canonical_url: "https://aiandinvesting.com/back-tests/",
+    featured_image: null,
+    featured_image_alt: null,
+    author_twitter_handle: null,
+    open_graph_type: "article",
+    no_index: false
+  }}
+  article={{
+    publishedTime: "2024-08-01T08:00:00Z",
+    modifiedTime: new Date().toISOString(),
+    author: "Editorial Team",
+    tags: ["backtesting", "performance"]
+  }}
+>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">AI Stock Picker Back-Tests</h1>
+
+      <Byline author_slug="editorial-team" date={new Date().toISOString()} />
+
+      <div class="prose max-w-none text-[var(--text-main)] mt-8">
+        <p><em>Disclosure: We may earn an affiliate commission if you purchase tools through our links. This does not affect our testing methodology.</em></p>
+        <p>See historical performance data of AI trading algorithms. We run these tests to verify the claims made by software vendors.</p>
+
+        <h2>Why is back-testing critical for AI stock pickers?</h2>
+        <p>Back-testing is critical because it provides verifiable, out-of-sample data proving an algorithm's predictive power. It strips away marketing hype and reveals how a strategy would have performed during historical market turbulence, giving retail investors a grounded expectation of future performance and risk.</p>
+
+        <h2>What tools have we rigorously back-tested?</h2>
+        <p>We have rigorously back-tested several of the industry's leading retail platforms to determine their actual long-term market-beating potential. Our comprehensive ongoing analysis specifically covers popular platforms just like Danelfin, Trade Ideas, and TrendSpider, systematically subjecting their proprietary predictive AI models to our strict, completely unyielding out-of-sample evaluation methodology to definitively uncover the unvarnished statistical truth behind the marketing.</p>
+
+        <ul>
+          <li><a href="/back-tests/danelfin/">Danelfin Back-Test Results</a></li>
+          <li><a href="/back-tests/trade-ideas/">Trade Ideas Holly AI Back-Test</a></li>
+          <li><a href="/back-tests/trendspider/">TrendSpider Back-Test</a></li>
+        </ul>
+      </div>
+
+      <SourcesList sources={sources} />
+    </div>
+  </section>
+</Layout>
