@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Institute of Retirement",
+  "description": "A fully disclosed, honestly published comparison of countries for near-retirees deciding where to retire abroad, scored on cost of living, visas, healthcare, and tax.",
+  "tagline": "Retire abroad with confidence.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Institute of Retirement — compare countries for retiring abroad.",
+  "default_author": "Institute of Retirement",
+  "theme_color": "#091223",
   "organization": {
-    "name": "CloudCannon",
+    "name": "Institute of Retirement",
     "logo": "/images/logos/logo-blue.png",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Researchers and Analysts",
+      "bio": "Our team rigorously analyzes cost of living, visa options, healthcare, and tax implications for retiring abroad.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We source cost of living data from Numbeo, verify visa requirements with official consulates, assess healthcare via WHO rankings and local expat experiences, and model tax treatment based on current bilateral tax treaties.",
+    "how_we_make_money": "We monetize via transparent affiliate links and lead generation for trusted services like international movers or specialized tax advisors. We never alter scores based on affiliate relationships.",
+    "corrections": "We correct factual errors promptly and log significant updates at the bottom of affected pages."
   }
 }
