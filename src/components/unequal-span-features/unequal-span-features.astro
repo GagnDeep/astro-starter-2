@@ -1,0 +1,61 @@
+---
+import Markdown from "../utility/markdown.astro";
+import { ChevronRight } from "@lucide/astro";
+
+interface Props {
+  heading?: string;
+  subheading?: string;
+  features: {
+    title: string;
+    description: string;
+    link?: string;
+  }[];
+}
+
+const { heading, subheading, features = [] } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-surface-color reveal-on-scroll">
+  <div class="mx-auto max-w-6xl px-8">
+    {(heading || subheading) && (
+      <div class="mb-12 max-w-2xl">
+        {heading && (
+          <h2 data-editable="text" data-prop="heading" class="text-balance mb-4">
+            {heading}
+          </h2>
+        )}
+        {subheading && (
+          <div class="text-text-muted text-lg">
+            <Markdown content={subheading} dataProp="subheading" dataType="block" />
+          </div>
+        )}
+      </div>
+    )}
+
+    {features.length > 0 && (
+      <div data-editable="array" data-prop="features" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {features.map((feature, index) => (
+          <div
+            class={`bg-bg-color p-8 rounded-xl border border-border-color shadow-sm flex flex-col justify-between group hover:border-brand-color transition-colors duration-200 ${index === 0 ? "md:col-span-2" : "md:col-span-1"}`}
+            data-editable="array-item"
+          >
+            <div>
+              <h3 data-editable="text" data-prop={`features[${index}].title`} class="text-xl mb-3 font-medium">
+                {feature.title}
+              </h3>
+              <div class="text-text-muted mb-6">
+                <Markdown content={feature.description} dataProp={`features[${index}].description`} dataType="block" />
+              </div>
+            </div>
+            {feature.link && (
+              <a href={feature.link} class="inline-flex items-center gap-1 text-sm font-medium text-brand-color group-hover:text-accent-color w-fit">
+                Learn more
+                <ChevronRight class="w-4 h-4 transition-transform group-hover:translate-x-1" stroke-width="2" />
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

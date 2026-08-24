@@ -1,0 +1,39 @@
+---
+import Markdown from "../utility/markdown.astro";
+import { ArrowRight } from "@lucide/astro";
+
+interface Props {
+  heading: string;
+  text_content?: string;
+  button: {
+    text: string;
+    link: string;
+  };
+}
+
+const { heading, text_content, button } = Astro.props;
+---
+
+<section class="py-20 bg-brand-900 text-neutral-100 border-y border-brand-800 reveal-on-scroll">
+  <div class="mx-auto max-w-4xl px-8 text-center flex flex-col items-center">
+    <h2 data-editable="text" data-prop="heading" class="text-3xl md:text-5xl font-bold mb-6 text-balance text-white">
+      {heading}
+    </h2>
+
+    {text_content && (
+      <div class="text-neutral-300 text-lg mb-8 max-w-2xl text-balance">
+        <Markdown content={text_content} dataProp="text_content" dataType="block" />
+      </div>
+    )}
+
+    {button?.link && button?.text && (
+      <a
+        href={button.link}
+        class="inline-flex items-center gap-2 bg-brand-700 hover:bg-accent-color text-white px-8 py-4 rounded-md font-medium transition-colors duration-200 shadow-md group"
+      >
+        <span data-editable="text" data-prop="button.text">{button.text}</span>
+        <ArrowRight class="w-5 h-5 transition-transform group-hover:translate-x-1" stroke-width="2" />
+      </a>
+    )}
+  </div>
+</section>

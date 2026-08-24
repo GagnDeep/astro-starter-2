@@ -1,0 +1,51 @@
+---
+import Markdown from "../utility/markdown.astro";
+import { ExternalLink } from "@lucide/astro";
+
+interface Props {
+  heading?: string;
+  sources: {
+    title: string;
+    description?: string;
+    url: string;
+    is_sponsored?: boolean;
+  }[];
+}
+
+const { heading = "Sources & References", sources = [] } = Astro.props;
+---
+
+<section class="py-12 bg-bg-color border-t border-border-color reveal-on-scroll">
+  <div class="mx-auto max-w-3xl px-8">
+    <h2 data-editable="text" data-prop="heading" class="text-xl font-medium mb-6 text-text-muted uppercase tracking-wider">
+      {heading}
+    </h2>
+
+    {sources.length > 0 && (
+      <ul class="flex flex-col gap-4" data-editable="array" data-prop="sources">
+        {sources.map((source, index) => (
+          <li class="group" data-editable="array-item">
+            <a
+              href={source.url}
+              rel={source.is_sponsored ? "sponsored nofollow" : "noopener noreferrer"}
+              target="_blank"
+              class="flex flex-col gap-1 p-4 -mx-4 rounded-lg hover:bg-surface-color transition-colors duration-200"
+            >
+              <div class="flex items-center gap-2">
+                <span data-editable="text" data-prop={`sources[${index}].title`} class="font-medium text-text-color group-hover:text-brand-color transition-colors">
+                  {source.title}
+                </span>
+                <ExternalLink class="w-4 h-4 text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" stroke-width="2" />
+              </div>
+              {source.description && (
+                <span class="text-sm text-text-muted block">
+                  <Markdown content={source.description} dataProp={`sources[${index}].description`} dataType="inline" />
+                </span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>
