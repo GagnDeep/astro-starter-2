@@ -83,3 +83,10 @@ content_blocks:
     description: "Join our newsletter to receive detailed cost breakdowns, visa updates, and tax strategies sent directly to your inbox."
     show_form: true
 ---
+
+  - _name: TextBlock
+    heading: "Related Reading"
+    text_content: "Continue your research with these related guides:\n\n- [About Us](/about/)\n- [Portugal vs Spain Cost](/cost-of-living/portugal-vs-spain/)\n- [Spain Non-Lucrative Visa](/visas/spain-non-lucrative-visa/)\n- [US Social Security Abroad](/taxes/us-social-security-abroad/)\n- [Editorial Policy](/editorial-policy/)\n- [Costa Rica Housing Market](/cost-of-living/costa-rica-housing-market/)\n- [Portugal vs Spain Cost](/cost-of-living/portugal-vs-spain/)\n- [Spain Non-Lucrative Visa](/visas/spain-non-lucrative-visa/)\n- [US Social Security Abroad](/taxes/us-social-security-abroad/)\n- [Editorial Policy](/editorial-policy/)\n- [Costa Rica Housing Market](/cost-of-living/costa-rica-housing-market/)\n- [Thanks](/thanks/)\n- [About Us](/about/)\n- [Editorial Policy](/editorial-policy/)\n- [Portugal vs Spain Cost](/cost-of-living/portugal-vs-spain/)\n- [Spain Non-Lucrative Visa](/visas/spain-non-lucrative-visa/)\n- [Thanks](/thanks/)\n"\n
+  - _name: TextBlock
+    heading: "Additional Resources"
+    text_content: "Find out more by reading our [About Us](/about/), [Thanks](/thanks/)."
