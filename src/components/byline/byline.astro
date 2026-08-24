@@ -15,7 +15,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-GB', {
 
 <div class="flex items-center gap-4 py-6 border-b border-neutral-300 dark:border-neutral-700 reveal">
   <div class="flex flex-col">
-    <span class="font-medium text-neutral-900 dark:text-neutral-100" data-editable="text" data-prop="author_name">{author_name}</span>
+    <a href={`/authors/${author_name.toLowerCase().replace(/\s+/g, '-')}/`} class="font-medium text-brand dark:text-accent-dark hover:underline underline-offset-2" data-editable="text" data-prop="author_name">{author_name}</a>
     {author_role && (
        <span class="text-sm text-neutral-600 dark:text-neutral-400" data-editable="text" data-prop="author_role">{author_role}</span>
     )}

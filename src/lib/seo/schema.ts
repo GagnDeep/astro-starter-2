@@ -83,7 +83,7 @@ export function buildSchemaGraph({
   const isArticle = Boolean(seo.article);
 
   const pageNode: JsonLdNode = {
-    "@type": isArticle ? "BlogPosting" : "WebPage",
+    "@type": isArticle ? "Article" : "WebPage",
     "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
     url: seo.canonical,
     name: seo.rawTitle,
@@ -109,7 +109,9 @@ export function buildSchemaGraph({
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", "@id": `${seo.canonical}#author`, name: seo.article.author };
+      const authorMatch = site.authors?.find(a => a.name === seo.article?.author);
+      const authorUrl = authorMatch ? new URL(`/authors/${authorMatch.slug}/`, base).toString() : `${seo.canonical}#author`;
+      pageNode.author = { "@type": "Person", "@id": authorUrl, name: seo.article.author };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
@@ -117,7 +119,39 @@ export function buildSchemaGraph({
     pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
   }
 
-  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
+  const authorMatch = isArticle && site.authors?.find(a => a.name === seo.article?.author);
+  const authorNode = authorMatch ? {
+    "@type": "Person",
+    "@id": new URL(`/authors/${authorMatch.slug}/`, base).toString(),
+    "name": authorMatch.name,
+    "url": new URL(`/authors/${authorMatch.slug}/`, base).toString()
+  } : null;
+
+  let graphNodes = [websiteNode(base), organizationNode(base), prune(pageNode)];
+  if (authorNode) graphNodes.push(authorNode);
+  if (base.includes('/passport/') || base.includes('/oci/')) {
+    const isPassport = base.includes('/passport/');
+    const itemList: JsonLdNode = {
+      "@type": "ItemList",
+      "@id": `${seo.canonical}#list`,
+      "itemListElement": isPassport ? [
+        { "@type": "ListItem", "position": 1, "url": new URL("/passport/standard-renewal/", base).toString() },
+        { "@type": "ListItem", "position": 2, "url": new URL("/passport/change-of-appearance/", base).toString() },
+        { "@type": "ListItem", "position": 3, "url": new URL("/passport/tatkaal-service/", base).toString() },
+        { "@type": "ListItem", "position": 4, "url": new URL("/passport/lost-damaged/", base).toString() }
+      ] : [
+        { "@type": "ListItem", "position": 1, "url": new URL("/oci/new-application/", base).toString() },
+        { "@type": "ListItem", "position": 2, "url": new URL("/oci/renewal/", base).toString() },
+        { "@type": "ListItem", "position": 3, "url": new URL("/oci/lost-passport/", base).toString() },
+        { "@type": "ListItem", "position": 4, "url": new URL("/oci/minor-application/", base).toString() }
+      ]
+    };
+    pageNode.mainEntity = { "@id": `${seo.canonical}#list` };
+    graphNodes = [websiteNode(base), organizationNode(base), prune(pageNode), prune(itemList)];
+    if (authorNode) graphNodes.push(authorNode);
+  }
+
+  const graph: JsonLdNode[] = graphNodes;
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
 
   return { "@context": "https://schema.org", "@graph": graph };
