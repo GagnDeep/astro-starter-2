@@ -42,9 +42,26 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 });
 
 const HeroComponent = props.hero_block?._name ? components[props.hero_block._name] : null;
+
+let itemList = undefined;
+let articleMeta = undefined;
+if (props.content_blocks) {
+  const table = props.content_blocks.find((b: any) => b._name === "ComparisonTable");
+  if (table && table.competitors) {
+    itemList = table.competitors.map((c: string) => ({ name: c }));
+  }
+
+  const byline = props.content_blocks.find((b: any) => b._name === "Byline");
+  if (byline) {
+    articleMeta = {
+      author: byline.author,
+      publishedTime: byline.date ? new Date(byline.date).toISOString() : undefined
+    };
+  }
+}
 ---
 
-<Layout {...props}>
+<Layout {...props} itemList={itemList} article={articleMeta}>
   {HeroComponent && (
     <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
       <HeroComponent {...props.hero_block} />
