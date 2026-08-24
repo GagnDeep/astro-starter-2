@@ -1,0 +1,41 @@
+---
+export interface Feature {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface Props {
+  heading: string;
+  features: Feature[];
+}
+
+const { heading, features } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-surface-color" data-editable="unequal-feature-block">
+  <div class="mx-auto max-w-6xl px-4 sm:px-8">
+    <h2 class="mb-12 font-bold text-center md:text-left">{heading}</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      {features.map((feature, index) => {
+        // Unequal spans: 7, 5, 5, 7, etc.
+        const isWide = index % 4 === 0 || index % 4 === 3;
+        const colSpan = isWide ? 'md:col-span-7' : 'md:col-span-5';
+
+        return (
+          <div class={`surface-card p-8 scroll-reveal hover-transition hover:-translate-y-1 ${colSpan}`}>
+            {feature.icon && (
+              <div class="w-12 h-12 mb-6 rounded-sm bg-accent-100 flex items-center justify-center text-accent-700">
+                {/* Fallback for icon rendering if not using lucide directly */}
+                <span class="text-xl font-bold">{feature.icon}</span>
+              </div>
+            )}
+            <h3 class="text-xl font-bold mb-3 text-brand-900">{feature.title}</h3>
+            <p class="text-neutral-700">{feature.description}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

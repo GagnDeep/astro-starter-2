@@ -47,6 +47,7 @@ function organizationNode(base: string): JsonLdNode {
   if (site.organization?.logo) {
     node.logo = {
       "@type": "ImageObject",
+      "@id": id(base, "logo"),
       url: absoluteUrl(site.organization.logo, base),
     };
   }
@@ -54,6 +55,18 @@ function organizationNode(base: string): JsonLdNode {
     node.sameAs = site.organization.same_as;
   }
   return node;
+}
+
+function authorNode(base: string, authorName: string): JsonLdNode {
+  const authorData = site.authors?.find((a) => a.name === authorName) || { slug: "#", name: authorName };
+  const authorUrl = new URL(`/author/${authorData.slug}`, base).toString();
+
+  return {
+    "@type": "Person",
+    "@id": id(base, `author-${authorData.slug || authorName.replace(/\\s+/g, '-').toLowerCase()}`),
+    name: authorName,
+    url: authorUrl
+  };
 }
 
 function breadcrumbNode(base: string, items: BreadcrumbItem[]): JsonLdNode {
@@ -81,7 +94,7 @@ export function buildSchemaGraph({
   const isArticle = Boolean(seo.article);
 
   const pageNode: JsonLdNode = {
-    "@type": isArticle ? "BlogPosting" : "WebPage",
+    "@type": isArticle ? "Article" : "WebPage",
     "@id": `${seo.canonical}#${isArticle ? "article" : "webpage"}`,
     url: seo.canonical,
     name: seo.rawTitle,
@@ -90,25 +103,34 @@ export function buildSchemaGraph({
     inLanguage: seo.lang,
     isPartOf: { "@id": id(base, "website") },
     primaryImageOfPage: seo.image
-      ? { "@type": "ImageObject", url: seo.image, ...(seo.imageAlt && { caption: seo.imageAlt }) }
+      ? {
+          "@type": "ImageObject",
+          "@id": `${seo.canonical}#primaryimage`,
+          url: seo.image,
+          ...(seo.imageAlt && { caption: seo.imageAlt })
+        }
       : undefined,
   };
 
+  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base)];
+
   if (isArticle) {
-    pageNode.image = seo.image || undefined;
+    pageNode.image = seo.image ? { "@id": `${seo.canonical}#primaryimage` } : undefined;
     pageNode.datePublished = seo.article?.publishedTime;
     pageNode.dateModified = seo.article?.modifiedTime ?? seo.article?.publishedTime;
     pageNode.publisher = { "@id": id(base, "organization") };
     if (seo.article?.author) {
-      pageNode.author = { "@type": "Person", name: seo.article.author };
+      const aNode = authorNode(base, seo.article.author);
+      graph.push(aNode);
+      pageNode.author = { "@id": aNode["@id"] };
     }
     if (seo.article?.tags?.length) {
       pageNode.keywords = seo.article.tags;
     }
-    pageNode.mainEntityOfPage = { "@type": "WebPage", "@id": seo.canonical };
+    pageNode.mainEntityOfPage = { "@id": seo.canonical };
   }
 
-  const graph: JsonLdNode[] = [websiteNode(base), organizationNode(base), prune(pageNode)];
+  graph.push(prune(pageNode));
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
 
   return { "@context": "https://schema.org", "@graph": graph };

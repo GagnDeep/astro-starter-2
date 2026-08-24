@@ -2,30 +2,11 @@
 
 /*
  * Art Direction: Editorial/Swiss
- * Justification: To convey high founder credibility and clarity, ensuring the site feels authoritative, structured, and legible for near-retirees making significant life decisions.
- *
- * CASCADE RULE — read before adding CSS to this file.
- *
- * Tailwind v4 emits every utility inside `@layer utilities`. Unlayered CSS
- * beats *any* cascade layer regardless of specificity or source order, so a
- * bare reset like
- *
- *   * { margin: 0; padding: 0; }        <-- outside any @layer
- *
- * silently kills every `p-*`, `px-*`, `m-*`, `mx-auto` and `space-y-*` on the
- * site, while colours, flex and grid keep working — which makes it look like
- * "Tailwind is half broken" rather than a cascade problem.
- *
- * Therefore: every rule in this file stays inside `@layer base` or
- * `@layer components`. No element/reset rule may be written at the top level.
- * `pnpm build` warns if an unlayered spacing reset reaches the output.
- *
- * A `*` reset is not needed anyway: Tailwind's preflight (in `@layer base`)
- * already sets `margin: 0; padding: 0; box-sizing: border-box` on
- * `*, ::before, ::after, ::backdrop`.
+ * Justification: High founder credibility and clarity, authoritative, structured, and legible for near-retirees making significant life decisions.
  */
 
 @theme {
+  /* Brand Hue: Deep authoritative blue-slate (oklch(0.25 0.05 250)) */
   --color-brand-50: oklch(0.97 0.01 250);
   --color-brand-100: oklch(0.93 0.02 250);
   --color-brand-200: oklch(0.85 0.03 250);
@@ -38,6 +19,7 @@
   --color-brand-900: oklch(0.18 0.04 250);
   --color-brand-950: oklch(0.12 0.03 250);
 
+  /* Supporting Hue: Warm Amber (oklch(0.65 0.12 70)) */
   --color-accent-50: oklch(0.97 0.02 70);
   --color-accent-100: oklch(0.93 0.04 70);
   --color-accent-200: oklch(0.88 0.06 70);
@@ -50,6 +32,7 @@
   --color-accent-900: oklch(0.25 0.06 70);
   --color-accent-950: oklch(0.15 0.04 70);
 
+  /* Neutral Ramp: Chroma 0.01-0.03 (Crisp White Paper to dark) */
   --color-neutral-50: oklch(0.98 0.01 250);
   --color-neutral-100: oklch(0.95 0.01 250);
   --color-neutral-200: oklch(0.90 0.015 250);
@@ -64,19 +47,127 @@
 
   --font-display: "Helvetica Now", "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-body: Charter, Merriweather, Georgia, serif;
+
+  /* Typography Scale */
+  --text-display: clamp(2.75rem, 6vw, 5.5rem);
+  --text-display--line-height: 1;
+  --text-display--tracking: -0.03em;
+
+  --text-body: 1.125rem; /* 18px */
+  --text-body--line-height: 1.6;
+
+  /* Spacing, Radius, Shadow */
+  --spacing-section: 4rem;
+  --spacing-container: 2rem;
+  --spacing-element: 1rem;
+
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-md: 0.25rem; /* 4px */
+  --radius-lg: 0.5rem; /* 8px (avoid uniform 8px, provide options) */
+  --radius-xl: 1rem; /* 16px */
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 @layer base {
+  /* Font Face definitions with size-adjust fallback */
+  @font-face {
+    font-family: 'Helvetica Now';
+    src: url('/fonts/helvetica-now-display-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Helvetica Now';
+    src: url('/fonts/helvetica-now-display-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Helvetica Now Fallback';
+    src: local('Arial');
+    size-adjust: 98%;
+    ascent-override: 95%;
+    descent-override: 20%;
+  }
+
+  @font-face {
+    font-family: 'Charter';
+    src: url('/fonts/charter-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Charter';
+    src: url('/fonts/charter-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Charter Fallback';
+    src: local('Georgia');
+    size-adjust: 102%;
+  }
+
+  :root {
+    /* Light Mode */
+    --bg-color: var(--color-neutral-50);
+    --text-color: var(--color-neutral-900);
+    --surface-color: var(--color-neutral-100);
+    --border-color: var(--color-neutral-200);
+    --accent-color: var(--color-accent-600);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Dark mode is designed, not inverted: surfaces are the brand hue at low lightness */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: var(--color-brand-950);
+      --text-color: var(--color-neutral-50);
+      --surface-color: var(--color-brand-900);
+      --border-color: var(--color-brand-800);
+      /* Raised accent chroma */
+      --accent-color: var(--color-accent-400);
+      --shadow-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
   html {
-    font-family: var(--font-body);
-    background-color: var(--color-neutral-50);
-    color: var(--color-neutral-900);
+    font-family: var(--font-body), 'Charter Fallback', serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px; /* base */
+    line-height: var(--text-body--line-height);
+  }
+
+  body {
+    font-size: var(--text-body);
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Focus visible styles at WCAG AA contrast */
+  :focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    color: var(--color-brand-900);
+    font-family: var(--font-display), 'Helvetica Now Fallback', sans-serif;
+    color: inherit;
     text-wrap: balance;
+  }
+
+  h1, .text-display {
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    letter-spacing: var(--text-display--tracking);
+  }
+
+  p {
+    max-width: 65ch;
   }
 
   main {
@@ -89,6 +180,70 @@
 }
 
 @layer components {
+  /* Dark mode 1px top highlight shadow replacement */
+  .surface-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .surface-card {
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  /* Motion Utilities */
+  /* Scroll reveal using animation timeline */
+  .scroll-reveal {
+    animation: scroll-reveal-anim linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 20%;
+  }
+
+  @keyframes scroll-reveal-anim {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hover transitions */
+  .hover-transition {
+    transition: all 150ms ease-in-out; /* <= 200ms */
+  }
+
+  /* Ambient Element */
+  .ambient-motion {
+    animation: gentle-float 6s ease-in-out infinite;
+  }
+
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .scroll-reveal {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
   .prose h1,
   .prose h2,
   .prose h3,
@@ -97,10 +252,11 @@
     margin-bottom: 0.5rem;
     text-wrap: balance;
     line-height: 1.2;
-    max-width: 72ch;
+    max-width: 65ch;
+    font-family: var(--font-display);
   }
-  .prose h1 { font-size: 2rem; }
-  .prose h2 { font-size: 1.75rem; }
+  .prose h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+  .prose h2 { font-size: 2rem; letter-spacing: -0.01em; }
   .prose h3 { font-size: 1.5rem; }
   .prose h4 { font-size: 1.25rem; }
 
@@ -108,8 +264,8 @@
   .prose a,
   .prose ol li,
   .prose ul li {
-    line-height: 1.75;
-    max-width: 72ch;
+    line-height: var(--text-body--line-height);
+    max-width: 65ch;
     text-wrap: pretty;
   }
   .prose p,
@@ -126,10 +282,12 @@
   }
   .prose blockquote {
     font-style: italic;
-    border-left: 5px solid var(--color-brand-800);
+    border-left: 5px solid var(--accent-color);
     padding-inline: 1rem;
     margin-inline: 0;
-    margin-block: 1rem;
+    margin-block: 1.5rem;
+    background-color: var(--surface-color);
+    padding-block: 1rem;
   }
   .prose ul li {
     margin-inline: 1rem;
@@ -142,10 +300,14 @@
     margin-inline: 1rem;
   }
   .prose a {
-    color: var(--color-accent-600);
+    color: var(--accent-color);
     text-decoration: underline;
     text-underline-offset: 0.1rem;
     cursor: pointer;
+    transition: color 150ms;
+  }
+  .prose a:hover {
+    color: var(--text-color);
   }
   .prose sup { vertical-align: super; font-size: smaller; }
   .prose sub { vertical-align: sub; font-size: smaller; }
@@ -157,34 +319,36 @@
   .prose table p { margin-bottom: 0; padding-block: 0.5rem; }
   .prose th,
   .prose td {
-    border: 1px solid var(--color-neutral-200);
+    border: 1px solid var(--border-color);
     padding: 0.5rem;
   }
-  .prose thead { background-color: var(--color-neutral-100); }
+  .prose thead { background-color: var(--surface-color); }
   .prose img {
     max-width: 100%;
     height: auto;
-    margin: 1rem auto;
+    margin: 1.5rem auto;
+    border-radius: var(--radius-sm);
   }
   .prose hr {
     border: 0;
-    border-top: 1px solid var(--color-neutral-300);
-    margin: 1.5rem 0;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
   }
   .prose pre {
     margin-block: 1.5rem;
     padding: 1rem;
+    border-radius: var(--radius-md);
+    background-color: var(--surface-color);
+    overflow-x: auto;
   }
   .prose p > code,
   .prose li > code {
-    background-color: var(--color-neutral-100);
+    background-color: var(--surface-color);
     color: inherit;
     padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+    border-radius: var(--radius-sm);
   }
-}
 
-@layer components {
   /* CloudCannon content editor alignment classes */
   .align-left { text-align: left; }
   .align-center { text-align: center; }
