@@ -20,7 +20,7 @@ const { heading, text_content } = Astro.props;
         {heading}
       </h2>
     )}
-    <div class="text-gray-600">
+    <div class="text-[var(--text-muted)]">
       <Markdown content={text_content} dataProp="text_content" dataType="block" />
     </div>
   </div>

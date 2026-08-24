@@ -5,17 +5,18 @@ import { header } from "../../../data/navigation.json";
 import { Menu, X } from "@lucide/astro";
 ---
 
-<header class="bg-white">
+<header class="bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
   <div class="mx-auto max-w-6xl px-8">
     <nav class="flex items-center justify-between py-4">
-      <a href={header.logo_url}>
-        <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+      <a href={header.logo_url} class="font-bold text-2xl tracking-tighter">
+        <img class="h-8 w-auto object-contain hidden" src={header.logo} alt={header.logo_alt_text} />
+        {header.logo_alt_text.replace(' logo', '')}
       </a>
 
-      <ul class="hidden sm:flex items-center gap-6">
+      <ul class="hidden sm:flex items-center gap-8 font-medium">
         {header.links.map((link) => (
           <li>
-            <a class="text-gray-700 hover:text-gray-500 transition-colors" href={link.link}>
+            <a class="text-[var(--text-main)] hover:text-[var(--accent-color)] transition-colors" href={link.link}>
               {link.text}
             </a>
           </li>
@@ -23,33 +24,34 @@ import { Menu, X } from "@lucide/astro";
       </ul>
 
       <button
-        class="sm:hidden p-2"
+        class="sm:hidden p-2 text-[var(--text-main)]"
         aria-label="Open navigation menu"
         popovertarget="mobile-menu"
         popovertargetaction="show"
       >
-        <Menu class="w-6 h-6" aria-hidden="true" />
+        <Menu class="w-6 h-6 stroke-[1.5]" aria-hidden="true" />
       </button>
 
-      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-white z-50">
+      <div popover id="mobile-menu" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-none bg-[var(--bg-surface)] z-50">
         <div class="flex flex-col h-full">
-        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4">
-          <a href={header.logo_url}>
-            <img class="w-48" src={header.logo} alt={header.logo_alt_text} />
+        <div class="mx-auto w-full max-w-6xl flex items-center justify-between px-8 py-4 border-b border-[var(--border-color)]">
+          <a href={header.logo_url} class="font-bold text-2xl tracking-tighter">
+            <img class="h-8 w-auto object-contain hidden" src={header.logo} alt={header.logo_alt_text} />
+            {header.logo_alt_text.replace(' logo', '')}
           </a>
           <button
-            class="p-2"
+            class="p-2 text-[var(--text-main)]"
             aria-label="Close navigation menu"
             popovertarget="mobile-menu"
             popovertargetaction="hide"
           >
-            <X class="w-6 h-6" aria-hidden="true" />
+            <X class="w-6 h-6 stroke-[1.5]" aria-hidden="true" />
           </button>
         </div>
-        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-gray-200">
+        <ul class="flex flex-1 flex-col items-center justify-center gap-0 divide-y divide-[var(--border-color)]">
           {header.links.map((link) => (
             <li class="w-full max-w-xs text-center">
-              <a class="block py-5 text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors" href={link.link}>
+              <a class="block py-5 text-2xl font-bold text-[var(--text-main)] hover:text-[var(--accent-color)] transition-colors" href={link.link}>
                 {link.text}
               </a>
             </li>

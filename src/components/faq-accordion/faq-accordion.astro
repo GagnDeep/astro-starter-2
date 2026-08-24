@@ -1,0 +1,48 @@
+---
+import Markdown from "../utility/markdown.astro";
+import { ChevronDown } from "@lucide/astro";
+
+interface Faq {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  faqs: Faq[];
+}
+
+const { heading, subheading, faqs } = Astro.props;
+---
+
+<section class="py-12 md:py-24">
+  <div class="mx-auto max-w-3xl px-8">
+    <div class="mb-10 text-center">
+      <h2 data-editable="text" data-prop="heading" class="text-3xl md:text-5xl font-bold mb-4 text-balance">
+        {heading}
+      </h2>
+      {subheading && (
+        <div class="text-lg text-[var(--text-muted)]">
+          <Markdown content={subheading} dataProp="subheading" dataType="block" />
+        </div>
+      )}
+    </div>
+
+    <div class="border-t border-[var(--border-color)]" data-editable="array" data-prop="faqs">
+      {faqs.map((faq, i) => (
+        <details class="group border-b border-[var(--border-color)] [&_summary::-webkit-details-marker]:hidden" data-editable="array-item">
+          <summary class="flex cursor-pointer items-center justify-between py-6 text-xl font-bold">
+            <span data-editable="text" data-prop={`faqs[${i}].question`}>{faq.question}</span>
+            <span class="ml-6 flex-shrink-0 transition-transform duration-200 group-open:rotate-180">
+              <ChevronDown class="h-6 w-6 stroke-[1.5]" />
+            </span>
+          </summary>
+          <div class="pb-6 text-[var(--text-muted)]">
+            <Markdown content={faq.answer} dataProp={`faqs[${i}].answer`} dataType="block" />
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

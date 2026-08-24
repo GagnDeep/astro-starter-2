@@ -1,0 +1,33 @@
+---
+import site from "../../../data/site.json";
+
+interface Props {
+  author_slug?: string;
+  date?: string | Date;
+}
+
+const { author_slug, date } = Astro.props;
+
+const author = site.authors?.find((a) => a.slug === author_slug) || site.authors?.[0];
+const dateObj = date ? new Date(date) : new Date();
+---
+
+{author && (
+  <div class="flex items-center gap-4 py-4 border-t border-[var(--border-color)]">
+    <div class="flex flex-col">
+      <span class="font-bold">{author.name}</span>
+      <span class="text-sm text-[var(--text-muted)]">{author.role}</span>
+    </div>
+    <div class="w-px h-8 bg-[var(--border-color)] hidden sm:block"></div>
+    <div class="flex flex-col">
+      <span class="text-sm text-[var(--text-muted)]">Published</span>
+      <time datetime={dateObj.toISOString()} class="text-sm font-medium">
+        {dateObj.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </time>
+    </div>
+  </div>
+)}
