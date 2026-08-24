@@ -1,13 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { TriangleAlert } from "@lucide/astro";
+
+const seo = {
+  no_index: true,
+  page_description: "The page you are looking for does not exist.",
+  featured_image: null,
+  featured_image_alt: null,
+  canonical_url: null,
+  open_graph_type: null,
+  author_twitter_handle: null,
+};
 ---
 
-<Layout title="404 - Not Found">
-  <section class="flex flex-col items-center justify-center min-h-[60vh] px-8">
-    <img src="/images/404.png" alt="Error illustration" class="max-w-sm mb-8" />
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">Page not found!</h1>
-    <a href="/" class="text-blue-600 hover:text-blue-800 font-medium text-lg">
-      &larr; Back home
+<Layout title="404 - Not Found" seo={seo}>
+  <section class="flex flex-col items-center justify-center min-h-[60vh] px-8 text-center scroll-reveal">
+    <TriangleAlert class="w-16 h-16 text-accent-500 mb-6" aria-hidden="true" />
+    <h1 class="text-display font-bold text-brand-900 mb-4">Page not found</h1>
+    <p class="text-xl text-neutral-700 max-w-prose mb-8">
+      The retirement destination or information you are looking for may have been moved or no longer exists.
+    </p>
+    <a href="/" class="inline-flex items-center justify-center px-6 py-3 bg-brand-800 text-white font-medium rounded-sm hover:bg-brand-900 transition-colors focus-visible shadow-md">
+      Return to Homepage
     </a>
   </section>
 </Layout>
