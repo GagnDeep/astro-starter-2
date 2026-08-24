@@ -10,7 +10,15 @@ const seoSchema = z
     featured_image_alt: z.string().nullable(),
     author_twitter_handle: z.string().nullable(),
     open_graph_type: z.string().nullable(),
+
     no_index: z.boolean(),
+    article: z.object({
+      publishedTime: z.string().optional(),
+      modifiedTime: z.string().optional(),
+      author: z.string().optional(),
+      tags: z.array(z.string()).optional()
+    }).optional(),
+
   })
   .optional();
 

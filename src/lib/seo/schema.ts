@@ -134,11 +134,32 @@ export function buildSchemaGraph({
     graph.push({
       "@type": "Person",
       "@id": authorId,
-      name: seo.article.author
+      name: seo.article.author,
+      url: new URL(`/author/${seo.article.author.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/`, base).toString()
     });
   }
 
   graph.push(prune(pageNode));
+
+  // Ranked comparisons ItemList for Comparison Hubs
+  // In a real app we'd pass a prop, but here we can detect a comparison hub dynamically by checking if the page is a Service Hub
+  // that contains 'Integration' or 'Comparison' in its title, or use a custom field if we had one.
+  // We'll use the title as a more semantic check than a hardcoded URL.
+  if (seo.rawTitle && seo.rawTitle.includes("Integration") && seo.canonical.includes("/services/")) {
+    graph.push({
+      "@type": "ItemList",
+      "@id": id(base, "itemlist"),
+      name: "Integration Comparisons",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Orion to Redtail Sync",
+          url: new URL("/integrations/orion-redtail/", base).toString()
+        }
+      ]
+    });
+  }
 
   if (breadcrumbs?.length) graph.push(breadcrumbNode(base, breadcrumbs));
 
