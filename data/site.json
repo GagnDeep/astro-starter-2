@@ -1,17 +1,31 @@
 {
-  "site_title": "Astro Starter",
-  "description": "A starter template for Astro with Editable Regions, for CloudCannon CMS.",
-  "tagline": "Build fast, editable websites with Astro.",
+  "site_title": "Most Private Phone",
+  "description": "De-Googled phone guidance, paid setup guides, and configured hardware for the privacy-conscious buyer.",
+  "tagline": "The evidence-based guide to reclaiming your mobile privacy.",
   "lang": "en",
   "locale": "en_US",
   "twitter_site": "",
   "image": "/images/og/og-default.png",
-  "image_alt": "Astro Starter — build fast, editable websites with Astro.",
-  "default_author": "CloudCannon",
-  "theme_color": "#0f172a",
+  "image_alt": "Most Private Phone — de-Googled phone guidance and hardware.",
+  "default_author": "Editorial Team",
+  "theme_color": "#121212",
   "organization": {
-    "name": "CloudCannon",
-    "logo": "/images/logos/logo-blue.png",
+    "name": "Most Private Phone",
+    "logo": "/images/logos/logo.svg",
     "same_as": []
+  },
+  "authors": [
+    {
+      "slug": "editorial-team",
+      "name": "Editorial Team",
+      "role": "Privacy Researchers and Hardware Technicians",
+      "bio": "Our team rigorously tests privacy-focused operating systems and hardware configurations. We rely on verifiable evidence, not marketing claims.",
+      "sameAs": []
+    }
+  ],
+  "editorial": {
+    "how_we_test": "We evaluate devices and OSes (like GrapheneOS and CalyxOS) based on published criteria including network traffic analysis, verifiable security properties, and attack surface reduction. We never state a security property we have not tested.",
+    "how_we_make_money": "We sell a paid setup guide and a capped line of pre-configured hardware. We also earn affiliate commissions (1-4%) on some recommendations, but this does not drive our business.",
+    "corrections": "We correct factual errors promptly and transparently. If a claim about a device's privacy is proven false, we update the evaluation and note the change."
   }
 }
