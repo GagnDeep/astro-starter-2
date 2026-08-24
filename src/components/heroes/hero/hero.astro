@@ -36,7 +36,7 @@ const {
   {image && (
     <div class="md:col-span-5 h-full">
       <img
-        src={image}
+        src={image.startsWith('/src/assets/') ? image.replace('/src/assets/images/', '/images/og/') : image}
         alt={image_alt}
         class="w-full h-full object-cover shadow-md border border-[var(--color-border)]"
       />

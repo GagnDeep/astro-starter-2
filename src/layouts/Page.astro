@@ -40,9 +40,34 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 });
 
 const HeroComponent = props.hero_block?._name ? components[props.hero_block._name] : null;
+
+// Determine article meta if Byline is present in content_blocks
+let articleMeta = undefined;
+let itemListMeta = undefined;
+
+if (props.content_blocks) {
+  const bylineBlock = props.content_blocks.find(b => b._name === "Byline");
+  if (bylineBlock) {
+    articleMeta = {
+      author: bylineBlock.author,
+      publishedTime: bylineBlock.date ? new Date(bylineBlock.date).toISOString() : undefined,
+    };
+  }
+
+  const comparisonTable = props.content_blocks.find(b => b._name === "ComparisonTable");
+  if (comparisonTable && comparisonTable.rows && comparisonTable.rows.length > 0) {
+    itemListMeta = {
+      name: comparisonTable.heading || "Comparison Table",
+      items: comparisonTable.rows.map((row: any) => ({
+        name: row.label,
+        description: row.values.join(", ")
+      }))
+    };
+  }
+}
 ---
 
-<Layout {...props}>
+<Layout {...props} article={articleMeta} itemList={itemListMeta}>
   {HeroComponent && (
     <editable-component data-prop="hero_block" data-component={props.hero_block._name}>
       <HeroComponent {...props.hero_block} />
