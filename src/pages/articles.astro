@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+posts.sort((a, b) => new Date(b.data.post_hero.date).valueOf() - new Date(a.data.post_hero.date).valueOf());
+---
+
+<Layout title="Articles | Institute of Underwriting" seo={{ page_description: "Editorial posts from the Institute of Underwriting." }}>
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-4xl px-8">
+      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Articles</h1>
+      <p class="mb-10 text-lg text-gray-600">Editorial insights on modern underwriting.</p>
+      <div class="grid gap-8">
+        {posts.map(post => (
+          <a href={`/articles/${post.id.replace(/\.mdx?$/, '')}/`} class="block group">
+            <div class="bg-[var(--surface-color)] border border-[var(--border-color)] p-6 rounded shadow-sm group-hover:shadow-md transition-shadow">
+              <h2 class="text-2xl font-bold mb-2 group-hover:text-[var(--link-color)]">{post.data.title}</h2>
+              <p class="text-sm text-gray-500 mb-4">{new Date(post.data.post_hero.date).toLocaleDateString()}</p>
+              <p class="text-gray-700">{post.data.seo?.page_description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
