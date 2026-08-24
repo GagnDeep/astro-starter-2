@@ -27,7 +27,7 @@ const formatDate = (dateValue: string | Date) => {
 <div class="flex items-center gap-4 py-6 border-b border-border-color mb-8" data-editable="byline">
   <div>
     <p class="font-medium text-brand-900">
-      By <a href={`/author/${authorData.slug}`} class="text-brand-900 hover:text-accent-600 transition-colors">{authorData.name}</a>
+      By {authorData.slug !== "#" ? <a href={`/author/${authorData.slug}/`} class="text-brand-900 hover:text-accent-600 transition-colors">{authorData.name}</a> : <span class="text-brand-900">{authorData.name}</span>}
     </p>
     <div class="text-sm text-neutral-600 flex flex-wrap gap-2 items-center mt-1">
       <time datetime={new Date(date).toISOString()}>{formatDate(date)}</time>

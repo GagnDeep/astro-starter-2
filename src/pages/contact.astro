@@ -8,8 +8,8 @@ import NewsletterForm from "../components/forms/newsletter-form.astro";
 import { capture } from "../../capture.config";
 
 const field =
-  "w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600";
-const label = "block text-sm font-medium text-gray-700 mb-1";
+  "w-full rounded-sm border border-border-color px-3 py-2 focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600 bg-bg-color text-text-color";
+const label = "block text-sm font-medium text-brand-900 mb-1";
 ---
 
 <Layout
@@ -25,11 +25,11 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
   }}
 >
   <section class="py-16 md:py-24">
-    <div class="mx-auto max-w-3xl px-8">
-      <h1 class="mb-4 text-3xl font-bold text-balance md:text-5xl">Contact</h1>
-      <p class="mb-10 text-lg text-gray-600">Tell us what you need and we'll get back to you.</p>
+    <div class="mx-auto max-w-3xl px-8 scroll-reveal">
+      <h1 class="mb-4 text-display font-bold text-balance text-brand-900">Contact</h1>
+      <p class="mb-10 text-lg text-neutral-700">Tell us what you need and we'll get back to you.</p>
 
-      <CaptureForm form={capture.forms.contact} submitLabel="Send message">
+      <CaptureForm form={capture.forms.contact} submitLabel="Send message" class="surface-card p-6 md:p-8">
         <div>
           <label for="name" class={label}>Name</label>
           <input id="name" name="name" autocomplete="name" required class={field} />
@@ -42,14 +42,14 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
 
         <div>
           <label for="phone" class={label}
-            >Phone <span class="text-gray-400">(optional)</span></label
+            >Phone <span class="text-neutral-500">(optional)</span></label
           >
           <input id="phone" name="phone" type="tel" autocomplete="tel" class={field} />
         </div>
 
         <div>
           <label for="company" class={label}
-            >Company <span class="text-gray-400">(optional)</span></label
+            >Company <span class="text-neutral-500">(optional)</span></label
           >
           <input id="company" name="company" autocomplete="organization" class={field} />
         </div>
@@ -72,10 +72,10 @@ const label = "block text-sm font-medium text-gray-700 mb-1";
     </div>
   </section>
 
-  <section class="bg-gray-50 py-12 md:py-20">
-    <div class="mx-auto max-w-3xl px-8">
-      <h2 class="mb-2 text-2xl font-bold text-balance md:text-3xl">Join the waitlist</h2>
-      <p class="mb-6 text-gray-600">One email when we launch. No noise.</p>
+  <section class="bg-surface-color py-12 md:py-20 border-t border-border-color">
+    <div class="mx-auto max-w-3xl px-8 scroll-reveal">
+      <h2 class="mb-2 text-2xl font-bold text-brand-900 text-balance">Join the waitlist</h2>
+      <p class="mb-6 text-neutral-700">One email when we launch. No noise.</p>
       <NewsletterForm form={capture.forms.newsletter} submitLabel="Join waitlist" class="max-w-md" />
     </div>
   </section>

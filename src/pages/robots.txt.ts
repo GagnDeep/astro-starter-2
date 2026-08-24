@@ -16,6 +16,19 @@ Allow: /
 Disallow: /_cloudcannon/
 Disallow: /404
 
+# explicitly allow AI bots for citation eligibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: ${sitemapUrl}
 `;
 

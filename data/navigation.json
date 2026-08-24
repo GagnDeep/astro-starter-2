@@ -5,12 +5,12 @@
     "logo_url": "/",
     "links": [
       {
-        "link": "/comparisons/",
-        "text": "Comparisons"
+        "link": "/cost-of-living/",
+        "text": "Cost of Living"
       },
       {
-        "link": "/methodology/",
-        "text": "Methodology"
+        "link": "/visas/",
+        "text": "Visas"
       },
       {
         "link": "/about/",
@@ -33,8 +33,12 @@
         "text": "Contact"
       },
       {
-        "link": "/methodology/",
-        "text": "Methodology"
+        "link": "/editorial-policy/",
+        "text": "Editorial Policy"
+      },
+      {
+        "link": "/how-we-make-money/",
+        "text": "How We Make Money"
       },
       {
         "link": "/feed.xml",
