@@ -8,6 +8,13 @@ seo:
   author_twitter_handle: null
   open_graph_type: "website"
   no_index: false
+hero_block:
+  _name: Hero
+  heading: "General Public Info"
+  subheading: ""
+  image: ""
+  image_alt: ""
+  button: null
 content_blocks:
   - _name: "TextBlock"
     text_content: "This page is currently under construction."
